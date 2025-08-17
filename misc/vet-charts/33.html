@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Veteran Labor Force Status – New Hampshire</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Labor Force Status of Veterans (Age 18–64) in New Hampshire</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Belknap County, New Hampshire">Belknap County, New Hampshire</option>
+      <option value="Carroll County, New Hampshire">Carroll County, New Hampshire</option>
+      <option value="Cheshire County, New Hampshire">Cheshire County, New Hampshire</option>
+      <option value="Coos County, New Hampshire">Coos County, New Hampshire</option>
+      <option value="Grafton County, New Hampshire">Grafton County, New Hampshire</option>
+      <option value="Hillsborough County, New Hampshire">Hillsborough County, New Hampshire</option>
+      <option value="Merrimack County, New Hampshire">Merrimack County, New Hampshire</option>
+      <option value="Rockingham County, New Hampshire">Rockingham County, New Hampshire</option>
+      <option value="Strafford County, New Hampshire">Strafford County, New Hampshire</option>
+      <option value="Sullivan County, New Hampshire">Sullivan County, New Hampshire</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>        const data = {"Statewide":[81.3,2,16.7],"Belknap County, New Hampshire":[71.5,5.7,22.9],"Carroll County, New Hampshire":[81.9,0.6,17.5],"Cheshire County, New Hampshire":[84.1,2.8,13.1],"Coos County, New Hampshire":[72.9,3.1,23.9],"Grafton County, New Hampshire":[72.3,0.9,26.8],"Hillsborough County, New Hampshire":[82.4,1.7,15.9],"Merrimack County, New Hampshire":[78.8,2.4,18.7],"Rockingham County, New Hampshire":[87.2,1.4,11.4],"Strafford County, New Hampshire":[83.4,1.5,15.1],"Sullivan County, New Hampshire":[68.2,3.1,28.7]};
+        const nationalAvg = [73.9,23,3.2];
+        const categories = ["Employed","Unemployed","Not in Labor Force"];
+        const ctx = document.getElementById("barChart").getContext("2d");
+        let chart;
+
+        function renderChart(values) {
+          if (chart) chart.destroy();
+          chart = new Chart(ctx, {
+            type: "bar",
+            data: {
+              labels: categories,
+              datasets: [
+                {
+                  label: "County/State",
+                  data: values,
+                  backgroundColor: ["#66c2a5", "#fc8d62", "#8da0cb"]
+                },
+                {
+                  label: null,
+                  data: categories.map(c => nationalAvg[c]),
+                  type: "line",
+                  borderColor: "black",
+                  borderWidth: 2,
+                  pointRadius: 0,
+                  fill: false
+                }
+              ]
+            },
+            options: {
+              indexAxis: "y",
+              scales: {
+                x: {
+                  min: 0,
+                  max: 100,
+                  ticks: {
+                    callback: v => v + "%"
+                  }
+                }
+              },
+              plugins: {
+                legend: {
+  display: false
+},
+                tooltip: {
+                  callbacks: {
+                    label: ctx => ctx.dataset.label ? ctx.dataset.label + ": " + ctx.raw + "%" : null
+                  }
+                }
+              }
+            }
+          });
+        }
+
+        document.getElementById("countySelect").addEventListener("change", function() {
+          renderChart(Object.values(data[this.value]));
+        });
+
+        renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

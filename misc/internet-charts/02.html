@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Internet Access Over Time –  Alaska</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+                      h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+                      select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; border-radius: 5px; border: 1px solid #999; }
+                      canvas { width: 100%; max-width: 850px; height: 450px; margin-top: 1rem; }</style>
+</head>
+<html>
+  <body>
+    <h2>Internet Access in  Alaska (2013–2023)</h2>
+    <label>Select County: </label>
+    <select id="countySelect"><option value='Statewide'>Statewide</option>
+<option value='Aleutians East Borough, Alaska'>Aleutians East Borough, Alaska</option>
+<option value='Aleutians West Census Area, Alaska'>Aleutians West Census Area, Alaska</option>
+<option value='Anchorage Municipality, Alaska'>Anchorage Municipality, Alaska</option>
+<option value='Bethel Census Area, Alaska'>Bethel Census Area, Alaska</option>
+<option value='Bristol Bay Borough, Alaska'>Bristol Bay Borough, Alaska</option>
+<option value='Chugach Census Area, Alaska'>Chugach Census Area, Alaska</option>
+<option value='Copper River Census Area, Alaska'>Copper River Census Area, Alaska</option>
+<option value='Denali Borough, Alaska'>Denali Borough, Alaska</option>
+<option value='Dillingham Census Area, Alaska'>Dillingham Census Area, Alaska</option>
+<option value='Fairbanks North Star Borough, Alaska'>Fairbanks North Star Borough, Alaska</option>
+<option value='Haines Borough, Alaska'>Haines Borough, Alaska</option>
+<option value='Hoonah-Angoon Census Area, Alaska'>Hoonah-Angoon Census Area, Alaska</option>
+<option value='Juneau City and Borough, Alaska'>Juneau City and Borough, Alaska</option>
+<option value='Kenai Peninsula Borough, Alaska'>Kenai Peninsula Borough, Alaska</option>
+<option value='Ketchikan Gateway Borough, Alaska'>Ketchikan Gateway Borough, Alaska</option>
+<option value='Kodiak Island Borough, Alaska'>Kodiak Island Borough, Alaska</option>
+<option value='Kusilvak Census Area, Alaska'>Kusilvak Census Area, Alaska</option>
+<option value='Lake and Peninsula Borough, Alaska'>Lake and Peninsula Borough, Alaska</option>
+<option value='Matanuska-Susitna Borough, Alaska'>Matanuska-Susitna Borough, Alaska</option>
+<option value='Nome Census Area, Alaska'>Nome Census Area, Alaska</option>
+<option value='North Slope Borough, Alaska'>North Slope Borough, Alaska</option>
+<option value='Northwest Arctic Borough, Alaska'>Northwest Arctic Borough, Alaska</option>
+<option value='Petersburg Borough, Alaska'>Petersburg Borough, Alaska</option>
+<option value='Prince of Wales-Hyder Census Area, Alaska'>Prince of Wales-Hyder Census Area, Alaska</option>
+<option value='Sitka City and Borough, Alaska'>Sitka City and Borough, Alaska</option>
+<option value='Skagway Municipality, Alaska'>Skagway Municipality, Alaska</option>
+<option value='Southeast Fairbanks Census Area, Alaska'>Southeast Fairbanks Census Area, Alaska</option>
+<option value='Valdez-Cordova Census Area, Alaska'>Valdez-Cordova Census Area, Alaska</option>
+<option value='Wrangell City and Borough, Alaska'>Wrangell City and Borough, Alaska</option>
+<option value='Yakutat City and Borough, Alaska'>Yakutat City and Borough, Alaska</option>
+<option value='Yukon-Koyukuk Census Area, Alaska'>Yukon-Koyukuk Census Area, Alaska</option></select>
+    <canvas id="lineChart" width="850" height="450"></canvas>
+    <script>const internetData = {"Statewide":{"2017":86.6,"2018":87.8,"2019":88.5,"2020":89.7,"2021":90.7,"2022":91.7,"2023":92.9},"Aleutians East Borough, Alaska":{"2017":71.6,"2018":71.6,"2019":66.4,"2020":61.9,"2021":62.8,"2022":63.6,"2023":64},"Aleutians West Census Area, Alaska":{"2017":79.1,"2018":80.4,"2019":81.8,"2020":86.4,"2021":85,"2022":86.7,"2023":86.4},"Anchorage Municipality, Alaska":{"2017":90.6,"2018":91.7,"2019":92.5,"2020":93.9,"2021":94.6,"2022":95.2,"2023":96},"Bethel Census Area, Alaska":{"2017":72.1,"2018":75.4,"2019":76.6,"2020":76.7,"2021":78.3,"2022":81.4,"2023":83.5},"Bristol Bay Borough, Alaska":{"2017":84.6,"2018":86.5,"2019":84.4,"2020":87,"2021":81.6,"2022":83.1,"2023":83},"Chugach Census Area, Alaska":{"2020":89.1,"2021":91.4,"2022":91.8,"2023":96.2},"Copper River Census Area, Alaska":{"2020":79.1,"2021":78.1,"2022":81.4,"2023":82.8},"Denali Borough, Alaska":{"2017":92.2,"2018":92,"2019":93.8,"2020":91.2,"2021":88.1,"2022":88.2,"2023":86.7},"Dillingham Census Area, Alaska":{"2017":73.8,"2018":78.6,"2019":77.5,"2020":77.7,"2021":79.6,"2022":80.3,"2023":84.2},"Fairbanks North Star Borough, Alaska":{"2017":86.1,"2018":88.5,"2019":89.2,"2020":90.5,"2021":91.6,"2022":93,"2023":93.5},"Haines Borough, Alaska":{"2017":87.6,"2018":90.5,"2019":86.8,"2020":87.8,"2021":84.3,"2022":83.7,"2023":86.5},"Hoonah-Angoon Census Area, Alaska":{"2017":74.8,"2018":73.3,"2019":66.1,"2020":61.9,"2021":60.7,"2022":62.1,"2023":66.6},"Juneau City and Borough, Alaska":{"2017":91.5,"2018":92.2,"2019":93.2,"2020":92.5,"2021":93.3,"2022":93.9,"2023":94.7},"Kenai Peninsula Borough, Alaska":{"2017":81.7,"2018":82.3,"2019":83.7,"2020":85.8,"2021":87.3,"2022":89.1,"2023":90.6},"Ketchikan Gateway Borough, Alaska":{"2017":86.7,"2018":88.1,"2019":89.1,"2020":90.1,"2021":90,"2022":91.8,"2023":92.9},"Kodiak Island Borough, Alaska":{"2017":85.1,"2018":85.2,"2019":86.8,"2020":87.8,"2021":92.2,"2022":92.8,"2023":93.7},"Kusilvak Census Area, Alaska":{"2017":59.5,"2018":63.7,"2019":66.6,"2020":68.1,"2021":72.6,"2022":78,"2023":83.7},"Lake and Peninsula Borough, Alaska":{"2017":63.2,"2018":63.8,"2019":67.9,"2020":70.8,"2021":68.7,"2022":75.8,"2023":75.2},"Matanuska-Susitna Borough, Alaska":{"2017":88.4,"2018":89.3,"2019":89.6,"2020":90.4,"2021":91.4,"2022":92.7,"2023":93.8},"Nome Census Area, Alaska":{"2017":72.3,"2018":75.4,"2019":77.2,"2020":80.6,"2021":81.7,"2022":84.8,"2023":86},"North Slope Borough, Alaska":{"2017":72.4,"2018":72.6,"2019":73.8,"2020":75,"2021":73.8,"2022":68.4,"2023":75.8},"Northwest Arctic Borough, Alaska":{"2017":69.9,"2018":72.5,"2019":78.4,"2020":79.6,"2021":82.1,"2022":86,"2023":89.4},"Petersburg Borough, Alaska":{"2017":79.9,"2018":81.5,"2019":84.4,"2020":83.2,"2021":88.9,"2022":85.7,"2023":88.6},"Prince of Wales-Hyder Census Area, Alaska":{"2017":73.2,"2018":71.2,"2019":69.6,"2020":71.3,"2021":71.1,"2022":75.6,"2023":78.5},"Sitka City and Borough, Alaska":{"2017":86.3,"2018":86.9,"2019":87,"2020":86.6,"2021":86.4,"2022":88.5,"2023":90.9},"Skagway Municipality, Alaska":{"2017":92,"2018":90.8,"2019":87.5,"2020":92,"2021":89.2,"2022":90.7,"2023":91.4},"Southeast Fairbanks Census Area, Alaska":{"2017":78.3,"2018":76.9,"2019":76.6,"2020":74.1,"2021":75.2,"2022":77.8,"2023":81.1},"Valdez-Cordova Census Area, Alaska":{"2017":85.3,"2018":82.7,"2019":83},"Wrangell City and Borough, Alaska":{"2017":78.7,"2018":77.3,"2019":79,"2020":83.2,"2021":81.9,"2022":84.5,"2023":89.6},"Yakutat City and Borough, Alaska":{"2017":71.4,"2018":71.6,"2019":73.1,"2020":83.3,"2021":83.8,"2022":84,"2023":83.6},"Yukon-Koyukuk Census Area, Alaska":{"2017":47.2,"2018":47.7,"2019":47,"2020":50,"2021":49.9,"2022":52.2,"2023":58.2}};
+const ctx = document.getElementById('lineChart').getContext('2d');
+let chart;
+
+function renderChart(data) {
+  const labels = Object.keys(data);
+  const values = Object.values(data);
+
+  if (chart) chart.destroy();
+  chart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: labels,
+      datasets: [{
+        label: '% With Internet',
+        data: values,
+        fill: false,
+        borderColor: 'teal',
+        backgroundColor: 'teal',
+        tension: 0.3,
+        pointRadius: 4
+      }]
+    },
+    options: {
+      responsive: true,
+      scales: {
+        y: {
+          beginAtZero: true,
+          max: 100,
+          title: { display: true, text: '% With Internet' }
+        },
+        x: {
+          title: { display: true, text: 'Year' }
+        }
+      },
+      plugins: {
+        tooltip: {
+          callbacks: {
+            label: function(ctx) {
+              return ctx.parsed.y.toFixed(1) + '%';
+            }
+          }
+        }
+      }
+    }
+  });
+}
+
+document.getElementById('countySelect').addEventListener('change', function() {
+  renderChart(internetData[this.value]);
+});
+renderChart(internetData['Statewide']);</script>
+  </body>
+</html>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Race by Year – Washington</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      margin: 1em;
+    }
+    #buttons button {
+      margin: 0 5px;
+    }
+    #chart-container {
+      width: 90%;
+      max-width: 800px;
+      margin: auto;
+    }
+    
+    #buttons button.active {
+  background-color: dodgerblue;
+  color: white;
+  border: none;
+  border-radius: 4px;
+}
+
+  </style>
+</head>
+<body>
+  <h2>Race/Ethnicity Population – Washington</h2>
+
+  <label for="countySelect">County:</label>
+  <select id="countySelect">
+    <option value="Statewide" selected>Statewide</option>
+<option value="Adams County">Adams County</option>
+<option value="Asotin County">Asotin County</option>
+<option value="Benton County">Benton County</option>
+<option value="Chelan County">Chelan County</option>
+<option value="Clallam County">Clallam County</option>
+<option value="Clark County">Clark County</option>
+<option value="Columbia County">Columbia County</option>
+<option value="Cowlitz County">Cowlitz County</option>
+<option value="Douglas County">Douglas County</option>
+<option value="Ferry County">Ferry County</option>
+<option value="Franklin County">Franklin County</option>
+<option value="Garfield County">Garfield County</option>
+<option value="Grant County">Grant County</option>
+<option value="Grays Harbor County">Grays Harbor County</option>
+<option value="Island County">Island County</option>
+<option value="Jefferson County">Jefferson County</option>
+<option value="King County">King County</option>
+<option value="Kitsap County">Kitsap County</option>
+<option value="Kittitas County">Kittitas County</option>
+<option value="Klickitat County">Klickitat County</option>
+<option value="Lewis County">Lewis County</option>
+<option value="Lincoln County">Lincoln County</option>
+<option value="Mason County">Mason County</option>
+<option value="Okanogan County">Okanogan County</option>
+<option value="Pacific County">Pacific County</option>
+<option value="Pend Oreille County">Pend Oreille County</option>
+<option value="Pierce County">Pierce County</option>
+<option value="San Juan County">San Juan County</option>
+<option value="Skagit County">Skagit County</option>
+<option value="Skamania County">Skamania County</option>
+<option value="Snohomish County">Snohomish County</option>
+<option value="Spokane County">Spokane County</option>
+<option value="Stevens County">Stevens County</option>
+<option value="Thurston County">Thurston County</option>
+<option value="Wahkiakum County">Wahkiakum County</option>
+<option value="Walla Walla County">Walla Walla County</option>
+<option value="Whatcom County">Whatcom County</option>
+<option value="Whitman County">Whitman County</option>
+<option value="Yakima County">Yakima County</option>
+  </select>
+
+  <div id="buttons">
+  <button id="btn2010" onclick="updateChart(2010)">2010</button>
+  <button id="btn2020" onclick="updateChart(2020)">2020</button>
+</div>
+
+  <div id="chart-container">
+    <canvas id="raceChart"></canvas>
+  </div>
+
+   <script>
+    let data = null;
+    let chart = null;
+    let currentYear = 2010;
+
+    fetch("53.json")
+      .then(res => res.json())
+      .then(json => {
+        data = json;
+        document.getElementById("countySelect").addEventListener("change", () => updateChart(currentYear));
+        updateChart(currentYear);
+      });
+
+    function updateChart(year) {
+      currentYear = year;
+
+      // Highlight selected button
+      document.querySelectorAll("#buttons button").forEach(btn => btn.classList.remove("active"));
+      const activeBtn = document.getElementById(`btn${year}`);
+      if (activeBtn) activeBtn.classList.add("active");
+
+      const county = document.getElementById("countySelect").value;
+      const entry = data[county] && data[county][year];
+      if (!entry) return;
+
+      const races = Object.keys(entry[0]).filter(k => !["state_fips", "county", "year", "total"].includes(k));
+      const values = races.map(r => entry[0][r]);
+
+      const config = {
+        type: "bar",
+        data: {
+          labels: races,
+          datasets: [{
+            label: "Population",
+            data: values,
+            backgroundColor: "dodgerblue"
+          }]
+        },
+        options: {
+          plugins: {
+            legend: { display: false }
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              ticks: {
+                callback: function(value) {
+                  return value.toLocaleString();
+                }
+              }
+            }
+          }
+        }
+      };
+
+      if (chart) {
+        chart.destroy();
+      }
+      chart = new Chart(document.getElementById("raceChart"), config);
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Living Arrangements of Children – Oregon</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Children’s Living Arrangements (Under 18) – Oregon</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Baker County, Oregon">Baker County, Oregon</option>
+      <option value="Benton County, Oregon">Benton County, Oregon</option>
+      <option value="Clackamas County, Oregon">Clackamas County, Oregon</option>
+      <option value="Clatsop County, Oregon">Clatsop County, Oregon</option>
+      <option value="Columbia County, Oregon">Columbia County, Oregon</option>
+      <option value="Coos County, Oregon">Coos County, Oregon</option>
+      <option value="Crook County, Oregon">Crook County, Oregon</option>
+      <option value="Curry County, Oregon">Curry County, Oregon</option>
+      <option value="Deschutes County, Oregon">Deschutes County, Oregon</option>
+      <option value="Douglas County, Oregon">Douglas County, Oregon</option>
+      <option value="Gilliam County, Oregon">Gilliam County, Oregon</option>
+      <option value="Grant County, Oregon">Grant County, Oregon</option>
+      <option value="Harney County, Oregon">Harney County, Oregon</option>
+      <option value="Hood River County, Oregon">Hood River County, Oregon</option>
+      <option value="Jackson County, Oregon">Jackson County, Oregon</option>
+      <option value="Jefferson County, Oregon">Jefferson County, Oregon</option>
+      <option value="Josephine County, Oregon">Josephine County, Oregon</option>
+      <option value="Klamath County, Oregon">Klamath County, Oregon</option>
+      <option value="Lake County, Oregon">Lake County, Oregon</option>
+      <option value="Lane County, Oregon">Lane County, Oregon</option>
+      <option value="Lincoln County, Oregon">Lincoln County, Oregon</option>
+      <option value="Linn County, Oregon">Linn County, Oregon</option>
+      <option value="Malheur County, Oregon">Malheur County, Oregon</option>
+      <option value="Marion County, Oregon">Marion County, Oregon</option>
+      <option value="Morrow County, Oregon">Morrow County, Oregon</option>
+      <option value="Multnomah County, Oregon">Multnomah County, Oregon</option>
+      <option value="Polk County, Oregon">Polk County, Oregon</option>
+      <option value="Sherman County, Oregon">Sherman County, Oregon</option>
+      <option value="Tillamook County, Oregon">Tillamook County, Oregon</option>
+      <option value="Umatilla County, Oregon">Umatilla County, Oregon</option>
+      <option value="Union County, Oregon">Union County, Oregon</option>
+      <option value="Wallowa County, Oregon">Wallowa County, Oregon</option>
+      <option value="Wasco County, Oregon">Wasco County, Oregon</option>
+      <option value="Washington County, Oregon">Washington County, Oregon</option>
+      <option value="Wheeler County, Oregon">Wheeler County, Oregon</option>
+      <option value="Yamhill County, Oregon">Yamhill County, Oregon</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>  const data = {"Statewide":{"Married Couple (%)":69.2,"Cohabiting Couple (%)":9.7,"Male Householder (%)":5,"Female Householder (%)":16},"Baker County, Oregon":{"Married Couple (%)":73.2,"Cohabiting Couple (%)":6.7,"Male Householder (%)":5.6,"Female Householder (%)":14.5},"Benton County, Oregon":{"Married Couple (%)":74.2,"Cohabiting Couple (%)":10.1,"Male Householder (%)":4.9,"Female Householder (%)":10.8},"Clackamas County, Oregon":{"Married Couple (%)":77.9,"Cohabiting Couple (%)":5.4,"Male Householder (%)":3.5,"Female Householder (%)":13.2},"Clatsop County, Oregon":{"Married Couple (%)":75.8,"Cohabiting Couple (%)":7.8,"Male Householder (%)":6.6,"Female Householder (%)":9.7},"Columbia County, Oregon":{"Married Couple (%)":69.3,"Cohabiting Couple (%)":10.7,"Male Householder (%)":4.5,"Female Householder (%)":15.5},"Coos County, Oregon":{"Married Couple (%)":59.9,"Cohabiting Couple (%)":16.4,"Male Householder (%)":5.4,"Female Householder (%)":18.3},"Crook County, Oregon":{"Married Couple (%)":64.9,"Cohabiting Couple (%)":7.8,"Male Householder (%)":10.6,"Female Householder (%)":16.7},"Curry County, Oregon":{"Married Couple (%)":59.2,"Cohabiting Couple (%)":18.5,"Male Householder (%)":3,"Female Householder (%)":19.2},"Deschutes County, Oregon":{"Married Couple (%)":70.4,"Cohabiting Couple (%)":8.5,"Male Householder (%)":5.9,"Female Householder (%)":15.3},"Douglas County, Oregon":{"Married Couple (%)":62.2,"Cohabiting Couple (%)":11.5,"Male Householder (%)":5.9,"Female Householder (%)":20.5},"Gilliam County, Oregon":{"Married Couple (%)":60.3,"Cohabiting Couple (%)":18.4,"Male Householder (%)":3.4,"Female Householder (%)":17.9},"Grant County, Oregon":{"Married Couple (%)":83,"Cohabiting Couple (%)":5.4,"Male Householder (%)":0.2,"Female Householder (%)":11.4},"Harney County, Oregon":{"Married Couple (%)":76.9,"Cohabiting Couple (%)":2.5,"Male Householder (%)":7.2,"Female Householder (%)":13.4},"Hood River County, Oregon":{"Married Couple (%)":76.1,"Cohabiting Couple (%)":10.8,"Male Householder (%)":3.3,"Female Householder (%)":9.8},"Jackson County, Oregon":{"Married Couple (%)":69.4,"Cohabiting Couple (%)":10.7,"Male Householder (%)":5.8,"Female Householder (%)":14.2},"Jefferson County, Oregon":{"Married Couple (%)":61.8,"Cohabiting Couple (%)":8.9,"Male Householder (%)":8.9,"Female Householder (%)":20.4},"Josephine County, Oregon":{"Married Couple (%)":63.3,"Cohabiting Couple (%)":11,"Male Householder (%)":6.4,"Female Householder (%)":19.3},"Klamath County, Oregon":{"Married Couple (%)":63.8,"Cohabiting Couple (%)":15.3,"Male Householder (%)":5.2,"Female Householder (%)":15.7},"Lake County, Oregon":{"Married Couple (%)":70.7,"Cohabiting Couple (%)":4,"Male Householder (%)":2.6,"Female Householder (%)":22.7},"Lane County, Oregon":{"Married Couple (%)":63.7,"Cohabiting Couple (%)":11.3,"Male Householder (%)":5.4,"Female Householder (%)":19.6},"Lincoln County, Oregon":{"Married Couple (%)":60.6,"Cohabiting Couple (%)":15.5,"Male Householder (%)":6.1,"Female Householder (%)":17.7},"Linn County, Oregon":{"Married Couple (%)":70.4,"Cohabiting Couple (%)":9.8,"Male Householder (%)":6.1,"Female Householder (%)":13.7},"Malheur County, Oregon":{"Married Couple (%)":59.8,"Cohabiting Couple (%)":7.4,"Male Householder (%)":7.3,"Female Householder (%)":25.5},"Marion County, Oregon":{"Married Couple (%)":67.1,"Cohabiting Couple (%)":11.8,"Male Householder (%)":4.6,"Female Householder (%)":16.4},"Morrow County, Oregon":{"Married Couple (%)":60.5,"Cohabiting Couple (%)":18.9,"Male Householder (%)":4.2,"Female Householder (%)":16.4},"Multnomah County, Oregon":{"Married Couple (%)":66.8,"Cohabiting Couple (%)":8.8,"Male Householder (%)":5.6,"Female Householder (%)":18.8},"Polk County, Oregon":{"Married Couple (%)":65.7,"Cohabiting Couple (%)":10.9,"Male Householder (%)":4.3,"Female Householder (%)":19.1},"Sherman County, Oregon":{"Married Couple (%)":64.6,"Cohabiting Couple (%)":19.5,"Male Householder (%)":4.5,"Female Householder (%)":11.4},"Tillamook County, Oregon":{"Married Couple (%)":74.1,"Cohabiting Couple (%)":12.2,"Male Householder (%)":3.4,"Female Householder (%)":10.3},"Umatilla County, Oregon":{"Married Couple (%)":59.6,"Cohabiting Couple (%)":14.5,"Male Householder (%)":5.9,"Female Householder (%)":19.9},"Union County, Oregon":{"Married Couple (%)":68.6,"Cohabiting Couple (%)":7.9,"Male Householder (%)":5.3,"Female Householder (%)":18.2},"Wallowa County, Oregon":{"Married Couple (%)":77.7,"Cohabiting Couple (%)":6,"Male Householder (%)":2,"Female Householder (%)":14.2},"Wasco County, Oregon":{"Married Couple (%)":72.8,"Cohabiting Couple (%)":9.9,"Male Householder (%)":6,"Female Householder (%)":11.3},"Washington County, Oregon":{"Married Couple (%)":75.1,"Cohabiting Couple (%)":8,"Male Householder (%)":4.2,"Female Householder (%)":12.7},"Wheeler County, Oregon":{"Married Couple (%)":68.1,"Cohabiting Couple (%)":11.1,"Male Householder (%)":5.3,"Female Householder (%)":15.5},"Yamhill County, Oregon":{"Married Couple (%)":66.7,"Cohabiting Couple (%)":13.3,"Male Householder (%)":4,"Female Householder (%)":16}};
+  const categories = ["Married Couple (%)","Cohabiting Couple (%)","Male Householder (%)","Female Householder (%)"];
+  const ctx = document.getElementById("barChart").getContext("2d");
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: categories,
+        datasets: [{
+          label: "Share of Children (%)",
+          data: values,
+          backgroundColor: ["#5DA5DA","#FAA43A","#60BD68","#F17CB0"]
+        }]
+      },
+      options: {
+        indexAxis: "y",
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            ticks: { callback: v => v + "%" },
+            title: { display: true, text: "Percent of Children" }
+          }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.raw + "%"
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById("countySelect").addEventListener("change", function() {
+    renderChart(Object.values(data[this.value]));
+  });
+
+  renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

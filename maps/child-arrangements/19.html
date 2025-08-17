@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Living Arrangements of Children – Iowa</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Children’s Living Arrangements (Under 18) – Iowa</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Adair County, Iowa">Adair County, Iowa</option>
+      <option value="Adams County, Iowa">Adams County, Iowa</option>
+      <option value="Allamakee County, Iowa">Allamakee County, Iowa</option>
+      <option value="Appanoose County, Iowa">Appanoose County, Iowa</option>
+      <option value="Audubon County, Iowa">Audubon County, Iowa</option>
+      <option value="Benton County, Iowa">Benton County, Iowa</option>
+      <option value="Black Hawk County, Iowa">Black Hawk County, Iowa</option>
+      <option value="Boone County, Iowa">Boone County, Iowa</option>
+      <option value="Bremer County, Iowa">Bremer County, Iowa</option>
+      <option value="Buchanan County, Iowa">Buchanan County, Iowa</option>
+      <option value="Buena Vista County, Iowa">Buena Vista County, Iowa</option>
+      <option value="Butler County, Iowa">Butler County, Iowa</option>
+      <option value="Calhoun County, Iowa">Calhoun County, Iowa</option>
+      <option value="Carroll County, Iowa">Carroll County, Iowa</option>
+      <option value="Cass County, Iowa">Cass County, Iowa</option>
+      <option value="Cedar County, Iowa">Cedar County, Iowa</option>
+      <option value="Cerro Gordo County, Iowa">Cerro Gordo County, Iowa</option>
+      <option value="Cherokee County, Iowa">Cherokee County, Iowa</option>
+      <option value="Chickasaw County, Iowa">Chickasaw County, Iowa</option>
+      <option value="Clarke County, Iowa">Clarke County, Iowa</option>
+      <option value="Clay County, Iowa">Clay County, Iowa</option>
+      <option value="Clayton County, Iowa">Clayton County, Iowa</option>
+      <option value="Clinton County, Iowa">Clinton County, Iowa</option>
+      <option value="Crawford County, Iowa">Crawford County, Iowa</option>
+      <option value="Dallas County, Iowa">Dallas County, Iowa</option>
+      <option value="Davis County, Iowa">Davis County, Iowa</option>
+      <option value="Decatur County, Iowa">Decatur County, Iowa</option>
+      <option value="Delaware County, Iowa">Delaware County, Iowa</option>
+      <option value="Des Moines County, Iowa">Des Moines County, Iowa</option>
+      <option value="Dickinson County, Iowa">Dickinson County, Iowa</option>
+      <option value="Dubuque County, Iowa">Dubuque County, Iowa</option>
+      <option value="Emmet County, Iowa">Emmet County, Iowa</option>
+      <option value="Fayette County, Iowa">Fayette County, Iowa</option>
+      <option value="Floyd County, Iowa">Floyd County, Iowa</option>
+      <option value="Franklin County, Iowa">Franklin County, Iowa</option>
+      <option value="Fremont County, Iowa">Fremont County, Iowa</option>
+      <option value="Greene County, Iowa">Greene County, Iowa</option>
+      <option value="Grundy County, Iowa">Grundy County, Iowa</option>
+      <option value="Guthrie County, Iowa">Guthrie County, Iowa</option>
+      <option value="Hamilton County, Iowa">Hamilton County, Iowa</option>
+      <option value="Hancock County, Iowa">Hancock County, Iowa</option>
+      <option value="Hardin County, Iowa">Hardin County, Iowa</option>
+      <option value="Harrison County, Iowa">Harrison County, Iowa</option>
+      <option value="Henry County, Iowa">Henry County, Iowa</option>
+      <option value="Howard County, Iowa">Howard County, Iowa</option>
+      <option value="Humboldt County, Iowa">Humboldt County, Iowa</option>
+      <option value="Ida County, Iowa">Ida County, Iowa</option>
+      <option value="Iowa County, Iowa">Iowa County, Iowa</option>
+      <option value="Jackson County, Iowa">Jackson County, Iowa</option>
+      <option value="Jasper County, Iowa">Jasper County, Iowa</option>
+      <option value="Jefferson County, Iowa">Jefferson County, Iowa</option>
+      <option value="Johnson County, Iowa">Johnson County, Iowa</option>
+      <option value="Jones County, Iowa">Jones County, Iowa</option>
+      <option value="Keokuk County, Iowa">Keokuk County, Iowa</option>
+      <option value="Kossuth County, Iowa">Kossuth County, Iowa</option>
+      <option value="Lee County, Iowa">Lee County, Iowa</option>
+      <option value="Linn County, Iowa">Linn County, Iowa</option>
+      <option value="Louisa County, Iowa">Louisa County, Iowa</option>
+      <option value="Lucas County, Iowa">Lucas County, Iowa</option>
+      <option value="Lyon County, Iowa">Lyon County, Iowa</option>
+      <option value="Madison County, Iowa">Madison County, Iowa</option>
+      <option value="Mahaska County, Iowa">Mahaska County, Iowa</option>
+      <option value="Marion County, Iowa">Marion County, Iowa</option>
+      <option value="Marshall County, Iowa">Marshall County, Iowa</option>
+      <option value="Mills County, Iowa">Mills County, Iowa</option>
+      <option value="Mitchell County, Iowa">Mitchell County, Iowa</option>
+      <option value="Monona County, Iowa">Monona County, Iowa</option>
+      <option value="Monroe County, Iowa">Monroe County, Iowa</option>
+      <option value="Montgomery County, Iowa">Montgomery County, Iowa</option>
+      <option value="Muscatine County, Iowa">Muscatine County, Iowa</option>
+      <option value="O&#39;Brien County, Iowa">O'Brien County, Iowa</option>
+      <option value="Osceola County, Iowa">Osceola County, Iowa</option>
+      <option value="Page County, Iowa">Page County, Iowa</option>
+      <option value="Palo Alto County, Iowa">Palo Alto County, Iowa</option>
+      <option value="Plymouth County, Iowa">Plymouth County, Iowa</option>
+      <option value="Pocahontas County, Iowa">Pocahontas County, Iowa</option>
+      <option value="Polk County, Iowa">Polk County, Iowa</option>
+      <option value="Pottawattamie County, Iowa">Pottawattamie County, Iowa</option>
+      <option value="Poweshiek County, Iowa">Poweshiek County, Iowa</option>
+      <option value="Ringgold County, Iowa">Ringgold County, Iowa</option>
+      <option value="Sac County, Iowa">Sac County, Iowa</option>
+      <option value="Scott County, Iowa">Scott County, Iowa</option>
+      <option value="Shelby County, Iowa">Shelby County, Iowa</option>
+      <option value="Sioux County, Iowa">Sioux County, Iowa</option>
+      <option value="Story County, Iowa">Story County, Iowa</option>
+      <option value="Tama County, Iowa">Tama County, Iowa</option>
+      <option value="Taylor County, Iowa">Taylor County, Iowa</option>
+      <option value="Union County, Iowa">Union County, Iowa</option>
+      <option value="Van Buren County, Iowa">Van Buren County, Iowa</option>
+      <option value="Wapello County, Iowa">Wapello County, Iowa</option>
+      <option value="Warren County, Iowa">Warren County, Iowa</option>
+      <option value="Washington County, Iowa">Washington County, Iowa</option>
+      <option value="Wayne County, Iowa">Wayne County, Iowa</option>
+      <option value="Webster County, Iowa">Webster County, Iowa</option>
+      <option value="Winnebago County, Iowa">Winnebago County, Iowa</option>
+      <option value="Winneshiek County, Iowa">Winneshiek County, Iowa</option>
+      <option value="Woodbury County, Iowa">Woodbury County, Iowa</option>
+      <option value="Worth County, Iowa">Worth County, Iowa</option>
+      <option value="Wright County, Iowa">Wright County, Iowa</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>  const data = {"Statewide":{"Married Couple (%)":70.7,"Cohabiting Couple (%)":9.2,"Male Householder (%)":4.7,"Female Householder (%)":15.4},"Adair County, Iowa":{"Married Couple (%)":69.4,"Cohabiting Couple (%)":6.3,"Male Householder (%)":8.5,"Female Householder (%)":15.8},"Adams County, Iowa":{"Married Couple (%)":69.6,"Cohabiting Couple (%)":7.9,"Male Householder (%)":14.6,"Female Householder (%)":7.9},"Allamakee County, Iowa":{"Married Couple (%)":76.8,"Cohabiting Couple (%)":11.8,"Male Householder (%)":3.2,"Female Householder (%)":8.3},"Appanoose County, Iowa":{"Married Couple (%)":65.5,"Cohabiting Couple (%)":15.5,"Male Householder (%)":2.5,"Female Householder (%)":16.4},"Audubon County, Iowa":{"Married Couple (%)":67.8,"Cohabiting Couple (%)":2.9,"Male Householder (%)":4.2,"Female Householder (%)":25.1},"Benton County, Iowa":{"Married Couple (%)":75.2,"Cohabiting Couple (%)":11.5,"Male Householder (%)":3.2,"Female Householder (%)":10.1},"Black Hawk County, Iowa":{"Married Couple (%)":61.3,"Cohabiting Couple (%)":11.8,"Male Householder (%)":4.5,"Female Householder (%)":22.4},"Boone County, Iowa":{"Married Couple (%)":78.1,"Cohabiting Couple (%)":6.5,"Male Householder (%)":6.2,"Female Householder (%)":9.2},"Bremer County, Iowa":{"Married Couple (%)":75.4,"Cohabiting Couple (%)":8.6,"Male Householder (%)":4.5,"Female Householder (%)":11.5},"Buchanan County, Iowa":{"Married Couple (%)":78,"Cohabiting Couple (%)":8.1,"Male Householder (%)":2.2,"Female Householder (%)":11.7},"Buena Vista County, Iowa":{"Married Couple (%)":77,"Cohabiting Couple (%)":4.8,"Male Householder (%)":1.4,"Female Householder (%)":16.8},"Butler County, Iowa":{"Married Couple (%)":74.6,"Cohabiting Couple (%)":11.9,"Male Householder (%)":4.6,"Female Householder (%)":8.9},"Calhoun County, Iowa":{"Married Couple (%)":73.1,"Cohabiting Couple (%)":9.3,"Male Householder (%)":1.3,"Female Householder (%)":16.2},"Carroll County, Iowa":{"Married Couple (%)":76.5,"Cohabiting Couple (%)":9.6,"Male Householder (%)":2.8,"Female Householder (%)":11.1},"Cass County, Iowa":{"Married Couple (%)":68.9,"Cohabiting Couple (%)":15.7,"Male Householder (%)":3.1,"Female Householder (%)":12.2},"Cedar County, Iowa":{"Married Couple (%)":71.1,"Cohabiting Couple (%)":14.2,"Male Householder (%)":4.7,"Female Householder (%)":10.1},"Cerro Gordo County, Iowa":{"Married Couple (%)":68.7,"Cohabiting Couple (%)":11.5,"Male Householder (%)":6.2,"Female Householder (%)":13.6},"Cherokee County, Iowa":{"Married Couple (%)":77.6,"Cohabiting Couple (%)":7.9,"Male Householder (%)":2.1,"Female Householder (%)":12.3},"Chickasaw County, Iowa":{"Married Couple (%)":78.1,"Cohabiting Couple (%)":7.7,"Male Householder (%)":4.1,"Female Householder (%)":10},"Clarke County, Iowa":{"Married Couple (%)":62.9,"Cohabiting Couple (%)":20.5,"Male Householder (%)":1.7,"Female Householder (%)":15},"Clay County, Iowa":{"Married Couple (%)":66.4,"Cohabiting Couple (%)":10.8,"Male Householder (%)":0.9,"Female Householder (%)":22},"Clayton County, Iowa":{"Married Couple (%)":69.3,"Cohabiting Couple (%)":10.7,"Male Householder (%)":5.4,"Female Householder (%)":14.6},"Clinton County, Iowa":{"Married Couple (%)":61.1,"Cohabiting Couple (%)":12.7,"Male Householder (%)":7.4,"Female Householder (%)":18.9},"Crawford County, Iowa":{"Married Couple (%)":58.1,"Cohabiting Couple (%)":11.1,"Male Householder (%)":7.6,"Female Householder (%)":23.1},"Dallas County, Iowa":{"Married Couple (%)":81.5,"Cohabiting Couple (%)":6.7,"Male Householder (%)":4.5,"Female Householder (%)":7.3},"Davis County, Iowa":{"Married Couple (%)":85.3,"Cohabiting Couple (%)":3.4,"Male Householder (%)":5.5,"Female Householder (%)":5.7},"Decatur County, Iowa":{"Married Couple (%)":78,"Cohabiting Couple (%)":11.6,"Male Householder (%)":2.5,"Female Householder (%)":7.9},"Delaware County, Iowa":{"Married Couple (%)":73.4,"Cohabiting Couple (%)":5.7,"Male Householder (%)":13.2,"Female Householder (%)":7.7},"Des Moines County, Iowa":{"Married Couple (%)":61.9,"Cohabiting Couple (%)":9.2,"Male Householder (%)":3.5,"Female Householder (%)":25.4},"Dickinson County, Iowa":{"Married Couple (%)":80.8,"Cohabiting Couple (%)":7.5,"Male Householder (%)":2.9,"Female Householder (%)":8.7},"Dubuque County, Iowa":{"Married Couple (%)":74.6,"Cohabiting Couple (%)":8.3,"Male Householder (%)":3.8,"Female Householder (%)":13.4},"Emmet County, Iowa":{"Married Couple (%)":67.3,"Cohabiting Couple (%)":13.1,"Male Householder (%)":0.9,"Female Householder (%)":18.7},"Fayette County, Iowa":{"Married Couple (%)":66,"Cohabiting Couple (%)":8.7,"Male Householder (%)":5,"Female Householder (%)":20.4},"Floyd County, Iowa":{"Married Couple (%)":67.3,"Cohabiting Couple (%)":12.1,"Male Householder (%)":4.2,"Female Householder (%)":16.4},"Franklin County, Iowa":{"Married Couple (%)":72.9,"Cohabiting Couple (%)":12.3,"Male Householder (%)":3.3,"Female Householder (%)":11.5},"Fremont County, Iowa":{"Married Couple (%)":76.1,"Cohabiting Couple (%)":11.1,"Male Householder (%)":4.7,"Female Householder (%)":8.1},"Greene County, Iowa":{"Married Couple (%)":69.1,"Cohabiting Couple (%)":15.2,"Male Householder (%)":3.4,"Female Householder (%)":12.3},"Grundy County, Iowa":{"Married Couple (%)":79.8,"Cohabiting Couple (%)":7.5,"Male Householder (%)":3.2,"Female Householder (%)":9.5},"Guthrie County, Iowa":{"Married Couple (%)":78.7,"Cohabiting Couple (%)":9.2,"Male Householder (%)":1.1,"Female Householder (%)":11},"Hamilton County, Iowa":{"Married Couple (%)":73.1,"Cohabiting Couple (%)":6.5,"Male Householder (%)":10.6,"Female Householder (%)":9.8},"Hancock County, Iowa":{"Married Couple (%)":75.8,"Cohabiting Couple (%)":11.2,"Male Householder (%)":4.4,"Female Householder (%)":8.7},"Hardin County, Iowa":{"Married Couple (%)":78.6,"Cohabiting Couple (%)":4.3,"Male Householder (%)":5,"Female Householder (%)":12.1},"Harrison County, Iowa":{"Married Couple (%)":77.9,"Cohabiting Couple (%)":9,"Male Householder (%)":3.8,"Female Householder (%)":9.3},"Henry County, Iowa":{"Married Couple (%)":66.4,"Cohabiting Couple (%)":11.7,"Male Householder (%)":7.5,"Female Householder (%)":14.4},"Howard County, Iowa":{"Married Couple (%)":72.8,"Cohabiting Couple (%)":14.5,"Male Householder (%)":6.3,"Female Householder (%)":6.4},"Humboldt County, Iowa":{"Married Couple (%)":58.8,"Cohabiting Couple (%)":15.9,"Male Householder (%)":2.3,"Female Householder (%)":23},"Ida County, Iowa":{"Married Couple (%)":66.1,"Cohabiting Couple (%)":15.1,"Male Householder (%)":6.2,"Female Householder (%)":12.5},"Iowa County, Iowa":{"Married Couple (%)":71.5,"Cohabiting Couple (%)":11.1,"Male Householder (%)":5,"Female Householder (%)":12.4},"Jackson County, Iowa":{"Married Couple (%)":75.3,"Cohabiting Couple (%)":5.7,"Male Householder (%)":3.6,"Female Householder (%)":15.4},"Jasper County, Iowa":{"Married Couple (%)":74.4,"Cohabiting Couple (%)":5.6,"Male Householder (%)":5.2,"Female Householder (%)":14.8},"Jefferson County, Iowa":{"Married Couple (%)":74.3,"Cohabiting Couple (%)":8.3,"Male Householder (%)":5.8,"Female Householder (%)":11.5},"Johnson County, Iowa":{"Married Couple (%)":77.8,"Cohabiting Couple (%)":4.5,"Male Householder (%)":3.2,"Female Householder (%)":14.5},"Jones County, Iowa":{"Married Couple (%)":67.2,"Cohabiting Couple (%)":8,"Male Householder (%)":7.8,"Female Householder (%)":17},"Keokuk County, Iowa":{"Married Couple (%)":71.2,"Cohabiting Couple (%)":15.5,"Male Householder (%)":3.1,"Female Householder (%)":10.1},"Kossuth County, Iowa":{"Married Couple (%)":77.3,"Cohabiting Couple (%)":8.9,"Male Householder (%)":3.8,"Female Householder (%)":10},"Lee County, Iowa":{"Married Couple (%)":58.7,"Cohabiting Couple (%)":13.1,"Male Householder (%)":6.3,"Female Householder (%)":21.8},"Linn County, Iowa":{"Married Couple (%)":68.4,"Cohabiting Couple (%)":8.8,"Male Householder (%)":5.1,"Female Householder (%)":17.7},"Louisa County, Iowa":{"Married Couple (%)":77,"Cohabiting Couple (%)":5.9,"Male Householder (%)":5,"Female Householder (%)":12.1},"Lucas County, Iowa":{"Married Couple (%)":64.8,"Cohabiting Couple (%)":20.1,"Male Householder (%)":5.5,"Female Householder (%)":9.6},"Lyon County, Iowa":{"Married Couple (%)":85.6,"Cohabiting Couple (%)":5,"Male Householder (%)":3.5,"Female Householder (%)":5.8},"Madison County, Iowa":{"Married Couple (%)":75.3,"Cohabiting Couple (%)":11.2,"Male Householder (%)":3.2,"Female Householder (%)":10.4},"Mahaska County, Iowa":{"Married Couple (%)":68.5,"Cohabiting Couple (%)":12,"Male Householder (%)":4.7,"Female Householder (%)":14.9},"Marion County, Iowa":{"Married Couple (%)":79.8,"Cohabiting Couple (%)":5,"Male Householder (%)":4.9,"Female Householder (%)":10.2},"Marshall County, Iowa":{"Married Couple (%)":72.9,"Cohabiting Couple (%)":8.3,"Male Householder (%)":6.6,"Female Householder (%)":12.2},"Mills County, Iowa":{"Married Couple (%)":75.9,"Cohabiting Couple (%)":6.1,"Male Householder (%)":5.1,"Female Householder (%)":12.8},"Mitchell County, Iowa":{"Married Couple (%)":81,"Cohabiting Couple (%)":4,"Male Householder (%)":3,"Female Householder (%)":12},"Monona County, Iowa":{"Married Couple (%)":68.7,"Cohabiting Couple (%)":15.4,"Male Householder (%)":5,"Female Householder (%)":10.9},"Monroe County, Iowa":{"Married Couple (%)":67.3,"Cohabiting Couple (%)":19.6,"Male Householder (%)":2.9,"Female Householder (%)":10.2},"Montgomery County, Iowa":{"Married Couple (%)":67.5,"Cohabiting Couple (%)":12.9,"Male Householder (%)":7.5,"Female Householder (%)":12.1},"Muscatine County, Iowa":{"Married Couple (%)":64.3,"Cohabiting Couple (%)":11.2,"Male Householder (%)":6.3,"Female Householder (%)":18.2},"O'Brien County, Iowa":{"Married Couple (%)":77.5,"Cohabiting Couple (%)":7.4,"Male Householder (%)":1.6,"Female Householder (%)":13.5},"Osceola County, Iowa":{"Married Couple (%)":60.3,"Cohabiting Couple (%)":11.2,"Male Householder (%)":4.6,"Female Householder (%)":23.9},"Page County, Iowa":{"Married Couple (%)":67.3,"Cohabiting Couple (%)":12,"Male Householder (%)":2.7,"Female Householder (%)":17.9},"Palo Alto County, Iowa":{"Married Couple (%)":77.7,"Cohabiting Couple (%)":12.6,"Male Householder (%)":4.5,"Female Householder (%)":5.2},"Plymouth County, Iowa":{"Married Couple (%)":78.6,"Cohabiting Couple (%)":7.4,"Male Householder (%)":2.4,"Female Householder (%)":11.6},"Pocahontas County, Iowa":{"Married Couple (%)":69.3,"Cohabiting Couple (%)":15.1,"Male Householder (%)":4.4,"Female Householder (%)":11.2},"Polk County, Iowa":{"Married Couple (%)":68,"Cohabiting Couple (%)":8.5,"Male Householder (%)":5,"Female Householder (%)":18.6},"Pottawattamie County, Iowa":{"Married Couple (%)":64.4,"Cohabiting Couple (%)":10.7,"Male Householder (%)":4.7,"Female Householder (%)":20.2},"Poweshiek County, Iowa":{"Married Couple (%)":74.5,"Cohabiting Couple (%)":10.4,"Male Householder (%)":5.8,"Female Householder (%)":9.2},"Ringgold County, Iowa":{"Married Couple (%)":75.5,"Cohabiting Couple (%)":3.8,"Male Householder (%)":6.1,"Female Householder (%)":14.6},"Sac County, Iowa":{"Married Couple (%)":71.2,"Cohabiting Couple (%)":11.6,"Male Householder (%)":3.6,"Female Householder (%)":13.7},"Scott County, Iowa":{"Married Couple (%)":67,"Cohabiting Couple (%)":10.6,"Male Householder (%)":4.6,"Female Householder (%)":17.9},"Shelby County, Iowa":{"Married Couple (%)":80.7,"Cohabiting Couple (%)":6,"Male Householder (%)":4.3,"Female Householder (%)":9},"Sioux County, Iowa":{"Married Couple (%)":91.3,"Cohabiting Couple (%)":3.7,"Male Householder (%)":1,"Female Householder (%)":4},"Story County, Iowa":{"Married Couple (%)":80.4,"Cohabiting Couple (%)":4.5,"Male Householder (%)":3.3,"Female Householder (%)":11.8},"Tama County, Iowa":{"Married Couple (%)":60.4,"Cohabiting Couple (%)":11.7,"Male Householder (%)":8.8,"Female Householder (%)":19.1},"Taylor County, Iowa":{"Married Couple (%)":72.7,"Cohabiting Couple (%)":10.1,"Male Householder (%)":9.4,"Female Householder (%)":7.8},"Union County, Iowa":{"Married Couple (%)":64.8,"Cohabiting Couple (%)":9.5,"Male Householder (%)":3.8,"Female Householder (%)":21.9},"Van Buren County, Iowa":{"Married Couple (%)":81.1,"Cohabiting Couple (%)":9.9,"Male Householder (%)":2.7,"Female Householder (%)":6.2},"Wapello County, Iowa":{"Married Couple (%)":58.4,"Cohabiting Couple (%)":13.7,"Male Householder (%)":8.6,"Female Householder (%)":19.2},"Warren County, Iowa":{"Married Couple (%)":73,"Cohabiting Couple (%)":10.5,"Male Householder (%)":5.2,"Female Householder (%)":11.4},"Washington County, Iowa":{"Married Couple (%)":73.1,"Cohabiting Couple (%)":13.1,"Male Householder (%)":0.6,"Female Householder (%)":13.2},"Wayne County, Iowa":{"Married Couple (%)":79.4,"Cohabiting Couple (%)":4.4,"Male Householder (%)":5.2,"Female Householder (%)":11},"Webster County, Iowa":{"Married Couple (%)":63.3,"Cohabiting Couple (%)":14.3,"Male Householder (%)":5.7,"Female Householder (%)":16.7},"Winnebago County, Iowa":{"Married Couple (%)":66.3,"Cohabiting Couple (%)":7.3,"Male Householder (%)":7.8,"Female Householder (%)":18.6},"Winneshiek County, Iowa":{"Married Couple (%)":83.9,"Cohabiting Couple (%)":3.5,"Male Householder (%)":3,"Female Householder (%)":9.5},"Woodbury County, Iowa":{"Married Couple (%)":63.8,"Cohabiting Couple (%)":11.9,"Male Householder (%)":5,"Female Householder (%)":19.3},"Worth County, Iowa":{"Married Couple (%)":83.6,"Cohabiting Couple (%)":8.4,"Male Householder (%)":3.3,"Female Householder (%)":4.7},"Wright County, Iowa":{"Married Couple (%)":62.1,"Cohabiting Couple (%)":10.1,"Male Householder (%)":2.6,"Female Householder (%)":25.2}};
+  const categories = ["Married Couple (%)","Cohabiting Couple (%)","Male Householder (%)","Female Householder (%)"];
+  const ctx = document.getElementById("barChart").getContext("2d");
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: categories,
+        datasets: [{
+          label: "Share of Children (%)",
+          data: values,
+          backgroundColor: ["#5DA5DA","#FAA43A","#60BD68","#F17CB0"]
+        }]
+      },
+      options: {
+        indexAxis: "y",
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            ticks: { callback: v => v + "%" },
+            title: { display: true, text: "Percent of Children" }
+          }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.raw + "%"
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById("countySelect").addEventListener("change", function() {
+    renderChart(Object.values(data[this.value]));
+  });
+
+  renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

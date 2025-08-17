@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Income Distribution – Georgia</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          text-align: center;
+          margin: 2rem;
+        }
+        select {
+          font-size: 1rem;
+          padding: 0.4rem;
+          margin-bottom: 1rem;
+        }
+        canvas {
+          width: 100%;
+          max-width: 700px;
+          height: 400px;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Income Share by Quintile – Georgia</h2>
+    <label>Select County, State:</label>
+    <select id="countySelect"><option value='Statewide'>Statewide</option>
+<option value='Appling, Georgia'>Appling, Georgia</option>
+<option value='Atkinson, Georgia'>Atkinson, Georgia</option>
+<option value='Bacon, Georgia'>Bacon, Georgia</option>
+<option value='Baker, Georgia'>Baker, Georgia</option>
+<option value='Baldwin, Georgia'>Baldwin, Georgia</option>
+<option value='Banks, Georgia'>Banks, Georgia</option>
+<option value='Barrow, Georgia'>Barrow, Georgia</option>
+<option value='Bartow, Georgia'>Bartow, Georgia</option>
+<option value='Ben Hill, Georgia'>Ben Hill, Georgia</option>
+<option value='Berrien, Georgia'>Berrien, Georgia</option>
+<option value='Bibb, Georgia'>Bibb, Georgia</option>
+<option value='Bleckley, Georgia'>Bleckley, Georgia</option>
+<option value='Brantley, Georgia'>Brantley, Georgia</option>
+<option value='Brooks, Georgia'>Brooks, Georgia</option>
+<option value='Bryan, Georgia'>Bryan, Georgia</option>
+<option value='Bulloch, Georgia'>Bulloch, Georgia</option>
+<option value='Burke, Georgia'>Burke, Georgia</option>
+<option value='Butts, Georgia'>Butts, Georgia</option>
+<option value='Calhoun, Georgia'>Calhoun, Georgia</option>
+<option value='Camden, Georgia'>Camden, Georgia</option>
+<option value='Candler, Georgia'>Candler, Georgia</option>
+<option value='Carroll, Georgia'>Carroll, Georgia</option>
+<option value='Catoosa, Georgia'>Catoosa, Georgia</option>
+<option value='Charlton, Georgia'>Charlton, Georgia</option>
+<option value='Chatham, Georgia'>Chatham, Georgia</option>
+<option value='Chattahoochee, Georgia'>Chattahoochee, Georgia</option>
+<option value='Chattooga, Georgia'>Chattooga, Georgia</option>
+<option value='Cherokee, Georgia'>Cherokee, Georgia</option>
+<option value='Clarke, Georgia'>Clarke, Georgia</option>
+<option value='Clay, Georgia'>Clay, Georgia</option>
+<option value='Clayton, Georgia'>Clayton, Georgia</option>
+<option value='Clinch, Georgia'>Clinch, Georgia</option>
+<option value='Cobb, Georgia'>Cobb, Georgia</option>
+<option value='Coffee, Georgia'>Coffee, Georgia</option>
+<option value='Colquitt, Georgia'>Colquitt, Georgia</option>
+<option value='Columbia, Georgia'>Columbia, Georgia</option>
+<option value='Cook, Georgia'>Cook, Georgia</option>
+<option value='Coweta, Georgia'>Coweta, Georgia</option>
+<option value='Crawford, Georgia'>Crawford, Georgia</option>
+<option value='Crisp, Georgia'>Crisp, Georgia</option>
+<option value='Dade, Georgia'>Dade, Georgia</option>
+<option value='Dawson, Georgia'>Dawson, Georgia</option>
+<option value='Decatur, Georgia'>Decatur, Georgia</option>
+<option value='DeKalb, Georgia'>DeKalb, Georgia</option>
+<option value='Dodge, Georgia'>Dodge, Georgia</option>
+<option value='Dooly, Georgia'>Dooly, Georgia</option>
+<option value='Dougherty, Georgia'>Dougherty, Georgia</option>
+<option value='Douglas, Georgia'>Douglas, Georgia</option>
+<option value='Early, Georgia'>Early, Georgia</option>
+<option value='Echols, Georgia'>Echols, Georgia</option>
+<option value='Effingham, Georgia'>Effingham, Georgia</option>
+<option value='Elbert, Georgia'>Elbert, Georgia</option>
+<option value='Emanuel, Georgia'>Emanuel, Georgia</option>
+<option value='Evans, Georgia'>Evans, Georgia</option>
+<option value='Fannin, Georgia'>Fannin, Georgia</option>
+<option value='Fayette, Georgia'>Fayette, Georgia</option>
+<option value='Floyd, Georgia'>Floyd, Georgia</option>
+<option value='Forsyth, Georgia'>Forsyth, Georgia</option>
+<option value='Franklin, Georgia'>Franklin, Georgia</option>
+<option value='Fulton, Georgia'>Fulton, Georgia</option>
+<option value='Gilmer, Georgia'>Gilmer, Georgia</option>
+<option value='Glascock, Georgia'>Glascock, Georgia</option>
+<option value='Glynn, Georgia'>Glynn, Georgia</option>
+<option value='Gordon, Georgia'>Gordon, Georgia</option>
+<option value='Grady, Georgia'>Grady, Georgia</option>
+<option value='Greene, Georgia'>Greene, Georgia</option>
+<option value='Gwinnett, Georgia'>Gwinnett, Georgia</option>
+<option value='Habersham, Georgia'>Habersham, Georgia</option>
+<option value='Hall, Georgia'>Hall, Georgia</option>
+<option value='Hancock, Georgia'>Hancock, Georgia</option>
+<option value='Haralson, Georgia'>Haralson, Georgia</option>
+<option value='Harris, Georgia'>Harris, Georgia</option>
+<option value='Hart, Georgia'>Hart, Georgia</option>
+<option value='Heard, Georgia'>Heard, Georgia</option>
+<option value='Henry, Georgia'>Henry, Georgia</option>
+<option value='Houston, Georgia'>Houston, Georgia</option>
+<option value='Irwin, Georgia'>Irwin, Georgia</option>
+<option value='Jackson, Georgia'>Jackson, Georgia</option>
+<option value='Jasper, Georgia'>Jasper, Georgia</option>
+<option value='Jeff Davis, Georgia'>Jeff Davis, Georgia</option>
+<option value='Jefferson, Georgia'>Jefferson, Georgia</option>
+<option value='Jenkins, Georgia'>Jenkins, Georgia</option>
+<option value='Johnson, Georgia'>Johnson, Georgia</option>
+<option value='Jones, Georgia'>Jones, Georgia</option>
+<option value='Lamar, Georgia'>Lamar, Georgia</option>
+<option value='Lanier, Georgia'>Lanier, Georgia</option>
+<option value='Laurens, Georgia'>Laurens, Georgia</option>
+<option value='Lee, Georgia'>Lee, Georgia</option>
+<option value='Liberty, Georgia'>Liberty, Georgia</option>
+<option value='Lincoln, Georgia'>Lincoln, Georgia</option>
+<option value='Long, Georgia'>Long, Georgia</option>
+<option value='Lowndes, Georgia'>Lowndes, Georgia</option>
+<option value='Lumpkin, Georgia'>Lumpkin, Georgia</option>
+<option value='Macon, Georgia'>Macon, Georgia</option>
+<option value='Madison, Georgia'>Madison, Georgia</option>
+<option value='Marion, Georgia'>Marion, Georgia</option>
+<option value='McDuffie, Georgia'>McDuffie, Georgia</option>
+<option value='McIntosh, Georgia'>McIntosh, Georgia</option>
+<option value='Meriwether, Georgia'>Meriwether, Georgia</option>
+<option value='Miller, Georgia'>Miller, Georgia</option>
+<option value='Mitchell, Georgia'>Mitchell, Georgia</option>
+<option value='Monroe, Georgia'>Monroe, Georgia</option>
+<option value='Montgomery, Georgia'>Montgomery, Georgia</option>
+<option value='Morgan, Georgia'>Morgan, Georgia</option>
+<option value='Murray, Georgia'>Murray, Georgia</option>
+<option value='Muscogee, Georgia'>Muscogee, Georgia</option>
+<option value='Newton, Georgia'>Newton, Georgia</option>
+<option value='Oconee, Georgia'>Oconee, Georgia</option>
+<option value='Oglethorpe, Georgia'>Oglethorpe, Georgia</option>
+<option value='Paulding, Georgia'>Paulding, Georgia</option>
+<option value='Peach, Georgia'>Peach, Georgia</option>
+<option value='Pickens, Georgia'>Pickens, Georgia</option>
+<option value='Pierce, Georgia'>Pierce, Georgia</option>
+<option value='Pike, Georgia'>Pike, Georgia</option>
+<option value='Polk, Georgia'>Polk, Georgia</option>
+<option value='Pulaski, Georgia'>Pulaski, Georgia</option>
+<option value='Putnam, Georgia'>Putnam, Georgia</option>
+<option value='Quitman, Georgia'>Quitman, Georgia</option>
+<option value='Rabun, Georgia'>Rabun, Georgia</option>
+<option value='Randolph, Georgia'>Randolph, Georgia</option>
+<option value='Richmond, Georgia'>Richmond, Georgia</option>
+<option value='Rockdale, Georgia'>Rockdale, Georgia</option>
+<option value='Schley, Georgia'>Schley, Georgia</option>
+<option value='Screven, Georgia'>Screven, Georgia</option>
+<option value='Seminole, Georgia'>Seminole, Georgia</option>
+<option value='Spalding, Georgia'>Spalding, Georgia</option>
+<option value='Stephens, Georgia'>Stephens, Georgia</option>
+<option value='Stewart, Georgia'>Stewart, Georgia</option>
+<option value='Sumter, Georgia'>Sumter, Georgia</option>
+<option value='Talbot, Georgia'>Talbot, Georgia</option>
+<option value='Taliaferro, Georgia'>Taliaferro, Georgia</option>
+<option value='Tattnall, Georgia'>Tattnall, Georgia</option>
+<option value='Taylor, Georgia'>Taylor, Georgia</option>
+<option value='Telfair, Georgia'>Telfair, Georgia</option>
+<option value='Terrell, Georgia'>Terrell, Georgia</option>
+<option value='Thomas, Georgia'>Thomas, Georgia</option>
+<option value='Tift, Georgia'>Tift, Georgia</option>
+<option value='Toombs, Georgia'>Toombs, Georgia</option>
+<option value='Towns, Georgia'>Towns, Georgia</option>
+<option value='Treutlen, Georgia'>Treutlen, Georgia</option>
+<option value='Troup, Georgia'>Troup, Georgia</option>
+<option value='Turner, Georgia'>Turner, Georgia</option>
+<option value='Twiggs, Georgia'>Twiggs, Georgia</option>
+<option value='Union, Georgia'>Union, Georgia</option>
+<option value='Upson, Georgia'>Upson, Georgia</option>
+<option value='Walker, Georgia'>Walker, Georgia</option>
+<option value='Walton, Georgia'>Walton, Georgia</option>
+<option value='Ware, Georgia'>Ware, Georgia</option>
+<option value='Warren, Georgia'>Warren, Georgia</option>
+<option value='Washington, Georgia'>Washington, Georgia</option>
+<option value='Wayne, Georgia'>Wayne, Georgia</option>
+<option value='Webster, Georgia'>Webster, Georgia</option>
+<option value='Wheeler, Georgia'>Wheeler, Georgia</option>
+<option value='White, Georgia'>White, Georgia</option>
+<option value='Whitfield, Georgia'>Whitfield, Georgia</option>
+<option value='Wilcox, Georgia'>Wilcox, Georgia</option>
+<option value='Wilkes, Georgia'>Wilkes, Georgia</option>
+<option value='Wilkinson, Georgia'>Wilkinson, Georgia</option>
+<option value='Worth, Georgia'>Worth, Georgia</option></select>
+    <canvas id="barChart" width="700" height="400"></canvas>
+    <script>  const incomeData = {"Statewide":[5,8.4,13.2,27.5,45.8],"Appling, Georgia":[5,8.3,14.1,29.1,43.5],"Atkinson, Georgia":[6,7.9,13,28.4,44.7],"Bacon, Georgia":[4.5,8.2,13.4,27.4,46.4],"Baker, Georgia":[4.4,8.4,14.8,30.1,42.4],"Baldwin, Georgia":[3.4,5.9,9.8,25.3,55.6],"Banks, Georgia":[6,10.4,15.6,27,41],"Barrow, Georgia":[6.9,10.6,14.9,26.8,40.9],"Bartow, Georgia":[6.4,10.3,14.7,27,41.6],"Ben Hill, Georgia":[5,8.2,14,28.3,44.6],"Berrien, Georgia":[4.7,8.7,14.2,27.4,45],"Bibb, Georgia":[3.7,6.8,11.6,27.6,50.3],"Bleckley, Georgia":[4.2,7.9,13.7,27.8,46.4],"Brantley, Georgia":[5,9.8,16.5,29.5,39.2],"Brooks, Georgia":[3.5,7,11.2,26.5,51.8],"Bryan, Georgia":[6,8.7,12.8,26.4,46.1],"Bulloch, Georgia":[4.4,7.5,11.8,26.8,49.5],"Burke, Georgia":[3.2,5.8,9.8,26.4,54.8],"Butts, Georgia":[6.4,9.3,14.7,26.8,42.8],"Calhoun, Georgia":[3.6,8.1,12.4,25.9,50],"Camden, Georgia":[6.4,10.6,15.8,27.4,39.8],"Candler, Georgia":[4.6,8.5,13.3,27.9,45.7],"Carroll, Georgia":[5.3,9.4,14,26.7,44.5],"Catoosa, Georgia":[5.6,9.1,13.6,26.9,44.8],"Charlton, Georgia":[4.8,8.3,12.8,27.3,46.9],"Chatham, Georgia":[4.7,7.7,11.9,26.7,49],"Chattahoochee, Georgia":[7.9,11.2,16.3,27.4,37.3],"Chattooga, Georgia":[5.7,9.3,13.9,28.2,42.8],"Cherokee, Georgia":[6.2,9.6,13.9,26.4,43.9],"Clarke, Georgia":[4,7.1,11.8,27.7,49.3],"Clay, Georgia":[5.1,8.1,12.7,25.5,48.6],"Clayton, Georgia":[6,9.4,14.2,27.1,43.3],"Clinch, Georgia":[4.6,8.9,14.1,28.4,44.1],"Cobb, Georgia":[5.2,8.4,12.8,27.1,46.4],"Coffee, Georgia":[5.1,9.1,14.2,28.5,43.2],"Colquitt, Georgia":[4.4,7.9,13.3,28.1,46.2],"Columbia, Georgia":[6.5,10,14.9,27.2,41.4],"Cook, Georgia":[4.6,8.3,13.8,29.8,43.5],"Coweta, Georgia":[6,9.7,14.3,27,43],"Crawford, Georgia":[5.2,8,12.4,27.3,47.1],"Crisp, Georgia":[4,7.1,12.5,27.9,48.5],"Dade, Georgia":[4.9,8,13.2,28.1,45.8],"Dawson, Georgia":[6.3,9.9,14.8,27.6,41.3],"Decatur, Georgia":[4.3,8.1,13.4,26.9,47.3],"DeKalb, Georgia":[4.2,7.1,11.7,27.9,49.1],"Dodge, Georgia":[4.8,8.2,13.5,27.6,45.9],"Dooly, Georgia":[4.8,8.4,13.3,29.4,44.1],"Dougherty, Georgia":[4.3,7.7,12.3,27.4,48.3],"Douglas, Georgia":[6.2,9.5,13.9,26.9,43.4],"Early, Georgia":[4.8,8.5,13.4,26.9,46.3],"Echols, Georgia":[5.9,9.1,13.6,26.6,44.8],"Effingham, Georgia":[6.5,10,14,26.9,42.6],"Elbert, Georgia":[5.9,9.4,15.5,28.5,40.8],"Emanuel, Georgia":[5.2,8.6,12.2,27.1,47],"Evans, Georgia":[5.7,9.2,13.6,28.6,42.9],"Fannin, Georgia":[4.3,6.7,10,26.5,52.6],"Fayette, Georgia":[5.7,8.9,13.1,27.3,45],"Floyd, Georgia":[4.7,7.9,12.7,27,47.7],"Forsyth, Georgia":[6.7,10.4,14.8,26.4,41.7],"Franklin, Georgia":[4.2,7.5,11.8,27.3,49.2],"Fulton, Georgia":[3.6,6.4,10.5,27.6,52],"Gilmer, Georgia":[5.5,9.8,14.1,26.7,43.9],"Glascock, Georgia":[6,9.8,14.5,27.2,42.5],"Glynn, Georgia":[4,6.8,10.7,26.3,52.1],"Gordon, Georgia":[5.2,8.5,13.6,27.7,45],"Grady, Georgia":[5.2,8.9,13.8,27.5,44.7],"Greene, Georgia":[3.1,5.4,8.6,27.2,55.7],"Gwinnett, Georgia":[5.7,9,13.7,27.1,44.5],"Habersham, Georgia":[5.1,8.6,13.1,26.8,46.5],"Hall, Georgia":[5.3,8.3,12.9,27.2,46.2],"Hancock, Georgia":[4.4,6.9,12.9,32.5,43.4],"Haralson, Georgia":[5.4,9,14.2,27.9,43.4],"Harris, Georgia":[6.1,9.1,13.6,27.5,43.7],"Hart, Georgia":[5.3,8.6,13,27,46.2],"Heard, Georgia":[4.1,7.5,11.6,26,50.8],"Henry, Georgia":[6.8,10,14.6,26.9,41.7],"Houston, Georgia":[6.3,10.3,15.1,27.2,41.1],"Irwin, Georgia":[5.7,9.9,14.1,26.3,44],"Jackson, Georgia":[6.1,9.8,14.6,27.2,42.3],"Jasper, Georgia":[5.6,8.4,13.5,27.7,44.7],"Jeff Davis, Georgia":[4.3,7.6,14,29.2,44.9],"Jefferson, Georgia":[5.3,8.5,13.8,28,44.4],"Jenkins, Georgia":[4,7.3,13.9,28.8,46.1],"Johnson, Georgia":[5.4,9.5,13.9,27.3,44],"Jones, Georgia":[5.4,8.7,13.2,26.5,46.3],"Lamar, Georgia":[6.6,9.5,14.6,27.9,41.4],"Lanier, Georgia":[4.7,7.9,14.3,28.4,44.8],"Laurens, Georgia":[3.5,6.7,11.3,27,51.5],"Lee, Georgia":[6.4,10,14,25.8,43.7],"Liberty, Georgia":[6.7,9.8,14.4,27.4,41.7],"Lincoln, Georgia":[5.6,8.5,14.1,28.1,43.8],"Long, Georgia":[6.9,11.1,15.8,27.1,39.1],"Lowndes, Georgia":[4.4,7.8,12,27,48.7],"Lumpkin, Georgia":[3.8,6.9,10.3,26,53],"Macon, Georgia":[2.2,4.2,7.1,25.2,61.4],"Madison, Georgia":[5.9,9.5,14.7,27.7,42.2],"Marion, Georgia":[5.6,9.3,13.6,28.2,43.3],"McDuffie, Georgia":[5.3,8.7,13.4,28,44.5],"McIntosh, Georgia":[4.4,8.4,13.9,27.7,45.6],"Meriwether, Georgia":[5.4,9.4,13.6,26.9,44.7],"Miller, Georgia":[3.5,7.9,13.2,27.5,47.9],"Mitchell, Georgia":[4.6,9.5,14.3,28.7,42.9],"Monroe, Georgia":[4.6,7.3,10.9,26.5,50.6],"Montgomery, Georgia":[4.9,7.7,13.2,27.4,46.8],"Morgan, Georgia":[6,9.5,13.9,26.7,43.9],"Murray, Georgia":[5.4,9,12.9,26.2,46.5],"Muscogee, Georgia":[4.3,7.3,11.5,27.1,49.7],"Newton, Georgia":[6.3,10,14.5,26.9,42.3],"Oconee, Georgia":[4.9,7.7,11.5,26.4,49.5],"Oglethorpe, Georgia":[5.6,10,14.5,27.9,42],"Paulding, Georgia":[7.8,11.5,15.9,26.3,38.4],"Peach, Georgia":[4.3,8.3,13.1,26.8,47.5],"Pickens, Georgia":[5.4,9.3,13.8,26.9,44.7],"Pierce, Georgia":[4.9,8.4,13.2,27.9,45.6],"Pike, Georgia":[6,10.1,15,27.7,41.2],"Polk, Georgia":[4.9,8.7,13.9,28.2,44.3],"Pulaski, Georgia":[5.4,8.2,14.8,27.9,43.8],"Putnam, Georgia":[3.9,7,11.1,27.1,51],"Quitman, Georgia":[4.6,8.1,13.1,30,44.2],"Rabun, Georgia":[4.1,7,10.6,26.1,52.4],"Randolph, Georgia":[4.4,7.1,12.5,31.7,44.4],"Richmond, Georgia":[4.3,7.6,12,27,49.1],"Rockdale, Georgia":[5.8,9,13.2,27,45],"Schley, Georgia":[4.2,7.9,11.3,26.7,49.9],"Screven, Georgia":[4.4,7.5,11.9,27,49.2],"Seminole, Georgia":[4.7,8.5,15.4,28.9,42.5],"Spalding, Georgia":[3.1,5.5,8.3,24.6,58.4],"Stephens, Georgia":[5.3,9.2,14,27.6,43.9],"Stewart, Georgia":[4.6,7.7,13.4,29.8,44.5],"Sumter, Georgia":[5.2,7.6,13.1,27.9,46.2],"Talbot, Georgia":[4.2,7.1,12.2,27.7,48.7],"Taliaferro, Georgia":[7.7,10.7,14,28,39.6],"Tattnall, Georgia":[5.2,9.1,13.6,27.4,44.7],"Taylor, Georgia":[3.7,7.2,12.4,29,47.7],"Telfair, Georgia":[4.2,8.1,12.9,28.1,46.8],"Terrell, Georgia":[4.1,8,14.1,28.5,45.4],"Thomas, Georgia":[4.7,8.2,13.2,26.9,47.1],"Tift, Georgia":[4.5,7.9,12.8,27.5,47.3],"Toombs, Georgia":[4.9,8.8,14.2,28.2,43.9],"Towns, Georgia":[3.6,6.3,9.5,26,54.7],"Treutlen, Georgia":[4.7,8.3,14.5,28.7,43.8],"Troup, Georgia":[4.1,7.1,11.5,26.9,50.4],"Turner, Georgia":[5.1,8.1,14.3,29.3,43.1],"Twiggs, Georgia":[3.4,6.5,10.9,27.5,51.6],"Union, Georgia":[4.4,7.2,11,26.5,50.8],"Upson, Georgia":[4.1,7.4,12.1,27.4,48.9],"Walker, Georgia":[5,8,12.1,26.3,48.6],"Walton, Georgia":[5.6,9.2,13.8,26.7,44.7],"Ware, Georgia":[4.5,8.1,12.7,27.1,47.5],"Warren, Georgia":[5.7,9.8,15.2,28.8,40.5],"Washington, Georgia":[4.8,8,14.1,28.4,44.6],"Wayne, Georgia":[5.3,9.3,14.8,28.7,42],"Webster, Georgia":[5.2,8.2,16.4,29.5,40.7],"Wheeler, Georgia":[4.5,9.2,15.6,27,43.6],"White, Georgia":[5.4,8.7,12.6,25.8,47.6],"Whitfield, Georgia":[4.9,8.2,12.2,26.6,48.1],"Wilcox, Georgia":[4.6,8.8,14.4,28.1,44],"Wilkes, Georgia":[4.1,6.9,10.1,25,53.9],"Wilkinson, Georgia":[4.8,8.9,14.5,28.3,43.5],"Worth, Georgia":[5.6,9.4,14.5,27.3,43.2]};
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Bottom 20%', 'Second 20%', 'Middle 20%', 'Fourth 20%', 'Top 20%'],
+        datasets: [{
+          label: 'Share (%)',
+          data: values,
+          backgroundColor: '#4576a7'
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.parsed.y + '%'
+            }
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 100,
+            title: {
+              display: true,
+              text: 'Income Share (%)'
+            }
+          },
+          x: {
+            title: {
+              display: true,
+              text: 'Quintile'
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(Object.values(incomeData[this.value]));
+  });
+
+  renderChart(Object.values(incomeData['Statewide']));</script>
+  </body>
+</html>
+</html>

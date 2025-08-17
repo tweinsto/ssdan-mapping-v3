@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+
+</head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Median Earnings by Industry – 33</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background: white;
+    }
+    .layout {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1.5rem;
+    }
+    label {
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+    #countySelect {
+      font-size: 1rem;
+      padding: 0.4rem 0.8rem;
+      margin-bottom: 1rem;
+    }
+    canvas {
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <label for="countySelect">Median Earnings by Industry:</label>
+    <select id="countySelect"></select>
+    <canvas id="barChart"></canvas>
+  </div>
+
+  <script>
+    const data = {"Statewide":{"Agriculture & mining":48204,"Arts & food services":41046,"Construction":64871,"Education & health":65547,"Finance & real estate":85918,"Information":84600,"Manufacturing":70947,"Other services":50473,"Prof. & waste services":88469,"Public administration":75256,"Retail trade":50774,"Transport & utilities":70299,"Wholesale trade":75404},"Belknap County":{"Agriculture & mining":32955,"Arts & food services":36250,"Construction":55096,"Education & health":57334,"Finance & real estate":56870,"Information":95495,"Manufacturing":62950,"Other services":51761,"Prof. & waste services":72394,"Public administration":65092,"Retail trade":55516,"Transport & utilities":73765,"Wholesale trade":74185},"Carroll County":{"Agriculture & mining":108407,"Arts & food services":40702,"Construction":54375,"Education & health":62550,"Finance & real estate":111875,"Information":77719,"Manufacturing":59476,"Other services":43056,"Prof. & waste services":80292,"Public administration":72083,"Retail trade":46776,"Transport & utilities":94798,"Wholesale trade":65833},"Cheshire County":{"Agriculture & mining":51089,"Arts & food services":41324,"Construction":50610,"Education & health":57079,"Finance & real estate":64554,"Information":70875,"Manufacturing":58023,"Other services":46063,"Prof. & waste services":68447,"Public administration":71088,"Retail trade":44836,"Transport & utilities":67949,"Wholesale trade":53922},"Coos County":{"Agriculture & mining":46111,"Arts & food services":41673,"Construction":50327,"Education & health":50833,"Finance & real estate":72955,"Information":84375,"Manufacturing":48430,"Other services":31827,"Prof. & waste services":53650,"Public administration":64583,"Retail trade":45175,"Transport & utilities":55208,"Wholesale trade":65147},"Grafton County":{"Agriculture & mining":58947,"Arts & food services":34914,"Construction":59237,"Education & health":71342,"Finance & real estate":74081,"Information":107083,"Manufacturing":57478,"Other services":48277,"Prof. & waste services":73250,"Public administration":71555,"Retail trade":41859,"Transport & utilities":67442,"Wholesale trade":54806},"Hillsborough County":{"Agriculture & mining":39570,"Arts & food services":40463,"Construction":68313,"Education & health":65629,"Finance & real estate":86051,"Information":88667,"Manufacturing":74231,"Other services":50369,"Prof. & waste services":90844,"Public administration":78349,"Retail trade":54128,"Transport & utilities":66709,"Wholesale trade":82375},"Merrimack County":{"Agriculture & mining":51797,"Arts & food services":40954,"Construction":61120,"Education & health":62250,"Finance & real estate":81173,"Information":71845,"Manufacturing":65725,"Other services":54576,"Prof. & waste services":77008,"Public administration":71016,"Retail trade":46114,"Transport & utilities":63935,"Wholesale trade":72886},"Rockingham County":{"Agriculture & mining":59917,"Arts & food services":47894,"Construction":75070,"Education & health":72861,"Finance & real estate":99734,"Information":89233,"Manufacturing":84026,"Other services":59915,"Prof. & waste services":100863,"Public administration":86031,"Retail trade":57151,"Transport & utilities":75896,"Wholesale trade":82341},"Strafford County":{"Agriculture & mining":40385,"Arts & food services":35311,"Construction":62489,"Education & health":61133,"Finance & real estate":75731,"Information":80969,"Manufacturing":70095,"Other services":47661,"Prof. & waste services":83486,"Public administration":71741,"Retail trade":49071,"Transport & utilities":73452,"Wholesale trade":66840},"Sullivan County":{"Agriculture & mining":43182,"Arts & food services":47332,"Construction":51197,"Education & health":67228,"Finance & real estate":82853,"Information":63425,"Manufacturing":57543,"Other services":49578,"Prof. & waste services":68852,"Public administration":69770,"Retail trade":45496,"Transport & utilities":69063,"Wholesale trade":76250}};
+    const colors = {
+  'Agriculture & mining': '#FFFF01',
+  'Arts & food services': '#00008B',
+  'Construction': '#7570B1',
+  'Education & health': '#66A61E',
+  'Finance & real estate': '#E6AB01',
+  'Information': '#379',
+  'Manufacturing': '#E41A1C',
+  'Other services': '#377EF1',
+  'Prof. & waste services': '#FF7F00',
+  'Public administration': '#1B9E77',
+  'Retail trade': '#A65011',
+  'Transport & utilities': '#F781BF',
+  'Wholesale trade': '#919'
+};
+
+    const ctx = document.getElementById("barChart").getContext("2d");
+    let chart;
+
+    function renderChart(county) {
+      const values = data[county];
+      const labels = Object.keys(values);
+      const earnings = Object.values(values);
+
+      if (chart) chart.destroy();
+
+      chart = new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels: labels,
+          datasets: [{
+            label: "Median Earnings ($)",
+            data: earnings,
+            backgroundColor: labels.map(label => colors[label] || "#ccc")
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: true,
+  aspectRatio: 1.5, 
+          indexAxis: "x",
+          scales: {
+            y: {
+              beginAtZero: true,
+              title: {
+                display: true,
+                text: "Median Earnings ($)"
+              },
+              ticks: {
+                callback: function(value) {
+                  return "$" + value.toLocaleString();
+                }
+              }
+            },
+            x: {
+              ticks: {
+                maxRotation: 45,
+                minRotation: 20,
+                autoSkip: false,
+                callback: function(value, index, ticks) {
+                  let label = this.getLabelForValue(value);
+                  return label.length > 25 ? label.slice(0, 25) + "…" : label;
+                }
+              }
+            }
+          },
+          plugins: {
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  return "$" + context.parsed.y.toLocaleString();
+                }
+              }
+            },
+            legend: {
+              display: false
+            }
+          }
+        }
+      });
+    }
+
+    const select = document.getElementById("countySelect");
+    Object.keys(data).forEach(county => {
+      const option = document.createElement("option");
+      option.value = county;
+      option.text = county;
+      select.appendChild(option);
+    });
+    select.value = "Statewide";
+    select.addEventListener("change", () => renderChart(select.value));
+    renderChart("Statewide");
+  </script>
+</body>
+</html>
+</html>

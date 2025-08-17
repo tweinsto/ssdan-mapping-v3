@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Educational Enrollment – Arizona</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Educational Enrollment (Age 18–24) in Arizona</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Apache County, Arizona">Apache County, Arizona</option>
+      <option value="Cochise County, Arizona">Cochise County, Arizona</option>
+      <option value="Coconino County, Arizona">Coconino County, Arizona</option>
+      <option value="Gila County, Arizona">Gila County, Arizona</option>
+      <option value="Graham County, Arizona">Graham County, Arizona</option>
+      <option value="Greenlee County, Arizona">Greenlee County, Arizona</option>
+      <option value="La Paz County, Arizona">La Paz County, Arizona</option>
+      <option value="Maricopa County, Arizona">Maricopa County, Arizona</option>
+      <option value="Mohave County, Arizona">Mohave County, Arizona</option>
+      <option value="Navajo County, Arizona">Navajo County, Arizona</option>
+      <option value="Pima County, Arizona">Pima County, Arizona</option>
+      <option value="Pinal County, Arizona">Pinal County, Arizona</option>
+      <option value="Santa Cruz County, Arizona">Santa Cruz County, Arizona</option>
+      <option value="Yavapai County, Arizona">Yavapai County, Arizona</option>
+      <option value="Yuma County, Arizona">Yuma County, Arizona</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>  const data = {"Statewide":{"Enrolled in College / Grad. School":36,"Not Enrolled":64},"Apache County, Arizona":{"Enrolled in College / Grad. School":26.5,"Not Enrolled":73.5},"Cochise County, Arizona":{"Enrolled in College / Grad. School":26.8,"Not Enrolled":73.2},"Coconino County, Arizona":{"Enrolled in College / Grad. School":67.6,"Not Enrolled":32.4},"Gila County, Arizona":{"Enrolled in College / Grad. School":15.7,"Not Enrolled":84.3},"Graham County, Arizona":{"Enrolled in College / Grad. School":27.7,"Not Enrolled":72.3},"Greenlee County, Arizona":{"Enrolled in College / Grad. School":9.5,"Not Enrolled":90.5},"La Paz County, Arizona":{"Enrolled in College / Grad. School":16.6,"Not Enrolled":83.4},"Maricopa County, Arizona":{"Enrolled in College / Grad. School":35.5,"Not Enrolled":64.5},"Mohave County, Arizona":{"Enrolled in College / Grad. School":19.3,"Not Enrolled":80.7},"Navajo County, Arizona":{"Enrolled in College / Grad. School":12.5,"Not Enrolled":87.5},"Pima County, Arizona":{"Enrolled in College / Grad. School":41.7,"Not Enrolled":58.3},"Pinal County, Arizona":{"Enrolled in College / Grad. School":21.3,"Not Enrolled":78.7},"Santa Cruz County, Arizona":{"Enrolled in College / Grad. School":25.1,"Not Enrolled":74.9},"Yavapai County, Arizona":{"Enrolled in College / Grad. School":37.5,"Not Enrolled":62.5},"Yuma County, Arizona":{"Enrolled in College / Grad. School":27.4,"Not Enrolled":72.6}};
+  const categories = ["Enrolled in College / Grad. School","Not Enrolled"];
+  const ctx = document.getElementById("barChart").getContext("2d");
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: categories,
+        datasets: [
+          {
+            label: "County/State",
+            data: values,
+            backgroundColor: ["#66c2a5", "#fc8d62"]
+          }
+        ]
+      },
+      options: {
+        indexAxis: "y",
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            ticks: {
+              callback: v => v + "%"
+            }
+          }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.dataset.label + ": " + ctx.raw + "%"
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById("countySelect").addEventListener("change", function() {
+    renderChart(Object.values(data[this.value]));
+  });
+
+  renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

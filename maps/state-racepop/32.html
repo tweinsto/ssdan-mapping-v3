@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Race by Year – Nevada</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      margin: 1em;
+    }
+    #buttons button {
+      margin: 0 5px;
+    }
+    #chart-container {
+      width: 90%;
+      max-width: 800px;
+      margin: auto;
+    }
+    
+    #buttons button.active {
+  background-color: dodgerblue;
+  color: white;
+  border: none;
+  border-radius: 4px;
+}
+
+  </style>
+</head>
+<body>
+  <h2>Race/Ethnicity Population – Nevada</h2>
+
+  <label for="countySelect">County:</label>
+  <select id="countySelect">
+    <option value="Statewide" selected>Statewide</option>
+<option value="Carson City">Carson City</option>
+<option value="Churchill County">Churchill County</option>
+<option value="Clark County">Clark County</option>
+<option value="Douglas County">Douglas County</option>
+<option value="Elko County">Elko County</option>
+<option value="Esmeralda County">Esmeralda County</option>
+<option value="Eureka County">Eureka County</option>
+<option value="Humboldt County">Humboldt County</option>
+<option value="Lander County">Lander County</option>
+<option value="Lincoln County">Lincoln County</option>
+<option value="Lyon County">Lyon County</option>
+<option value="Mineral County">Mineral County</option>
+<option value="Nye County">Nye County</option>
+<option value="Pershing County">Pershing County</option>
+<option value="Storey County">Storey County</option>
+<option value="Washoe County">Washoe County</option>
+<option value="White Pine County">White Pine County</option>
+  </select>
+
+  <div id="buttons">
+  <button id="btn2010" onclick="updateChart(2010)">2010</button>
+  <button id="btn2020" onclick="updateChart(2020)">2020</button>
+</div>
+
+  <div id="chart-container">
+    <canvas id="raceChart"></canvas>
+  </div>
+
+   <script>
+    let data = null;
+    let chart = null;
+    let currentYear = 2010;
+
+    fetch("32.json")
+      .then(res => res.json())
+      .then(json => {
+        data = json;
+        document.getElementById("countySelect").addEventListener("change", () => updateChart(currentYear));
+        updateChart(currentYear);
+      });
+
+    function updateChart(year) {
+      currentYear = year;
+
+      // Highlight selected button
+      document.querySelectorAll("#buttons button").forEach(btn => btn.classList.remove("active"));
+      const activeBtn = document.getElementById(`btn${year}`);
+      if (activeBtn) activeBtn.classList.add("active");
+
+      const county = document.getElementById("countySelect").value;
+      const entry = data[county] && data[county][year];
+      if (!entry) return;
+
+      const races = Object.keys(entry[0]).filter(k => !["state_fips", "county", "year", "total"].includes(k));
+      const values = races.map(r => entry[0][r]);
+
+      const config = {
+        type: "bar",
+        data: {
+          labels: races,
+          datasets: [{
+            label: "Population",
+            data: values,
+            backgroundColor: "dodgerblue"
+          }]
+        },
+        options: {
+          plugins: {
+            legend: { display: false }
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              ticks: {
+                callback: function(value) {
+                  return value.toLocaleString();
+                }
+              }
+            }
+          }
+        }
+      };
+
+      if (chart) {
+        chart.destroy();
+      }
+      chart = new Chart(document.getElementById("raceChart"), config);
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Internet Access Over Time –  District of Columbia</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+                      h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+                      select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; border-radius: 5px; border: 1px solid #999; }
+                      canvas { width: 100%; max-width: 850px; height: 450px; margin-top: 1rem; }</style>
+</head>
+<html>
+  <body>
+    <h2>Internet Access in  District of Columbia (2013–2023)</h2>
+    <label>Select County: </label>
+    <select id="countySelect"><option value='Statewide'>Statewide</option>
+<option value='District of Columbia, District of Columbia'>District of Columbia, District of Columbia</option></select>
+    <canvas id="lineChart" width="850" height="450"></canvas>
+    <script>const internetData = {"Statewide":{"2017":82.5,"2018":84.1,"2019":85.9,"2020":88.2,"2021":90,"2022":91.8,"2023":93.2},"District of Columbia, District of Columbia":{"2017":82.5,"2018":84.1,"2019":85.9,"2020":88.2,"2021":90,"2022":91.8,"2023":93.2}};
+const ctx = document.getElementById('lineChart').getContext('2d');
+let chart;
+
+function renderChart(data) {
+  const labels = Object.keys(data);
+  const values = Object.values(data);
+
+  if (chart) chart.destroy();
+  chart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: labels,
+      datasets: [{
+        label: '% With Internet',
+        data: values,
+        fill: false,
+        borderColor: 'teal',
+        backgroundColor: 'teal',
+        tension: 0.3,
+        pointRadius: 4
+      }]
+    },
+    options: {
+      responsive: true,
+      scales: {
+        y: {
+          beginAtZero: true,
+          max: 100,
+          title: { display: true, text: '% With Internet' }
+        },
+        x: {
+          title: { display: true, text: 'Year' }
+        }
+      },
+      plugins: {
+        tooltip: {
+          callbacks: {
+            label: function(ctx) {
+              return ctx.parsed.y.toFixed(1) + '%';
+            }
+          }
+        }
+      }
+    }
+  });
+}
+
+document.getElementById('countySelect').addEventListener('change', function() {
+  renderChart(internetData[this.value]);
+});
+renderChart(internetData['Statewide']);</script>
+  </body>
+</html>
+</html>

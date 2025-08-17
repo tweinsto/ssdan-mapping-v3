@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Income Distribution – Florida</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          text-align: center;
+          margin: 2rem;
+        }
+        select {
+          font-size: 1rem;
+          padding: 0.4rem;
+          margin-bottom: 1rem;
+        }
+        canvas {
+          width: 100%;
+          max-width: 700px;
+          height: 400px;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Income Share by Quintile – Florida</h2>
+    <label>Select County, State:</label>
+    <select id="countySelect"><option value='Statewide'>Statewide</option>
+<option value='Alachua, Florida'>Alachua, Florida</option>
+<option value='Baker, Florida'>Baker, Florida</option>
+<option value='Bay, Florida'>Bay, Florida</option>
+<option value='Bradford, Florida'>Bradford, Florida</option>
+<option value='Brevard, Florida'>Brevard, Florida</option>
+<option value='Broward, Florida'>Broward, Florida</option>
+<option value='Calhoun, Florida'>Calhoun, Florida</option>
+<option value='Charlotte, Florida'>Charlotte, Florida</option>
+<option value='Citrus, Florida'>Citrus, Florida</option>
+<option value='Clay, Florida'>Clay, Florida</option>
+<option value='Collier, Florida'>Collier, Florida</option>
+<option value='Columbia, Florida'>Columbia, Florida</option>
+<option value='DeSoto, Florida'>DeSoto, Florida</option>
+<option value='Dixie, Florida'>Dixie, Florida</option>
+<option value='Duval, Florida'>Duval, Florida</option>
+<option value='Escambia, Florida'>Escambia, Florida</option>
+<option value='Flagler, Florida'>Flagler, Florida</option>
+<option value='Franklin, Florida'>Franklin, Florida</option>
+<option value='Gadsden, Florida'>Gadsden, Florida</option>
+<option value='Gilchrist, Florida'>Gilchrist, Florida</option>
+<option value='Glades, Florida'>Glades, Florida</option>
+<option value='Gulf, Florida'>Gulf, Florida</option>
+<option value='Hamilton, Florida'>Hamilton, Florida</option>
+<option value='Hardee, Florida'>Hardee, Florida</option>
+<option value='Hendry, Florida'>Hendry, Florida</option>
+<option value='Hernando, Florida'>Hernando, Florida</option>
+<option value='Highlands, Florida'>Highlands, Florida</option>
+<option value='Hillsborough, Florida'>Hillsborough, Florida</option>
+<option value='Holmes, Florida'>Holmes, Florida</option>
+<option value='Indian River, Florida'>Indian River, Florida</option>
+<option value='Jackson, Florida'>Jackson, Florida</option>
+<option value='Jefferson, Florida'>Jefferson, Florida</option>
+<option value='Lafayette, Florida'>Lafayette, Florida</option>
+<option value='Lake, Florida'>Lake, Florida</option>
+<option value='Lee, Florida'>Lee, Florida</option>
+<option value='Leon, Florida'>Leon, Florida</option>
+<option value='Levy, Florida'>Levy, Florida</option>
+<option value='Liberty, Florida'>Liberty, Florida</option>
+<option value='Madison, Florida'>Madison, Florida</option>
+<option value='Manatee, Florida'>Manatee, Florida</option>
+<option value='Marion, Florida'>Marion, Florida</option>
+<option value='Martin, Florida'>Martin, Florida</option>
+<option value='Miami-Dade, Florida'>Miami-Dade, Florida</option>
+<option value='Monroe, Florida'>Monroe, Florida</option>
+<option value='Nassau, Florida'>Nassau, Florida</option>
+<option value='Okaloosa, Florida'>Okaloosa, Florida</option>
+<option value='Okeechobee, Florida'>Okeechobee, Florida</option>
+<option value='Orange, Florida'>Orange, Florida</option>
+<option value='Osceola, Florida'>Osceola, Florida</option>
+<option value='Palm Beach, Florida'>Palm Beach, Florida</option>
+<option value='Pasco, Florida'>Pasco, Florida</option>
+<option value='Pinellas, Florida'>Pinellas, Florida</option>
+<option value='Polk, Florida'>Polk, Florida</option>
+<option value='Putnam, Florida'>Putnam, Florida</option>
+<option value='Santa Rosa, Florida'>Santa Rosa, Florida</option>
+<option value='Sarasota, Florida'>Sarasota, Florida</option>
+<option value='Seminole, Florida'>Seminole, Florida</option>
+<option value='St. Johns, Florida'>St. Johns, Florida</option>
+<option value='St. Lucie, Florida'>St. Lucie, Florida</option>
+<option value='Sumter, Florida'>Sumter, Florida</option>
+<option value='Suwannee, Florida'>Suwannee, Florida</option>
+<option value='Taylor, Florida'>Taylor, Florida</option>
+<option value='Union, Florida'>Union, Florida</option>
+<option value='Volusia, Florida'>Volusia, Florida</option>
+<option value='Wakulla, Florida'>Wakulla, Florida</option>
+<option value='Walton, Florida'>Walton, Florida</option>
+<option value='Washington, Florida'>Washington, Florida</option></select>
+    <canvas id="barChart" width="700" height="400"></canvas>
+    <script>  const incomeData = {"Statewide":[5,8.1,12.4,27,47.6],"Alachua, Florida":[3.8,6.6,11.2,27.3,51.2],"Baker, Florida":[6.8,10.1,15.2,27.6,40.2],"Bay, Florida":[5.6,8.5,12.6,27.1,46.2],"Bradford, Florida":[5.1,9.2,14.4,27.9,43.4],"Brevard, Florida":[5,8.1,12.5,27,47.3],"Broward, Florida":[4.4,7.3,11.5,27,49.8],"Calhoun, Florida":[4.8,8.2,13.4,28.1,45.6],"Charlotte, Florida":[5.1,8.1,12.2,26.6,47.9],"Citrus, Florida":[4.4,7.2,11.3,26.3,50.8],"Clay, Florida":[6.2,9.7,14.1,26.5,43.4],"Collier, Florida":[3.5,5.8,9.3,26.7,54.8],"Columbia, Florida":[5.1,8.4,13.2,28,45.2],"DeSoto, Florida":[5.7,9.3,13.7,27.4,44],"Dixie, Florida":[5.7,9.2,14.4,28.3,42.4],"Duval, Florida":[4.7,7.8,12,26.8,48.7],"Escambia, Florida":[5.1,8.3,12.9,27.1,46.6],"Flagler, Florida":[4.7,7.6,11.6,26.6,49.4],"Franklin, Florida":[4.8,8.2,12.4,27.4,47.2],"Gadsden, Florida":[5.1,8.6,13.4,27.8,45.1],"Gilchrist, Florida":[4.2,7,10.8,25.6,52.3],"Glades, Florida":[4.9,7.3,13.3,28.8,45.8],"Gulf, Florida":[4.8,7.4,11.1,26.8,49.9],"Hamilton, Florida":[5.9,9.7,13.7,27.8,42.9],"Hardee, Florida":[3.9,7.1,11.2,26.2,51.6],"Hendry, Florida":[4.8,7.8,12.8,27.1,47.5],"Hernando, Florida":[5.9,9.2,13.6,26.8,44.5],"Highlands, Florida":[5,8.3,12.3,27,47.5],"Hillsborough, Florida":[4.5,7.4,11.6,27.1,49.3],"Holmes, Florida":[5.6,9,13,27.8,44.5],"Indian River, Florida":[4.1,6.6,10.2,26.4,52.7],"Jackson, Florida":[5.2,8.3,12.8,27.8,45.9],"Jefferson, Florida":[5.2,8.9,14.8,28.5,42.5],"Lafayette, Florida":[6.5,11.8,16.8,27.3,37.5],"Lake, Florida":[5.6,9,13.5,27,44.9],"Lee, Florida":[4.6,7.4,11.2,26.6,50.1],"Leon, Florida":[4.2,7.2,11.4,27.1,50.2],"Levy, Florida":[4.5,8,12.1,26.5,48.8],"Liberty, Florida":[5.6,9.6,13.9,28.7,42.1],"Madison, Florida":[5.4,9,13.3,27.3,45.1],"Manatee, Florida":[4.5,7.4,11.5,26.9,49.6],"Marion, Florida":[5.2,8.4,12.7,26.9,46.9],"Martin, Florida":[3.7,6.4,10,26.4,53.4],"Miami-Dade, Florida":[3.8,6.6,10.6,26.9,52.1],"Monroe, Florida":[3.7,6,9.8,26.2,54.2],"Nassau, Florida":[5.7,8.8,13,26.9,45.6],"Okaloosa, Florida":[5.5,8.4,12.6,26.6,46.9],"Okeechobee, Florida":[5,7.9,12.3,27.4,47.4],"Orange, Florida":[4.5,7.4,11.5,26.7,49.9],"Osceola, Florida":[5.6,8.8,13,26.7,45.9],"Palm Beach, Florida":[3.7,6.3,10,26.8,53.2],"Pasco, Florida":[5,8.1,12.8,27.4,46.8],"Pinellas, Florida":[4.4,7.2,11.3,26.9,50.3],"Polk, Florida":[5.2,8.4,12.6,26.7,47.1],"Putnam, Florida":[4.7,7.8,12.2,27.4,47.9],"Santa Rosa, Florida":[5.8,9.2,13.1,26.5,45.4],"Sarasota, Florida":[4,6.5,9.8,26.1,53.6],"Seminole, Florida":[5.2,8.3,12.8,27.2,46.4],"St. Johns, Florida":[5,8.1,12.5,26.9,47.5],"St. Lucie, Florida":[5.6,8.8,13,26.6,46],"Sumter, Florida":[5.8,8.7,12.6,26.1,46.8],"Suwannee, Florida":[5.4,9,13.7,27.4,44.5],"Taylor, Florida":[3.6,5.6,8.9,25.9,56],"Union, Florida":[5,8.3,12.3,25.9,48.4],"Volusia, Florida":[5.2,8.4,12.5,26.6,47.2],"Wakulla, Florida":[6,9.2,13.3,26.1,45.4],"Walton, Florida":[3.9,6.3,9.7,26.4,53.7],"Washington, Florida":[5.2,8.9,13.4,27.7,44.8]};
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Bottom 20%', 'Second 20%', 'Middle 20%', 'Fourth 20%', 'Top 20%'],
+        datasets: [{
+          label: 'Share (%)',
+          data: values,
+          backgroundColor: '#4576a7'
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.parsed.y + '%'
+            }
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 100,
+            title: {
+              display: true,
+              text: 'Income Share (%)'
+            }
+          },
+          x: {
+            title: {
+              display: true,
+              text: 'Quintile'
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(Object.values(incomeData[this.value]));
+  });
+
+  renderChart(Object.values(incomeData['Statewide']));</script>
+  </body>
+</html>
+</html>

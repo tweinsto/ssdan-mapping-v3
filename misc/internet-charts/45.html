@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Internet Access Over Time –  South Carolina</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+                      h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+                      select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; border-radius: 5px; border: 1px solid #999; }
+                      canvas { width: 100%; max-width: 850px; height: 450px; margin-top: 1rem; }</style>
+</head>
+<html>
+  <body>
+    <h2>Internet Access in  South Carolina (2013–2023)</h2>
+    <label>Select County: </label>
+    <select id="countySelect"><option value='Statewide'>Statewide</option>
+<option value='Abbeville County, South Carolina'>Abbeville County, South Carolina</option>
+<option value='Aiken County, South Carolina'>Aiken County, South Carolina</option>
+<option value='Allendale County, South Carolina'>Allendale County, South Carolina</option>
+<option value='Anderson County, South Carolina'>Anderson County, South Carolina</option>
+<option value='Bamberg County, South Carolina'>Bamberg County, South Carolina</option>
+<option value='Barnwell County, South Carolina'>Barnwell County, South Carolina</option>
+<option value='Beaufort County, South Carolina'>Beaufort County, South Carolina</option>
+<option value='Berkeley County, South Carolina'>Berkeley County, South Carolina</option>
+<option value='Calhoun County, South Carolina'>Calhoun County, South Carolina</option>
+<option value='Charleston County, South Carolina'>Charleston County, South Carolina</option>
+<option value='Cherokee County, South Carolina'>Cherokee County, South Carolina</option>
+<option value='Chester County, South Carolina'>Chester County, South Carolina</option>
+<option value='Chesterfield County, South Carolina'>Chesterfield County, South Carolina</option>
+<option value='Clarendon County, South Carolina'>Clarendon County, South Carolina</option>
+<option value='Colleton County, South Carolina'>Colleton County, South Carolina</option>
+<option value='Darlington County, South Carolina'>Darlington County, South Carolina</option>
+<option value='Dillon County, South Carolina'>Dillon County, South Carolina</option>
+<option value='Dorchester County, South Carolina'>Dorchester County, South Carolina</option>
+<option value='Edgefield County, South Carolina'>Edgefield County, South Carolina</option>
+<option value='Fairfield County, South Carolina'>Fairfield County, South Carolina</option>
+<option value='Florence County, South Carolina'>Florence County, South Carolina</option>
+<option value='Georgetown County, South Carolina'>Georgetown County, South Carolina</option>
+<option value='Greenville County, South Carolina'>Greenville County, South Carolina</option>
+<option value='Greenwood County, South Carolina'>Greenwood County, South Carolina</option>
+<option value='Hampton County, South Carolina'>Hampton County, South Carolina</option>
+<option value='Horry County, South Carolina'>Horry County, South Carolina</option>
+<option value='Jasper County, South Carolina'>Jasper County, South Carolina</option>
+<option value='Kershaw County, South Carolina'>Kershaw County, South Carolina</option>
+<option value='Lancaster County, South Carolina'>Lancaster County, South Carolina</option>
+<option value='Laurens County, South Carolina'>Laurens County, South Carolina</option>
+<option value='Lee County, South Carolina'>Lee County, South Carolina</option>
+<option value='Lexington County, South Carolina'>Lexington County, South Carolina</option>
+<option value='Marion County, South Carolina'>Marion County, South Carolina</option>
+<option value='Marlboro County, South Carolina'>Marlboro County, South Carolina</option>
+<option value='McCormick County, South Carolina'>McCormick County, South Carolina</option>
+<option value='Newberry County, South Carolina'>Newberry County, South Carolina</option>
+<option value='Oconee County, South Carolina'>Oconee County, South Carolina</option>
+<option value='Orangeburg County, South Carolina'>Orangeburg County, South Carolina</option>
+<option value='Pickens County, South Carolina'>Pickens County, South Carolina</option>
+<option value='Richland County, South Carolina'>Richland County, South Carolina</option>
+<option value='Saluda County, South Carolina'>Saluda County, South Carolina</option>
+<option value='Spartanburg County, South Carolina'>Spartanburg County, South Carolina</option>
+<option value='Sumter County, South Carolina'>Sumter County, South Carolina</option>
+<option value='Union County, South Carolina'>Union County, South Carolina</option>
+<option value='Williamsburg County, South Carolina'>Williamsburg County, South Carolina</option>
+<option value='York County, South Carolina'>York County, South Carolina</option></select>
+    <canvas id="lineChart" width="850" height="450"></canvas>
+    <script>const internetData = {"Statewide":{"2017":77.5,"2018":79.8,"2019":82.3,"2020":84.8,"2021":86.7,"2022":88.3,"2023":90},"Abbeville County, South Carolina":{"2017":68.9,"2018":71.2,"2019":73.9,"2020":78.4,"2021":77.3,"2022":80.8,"2023":84.3},"Aiken County, South Carolina":{"2017":77.1,"2018":79.4,"2019":81.8,"2020":85.2,"2021":87.5,"2022":89.4,"2023":91.1},"Allendale County, South Carolina":{"2017":51.1,"2018":60.6,"2019":65.1,"2020":66.8,"2021":67.1,"2022":72.5,"2023":74.8},"Anderson County, South Carolina":{"2017":74.5,"2018":78.1,"2019":81.7,"2020":83.9,"2021":86.4,"2022":88.7,"2023":90.2},"Bamberg County, South Carolina":{"2017":61.1,"2018":65,"2019":65.8,"2020":74.8,"2021":75.3,"2022":78,"2023":80.2},"Barnwell County, South Carolina":{"2017":61.6,"2018":66,"2019":70.3,"2020":73.7,"2021":72.4,"2022":75.1,"2023":76.5},"Beaufort County, South Carolina":{"2017":86.6,"2018":88,"2019":90.2,"2020":92,"2021":93.2,"2022":94.2,"2023":95.1},"Berkeley County, South Carolina":{"2017":82.6,"2018":84.3,"2019":85.8,"2020":87.1,"2021":88.5,"2022":89.8,"2023":90.9},"Calhoun County, South Carolina":{"2017":67.1,"2018":71.1,"2019":73.2,"2020":74.1,"2021":78.9,"2022":81.9,"2023":83},"Charleston County, South Carolina":{"2017":82.5,"2018":84.8,"2019":86.4,"2020":89.1,"2021":90.6,"2022":91.5,"2023":92.6},"Cherokee County, South Carolina":{"2017":64.9,"2018":68,"2019":71.7,"2020":72.5,"2021":76.9,"2022":79,"2023":81.8},"Chester County, South Carolina":{"2017":58.9,"2018":62.7,"2019":65.3,"2020":70.3,"2021":75.4,"2022":81.1,"2023":83.3},"Chesterfield County, South Carolina":{"2017":66.9,"2018":68.5,"2019":72.9,"2020":75.6,"2021":78.5,"2022":80.4,"2023":83.3},"Clarendon County, South Carolina":{"2017":66.8,"2018":68.8,"2019":74.8,"2020":78.6,"2021":80.4,"2022":83.4,"2023":86.5},"Colleton County, South Carolina":{"2017":78,"2018":81,"2019":81.6,"2020":83.3,"2021":83.3,"2022":83.6,"2023":85.4},"Darlington County, South Carolina":{"2017":68.6,"2018":70.3,"2019":73.6,"2020":73.1,"2021":74.8,"2022":75.5,"2023":79.6},"Dillon County, South Carolina":{"2017":56,"2018":58.8,"2019":61.2,"2020":67.7,"2021":67.8,"2022":69.5,"2023":71.4},"Dorchester County, South Carolina":{"2017":82.8,"2018":84.5,"2019":86,"2020":88.3,"2021":90.1,"2022":90.8,"2023":92},"Edgefield County, South Carolina":{"2017":66.5,"2018":66.5,"2019":70.4,"2020":75.6,"2021":75.8,"2022":76.8,"2023":81.3},"Fairfield County, South Carolina":{"2017":57.7,"2018":59.7,"2019":68.6,"2020":74.2,"2021":76.9,"2022":78.6,"2023":83.1},"Florence County, South Carolina":{"2017":72.8,"2018":75,"2019":76.4,"2020":78.4,"2021":80.2,"2022":82.2,"2023":85.2},"Georgetown County, South Carolina":{"2017":76.6,"2018":77.9,"2019":79.4,"2020":81.7,"2021":82.7,"2022":85,"2023":88.2},"Greenville County, South Carolina":{"2017":79.9,"2018":82.5,"2019":85.7,"2020":89,"2021":90.4,"2022":91.7,"2023":93.1},"Greenwood County, South Carolina":{"2017":71.9,"2018":74.2,"2019":76.3,"2020":78.7,"2021":81.5,"2022":82.4,"2023":84.7},"Hampton County, South Carolina":{"2017":65.3,"2018":70.2,"2019":72.4,"2020":76.5,"2021":79.6,"2022":79.6,"2023":80.5},"Horry County, South Carolina":{"2017":84.2,"2018":85.9,"2019":88.2,"2020":90,"2021":91.5,"2022":93.1,"2023":94.5},"Jasper County, South Carolina":{"2017":65.3,"2018":67.4,"2019":71.3,"2020":75.8,"2021":76.8,"2022":82.1,"2023":85.4},"Kershaw County, South Carolina":{"2017":71,"2018":73.6,"2019":77.8,"2020":82.5,"2021":87.2,"2022":89.6,"2023":90.9},"Lancaster County, South Carolina":{"2017":78.1,"2018":80.7,"2019":82.9,"2020":85.9,"2021":87.3,"2022":88.3,"2023":89.5},"Laurens County, South Carolina":{"2017":71,"2018":72.9,"2019":76.8,"2020":79,"2021":81.9,"2022":83.6,"2023":86},"Lee County, South Carolina":{"2017":56,"2018":60.1,"2019":61.4,"2020":63.7,"2021":72.2,"2022":79.1,"2023":81.7},"Lexington County, South Carolina":{"2017":81.5,"2018":83.6,"2019":86,"2020":89.1,"2021":90.7,"2022":91.7,"2023":92.9},"Marion County, South Carolina":{"2017":54.7,"2018":56.6,"2019":58.6,"2020":64.6,"2021":70.5,"2022":70.9,"2023":74.3},"Marlboro County, South Carolina":{"2017":59.6,"2018":61.7,"2019":61.9,"2020":64.3,"2021":65,"2022":67.9,"2023":70.7},"McCormick County, South Carolina":{"2017":69.1,"2018":71.6,"2019":75.7,"2020":79.6,"2021":81,"2022":81.3,"2023":81},"Newberry County, South Carolina":{"2017":64.8,"2018":67.2,"2019":71,"2020":75.6,"2021":79.4,"2022":83.1,"2023":85.7},"Oconee County, South Carolina":{"2017":74.8,"2018":76.3,"2019":78.8,"2020":81.4,"2021":83.4,"2022":84.1,"2023":86.4},"Orangeburg County, South Carolina":{"2017":65.2,"2018":69,"2019":72.9,"2020":75,"2021":77.4,"2022":78.9,"2023":80.6},"Pickens County, South Carolina":{"2017":76.4,"2018":78.7,"2019":81.1,"2020":83.3,"2021":85.1,"2022":86.4,"2023":88.5},"Richland County, South Carolina":{"2017":81.1,"2018":82.9,"2019":84.6,"2020":86.6,"2021":87.8,"2022":89.6,"2023":91.6},"Saluda County, South Carolina":{"2017":58.6,"2018":67.4,"2019":72.2,"2020":75.9,"2021":78.3,"2022":80.5,"2023":78.8},"Spartanburg County, South Carolina":{"2017":78.7,"2018":80.4,"2019":82.3,"2020":84.3,"2021":86,"2022":87.2,"2023":88.9},"Sumter County, South Carolina":{"2017":75.7,"2018":77.4,"2019":79.4,"2020":80.8,"2021":82.3,"2022":84.7,"2023":86.2},"Union County, South Carolina":{"2017":61.5,"2018":65.7,"2019":69.4,"2020":76.4,"2021":79,"2022":82.3,"2023":83.1},"Williamsburg County, South Carolina":{"2017":57.1,"2018":59.5,"2019":59.7,"2020":68.2,"2021":71.9,"2022":73.9,"2023":78.9},"York County, South Carolina":{"2017":84.9,"2018":87.6,"2019":90.2,"2020":91.1,"2021":92.5,"2022":93.4,"2023":94.6}};
+const ctx = document.getElementById('lineChart').getContext('2d');
+let chart;
+
+function renderChart(data) {
+  const labels = Object.keys(data);
+  const values = Object.values(data);
+
+  if (chart) chart.destroy();
+  chart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: labels,
+      datasets: [{
+        label: '% With Internet',
+        data: values,
+        fill: false,
+        borderColor: 'teal',
+        backgroundColor: 'teal',
+        tension: 0.3,
+        pointRadius: 4
+      }]
+    },
+    options: {
+      responsive: true,
+      scales: {
+        y: {
+          beginAtZero: true,
+          max: 100,
+          title: { display: true, text: '% With Internet' }
+        },
+        x: {
+          title: { display: true, text: 'Year' }
+        }
+      },
+      plugins: {
+        tooltip: {
+          callbacks: {
+            label: function(ctx) {
+              return ctx.parsed.y.toFixed(1) + '%';
+            }
+          }
+        }
+      }
+    }
+  });
+}
+
+document.getElementById('countySelect').addEventListener('change', function() {
+  renderChart(internetData[this.value]);
+});
+renderChart(internetData['Statewide']);</script>
+  </body>
+</html>
+</html>

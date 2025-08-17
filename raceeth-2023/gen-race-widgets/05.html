@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="utf-8"/>
+  <title>Race/Ethnicity in State 05</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          text-align: center;
+          margin: 2rem;
+          background-color: white;
+        }
+        canvas {
+          max-width: 500px;
+          margin: 1rem auto;
+        }
+        select {
+          font-size: 1rem;
+          padding: 0.4rem;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Race &amp; Ethnicity Distribution</h2>
+    <label>Select County:</label>
+    <select id="countySelect"><option value="Statewide">Statewide</option>
+<option value="Arkansas County, Arkansas">Arkansas County, Arkansas</option>
+<option value="Ashley County, Arkansas">Ashley County, Arkansas</option>
+<option value="Baxter County, Arkansas">Baxter County, Arkansas</option>
+<option value="Benton County, Arkansas">Benton County, Arkansas</option>
+<option value="Boone County, Arkansas">Boone County, Arkansas</option>
+<option value="Bradley County, Arkansas">Bradley County, Arkansas</option>
+<option value="Calhoun County, Arkansas">Calhoun County, Arkansas</option>
+<option value="Carroll County, Arkansas">Carroll County, Arkansas</option>
+<option value="Chicot County, Arkansas">Chicot County, Arkansas</option>
+<option value="Clark County, Arkansas">Clark County, Arkansas</option>
+<option value="Clay County, Arkansas">Clay County, Arkansas</option>
+<option value="Cleburne County, Arkansas">Cleburne County, Arkansas</option>
+<option value="Cleveland County, Arkansas">Cleveland County, Arkansas</option>
+<option value="Columbia County, Arkansas">Columbia County, Arkansas</option>
+<option value="Conway County, Arkansas">Conway County, Arkansas</option>
+<option value="Craighead County, Arkansas">Craighead County, Arkansas</option>
+<option value="Crawford County, Arkansas">Crawford County, Arkansas</option>
+<option value="Crittenden County, Arkansas">Crittenden County, Arkansas</option>
+<option value="Cross County, Arkansas">Cross County, Arkansas</option>
+<option value="Dallas County, Arkansas">Dallas County, Arkansas</option>
+<option value="Desha County, Arkansas">Desha County, Arkansas</option>
+<option value="Drew County, Arkansas">Drew County, Arkansas</option>
+<option value="Faulkner County, Arkansas">Faulkner County, Arkansas</option>
+<option value="Franklin County, Arkansas">Franklin County, Arkansas</option>
+<option value="Fulton County, Arkansas">Fulton County, Arkansas</option>
+<option value="Garland County, Arkansas">Garland County, Arkansas</option>
+<option value="Grant County, Arkansas">Grant County, Arkansas</option>
+<option value="Greene County, Arkansas">Greene County, Arkansas</option>
+<option value="Hempstead County, Arkansas">Hempstead County, Arkansas</option>
+<option value="Hot Spring County, Arkansas">Hot Spring County, Arkansas</option>
+<option value="Howard County, Arkansas">Howard County, Arkansas</option>
+<option value="Independence County, Arkansas">Independence County, Arkansas</option>
+<option value="Izard County, Arkansas">Izard County, Arkansas</option>
+<option value="Jackson County, Arkansas">Jackson County, Arkansas</option>
+<option value="Jefferson County, Arkansas">Jefferson County, Arkansas</option>
+<option value="Johnson County, Arkansas">Johnson County, Arkansas</option>
+<option value="Lafayette County, Arkansas">Lafayette County, Arkansas</option>
+<option value="Lawrence County, Arkansas">Lawrence County, Arkansas</option>
+<option value="Lee County, Arkansas">Lee County, Arkansas</option>
+<option value="Lincoln County, Arkansas">Lincoln County, Arkansas</option>
+<option value="Little River County, Arkansas">Little River County, Arkansas</option>
+<option value="Logan County, Arkansas">Logan County, Arkansas</option>
+<option value="Lonoke County, Arkansas">Lonoke County, Arkansas</option>
+<option value="Madison County, Arkansas">Madison County, Arkansas</option>
+<option value="Marion County, Arkansas">Marion County, Arkansas</option>
+<option value="Miller County, Arkansas">Miller County, Arkansas</option>
+<option value="Mississippi County, Arkansas">Mississippi County, Arkansas</option>
+<option value="Monroe County, Arkansas">Monroe County, Arkansas</option>
+<option value="Montgomery County, Arkansas">Montgomery County, Arkansas</option>
+<option value="Nevada County, Arkansas">Nevada County, Arkansas</option>
+<option value="Newton County, Arkansas">Newton County, Arkansas</option>
+<option value="Ouachita County, Arkansas">Ouachita County, Arkansas</option>
+<option value="Perry County, Arkansas">Perry County, Arkansas</option>
+<option value="Phillips County, Arkansas">Phillips County, Arkansas</option>
+<option value="Pike County, Arkansas">Pike County, Arkansas</option>
+<option value="Poinsett County, Arkansas">Poinsett County, Arkansas</option>
+<option value="Polk County, Arkansas">Polk County, Arkansas</option>
+<option value="Pope County, Arkansas">Pope County, Arkansas</option>
+<option value="Prairie County, Arkansas">Prairie County, Arkansas</option>
+<option value="Pulaski County, Arkansas">Pulaski County, Arkansas</option>
+<option value="Randolph County, Arkansas">Randolph County, Arkansas</option>
+<option value="Saline County, Arkansas">Saline County, Arkansas</option>
+<option value="Scott County, Arkansas">Scott County, Arkansas</option>
+<option value="Searcy County, Arkansas">Searcy County, Arkansas</option>
+<option value="Sebastian County, Arkansas">Sebastian County, Arkansas</option>
+<option value="Sevier County, Arkansas">Sevier County, Arkansas</option>
+<option value="Sharp County, Arkansas">Sharp County, Arkansas</option>
+<option value="St. Francis County, Arkansas">St. Francis County, Arkansas</option>
+<option value="Stone County, Arkansas">Stone County, Arkansas</option>
+<option value="Union County, Arkansas">Union County, Arkansas</option>
+<option value="Van Buren County, Arkansas">Van Buren County, Arkansas</option>
+<option value="Washington County, Arkansas">Washington County, Arkansas</option>
+<option value="White County, Arkansas">White County, Arkansas</option>
+<option value="Woodruff County, Arkansas">Woodruff County, Arkansas</option>
+<option value="Yell County, Arkansas">Yell County, Arkansas</option></select>
+    <canvas id="pieChart" width="400" height="400"></canvas>
+    <script>  let raceData = {};
+  fetch("05.json")
+    .then(resp => resp.json())
+    .then(data => {
+      raceData = data;
+      const raceLabels = ["American Indian / Alaska Native","Asian","Black","Hispanic","NHMulti","NHOther","NHWhite","Pacific Islander"];
+      const ctx = document.getElementById("pieChart").getContext("2d");
+      let chart;
+
+      function renderChart(values) {
+        if (chart) chart.destroy();
+        chart = new Chart(ctx, {
+          type: "pie",
+          data: {
+            labels: raceLabels,
+            datasets: [{
+              data: values,
+              backgroundColor: [
+                "#f94144", "#f3722c", "#f9c74f", "#90be6d",
+                "#9d4edd", "#577590", "#d0cde1", "#43aa8b"
+              ]
+            }]
+          },
+          options: {
+            responsive: true,
+            plugins: {
+              legend: {
+                position: "bottom",
+                labels: {
+                  font: { size: 14 },
+                  boxWidth: 20,
+                  padding: 15,
+                  usePointStyle: true,
+                  pointStyle: "rectRounded"
+                }
+              },
+              tooltip: {
+                callbacks: {
+                  label: function(context) {
+                    return context.label + ": " + context.parsed + "%";
+                  }
+                }
+              }
+            }
+          }
+        });
+      }
+
+      document.getElementById("countySelect").addEventListener("change", function() {
+        const selected = this.value;
+        const values = Object.values(raceData[selected]);
+        renderChart(values);
+      });
+
+      renderChart(Object.values(raceData["Statewide"]));
+      document.getElementById("countySelect").value = "Statewide";
+    });</script>
+  </body>
+</html>
+</html>

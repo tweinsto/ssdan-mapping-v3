@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+
+</head>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Owners: Year Moved In (%) – 15</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #fff;
+    }
+    .container {
+      width: 95%;
+      max-width: 1200px;
+      margin: auto;
+      text-align: center;
+    }
+    #countySelect {
+      font-size: 1rem;
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    canvas {
+      max-width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Owners: Year Moved In (%)</h2>
+    <select id="countySelect"></select>
+    <canvas id="pieChart"></canvas>
+  </div>
+
+  <script>
+    const data = {"Statewide":{"Moved in 2021 or later":5.4,"Moved in 2018–2020":12.5,"Moved in 2010–2017":22.8,"Moved in 2000–2009":21,"Moved in 1990–1999":14.5,"1989 or earlier":23.8},"Hawaii County":{"Moved in 2021 or later":6.4275,"Moved in 2018–2020":13.937,"Moved in 2010–2017":26.2839,"Moved in 2000–2009":21.2776,"Moved in 1990–1999":14.4826,"1989 or earlier":17.5914},"Honolulu County":{"Moved in 2021 or later":5.2854,"Moved in 2018–2020":11.6879,"Moved in 2010–2017":21.5157,"Moved in 2000–2009":20.6726,"Moved in 1990–1999":14.583,"1989 or earlier":26.2554},"Kalawao County":{"Moved in 2021 or later":"NaN","Moved in 2018–2020":"NaN","Moved in 2010–2017":"NaN","Moved in 2000–2009":"NaN","Moved in 1990–1999":"NaN","1989 or earlier":"NaN"},"Kauai County":{"Moved in 2021 or later":4.5098,"Moved in 2018–2020":13.2506,"Moved in 2010–2017":24.0436,"Moved in 2000–2009":21.548,"Moved in 1990–1999":16.1642,"1989 or earlier":20.4839},"Maui County":{"Moved in 2021 or later":4.7973,"Moved in 2018–2020":14.9742,"Moved in 2010–2017":23.8534,"Moved in 2000–2009":21.9455,"Moved in 1990–1999":13.596,"1989 or earlier":20.8336}};
+    const colors = {
+  'Moved in 2021 or later': '#377EF1',
+  'Moved in 2018–2020': '#FF7F00',
+  'Moved in 2010–2017': '#66A61E',
+  'Moved in 2000–2009': '#E6AB01',
+  'Moved in 1990–1999': '#7570B1',
+  '1989 or earlier': '#E41A1C'
+};
+
+    const ctx = document.getElementById("pieChart").getContext("2d");
+    let chart;
+
+    function renderChart(key) {
+      const values = data[key];
+      const labels = Object.keys(values);
+      const percentages = Object.values(values);
+
+      if (chart) chart.destroy();
+
+      chart = new Chart(ctx, {
+        type: "pie",
+        data: {
+          labels: labels,
+          datasets: [{
+            data: percentages,
+            backgroundColor: labels.map(label => colors[label] || "#cccccc")
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: true,
+          aspectRatio: 1.5,
+          plugins: {
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  return context.label + ": " + context.formattedValue + "%";
+                }
+              }
+            },
+            legend: {
+              position: "right",
+              labels: {
+                usePointStyle: true,
+                pointStyle: "rect"
+              }
+            }
+          }
+        }
+      });
+    }
+
+    // Populate dropdown (Statewide first, then counties A->Z)
+    const select = document.getElementById("countySelect");
+    const keys = ["Statewide", ...Object.keys(data).filter(k => k !== "Statewide").sort()];
+    keys.forEach(k => {
+      const opt = document.createElement("option");
+      opt.value = k;
+      opt.text  = k;
+      select.appendChild(opt);
+    });
+    select.value = "Statewide";
+    select.addEventListener("change", () => renderChart(select.value));
+
+    renderChart("Statewide");
+  </script>
+</body>
+</html>
+</html>

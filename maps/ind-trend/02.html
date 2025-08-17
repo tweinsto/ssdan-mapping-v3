@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+
+</head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Median Earnings by Industry – 02</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background: white;
+    }
+    .layout {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1.5rem;
+    }
+    label {
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+    #countySelect {
+      font-size: 1rem;
+      padding: 0.4rem 0.8rem;
+      margin-bottom: 1rem;
+    }
+    canvas {
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <label for="countySelect">Median Earnings by Industry:</label>
+    <select id="countySelect"></select>
+    <canvas id="barChart"></canvas>
+  </div>
+
+  <script>
+    const data = {"Statewide":{"Agriculture & mining":102440,"Arts & food services":40143,"Construction":79394,"Education & health":66470,"Finance & real estate":68106,"Information":77031,"Manufacturing":59719,"Other services":59547,"Prof. & waste services":77212,"Public administration":77902,"Retail trade":42714,"Transport & utilities":74340,"Wholesale trade":65038},"Aleutians East Borough":{"Agriculture & mining":24286,"Arts & food services":55417,"Construction":91250,"Education & health":80391,"Finance & real estate":46607,"Information":126250,"Manufacturing":57891,"Other services":100625,"Prof. & waste services":40750,"Public administration":53750,"Retail trade":77917,"Transport & utilities":58750,"Wholesale trade":49306},"Aleutians West Census Area":{"Agriculture & mining":24375,"Arts & food services":37121,"Construction":121667,"Education & health":98636,"Finance & real estate":49219,"Information":58846,"Manufacturing":48137,"Other services":120625,"Prof. & waste services":115500,"Public administration":75579,"Retail trade":25118,"Transport & utilities":92679,"Wholesale trade":51500},"Anchorage Municipality":{"Agriculture & mining":149554,"Arts & food services":40780,"Construction":87700,"Education & health":67040,"Finance & real estate":67291,"Information":80580,"Manufacturing":60599,"Other services":67731,"Prof. & waste services":81716,"Public administration":80906,"Retail trade":45230,"Transport & utilities":72925,"Wholesale trade":68477},"Bethel Census Area":{"Agriculture & mining":31627,"Arts & food services":41772,"Construction":86667,"Education & health":77500,"Finance & real estate":60357,"Information":78882,"Manufacturing":31875,"Other services":56250,"Prof. & waste services":72708,"Public administration":65094,"Retail trade":37255,"Transport & utilities":54079,"Wholesale trade":0},"Bristol Bay Borough":{"Agriculture & mining":0,"Arts & food services":70000,"Construction":68125,"Education & health":60625,"Finance & real estate":60000,"Information":57083,"Manufacturing":59330,"Other services":49375,"Prof. & waste services":0,"Public administration":96250,"Retail trade":34375,"Transport & utilities":68750,"Wholesale trade":0},"Chugach Census Area":{"Agriculture & mining":80156,"Arts & food services":34688,"Construction":57396,"Education & health":67000,"Finance & real estate":39018,"Information":70197,"Manufacturing":70357,"Other services":65398,"Prof. & waste services":57821,"Public administration":95189,"Retail trade":32672,"Transport & utilities":79875,"Wholesale trade":0},"Copper River Census Area":{"Agriculture & mining":74583,"Arts & food services":85543,"Construction":72976,"Education & health":55694,"Finance & real estate":93000,"Information":93750,"Manufacturing":138382,"Other services":71667,"Prof. & waste services":102045,"Public administration":82708,"Retail trade":35625,"Transport & utilities":61667,"Wholesale trade":0},"Denali Borough":{"Agriculture & mining":195600,"Arts & food services":41532,"Construction":105417,"Education & health":58250,"Finance & real estate":0,"Information":0,"Manufacturing":56091,"Other services":0,"Prof. & waste services":0,"Public administration":131023,"Retail trade":16250,"Transport & utilities":225476,"Wholesale trade":0},"Dillingham Census Area":{"Agriculture & mining":69625,"Arts & food services":37625,"Construction":71667,"Education & health":67500,"Finance & real estate":54063,"Information":0,"Manufacturing":33750,"Other services":65250,"Prof. & waste services":52250,"Public administration":88889,"Retail trade":38036,"Transport & utilities":75833,"Wholesale trade":0},"Fairbanks North Star Borough":{"Agriculture & mining":89844,"Arts & food services":37215,"Construction":81620,"Education & health":68362,"Finance & real estate":72456,"Information":139271,"Manufacturing":66763,"Other services":56920,"Prof. & waste services":71979,"Public administration":84588,"Retail trade":44175,"Transport & utilities":78675,"Wholesale trade":66406},"Haines Borough":{"Agriculture & mining":162788,"Arts & food services":44063,"Construction":39776,"Education & health":71094,"Finance & real estate":0,"Information":0,"Manufacturing":24750,"Other services":0,"Prof. & waste services":73906,"Public administration":81250,"Retail trade":67500,"Transport & utilities":44554,"Wholesale trade":0},"Hoonah-Angoon Census Area":{"Agriculture & mining":78750,"Arts & food services":46250,"Construction":53750,"Education & health":53125,"Finance & real estate":0,"Information":0,"Manufacturing":51563,"Other services":0,"Prof. & waste services":57083,"Public administration":42143,"Retail trade":35469,"Transport & utilities":46250,"Wholesale trade":0},"Juneau City and Borough":{"Agriculture & mining":101538,"Arts & food services":33750,"Construction":88839,"Education & health":69497,"Finance & real estate":50217,"Information":60833,"Manufacturing":56442,"Other services":65129,"Prof. & waste services":76088,"Public administration":69727,"Retail trade":36818,"Transport & utilities":62774,"Wholesale trade":66173},"Kenai Peninsula Borough":{"Agriculture & mining":108365,"Arts & food services":40021,"Construction":78025,"Education & health":60422,"Finance & real estate":59834,"Information":80536,"Manufacturing":77554,"Other services":54485,"Prof. & waste services":64403,"Public administration":72806,"Retail trade":41298,"Transport & utilities":84445,"Wholesale trade":79934},"Ketchikan Gateway Borough":{"Agriculture & mining":91442,"Arts & food services":42386,"Construction":65172,"Education & health":66326,"Finance & real estate":61875,"Information":60417,"Manufacturing":61477,"Other services":47614,"Prof. & waste services":63611,"Public administration":72287,"Retail trade":44083,"Transport & utilities":73750,"Wholesale trade":69167},"Kodiak Island Borough":{"Agriculture & mining":65250,"Arts & food services":33884,"Construction":79208,"Education & health":49228,"Finance & real estate":70882,"Information":0,"Manufacturing":36006,"Other services":45511,"Prof. & waste services":61617,"Public administration":79703,"Retail trade":33221,"Transport & utilities":41719,"Wholesale trade":32012},"Kusilvak Census Area":{"Agriculture & mining":48996,"Arts & food services":58250,"Construction":69167,"Education & health":48269,"Finance & real estate":0,"Information":0,"Manufacturing":0,"Other services":50000,"Prof. & waste services":60909,"Public administration":44118,"Retail trade":40000,"Transport & utilities":61250,"Wholesale trade":31250},"Lake and Peninsula Borough":{"Agriculture & mining":68750,"Arts & food services":0,"Construction":186222,"Education & health":70625,"Finance & real estate":0,"Information":0,"Manufacturing":0,"Other services":0,"Prof. & waste services":0,"Public administration":60500,"Retail trade":33333,"Transport & utilities":68333,"Wholesale trade":0},"Matanuska-Susitna Borough":{"Agriculture & mining":101029,"Arts & food services":36875,"Construction":75198,"Education & health":63922,"Finance & real estate":70972,"Information":66841,"Manufacturing":69318,"Other services":51531,"Prof. & waste services":84643,"Public administration":81602,"Retail trade":42704,"Transport & utilities":79178,"Wholesale trade":64444},"Nome Census Area":{"Agriculture & mining":95750,"Arts & food services":58333,"Construction":79583,"Education & health":76603,"Finance & real estate":79545,"Information":70938,"Manufacturing":83542,"Other services":78750,"Prof. & waste services":62750,"Public administration":72446,"Retail trade":44167,"Transport & utilities":92344,"Wholesale trade":58750},"North Slope Borough":{"Agriculture & mining":107108,"Arts & food services":48500,"Construction":75417,"Education & health":70388,"Finance & real estate":76012,"Information":53750,"Manufacturing":87724,"Other services":26250,"Prof. & waste services":91500,"Public administration":64213,"Retail trade":45536,"Transport & utilities":130417,"Wholesale trade":67500},"Northwest Arctic Borough":{"Agriculture & mining":27378,"Arts & food services":47857,"Construction":73889,"Education & health":85139,"Finance & real estate":68750,"Information":121250,"Manufacturing":42727,"Other services":68333,"Prof. & waste services":42250,"Public administration":71696,"Retail trade":40313,"Transport & utilities":62639,"Wholesale trade":0},"Petersburg Borough":{"Agriculture & mining":91827,"Arts & food services":35096,"Construction":71250,"Education & health":63556,"Finance & real estate":82083,"Information":84167,"Manufacturing":65357,"Other services":41167,"Prof. & waste services":88750,"Public administration":67159,"Retail trade":29430,"Transport & utilities":71250,"Wholesale trade":31786},"Prince of Wales-Hyder Census Area":{"Agriculture & mining":77813,"Arts & food services":26923,"Construction":51000,"Education & health":48571,"Finance & real estate":62708,"Information":59167,"Manufacturing":63750,"Other services":46250,"Prof. & waste services":142750,"Public administration":56250,"Retail trade":50769,"Transport & utilities":70833,"Wholesale trade":35833},"Sitka City and Borough":{"Agriculture & mining":49583,"Arts & food services":45000,"Construction":47024,"Education & health":70536,"Finance & real estate":97685,"Information":47083,"Manufacturing":34800,"Other services":48125,"Prof. & waste services":54635,"Public administration":83472,"Retail trade":39911,"Transport & utilities":78476,"Wholesale trade":57656},"Skagway Municipality":{"Agriculture & mining":0,"Arts & food services":51750,"Construction":108333,"Education & health":90938,"Finance & real estate":0,"Information":0,"Manufacturing":41250,"Other services":133750,"Prof. & waste services":96875,"Public administration":65288,"Retail trade":47500,"Transport & utilities":82000,"Wholesale trade":0},"Southeast Fairbanks Census Area":{"Agriculture & mining":94338,"Arts & food services":56458,"Construction":71406,"Education & health":77171,"Finance & real estate":73693,"Information":0,"Manufacturing":61125,"Other services":45938,"Prof. & waste services":95227,"Public administration":72344,"Retail trade":34243,"Transport & utilities":64444,"Wholesale trade":0},"Wrangell City and Borough":{"Agriculture & mining":75625,"Arts & food services":66875,"Construction":67188,"Education & health":55500,"Finance & real estate":58333,"Information":45000,"Manufacturing":65536,"Other services":47083,"Prof. & waste services":117596,"Public administration":59176,"Retail trade":42083,"Transport & utilities":82708,"Wholesale trade":0},"Yakutat City and Borough":{"Agriculture & mining":93646,"Arts & food services":45833,"Construction":71250,"Education & health":46875,"Finance & real estate":0,"Information":0,"Manufacturing":0,"Other services":0,"Prof. & waste services":0,"Public administration":69167,"Retail trade":42500,"Transport & utilities":106458,"Wholesale trade":57500},"Yukon-Koyukuk Census Area":{"Agriculture & mining":43885,"Arts & food services":107917,"Construction":72596,"Education & health":60313,"Finance & real estate":36250,"Information":0,"Manufacturing":58565,"Other services":97813,"Prof. & waste services":46250,"Public administration":63068,"Retail trade":35556,"Transport & utilities":54276,"Wholesale trade":49205}};
+    const colors = {
+  'Agriculture & mining': '#FFFF01',
+  'Arts & food services': '#00008B',
+  'Construction': '#7570B1',
+  'Education & health': '#66A61E',
+  'Finance & real estate': '#E6AB01',
+  'Information': '#379',
+  'Manufacturing': '#E41A1C',
+  'Other services': '#377EF1',
+  'Prof. & waste services': '#FF7F00',
+  'Public administration': '#1B9E77',
+  'Retail trade': '#A65011',
+  'Transport & utilities': '#F781BF',
+  'Wholesale trade': '#919'
+};
+
+    const ctx = document.getElementById("barChart").getContext("2d");
+    let chart;
+
+    function renderChart(county) {
+      const values = data[county];
+      const labels = Object.keys(values);
+      const earnings = Object.values(values);
+
+      if (chart) chart.destroy();
+
+      chart = new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels: labels,
+          datasets: [{
+            label: "Median Earnings ($)",
+            data: earnings,
+            backgroundColor: labels.map(label => colors[label] || "#ccc")
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: true,
+  aspectRatio: 1.5, 
+          indexAxis: "x",
+          scales: {
+            y: {
+              beginAtZero: true,
+              title: {
+                display: true,
+                text: "Median Earnings ($)"
+              },
+              ticks: {
+                callback: function(value) {
+                  return "$" + value.toLocaleString();
+                }
+              }
+            },
+            x: {
+              ticks: {
+                maxRotation: 45,
+                minRotation: 20,
+                autoSkip: false,
+                callback: function(value, index, ticks) {
+                  let label = this.getLabelForValue(value);
+                  return label.length > 25 ? label.slice(0, 25) + "…" : label;
+                }
+              }
+            }
+          },
+          plugins: {
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  return "$" + context.parsed.y.toLocaleString();
+                }
+              }
+            },
+            legend: {
+              display: false
+            }
+          }
+        }
+      });
+    }
+
+    const select = document.getElementById("countySelect");
+    Object.keys(data).forEach(county => {
+      const option = document.createElement("option");
+      option.value = county;
+      option.text = county;
+      select.appendChild(option);
+    });
+    select.value = "Statewide";
+    select.addEventListener("change", () => renderChart(select.value));
+    renderChart("Statewide");
+  </script>
+</body>
+</html>
+</html>

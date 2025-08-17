@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Educational Enrollment – Colorado</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Educational Enrollment (Age 18–24) in Colorado</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Adams County, Colorado">Adams County, Colorado</option>
+      <option value="Alamosa County, Colorado">Alamosa County, Colorado</option>
+      <option value="Arapahoe County, Colorado">Arapahoe County, Colorado</option>
+      <option value="Archuleta County, Colorado">Archuleta County, Colorado</option>
+      <option value="Baca County, Colorado">Baca County, Colorado</option>
+      <option value="Bent County, Colorado">Bent County, Colorado</option>
+      <option value="Boulder County, Colorado">Boulder County, Colorado</option>
+      <option value="Broomfield County, Colorado">Broomfield County, Colorado</option>
+      <option value="Chaffee County, Colorado">Chaffee County, Colorado</option>
+      <option value="Cheyenne County, Colorado">Cheyenne County, Colorado</option>
+      <option value="Clear Creek County, Colorado">Clear Creek County, Colorado</option>
+      <option value="Conejos County, Colorado">Conejos County, Colorado</option>
+      <option value="Costilla County, Colorado">Costilla County, Colorado</option>
+      <option value="Crowley County, Colorado">Crowley County, Colorado</option>
+      <option value="Custer County, Colorado">Custer County, Colorado</option>
+      <option value="Delta County, Colorado">Delta County, Colorado</option>
+      <option value="Denver County, Colorado">Denver County, Colorado</option>
+      <option value="Dolores County, Colorado">Dolores County, Colorado</option>
+      <option value="Douglas County, Colorado">Douglas County, Colorado</option>
+      <option value="Eagle County, Colorado">Eagle County, Colorado</option>
+      <option value="El Paso County, Colorado">El Paso County, Colorado</option>
+      <option value="Elbert County, Colorado">Elbert County, Colorado</option>
+      <option value="Fremont County, Colorado">Fremont County, Colorado</option>
+      <option value="Garfield County, Colorado">Garfield County, Colorado</option>
+      <option value="Gilpin County, Colorado">Gilpin County, Colorado</option>
+      <option value="Grand County, Colorado">Grand County, Colorado</option>
+      <option value="Gunnison County, Colorado">Gunnison County, Colorado</option>
+      <option value="Hinsdale County, Colorado">Hinsdale County, Colorado</option>
+      <option value="Huerfano County, Colorado">Huerfano County, Colorado</option>
+      <option value="Jackson County, Colorado">Jackson County, Colorado</option>
+      <option value="Jefferson County, Colorado">Jefferson County, Colorado</option>
+      <option value="Kiowa County, Colorado">Kiowa County, Colorado</option>
+      <option value="Kit Carson County, Colorado">Kit Carson County, Colorado</option>
+      <option value="La Plata County, Colorado">La Plata County, Colorado</option>
+      <option value="Lake County, Colorado">Lake County, Colorado</option>
+      <option value="Larimer County, Colorado">Larimer County, Colorado</option>
+      <option value="Las Animas County, Colorado">Las Animas County, Colorado</option>
+      <option value="Lincoln County, Colorado">Lincoln County, Colorado</option>
+      <option value="Logan County, Colorado">Logan County, Colorado</option>
+      <option value="Mesa County, Colorado">Mesa County, Colorado</option>
+      <option value="Mineral County, Colorado">Mineral County, Colorado</option>
+      <option value="Moffat County, Colorado">Moffat County, Colorado</option>
+      <option value="Montezuma County, Colorado">Montezuma County, Colorado</option>
+      <option value="Montrose County, Colorado">Montrose County, Colorado</option>
+      <option value="Morgan County, Colorado">Morgan County, Colorado</option>
+      <option value="Otero County, Colorado">Otero County, Colorado</option>
+      <option value="Ouray County, Colorado">Ouray County, Colorado</option>
+      <option value="Park County, Colorado">Park County, Colorado</option>
+      <option value="Phillips County, Colorado">Phillips County, Colorado</option>
+      <option value="Pitkin County, Colorado">Pitkin County, Colorado</option>
+      <option value="Prowers County, Colorado">Prowers County, Colorado</option>
+      <option value="Pueblo County, Colorado">Pueblo County, Colorado</option>
+      <option value="Rio Blanco County, Colorado">Rio Blanco County, Colorado</option>
+      <option value="Rio Grande County, Colorado">Rio Grande County, Colorado</option>
+      <option value="Routt County, Colorado">Routt County, Colorado</option>
+      <option value="Saguache County, Colorado">Saguache County, Colorado</option>
+      <option value="San Juan County, Colorado">San Juan County, Colorado</option>
+      <option value="San Miguel County, Colorado">San Miguel County, Colorado</option>
+      <option value="Sedgwick County, Colorado">Sedgwick County, Colorado</option>
+      <option value="Summit County, Colorado">Summit County, Colorado</option>
+      <option value="Teller County, Colorado">Teller County, Colorado</option>
+      <option value="Washington County, Colorado">Washington County, Colorado</option>
+      <option value="Weld County, Colorado">Weld County, Colorado</option>
+      <option value="Yuma County, Colorado">Yuma County, Colorado</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>  const data = {"Statewide":{"Enrolled in College / Grad. School":38.2,"Not Enrolled":61.8},"Adams County, Colorado":{"Enrolled in College / Grad. School":24.2,"Not Enrolled":75.8},"Alamosa County, Colorado":{"Enrolled in College / Grad. School":49.4,"Not Enrolled":50.6},"Arapahoe County, Colorado":{"Enrolled in College / Grad. School":28.9,"Not Enrolled":71.1},"Archuleta County, Colorado":{"Enrolled in College / Grad. School":20.7,"Not Enrolled":79.3},"Baca County, Colorado":{"Enrolled in College / Grad. School":11.7,"Not Enrolled":88.3},"Bent County, Colorado":{"Enrolled in College / Grad. School":6.7,"Not Enrolled":93.3},"Boulder County, Colorado":{"Enrolled in College / Grad. School":66.1,"Not Enrolled":33.9},"Broomfield County, Colorado":{"Enrolled in College / Grad. School":36.6,"Not Enrolled":63.4},"Chaffee County, Colorado":{"Enrolled in College / Grad. School":22.4,"Not Enrolled":77.6},"Cheyenne County, Colorado":{"Enrolled in College / Grad. School":6.3,"Not Enrolled":93.7},"Clear Creek County, Colorado":{"Enrolled in College / Grad. School":16.1,"Not Enrolled":83.9},"Conejos County, Colorado":{"Enrolled in College / Grad. School":13.8,"Not Enrolled":86.2},"Costilla County, Colorado":{"Enrolled in College / Grad. School":30.7,"Not Enrolled":69.3},"Crowley County, Colorado":{"Enrolled in College / Grad. School":7.5,"Not Enrolled":92.5},"Custer County, Colorado":{"Enrolled in College / Grad. School":21.9,"Not Enrolled":78.1},"Delta County, Colorado":{"Enrolled in College / Grad. School":13.2,"Not Enrolled":86.8},"Denver County, Colorado":{"Enrolled in College / Grad. School":33.9,"Not Enrolled":66.1},"Dolores County, Colorado":{"Enrolled in College / Grad. School":8.4,"Not Enrolled":91.6},"Douglas County, Colorado":{"Enrolled in College / Grad. School":35.3,"Not Enrolled":64.7},"Eagle County, Colorado":{"Enrolled in College / Grad. School":33.2,"Not Enrolled":66.8},"Elbert County, Colorado":{"Enrolled in College / Grad. School":23.8,"Not Enrolled":76.2},"El Paso County, Colorado":{"Enrolled in College / Grad. School":35.1,"Not Enrolled":64.9},"Fremont County, Colorado":{"Enrolled in College / Grad. School":11.7,"Not Enrolled":88.3},"Garfield County, Colorado":{"Enrolled in College / Grad. School":24.3,"Not Enrolled":75.7},"Gilpin County, Colorado":{"Enrolled in College / Grad. School":66.5,"Not Enrolled":33.5},"Grand County, Colorado":{"Enrolled in College / Grad. School":27,"Not Enrolled":73},"Gunnison County, Colorado":{"Enrolled in College / Grad. School":60.2,"Not Enrolled":39.8},"Hinsdale County, Colorado":{"Enrolled in College / Grad. School":0,"Not Enrolled":100},"Huerfano County, Colorado":{"Enrolled in College / Grad. School":16.7,"Not Enrolled":83.3},"Jackson County, Colorado":{"Enrolled in College / Grad. School":32.8,"Not Enrolled":67.2},"Jefferson County, Colorado":{"Enrolled in College / Grad. School":37.3,"Not Enrolled":62.7},"Kiowa County, Colorado":{"Enrolled in College / Grad. School":16.4,"Not Enrolled":83.6},"Kit Carson County, Colorado":{"Enrolled in College / Grad. School":24.8,"Not Enrolled":75.2},"Lake County, Colorado":{"Enrolled in College / Grad. School":23.8,"Not Enrolled":76.2},"La Plata County, Colorado":{"Enrolled in College / Grad. School":52.7,"Not Enrolled":47.3},"Larimer County, Colorado":{"Enrolled in College / Grad. School":57.3,"Not Enrolled":42.7},"Las Animas County, Colorado":{"Enrolled in College / Grad. School":34.8,"Not Enrolled":65.2},"Lincoln County, Colorado":{"Enrolled in College / Grad. School":10.1,"Not Enrolled":89.9},"Logan County, Colorado":{"Enrolled in College / Grad. School":32.8,"Not Enrolled":67.2},"Mesa County, Colorado":{"Enrolled in College / Grad. School":37.8,"Not Enrolled":62.2},"Mineral County, Colorado":{"Enrolled in College / Grad. School":13.3,"Not Enrolled":86.7},"Moffat County, Colorado":{"Enrolled in College / Grad. School":11.8,"Not Enrolled":88.2},"Montezuma County, Colorado":{"Enrolled in College / Grad. School":17.6,"Not Enrolled":82.4},"Montrose County, Colorado":{"Enrolled in College / Grad. School":21.3,"Not Enrolled":78.7},"Morgan County, Colorado":{"Enrolled in College / Grad. School":15.8,"Not Enrolled":84.2},"Otero County, Colorado":{"Enrolled in College / Grad. School":40.3,"Not Enrolled":59.7},"Ouray County, Colorado":{"Enrolled in College / Grad. School":30.7,"Not Enrolled":69.3},"Park County, Colorado":{"Enrolled in College / Grad. School":22.5,"Not Enrolled":77.5},"Phillips County, Colorado":{"Enrolled in College / Grad. School":19.9,"Not Enrolled":80.1},"Pitkin County, Colorado":{"Enrolled in College / Grad. School":27.5,"Not Enrolled":72.5},"Prowers County, Colorado":{"Enrolled in College / Grad. School":28.4,"Not Enrolled":71.6},"Pueblo County, Colorado":{"Enrolled in College / Grad. School":32.2,"Not Enrolled":67.8},"Rio Blanco County, Colorado":{"Enrolled in College / Grad. School":34.8,"Not Enrolled":65.2},"Rio Grande County, Colorado":{"Enrolled in College / Grad. School":28.6,"Not Enrolled":71.4},"Routt County, Colorado":{"Enrolled in College / Grad. School":32.9,"Not Enrolled":67.1},"Saguache County, Colorado":{"Enrolled in College / Grad. School":15.6,"Not Enrolled":84.4},"San Juan County, Colorado":{"Enrolled in College / Grad. School":30.2,"Not Enrolled":69.8},"San Miguel County, Colorado":{"Enrolled in College / Grad. School":7.2,"Not Enrolled":92.8},"Sedgwick County, Colorado":{"Enrolled in College / Grad. School":21.6,"Not Enrolled":78.4},"Summit County, Colorado":{"Enrolled in College / Grad. School":37,"Not Enrolled":63},"Teller County, Colorado":{"Enrolled in College / Grad. School":18.8,"Not Enrolled":81.2},"Washington County, Colorado":{"Enrolled in College / Grad. School":18.3,"Not Enrolled":81.7},"Weld County, Colorado":{"Enrolled in College / Grad. School":39.3,"Not Enrolled":60.7},"Yuma County, Colorado":{"Enrolled in College / Grad. School":15.3,"Not Enrolled":84.7}};
+  const categories = ["Enrolled in College / Grad. School","Not Enrolled"];
+  const ctx = document.getElementById("barChart").getContext("2d");
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: categories,
+        datasets: [
+          {
+            label: "County/State",
+            data: values,
+            backgroundColor: ["#66c2a5", "#fc8d62"]
+          }
+        ]
+      },
+      options: {
+        indexAxis: "y",
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            ticks: {
+              callback: v => v + "%"
+            }
+          }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.dataset.label + ": " + ctx.raw + "%"
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById("countySelect").addEventListener("change", function() {
+    renderChart(Object.values(data[this.value]));
+  });
+
+  renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

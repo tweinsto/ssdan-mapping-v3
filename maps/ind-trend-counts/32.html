@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+
+</head>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Industry Composition – 32</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #fff;
+    }
+    .container {
+      width: 95%;
+      max-width: 1200px;
+      margin: auto;
+      text-align: center;
+    }
+    canvas {
+  max-width: 100%;
+}
+    #countySelect {
+      font-size: 1rem;
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Industry Composition (Percent)</h2>
+    <select id="countySelect"></select>
+    <canvas id="pieChart"></canvas>
+  </div>
+
+  <script>
+    const data = {"Statewide":{"Agriculture & mining":1.3,"Arts & food services":20.2,"Construction":7.6,"Education & health":16.9,"Finance & real estate":5.9,"Information":1.6,"Manufacturing":5.3,"Other services":4.5,"Prof. & waste services":12.3,"Public administration":4.1,"Retail trade":11.2,"Transport & utilities":7.1,"Wholesale trade":1.9},"Churchill County":{"Agriculture & mining":4.1,"Arts & food services":9.8,"Construction":10.2,"Education & health":19.4,"Finance & real estate":3.1,"Information":1.4,"Manufacturing":11.7,"Other services":5.9,"Prof. & waste services":7.3,"Public administration":7.7,"Retail trade":10.6,"Transport & utilities":7.9,"Wholesale trade":0.9},"Clark County":{"Agriculture & mining":0.4,"Arts & food services":22.8,"Construction":7.4,"Education & health":16.5,"Finance & real estate":6.2,"Information":1.7,"Manufacturing":3.9,"Other services":4.5,"Prof. & waste services":12.7,"Public administration":3.6,"Retail trade":11.4,"Transport & utilities":7.3,"Wholesale trade":1.7},"Douglas County":{"Agriculture & mining":1.9,"Arts & food services":12.5,"Construction":9.9,"Education & health":16.8,"Finance & real estate":6,"Information":0.7,"Manufacturing":7,"Other services":5.7,"Prof. & waste services":13.4,"Public administration":8.9,"Retail trade":12.1,"Transport & utilities":4.1,"Wholesale trade":0.9},"Elko County":{"Agriculture & mining":21.5,"Arts & food services":16.1,"Construction":7.5,"Education & health":17.2,"Finance & real estate":3.8,"Information":0.4,"Manufacturing":3.9,"Other services":3.8,"Prof. & waste services":5.7,"Public administration":4.1,"Retail trade":8.4,"Transport & utilities":4.9,"Wholesale trade":2.4},"Esmeralda County":{"Agriculture & mining":30.6,"Arts & food services":1.8,"Construction":1.8,"Education & health":18.7,"Finance & real estate":1.6,"Information":0,"Manufacturing":9.8,"Other services":17.9,"Prof. & waste services":5.5,"Public administration":2.6,"Retail trade":5,"Transport & utilities":1.1,"Wholesale trade":3.4},"Eureka County":{"Agriculture & mining":38.3,"Arts & food services":3,"Construction":6.4,"Education & health":23.9,"Finance & real estate":0,"Information":0,"Manufacturing":3.9,"Other services":1.4,"Prof. & waste services":4.3,"Public administration":0.2,"Retail trade":2.1,"Transport & utilities":9.9,"Wholesale trade":6.6},"Humboldt County":{"Agriculture & mining":24.6,"Arts & food services":9.9,"Construction":7.8,"Education & health":18.9,"Finance & real estate":3.7,"Information":0.3,"Manufacturing":4.3,"Other services":2.9,"Prof. & waste services":6.2,"Public administration":7.4,"Retail trade":7.1,"Transport & utilities":4.5,"Wholesale trade":2.6},"Lander County":{"Agriculture & mining":29.7,"Arts & food services":4.1,"Construction":1.3,"Education & health":12.8,"Finance & real estate":1.4,"Information":0.8,"Manufacturing":3.6,"Other services":1.2,"Prof. & waste services":10.3,"Public administration":17.4,"Retail trade":6.4,"Transport & utilities":10.3,"Wholesale trade":0.7},"Lincoln County":{"Agriculture & mining":4.5,"Arts & food services":13.1,"Construction":10.9,"Education & health":16.9,"Finance & real estate":0.5,"Information":1.6,"Manufacturing":2.8,"Other services":3,"Prof. & waste services":11.7,"Public administration":9.8,"Retail trade":12.4,"Transport & utilities":9.1,"Wholesale trade":3.7},"Lyon County":{"Agriculture & mining":3.1,"Arts & food services":13.1,"Construction":7,"Education & health":15.5,"Finance & real estate":4.8,"Information":0.9,"Manufacturing":15.3,"Other services":4,"Prof. & waste services":9.4,"Public administration":6.4,"Retail trade":10.4,"Transport & utilities":6.3,"Wholesale trade":3.7},"Mineral County":{"Agriculture & mining":6.6,"Arts & food services":6.2,"Construction":3.1,"Education & health":22.9,"Finance & real estate":0.8,"Information":2.2,"Manufacturing":9.8,"Other services":3.4,"Prof. & waste services":9,"Public administration":17.4,"Retail trade":7.9,"Transport & utilities":9.1,"Wholesale trade":1.4},"Nye County":{"Agriculture & mining":9.1,"Arts & food services":17.5,"Construction":9.1,"Education & health":13.6,"Finance & real estate":4.2,"Information":0.7,"Manufacturing":6.5,"Other services":3.3,"Prof. & waste services":8.6,"Public administration":5.5,"Retail trade":12.4,"Transport & utilities":7,"Wholesale trade":2.4},"Pershing County":{"Agriculture & mining":24.7,"Arts & food services":6.4,"Construction":10,"Education & health":23.1,"Finance & real estate":1.3,"Information":0.4,"Manufacturing":2.1,"Other services":4.7,"Prof. & waste services":2.5,"Public administration":9.1,"Retail trade":12.1,"Transport & utilities":0.9,"Wholesale trade":2.8},"Storey County":{"Agriculture & mining":0.3,"Arts & food services":9.2,"Construction":7.7,"Education & health":19.4,"Finance & real estate":3.5,"Information":0.8,"Manufacturing":17.9,"Other services":3.7,"Prof. & waste services":12.2,"Public administration":7.6,"Retail trade":10.4,"Transport & utilities":4,"Wholesale trade":3.2},"Washoe County":{"Agriculture & mining":0.8,"Arts & food services":13.2,"Construction":8.1,"Education & health":18.7,"Finance & real estate":5.8,"Information":1.5,"Manufacturing":9.6,"Other services":4.6,"Prof. & waste services":12.5,"Public administration":4.3,"Retail trade":10.9,"Transport & utilities":7.3,"Wholesale trade":2.7},"White Pine County":{"Agriculture & mining":16.3,"Arts & food services":21.8,"Construction":5,"Education & health":16.3,"Finance & real estate":1.2,"Information":0.1,"Manufacturing":1.8,"Other services":4.5,"Prof. & waste services":1.7,"Public administration":12.4,"Retail trade":7.9,"Transport & utilities":8.9,"Wholesale trade":2.1},"Carson City":{"Agriculture & mining":0.4,"Arts & food services":12.4,"Construction":8.1,"Education & health":19.3,"Finance & real estate":3.8,"Information":1.7,"Manufacturing":10.3,"Other services":4.2,"Prof. & waste services":12.2,"Public administration":11.5,"Retail trade":10.9,"Transport & utilities":3.3,"Wholesale trade":1.8}};
+    const colors = {
+  'Agriculture & mining': '#FFFF01',
+  'Arts & food services': '#00008B',
+  'Construction': '#7570B1',
+  'Education & health': '#66A61E',
+  'Finance & real estate': '#E6AB01',
+  'Information': '#379',
+  'Manufacturing': '#E41A1C',
+  'Other services': '#377EF1',
+  'Prof. & waste services': '#FF7F00',
+  'Public administration': '#1B9E77',
+  'Retail trade': '#A65011',
+  'Transport & utilities': '#F781BF',
+  'Wholesale trade': '#919'
+};
+
+    const ctx = document.getElementById("pieChart").getContext("2d");
+    let chart;
+
+    function renderChart(county) {
+      const values = data[county];
+      const labels = Object.keys(values);
+      const percentages = Object.values(values);
+
+      if (chart) chart.destroy();
+
+      chart = new Chart(ctx, {
+        type: "pie",
+        data: {
+          labels: labels,
+          datasets: [{
+            data: percentages,
+            backgroundColor: labels.map(label => colors[label] || "#cccccc")
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: true,
+  aspectRatio: 1.5, // You can tweak this (e.g., 1.3, 1.5, 2)
+          plugins: {
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  return context.label + ": " + context.formattedValue + "%";
+                }
+              }
+            },
+            legend: {
+              position: "right",
+              labels: {
+                usePointStyle: true,
+                pointStyle: "rect"
+              }
+            }
+          }
+        }
+      });
+    }
+
+    const select = document.getElementById("countySelect");
+    Object.keys(data).forEach(county => {
+      const opt = document.createElement("option");
+      opt.value = county;
+      opt.text = county;
+      select.appendChild(opt);
+    });
+    select.value = "Statewide";
+    select.addEventListener("change", () => renderChart(select.value));
+    renderChart("Statewide");
+  </script>
+</body>
+</html>
+</html>

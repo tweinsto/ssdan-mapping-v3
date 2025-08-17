@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Income Distribution – New Hampshire</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          text-align: center;
+          margin: 2rem;
+        }
+        select {
+          font-size: 1rem;
+          padding: 0.4rem;
+          margin-bottom: 1rem;
+        }
+        canvas {
+          width: 100%;
+          max-width: 700px;
+          height: 400px;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Income Share by Quintile – New Hampshire</h2>
+    <label>Select County, State:</label>
+    <select id="countySelect"><option value='Statewide'>Statewide</option>
+<option value='Belknap, New Hampshire'>Belknap, New Hampshire</option>
+<option value='Carroll, New Hampshire'>Carroll, New Hampshire</option>
+<option value='Cheshire, New Hampshire'>Cheshire, New Hampshire</option>
+<option value='Coos, New Hampshire'>Coos, New Hampshire</option>
+<option value='Grafton, New Hampshire'>Grafton, New Hampshire</option>
+<option value='Hillsborough, New Hampshire'>Hillsborough, New Hampshire</option>
+<option value='Merrimack, New Hampshire'>Merrimack, New Hampshire</option>
+<option value='Rockingham, New Hampshire'>Rockingham, New Hampshire</option>
+<option value='Strafford, New Hampshire'>Strafford, New Hampshire</option>
+<option value='Sullivan, New Hampshire'>Sullivan, New Hampshire</option></select>
+    <canvas id="barChart" width="700" height="400"></canvas>
+    <script>  const incomeData = {"Statewide":[5.2,8.5,12.8,26.8,46.7],"Belknap, New Hampshire":[5,8.6,12.9,26.7,46.8],"Carroll, New Hampshire":[4.9,8.1,12.1,26.8,48.1],"Cheshire, New Hampshire":[5.9,9.3,13.9,26.8,44],"Coos, New Hampshire":[4.4,7.3,11.4,26.1,50.7],"Grafton, New Hampshire":[4.3,7.4,11.1,27.3,49.9],"Hillsborough, New Hampshire":[5.6,9,13.6,26.9,44.8],"Merrimack, New Hampshire":[5.5,8.8,13.1,26.5,46.1],"Rockingham, New Hampshire":[5.7,8.9,13.2,26.7,45.5],"Strafford, New Hampshire":[6,9.8,15.1,27.4,41.7],"Sullivan, New Hampshire":[4.5,7.7,11.5,26.7,49.5]};
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Bottom 20%', 'Second 20%', 'Middle 20%', 'Fourth 20%', 'Top 20%'],
+        datasets: [{
+          label: 'Share (%)',
+          data: values,
+          backgroundColor: '#4576a7'
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.parsed.y + '%'
+            }
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 100,
+            title: {
+              display: true,
+              text: 'Income Share (%)'
+            }
+          },
+          x: {
+            title: {
+              display: true,
+              text: 'Quintile'
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(Object.values(incomeData[this.value]));
+  });
+
+  renderChart(Object.values(incomeData['Statewide']));</script>
+  </body>
+</html>
+</html>

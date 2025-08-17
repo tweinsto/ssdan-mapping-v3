@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Income Distribution – Pennsylvania</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          text-align: center;
+          margin: 2rem;
+        }
+        select {
+          font-size: 1rem;
+          padding: 0.4rem;
+          margin-bottom: 1rem;
+        }
+        canvas {
+          width: 100%;
+          max-width: 700px;
+          height: 400px;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Income Share by Quintile – Pennsylvania</h2>
+    <label>Select County, State:</label>
+    <select id="countySelect"><option value='Statewide'>Statewide</option>
+<option value='Adams, Pennsylvania'>Adams, Pennsylvania</option>
+<option value='Allegheny, Pennsylvania'>Allegheny, Pennsylvania</option>
+<option value='Armstrong, Pennsylvania'>Armstrong, Pennsylvania</option>
+<option value='Beaver, Pennsylvania'>Beaver, Pennsylvania</option>
+<option value='Bedford, Pennsylvania'>Bedford, Pennsylvania</option>
+<option value='Berks, Pennsylvania'>Berks, Pennsylvania</option>
+<option value='Blair, Pennsylvania'>Blair, Pennsylvania</option>
+<option value='Bradford, Pennsylvania'>Bradford, Pennsylvania</option>
+<option value='Bucks, Pennsylvania'>Bucks, Pennsylvania</option>
+<option value='Butler, Pennsylvania'>Butler, Pennsylvania</option>
+<option value='Cambria, Pennsylvania'>Cambria, Pennsylvania</option>
+<option value='Cameron, Pennsylvania'>Cameron, Pennsylvania</option>
+<option value='Carbon, Pennsylvania'>Carbon, Pennsylvania</option>
+<option value='Centre, Pennsylvania'>Centre, Pennsylvania</option>
+<option value='Chester, Pennsylvania'>Chester, Pennsylvania</option>
+<option value='Clarion, Pennsylvania'>Clarion, Pennsylvania</option>
+<option value='Clearfield, Pennsylvania'>Clearfield, Pennsylvania</option>
+<option value='Clinton, Pennsylvania'>Clinton, Pennsylvania</option>
+<option value='Columbia, Pennsylvania'>Columbia, Pennsylvania</option>
+<option value='Crawford, Pennsylvania'>Crawford, Pennsylvania</option>
+<option value='Cumberland, Pennsylvania'>Cumberland, Pennsylvania</option>
+<option value='Dauphin, Pennsylvania'>Dauphin, Pennsylvania</option>
+<option value='Delaware, Pennsylvania'>Delaware, Pennsylvania</option>
+<option value='Elk, Pennsylvania'>Elk, Pennsylvania</option>
+<option value='Erie, Pennsylvania'>Erie, Pennsylvania</option>
+<option value='Fayette, Pennsylvania'>Fayette, Pennsylvania</option>
+<option value='Forest, Pennsylvania'>Forest, Pennsylvania</option>
+<option value='Franklin, Pennsylvania'>Franklin, Pennsylvania</option>
+<option value='Fulton, Pennsylvania'>Fulton, Pennsylvania</option>
+<option value='Greene, Pennsylvania'>Greene, Pennsylvania</option>
+<option value='Huntingdon, Pennsylvania'>Huntingdon, Pennsylvania</option>
+<option value='Indiana, Pennsylvania'>Indiana, Pennsylvania</option>
+<option value='Jefferson, Pennsylvania'>Jefferson, Pennsylvania</option>
+<option value='Juniata, Pennsylvania'>Juniata, Pennsylvania</option>
+<option value='Lackawanna, Pennsylvania'>Lackawanna, Pennsylvania</option>
+<option value='Lancaster, Pennsylvania'>Lancaster, Pennsylvania</option>
+<option value='Lawrence, Pennsylvania'>Lawrence, Pennsylvania</option>
+<option value='Lebanon, Pennsylvania'>Lebanon, Pennsylvania</option>
+<option value='Lehigh, Pennsylvania'>Lehigh, Pennsylvania</option>
+<option value='Luzerne, Pennsylvania'>Luzerne, Pennsylvania</option>
+<option value='Lycoming, Pennsylvania'>Lycoming, Pennsylvania</option>
+<option value='McKean, Pennsylvania'>McKean, Pennsylvania</option>
+<option value='Mercer, Pennsylvania'>Mercer, Pennsylvania</option>
+<option value='Mifflin, Pennsylvania'>Mifflin, Pennsylvania</option>
+<option value='Monroe, Pennsylvania'>Monroe, Pennsylvania</option>
+<option value='Montgomery, Pennsylvania'>Montgomery, Pennsylvania</option>
+<option value='Montour, Pennsylvania'>Montour, Pennsylvania</option>
+<option value='Northampton, Pennsylvania'>Northampton, Pennsylvania</option>
+<option value='Northumberland, Pennsylvania'>Northumberland, Pennsylvania</option>
+<option value='Perry, Pennsylvania'>Perry, Pennsylvania</option>
+<option value='Philadelphia, Pennsylvania'>Philadelphia, Pennsylvania</option>
+<option value='Pike, Pennsylvania'>Pike, Pennsylvania</option>
+<option value='Potter, Pennsylvania'>Potter, Pennsylvania</option>
+<option value='Schuylkill, Pennsylvania'>Schuylkill, Pennsylvania</option>
+<option value='Snyder, Pennsylvania'>Snyder, Pennsylvania</option>
+<option value='Somerset, Pennsylvania'>Somerset, Pennsylvania</option>
+<option value='Sullivan, Pennsylvania'>Sullivan, Pennsylvania</option>
+<option value='Susquehanna, Pennsylvania'>Susquehanna, Pennsylvania</option>
+<option value='Tioga, Pennsylvania'>Tioga, Pennsylvania</option>
+<option value='Union, Pennsylvania'>Union, Pennsylvania</option>
+<option value='Venango, Pennsylvania'>Venango, Pennsylvania</option>
+<option value='Warren, Pennsylvania'>Warren, Pennsylvania</option>
+<option value='Washington, Pennsylvania'>Washington, Pennsylvania</option>
+<option value='Wayne, Pennsylvania'>Wayne, Pennsylvania</option>
+<option value='Westmoreland, Pennsylvania'>Westmoreland, Pennsylvania</option>
+<option value='Wyoming, Pennsylvania'>Wyoming, Pennsylvania</option>
+<option value='York, Pennsylvania'>York, Pennsylvania</option></select>
+    <canvas id="barChart" width="700" height="400"></canvas>
+    <script>  const incomeData = {"Statewide":[5.4,8.8,13.4,27,45.5],"Adams, Pennsylvania":[6.5,10,14.8,27,41.8],"Allegheny, Pennsylvania":[4.4,7.6,12.1,27.3,48.6],"Armstrong, Pennsylvania":[5.6,9.1,13.6,26.8,44.8],"Beaver, Pennsylvania":[5.6,9.1,13.8,27.3,44.3],"Bedford, Pennsylvania":[5.5,9.4,14.4,27.2,43.6],"Berks, Pennsylvania":[5.3,8.7,13.2,26.9,45.8],"Blair, Pennsylvania":[5.2,8.6,13.5,27,45.6],"Bradford, Pennsylvania":[5.1,8.4,13.2,26.9,46.3],"Bucks, Pennsylvania":[5.2,8.6,12.9,27,46.2],"Butler, Pennsylvania":[5,8.4,12.9,27.1,46.5],"Cambria, Pennsylvania":[4.7,7.8,12.3,26.7,48.5],"Cameron, Pennsylvania":[5.6,9.5,14.7,27.5,42.7],"Carbon, Pennsylvania":[5.6,9,13.7,26.9,44.8],"Centre, Pennsylvania":[4.5,8,12.7,27.4,47.4],"Chester, Pennsylvania":[5.1,8.3,12.8,27.4,46.3],"Clarion, Pennsylvania":[5.4,8.9,13.9,27.2,44.6],"Clearfield, Pennsylvania":[5,8.1,12,25.8,49.1],"Clinton, Pennsylvania":[5.3,8.8,13.8,27.4,44.7],"Columbia, Pennsylvania":[5.3,8.9,13.9,27.4,44.5],"Crawford, Pennsylvania":[5.5,8.9,13.3,26.5,45.8],"Cumberland, Pennsylvania":[5.8,9,13.3,26.7,45.3],"Dauphin, Pennsylvania":[5.1,8.3,12.5,26.8,47.3],"Delaware, Pennsylvania":[4.3,7.5,12,27.5,48.8],"Elk, Pennsylvania":[5.6,9,13,26.1,46.3],"Erie, Pennsylvania":[4.9,8.4,13,27.4,46.3],"Fayette, Pennsylvania":[5,8.7,13.9,27.7,44.8],"Forest, Pennsylvania":[6,9.6,13.9,28,42.5],"Franklin, Pennsylvania":[5.8,8.9,13,26.1,46.1],"Fulton, Pennsylvania":[5.4,8.9,13.8,26.6,45.2],"Greene, Pennsylvania":[5.4,9.6,14.7,27,43.3],"Huntingdon, Pennsylvania":[5.7,9.3,14,27.1,43.9],"Indiana, Pennsylvania":[5.1,8.7,13.7,27.5,45],"Jefferson, Pennsylvania":[5.4,8.8,13.3,26.9,45.7],"Juniata, Pennsylvania":[6.6,9.7,14.7,27.4,41.7],"Lackawanna, Pennsylvania":[4.8,8.3,13.1,27.2,46.7],"Lancaster, Pennsylvania":[5.6,8.7,12.8,26.4,46.4],"Lawrence, Pennsylvania":[5.3,8.7,13.7,27,45.3],"Lebanon, Pennsylvania":[5.7,9.2,13.7,26.9,44.5],"Lehigh, Pennsylvania":[4.7,7.8,12.2,26.9,48.3],"Luzerne, Pennsylvania":[5.1,8.6,13.4,27.4,45.4],"Lycoming, Pennsylvania":[5.3,8.6,12.9,26.8,46.4],"McKean, Pennsylvania":[5.4,8.8,13,26.5,46.2],"Mercer, Pennsylvania":[5.6,9.1,14.2,27.3,43.8],"Mifflin, Pennsylvania":[6.5,10.2,14.8,26.8,41.7],"Monroe, Pennsylvania":[5.8,9.6,14.4,26.9,43.4],"Montgomery, Pennsylvania":[4.7,7.7,11.9,27,48.6],"Montour, Pennsylvania":[4.1,7.1,11,27.1,50.7],"Northampton, Pennsylvania":[5.2,8.5,12.7,26.6,46.9],"Northumberland, Pennsylvania":[5.7,9.2,14.4,27.6,43.1],"Perry, Pennsylvania":[6.2,9.9,14.4,26.7,42.8],"Philadelphia, Pennsylvania":[3.8,7,11.5,27.5,50.2],"Pike, Pennsylvania":[5.8,8.9,13.1,26.8,45.3],"Potter, Pennsylvania":[5.9,9.5,14.3,27,43.3],"Schuylkill, Pennsylvania":[5.7,9.4,14,26.9,44],"Snyder, Pennsylvania":[5.7,9.1,13.3,26.8,45.1],"Somerset, Pennsylvania":[5.7,9.3,14.2,27.1,43.7],"Sullivan, Pennsylvania":[5.5,9.4,14.8,28,42.2],"Susquehanna, Pennsylvania":[4.8,7.9,12,26.8,48.4],"Tioga, Pennsylvania":[6,9.6,14.5,27.2,42.8],"Union, Pennsylvania":[4.1,7,10.6,25.4,53],"Venango, Pennsylvania":[5.9,9.7,14.8,27.1,42.6],"Warren, Pennsylvania":[5.7,9.3,14.1,27,43.9],"Washington, Pennsylvania":[5,8.3,12.9,27.3,46.5],"Wayne, Pennsylvania":[5.7,9,13.6,27.2,44.5],"Westmoreland, Pennsylvania":[5.1,8.5,13.1,27.1,46.2],"Wyoming, Pennsylvania":[4.8,7.7,11.6,25.7,50.2],"York, Pennsylvania":[6,9.6,14.1,26.9,43.4]};
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Bottom 20%', 'Second 20%', 'Middle 20%', 'Fourth 20%', 'Top 20%'],
+        datasets: [{
+          label: 'Share (%)',
+          data: values,
+          backgroundColor: '#4576a7'
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.parsed.y + '%'
+            }
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 100,
+            title: {
+              display: true,
+              text: 'Income Share (%)'
+            }
+          },
+          x: {
+            title: {
+              display: true,
+              text: 'Quintile'
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(Object.values(incomeData[this.value]));
+  });
+
+  renderChart(Object.values(incomeData['Statewide']));</script>
+  </body>
+</html>
+</html>

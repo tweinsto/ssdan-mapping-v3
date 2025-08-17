@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+
+</head>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Owners: Year Moved In (%) – 36</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #fff;
+    }
+    .container {
+      width: 95%;
+      max-width: 1200px;
+      margin: auto;
+      text-align: center;
+    }
+    #countySelect {
+      font-size: 1rem;
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    canvas {
+      max-width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Owners: Year Moved In (%)</h2>
+    <select id="countySelect"></select>
+    <canvas id="pieChart"></canvas>
+  </div>
+
+  <script>
+    const data = {"Statewide":{"Moved in 2021 or later":4.5,"Moved in 2018–2020":11.3,"Moved in 2010–2017":23.7,"Moved in 2000–2009":23.2,"Moved in 1990–1999":16.4,"1989 or earlier":20.9},"Albany County":{"Moved in 2021 or later":4.9572,"Moved in 2018–2020":12.1193,"Moved in 2010–2017":25.0555,"Moved in 2000–2009":21.8184,"Moved in 1990–1999":14.5992,"1989 or earlier":21.4505},"Allegany County":{"Moved in 2021 or later":3.6064,"Moved in 2018–2020":11.2425,"Moved in 2010–2017":21.6528,"Moved in 2000–2009":24.916,"Moved in 1990–1999":15.411,"1989 or earlier":23.1713},"Bronx County":{"Moved in 2021 or later":4.4928,"Moved in 2018–2020":10.1239,"Moved in 2010–2017":23.9382,"Moved in 2000–2009":25.487,"Moved in 1990–1999":16.8551,"1989 or earlier":19.1029},"Broome County":{"Moved in 2021 or later":4.3041,"Moved in 2018–2020":11.4562,"Moved in 2010–2017":21.8898,"Moved in 2000–2009":21.0263,"Moved in 1990–1999":16.6446,"1989 or earlier":24.679},"Cattaraugus County":{"Moved in 2021 or later":4.2643,"Moved in 2018–2020":8.9879,"Moved in 2010–2017":24.4269,"Moved in 2000–2009":23.5463,"Moved in 1990–1999":15.4433,"1989 or earlier":23.3314},"Cayuga County":{"Moved in 2021 or later":5.0947,"Moved in 2018–2020":9.5371,"Moved in 2010–2017":21.4707,"Moved in 2000–2009":21.6305,"Moved in 1990–1999":16.7177,"1989 or earlier":25.5492},"Chautauqua County":{"Moved in 2021 or later":4.5948,"Moved in 2018–2020":10.651,"Moved in 2010–2017":23.8412,"Moved in 2000–2009":21.6937,"Moved in 1990–1999":15.8104,"1989 or earlier":23.409},"Chemung County":{"Moved in 2021 or later":4.6424,"Moved in 2018–2020":10.4413,"Moved in 2010–2017":23.8066,"Moved in 2000–2009":22.9618,"Moved in 1990–1999":13.6442,"1989 or earlier":24.5038},"Chenango County":{"Moved in 2021 or later":4.0895,"Moved in 2018–2020":10.8523,"Moved in 2010–2017":24.4044,"Moved in 2000–2009":22.3663,"Moved in 1990–1999":16.6358,"1989 or earlier":21.6517},"Clinton County":{"Moved in 2021 or later":3.6795,"Moved in 2018–2020":11.4792,"Moved in 2010–2017":24.3595,"Moved in 2000–2009":26.2712,"Moved in 1990–1999":14.3643,"1989 or earlier":19.8464},"Columbia County":{"Moved in 2021 or later":4.276,"Moved in 2018–2020":11.4704,"Moved in 2010–2017":24.1611,"Moved in 2000–2009":23.1594,"Moved in 1990–1999":16.2701,"1989 or earlier":20.663},"Cortland County":{"Moved in 2021 or later":5.4815,"Moved in 2018–2020":11.7416,"Moved in 2010–2017":21.8299,"Moved in 2000–2009":21.0835,"Moved in 1990–1999":16.4366,"1989 or earlier":23.427},"Delaware County":{"Moved in 2021 or later":3.861,"Moved in 2018–2020":10.5093,"Moved in 2010–2017":21.9477,"Moved in 2000–2009":23.9298,"Moved in 1990–1999":15.9463,"1989 or earlier":23.8059},"Dutchess County":{"Moved in 2021 or later":5.2949,"Moved in 2018–2020":12.4023,"Moved in 2010–2017":21.5857,"Moved in 2000–2009":24.6077,"Moved in 1990–1999":16.7852,"1989 or earlier":19.3242},"Erie County":{"Moved in 2021 or later":4.0251,"Moved in 2018–2020":12.2006,"Moved in 2010–2017":24.1605,"Moved in 2000–2009":21.3652,"Moved in 1990–1999":16.1824,"1989 or earlier":22.0661},"Essex County":{"Moved in 2021 or later":4.4649,"Moved in 2018–2020":11.1102,"Moved in 2010–2017":24.5447,"Moved in 2000–2009":23.3626,"Moved in 1990–1999":14.1613,"1989 or earlier":22.3562},"Franklin County":{"Moved in 2021 or later":3.9147,"Moved in 2018–2020":9.816,"Moved in 2010–2017":24.182,"Moved in 2000–2009":23.7146,"Moved in 1990–1999":17.7695,"1989 or earlier":20.6033},"Fulton County":{"Moved in 2021 or later":4.877,"Moved in 2018–2020":11.288,"Moved in 2010–2017":23.1959,"Moved in 2000–2009":20.799,"Moved in 1990–1999":15.7558,"1989 or earlier":24.0844},"Genesee County":{"Moved in 2021 or later":4.4992,"Moved in 2018–2020":11.093,"Moved in 2010–2017":22.4308,"Moved in 2000–2009":19.9227,"Moved in 1990–1999":17.5888,"1989 or earlier":24.4655},"Greene County":{"Moved in 2021 or later":4.4871,"Moved in 2018–2020":11.994,"Moved in 2010–2017":20.7698,"Moved in 2000–2009":25.5051,"Moved in 1990–1999":14.5531,"1989 or earlier":22.6909},"Hamilton County":{"Moved in 2021 or later":5.8013,"Moved in 2018–2020":11.0281,"Moved in 2010–2017":16.5422,"Moved in 2000–2009":19.9885,"Moved in 1990–1999":21.7691,"1989 or earlier":24.8708},"Herkimer County":{"Moved in 2021 or later":4.3118,"Moved in 2018–2020":10.5048,"Moved in 2010–2017":22.528,"Moved in 2000–2009":23.2069,"Moved in 1990–1999":15.5784,"1989 or earlier":23.8702},"Jefferson County":{"Moved in 2021 or later":5.7916,"Moved in 2018–2020":13.2764,"Moved in 2010–2017":24.009,"Moved in 2000–2009":23.1743,"Moved in 1990–1999":15.017,"1989 or earlier":18.7317},"Kings County":{"Moved in 2021 or later":4.6079,"Moved in 2018–2020":9.8305,"Moved in 2010–2017":24.3562,"Moved in 2000–2009":23.2233,"Moved in 1990–1999":17.3745,"1989 or earlier":20.6075},"Lewis County":{"Moved in 2021 or later":4.4712,"Moved in 2018–2020":11.9156,"Moved in 2010–2017":23.0935,"Moved in 2000–2009":20.3813,"Moved in 1990–1999":13.7199,"1989 or earlier":26.4185},"Livingston County":{"Moved in 2021 or later":3.8648,"Moved in 2018–2020":10.459,"Moved in 2010–2017":23.6313,"Moved in 2000–2009":24.5109,"Moved in 1990–1999":16.6587,"1989 or earlier":20.8753},"Madison County":{"Moved in 2021 or later":2.963,"Moved in 2018–2020":10.8794,"Moved in 2010–2017":24.4924,"Moved in 2000–2009":24.3777,"Moved in 1990–1999":14.9998,"1989 or earlier":22.2876},"Monroe County":{"Moved in 2021 or later":4.7191,"Moved in 2018–2020":12.5,"Moved in 2010–2017":25.6681,"Moved in 2000–2009":23.6982,"Moved in 1990–1999":15.3075,"1989 or earlier":18.1071},"Montgomery County":{"Moved in 2021 or later":3.7118,"Moved in 2018–2020":10.1905,"Moved in 2010–2017":24.2501,"Moved in 2000–2009":22.9454,"Moved in 1990–1999":13.8647,"1989 or earlier":25.0375},"Nassau County":{"Moved in 2021 or later":4.0287,"Moved in 2018–2020":10.2434,"Moved in 2010–2017":22.1616,"Moved in 2000–2009":22.7998,"Moved in 1990–1999":17.619,"1989 or earlier":23.1475},"New York County":{"Moved in 2021 or later":6.2935,"Moved in 2018–2020":12.9564,"Moved in 2010–2017":27.8085,"Moved in 2000–2009":21.3856,"Moved in 1990–1999":15.4997,"1989 or earlier":16.0564},"Niagara County":{"Moved in 2021 or later":3.5918,"Moved in 2018–2020":10.4655,"Moved in 2010–2017":23.3544,"Moved in 2000–2009":22.4726,"Moved in 1990–1999":16.8445,"1989 or earlier":23.2712},"Oneida County":{"Moved in 2021 or later":4.0256,"Moved in 2018–2020":11.0793,"Moved in 2010–2017":24.7506,"Moved in 2000–2009":21.9851,"Moved in 1990–1999":16.0085,"1989 or earlier":22.1508},"Onondaga County":{"Moved in 2021 or later":4.1472,"Moved in 2018–2020":12.0378,"Moved in 2010–2017":25.1873,"Moved in 2000–2009":22.2673,"Moved in 1990–1999":15.3164,"1989 or earlier":21.044},"Ontario County":{"Moved in 2021 or later":5.2998,"Moved in 2018–2020":13.4368,"Moved in 2010–2017":26.312,"Moved in 2000–2009":22.749,"Moved in 1990–1999":15.5712,"1989 or earlier":16.6311},"Orange County":{"Moved in 2021 or later":5.3491,"Moved in 2018–2020":13.1941,"Moved in 2010–2017":24.1339,"Moved in 2000–2009":25.9177,"Moved in 1990–1999":13.5559,"1989 or earlier":17.8493},"Orleans County":{"Moved in 2021 or later":3.8041,"Moved in 2018–2020":10.2002,"Moved in 2010–2017":24.1646,"Moved in 2000–2009":21.469,"Moved in 1990–1999":18.7575,"1989 or earlier":21.6046},"Oswego County":{"Moved in 2021 or later":5.1583,"Moved in 2018–2020":11.1979,"Moved in 2010–2017":23.3832,"Moved in 2000–2009":22.9985,"Moved in 1990–1999":16.6604,"1989 or earlier":20.6017},"Otsego County":{"Moved in 2021 or later":4.153,"Moved in 2018–2020":9.383,"Moved in 2010–2017":22.5858,"Moved in 2000–2009":22.5858,"Moved in 1990–1999":19.0932,"1989 or earlier":22.1991},"Putnam County":{"Moved in 2021 or later":6.5143,"Moved in 2018–2020":11.943,"Moved in 2010–2017":19.2476,"Moved in 2000–2009":24.9888,"Moved in 1990–1999":18.581,"1989 or earlier":18.7253},"Queens County":{"Moved in 2021 or later":3.9846,"Moved in 2018–2020":9.5511,"Moved in 2010–2017":23.1584,"Moved in 2000–2009":25.0335,"Moved in 1990–1999":16.9679,"1989 or earlier":21.3044},"Rensselaer County":{"Moved in 2021 or later":4.5016,"Moved in 2018–2020":12.8875,"Moved in 2010–2017":23.2427,"Moved in 2000–2009":23.5254,"Moved in 1990–1999":14.5105,"1989 or earlier":21.3323},"Richmond County":{"Moved in 2021 or later":4.2758,"Moved in 2018–2020":9.5262,"Moved in 2010–2017":23.2088,"Moved in 2000–2009":25.8513,"Moved in 1990–1999":16.9015,"1989 or earlier":20.2365},"Rockland County":{"Moved in 2021 or later":4.6825,"Moved in 2018–2020":10.0545,"Moved in 2010–2017":21.909,"Moved in 2000–2009":24.8014,"Moved in 1990–1999":16.7939,"1989 or earlier":21.7587},"Saratoga County":{"Moved in 2021 or later":4.2708,"Moved in 2018–2020":13.727,"Moved in 2010–2017":28.1673,"Moved in 2000–2009":23.476,"Moved in 1990–1999":14.2474,"1989 or earlier":16.1115},"Schenectady County":{"Moved in 2021 or later":4.9094,"Moved in 2018–2020":14.9574,"Moved in 2010–2017":23.0586,"Moved in 2000–2009":22.0498,"Moved in 1990–1999":13.9674,"1989 or earlier":21.0575},"Schoharie County":{"Moved in 2021 or later":5.4544,"Moved in 2018–2020":10.5361,"Moved in 2010–2017":20.4616,"Moved in 2000–2009":26.1954,"Moved in 1990–1999":15.8456,"1989 or earlier":21.5069},"Schuyler County":{"Moved in 2021 or later":5.8478,"Moved in 2018–2020":9.3253,"Moved in 2010–2017":28.1834,"Moved in 2000–2009":22.526,"Moved in 1990–1999":15.7093,"1989 or earlier":18.4083},"Seneca County":{"Moved in 2021 or later":3.8891,"Moved in 2018–2020":10.4894,"Moved in 2010–2017":26.8481,"Moved in 2000–2009":22.5223,"Moved in 1990–1999":12.6625,"1989 or earlier":23.5885},"St. Lawrence County":{"Moved in 2021 or later":3.7232,"Moved in 2018–2020":9.695,"Moved in 2010–2017":23.3512,"Moved in 2000–2009":24.809,"Moved in 1990–1999":15.5161,"1989 or earlier":22.9055},"Steuben County":{"Moved in 2021 or later":4.704,"Moved in 2018–2020":11.054,"Moved in 2010–2017":24.3028,"Moved in 2000–2009":22.7511,"Moved in 1990–1999":16.132,"1989 or earlier":21.0561},"Suffolk County":{"Moved in 2021 or later":4.4225,"Moved in 2018–2020":11.7527,"Moved in 2010–2017":21.5611,"Moved in 2000–2009":23.1425,"Moved in 1990–1999":17.4334,"1989 or earlier":21.6879},"Sullivan County":{"Moved in 2021 or later":5.3931,"Moved in 2018–2020":12.1716,"Moved in 2010–2017":21.4484,"Moved in 2000–2009":23.7508,"Moved in 1990–1999":15.845,"1989 or earlier":21.391},"Tioga County":{"Moved in 2021 or later":3.915,"Moved in 2018–2020":10.1132,"Moved in 2010–2017":21.7317,"Moved in 2000–2009":21.8329,"Moved in 1990–1999":15.4513,"1989 or earlier":26.9559},"Tompkins County":{"Moved in 2021 or later":4.388,"Moved in 2018–2020":12.4555,"Moved in 2010–2017":25.2673,"Moved in 2000–2009":22.4035,"Moved in 1990–1999":16.5429,"1989 or earlier":18.9429},"Ulster County":{"Moved in 2021 or later":4.3,"Moved in 2018–2020":11.3344,"Moved in 2010–2017":22.7117,"Moved in 2000–2009":24.3887,"Moved in 1990–1999":15.9959,"1989 or earlier":21.2693},"Warren County":{"Moved in 2021 or later":3.1299,"Moved in 2018–2020":13.0927,"Moved in 2010–2017":25.2771,"Moved in 2000–2009":22.3661,"Moved in 1990–1999":16.3065,"1989 or earlier":19.8277},"Washington County":{"Moved in 2021 or later":3.0698,"Moved in 2018–2020":10.8843,"Moved in 2010–2017":23.2012,"Moved in 2000–2009":24.3053,"Moved in 1990–1999":17.4332,"1989 or earlier":21.1062},"Wayne County":{"Moved in 2021 or later":4.0385,"Moved in 2018–2020":12.9901,"Moved in 2010–2017":24.2049,"Moved in 2000–2009":22.41,"Moved in 1990–1999":14.2707,"1989 or earlier":22.0857},"Westchester County":{"Moved in 2021 or later":4.9767,"Moved in 2018–2020":12.1935,"Moved in 2010–2017":24.5868,"Moved in 2000–2009":22.4352,"Moved in 1990–1999":17.3678,"1989 or earlier":18.4399},"Wyoming County":{"Moved in 2021 or later":5.0807,"Moved in 2018–2020":10.6726,"Moved in 2010–2017":17.9502,"Moved in 2000–2009":22.5355,"Moved in 1990–1999":15.2181,"1989 or earlier":28.5429},"Yates County":{"Moved in 2021 or later":3.6162,"Moved in 2018–2020":9.3821,"Moved in 2010–2017":26.2386,"Moved in 2000–2009":21.8394,"Moved in 1990–1999":18.1663,"1989 or earlier":20.7574}};
+    const colors = {
+  'Moved in 2021 or later': '#377EF1',
+  'Moved in 2018–2020': '#FF7F00',
+  'Moved in 2010–2017': '#66A61E',
+  'Moved in 2000–2009': '#E6AB01',
+  'Moved in 1990–1999': '#7570B1',
+  '1989 or earlier': '#E41A1C'
+};
+
+    const ctx = document.getElementById("pieChart").getContext("2d");
+    let chart;
+
+    function renderChart(key) {
+      const values = data[key];
+      const labels = Object.keys(values);
+      const percentages = Object.values(values);
+
+      if (chart) chart.destroy();
+
+      chart = new Chart(ctx, {
+        type: "pie",
+        data: {
+          labels: labels,
+          datasets: [{
+            data: percentages,
+            backgroundColor: labels.map(label => colors[label] || "#cccccc")
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: true,
+          aspectRatio: 1.5,
+          plugins: {
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  return context.label + ": " + context.formattedValue + "%";
+                }
+              }
+            },
+            legend: {
+              position: "right",
+              labels: {
+                usePointStyle: true,
+                pointStyle: "rect"
+              }
+            }
+          }
+        }
+      });
+    }
+
+    // Populate dropdown (Statewide first, then counties A->Z)
+    const select = document.getElementById("countySelect");
+    const keys = ["Statewide", ...Object.keys(data).filter(k => k !== "Statewide").sort()];
+    keys.forEach(k => {
+      const opt = document.createElement("option");
+      opt.value = k;
+      opt.text  = k;
+      select.appendChild(opt);
+    });
+    select.value = "Statewide";
+    select.addEventListener("change", () => renderChart(select.value));
+
+    renderChart("Statewide");
+  </script>
+</body>
+</html>
+</html>

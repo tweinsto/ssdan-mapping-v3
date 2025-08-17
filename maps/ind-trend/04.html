@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+
+</head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Median Earnings by Industry – 04</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background: white;
+    }
+    .layout {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1.5rem;
+    }
+    label {
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+    #countySelect {
+      font-size: 1rem;
+      padding: 0.4rem 0.8rem;
+      margin-bottom: 1rem;
+    }
+    canvas {
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <label for="countySelect">Median Earnings by Industry:</label>
+    <select id="countySelect"></select>
+    <canvas id="barChart"></canvas>
+  </div>
+
+  <script>
+    const data = {"Statewide":{"Agriculture & mining":57268,"Arts & food services":38294,"Construction":54305,"Education & health":55162,"Finance & real estate":70112,"Information":66224,"Manufacturing":68311,"Other services":46361,"Prof. & waste services":63769,"Public administration":66112,"Retail trade":43579,"Transport & utilities":59509,"Wholesale trade":60909},"Apache County":{"Agriculture & mining":46481,"Arts & food services":30723,"Construction":41976,"Education & health":44727,"Finance & real estate":45694,"Information":79150,"Manufacturing":31458,"Other services":32964,"Prof. & waste services":39330,"Public administration":49408,"Retail trade":33510,"Transport & utilities":62106,"Wholesale trade":73370},"Cochise County":{"Agriculture & mining":41991,"Arts & food services":30817,"Construction":52849,"Education & health":46809,"Finance & real estate":47089,"Information":56509,"Manufacturing":50896,"Other services":42522,"Prof. & waste services":61385,"Public administration":90422,"Retail trade":30819,"Transport & utilities":62500,"Wholesale trade":75515},"Coconino County":{"Agriculture & mining":49400,"Arts & food services":38896,"Construction":53729,"Education & health":56034,"Finance & real estate":66429,"Information":49806,"Manufacturing":56967,"Other services":49063,"Prof. & waste services":64697,"Public administration":62236,"Retail trade":38597,"Transport & utilities":67500,"Wholesale trade":70034},"Gila County":{"Agriculture & mining":77607,"Arts & food services":38486,"Construction":51659,"Education & health":47545,"Finance & real estate":48500,"Information":41641,"Manufacturing":52804,"Other services":66063,"Prof. & waste services":54006,"Public administration":59125,"Retail trade":34728,"Transport & utilities":62591,"Wholesale trade":69861},"Graham County":{"Agriculture & mining":78194,"Arts & food services":30913,"Construction":42815,"Education & health":58001,"Finance & real estate":56429,"Information":29639,"Manufacturing":67022,"Other services":41838,"Prof. & waste services":46600,"Public administration":58870,"Retail trade":37902,"Transport & utilities":72594,"Wholesale trade":71563},"Greenlee County":{"Agriculture & mining":77674,"Arts & food services":55056,"Construction":56354,"Education & health":43336,"Finance & real estate":59066,"Information":0,"Manufacturing":40962,"Other services":26189,"Prof. & waste services":51451,"Public administration":70469,"Retail trade":26728,"Transport & utilities":60729,"Wholesale trade":148750},"La Paz County":{"Agriculture & mining":43800,"Arts & food services":33672,"Construction":58587,"Education & health":52375,"Finance & real estate":49497,"Information":34750,"Manufacturing":55769,"Other services":41023,"Prof. & waste services":48192,"Public administration":47756,"Retail trade":45203,"Transport & utilities":49514,"Wholesale trade":57102},"Maricopa County":{"Agriculture & mining":55780,"Arts & food services":40953,"Construction":56380,"Education & health":57788,"Finance & real estate":72394,"Information":70613,"Manufacturing":70261,"Other services":47556,"Prof. & waste services":67322,"Public administration":70104,"Retail trade":45777,"Transport & utilities":59770,"Wholesale trade":61959},"Mohave County":{"Agriculture & mining":77762,"Arts & food services":34155,"Construction":48039,"Education & health":49224,"Finance & real estate":60020,"Information":46832,"Manufacturing":49268,"Other services":43911,"Prof. & waste services":52793,"Public administration":62908,"Retail trade":38816,"Transport & utilities":61530,"Wholesale trade":42033},"Navajo County":{"Agriculture & mining":57426,"Arts & food services":33750,"Construction":48532,"Education & health":47864,"Finance & real estate":49518,"Information":38750,"Manufacturing":48891,"Other services":63119,"Prof. & waste services":46597,"Public administration":48997,"Retail trade":35591,"Transport & utilities":79568,"Wholesale trade":47833},"Pima County":{"Agriculture & mining":67605,"Arts & food services":34230,"Construction":46919,"Education & health":52762,"Finance & real estate":59480,"Information":55823,"Manufacturing":83201,"Other services":45279,"Prof. & waste services":58486,"Public administration":67202,"Retail trade":38783,"Transport & utilities":54670,"Wholesale trade":56384},"Pinal County":{"Agriculture & mining":57344,"Arts & food services":36982,"Construction":61665,"Education & health":50173,"Finance & real estate":59741,"Information":62099,"Manufacturing":61222,"Other services":46620,"Prof. & waste services":56934,"Public administration":60332,"Retail trade":45225,"Transport & utilities":61453,"Wholesale trade":50856},"Santa Cruz County":{"Agriculture & mining":47472,"Arts & food services":29286,"Construction":42192,"Education & health":41972,"Finance & real estate":49122,"Information":48818,"Manufacturing":38750,"Other services":34886,"Prof. & waste services":46477,"Public administration":53971,"Retail trade":36821,"Transport & utilities":46396,"Wholesale trade":57446},"Yavapai County":{"Agriculture & mining":70587,"Arts & food services":36728,"Construction":50426,"Education & health":52802,"Finance & real estate":75200,"Information":55179,"Manufacturing":56867,"Other services":38951,"Prof. & waste services":56518,"Public administration":52422,"Retail trade":41161,"Transport & utilities":64854,"Wholesale trade":79338},"Yuma County":{"Agriculture & mining":40770,"Arts & food services":31792,"Construction":49766,"Education & health":48121,"Finance & real estate":58384,"Information":58814,"Manufacturing":49134,"Other services":41632,"Prof. & waste services":44754,"Public administration":60135,"Retail trade":36155,"Transport & utilities":54951,"Wholesale trade":53579}};
+    const colors = {
+  'Agriculture & mining': '#FFFF01',
+  'Arts & food services': '#00008B',
+  'Construction': '#7570B1',
+  'Education & health': '#66A61E',
+  'Finance & real estate': '#E6AB01',
+  'Information': '#379',
+  'Manufacturing': '#E41A1C',
+  'Other services': '#377EF1',
+  'Prof. & waste services': '#FF7F00',
+  'Public administration': '#1B9E77',
+  'Retail trade': '#A65011',
+  'Transport & utilities': '#F781BF',
+  'Wholesale trade': '#919'
+};
+
+    const ctx = document.getElementById("barChart").getContext("2d");
+    let chart;
+
+    function renderChart(county) {
+      const values = data[county];
+      const labels = Object.keys(values);
+      const earnings = Object.values(values);
+
+      if (chart) chart.destroy();
+
+      chart = new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels: labels,
+          datasets: [{
+            label: "Median Earnings ($)",
+            data: earnings,
+            backgroundColor: labels.map(label => colors[label] || "#ccc")
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: true,
+  aspectRatio: 1.5, 
+          indexAxis: "x",
+          scales: {
+            y: {
+              beginAtZero: true,
+              title: {
+                display: true,
+                text: "Median Earnings ($)"
+              },
+              ticks: {
+                callback: function(value) {
+                  return "$" + value.toLocaleString();
+                }
+              }
+            },
+            x: {
+              ticks: {
+                maxRotation: 45,
+                minRotation: 20,
+                autoSkip: false,
+                callback: function(value, index, ticks) {
+                  let label = this.getLabelForValue(value);
+                  return label.length > 25 ? label.slice(0, 25) + "…" : label;
+                }
+              }
+            }
+          },
+          plugins: {
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  return "$" + context.parsed.y.toLocaleString();
+                }
+              }
+            },
+            legend: {
+              display: false
+            }
+          }
+        }
+      });
+    }
+
+    const select = document.getElementById("countySelect");
+    Object.keys(data).forEach(county => {
+      const option = document.createElement("option");
+      option.value = county;
+      option.text = county;
+      select.appendChild(option);
+    });
+    select.value = "Statewide";
+    select.addEventListener("change", () => renderChart(select.value));
+    renderChart("Statewide");
+  </script>
+</body>
+</html>
+</html>

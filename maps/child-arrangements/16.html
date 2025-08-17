@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Living Arrangements of Children – Idaho</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Children’s Living Arrangements (Under 18) – Idaho</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Ada County, Idaho">Ada County, Idaho</option>
+      <option value="Adams County, Idaho">Adams County, Idaho</option>
+      <option value="Bannock County, Idaho">Bannock County, Idaho</option>
+      <option value="Bear Lake County, Idaho">Bear Lake County, Idaho</option>
+      <option value="Benewah County, Idaho">Benewah County, Idaho</option>
+      <option value="Bingham County, Idaho">Bingham County, Idaho</option>
+      <option value="Blaine County, Idaho">Blaine County, Idaho</option>
+      <option value="Boise County, Idaho">Boise County, Idaho</option>
+      <option value="Bonner County, Idaho">Bonner County, Idaho</option>
+      <option value="Bonneville County, Idaho">Bonneville County, Idaho</option>
+      <option value="Boundary County, Idaho">Boundary County, Idaho</option>
+      <option value="Butte County, Idaho">Butte County, Idaho</option>
+      <option value="Camas County, Idaho">Camas County, Idaho</option>
+      <option value="Canyon County, Idaho">Canyon County, Idaho</option>
+      <option value="Caribou County, Idaho">Caribou County, Idaho</option>
+      <option value="Cassia County, Idaho">Cassia County, Idaho</option>
+      <option value="Clark County, Idaho">Clark County, Idaho</option>
+      <option value="Clearwater County, Idaho">Clearwater County, Idaho</option>
+      <option value="Custer County, Idaho">Custer County, Idaho</option>
+      <option value="Elmore County, Idaho">Elmore County, Idaho</option>
+      <option value="Franklin County, Idaho">Franklin County, Idaho</option>
+      <option value="Fremont County, Idaho">Fremont County, Idaho</option>
+      <option value="Gem County, Idaho">Gem County, Idaho</option>
+      <option value="Gooding County, Idaho">Gooding County, Idaho</option>
+      <option value="Idaho County, Idaho">Idaho County, Idaho</option>
+      <option value="Jefferson County, Idaho">Jefferson County, Idaho</option>
+      <option value="Jerome County, Idaho">Jerome County, Idaho</option>
+      <option value="Kootenai County, Idaho">Kootenai County, Idaho</option>
+      <option value="Latah County, Idaho">Latah County, Idaho</option>
+      <option value="Lemhi County, Idaho">Lemhi County, Idaho</option>
+      <option value="Lewis County, Idaho">Lewis County, Idaho</option>
+      <option value="Lincoln County, Idaho">Lincoln County, Idaho</option>
+      <option value="Madison County, Idaho">Madison County, Idaho</option>
+      <option value="Minidoka County, Idaho">Minidoka County, Idaho</option>
+      <option value="Nez Perce County, Idaho">Nez Perce County, Idaho</option>
+      <option value="Oneida County, Idaho">Oneida County, Idaho</option>
+      <option value="Owyhee County, Idaho">Owyhee County, Idaho</option>
+      <option value="Payette County, Idaho">Payette County, Idaho</option>
+      <option value="Power County, Idaho">Power County, Idaho</option>
+      <option value="Shoshone County, Idaho">Shoshone County, Idaho</option>
+      <option value="Teton County, Idaho">Teton County, Idaho</option>
+      <option value="Twin Falls County, Idaho">Twin Falls County, Idaho</option>
+      <option value="Valley County, Idaho">Valley County, Idaho</option>
+      <option value="Washington County, Idaho">Washington County, Idaho</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>  const data = {"Statewide":{"Married Couple (%)":76.2,"Cohabiting Couple (%)":6.9,"Male Householder (%)":4.8,"Female Householder (%)":12.2},"Ada County, Idaho":{"Married Couple (%)":77.5,"Cohabiting Couple (%)":4.9,"Male Householder (%)":5.5,"Female Householder (%)":12.1},"Adams County, Idaho":{"Married Couple (%)":82.1,"Cohabiting Couple (%)":1.1,"Male Householder (%)":5.8,"Female Householder (%)":10.9},"Bannock County, Idaho":{"Married Couple (%)":75.4,"Cohabiting Couple (%)":6.8,"Male Householder (%)":5.2,"Female Householder (%)":12.6},"Bear Lake County, Idaho":{"Married Couple (%)":78.3,"Cohabiting Couple (%)":3.4,"Male Householder (%)":5.2,"Female Householder (%)":13.1},"Benewah County, Idaho":{"Married Couple (%)":68.8,"Cohabiting Couple (%)":12.7,"Male Householder (%)":2.7,"Female Householder (%)":15.7},"Bingham County, Idaho":{"Married Couple (%)":79.7,"Cohabiting Couple (%)":5.6,"Male Householder (%)":3.2,"Female Householder (%)":11.6},"Blaine County, Idaho":{"Married Couple (%)":73.7,"Cohabiting Couple (%)":4.4,"Male Householder (%)":8.1,"Female Householder (%)":13.8},"Boise County, Idaho":{"Married Couple (%)":79.2,"Cohabiting Couple (%)":4.3,"Male Householder (%)":1.8,"Female Householder (%)":14.7},"Bonner County, Idaho":{"Married Couple (%)":72.2,"Cohabiting Couple (%)":11,"Male Householder (%)":7.2,"Female Householder (%)":9.6},"Bonneville County, Idaho":{"Married Couple (%)":76.9,"Cohabiting Couple (%)":5,"Male Householder (%)":3.7,"Female Householder (%)":14.4},"Boundary County, Idaho":{"Married Couple (%)":78.2,"Cohabiting Couple (%)":13.7,"Male Householder (%)":2.5,"Female Householder (%)":5.6},"Butte County, Idaho":{"Married Couple (%)":76.3,"Cohabiting Couple (%)":2.3,"Male Householder (%)":5,"Female Householder (%)":16.5},"Camas County, Idaho":{"Married Couple (%)":68.9,"Cohabiting Couple (%)":13.8,"Male Householder (%)":8.6,"Female Householder (%)":8.6},"Canyon County, Idaho":{"Married Couple (%)":74.8,"Cohabiting Couple (%)":8.4,"Male Householder (%)":4.7,"Female Householder (%)":12.1},"Caribou County, Idaho":{"Married Couple (%)":87.3,"Cohabiting Couple (%)":3.6,"Male Householder (%)":2.5,"Female Householder (%)":6.6},"Cassia County, Idaho":{"Married Couple (%)":75.9,"Cohabiting Couple (%)":10.9,"Male Householder (%)":4.8,"Female Householder (%)":8.3},"Clark County, Idaho":{"Married Couple (%)":85.3,"Cohabiting Couple (%)":0.4,"Male Householder (%)":5.8,"Female Householder (%)":8.5},"Clearwater County, Idaho":{"Married Couple (%)":79,"Cohabiting Couple (%)":7.2,"Male Householder (%)":3.4,"Female Householder (%)":10.3},"Custer County, Idaho":{"Married Couple (%)":86.2,"Cohabiting Couple (%)":13.8,"Male Householder (%)":0,"Female Householder (%)":0},"Elmore County, Idaho":{"Married Couple (%)":69.5,"Cohabiting Couple (%)":9.9,"Male Householder (%)":2.3,"Female Householder (%)":18.3},"Franklin County, Idaho":{"Married Couple (%)":83.9,"Cohabiting Couple (%)":5.8,"Male Householder (%)":6,"Female Householder (%)":4.3},"Fremont County, Idaho":{"Married Couple (%)":81.9,"Cohabiting Couple (%)":5.9,"Male Householder (%)":2.4,"Female Householder (%)":9.9},"Gem County, Idaho":{"Married Couple (%)":73.9,"Cohabiting Couple (%)":7.6,"Male Householder (%)":4.7,"Female Householder (%)":13.8},"Gooding County, Idaho":{"Married Couple (%)":74.7,"Cohabiting Couple (%)":5.4,"Male Householder (%)":2.7,"Female Householder (%)":17.3},"Idaho County, Idaho":{"Married Couple (%)":79.5,"Cohabiting Couple (%)":6.1,"Male Householder (%)":5.6,"Female Householder (%)":8.8},"Jefferson County, Idaho":{"Married Couple (%)":85.7,"Cohabiting Couple (%)":5.6,"Male Householder (%)":2.1,"Female Householder (%)":6.6},"Jerome County, Idaho":{"Married Couple (%)":66.8,"Cohabiting Couple (%)":11.1,"Male Householder (%)":11.4,"Female Householder (%)":10.8},"Kootenai County, Idaho":{"Married Couple (%)":74.3,"Cohabiting Couple (%)":7.1,"Male Householder (%)":5.1,"Female Householder (%)":13.6},"Latah County, Idaho":{"Married Couple (%)":78.4,"Cohabiting Couple (%)":5,"Male Householder (%)":3.1,"Female Householder (%)":13.5},"Lemhi County, Idaho":{"Married Couple (%)":87.8,"Cohabiting Couple (%)":1.3,"Male Householder (%)":3,"Female Householder (%)":7.9},"Lewis County, Idaho":{"Married Couple (%)":74.1,"Cohabiting Couple (%)":9.4,"Male Householder (%)":6.1,"Female Householder (%)":10.5},"Lincoln County, Idaho":{"Married Couple (%)":73.6,"Cohabiting Couple (%)":10.3,"Male Householder (%)":4.1,"Female Householder (%)":12},"Madison County, Idaho":{"Married Couple (%)":89.4,"Cohabiting Couple (%)":5.1,"Male Householder (%)":2.8,"Female Householder (%)":2.8},"Minidoka County, Idaho":{"Married Couple (%)":69.2,"Cohabiting Couple (%)":9.2,"Male Householder (%)":4.5,"Female Householder (%)":17.2},"Nez Perce County, Idaho":{"Married Couple (%)":64.8,"Cohabiting Couple (%)":13.2,"Male Householder (%)":7.6,"Female Householder (%)":14.4},"Oneida County, Idaho":{"Married Couple (%)":91.4,"Cohabiting Couple (%)":2.3,"Male Householder (%)":3.5,"Female Householder (%)":2.7},"Owyhee County, Idaho":{"Married Couple (%)":71,"Cohabiting Couple (%)":4.8,"Male Householder (%)":6.5,"Female Householder (%)":17.7},"Payette County, Idaho":{"Married Couple (%)":76.2,"Cohabiting Couple (%)":9.7,"Male Householder (%)":3.3,"Female Householder (%)":10.8},"Power County, Idaho":{"Married Couple (%)":80.4,"Cohabiting Couple (%)":3.3,"Male Householder (%)":3.8,"Female Householder (%)":12.5},"Shoshone County, Idaho":{"Married Couple (%)":61.5,"Cohabiting Couple (%)":10.7,"Male Householder (%)":8.5,"Female Householder (%)":19.3},"Teton County, Idaho":{"Married Couple (%)":81.6,"Cohabiting Couple (%)":9.8,"Male Householder (%)":2.2,"Female Householder (%)":6.5},"Twin Falls County, Idaho":{"Married Couple (%)":73.7,"Cohabiting Couple (%)":8.9,"Male Householder (%)":4.2,"Female Householder (%)":13.2},"Valley County, Idaho":{"Married Couple (%)":80.4,"Cohabiting Couple (%)":7.4,"Male Householder (%)":0.1,"Female Householder (%)":12.1},"Washington County, Idaho":{"Married Couple (%)":63.8,"Cohabiting Couple (%)":12.2,"Male Householder (%)":3.6,"Female Householder (%)":20.4}};
+  const categories = ["Married Couple (%)","Cohabiting Couple (%)","Male Householder (%)","Female Householder (%)"];
+  const ctx = document.getElementById("barChart").getContext("2d");
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: categories,
+        datasets: [{
+          label: "Share of Children (%)",
+          data: values,
+          backgroundColor: ["#5DA5DA","#FAA43A","#60BD68","#F17CB0"]
+        }]
+      },
+      options: {
+        indexAxis: "y",
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            ticks: { callback: v => v + "%" },
+            title: { display: true, text: "Percent of Children" }
+          }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.raw + "%"
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById("countySelect").addEventListener("change", function() {
+    renderChart(Object.values(data[this.value]));
+  });
+
+  renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

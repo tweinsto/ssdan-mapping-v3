@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Living Arrangements of Children – Washington</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Children’s Living Arrangements (Under 18) – Washington</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Adams County, Washington">Adams County, Washington</option>
+      <option value="Asotin County, Washington">Asotin County, Washington</option>
+      <option value="Benton County, Washington">Benton County, Washington</option>
+      <option value="Chelan County, Washington">Chelan County, Washington</option>
+      <option value="Clallam County, Washington">Clallam County, Washington</option>
+      <option value="Clark County, Washington">Clark County, Washington</option>
+      <option value="Columbia County, Washington">Columbia County, Washington</option>
+      <option value="Cowlitz County, Washington">Cowlitz County, Washington</option>
+      <option value="Douglas County, Washington">Douglas County, Washington</option>
+      <option value="Ferry County, Washington">Ferry County, Washington</option>
+      <option value="Franklin County, Washington">Franklin County, Washington</option>
+      <option value="Garfield County, Washington">Garfield County, Washington</option>
+      <option value="Grant County, Washington">Grant County, Washington</option>
+      <option value="Grays Harbor County, Washington">Grays Harbor County, Washington</option>
+      <option value="Island County, Washington">Island County, Washington</option>
+      <option value="Jefferson County, Washington">Jefferson County, Washington</option>
+      <option value="King County, Washington">King County, Washington</option>
+      <option value="Kitsap County, Washington">Kitsap County, Washington</option>
+      <option value="Kittitas County, Washington">Kittitas County, Washington</option>
+      <option value="Klickitat County, Washington">Klickitat County, Washington</option>
+      <option value="Lewis County, Washington">Lewis County, Washington</option>
+      <option value="Lincoln County, Washington">Lincoln County, Washington</option>
+      <option value="Mason County, Washington">Mason County, Washington</option>
+      <option value="Okanogan County, Washington">Okanogan County, Washington</option>
+      <option value="Pacific County, Washington">Pacific County, Washington</option>
+      <option value="Pend Oreille County, Washington">Pend Oreille County, Washington</option>
+      <option value="Pierce County, Washington">Pierce County, Washington</option>
+      <option value="San Juan County, Washington">San Juan County, Washington</option>
+      <option value="Skagit County, Washington">Skagit County, Washington</option>
+      <option value="Skamania County, Washington">Skamania County, Washington</option>
+      <option value="Snohomish County, Washington">Snohomish County, Washington</option>
+      <option value="Spokane County, Washington">Spokane County, Washington</option>
+      <option value="Stevens County, Washington">Stevens County, Washington</option>
+      <option value="Thurston County, Washington">Thurston County, Washington</option>
+      <option value="Wahkiakum County, Washington">Wahkiakum County, Washington</option>
+      <option value="Walla Walla County, Washington">Walla Walla County, Washington</option>
+      <option value="Whatcom County, Washington">Whatcom County, Washington</option>
+      <option value="Whitman County, Washington">Whitman County, Washington</option>
+      <option value="Yakima County, Washington">Yakima County, Washington</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>  const data = {"Statewide":{"Married Couple (%)":71.5,"Cohabiting Couple (%)":9.3,"Male Householder (%)":4.5,"Female Householder (%)":14.7},"Adams County, Washington":{"Married Couple (%)":61.4,"Cohabiting Couple (%)":15.6,"Male Householder (%)":2.1,"Female Householder (%)":20.9},"Asotin County, Washington":{"Married Couple (%)":59.6,"Cohabiting Couple (%)":13.4,"Male Householder (%)":5.9,"Female Householder (%)":21.1},"Benton County, Washington":{"Married Couple (%)":65.6,"Cohabiting Couple (%)":13.4,"Male Householder (%)":4.2,"Female Householder (%)":16.8},"Chelan County, Washington":{"Married Couple (%)":72.5,"Cohabiting Couple (%)":7.9,"Male Householder (%)":3.5,"Female Householder (%)":16.2},"Clallam County, Washington":{"Married Couple (%)":61.6,"Cohabiting Couple (%)":12.4,"Male Householder (%)":6.1,"Female Householder (%)":19.9},"Clark County, Washington":{"Married Couple (%)":74,"Cohabiting Couple (%)":8.7,"Male Householder (%)":4.2,"Female Householder (%)":13.2},"Columbia County, Washington":{"Married Couple (%)":67,"Cohabiting Couple (%)":9.9,"Male Householder (%)":8.1,"Female Householder (%)":15},"Cowlitz County, Washington":{"Married Couple (%)":63.9,"Cohabiting Couple (%)":14.4,"Male Householder (%)":6.2,"Female Householder (%)":15.5},"Douglas County, Washington":{"Married Couple (%)":66.6,"Cohabiting Couple (%)":11.9,"Male Householder (%)":2.4,"Female Householder (%)":19.1},"Ferry County, Washington":{"Married Couple (%)":66.6,"Cohabiting Couple (%)":8.5,"Male Householder (%)":11.5,"Female Householder (%)":13.5},"Franklin County, Washington":{"Married Couple (%)":61.5,"Cohabiting Couple (%)":12.8,"Male Householder (%)":4.9,"Female Householder (%)":20.7},"Garfield County, Washington":{"Married Couple (%)":88,"Cohabiting Couple (%)":0,"Male Householder (%)":0,"Female Householder (%)":12},"Grant County, Washington":{"Married Couple (%)":64.7,"Cohabiting Couple (%)":13.7,"Male Householder (%)":4.9,"Female Householder (%)":16.7},"Grays Harbor County, Washington":{"Married Couple (%)":56.8,"Cohabiting Couple (%)":15.1,"Male Householder (%)":8.3,"Female Householder (%)":19.7},"Island County, Washington":{"Married Couple (%)":72.4,"Cohabiting Couple (%)":7.3,"Male Householder (%)":3.4,"Female Householder (%)":16.9},"Jefferson County, Washington":{"Married Couple (%)":67.1,"Cohabiting Couple (%)":9.9,"Male Householder (%)":6.4,"Female Householder (%)":16.7},"King County, Washington":{"Married Couple (%)":77.2,"Cohabiting Couple (%)":6,"Male Householder (%)":3.7,"Female Householder (%)":13.1},"Kitsap County, Washington":{"Married Couple (%)":69.5,"Cohabiting Couple (%)":10.3,"Male Householder (%)":6.6,"Female Householder (%)":13.6},"Kittitas County, Washington":{"Married Couple (%)":74.8,"Cohabiting Couple (%)":5.5,"Male Householder (%)":4.2,"Female Householder (%)":15.4},"Klickitat County, Washington":{"Married Couple (%)":73.7,"Cohabiting Couple (%)":8.9,"Male Householder (%)":5.3,"Female Householder (%)":12.1},"Lewis County, Washington":{"Married Couple (%)":69.3,"Cohabiting Couple (%)":13.6,"Male Householder (%)":5.3,"Female Householder (%)":11.7},"Lincoln County, Washington":{"Married Couple (%)":75.3,"Cohabiting Couple (%)":7.5,"Male Householder (%)":6.8,"Female Householder (%)":10.4},"Mason County, Washington":{"Married Couple (%)":67.4,"Cohabiting Couple (%)":14.6,"Male Householder (%)":5.2,"Female Householder (%)":12.8},"Okanogan County, Washington":{"Married Couple (%)":66.3,"Cohabiting Couple (%)":6.6,"Male Householder (%)":6.9,"Female Householder (%)":20.2},"Pacific County, Washington":{"Married Couple (%)":59.4,"Cohabiting Couple (%)":18.4,"Male Householder (%)":6.7,"Female Householder (%)":15.5},"Pend Oreille County, Washington":{"Married Couple (%)":62.8,"Cohabiting Couple (%)":10.2,"Male Householder (%)":7.1,"Female Householder (%)":20},"Pierce County, Washington":{"Married Couple (%)":68.4,"Cohabiting Couple (%)":11,"Male Householder (%)":4.8,"Female Householder (%)":15.8},"San Juan County, Washington":{"Married Couple (%)":71.3,"Cohabiting Couple (%)":9.9,"Male Householder (%)":4.1,"Female Householder (%)":14.7},"Skagit County, Washington":{"Married Couple (%)":65,"Cohabiting Couple (%)":12.9,"Male Householder (%)":4.6,"Female Householder (%)":17.5},"Skamania County, Washington":{"Married Couple (%)":67.4,"Cohabiting Couple (%)":5.6,"Male Householder (%)":7.8,"Female Householder (%)":19.2},"Snohomish County, Washington":{"Married Couple (%)":76.2,"Cohabiting Couple (%)":7.6,"Male Householder (%)":4.3,"Female Householder (%)":11.9},"Spokane County, Washington":{"Married Couple (%)":69.3,"Cohabiting Couple (%)":9.5,"Male Householder (%)":4.9,"Female Householder (%)":16.3},"Stevens County, Washington":{"Married Couple (%)":74.7,"Cohabiting Couple (%)":8,"Male Householder (%)":5,"Female Householder (%)":12.3},"Thurston County, Washington":{"Married Couple (%)":70.5,"Cohabiting Couple (%)":9.7,"Male Householder (%)":4.5,"Female Householder (%)":15.4},"Wahkiakum County, Washington":{"Married Couple (%)":90.9,"Cohabiting Couple (%)":1.5,"Male Householder (%)":0.4,"Female Householder (%)":7.2},"Walla Walla County, Washington":{"Married Couple (%)":68.9,"Cohabiting Couple (%)":7.1,"Male Householder (%)":6.7,"Female Householder (%)":17.3},"Whatcom County, Washington":{"Married Couple (%)":72.3,"Cohabiting Couple (%)":8.2,"Male Householder (%)":5.5,"Female Householder (%)":14},"Whitman County, Washington":{"Married Couple (%)":74.9,"Cohabiting Couple (%)":8.7,"Male Householder (%)":3.9,"Female Householder (%)":12.5},"Yakima County, Washington":{"Married Couple (%)":59.9,"Cohabiting Couple (%)":16.6,"Male Householder (%)":4.9,"Female Householder (%)":18.6}};
+  const categories = ["Married Couple (%)","Cohabiting Couple (%)","Male Householder (%)","Female Householder (%)"];
+  const ctx = document.getElementById("barChart").getContext("2d");
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: categories,
+        datasets: [{
+          label: "Share of Children (%)",
+          data: values,
+          backgroundColor: ["#5DA5DA","#FAA43A","#60BD68","#F17CB0"]
+        }]
+      },
+      options: {
+        indexAxis: "y",
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            ticks: { callback: v => v + "%" },
+            title: { display: true, text: "Percent of Children" }
+          }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.raw + "%"
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById("countySelect").addEventListener("change", function() {
+    renderChart(Object.values(data[this.value]));
+  });
+
+  renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

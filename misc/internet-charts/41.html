@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Internet Access Over Time –  Oregon</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+                      h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+                      select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; border-radius: 5px; border: 1px solid #999; }
+                      canvas { width: 100%; max-width: 850px; height: 450px; margin-top: 1rem; }</style>
+</head>
+<html>
+  <body>
+    <h2>Internet Access in  Oregon (2013–2023)</h2>
+    <label>Select County: </label>
+    <select id="countySelect"><option value='Statewide'>Statewide</option>
+<option value='Baker County, Oregon'>Baker County, Oregon</option>
+<option value='Benton County, Oregon'>Benton County, Oregon</option>
+<option value='Clackamas County, Oregon'>Clackamas County, Oregon</option>
+<option value='Clatsop County, Oregon'>Clatsop County, Oregon</option>
+<option value='Columbia County, Oregon'>Columbia County, Oregon</option>
+<option value='Coos County, Oregon'>Coos County, Oregon</option>
+<option value='Crook County, Oregon'>Crook County, Oregon</option>
+<option value='Curry County, Oregon'>Curry County, Oregon</option>
+<option value='Deschutes County, Oregon'>Deschutes County, Oregon</option>
+<option value='Douglas County, Oregon'>Douglas County, Oregon</option>
+<option value='Gilliam County, Oregon'>Gilliam County, Oregon</option>
+<option value='Grant County, Oregon'>Grant County, Oregon</option>
+<option value='Harney County, Oregon'>Harney County, Oregon</option>
+<option value='Hood River County, Oregon'>Hood River County, Oregon</option>
+<option value='Jackson County, Oregon'>Jackson County, Oregon</option>
+<option value='Jefferson County, Oregon'>Jefferson County, Oregon</option>
+<option value='Josephine County, Oregon'>Josephine County, Oregon</option>
+<option value='Klamath County, Oregon'>Klamath County, Oregon</option>
+<option value='Lake County, Oregon'>Lake County, Oregon</option>
+<option value='Lane County, Oregon'>Lane County, Oregon</option>
+<option value='Lincoln County, Oregon'>Lincoln County, Oregon</option>
+<option value='Linn County, Oregon'>Linn County, Oregon</option>
+<option value='Malheur County, Oregon'>Malheur County, Oregon</option>
+<option value='Marion County, Oregon'>Marion County, Oregon</option>
+<option value='Morrow County, Oregon'>Morrow County, Oregon</option>
+<option value='Multnomah County, Oregon'>Multnomah County, Oregon</option>
+<option value='Polk County, Oregon'>Polk County, Oregon</option>
+<option value='Sherman County, Oregon'>Sherman County, Oregon</option>
+<option value='Tillamook County, Oregon'>Tillamook County, Oregon</option>
+<option value='Umatilla County, Oregon'>Umatilla County, Oregon</option>
+<option value='Union County, Oregon'>Union County, Oregon</option>
+<option value='Wallowa County, Oregon'>Wallowa County, Oregon</option>
+<option value='Wasco County, Oregon'>Wasco County, Oregon</option>
+<option value='Washington County, Oregon'>Washington County, Oregon</option>
+<option value='Wheeler County, Oregon'>Wheeler County, Oregon</option>
+<option value='Yamhill County, Oregon'>Yamhill County, Oregon</option></select>
+    <canvas id="lineChart" width="850" height="450"></canvas>
+    <script>const internetData = {"Statewide":{"2017":86.3,"2018":87.9,"2019":89.5,"2020":91.2,"2021":92.5,"2022":93.5,"2023":94.4},"Baker County, Oregon":{"2017":75.9,"2018":77.5,"2019":81.6,"2020":83.4,"2021":84.8,"2022":87.1,"2023":90.7},"Benton County, Oregon":{"2017":91,"2018":92.6,"2019":93.6,"2020":94.9,"2021":95.6,"2022":96.1,"2023":96.6},"Clackamas County, Oregon":{"2017":89.3,"2018":90.8,"2019":91.4,"2020":92.5,"2021":93.8,"2022":94.6,"2023":95.4},"Clatsop County, Oregon":{"2017":83.7,"2018":84.3,"2019":86.3,"2020":88.8,"2021":90.2,"2022":92.2,"2023":93.5},"Columbia County, Oregon":{"2017":84.9,"2018":85.6,"2019":87.5,"2020":89.9,"2021":91.5,"2022":93.5,"2023":94.3},"Coos County, Oregon":{"2017":76.6,"2018":79.6,"2019":81.8,"2020":84.7,"2021":87,"2022":89.1,"2023":90.9},"Crook County, Oregon":{"2017":81.4,"2018":81.9,"2019":84.2,"2020":86.4,"2021":87.9,"2022":90,"2023":91.4},"Curry County, Oregon":{"2017":78.6,"2018":80.7,"2019":83.1,"2020":83.6,"2021":86,"2022":89.5,"2023":91.2},"Deschutes County, Oregon":{"2017":87.6,"2018":89.3,"2019":91.2,"2020":92.2,"2021":93.6,"2022":94.4,"2023":95.5},"Douglas County, Oregon":{"2017":80.1,"2018":82.8,"2019":85.1,"2020":85.9,"2021":86.5,"2022":88.1,"2023":89.2},"Gilliam County, Oregon":{"2017":75,"2018":78.2,"2019":79.6,"2020":87.1,"2021":86.3,"2022":87.1,"2023":88.7},"Grant County, Oregon":{"2017":78.2,"2018":78.4,"2019":80.9,"2020":81.9,"2021":81.9,"2022":82.7,"2023":83.8},"Harney County, Oregon":{"2017":78.7,"2018":83.6,"2019":83.1,"2020":84.8,"2021":82.8,"2022":84,"2023":81.9},"Hood River County, Oregon":{"2017":81.9,"2018":85.9,"2019":85.4,"2020":89.3,"2021":89.9,"2022":92.6,"2023":94.2},"Jackson County, Oregon":{"2017":85.7,"2018":87.4,"2019":88.8,"2020":90.6,"2021":91.4,"2022":92.8,"2023":93.8},"Jefferson County, Oregon":{"2017":80.4,"2018":81.9,"2019":82.9,"2020":85.9,"2021":88.4,"2022":89.7,"2023":91.2},"Josephine County, Oregon":{"2017":81.4,"2018":83.8,"2019":85.7,"2020":87.3,"2021":89.3,"2022":91.1,"2023":92.5},"Klamath County, Oregon":{"2017":78.3,"2018":80.6,"2019":83.4,"2020":83.8,"2021":86.4,"2022":88,"2023":88.9},"Lake County, Oregon":{"2017":67.5,"2018":68.5,"2019":71.9,"2020":74.1,"2021":72.7,"2022":73.3,"2023":74.8},"Lane County, Oregon":{"2017":86.3,"2018":88,"2019":89.6,"2020":91.8,"2021":93.2,"2022":94.2,"2023":94.9},"Lincoln County, Oregon":{"2017":82.1,"2018":84,"2019":86.5,"2020":90,"2021":91,"2022":91.7,"2023":93},"Linn County, Oregon":{"2017":83,"2018":84.7,"2019":86.9,"2020":88.9,"2021":90.6,"2022":92.1,"2023":93.3},"Malheur County, Oregon":{"2017":73.8,"2018":75.4,"2019":77.4,"2020":81.2,"2021":85.6,"2022":86.5,"2023":89.5},"Marion County, Oregon":{"2017":85,"2018":86.9,"2019":89.3,"2020":90.3,"2021":92,"2022":92.9,"2023":93.8},"Morrow County, Oregon":{"2017":77.6,"2018":80.6,"2019":82.7,"2020":85.8,"2021":88.5,"2022":87.8,"2023":89.1},"Multnomah County, Oregon":{"2017":88,"2018":89.4,"2019":90.8,"2020":92.9,"2021":93.9,"2022":94.8,"2023":95.4},"Polk County, Oregon":{"2017":87,"2018":88.6,"2019":90,"2020":91.7,"2021":92.1,"2022":92.8,"2023":93.1},"Sherman County, Oregon":{"2017":80.2,"2018":81.8,"2019":84.4,"2020":85.6,"2021":84.5,"2022":84.7,"2023":86},"Tillamook County, Oregon":{"2017":79.8,"2018":81.8,"2019":85.2,"2020":89,"2021":90.3,"2022":91.2,"2023":92.6},"Umatilla County, Oregon":{"2017":79.8,"2018":80.9,"2019":82.9,"2020":84.2,"2021":86.5,"2022":88.6,"2023":90.6},"Union County, Oregon":{"2017":81.4,"2018":84,"2019":85,"2020":85.4,"2021":85.6,"2022":86.3,"2023":87},"Wallowa County, Oregon":{"2017":77.5,"2018":79.3,"2019":81.1,"2020":84.8,"2021":87.2,"2022":88.1,"2023":89.1},"Wasco County, Oregon":{"2017":79.3,"2018":81.5,"2019":84.1,"2020":87,"2021":87.9,"2022":89.2,"2023":91.6},"Washington County, Oregon":{"2017":91.6,"2018":93,"2019":94,"2020":95.3,"2021":96.1,"2022":96.7,"2023":96.9},"Wheeler County, Oregon":{"2017":75.6,"2018":74,"2019":79.1,"2020":80.3,"2021":83.2,"2022":86.7,"2023":86.3},"Yamhill County, Oregon":{"2017":85.9,"2018":86.9,"2019":88.2,"2020":90,"2021":92.3,"2022":93.7,"2023":94.9}};
+const ctx = document.getElementById('lineChart').getContext('2d');
+let chart;
+
+function renderChart(data) {
+  const labels = Object.keys(data);
+  const values = Object.values(data);
+
+  if (chart) chart.destroy();
+  chart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: labels,
+      datasets: [{
+        label: '% With Internet',
+        data: values,
+        fill: false,
+        borderColor: 'teal',
+        backgroundColor: 'teal',
+        tension: 0.3,
+        pointRadius: 4
+      }]
+    },
+    options: {
+      responsive: true,
+      scales: {
+        y: {
+          beginAtZero: true,
+          max: 100,
+          title: { display: true, text: '% With Internet' }
+        },
+        x: {
+          title: { display: true, text: 'Year' }
+        }
+      },
+      plugins: {
+        tooltip: {
+          callbacks: {
+            label: function(ctx) {
+              return ctx.parsed.y.toFixed(1) + '%';
+            }
+          }
+        }
+      }
+    }
+  });
+}
+
+document.getElementById('countySelect').addEventListener('change', function() {
+  renderChart(internetData[this.value]);
+});
+renderChart(internetData['Statewide']);</script>
+  </body>
+</html>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+
+</head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Median Earnings by Industry – 34</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background: white;
+    }
+    .layout {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1.5rem;
+    }
+    label {
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+    #countySelect {
+      font-size: 1rem;
+      padding: 0.4rem 0.8rem;
+      margin-bottom: 1rem;
+    }
+    canvas {
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <label for="countySelect">Median Earnings by Industry:</label>
+    <select id="countySelect"></select>
+    <canvas id="barChart"></canvas>
+  </div>
+
+  <script>
+    const data = {"Statewide":{"Agriculture & mining":55092,"Arts & food services":41945,"Construction":66603,"Education & health":70619,"Finance & real estate":114980,"Information":109579,"Manufacturing":82158,"Other services":49750,"Prof. & waste services":94436,"Public administration":89349,"Retail trade":51266,"Transport & utilities":63351,"Wholesale trade":71614},"Atlantic County":{"Agriculture & mining":33021,"Arts & food services":40379,"Construction":61331,"Education & health":65658,"Finance & real estate":67229,"Information":84278,"Manufacturing":57619,"Other services":42031,"Prof. & waste services":70394,"Public administration":88835,"Retail trade":43643,"Transport & utilities":60547,"Wholesale trade":71493},"Bergen County":{"Agriculture & mining":41761,"Arts & food services":50753,"Construction":76558,"Education & health":80077,"Finance & real estate":126573,"Information":118618,"Manufacturing":86649,"Other services":51274,"Prof. & waste services":105114,"Public administration":97455,"Retail trade":63008,"Transport & utilities":72306,"Wholesale trade":83441},"Burlington County":{"Agriculture & mining":78750,"Arts & food services":52261,"Construction":70806,"Education & health":73072,"Finance & real estate":97444,"Information":103333,"Manufacturing":84485,"Other services":56799,"Prof. & waste services":89623,"Public administration":89219,"Retail trade":51467,"Transport & utilities":71648,"Wholesale trade":71708},"Camden County":{"Agriculture & mining":48158,"Arts & food services":37650,"Construction":60976,"Education & health":65681,"Finance & real estate":78158,"Information":91391,"Manufacturing":62081,"Other services":46273,"Prof. & waste services":81806,"Public administration":85764,"Retail trade":46440,"Transport & utilities":61953,"Wholesale trade":64613},"Cape May County":{"Agriculture & mining":101607,"Arts & food services":47933,"Construction":60887,"Education & health":71138,"Finance & real estate":93598,"Information":100750,"Manufacturing":98102,"Other services":45043,"Prof. & waste services":71954,"Public administration":84191,"Retail trade":57998,"Transport & utilities":90625,"Wholesale trade":84198},"Cumberland County":{"Agriculture & mining":46020,"Arts & food services":33824,"Construction":51429,"Education & health":51063,"Finance & real estate":54020,"Information":56780,"Manufacturing":48936,"Other services":37194,"Prof. & waste services":46119,"Public administration":87843,"Retail trade":43039,"Transport & utilities":49690,"Wholesale trade":39250},"Essex County":{"Agriculture & mining":82083,"Arts & food services":38627,"Construction":51110,"Education & health":63084,"Finance & real estate":117724,"Information":109835,"Manufacturing":68258,"Other services":45394,"Prof. & waste services":85947,"Public administration":76944,"Retail trade":43709,"Transport & utilities":48868,"Wholesale trade":62613},"Gloucester County":{"Agriculture & mining":70387,"Arts & food services":40782,"Construction":76457,"Education & health":72744,"Finance & real estate":87422,"Information":89864,"Manufacturing":85475,"Other services":51813,"Prof. & waste services":83501,"Public administration":92929,"Retail trade":53220,"Transport & utilities":73409,"Wholesale trade":62376},"Hudson County":{"Agriculture & mining":80995,"Arts & food services":41583,"Construction":54862,"Education & health":68707,"Finance & real estate":129233,"Information":117762,"Manufacturing":68626,"Other services":44819,"Prof. & waste services":99391,"Public administration":77353,"Retail trade":50460,"Transport & utilities":51938,"Wholesale trade":61698},"Hunterdon County":{"Agriculture & mining":57466,"Arts & food services":56217,"Construction":80839,"Education & health":79631,"Finance & real estate":132114,"Information":123900,"Manufacturing":124902,"Other services":54395,"Prof. & waste services":109229,"Public administration":104181,"Retail trade":67344,"Transport & utilities":89203,"Wholesale trade":104232},"Mercer County":{"Agriculture & mining":32143,"Arts & food services":44825,"Construction":54008,"Education & health":69211,"Finance & real estate":119330,"Information":105867,"Manufacturing":88434,"Other services":54494,"Prof. & waste services":100437,"Public administration":79617,"Retail trade":47106,"Transport & utilities":50422,"Wholesale trade":65578},"Middlesex County":{"Agriculture & mining":47381,"Arts & food services":42779,"Construction":71547,"Education & health":70594,"Finance & real estate":117381,"Information":108768,"Manufacturing":83282,"Other services":48386,"Prof. & waste services":101179,"Public administration":90096,"Retail trade":51357,"Transport & utilities":62930,"Wholesale trade":60648},"Monmouth County":{"Agriculture & mining":42639,"Arts & food services":52105,"Construction":80586,"Education & health":77847,"Finance & real estate":141949,"Information":135636,"Manufacturing":102346,"Other services":55707,"Prof. & waste services":102736,"Public administration":105402,"Retail trade":60255,"Transport & utilities":84877,"Wholesale trade":91838},"Morris County":{"Agriculture & mining":61111,"Arts & food services":46553,"Construction":82236,"Education & health":78481,"Finance & real estate":134805,"Information":124972,"Manufacturing":118182,"Other services":55899,"Prof. & waste services":109414,"Public administration":110445,"Retail trade":63092,"Transport & utilities":80580,"Wholesale trade":107940},"Ocean County":{"Agriculture & mining":52118,"Arts & food services":37566,"Construction":73685,"Education & health":65579,"Finance & real estate":85026,"Information":94033,"Manufacturing":73249,"Other services":54096,"Prof. & waste services":77474,"Public administration":96853,"Retail trade":50824,"Transport & utilities":77979,"Wholesale trade":80666},"Passaic County":{"Agriculture & mining":37041,"Arts & food services":36223,"Construction":55332,"Education & health":61661,"Finance & real estate":84095,"Information":91794,"Manufacturing":52865,"Other services":46193,"Prof. & waste services":71155,"Public administration":88327,"Retail trade":46371,"Transport & utilities":56037,"Wholesale trade":65596},"Salem County":{"Agriculture & mining":36913,"Arts & food services":33631,"Construction":68277,"Education & health":58359,"Finance & real estate":62179,"Information":89868,"Manufacturing":70690,"Other services":52500,"Prof. & waste services":71532,"Public administration":72132,"Retail trade":46090,"Transport & utilities":74722,"Wholesale trade":51688},"Somerset County":{"Agriculture & mining":73224,"Arts & food services":46674,"Construction":74141,"Education & health":77068,"Finance & real estate":131484,"Information":128421,"Manufacturing":117014,"Other services":57317,"Prof. & waste services":110326,"Public administration":94490,"Retail trade":59642,"Transport & utilities":74232,"Wholesale trade":88842},"Sussex County":{"Agriculture & mining":55000,"Arts & food services":41155,"Construction":78386,"Education & health":73439,"Finance & real estate":102018,"Information":100380,"Manufacturing":83208,"Other services":52830,"Prof. & waste services":86703,"Public administration":101410,"Retail trade":56929,"Transport & utilities":83771,"Wholesale trade":96703},"Union County":{"Agriculture & mining":83758,"Arts & food services":36801,"Construction":57295,"Education & health":68772,"Finance & real estate":121449,"Information":110132,"Manufacturing":71573,"Other services":43913,"Prof. & waste services":88912,"Public administration":80329,"Retail trade":51327,"Transport & utilities":56513,"Wholesale trade":57517},"Warren County":{"Agriculture & mining":47461,"Arts & food services":46555,"Construction":76680,"Education & health":62963,"Finance & real estate":88393,"Information":76932,"Manufacturing":85207,"Other services":55233,"Prof. & waste services":81538,"Public administration":91901,"Retail trade":52875,"Transport & utilities":82937,"Wholesale trade":70655}};
+    const colors = {
+  'Agriculture & mining': '#FFFF01',
+  'Arts & food services': '#00008B',
+  'Construction': '#7570B1',
+  'Education & health': '#66A61E',
+  'Finance & real estate': '#E6AB01',
+  'Information': '#379',
+  'Manufacturing': '#E41A1C',
+  'Other services': '#377EF1',
+  'Prof. & waste services': '#FF7F00',
+  'Public administration': '#1B9E77',
+  'Retail trade': '#A65011',
+  'Transport & utilities': '#F781BF',
+  'Wholesale trade': '#919'
+};
+
+    const ctx = document.getElementById("barChart").getContext("2d");
+    let chart;
+
+    function renderChart(county) {
+      const values = data[county];
+      const labels = Object.keys(values);
+      const earnings = Object.values(values);
+
+      if (chart) chart.destroy();
+
+      chart = new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels: labels,
+          datasets: [{
+            label: "Median Earnings ($)",
+            data: earnings,
+            backgroundColor: labels.map(label => colors[label] || "#ccc")
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: true,
+  aspectRatio: 1.5, 
+          indexAxis: "x",
+          scales: {
+            y: {
+              beginAtZero: true,
+              title: {
+                display: true,
+                text: "Median Earnings ($)"
+              },
+              ticks: {
+                callback: function(value) {
+                  return "$" + value.toLocaleString();
+                }
+              }
+            },
+            x: {
+              ticks: {
+                maxRotation: 45,
+                minRotation: 20,
+                autoSkip: false,
+                callback: function(value, index, ticks) {
+                  let label = this.getLabelForValue(value);
+                  return label.length > 25 ? label.slice(0, 25) + "…" : label;
+                }
+              }
+            }
+          },
+          plugins: {
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  return "$" + context.parsed.y.toLocaleString();
+                }
+              }
+            },
+            legend: {
+              display: false
+            }
+          }
+        }
+      });
+    }
+
+    const select = document.getElementById("countySelect");
+    Object.keys(data).forEach(county => {
+      const option = document.createElement("option");
+      option.value = county;
+      option.text = county;
+      select.appendChild(option);
+    });
+    select.value = "Statewide";
+    select.addEventListener("change", () => renderChart(select.value));
+    renderChart("Statewide");
+  </script>
+</body>
+</html>
+</html>

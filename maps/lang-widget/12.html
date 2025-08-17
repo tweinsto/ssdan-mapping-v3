@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Language Spoken at Home – Florida</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          text-align: center;
+          margin: 2rem;
+        }
+        select {
+          font-size: 1rem;
+          padding: 0.4rem;
+          margin-bottom: 1rem;
+        }
+        canvas {
+          width: 100%;
+          max-width: 700px;
+          height: 800px;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Language Spoken at Home – Florida</h2>
+    <label>Select County, State:</label>
+    <select id="countySelect"><option value='Statewide'>Statewide</option>
+<option value='Alachua County, Florida'>Alachua County, Florida</option>
+<option value='Baker County, Florida'>Baker County, Florida</option>
+<option value='Bay County, Florida'>Bay County, Florida</option>
+<option value='Bradford County, Florida'>Bradford County, Florida</option>
+<option value='Brevard County, Florida'>Brevard County, Florida</option>
+<option value='Broward County, Florida'>Broward County, Florida</option>
+<option value='Calhoun County, Florida'>Calhoun County, Florida</option>
+<option value='Charlotte County, Florida'>Charlotte County, Florida</option>
+<option value='Citrus County, Florida'>Citrus County, Florida</option>
+<option value='Clay County, Florida'>Clay County, Florida</option>
+<option value='Collier County, Florida'>Collier County, Florida</option>
+<option value='Columbia County, Florida'>Columbia County, Florida</option>
+<option value='DeSoto County, Florida'>DeSoto County, Florida</option>
+<option value='Dixie County, Florida'>Dixie County, Florida</option>
+<option value='Duval County, Florida'>Duval County, Florida</option>
+<option value='Escambia County, Florida'>Escambia County, Florida</option>
+<option value='Flagler County, Florida'>Flagler County, Florida</option>
+<option value='Franklin County, Florida'>Franklin County, Florida</option>
+<option value='Gadsden County, Florida'>Gadsden County, Florida</option>
+<option value='Gilchrist County, Florida'>Gilchrist County, Florida</option>
+<option value='Glades County, Florida'>Glades County, Florida</option>
+<option value='Gulf County, Florida'>Gulf County, Florida</option>
+<option value='Hamilton County, Florida'>Hamilton County, Florida</option>
+<option value='Hardee County, Florida'>Hardee County, Florida</option>
+<option value='Hendry County, Florida'>Hendry County, Florida</option>
+<option value='Hernando County, Florida'>Hernando County, Florida</option>
+<option value='Highlands County, Florida'>Highlands County, Florida</option>
+<option value='Hillsborough County, Florida'>Hillsborough County, Florida</option>
+<option value='Holmes County, Florida'>Holmes County, Florida</option>
+<option value='Indian River County, Florida'>Indian River County, Florida</option>
+<option value='Jackson County, Florida'>Jackson County, Florida</option>
+<option value='Jefferson County, Florida'>Jefferson County, Florida</option>
+<option value='Lafayette County, Florida'>Lafayette County, Florida</option>
+<option value='Lake County, Florida'>Lake County, Florida</option>
+<option value='Lee County, Florida'>Lee County, Florida</option>
+<option value='Leon County, Florida'>Leon County, Florida</option>
+<option value='Levy County, Florida'>Levy County, Florida</option>
+<option value='Liberty County, Florida'>Liberty County, Florida</option>
+<option value='Madison County, Florida'>Madison County, Florida</option>
+<option value='Manatee County, Florida'>Manatee County, Florida</option>
+<option value='Marion County, Florida'>Marion County, Florida</option>
+<option value='Martin County, Florida'>Martin County, Florida</option>
+<option value='Miami-Dade County, Florida'>Miami-Dade County, Florida</option>
+<option value='Monroe County, Florida'>Monroe County, Florida</option>
+<option value='Nassau County, Florida'>Nassau County, Florida</option>
+<option value='Okaloosa County, Florida'>Okaloosa County, Florida</option>
+<option value='Okeechobee County, Florida'>Okeechobee County, Florida</option>
+<option value='Orange County, Florida'>Orange County, Florida</option>
+<option value='Osceola County, Florida'>Osceola County, Florida</option>
+<option value='Palm Beach County, Florida'>Palm Beach County, Florida</option>
+<option value='Pasco County, Florida'>Pasco County, Florida</option>
+<option value='Pinellas County, Florida'>Pinellas County, Florida</option>
+<option value='Polk County, Florida'>Polk County, Florida</option>
+<option value='Putnam County, Florida'>Putnam County, Florida</option>
+<option value='Santa Rosa County, Florida'>Santa Rosa County, Florida</option>
+<option value='Sarasota County, Florida'>Sarasota County, Florida</option>
+<option value='Seminole County, Florida'>Seminole County, Florida</option>
+<option value='St. Johns County, Florida'>St. Johns County, Florida</option>
+<option value='St. Lucie County, Florida'>St. Lucie County, Florida</option>
+<option value='Sumter County, Florida'>Sumter County, Florida</option>
+<option value='Suwannee County, Florida'>Suwannee County, Florida</option>
+<option value='Taylor County, Florida'>Taylor County, Florida</option>
+<option value='Union County, Florida'>Union County, Florida</option>
+<option value='Volusia County, Florida'>Volusia County, Florida</option>
+<option value='Wakulla County, Florida'>Wakulla County, Florida</option>
+<option value='Walton County, Florida'>Walton County, Florida</option>
+<option value='Washington County, Florida'>Washington County, Florida</option></select>
+    <canvas id="barChart" width="700" height="700"></canvas>
+    <script>  const languageData = {"Statewide":{"Arabic":0.4,"Chinese (incl. Mandarin, Cantonese)":0.4,"English":68.7,"French, Haitian, or Cajun":2.6,"German or other West Germanic":0.6,"Korean":0.1,"Other Asian & Pacific":0.6,"Other Indo-European":2.2,"Other and Unspecified":0.5,"Russian, Polish, other Slavic":0.9,"Spanish":22.4,"Tagalog (incl. Filipino)":0.4,"Vietnamese":0.3},"Alachua County, Florida":{"Arabic":0.4,"Chinese (incl. Mandarin, Cantonese)":1.3,"English":80,"French, Haitian, or Cajun":0.8,"German or other West Germanic":0.6,"Korean":0.5,"Other Asian & Pacific":1,"Other Indo-European":2.6,"Other and Unspecified":0.5,"Russian, Polish, other Slavic":0.7,"Spanish":10.7,"Tagalog (incl. Filipino)":0.7,"Vietnamese":0.3},"Baker County, Florida":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0.1,"English":95.2,"French, Haitian, or Cajun":0.8,"German or other West Germanic":0,"Korean":0,"Other Asian & Pacific":0.3,"Other Indo-European":0.1,"Other and Unspecified":0.2,"Russian, Polish, other Slavic":0,"Spanish":2.8,"Tagalog (incl. Filipino)":0.2,"Vietnamese":0.2},"Bay County, Florida":{"Arabic":0.4,"Chinese (incl. Mandarin, Cantonese)":0.1,"English":87.1,"French, Haitian, or Cajun":0.6,"German or other West Germanic":0.6,"Korean":0.3,"Other Asian & Pacific":0.7,"Other Indo-European":1.2,"Other and Unspecified":0.4,"Russian, Polish, other Slavic":0.8,"Spanish":6.8,"Tagalog (incl. Filipino)":0.7,"Vietnamese":0.2},"Bradford County, Florida":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":97.2,"French, Haitian, or Cajun":0,"German or other West Germanic":0.2,"Korean":0,"Other Asian & Pacific":0,"Other Indo-European":0.8,"Other and Unspecified":0,"Russian, Polish, other Slavic":0,"Spanish":1.4,"Tagalog (incl. Filipino)":0.3,"Vietnamese":0},"Brevard County, Florida":{"Arabic":0.3,"Chinese (incl. Mandarin, Cantonese)":0.3,"English":86,"French, Haitian, or Cajun":1.1,"German or other West Germanic":0.8,"Korean":0.2,"Other Asian & Pacific":0.4,"Other Indo-European":1.4,"Other and Unspecified":0.2,"Russian, Polish, other Slavic":0.5,"Spanish":8.1,"Tagalog (incl. Filipino)":0.4,"Vietnamese":0.3},"Broward County, Florida":{"Arabic":0.4,"Chinese (incl. Mandarin, Cantonese)":0.6,"English":53.7,"French, Haitian, or Cajun":6.7,"German or other West Germanic":0.6,"Korean":0.1,"Other Asian & Pacific":0.7,"Other Indo-European":4,"Other and Unspecified":1.3,"Russian, Polish, other Slavic":1.4,"Spanish":30,"Tagalog (incl. Filipino)":0.4,"Vietnamese":0.3},"Calhoun County, Florida":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":96.5,"French, Haitian, or Cajun":0.1,"German or other West Germanic":0.7,"Korean":0.2,"Other Asian & Pacific":0,"Other Indo-European":0.4,"Other and Unspecified":0,"Russian, Polish, other Slavic":0.1,"Spanish":1.5,"Tagalog (incl. Filipino)":0.3,"Vietnamese":0},"Charlotte County, Florida":{"Arabic":0.2,"Chinese (incl. Mandarin, Cantonese)":0.2,"English":88.3,"French, Haitian, or Cajun":1.1,"German or other West Germanic":0.9,"Korean":0.1,"Other Asian & Pacific":0.2,"Other Indo-European":1.1,"Other and Unspecified":0.3,"Russian, Polish, other Slavic":1.2,"Spanish":5.6,"Tagalog (incl. Filipino)":0.6,"Vietnamese":0.2},"Citrus County, Florida":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0.1,"English":91.5,"French, Haitian, or Cajun":0.6,"German or other West Germanic":0.9,"Korean":0,"Other Asian & Pacific":0.3,"Other Indo-European":0.6,"Other and Unspecified":0,"Russian, Polish, other Slavic":0.4,"Spanish":4.7,"Tagalog (incl. Filipino)":0.6,"Vietnamese":0.2},"Clay County, Florida":{"Arabic":0.2,"Chinese (incl. Mandarin, Cantonese)":0.2,"English":85.3,"French, Haitian, or Cajun":1,"German or other West Germanic":0.9,"Korean":0,"Other Asian & Pacific":0.8,"Other Indo-European":0.8,"Other and Unspecified":0.1,"Russian, Polish, other Slavic":0.3,"Spanish":8.8,"Tagalog (incl. Filipino)":1.5,"Vietnamese":0.1},"Collier County, Florida":{"Arabic":0.1,"Chinese (incl. Mandarin, Cantonese)":0.2,"English":71,"French, Haitian, or Cajun":3.8,"German or other West Germanic":1,"Korean":0,"Other Asian & Pacific":0.3,"Other Indo-European":2.4,"Other and Unspecified":0.2,"Russian, Polish, other Slavic":1.3,"Spanish":19.3,"Tagalog (incl. Filipino)":0.2,"Vietnamese":0.2},"Columbia County, Florida":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0.1,"English":91.9,"French, Haitian, or Cajun":0.7,"German or other West Germanic":0.8,"Korean":0.1,"Other Asian & Pacific":0.2,"Other Indo-European":0.2,"Other and Unspecified":0,"Russian, Polish, other Slavic":0.2,"Spanish":5.6,"Tagalog (incl. Filipino)":0.2,"Vietnamese":0.1},"DeSoto County, Florida":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":74.9,"French, Haitian, or Cajun":1.1,"German or other West Germanic":0.6,"Korean":0,"Other Asian & Pacific":0,"Other Indo-European":0.5,"Other and Unspecified":0,"Russian, Polish, other Slavic":0,"Spanish":23,"Tagalog (incl. Filipino)":0,"Vietnamese":0},"Dixie County, Florida":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":96.6,"French, Haitian, or Cajun":0,"German or other West Germanic":0,"Korean":0,"Other Asian & Pacific":0.1,"Other Indo-European":0.1,"Other and Unspecified":0.2,"Russian, Polish, other Slavic":0.5,"Spanish":2.3,"Tagalog (incl. Filipino)":0.1,"Vietnamese":0},"Duval County, Florida":{"Arabic":0.6,"Chinese (incl. Mandarin, Cantonese)":0.4,"English":82.7,"French, Haitian, or Cajun":1,"German or other West Germanic":0.3,"Korean":0.1,"Other Asian & Pacific":0.9,"Other Indo-European":1.7,"Other and Unspecified":0.8,"Russian, Polish, other Slavic":1,"Spanish":8.9,"Tagalog (incl. Filipino)":1.2,"Vietnamese":0.3},"Escambia County, Florida":{"Arabic":0.2,"Chinese (incl. Mandarin, Cantonese)":0.4,"English":90.5,"French, Haitian, or Cajun":0.5,"German or other West Germanic":0.6,"Korean":0.1,"Other Asian & Pacific":0.4,"Other Indo-European":0.7,"Other and Unspecified":0.1,"Russian, Polish, other Slavic":0.2,"Spanish":4.5,"Tagalog (incl. Filipino)":1.2,"Vietnamese":0.5},"Flagler County, Florida":{"Arabic":0.1,"Chinese (incl. Mandarin, Cantonese)":0.2,"English":81.9,"French, Haitian, or Cajun":0.9,"German or other West Germanic":0.9,"Korean":0,"Other Asian & Pacific":0.3,"Other Indo-European":4,"Other and Unspecified":0.3,"Russian, Polish, other Slavic":2.7,"Spanish":7.9,"Tagalog (incl. Filipino)":0.6,"Vietnamese":0.2},"Franklin County, Florida":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":96.2,"French, Haitian, or Cajun":0.6,"German or other West Germanic":0.2,"Korean":0,"Other Asian & Pacific":0.4,"Other Indo-European":0.5,"Other and Unspecified":0,"Russian, Polish, other Slavic":0.2,"Spanish":1.8,"Tagalog (incl. Filipino)":0.1,"Vietnamese":0},"Gadsden County, Florida":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":91.2,"French, Haitian, or Cajun":0.3,"German or other West Germanic":0,"Korean":0.2,"Other Asian & Pacific":0.3,"Other Indo-European":0.2,"Other and Unspecified":0,"Russian, Polish, other Slavic":0,"Spanish":7.9,"Tagalog (incl. Filipino)":0,"Vietnamese":0},"Gilchrist County, Florida":{"Arabic":0.3,"Chinese (incl. Mandarin, Cantonese)":0,"English":92.3,"French, Haitian, or Cajun":0.1,"German or other West Germanic":1,"Korean":0,"Other Asian & Pacific":0,"Other Indo-European":0.2,"Other and Unspecified":0,"Russian, Polish, other Slavic":0,"Spanish":5.1,"Tagalog (incl. Filipino)":1,"Vietnamese":0},"Glades County, Florida":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":75.5,"French, Haitian, or Cajun":0.1,"German or other West Germanic":1.2,"Korean":0,"Other Asian & Pacific":0,"Other Indo-European":0.4,"Other and Unspecified":1,"Russian, Polish, other Slavic":0.5,"Spanish":21.1,"Tagalog (incl. Filipino)":0.2,"Vietnamese":0},"Gulf County, Florida":{"Arabic":0.2,"Chinese (incl. Mandarin, Cantonese)":0,"English":97.1,"French, Haitian, or Cajun":0,"German or other West Germanic":0,"Korean":0,"Other Asian & Pacific":0,"Other Indo-European":0.2,"Other and Unspecified":0.5,"Russian, Polish, other Slavic":0.6,"Spanish":1.4,"Tagalog (incl. Filipino)":0,"Vietnamese":0},"Hamilton County, Florida":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":88.2,"French, Haitian, or Cajun":0.8,"German or other West Germanic":0,"Korean":0,"Other Asian & Pacific":1,"Other Indo-European":0.2,"Other and Unspecified":0,"Russian, Polish, other Slavic":2,"Spanish":7.6,"Tagalog (incl. Filipino)":0.2,"Vietnamese":0},"Hardee County, Florida":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":65.6,"French, Haitian, or Cajun":0,"German or other West Germanic":0.2,"Korean":0,"Other Asian & Pacific":0.8,"Other Indo-European":0.4,"Other and Unspecified":0.2,"Russian, Polish, other Slavic":0,"Spanish":32.8,"Tagalog (incl. Filipino)":0,"Vietnamese":0},"Hendry County, Florida":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0.2,"English":49.1,"French, Haitian, or Cajun":0,"German or other West Germanic":0.1,"Korean":0,"Other Asian & Pacific":0.3,"Other Indo-European":0.4,"Other and Unspecified":1.3,"Russian, Polish, other Slavic":0,"Spanish":48.5,"Tagalog (incl. Filipino)":0,"Vietnamese":0},"Hernando County, Florida":{"Arabic":0.1,"Chinese (incl. Mandarin, Cantonese)":0.2,"English":84.8,"French, Haitian, or Cajun":0.7,"German or other West Germanic":0.8,"Korean":0.1,"Other Asian & Pacific":0.3,"Other Indo-European":0.8,"Other and Unspecified":0.1,"Russian, Polish, other Slavic":0.7,"Spanish":11,"Tagalog (incl. Filipino)":0.2,"Vietnamese":0.2},"Highlands County, Florida":{"Arabic":0.1,"Chinese (incl. Mandarin, Cantonese)":0.1,"English":79.3,"French, Haitian, or Cajun":0.7,"German or other West Germanic":0.4,"Korean":0,"Other Asian & Pacific":0.4,"Other Indo-European":0.8,"Other and Unspecified":0.4,"Russian, Polish, other Slavic":0.1,"Spanish":16.9,"Tagalog (incl. Filipino)":0.7,"Vietnamese":0.1},"Hillsborough County, Florida":{"Arabic":0.7,"Chinese (incl. Mandarin, Cantonese)":0.5,"English":66.7,"French, Haitian, or Cajun":1.4,"German or other West Germanic":0.4,"Korean":0.2,"Other Asian & Pacific":1.1,"Other Indo-European":2.4,"Other and Unspecified":0.6,"Russian, Polish, other Slavic":0.7,"Spanish":24.2,"Tagalog (incl. Filipino)":0.4,"Vietnamese":0.5},"Holmes County, Florida":{"Arabic":0.1,"Chinese (incl. Mandarin, Cantonese)":0,"English":96,"French, Haitian, or Cajun":0.5,"German or other West Germanic":0,"Korean":0,"Other Asian & Pacific":0.1,"Other Indo-European":0.4,"Other and Unspecified":0.2,"Russian, Polish, other Slavic":0.4,"Spanish":2.3,"Tagalog (incl. Filipino)":0,"Vietnamese":0},"Indian River County, Florida":{"Arabic":0.2,"Chinese (incl. Mandarin, Cantonese)":0.1,"English":84.9,"French, Haitian, or Cajun":1.8,"German or other West Germanic":0.6,"Korean":0.1,"Other Asian & Pacific":0.4,"Other Indo-European":1.3,"Other and Unspecified":0.3,"Russian, Polish, other Slavic":0.5,"Spanish":9.6,"Tagalog (incl. Filipino)":0.2,"Vietnamese":0.2},"Jackson County, Florida":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":95.5,"French, Haitian, or Cajun":0.6,"German or other West Germanic":0.1,"Korean":0,"Other Asian & Pacific":0.3,"Other Indo-European":0.2,"Other and Unspecified":0,"Russian, Polish, other Slavic":0.1,"Spanish":2.9,"Tagalog (incl. Filipino)":0.3,"Vietnamese":0},"Jefferson County, Florida":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0.2,"English":93.9,"French, Haitian, or Cajun":0.2,"German or other West Germanic":1,"Korean":0,"Other Asian & Pacific":0,"Other Indo-European":0.2,"Other and Unspecified":0.5,"Russian, Polish, other Slavic":0.1,"Spanish":2.8,"Tagalog (incl. Filipino)":0.9,"Vietnamese":0},"Lafayette County, Florida":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":92.7,"French, Haitian, or Cajun":0,"German or other West Germanic":0.1,"Korean":0,"Other Asian & Pacific":0,"Other Indo-European":0,"Other and Unspecified":0,"Russian, Polish, other Slavic":0,"Spanish":7.2,"Tagalog (incl. Filipino)":0,"Vietnamese":0},"Lake County, Florida":{"Arabic":0.1,"Chinese (incl. Mandarin, Cantonese)":0.2,"English":82.6,"French, Haitian, or Cajun":1,"German or other West Germanic":0.9,"Korean":0.1,"Other Asian & Pacific":0.3,"Other Indo-European":1.1,"Other and Unspecified":0.2,"Russian, Polish, other Slavic":0.2,"Spanish":12.6,"Tagalog (incl. Filipino)":0.3,"Vietnamese":0.2},"Lee County, Florida":{"Arabic":0.1,"Chinese (incl. Mandarin, Cantonese)":0.3,"English":77,"French, Haitian, or Cajun":1.7,"German or other West Germanic":0.9,"Korean":0,"Other Asian & Pacific":0.2,"Other Indo-European":1.6,"Other and Unspecified":0.3,"Russian, Polish, other Slavic":0.7,"Spanish":16.6,"Tagalog (incl. Filipino)":0.4,"Vietnamese":0.2},"Leon County, Florida":{"Arabic":0.3,"Chinese (incl. Mandarin, Cantonese)":0.7,"English":85.9,"French, Haitian, or Cajun":1.3,"German or other West Germanic":0.4,"Korean":0.2,"Other Asian & Pacific":1,"Other Indo-European":1.5,"Other and Unspecified":0.5,"Russian, Polish, other Slavic":0.5,"Spanish":7.1,"Tagalog (incl. Filipino)":0.5,"Vietnamese":0.2},"Levy County, Florida":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0.1,"English":91.8,"French, Haitian, or Cajun":0.2,"German or other West Germanic":0.4,"Korean":0,"Other Asian & Pacific":0,"Other Indo-European":0,"Other and Unspecified":0,"Russian, Polish, other Slavic":0.1,"Spanish":6.2,"Tagalog (incl. Filipino)":0.9,"Vietnamese":0},"Liberty County, Florida":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":96.1,"French, Haitian, or Cajun":0.5,"German or other West Germanic":0.1,"Korean":0,"Other Asian & Pacific":0,"Other Indo-European":0,"Other and Unspecified":0.4,"Russian, Polish, other Slavic":0,"Spanish":2.7,"Tagalog (incl. Filipino)":0,"Vietnamese":0.2},"Madison County, Florida":{"Arabic":0.3,"Chinese (incl. Mandarin, Cantonese)":0,"English":95.7,"French, Haitian, or Cajun":0.2,"German or other West Germanic":0.3,"Korean":0,"Other Asian & Pacific":0,"Other Indo-European":0.4,"Other and Unspecified":0,"Russian, Polish, other Slavic":0,"Spanish":3,"Tagalog (incl. Filipino)":0,"Vietnamese":0},"Manatee County, Florida":{"Arabic":0.2,"Chinese (incl. Mandarin, Cantonese)":0.3,"English":81,"French, Haitian, or Cajun":1.5,"German or other West Germanic":0.8,"Korean":0.1,"Other Asian & Pacific":0.5,"Other Indo-European":1.6,"Other and Unspecified":0.3,"Russian, Polish, other Slavic":1.2,"Spanish":11.9,"Tagalog (incl. Filipino)":0.3,"Vietnamese":0.4},"Marion County, Florida":{"Arabic":0.1,"Chinese (incl. Mandarin, Cantonese)":0.2,"English":84.4,"French, Haitian, or Cajun":0.7,"German or other West Germanic":0.7,"Korean":0.1,"Other Asian & Pacific":0.4,"Other Indo-European":0.8,"Other and Unspecified":0.2,"Russian, Polish, other Slavic":0.2,"Spanish":11.8,"Tagalog (incl. Filipino)":0.3,"Vietnamese":0.2},"Martin County, Florida":{"Arabic":0.1,"Chinese (incl. Mandarin, Cantonese)":0.2,"English":84.3,"French, Haitian, or Cajun":0.8,"German or other West Germanic":0.7,"Korean":0.1,"Other Asian & Pacific":0.1,"Other Indo-European":1.8,"Other and Unspecified":0.2,"Russian, Polish, other Slavic":0.6,"Spanish":10.4,"Tagalog (incl. Filipino)":0.3,"Vietnamese":0.2},"Miami-Dade County, Florida":{"Arabic":0.2,"Chinese (incl. Mandarin, Cantonese)":0.4,"English":21.3,"French, Haitian, or Cajun":4.6,"German or other West Germanic":0.3,"Korean":0.1,"Other Asian & Pacific":0.3,"Other Indo-European":2.1,"Other and Unspecified":0.6,"Russian, Polish, other Slavic":0.7,"Spanish":69.1,"Tagalog (incl. Filipino)":0.2,"Vietnamese":0.1},"Monroe County, Florida":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0.1,"English":77,"French, Haitian, or Cajun":1.1,"German or other West Germanic":1.3,"Korean":0.1,"Other Asian & Pacific":0.2,"Other Indo-European":1.4,"Other and Unspecified":0.3,"Russian, Polish, other Slavic":1.6,"Spanish":16.6,"Tagalog (incl. Filipino)":0.1,"Vietnamese":0.2},"Nassau County, Florida":{"Arabic":0.1,"Chinese (incl. Mandarin, Cantonese)":0.5,"English":92.3,"French, Haitian, or Cajun":0.3,"German or other West Germanic":0.7,"Korean":0,"Other Asian & Pacific":0.2,"Other Indo-European":0.8,"Other and Unspecified":0.5,"Russian, Polish, other Slavic":0.1,"Spanish":4,"Tagalog (incl. Filipino)":0.3,"Vietnamese":0.2},"Okaloosa County, Florida":{"Arabic":0.1,"Chinese (incl. Mandarin, Cantonese)":0.2,"English":84.4,"French, Haitian, or Cajun":0.7,"German or other West Germanic":0.8,"Korean":0.4,"Other Asian & Pacific":1.3,"Other Indo-European":1.7,"Other and Unspecified":0.2,"Russian, Polish, other Slavic":0.8,"Spanish":8.2,"Tagalog (incl. Filipino)":1.1,"Vietnamese":0.2},"Okeechobee County, Florida":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0.1,"English":76.4,"French, Haitian, or Cajun":0.6,"German or other West Germanic":0.9,"Korean":0,"Other Asian & Pacific":0,"Other Indo-European":0.9,"Other and Unspecified":0.2,"Russian, Polish, other Slavic":0,"Spanish":20.3,"Tagalog (incl. Filipino)":0.4,"Vietnamese":0.2},"Orange County, Florida":{"Arabic":0.7,"Chinese (incl. Mandarin, Cantonese)":0.9,"English":58,"French, Haitian, or Cajun":3.8,"German or other West Germanic":0.5,"Korean":0.1,"Other Asian & Pacific":0.9,"Other Indo-European":4,"Other and Unspecified":0.5,"Russian, Polish, other Slavic":0.6,"Spanish":28.6,"Tagalog (incl. Filipino)":0.6,"Vietnamese":0.8},"Osceola County, Florida":{"Arabic":0.9,"Chinese (incl. Mandarin, Cantonese)":0.3,"English":42,"French, Haitian, or Cajun":2.2,"German or other West Germanic":0.6,"Korean":0.1,"Other Asian & Pacific":0.6,"Other Indo-European":1.9,"Other and Unspecified":0.3,"Russian, Polish, other Slavic":0.7,"Spanish":49.5,"Tagalog (incl. Filipino)":0.8,"Vietnamese":0.1},"Palm Beach County, Florida":{"Arabic":0.5,"Chinese (incl. Mandarin, Cantonese)":0.4,"English":66.6,"French, Haitian, or Cajun":5.8,"German or other West Germanic":0.8,"Korean":0.1,"Other Asian & Pacific":0.6,"Other Indo-European":3.3,"Other and Unspecified":0.9,"Russian, Polish, other Slavic":1.2,"Spanish":19.3,"Tagalog (incl. Filipino)":0.3,"Vietnamese":0.3},"Pasco County, Florida":{"Arabic":0.8,"Chinese (incl. Mandarin, Cantonese)":0.3,"English":79.2,"French, Haitian, or Cajun":1,"German or other West Germanic":0.7,"Korean":0.1,"Other Asian & Pacific":0.5,"Other Indo-European":2.3,"Other and Unspecified":0.3,"Russian, Polish, other Slavic":0.9,"Spanish":13,"Tagalog (incl. Filipino)":0.5,"Vietnamese":0.4},"Pinellas County, Florida":{"Arabic":0.4,"Chinese (incl. Mandarin, Cantonese)":0.3,"English":83.1,"French, Haitian, or Cajun":1,"German or other West Germanic":0.8,"Korean":0.2,"Other Asian & Pacific":0.7,"Other Indo-European":2.4,"Other and Unspecified":0.3,"Russian, Polish, other Slavic":1.8,"Spanish":7.9,"Tagalog (incl. Filipino)":0.4,"Vietnamese":0.8},"Polk County, Florida":{"Arabic":0.1,"Chinese (incl. Mandarin, Cantonese)":0.2,"English":72.7,"French, Haitian, or Cajun":1.9,"German or other West Germanic":0.3,"Korean":0,"Other Asian & Pacific":0.5,"Other Indo-European":1,"Other and Unspecified":0.3,"Russian, Polish, other Slavic":0.2,"Spanish":22.1,"Tagalog (incl. Filipino)":0.4,"Vietnamese":0.1},"Putnam County, Florida":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":91.5,"French, Haitian, or Cajun":0.3,"German or other West Germanic":0.2,"Korean":0,"Other Asian & Pacific":0.5,"Other Indo-European":0.3,"Other and Unspecified":0,"Russian, Polish, other Slavic":0,"Spanish":6.9,"Tagalog (incl. Filipino)":0.1,"Vietnamese":0},"Santa Rosa County, Florida":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0.4,"English":90.9,"French, Haitian, or Cajun":0.3,"German or other West Germanic":0.9,"Korean":0.2,"Other Asian & Pacific":0.4,"Other Indo-European":0.7,"Other and Unspecified":0.5,"Russian, Polish, other Slavic":0.2,"Spanish":4.3,"Tagalog (incl. Filipino)":0.9,"Vietnamese":0.1},"Sarasota County, Florida":{"Arabic":0.2,"Chinese (incl. Mandarin, Cantonese)":0.4,"English":84.5,"French, Haitian, or Cajun":1.3,"German or other West Germanic":1.7,"Korean":0,"Other Asian & Pacific":0.3,"Other Indo-European":1.8,"Other and Unspecified":0.4,"Russian, Polish, other Slavic":2,"Spanish":6.8,"Tagalog (incl. Filipino)":0.3,"Vietnamese":0.3},"Seminole County, Florida":{"Arabic":0.5,"Chinese (incl. Mandarin, Cantonese)":0.9,"English":72.7,"French, Haitian, or Cajun":1.4,"German or other West Germanic":0.5,"Korean":0.2,"Other Asian & Pacific":0.7,"Other Indo-European":2.6,"Other and Unspecified":0.6,"Russian, Polish, other Slavic":0.9,"Spanish":18.1,"Tagalog (incl. Filipino)":0.3,"Vietnamese":0.5},"St. Johns County, Florida":{"Arabic":0.2,"Chinese (incl. Mandarin, Cantonese)":0.5,"English":86.6,"French, Haitian, or Cajun":0.8,"German or other West Germanic":0.7,"Korean":0.1,"Other Asian & Pacific":0.8,"Other Indo-European":2.1,"Other and Unspecified":0.3,"Russian, Polish, other Slavic":1.2,"Spanish":6.2,"Tagalog (incl. Filipino)":0.4,"Vietnamese":0.1},"St. Lucie County, Florida":{"Arabic":0.4,"Chinese (incl. Mandarin, Cantonese)":0.2,"English":72.8,"French, Haitian, or Cajun":4.2,"German or other West Germanic":0.5,"Korean":0,"Other Asian & Pacific":0.3,"Other Indo-European":2.5,"Other and Unspecified":0.5,"Russian, Polish, other Slavic":0.6,"Spanish":17.1,"Tagalog (incl. Filipino)":0.6,"Vietnamese":0.1},"Sumter County, Florida":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0.1,"English":93.7,"French, Haitian, or Cajun":0.5,"German or other West Germanic":0.5,"Korean":0.3,"Other Asian & Pacific":0.2,"Other Indo-European":0.8,"Other and Unspecified":0,"Russian, Polish, other Slavic":0.1,"Spanish":3.2,"Tagalog (incl. Filipino)":0.3,"Vietnamese":0.2},"Suwannee County, Florida":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0.2,"English":89.9,"French, Haitian, or Cajun":0.1,"German or other West Germanic":0.1,"Korean":0,"Other Asian & Pacific":0.1,"Other Indo-European":0.5,"Other and Unspecified":0,"Russian, Polish, other Slavic":0.2,"Spanish":8.6,"Tagalog (incl. Filipino)":0.2,"Vietnamese":0},"Taylor County, Florida":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":95.9,"French, Haitian, or Cajun":0.1,"German or other West Germanic":1.2,"Korean":0,"Other Asian & Pacific":0,"Other Indo-European":0.3,"Other and Unspecified":1,"Russian, Polish, other Slavic":0,"Spanish":1.5,"Tagalog (incl. Filipino)":0.1,"Vietnamese":0},"Union County, Florida":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":96.8,"French, Haitian, or Cajun":0,"German or other West Germanic":0,"Korean":0,"Other Asian & Pacific":0.2,"Other Indo-European":0,"Other and Unspecified":0,"Russian, Polish, other Slavic":0,"Spanish":3,"Tagalog (incl. Filipino)":0,"Vietnamese":0},"Volusia County, Florida":{"Arabic":0.4,"Chinese (incl. Mandarin, Cantonese)":0.3,"English":81.8,"French, Haitian, or Cajun":0.9,"German or other West Germanic":0.8,"Korean":0.2,"Other Asian & Pacific":0.3,"Other Indo-European":1.1,"Other and Unspecified":0.5,"Russian, Polish, other Slavic":0.7,"Spanish":12.2,"Tagalog (incl. Filipino)":0.4,"Vietnamese":0.3},"Wakulla County, Florida":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0.1,"English":93.8,"French, Haitian, or Cajun":0.8,"German or other West Germanic":0.6,"Korean":0,"Other Asian & Pacific":0.9,"Other Indo-European":2.2,"Other and Unspecified":0,"Russian, Polish, other Slavic":0.1,"Spanish":1,"Tagalog (incl. Filipino)":0.5,"Vietnamese":0},"Walton County, Florida":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0.3,"English":88.8,"French, Haitian, or Cajun":0.4,"German or other West Germanic":0.3,"Korean":0.1,"Other Asian & Pacific":0.3,"Other Indo-European":0.8,"Other and Unspecified":0.2,"Russian, Polish, other Slavic":1.7,"Spanish":6.9,"Tagalog (incl. Filipino)":0.1,"Vietnamese":0.1},"Washington County, Florida":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0.1,"English":94.2,"French, Haitian, or Cajun":0.4,"German or other West Germanic":0.6,"Korean":0.6,"Other Asian & Pacific":0.4,"Other Indo-European":0.3,"Other and Unspecified":0.1,"Russian, Polish, other Slavic":0.2,"Spanish":2.5,"Tagalog (incl. Filipino)":0.1,"Vietnamese":0.5}};
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: Object.keys(values),
+        datasets: [{
+          label: 'Share (%)',
+          data: Object.values(values),
+          backgroundColor: '#4576a7'
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.parsed.y + '%'
+            }
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 100,
+            title: {
+              display: true,
+              text: 'Population Share (%)'
+            }
+          },
+          x: {
+            title: {
+              display: true,
+              text: 'Language Group'
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(languageData[this.value]);
+  });
+
+  renderChart(languageData['Statewide']);</script>
+  </body>
+</html>
+</html>

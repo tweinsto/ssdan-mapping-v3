@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Internet Access Over Time –  Utah</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+                      h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+                      select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; border-radius: 5px; border: 1px solid #999; }
+                      canvas { width: 100%; max-width: 850px; height: 450px; margin-top: 1rem; }</style>
+</head>
+<html>
+  <body>
+    <h2>Internet Access in  Utah (2013–2023)</h2>
+    <label>Select County: </label>
+    <select id="countySelect"><option value='Statewide'>Statewide</option>
+<option value='Beaver County, Utah'>Beaver County, Utah</option>
+<option value='Box Elder County, Utah'>Box Elder County, Utah</option>
+<option value='Cache County, Utah'>Cache County, Utah</option>
+<option value='Carbon County, Utah'>Carbon County, Utah</option>
+<option value='Daggett County, Utah'>Daggett County, Utah</option>
+<option value='Davis County, Utah'>Davis County, Utah</option>
+<option value='Duchesne County, Utah'>Duchesne County, Utah</option>
+<option value='Emery County, Utah'>Emery County, Utah</option>
+<option value='Garfield County, Utah'>Garfield County, Utah</option>
+<option value='Grand County, Utah'>Grand County, Utah</option>
+<option value='Iron County, Utah'>Iron County, Utah</option>
+<option value='Juab County, Utah'>Juab County, Utah</option>
+<option value='Kane County, Utah'>Kane County, Utah</option>
+<option value='Millard County, Utah'>Millard County, Utah</option>
+<option value='Morgan County, Utah'>Morgan County, Utah</option>
+<option value='Piute County, Utah'>Piute County, Utah</option>
+<option value='Rich County, Utah'>Rich County, Utah</option>
+<option value='Salt Lake County, Utah'>Salt Lake County, Utah</option>
+<option value='San Juan County, Utah'>San Juan County, Utah</option>
+<option value='Sanpete County, Utah'>Sanpete County, Utah</option>
+<option value='Sevier County, Utah'>Sevier County, Utah</option>
+<option value='Summit County, Utah'>Summit County, Utah</option>
+<option value='Tooele County, Utah'>Tooele County, Utah</option>
+<option value='Uintah County, Utah'>Uintah County, Utah</option>
+<option value='Utah County, Utah'>Utah County, Utah</option>
+<option value='Wasatch County, Utah'>Wasatch County, Utah</option>
+<option value='Washington County, Utah'>Washington County, Utah</option>
+<option value='Wayne County, Utah'>Wayne County, Utah</option>
+<option value='Weber County, Utah'>Weber County, Utah</option></select>
+    <canvas id="lineChart" width="850" height="450"></canvas>
+    <script>const internetData = {"Statewide":{"2017":89.3,"2018":90.8,"2019":92.3,"2020":93.6,"2021":94.7,"2022":95.5,"2023":96.1},"Beaver County, Utah":{"2017":78.8,"2018":78.2,"2019":78.4,"2020":79.9,"2021":83.7,"2022":80.7,"2023":83.1},"Box Elder County, Utah":{"2017":84.7,"2018":86.8,"2019":89.7,"2020":91.4,"2021":92.5,"2022":94.1,"2023":94.9},"Cache County, Utah":{"2017":90.2,"2018":91.2,"2019":93.2,"2020":94.1,"2021":94.9,"2022":95.4,"2023":96.5},"Carbon County, Utah":{"2017":79.8,"2018":82.1,"2019":84.1,"2020":84.4,"2021":87,"2022":88.1,"2023":90.1},"Daggett County, Utah":{"2017":90.5,"2018":93.8,"2019":90.2,"2020":94.7,"2021":90.9,"2022":93.6,"2023":90.1},"Davis County, Utah":{"2017":91.8,"2018":93.1,"2019":94,"2020":94.6,"2021":95.4,"2022":96,"2023":96.3},"Duchesne County, Utah":{"2017":83.7,"2018":85.2,"2019":87.1,"2020":88.1,"2021":89.7,"2022":90.3,"2023":92.7},"Emery County, Utah":{"2017":79.5,"2018":80.7,"2019":81.9,"2020":82.9,"2021":85.2,"2022":87.8,"2023":89.7},"Garfield County, Utah":{"2017":81.9,"2018":83.8,"2019":85.2,"2020":84.1,"2021":83.9,"2022":87.3,"2023":89},"Grand County, Utah":{"2017":87.8,"2018":92.1,"2019":93.7,"2020":93.7,"2021":94.8,"2022":95.2,"2023":95.7},"Iron County, Utah":{"2017":86.8,"2018":88.7,"2019":89.2,"2020":90.1,"2021":90.9,"2022":91.6,"2023":93.6},"Juab County, Utah":{"2017":81.7,"2018":82.4,"2019":82.7,"2020":85.5,"2021":89.7,"2022":91.2,"2023":90.7},"Kane County, Utah":{"2017":83,"2018":85.3,"2019":87.4,"2020":88.3,"2021":92.5,"2022":93.9,"2023":94.7},"Millard County, Utah":{"2017":83.8,"2018":85.6,"2019":86.1,"2020":86.7,"2021":87.1,"2022":88.7,"2023":90.4},"Morgan County, Utah":{"2017":94.7,"2018":95.1,"2019":96.5,"2020":96.8,"2021":96.2,"2022":95.4,"2023":97},"Piute County, Utah":{"2017":80.6,"2018":78.8,"2019":85.3,"2020":79.5,"2021":77.5,"2022":78.6,"2023":80.1},"Rich County, Utah":{"2017":87.2,"2018":90.5,"2019":95,"2020":96.6,"2021":96.7,"2022":97,"2023":97.4},"Salt Lake County, Utah":{"2017":89.7,"2018":91.1,"2019":92.6,"2020":94.2,"2021":95.3,"2022":96.1,"2023":96.7},"San Juan County, Utah":{"2017":53.6,"2018":56.6,"2019":57.6,"2020":62.9,"2021":62.5,"2022":70.3,"2023":73.7},"Sanpete County, Utah":{"2017":82.3,"2018":85.4,"2019":87.4,"2020":89.6,"2021":91.2,"2022":91.4,"2023":92},"Sevier County, Utah":{"2017":82,"2018":84.6,"2019":87.8,"2020":88.6,"2021":89.1,"2022":90.7,"2023":91.9},"Summit County, Utah":{"2017":93.9,"2018":94.2,"2019":94.9,"2020":95.6,"2021":95.6,"2022":96.3,"2023":97.1},"Tooele County, Utah":{"2017":89.4,"2018":90.1,"2019":92.4,"2020":93.8,"2021":95.5,"2022":95.5,"2023":96.4},"Uintah County, Utah":{"2017":82.9,"2018":85.4,"2019":87.1,"2020":87.8,"2021":89.5,"2022":90.6,"2023":91.7},"Utah County, Utah":{"2017":93.2,"2018":94.7,"2019":95.6,"2020":96.4,"2021":97,"2022":97.4,"2023":97.6},"Wasatch County, Utah":{"2017":91.5,"2018":92.5,"2019":92.9,"2020":94.9,"2021":95.1,"2022":96.5,"2023":97.5},"Washington County, Utah":{"2017":87.7,"2018":89.1,"2019":90.1,"2020":90.8,"2021":91.6,"2022":93.6,"2023":94.8},"Wayne County, Utah":{"2017":83.7,"2018":83.3,"2019":81.4,"2020":85,"2021":86.7,"2022":89.6,"2023":91.2},"Weber County, Utah":{"2017":85.4,"2018":87.7,"2019":90.1,"2020":92.9,"2021":94.5,"2022":95.8,"2023":96.2}};
+const ctx = document.getElementById('lineChart').getContext('2d');
+let chart;
+
+function renderChart(data) {
+  const labels = Object.keys(data);
+  const values = Object.values(data);
+
+  if (chart) chart.destroy();
+  chart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: labels,
+      datasets: [{
+        label: '% With Internet',
+        data: values,
+        fill: false,
+        borderColor: 'teal',
+        backgroundColor: 'teal',
+        tension: 0.3,
+        pointRadius: 4
+      }]
+    },
+    options: {
+      responsive: true,
+      scales: {
+        y: {
+          beginAtZero: true,
+          max: 100,
+          title: { display: true, text: '% With Internet' }
+        },
+        x: {
+          title: { display: true, text: 'Year' }
+        }
+      },
+      plugins: {
+        tooltip: {
+          callbacks: {
+            label: function(ctx) {
+              return ctx.parsed.y.toFixed(1) + '%';
+            }
+          }
+        }
+      }
+    }
+  });
+}
+
+document.getElementById('countySelect').addEventListener('change', function() {
+  renderChart(internetData[this.value]);
+});
+renderChart(internetData['Statewide']);</script>
+  </body>
+</html>
+</html>

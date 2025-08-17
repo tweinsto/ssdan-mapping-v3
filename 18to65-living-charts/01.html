@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Living Arrangements 18–64 – Alabama</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+      body { font-family: sans-serif; margin: 1.25rem 2rem; text-align: center; }
+      h2 { margin-bottom: .25rem; font-size: 1.6rem; color: #2c348b; }
+      label { margin-right: .5rem; }
+      select { padding: .45rem .6rem; font-size: 1rem; border-radius: .5rem; border: 2px solid #f39c12; }
+      canvas { width: 100%; max-width: 900px; height: 520px; }
+    </style>
+</head>
+<html>
+  <body>
+    <h2>Living Arrangements of Adults 18–64 in Alabama</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Autauga County, Alabama">Autauga County, Alabama</option>
+      <option value="Baldwin County, Alabama">Baldwin County, Alabama</option>
+      <option value="Barbour County, Alabama">Barbour County, Alabama</option>
+      <option value="Bibb County, Alabama">Bibb County, Alabama</option>
+      <option value="Blount County, Alabama">Blount County, Alabama</option>
+      <option value="Bullock County, Alabama">Bullock County, Alabama</option>
+      <option value="Butler County, Alabama">Butler County, Alabama</option>
+      <option value="Calhoun County, Alabama">Calhoun County, Alabama</option>
+      <option value="Chambers County, Alabama">Chambers County, Alabama</option>
+      <option value="Cherokee County, Alabama">Cherokee County, Alabama</option>
+      <option value="Chilton County, Alabama">Chilton County, Alabama</option>
+      <option value="Choctaw County, Alabama">Choctaw County, Alabama</option>
+      <option value="Clarke County, Alabama">Clarke County, Alabama</option>
+      <option value="Clay County, Alabama">Clay County, Alabama</option>
+      <option value="Cleburne County, Alabama">Cleburne County, Alabama</option>
+      <option value="Coffee County, Alabama">Coffee County, Alabama</option>
+      <option value="Colbert County, Alabama">Colbert County, Alabama</option>
+      <option value="Conecuh County, Alabama">Conecuh County, Alabama</option>
+      <option value="Coosa County, Alabama">Coosa County, Alabama</option>
+      <option value="Covington County, Alabama">Covington County, Alabama</option>
+      <option value="Crenshaw County, Alabama">Crenshaw County, Alabama</option>
+      <option value="Cullman County, Alabama">Cullman County, Alabama</option>
+      <option value="Dale County, Alabama">Dale County, Alabama</option>
+      <option value="Dallas County, Alabama">Dallas County, Alabama</option>
+      <option value="DeKalb County, Alabama">DeKalb County, Alabama</option>
+      <option value="Elmore County, Alabama">Elmore County, Alabama</option>
+      <option value="Escambia County, Alabama">Escambia County, Alabama</option>
+      <option value="Etowah County, Alabama">Etowah County, Alabama</option>
+      <option value="Fayette County, Alabama">Fayette County, Alabama</option>
+      <option value="Franklin County, Alabama">Franklin County, Alabama</option>
+      <option value="Geneva County, Alabama">Geneva County, Alabama</option>
+      <option value="Greene County, Alabama">Greene County, Alabama</option>
+      <option value="Hale County, Alabama">Hale County, Alabama</option>
+      <option value="Henry County, Alabama">Henry County, Alabama</option>
+      <option value="Houston County, Alabama">Houston County, Alabama</option>
+      <option value="Jackson County, Alabama">Jackson County, Alabama</option>
+      <option value="Jefferson County, Alabama">Jefferson County, Alabama</option>
+      <option value="Lamar County, Alabama">Lamar County, Alabama</option>
+      <option value="Lauderdale County, Alabama">Lauderdale County, Alabama</option>
+      <option value="Lawrence County, Alabama">Lawrence County, Alabama</option>
+      <option value="Lee County, Alabama">Lee County, Alabama</option>
+      <option value="Limestone County, Alabama">Limestone County, Alabama</option>
+      <option value="Lowndes County, Alabama">Lowndes County, Alabama</option>
+      <option value="Macon County, Alabama">Macon County, Alabama</option>
+      <option value="Madison County, Alabama">Madison County, Alabama</option>
+      <option value="Marengo County, Alabama">Marengo County, Alabama</option>
+      <option value="Marion County, Alabama">Marion County, Alabama</option>
+      <option value="Marshall County, Alabama">Marshall County, Alabama</option>
+      <option value="Mobile County, Alabama">Mobile County, Alabama</option>
+      <option value="Monroe County, Alabama">Monroe County, Alabama</option>
+      <option value="Montgomery County, Alabama">Montgomery County, Alabama</option>
+      <option value="Morgan County, Alabama">Morgan County, Alabama</option>
+      <option value="Perry County, Alabama">Perry County, Alabama</option>
+      <option value="Pickens County, Alabama">Pickens County, Alabama</option>
+      <option value="Pike County, Alabama">Pike County, Alabama</option>
+      <option value="Randolph County, Alabama">Randolph County, Alabama</option>
+      <option value="Russell County, Alabama">Russell County, Alabama</option>
+      <option value="Shelby County, Alabama">Shelby County, Alabama</option>
+      <option value="St. Clair County, Alabama">St. Clair County, Alabama</option>
+      <option value="Sumter County, Alabama">Sumter County, Alabama</option>
+      <option value="Talladega County, Alabama">Talladega County, Alabama</option>
+      <option value="Tallapoosa County, Alabama">Tallapoosa County, Alabama</option>
+      <option value="Tuscaloosa County, Alabama">Tuscaloosa County, Alabama</option>
+      <option value="Walker County, Alabama">Walker County, Alabama</option>
+      <option value="Washington County, Alabama">Washington County, Alabama</option>
+      <option value="Wilcox County, Alabama">Wilcox County, Alabama</option>
+      <option value="Winston County, Alabama">Winston County, Alabama</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>document.addEventListener("DOMContentLoaded", function () {
+  const data = {"Statewide":[12.1,16.1,4.7,14.1,46.7,6.3],"Autauga County, Alabama":[8.6,15.1,4.1,13.2,53.8,5.2],"Baldwin County, Alabama":[10.2,15.1,3.2,9.5,56,6],"Barbour County, Alabama":[12.6,20.1,2.6,19.6,39.3,5.8],"Bibb County, Alabama":[9.3,21.6,3.6,15.2,45.6,4.7],"Blount County, Alabama":[8.3,16.1,3.1,14,51.9,6.7],"Bullock County, Alabama":[12,23.1,8.1,28.3,25.5,3],"Butler County, Alabama":[11.3,21.1,2.2,17,41.2,7.3],"Calhoun County, Alabama":[12.4,17.2,6.3,14.8,42.7,6.5],"Chambers County, Alabama":[10.5,21.2,1.6,17.9,41.2,7.6],"Cherokee County, Alabama":[10.9,13.7,3.3,14.2,52.3,5.5],"Chilton County, Alabama":[9.5,15.2,2.6,13.5,50.8,8.4],"Choctaw County, Alabama":[13.9,20.1,1.2,14.9,47.6,2.4],"Clarke County, Alabama":[13.8,25.7,2.1,15.4,37.6,5.5],"Clay County, Alabama":[8.1,15.8,0.8,11.6,58.9,4.8],"Cleburne County, Alabama":[7.7,16.7,2.3,16.1,52,5.1],"Coffee County, Alabama":[10.6,14.1,4.1,16.1,49.6,5.6],"Colbert County, Alabama":[12.2,14.7,3.1,13.8,47.5,8.7],"Conecuh County, Alabama":[12.6,26.4,1.2,16.3,38.5,4.9],"Coosa County, Alabama":[11.7,19,1.2,15.2,46.3,6.5],"Covington County, Alabama":[9.7,19.8,4.4,13.6,48.5,4],"Crenshaw County, Alabama":[14,17.9,4.7,16.6,42,4.9],"Cullman County, Alabama":[8.9,15.3,4.5,11,53.1,7.2],"Dale County, Alabama":[13.6,15.8,5.1,14.6,44.4,6.6],"Dallas County, Alabama":[16.4,23.9,1.2,20.1,33.4,5],"DeKalb County, Alabama":[8.7,18.2,3.3,12.9,51.4,5.5],"Elmore County, Alabama":[8.7,18,2,14.8,51.3,5.2],"Escambia County, Alabama":[11.9,21.8,3.9,15.5,43,4],"Etowah County, Alabama":[10.1,17.9,6,16.5,45.3,4.2],"Fayette County, Alabama":[9.7,21.2,1,11.9,53.6,2.7],"Franklin County, Alabama":[9.5,17.8,2.6,14,49.2,6.9],"Geneva County, Alabama":[9.1,15.8,5.9,11.1,52.5,5.6],"Greene County, Alabama":[16.3,28.4,0.9,26,25.9,2.4],"Hale County, Alabama":[12.1,27.4,1.5,15.7,34.3,9],"Henry County, Alabama":[9.4,19.9,1.9,15.4,51.2,2.2],"Houston County, Alabama":[12.1,16.8,3.4,16.2,44.5,7],"Jackson County, Alabama":[10.5,16.4,2.8,15,49,6.3],"Jefferson County, Alabama":[14.7,15,4.9,16.1,42.1,7.3],"Lamar County, Alabama":[6.3,22.1,5,12.5,49.5,4.5],"Lauderdale County, Alabama":[11.8,16.5,6,11.6,47.8,6.3],"Lawrence County, Alabama":[9.9,14.5,2.1,13.9,54.4,5.2],"Lee County, Alabama":[13.8,12.3,12.9,11.8,44.5,4.6],"Limestone County, Alabama":[8.2,13.6,3.5,10.7,57,7],"Lowndes County, Alabama":[13.3,24.4,1.2,22.5,32.1,6.6],"Macon County, Alabama":[15.1,23.3,3.6,24.6,25.5,7.8],"Madison County, Alabama":[13.9,12.5,4.9,12.2,50.2,6.2],"Marengo County, Alabama":[15.8,21.9,4,17,38.5,2.8],"Marion County, Alabama":[10.9,21.4,3,11.4,46.7,6.5],"Marshall County, Alabama":[9.1,16.8,3.6,14.4,49.9,6.3],"Mobile County, Alabama":[14,17.5,3.5,15.6,42.2,7.3],"Monroe County, Alabama":[13.2,24,7.2,15.3,36.7,3.6],"Montgomery County, Alabama":[15.5,16.9,4.9,19,36.5,7.3],"Morgan County, Alabama":[10.4,15.7,3.7,13.1,48.6,8.5],"Perry County, Alabama":[17.3,22.2,1.8,20.6,32.2,5.9],"Pickens County, Alabama":[13.7,21.7,4.4,14.1,39.7,6.4],"Pike County, Alabama":[14.2,14.8,14.2,13.3,37.5,5.9],"Randolph County, Alabama":[12.8,16.5,2,9.6,50.6,8.5],"Russell County, Alabama":[14.9,14.7,2.8,16.2,43.3,8.1],"Shelby County, Alabama":[9.2,14.9,2.9,9.6,59.3,4.2],"St. Clair County, Alabama":[7.9,14.3,4,11.7,56.5,5.7],"Sumter County, Alabama":[14.4,11.3,2.3,25.5,38.8,7.7],"Talladega County, Alabama":[12.3,14.8,3.8,16.3,44.7,8.2],"Tallapoosa County, Alabama":[9.8,17.6,3.6,17.8,45.1,6.1],"Tuscaloosa County, Alabama":[13.2,16.1,10.4,12,43.5,4.9],"Walker County, Alabama":[9.9,18.6,4.8,13.9,48.5,4.2],"Washington County, Alabama":[7.9,21.4,1.8,11.9,54.2,2.7],"Wilcox County, Alabama":[13.7,35.3,0.9,23.9,23.7,2.6],"Winston County, Alabama":[9.3,12.4,4.2,14.3,52.9,6.9]};
+  const cats = ["lives_alone_18_64","with_child_18_64","with_nonrel_18_64","with_other_rel_18_64","with_spouse_only_18_64","with_unmar_partner_18_64"];
+
+  const ORDER = [
+    "Lives alone",
+    "With child",
+    "With nonrelatives",
+    "With other relatives",
+    "With spouse only",
+    "With unmarried partner"
+  ];
+
+  const PRETTY_TO_SNAKE = {
+    "Lives alone":            "lives_alone_18_64",
+    "With child":             "with_child_18_64",
+    "With nonrelatives":      "with_nonrel_18_64",
+    "With other relatives":   "with_other_rel_18_64",
+    "With spouse only":       "with_spouse_only_18_64",
+    "With unmarried partner": "with_unmar_partner_18_64"
+  };
+
+  const COLOR_BY_CAT = {
+    "Lives alone":            "#e41a1c",
+    "With child":             "#ff7f00",
+    "With nonrelatives":      "#4daf4a",
+    "With other relatives":   "#984ea3",
+    "With spouse only":       "#377eb8",
+    "With unmarried partner": "#a65628"
+  };
+
+  // snake key → array index
+  const keyToIndex = Object.fromEntries((cats || []).map((k, i) => [String(k), i]));
+
+  function valuesFor(name) {
+    const row = data?.[name] || [];
+    return ORDER.map(lbl => {
+      const idx = keyToIndex[PRETTY_TO_SNAKE[lbl]];
+      const v = (idx != null && idx >= 0) ? row[idx] : 0;
+      return (typeof v === "number") ? v : Number(v) || 0;
+    });
+  }
+
+  const canvas = document.getElementById("barChart");
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+  let chart;
+
+  function renderChart(name) {
+    const vals = valuesFor(name);
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: ORDER,
+        datasets: [{
+          data: vals,
+          backgroundColor: ORDER.map(c => COLOR_BY_CAT[c]),
+          borderWidth: 0
+        }]
+      },
+      options: {
+        indexAxis: "y",
+        plugins: {
+          legend: { display: false },
+          tooltip: { callbacks: { label: (c) => c.raw + "%" } }
+        },
+        scales: {
+          x: { min: 0, max: 100, ticks: { callback: v => v + "%" } }
+        }
+      }
+    });
+  }
+
+  const DEFAULT_NAME = (data && Object.prototype.hasOwnProperty.call(data, "Statewide"))
+    ? "Statewide" : Object.keys(data || {})[0];
+
+  const sel = document.getElementById("countySelect");
+  if (sel) sel.addEventListener("change", e => renderChart(e.target.value));
+  if (DEFAULT_NAME) renderChart(DEFAULT_NAME);
+});</script>
+  </body>
+</html>
+</html>

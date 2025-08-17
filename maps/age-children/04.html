@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Age Distribution Under 18 –  Arizona</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          margin: 1rem 2rem;
+          text-align: center;
+        }
+        h2 {
+          margin-bottom: 0.25rem;
+          font-size: 1.6rem;
+        }
+        select {
+          padding: 0.4rem;
+          font-size: 1rem;
+          margin: 1rem 0;
+          border-radius: 5px;
+          border: 1px solid #999;
+        }
+        canvas {
+          width: 100%;
+          max-width: 850px;
+          height: 500px;
+          margin-top: 1rem;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Age Distribution Under 18 in  Arizona (2023)</h2>
+    <label>Select County:</label>
+            <select id="countySelect">
+          <option value='Statewide'>Statewide</option>
+<option value='Apache County, Arizona'>Apache County, Arizona</option>
+<option value='Cochise County, Arizona'>Cochise County, Arizona</option>
+<option value='Coconino County, Arizona'>Coconino County, Arizona</option>
+<option value='Gila County, Arizona'>Gila County, Arizona</option>
+<option value='Graham County, Arizona'>Graham County, Arizona</option>
+<option value='Greenlee County, Arizona'>Greenlee County, Arizona</option>
+<option value='La Paz County, Arizona'>La Paz County, Arizona</option>
+<option value='Maricopa County, Arizona'>Maricopa County, Arizona</option>
+<option value='Mohave County, Arizona'>Mohave County, Arizona</option>
+<option value='Navajo County, Arizona'>Navajo County, Arizona</option>
+<option value='Pima County, Arizona'>Pima County, Arizona</option>
+<option value='Pinal County, Arizona'>Pinal County, Arizona</option>
+<option value='Santa Cruz County, Arizona'>Santa Cruz County, Arizona</option>
+<option value='Yavapai County, Arizona'>Yavapai County, Arizona</option>
+<option value='Yuma County, Arizona'>Yuma County, Arizona</option>
+        </select>
+    <canvas id="barChart" width="850" height="500"></canvas>
+    <script>  const ageData = {"Statewide":[-12.8,12.3,-15,14.4,-9.2,8.8,-14,13.4],"Apache County, Arizona":[-11.4,11.4,-13.6,13.6,-16,15.4,-9.2,9.4],"Cochise County, Arizona":[-12.5,12.4,-15.5,12.6,-13.6,15.6,-9.3,8.4],"Coconino County, Arizona":[-12.4,12.1,-15.4,12.9,-13.7,15.2,-9.2,9.1],"Gila County, Arizona":[-11.9,11.5,-15.7,15,-14.8,13.5,-9.1,8.6],"Graham County, Arizona":[-12.6,12,-14.9,11.7,-14.9,16.3,-8.9,8.7],"Greenlee County, Arizona":[-13.1,14.5,-17,16.8,-10.8,12.3,-8.4,7.1],"La Paz County, Arizona":[-13.7,13.3,-14.3,12.9,-14.1,14,-11.2,6.5],"Maricopa County, Arizona":[-12.8,12.3,-14,13.3,-15.1,14.5,-9.3,8.8],"Mohave County, Arizona":[-12.9,11.9,-14.6,12.9,-14.5,15,-9.5,8.7],"Navajo County, Arizona":[-12.3,11.6,-15.2,13.9,-14.6,14.4,-9.1,9],"Pima County, Arizona":[-12.8,12.2,-14.3,14.3,-14.8,13.6,-9.2,8.7],"Pinal County, Arizona":[-12.5,12.1,-13.3,13.8,-16.1,14.6,-9,8.6],"Santa Cruz County, Arizona":[-12.6,11.7,-10.7,15.3,-17.9,13.6,-9.1,9.1],"Yavapai County, Arizona":[-12.6,11.5,-13.8,12.3,-15.3,15.4,-9.9,9.2],"Yuma County, Arizona":[-13.8,13.5,-14,12.8,-14.5,14.4,-8.8,8.2]};
+  const ageBins = ["0–4","5–9","10–14","15–17"];
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(data) {
+    const maleData = data.filter((_, i) => i % 2 === 0);
+    const femaleData = data.filter((_, i) => i % 2 === 1);
+
+    const maxValue = Math.max(
+      ...maleData.map(Math.abs),
+      ...femaleData.map(Math.abs)
+    );
+    const padding = 1.0;
+    const xMax = +(maxValue + padding).toFixed(1);
+
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ageBins,
+        datasets: [
+          {
+            label: 'Male',
+            data: maleData,
+            backgroundColor: 'dodgerblue'
+          },
+          {
+            label: 'Female',
+            data: femaleData,
+            backgroundColor: 'lightpink'
+          }
+        ]
+      },
+      options: {
+        indexAxis: 'y',
+        responsive: true,
+        scales: {
+          x: {
+            min: -xMax,
+            max: xMax,
+            ticks: {
+              callback: value => Math.abs(value).toFixed(1) + '%'
+            }
+          },
+          y: {
+            stacked: false
+          }
+        },
+        plugins: {
+          legend: {
+            position: 'top',
+            align: 'start',
+            labels: {
+              usePointStyle: true
+            }
+          },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.dataset.label + ': ' + Math.abs(ctx.parsed.x).toFixed(1) + '%'
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(Object.values(ageData[this.value]));
+  });
+
+  renderChart(Object.values(ageData['Statewide']));</script>
+  </body>
+</html>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Living Arrangements of Children – Utah</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Children’s Living Arrangements (Under 18) – Utah</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Beaver County, Utah">Beaver County, Utah</option>
+      <option value="Box Elder County, Utah">Box Elder County, Utah</option>
+      <option value="Cache County, Utah">Cache County, Utah</option>
+      <option value="Carbon County, Utah">Carbon County, Utah</option>
+      <option value="Daggett County, Utah">Daggett County, Utah</option>
+      <option value="Davis County, Utah">Davis County, Utah</option>
+      <option value="Duchesne County, Utah">Duchesne County, Utah</option>
+      <option value="Emery County, Utah">Emery County, Utah</option>
+      <option value="Garfield County, Utah">Garfield County, Utah</option>
+      <option value="Grand County, Utah">Grand County, Utah</option>
+      <option value="Iron County, Utah">Iron County, Utah</option>
+      <option value="Juab County, Utah">Juab County, Utah</option>
+      <option value="Kane County, Utah">Kane County, Utah</option>
+      <option value="Millard County, Utah">Millard County, Utah</option>
+      <option value="Morgan County, Utah">Morgan County, Utah</option>
+      <option value="Piute County, Utah">Piute County, Utah</option>
+      <option value="Rich County, Utah">Rich County, Utah</option>
+      <option value="Salt Lake County, Utah">Salt Lake County, Utah</option>
+      <option value="San Juan County, Utah">San Juan County, Utah</option>
+      <option value="Sanpete County, Utah">Sanpete County, Utah</option>
+      <option value="Sevier County, Utah">Sevier County, Utah</option>
+      <option value="Summit County, Utah">Summit County, Utah</option>
+      <option value="Tooele County, Utah">Tooele County, Utah</option>
+      <option value="Uintah County, Utah">Uintah County, Utah</option>
+      <option value="Utah County, Utah">Utah County, Utah</option>
+      <option value="Wasatch County, Utah">Wasatch County, Utah</option>
+      <option value="Washington County, Utah">Washington County, Utah</option>
+      <option value="Wayne County, Utah">Wayne County, Utah</option>
+      <option value="Weber County, Utah">Weber County, Utah</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>  const data = {"Statewide":{"Married Couple (%)":81.1,"Cohabiting Couple (%)":4.3,"Male Householder (%)":3.8,"Female Householder (%)":10.7},"Beaver County, Utah":{"Married Couple (%)":93.1,"Cohabiting Couple (%)":1.5,"Male Householder (%)":3.2,"Female Householder (%)":2.1},"Box Elder County, Utah":{"Married Couple (%)":85.2,"Cohabiting Couple (%)":3.2,"Male Householder (%)":3.6,"Female Householder (%)":7.9},"Cache County, Utah":{"Married Couple (%)":85.2,"Cohabiting Couple (%)":2.3,"Male Householder (%)":2.3,"Female Householder (%)":10.3},"Carbon County, Utah":{"Married Couple (%)":75.5,"Cohabiting Couple (%)":2.9,"Male Householder (%)":7.2,"Female Householder (%)":14.4},"Daggett County, Utah":{"Married Couple (%)":95.3,"Cohabiting Couple (%)":3.6,"Male Householder (%)":0,"Female Householder (%)":1.2},"Davis County, Utah":{"Married Couple (%)":83.3,"Cohabiting Couple (%)":3.4,"Male Householder (%)":3.9,"Female Householder (%)":9.4},"Duchesne County, Utah":{"Married Couple (%)":81.9,"Cohabiting Couple (%)":4,"Male Householder (%)":2.9,"Female Householder (%)":11.1},"Emery County, Utah":{"Married Couple (%)":76.1,"Cohabiting Couple (%)":3.1,"Male Householder (%)":5.4,"Female Householder (%)":15.4},"Garfield County, Utah":{"Married Couple (%)":85.7,"Cohabiting Couple (%)":1.3,"Male Householder (%)":5,"Female Householder (%)":8},"Grand County, Utah":{"Married Couple (%)":66.6,"Cohabiting Couple (%)":4.3,"Male Householder (%)":3.9,"Female Householder (%)":25.3},"Iron County, Utah":{"Married Couple (%)":77.2,"Cohabiting Couple (%)":5.5,"Male Householder (%)":3.3,"Female Householder (%)":13.9},"Juab County, Utah":{"Married Couple (%)":84.7,"Cohabiting Couple (%)":2.1,"Male Householder (%)":3.5,"Female Householder (%)":9.8},"Kane County, Utah":{"Married Couple (%)":76.1,"Cohabiting Couple (%)":3.2,"Male Householder (%)":0.3,"Female Householder (%)":20.5},"Millard County, Utah":{"Married Couple (%)":82.1,"Cohabiting Couple (%)":3.3,"Male Householder (%)":3,"Female Householder (%)":11.6},"Morgan County, Utah":{"Married Couple (%)":93.5,"Cohabiting Couple (%)":1.3,"Male Householder (%)":3.3,"Female Householder (%)":1.9},"Piute County, Utah":{"Married Couple (%)":85.4,"Cohabiting Couple (%)":0,"Male Householder (%)":0,"Female Householder (%)":14.6},"Rich County, Utah":{"Married Couple (%)":86.8,"Cohabiting Couple (%)":0,"Male Householder (%)":1.2,"Female Householder (%)":12},"Salt Lake County, Utah":{"Married Couple (%)":76.2,"Cohabiting Couple (%)":6,"Male Householder (%)":4.6,"Female Householder (%)":13.1},"San Juan County, Utah":{"Married Couple (%)":65.4,"Cohabiting Couple (%)":7.7,"Male Householder (%)":3.2,"Female Householder (%)":23.7},"Sanpete County, Utah":{"Married Couple (%)":86,"Cohabiting Couple (%)":3.4,"Male Householder (%)":2.8,"Female Householder (%)":7.8},"Sevier County, Utah":{"Married Couple (%)":84.3,"Cohabiting Couple (%)":6.3,"Male Householder (%)":1,"Female Householder (%)":8.4},"Summit County, Utah":{"Married Couple (%)":79.9,"Cohabiting Couple (%)":2.9,"Male Householder (%)":3.3,"Female Householder (%)":13.8},"Tooele County, Utah":{"Married Couple (%)":78.9,"Cohabiting Couple (%)":6,"Male Householder (%)":4.1,"Female Householder (%)":11},"Uintah County, Utah":{"Married Couple (%)":82.5,"Cohabiting Couple (%)":4.5,"Male Householder (%)":3,"Female Householder (%)":9.9},"Utah County, Utah":{"Married Couple (%)":87.2,"Cohabiting Couple (%)":2.2,"Male Householder (%)":3,"Female Householder (%)":7.7},"Wasatch County, Utah":{"Married Couple (%)":84,"Cohabiting Couple (%)":2.8,"Male Householder (%)":3.3,"Female Householder (%)":10},"Washington County, Utah":{"Married Couple (%)":84.5,"Cohabiting Couple (%)":3.3,"Male Householder (%)":2.8,"Female Householder (%)":9.5},"Wayne County, Utah":{"Married Couple (%)":84.4,"Cohabiting Couple (%)":1.2,"Male Householder (%)":0,"Female Householder (%)":14.4},"Weber County, Utah":{"Married Couple (%)":75.2,"Cohabiting Couple (%)":7.5,"Male Householder (%)":5,"Female Householder (%)":12.3}};
+  const categories = ["Married Couple (%)","Cohabiting Couple (%)","Male Householder (%)","Female Householder (%)"];
+  const ctx = document.getElementById("barChart").getContext("2d");
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: categories,
+        datasets: [{
+          label: "Share of Children (%)",
+          data: values,
+          backgroundColor: ["#5DA5DA","#FAA43A","#60BD68","#F17CB0"]
+        }]
+      },
+      options: {
+        indexAxis: "y",
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            ticks: { callback: v => v + "%" },
+            title: { display: true, text: "Percent of Children" }
+          }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.raw + "%"
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById("countySelect").addEventListener("change", function() {
+    renderChart(Object.values(data[this.value]));
+  });
+
+  renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

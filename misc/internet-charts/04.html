@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Internet Access Over Time –  Arizona</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+                      h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+                      select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; border-radius: 5px; border: 1px solid #999; }
+                      canvas { width: 100%; max-width: 850px; height: 450px; margin-top: 1rem; }</style>
+</head>
+<html>
+  <body>
+    <h2>Internet Access in  Arizona (2013–2023)</h2>
+    <label>Select County: </label>
+    <select id="countySelect"><option value='Statewide'>Statewide</option>
+<option value='Apache County, Arizona'>Apache County, Arizona</option>
+<option value='Cochise County, Arizona'>Cochise County, Arizona</option>
+<option value='Coconino County, Arizona'>Coconino County, Arizona</option>
+<option value='Gila County, Arizona'>Gila County, Arizona</option>
+<option value='Graham County, Arizona'>Graham County, Arizona</option>
+<option value='Greenlee County, Arizona'>Greenlee County, Arizona</option>
+<option value='La Paz County, Arizona'>La Paz County, Arizona</option>
+<option value='Maricopa County, Arizona'>Maricopa County, Arizona</option>
+<option value='Mohave County, Arizona'>Mohave County, Arizona</option>
+<option value='Navajo County, Arizona'>Navajo County, Arizona</option>
+<option value='Pima County, Arizona'>Pima County, Arizona</option>
+<option value='Pinal County, Arizona'>Pinal County, Arizona</option>
+<option value='Santa Cruz County, Arizona'>Santa Cruz County, Arizona</option>
+<option value='Yavapai County, Arizona'>Yavapai County, Arizona</option>
+<option value='Yuma County, Arizona'>Yuma County, Arizona</option></select>
+    <canvas id="lineChart" width="850" height="450"></canvas>
+    <script>const internetData = {"Statewide":{"2017":83.5,"2018":85.3,"2019":87.1,"2020":89.2,"2021":90.7,"2022":91.7,"2023":92.9},"Apache County, Arizona":{"2017":41.8,"2018":40.9,"2019":41.4,"2020":44,"2021":45.6,"2022":50.2,"2023":57.1},"Cochise County, Arizona":{"2017":80.3,"2018":81.5,"2019":82.6,"2020":85.3,"2021":86.7,"2022":87.5,"2023":88.9},"Coconino County, Arizona":{"2017":81,"2018":81.6,"2019":82.1,"2020":83.3,"2021":84.4,"2022":86,"2023":87.6},"Gila County, Arizona":{"2017":68.5,"2018":68.1,"2019":71.1,"2020":74.5,"2021":76.5,"2022":78.9,"2023":83.6},"Graham County, Arizona":{"2017":74.7,"2018":76.8,"2019":78.4,"2020":80.4,"2021":82.9,"2022":84.2,"2023":85.6},"Greenlee County, Arizona":{"2017":78.5,"2018":79.1,"2019":83.7,"2020":86.6,"2021":90.6,"2022":87.1,"2023":88},"La Paz County, Arizona":{"2017":66.3,"2018":65.9,"2019":66.9,"2020":71.1,"2021":76.7,"2022":74.8,"2023":78.4},"Maricopa County, Arizona":{"2017":85.5,"2018":87.4,"2019":89.3,"2020":91.3,"2021":92.6,"2022":93.5,"2023":94.4},"Mohave County, Arizona":{"2017":79.5,"2018":81.3,"2019":82.9,"2020":85.3,"2021":86.7,"2022":88.3,"2023":89.7},"Navajo County, Arizona":{"2017":63.4,"2018":64.3,"2019":65.6,"2020":68.6,"2021":70.1,"2022":72.2,"2023":75.4},"Pima County, Arizona":{"2017":85.1,"2018":86.9,"2019":88.4,"2020":90.3,"2021":91.5,"2022":92.3,"2023":93.4},"Pinal County, Arizona":{"2017":82,"2018":84.9,"2019":87.7,"2020":89.9,"2021":91.4,"2022":92.7,"2023":93.9},"Santa Cruz County, Arizona":{"2017":72.2,"2018":72.8,"2019":77,"2020":81.2,"2021":84,"2022":85,"2023":87.4},"Yavapai County, Arizona":{"2017":82.8,"2018":83.9,"2019":85.6,"2020":87.6,"2021":90,"2022":91.5,"2023":93.3},"Yuma County, Arizona":{"2017":76.7,"2018":79.5,"2019":81.4,"2020":84.4,"2021":85.6,"2022":87.2,"2023":89}};
+const ctx = document.getElementById('lineChart').getContext('2d');
+let chart;
+
+function renderChart(data) {
+  const labels = Object.keys(data);
+  const values = Object.values(data);
+
+  if (chart) chart.destroy();
+  chart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: labels,
+      datasets: [{
+        label: '% With Internet',
+        data: values,
+        fill: false,
+        borderColor: 'teal',
+        backgroundColor: 'teal',
+        tension: 0.3,
+        pointRadius: 4
+      }]
+    },
+    options: {
+      responsive: true,
+      scales: {
+        y: {
+          beginAtZero: true,
+          max: 100,
+          title: { display: true, text: '% With Internet' }
+        },
+        x: {
+          title: { display: true, text: 'Year' }
+        }
+      },
+      plugins: {
+        tooltip: {
+          callbacks: {
+            label: function(ctx) {
+              return ctx.parsed.y.toFixed(1) + '%';
+            }
+          }
+        }
+      }
+    }
+  });
+}
+
+document.getElementById('countySelect').addEventListener('change', function() {
+  renderChart(internetData[this.value]);
+});
+renderChart(internetData['Statewide']);</script>
+  </body>
+</html>
+</html>

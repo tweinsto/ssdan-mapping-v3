@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Internet Access Over Time –  West Virginia</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+                      h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+                      select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; border-radius: 5px; border: 1px solid #999; }
+                      canvas { width: 100%; max-width: 850px; height: 450px; margin-top: 1rem; }</style>
+</head>
+<html>
+  <body>
+    <h2>Internet Access in  West Virginia (2013–2023)</h2>
+    <label>Select County: </label>
+    <select id="countySelect"><option value='Statewide'>Statewide</option>
+<option value='Barbour County, West Virginia'>Barbour County, West Virginia</option>
+<option value='Berkeley County, West Virginia'>Berkeley County, West Virginia</option>
+<option value='Boone County, West Virginia'>Boone County, West Virginia</option>
+<option value='Braxton County, West Virginia'>Braxton County, West Virginia</option>
+<option value='Brooke County, West Virginia'>Brooke County, West Virginia</option>
+<option value='Cabell County, West Virginia'>Cabell County, West Virginia</option>
+<option value='Calhoun County, West Virginia'>Calhoun County, West Virginia</option>
+<option value='Clay County, West Virginia'>Clay County, West Virginia</option>
+<option value='Doddridge County, West Virginia'>Doddridge County, West Virginia</option>
+<option value='Fayette County, West Virginia'>Fayette County, West Virginia</option>
+<option value='Gilmer County, West Virginia'>Gilmer County, West Virginia</option>
+<option value='Grant County, West Virginia'>Grant County, West Virginia</option>
+<option value='Greenbrier County, West Virginia'>Greenbrier County, West Virginia</option>
+<option value='Hampshire County, West Virginia'>Hampshire County, West Virginia</option>
+<option value='Hancock County, West Virginia'>Hancock County, West Virginia</option>
+<option value='Hardy County, West Virginia'>Hardy County, West Virginia</option>
+<option value='Harrison County, West Virginia'>Harrison County, West Virginia</option>
+<option value='Jackson County, West Virginia'>Jackson County, West Virginia</option>
+<option value='Jefferson County, West Virginia'>Jefferson County, West Virginia</option>
+<option value='Kanawha County, West Virginia'>Kanawha County, West Virginia</option>
+<option value='Lewis County, West Virginia'>Lewis County, West Virginia</option>
+<option value='Lincoln County, West Virginia'>Lincoln County, West Virginia</option>
+<option value='Logan County, West Virginia'>Logan County, West Virginia</option>
+<option value='Marion County, West Virginia'>Marion County, West Virginia</option>
+<option value='Marshall County, West Virginia'>Marshall County, West Virginia</option>
+<option value='Mason County, West Virginia'>Mason County, West Virginia</option>
+<option value='McDowell County, West Virginia'>McDowell County, West Virginia</option>
+<option value='Mercer County, West Virginia'>Mercer County, West Virginia</option>
+<option value='Mineral County, West Virginia'>Mineral County, West Virginia</option>
+<option value='Mingo County, West Virginia'>Mingo County, West Virginia</option>
+<option value='Monongalia County, West Virginia'>Monongalia County, West Virginia</option>
+<option value='Monroe County, West Virginia'>Monroe County, West Virginia</option>
+<option value='Morgan County, West Virginia'>Morgan County, West Virginia</option>
+<option value='Nicholas County, West Virginia'>Nicholas County, West Virginia</option>
+<option value='Ohio County, West Virginia'>Ohio County, West Virginia</option>
+<option value='Pendleton County, West Virginia'>Pendleton County, West Virginia</option>
+<option value='Pleasants County, West Virginia'>Pleasants County, West Virginia</option>
+<option value='Pocahontas County, West Virginia'>Pocahontas County, West Virginia</option>
+<option value='Preston County, West Virginia'>Preston County, West Virginia</option>
+<option value='Putnam County, West Virginia'>Putnam County, West Virginia</option>
+<option value='Raleigh County, West Virginia'>Raleigh County, West Virginia</option>
+<option value='Randolph County, West Virginia'>Randolph County, West Virginia</option>
+<option value='Ritchie County, West Virginia'>Ritchie County, West Virginia</option>
+<option value='Roane County, West Virginia'>Roane County, West Virginia</option>
+<option value='Summers County, West Virginia'>Summers County, West Virginia</option>
+<option value='Taylor County, West Virginia'>Taylor County, West Virginia</option>
+<option value='Tucker County, West Virginia'>Tucker County, West Virginia</option>
+<option value='Tyler County, West Virginia'>Tyler County, West Virginia</option>
+<option value='Upshur County, West Virginia'>Upshur County, West Virginia</option>
+<option value='Wayne County, West Virginia'>Wayne County, West Virginia</option>
+<option value='Webster County, West Virginia'>Webster County, West Virginia</option>
+<option value='Wetzel County, West Virginia'>Wetzel County, West Virginia</option>
+<option value='Wirt County, West Virginia'>Wirt County, West Virginia</option>
+<option value='Wood County, West Virginia'>Wood County, West Virginia</option>
+<option value='Wyoming County, West Virginia'>Wyoming County, West Virginia</option></select>
+    <canvas id="lineChart" width="850" height="450"></canvas>
+    <script>const internetData = {"Statewide":{"2017":74.8,"2018":77.1,"2019":79.7,"2020":82.3,"2021":84,"2022":85.7,"2023":87.5},"Barbour County, West Virginia":{"2017":70.1,"2018":71.2,"2019":73.5,"2020":76.3,"2021":77.9,"2022":80,"2023":83.5},"Berkeley County, West Virginia":{"2017":83.8,"2018":86.1,"2019":87.4,"2020":88.5,"2021":89.4,"2022":91.4,"2023":92.8},"Boone County, West Virginia":{"2017":72.7,"2018":76.5,"2019":79.6,"2020":83.9,"2021":86.8,"2022":88.6,"2023":89.9},"Braxton County, West Virginia":{"2017":63.9,"2018":68.2,"2019":70.7,"2020":74.6,"2021":80.5,"2022":80.7,"2023":81.8},"Brooke County, West Virginia":{"2017":72.3,"2018":75.3,"2019":79.2,"2020":79.8,"2021":82,"2022":84.1,"2023":85.2},"Cabell County, West Virginia":{"2017":75.2,"2018":76.8,"2019":78.4,"2020":81,"2021":81.7,"2022":85.4,"2023":88.3},"Calhoun County, West Virginia":{"2017":70.4,"2018":70.3,"2019":73.3,"2020":73.3,"2021":77.1,"2022":77.2,"2023":79.7},"Clay County, West Virginia":{"2017":70.6,"2018":71.9,"2019":77.9,"2020":81.8,"2021":82.4,"2022":82.8,"2023":85.6},"Doddridge County, West Virginia":{"2017":71,"2018":71.2,"2019":73.6,"2020":76.8,"2021":78.6,"2022":76.5,"2023":83.3},"Fayette County, West Virginia":{"2017":72.3,"2018":73.7,"2019":75.2,"2020":77.8,"2021":78.8,"2022":81.7,"2023":84.4},"Gilmer County, West Virginia":{"2017":64.7,"2018":68.9,"2019":74.2,"2020":74.8,"2021":74.7,"2022":75.8,"2023":77.7},"Grant County, West Virginia":{"2017":66.6,"2018":69.8,"2019":73,"2020":75.3,"2021":78.2,"2022":81.8,"2023":83.5},"Greenbrier County, West Virginia":{"2017":72,"2018":74.6,"2019":77.9,"2020":79,"2021":81,"2022":83,"2023":85},"Hampshire County, West Virginia":{"2017":56.2,"2018":63.9,"2019":73.5,"2020":79.7,"2021":79.3,"2022":79.9,"2023":82.9},"Hancock County, West Virginia":{"2017":73.3,"2018":75.7,"2019":80.4,"2020":84.6,"2021":87.2,"2022":89.5,"2023":91.3},"Hardy County, West Virginia":{"2017":72.6,"2018":78.1,"2019":82,"2020":85,"2021":84.8,"2022":85.4,"2023":83.2},"Harrison County, West Virginia":{"2017":76.5,"2018":78.8,"2019":81.7,"2020":82.9,"2021":83.6,"2022":84.4,"2023":86.9},"Jackson County, West Virginia":{"2017":68,"2018":68.8,"2019":76.6,"2020":76.6,"2021":78.1,"2022":78.3,"2023":81.1},"Jefferson County, West Virginia":{"2017":86.1,"2018":88.2,"2019":89.5,"2020":91.5,"2021":90.7,"2022":92.3,"2023":92.7},"Kanawha County, West Virginia":{"2017":78.9,"2018":80.3,"2019":82,"2020":84.4,"2021":86.7,"2022":88,"2023":89.7},"Lewis County, West Virginia":{"2017":71.8,"2018":72.3,"2019":73.5,"2020":74.2,"2021":77.2,"2022":79.5,"2023":83.5},"Lincoln County, West Virginia":{"2017":73.2,"2018":74.6,"2019":76.8,"2020":81.3,"2021":82.4,"2022":84.5,"2023":84.7},"Logan County, West Virginia":{"2017":75.4,"2018":79,"2019":81.8,"2020":85.4,"2021":87.2,"2022":89,"2023":90},"Marion County, West Virginia":{"2017":78.9,"2018":81.1,"2019":84,"2020":86.1,"2021":87.7,"2022":89.5,"2023":91},"Marshall County, West Virginia":{"2017":71.6,"2018":73.4,"2019":75.3,"2020":79.3,"2021":82,"2022":83.8,"2023":85.6},"Mason County, West Virginia":{"2017":68.1,"2018":70.3,"2019":74.2,"2020":78,"2021":79.4,"2022":80.7,"2023":85},"McDowell County, West Virginia":{"2017":63.2,"2018":67.1,"2019":71.5,"2020":77,"2021":79.9,"2022":82.4,"2023":83.3},"Mercer County, West Virginia":{"2017":69.6,"2018":71.7,"2019":75,"2020":79.7,"2021":81.5,"2022":84.2,"2023":87.6},"Mineral County, West Virginia":{"2017":63.8,"2018":72.6,"2019":81.2,"2020":86.6,"2021":87.3,"2022":89.3,"2023":91},"Mingo County, West Virginia":{"2017":70.1,"2018":71.3,"2019":74.5,"2020":79.8,"2021":81.9,"2022":85.7,"2023":88.1},"Monongalia County, West Virginia":{"2017":85.9,"2018":87.7,"2019":89.9,"2020":91.4,"2021":93.1,"2022":94.1,"2023":94.5},"Monroe County, West Virginia":{"2017":62.7,"2018":66.9,"2019":70.7,"2020":74,"2021":76.1,"2022":80.5,"2023":81.8},"Morgan County, West Virginia":{"2017":79.1,"2018":80.5,"2019":80.8,"2020":82.7,"2021":83.1,"2022":82.6,"2023":83.9},"Nicholas County, West Virginia":{"2017":73.1,"2018":77.8,"2019":81.1,"2020":83.4,"2021":83.7,"2022":85.5,"2023":84.8},"Ohio County, West Virginia":{"2017":72.7,"2018":74.9,"2019":78,"2020":80.6,"2021":83.6,"2022":85.8,"2023":86.3},"Pendleton County, West Virginia":{"2017":63.8,"2018":66.2,"2019":65.9,"2020":70.1,"2021":71.5,"2022":75.7,"2023":79.2},"Pleasants County, West Virginia":{"2017":77.5,"2018":77.9,"2019":81.2,"2020":85.8,"2021":88.4,"2022":89.3,"2023":91.5},"Pocahontas County, West Virginia":{"2017":70.4,"2018":73.3,"2019":72.9,"2020":74.9,"2021":72.1,"2022":74.6,"2023":74.2},"Preston County, West Virginia":{"2017":75.2,"2018":77.6,"2019":78.5,"2020":80.3,"2021":82.5,"2022":85.1,"2023":86.5},"Putnam County, West Virginia":{"2017":76.9,"2018":78.3,"2019":80.4,"2020":82.8,"2021":84.2,"2022":86.1,"2023":88.4},"Raleigh County, West Virginia":{"2017":76.8,"2018":78.2,"2019":79.7,"2020":81.4,"2021":81.8,"2022":82.1,"2023":84},"Randolph County, West Virginia":{"2017":69.6,"2018":69.8,"2019":73.5,"2020":76.6,"2021":77.9,"2022":77.8,"2023":82.1},"Ritchie County, West Virginia":{"2017":71.7,"2018":73.5,"2019":75.9,"2020":80.4,"2021":82.1,"2022":82.8,"2023":82.8},"Roane County, West Virginia":{"2017":64,"2018":68,"2019":71.6,"2020":75.4,"2021":76,"2022":77.7,"2023":78.8},"Summers County, West Virginia":{"2017":62.2,"2018":64.4,"2019":67.3,"2020":67.7,"2021":71.3,"2022":70.8,"2023":72.7},"Taylor County, West Virginia":{"2017":72.4,"2018":77,"2019":81,"2020":85.3,"2021":82.8,"2022":85,"2023":86.1},"Tucker County, West Virginia":{"2017":73.8,"2018":76.8,"2019":78.3,"2020":78.5,"2021":77.3,"2022":79.5,"2023":81.1},"Tyler County, West Virginia":{"2017":69.7,"2018":72.3,"2019":74,"2020":78.4,"2021":81.1,"2022":85.9,"2023":87.6},"Upshur County, West Virginia":{"2017":73.5,"2018":73.8,"2019":76.3,"2020":79.4,"2021":81.5,"2022":83.5,"2023":85.1},"Wayne County, West Virginia":{"2017":69.1,"2018":68.5,"2019":71.8,"2020":76.2,"2021":79.9,"2022":82,"2023":85.3},"Webster County, West Virginia":{"2017":67.5,"2018":67.2,"2019":70.2,"2020":72.4,"2021":77.5,"2022":80,"2023":82.8},"Wetzel County, West Virginia":{"2017":68.7,"2018":71.9,"2019":73.8,"2020":77.5,"2021":78.5,"2022":79.9,"2023":82.5},"Wirt County, West Virginia":{"2017":67.9,"2018":69.7,"2019":71.9,"2020":74.7,"2021":79.9,"2022":82.1,"2023":84.3},"Wood County, West Virginia":{"2017":79.4,"2018":81.3,"2019":83.1,"2020":84.6,"2021":85.4,"2022":86.7,"2023":87.8},"Wyoming County, West Virginia":{"2017":66.2,"2018":71.8,"2019":77.1,"2020":78.5,"2021":80.3,"2022":81.7,"2023":82.9}};
+const ctx = document.getElementById('lineChart').getContext('2d');
+let chart;
+
+function renderChart(data) {
+  const labels = Object.keys(data);
+  const values = Object.values(data);
+
+  if (chart) chart.destroy();
+  chart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: labels,
+      datasets: [{
+        label: '% With Internet',
+        data: values,
+        fill: false,
+        borderColor: 'teal',
+        backgroundColor: 'teal',
+        tension: 0.3,
+        pointRadius: 4
+      }]
+    },
+    options: {
+      responsive: true,
+      scales: {
+        y: {
+          beginAtZero: true,
+          max: 100,
+          title: { display: true, text: '% With Internet' }
+        },
+        x: {
+          title: { display: true, text: 'Year' }
+        }
+      },
+      plugins: {
+        tooltip: {
+          callbacks: {
+            label: function(ctx) {
+              return ctx.parsed.y.toFixed(1) + '%';
+            }
+          }
+        }
+      }
+    }
+  });
+}
+
+document.getElementById('countySelect').addEventListener('change', function() {
+  renderChart(internetData[this.value]);
+});
+renderChart(internetData['Statewide']);</script>
+  </body>
+</html>
+</html>

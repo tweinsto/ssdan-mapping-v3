@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="utf-8"/>
+  <title>Race/Ethnicity in State 45</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          text-align: center;
+          margin: 2rem;
+          background-color: white;
+        }
+        canvas {
+          max-width: 500px;
+          margin: 1rem auto;
+        }
+        select {
+          font-size: 1rem;
+          padding: 0.4rem;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Race &amp; Ethnicity Distribution</h2>
+    <label>Select County:</label>
+    <select id="countySelect"><option value="Statewide">Statewide</option>
+<option value="Abbeville County, South Carolina">Abbeville County, South Carolina</option>
+<option value="Aiken County, South Carolina">Aiken County, South Carolina</option>
+<option value="Allendale County, South Carolina">Allendale County, South Carolina</option>
+<option value="Anderson County, South Carolina">Anderson County, South Carolina</option>
+<option value="Bamberg County, South Carolina">Bamberg County, South Carolina</option>
+<option value="Barnwell County, South Carolina">Barnwell County, South Carolina</option>
+<option value="Beaufort County, South Carolina">Beaufort County, South Carolina</option>
+<option value="Berkeley County, South Carolina">Berkeley County, South Carolina</option>
+<option value="Calhoun County, South Carolina">Calhoun County, South Carolina</option>
+<option value="Charleston County, South Carolina">Charleston County, South Carolina</option>
+<option value="Cherokee County, South Carolina">Cherokee County, South Carolina</option>
+<option value="Chester County, South Carolina">Chester County, South Carolina</option>
+<option value="Chesterfield County, South Carolina">Chesterfield County, South Carolina</option>
+<option value="Clarendon County, South Carolina">Clarendon County, South Carolina</option>
+<option value="Colleton County, South Carolina">Colleton County, South Carolina</option>
+<option value="Darlington County, South Carolina">Darlington County, South Carolina</option>
+<option value="Dillon County, South Carolina">Dillon County, South Carolina</option>
+<option value="Dorchester County, South Carolina">Dorchester County, South Carolina</option>
+<option value="Edgefield County, South Carolina">Edgefield County, South Carolina</option>
+<option value="Fairfield County, South Carolina">Fairfield County, South Carolina</option>
+<option value="Florence County, South Carolina">Florence County, South Carolina</option>
+<option value="Georgetown County, South Carolina">Georgetown County, South Carolina</option>
+<option value="Greenville County, South Carolina">Greenville County, South Carolina</option>
+<option value="Greenwood County, South Carolina">Greenwood County, South Carolina</option>
+<option value="Hampton County, South Carolina">Hampton County, South Carolina</option>
+<option value="Horry County, South Carolina">Horry County, South Carolina</option>
+<option value="Jasper County, South Carolina">Jasper County, South Carolina</option>
+<option value="Kershaw County, South Carolina">Kershaw County, South Carolina</option>
+<option value="Lancaster County, South Carolina">Lancaster County, South Carolina</option>
+<option value="Laurens County, South Carolina">Laurens County, South Carolina</option>
+<option value="Lee County, South Carolina">Lee County, South Carolina</option>
+<option value="Lexington County, South Carolina">Lexington County, South Carolina</option>
+<option value="Marion County, South Carolina">Marion County, South Carolina</option>
+<option value="Marlboro County, South Carolina">Marlboro County, South Carolina</option>
+<option value="McCormick County, South Carolina">McCormick County, South Carolina</option>
+<option value="Newberry County, South Carolina">Newberry County, South Carolina</option>
+<option value="Oconee County, South Carolina">Oconee County, South Carolina</option>
+<option value="Orangeburg County, South Carolina">Orangeburg County, South Carolina</option>
+<option value="Pickens County, South Carolina">Pickens County, South Carolina</option>
+<option value="Richland County, South Carolina">Richland County, South Carolina</option>
+<option value="Saluda County, South Carolina">Saluda County, South Carolina</option>
+<option value="Spartanburg County, South Carolina">Spartanburg County, South Carolina</option>
+<option value="Sumter County, South Carolina">Sumter County, South Carolina</option>
+<option value="Union County, South Carolina">Union County, South Carolina</option>
+<option value="Williamsburg County, South Carolina">Williamsburg County, South Carolina</option>
+<option value="York County, South Carolina">York County, South Carolina</option></select>
+    <canvas id="pieChart" width="400" height="400"></canvas>
+    <script>  let raceData = {};
+  fetch("45.json")
+    .then(resp => resp.json())
+    .then(data => {
+      raceData = data;
+      const raceLabels = ["American Indian / Alaska Native","Asian","Black","Hispanic","NHMulti","NHOther","NHWhite","Pacific Islander"];
+      const ctx = document.getElementById("pieChart").getContext("2d");
+      let chart;
+
+      function renderChart(values) {
+        if (chart) chart.destroy();
+        chart = new Chart(ctx, {
+          type: "pie",
+          data: {
+            labels: raceLabels,
+            datasets: [{
+              data: values,
+              backgroundColor: [
+                "#f94144", "#f3722c", "#f9c74f", "#90be6d",
+                "#9d4edd", "#577590", "#d0cde1", "#43aa8b"
+              ]
+            }]
+          },
+          options: {
+            responsive: true,
+            plugins: {
+              legend: {
+                position: "bottom",
+                labels: {
+                  font: { size: 14 },
+                  boxWidth: 20,
+                  padding: 15,
+                  usePointStyle: true,
+                  pointStyle: "rectRounded"
+                }
+              },
+              tooltip: {
+                callbacks: {
+                  label: function(context) {
+                    return context.label + ": " + context.parsed + "%";
+                  }
+                }
+              }
+            }
+          }
+        });
+      }
+
+      document.getElementById("countySelect").addEventListener("change", function() {
+        const selected = this.value;
+        const values = Object.values(raceData[selected]);
+        renderChart(values);
+      });
+
+      renderChart(Object.values(raceData["Statewide"]));
+      document.getElementById("countySelect").value = "Statewide";
+    });</script>
+  </body>
+</html>
+</html>

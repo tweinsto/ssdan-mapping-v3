@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+
+</head>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Owners: Year Moved In (%) – 22</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #fff;
+    }
+    .container {
+      width: 95%;
+      max-width: 1200px;
+      margin: auto;
+      text-align: center;
+    }
+    #countySelect {
+      font-size: 1rem;
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    canvas {
+      max-width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Owners: Year Moved In (%)</h2>
+    <select id="countySelect"></select>
+    <canvas id="pieChart"></canvas>
+  </div>
+
+  <script>
+    const data = {"Statewide":{"Moved in 2021 or later":5,"Moved in 2018–2020":13.1,"Moved in 2010–2017":26.9,"Moved in 2000–2009":23,"Moved in 1990–1999":14.2,"1989 or earlier":17.8},"Acadia Parish":{"Moved in 2021 or later":3.6845,"Moved in 2018–2020":8.2986,"Moved in 2010–2017":28.3068,"Moved in 2000–2009":19.9467,"Moved in 1990–1999":16.6108,"1989 or earlier":23.1526},"Allen Parish":{"Moved in 2021 or later":2.277,"Moved in 2018–2020":11.079,"Moved in 2010–2017":21.9541,"Moved in 2000–2009":28.921,"Moved in 1990–1999":14.4775,"1989 or earlier":21.2914},"Ascension Parish":{"Moved in 2021 or later":5.9528,"Moved in 2018–2020":19.5742,"Moved in 2010–2017":31.1521,"Moved in 2000–2009":23.6718,"Moved in 1990–1999":10.7367,"1989 or earlier":8.9124},"Assumption Parish":{"Moved in 2021 or later":2.5691,"Moved in 2018–2020":14.0536,"Moved in 2010–2017":23.8578,"Moved in 2000–2009":22.5663,"Moved in 1990–1999":16.6088,"1989 or earlier":20.3444},"Avoyelles Parish":{"Moved in 2021 or later":4.1637,"Moved in 2018–2020":12.9316,"Moved in 2010–2017":21.4893,"Moved in 2000–2009":20.7987,"Moved in 1990–1999":16.4848,"1989 or earlier":24.1317},"Beauregard Parish":{"Moved in 2021 or later":5.2955,"Moved in 2018–2020":13.8228,"Moved in 2010–2017":30.2626,"Moved in 2000–2009":25.4676,"Moved in 1990–1999":12.848,"1989 or earlier":12.3035},"Bienville Parish":{"Moved in 2021 or later":3.4978,"Moved in 2018–2020":12.8687,"Moved in 2010–2017":18.7157,"Moved in 2000–2009":26.0506,"Moved in 1990–1999":15.2441,"1989 or earlier":23.6231},"Bossier Parish":{"Moved in 2021 or later":8.201,"Moved in 2018–2020":16.1948,"Moved in 2010–2017":29.7413,"Moved in 2000–2009":22.0187,"Moved in 1990–1999":11.8246,"1989 or earlier":12.0196},"Caddo Parish":{"Moved in 2021 or later":4.5133,"Moved in 2018–2020":13.8231,"Moved in 2010–2017":26.041,"Moved in 2000–2009":22.7056,"Moved in 1990–1999":14.5267,"1989 or earlier":18.3903},"Calcasieu Parish":{"Moved in 2021 or later":6.5871,"Moved in 2018–2020":11.9031,"Moved in 2010–2017":30.1686,"Moved in 2000–2009":22.9379,"Moved in 1990–1999":12.0164,"1989 or earlier":16.3868},"Caldwell Parish":{"Moved in 2021 or later":3.6557,"Moved in 2018–2020":25.2358,"Moved in 2010–2017":24.1745,"Moved in 2000–2009":16.3129,"Moved in 1990–1999":11.5959,"1989 or earlier":19.0252},"Cameron Parish":{"Moved in 2021 or later":15.5758,"Moved in 2018–2020":8.4221,"Moved in 2010–2017":33.6377,"Moved in 2000–2009":23.998,"Moved in 1990–1999":5.4287,"1989 or earlier":12.9376},"Catahoula Parish":{"Moved in 2021 or later":3.2092,"Moved in 2018–2020":6.7608,"Moved in 2010–2017":31.7073,"Moved in 2000–2009":20.7103,"Moved in 1990–1999":12.7086,"1989 or earlier":24.9037},"Claiborne Parish":{"Moved in 2021 or later":2.7417,"Moved in 2018–2020":8.4228,"Moved in 2010–2017":26.3708,"Moved in 2000–2009":19.6721,"Moved in 1990–1999":14.3867,"1989 or earlier":28.4059},"Concordia Parish":{"Moved in 2021 or later":2.788,"Moved in 2018–2020":7.3049,"Moved in 2010–2017":23.298,"Moved in 2000–2009":21.8068,"Moved in 1990–1999":18.5866,"1989 or earlier":26.2157},"De Soto Parish":{"Moved in 2021 or later":5.3454,"Moved in 2018–2020":16.7205,"Moved in 2010–2017":21.898,"Moved in 2000–2009":23.5894,"Moved in 1990–1999":16.643,"1989 or earlier":15.8037},"East Baton Rouge Parish":{"Moved in 2021 or later":5.4538,"Moved in 2018–2020":13.2523,"Moved in 2010–2017":27.2769,"Moved in 2000–2009":23.4215,"Moved in 1990–1999":14.1674,"1989 or earlier":16.4281},"East Carroll Parish":{"Moved in 2021 or later":6.6489,"Moved in 2018–2020":11.9016,"Moved in 2010–2017":17.0878,"Moved in 2000–2009":16.6888,"Moved in 1990–1999":17.2207,"1989 or earlier":30.4521},"East Feliciana Parish":{"Moved in 2021 or later":2.7555,"Moved in 2018–2020":15.4745,"Moved in 2010–2017":17.208,"Moved in 2000–2009":27.5365,"Moved in 1990–1999":21.4416,"1989 or earlier":15.5839},"Evangeline Parish":{"Moved in 2021 or later":4.6377,"Moved in 2018–2020":10.0189,"Moved in 2010–2017":26.0491,"Moved in 2000–2009":24.2722,"Moved in 1990–1999":12.8544,"1989 or earlier":22.1676},"Franklin Parish":{"Moved in 2021 or later":5.574,"Moved in 2018–2020":5.8693,"Moved in 2010–2017":25.6921,"Moved in 2000–2009":25.5814,"Moved in 1990–1999":15.3562,"1989 or earlier":21.9269},"Grant Parish":{"Moved in 2021 or later":4.3338,"Moved in 2018–2020":13.594,"Moved in 2010–2017":21.5676,"Moved in 2000–2009":31.7928,"Moved in 1990–1999":11.8673,"1989 or earlier":16.8444},"Iberia Parish":{"Moved in 2021 or later":2.8193,"Moved in 2018–2020":9.9469,"Moved in 2010–2017":23.6985,"Moved in 2000–2009":24.8207,"Moved in 1990–1999":17.0252,"1989 or earlier":21.6894},"Iberville Parish":{"Moved in 2021 or later":4.6918,"Moved in 2018–2020":10.5685,"Moved in 2010–2017":25.9964,"Moved in 2000–2009":23.7463,"Moved in 1990–1999":19.0784,"1989 or earlier":15.9186},"Jackson Parish":{"Moved in 2021 or later":3.6013,"Moved in 2018–2020":9.8909,"Moved in 2010–2017":29.7996,"Moved in 2000–2009":19.8326,"Moved in 1990–1999":13.7712,"1989 or earlier":23.1042},"Jefferson Davis Parish":{"Moved in 2021 or later":2.8095,"Moved in 2018–2020":11.8648,"Moved in 2010–2017":24.7482,"Moved in 2000–2009":27.2666,"Moved in 1990–1999":13.152,"1989 or earlier":20.1589},"Jefferson Parish":{"Moved in 2021 or later":3.8863,"Moved in 2018–2020":10.4556,"Moved in 2010–2017":22.5824,"Moved in 2000–2009":22.1417,"Moved in 1990–1999":15.7175,"1989 or earlier":25.2165},"Lafayette Parish":{"Moved in 2021 or later":5.6427,"Moved in 2018–2020":17.1336,"Moved in 2010–2017":31.222,"Moved in 2000–2009":19.6367,"Moved in 1990–1999":12.9374,"1989 or earlier":13.4276},"Lafourche Parish":{"Moved in 2021 or later":3.8211,"Moved in 2018–2020":10.811,"Moved in 2010–2017":27.7548,"Moved in 2000–2009":20.1537,"Moved in 1990–1999":15.2365,"1989 or earlier":22.223},"LaSalle Parish":{"Moved in 2021 or later":3.1636,"Moved in 2018–2020":12.0613,"Moved in 2010–2017":21.0826,"Moved in 2000–2009":29.9802,"Moved in 1990–1999":14.8789,"1989 or earlier":18.8334},"Lincoln Parish":{"Moved in 2021 or later":5.217,"Moved in 2018–2020":12.8694,"Moved in 2010–2017":27.7257,"Moved in 2000–2009":18.8201,"Moved in 1990–1999":15.2639,"1989 or earlier":20.1039},"Livingston Parish":{"Moved in 2021 or later":6.9281,"Moved in 2018–2020":17.9886,"Moved in 2010–2017":32.2258,"Moved in 2000–2009":21.3952,"Moved in 1990–1999":11.3648,"1989 or earlier":10.0975},"Madison Parish":{"Moved in 2021 or later":2.5837,"Moved in 2018–2020":6.6353,"Moved in 2010–2017":21.7851,"Moved in 2000–2009":24.7211,"Moved in 1990–1999":20.6694,"1989 or earlier":23.6054},"Morehouse Parish":{"Moved in 2021 or later":4.0068,"Moved in 2018–2020":7.8293,"Moved in 2010–2017":28.4157,"Moved in 2000–2009":24.7774,"Moved in 1990–1999":13.2023,"1989 or earlier":21.7685},"Natchitoches Parish":{"Moved in 2021 or later":6.3062,"Moved in 2018–2020":12.7945,"Moved in 2010–2017":24.3369,"Moved in 2000–2009":20.5236,"Moved in 1990–1999":17.4502,"1989 or earlier":18.5885},"Orleans Parish":{"Moved in 2021 or later":5.013,"Moved in 2018–2020":12.7475,"Moved in 2010–2017":26.1649,"Moved in 2000–2009":22.1101,"Moved in 1990–1999":15.9386,"1989 or earlier":18.0259},"Ouachita Parish":{"Moved in 2021 or later":5.6305,"Moved in 2018–2020":14.003,"Moved in 2010–2017":27.1491,"Moved in 2000–2009":21.5601,"Moved in 1990–1999":13.7597,"1989 or earlier":17.8976},"Plaquemines Parish":{"Moved in 2021 or later":2.0307,"Moved in 2018–2020":12.2338,"Moved in 2010–2017":34.5386,"Moved in 2000–2009":30.6753,"Moved in 1990–1999":10.6653,"1989 or earlier":9.8564},"Pointe Coupee Parish":{"Moved in 2021 or later":6.2805,"Moved in 2018–2020":13.9934,"Moved in 2010–2017":20.4313,"Moved in 2000–2009":19.5656,"Moved in 1990–1999":16.8739,"1989 or earlier":22.8553},"Rapides Parish":{"Moved in 2021 or later":5.0329,"Moved in 2018–2020":12.8104,"Moved in 2010–2017":25.0921,"Moved in 2000–2009":23.6285,"Moved in 1990–1999":13.8271,"1989 or earlier":19.6091},"Red River Parish":{"Moved in 2021 or later":6.603,"Moved in 2018–2020":4.344,"Moved in 2010–2017":38.7924,"Moved in 2000–2009":15.8992,"Moved in 1990–1999":10.0348,"1989 or earlier":24.3267},"Richland Parish":{"Moved in 2021 or later":6.4184,"Moved in 2018–2020":11.3351,"Moved in 2010–2017":21.6211,"Moved in 2000–2009":23.6165,"Moved in 1990–1999":16.3341,"1989 or earlier":20.6748},"Sabine Parish":{"Moved in 2021 or later":6.1922,"Moved in 2018–2020":12.9567,"Moved in 2010–2017":30.4475,"Moved in 2000–2009":19.4277,"Moved in 1990–1999":13.9398,"1989 or earlier":17.036},"St. Bernard Parish":{"Moved in 2021 or later":3.1848,"Moved in 2018–2020":9.3739,"Moved in 2010–2017":32.0011,"Moved in 2000–2009":30.1606,"Moved in 1990–1999":9.4551,"1989 or earlier":15.8246},"St. Charles Parish":{"Moved in 2021 or later":4.9165,"Moved in 2018–2020":10.0799,"Moved in 2010–2017":24.9139,"Moved in 2000–2009":27.369,"Moved in 1990–1999":14.6262,"1989 or earlier":18.0944},"St. Helena Parish":{"Moved in 2021 or later":5.4664,"Moved in 2018–2020":8.7725,"Moved in 2010–2017":30.8347,"Moved in 2000–2009":22.0295,"Moved in 1990–1999":18.1669,"1989 or earlier":14.73},"St. James Parish":{"Moved in 2021 or later":0.6137,"Moved in 2018–2020":12.1007,"Moved in 2010–2017":22.1715,"Moved in 2000–2009":25.8222,"Moved in 1990–1999":14.9017,"1989 or earlier":24.3902},"St. John the Baptist Parish":{"Moved in 2021 or later":2.5147,"Moved in 2018–2020":10.9083,"Moved in 2010–2017":19.815,"Moved in 2000–2009":27.1236,"Moved in 1990–1999":19.0917,"1989 or earlier":20.5467},"St. Landry Parish":{"Moved in 2021 or later":3.7457,"Moved in 2018–2020":12.7443,"Moved in 2010–2017":24.6627,"Moved in 2000–2009":21.075,"Moved in 1990–1999":14.2425,"1989 or earlier":23.5299},"St. Martin Parish":{"Moved in 2021 or later":4.3001,"Moved in 2018–2020":12.138,"Moved in 2010–2017":24.5363,"Moved in 2000–2009":22.6626,"Moved in 1990–1999":11.9665,"1989 or earlier":24.3966},"St. Mary Parish":{"Moved in 2021 or later":4.9525,"Moved in 2018–2020":10.0122,"Moved in 2010–2017":20.6292,"Moved in 2000–2009":23.1782,"Moved in 1990–1999":17.5521,"1989 or earlier":23.6758},"St. Tammany Parish":{"Moved in 2021 or later":6.7987,"Moved in 2018–2020":14.8957,"Moved in 2010–2017":27.3544,"Moved in 2000–2009":26.8815,"Moved in 1990–1999":14.5051,"1989 or earlier":9.5648},"Tangipahoa Parish":{"Moved in 2021 or later":5.7555,"Moved in 2018–2020":13.5029,"Moved in 2010–2017":31.5578,"Moved in 2000–2009":23.5932,"Moved in 1990–1999":9.8841,"1989 or earlier":15.7065},"Tensas Parish":{"Moved in 2021 or later":5.3792,"Moved in 2018–2020":6.7019,"Moved in 2010–2017":28.0423,"Moved in 2000–2009":16.4903,"Moved in 1990–1999":12.7866,"1989 or earlier":30.5996},"Terrebonne Parish":{"Moved in 2021 or later":4.2135,"Moved in 2018–2020":13.2864,"Moved in 2010–2017":24.1057,"Moved in 2000–2009":22.8754,"Moved in 1990–1999":16.6136,"1989 or earlier":18.9054},"Union Parish":{"Moved in 2021 or later":3.5384,"Moved in 2018–2020":11.189,"Moved in 2010–2017":28.0842,"Moved in 2000–2009":24.8008,"Moved in 1990–1999":14.9187,"1989 or earlier":17.4689},"Vermilion Parish":{"Moved in 2021 or later":4.4125,"Moved in 2018–2020":10.7239,"Moved in 2010–2017":26.4872,"Moved in 2000–2009":24.5452,"Moved in 1990–1999":14.0425,"1989 or earlier":19.7886},"Vernon Parish":{"Moved in 2021 or later":4.1814,"Moved in 2018–2020":15.6651,"Moved in 2010–2017":24.947,"Moved in 2000–2009":23.735,"Moved in 1990–1999":12.3725,"1989 or earlier":19.0991},"Washington Parish":{"Moved in 2021 or later":2.8578,"Moved in 2018–2020":11.8723,"Moved in 2010–2017":24.9367,"Moved in 2000–2009":27.0189,"Moved in 1990–1999":10.8271,"1989 or earlier":22.4871},"Webster Parish":{"Moved in 2021 or later":2.6721,"Moved in 2018–2020":9.6255,"Moved in 2010–2017":26.562,"Moved in 2000–2009":21.9231,"Moved in 1990–1999":17.2941,"1989 or earlier":21.9231},"West Baton Rouge Parish":{"Moved in 2021 or later":4.6901,"Moved in 2018–2020":12.8787,"Moved in 2010–2017":37.546,"Moved in 2000–2009":14.704,"Moved in 1990–1999":15.3125,"1989 or earlier":14.8688},"West Carroll Parish":{"Moved in 2021 or later":0.3499,"Moved in 2018–2020":5.4934,"Moved in 2010–2017":26.4171,"Moved in 2000–2009":26.2071,"Moved in 1990–1999":19.2792,"1989 or earlier":22.2533},"West Feliciana Parish":{"Moved in 2021 or later":5.7773,"Moved in 2018–2020":14.5407,"Moved in 2010–2017":25.2515,"Moved in 2000–2009":25.4463,"Moved in 1990–1999":17.1373,"1989 or earlier":11.8468},"Winn Parish":{"Moved in 2021 or later":3.9724,"Moved in 2018–2020":9.2689,"Moved in 2010–2017":24.266,"Moved in 2000–2009":19.4876,"Moved in 1990–1999":15.4289,"1989 or earlier":27.5763}};
+    const colors = {
+  'Moved in 2021 or later': '#377EF1',
+  'Moved in 2018–2020': '#FF7F00',
+  'Moved in 2010–2017': '#66A61E',
+  'Moved in 2000–2009': '#E6AB01',
+  'Moved in 1990–1999': '#7570B1',
+  '1989 or earlier': '#E41A1C'
+};
+
+    const ctx = document.getElementById("pieChart").getContext("2d");
+    let chart;
+
+    function renderChart(key) {
+      const values = data[key];
+      const labels = Object.keys(values);
+      const percentages = Object.values(values);
+
+      if (chart) chart.destroy();
+
+      chart = new Chart(ctx, {
+        type: "pie",
+        data: {
+          labels: labels,
+          datasets: [{
+            data: percentages,
+            backgroundColor: labels.map(label => colors[label] || "#cccccc")
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: true,
+          aspectRatio: 1.5,
+          plugins: {
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  return context.label + ": " + context.formattedValue + "%";
+                }
+              }
+            },
+            legend: {
+              position: "right",
+              labels: {
+                usePointStyle: true,
+                pointStyle: "rect"
+              }
+            }
+          }
+        }
+      });
+    }
+
+    // Populate dropdown (Statewide first, then counties A->Z)
+    const select = document.getElementById("countySelect");
+    const keys = ["Statewide", ...Object.keys(data).filter(k => k !== "Statewide").sort()];
+    keys.forEach(k => {
+      const opt = document.createElement("option");
+      opt.value = k;
+      opt.text  = k;
+      select.appendChild(opt);
+    });
+    select.value = "Statewide";
+    select.addEventListener("change", () => renderChart(select.value));
+
+    renderChart("Statewide");
+  </script>
+</body>
+</html>
+</html>

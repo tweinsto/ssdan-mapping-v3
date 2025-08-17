@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Educational Enrollment – Florida</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Educational Enrollment (Age 18–24) in Florida</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Alachua County, Florida">Alachua County, Florida</option>
+      <option value="Baker County, Florida">Baker County, Florida</option>
+      <option value="Bay County, Florida">Bay County, Florida</option>
+      <option value="Bradford County, Florida">Bradford County, Florida</option>
+      <option value="Brevard County, Florida">Brevard County, Florida</option>
+      <option value="Broward County, Florida">Broward County, Florida</option>
+      <option value="Calhoun County, Florida">Calhoun County, Florida</option>
+      <option value="Charlotte County, Florida">Charlotte County, Florida</option>
+      <option value="Citrus County, Florida">Citrus County, Florida</option>
+      <option value="Clay County, Florida">Clay County, Florida</option>
+      <option value="Collier County, Florida">Collier County, Florida</option>
+      <option value="Columbia County, Florida">Columbia County, Florida</option>
+      <option value="DeSoto County, Florida">DeSoto County, Florida</option>
+      <option value="Dixie County, Florida">Dixie County, Florida</option>
+      <option value="Duval County, Florida">Duval County, Florida</option>
+      <option value="Escambia County, Florida">Escambia County, Florida</option>
+      <option value="Flagler County, Florida">Flagler County, Florida</option>
+      <option value="Franklin County, Florida">Franklin County, Florida</option>
+      <option value="Gadsden County, Florida">Gadsden County, Florida</option>
+      <option value="Gilchrist County, Florida">Gilchrist County, Florida</option>
+      <option value="Glades County, Florida">Glades County, Florida</option>
+      <option value="Gulf County, Florida">Gulf County, Florida</option>
+      <option value="Hamilton County, Florida">Hamilton County, Florida</option>
+      <option value="Hardee County, Florida">Hardee County, Florida</option>
+      <option value="Hendry County, Florida">Hendry County, Florida</option>
+      <option value="Hernando County, Florida">Hernando County, Florida</option>
+      <option value="Highlands County, Florida">Highlands County, Florida</option>
+      <option value="Hillsborough County, Florida">Hillsborough County, Florida</option>
+      <option value="Holmes County, Florida">Holmes County, Florida</option>
+      <option value="Indian River County, Florida">Indian River County, Florida</option>
+      <option value="Jackson County, Florida">Jackson County, Florida</option>
+      <option value="Jefferson County, Florida">Jefferson County, Florida</option>
+      <option value="Lafayette County, Florida">Lafayette County, Florida</option>
+      <option value="Lake County, Florida">Lake County, Florida</option>
+      <option value="Lee County, Florida">Lee County, Florida</option>
+      <option value="Leon County, Florida">Leon County, Florida</option>
+      <option value="Levy County, Florida">Levy County, Florida</option>
+      <option value="Liberty County, Florida">Liberty County, Florida</option>
+      <option value="Madison County, Florida">Madison County, Florida</option>
+      <option value="Manatee County, Florida">Manatee County, Florida</option>
+      <option value="Marion County, Florida">Marion County, Florida</option>
+      <option value="Martin County, Florida">Martin County, Florida</option>
+      <option value="Miami-Dade County, Florida">Miami-Dade County, Florida</option>
+      <option value="Monroe County, Florida">Monroe County, Florida</option>
+      <option value="Nassau County, Florida">Nassau County, Florida</option>
+      <option value="Okaloosa County, Florida">Okaloosa County, Florida</option>
+      <option value="Okeechobee County, Florida">Okeechobee County, Florida</option>
+      <option value="Orange County, Florida">Orange County, Florida</option>
+      <option value="Osceola County, Florida">Osceola County, Florida</option>
+      <option value="Palm Beach County, Florida">Palm Beach County, Florida</option>
+      <option value="Pasco County, Florida">Pasco County, Florida</option>
+      <option value="Pinellas County, Florida">Pinellas County, Florida</option>
+      <option value="Polk County, Florida">Polk County, Florida</option>
+      <option value="Putnam County, Florida">Putnam County, Florida</option>
+      <option value="Santa Rosa County, Florida">Santa Rosa County, Florida</option>
+      <option value="Sarasota County, Florida">Sarasota County, Florida</option>
+      <option value="Seminole County, Florida">Seminole County, Florida</option>
+      <option value="St. Johns County, Florida">St. Johns County, Florida</option>
+      <option value="St. Lucie County, Florida">St. Lucie County, Florida</option>
+      <option value="Sumter County, Florida">Sumter County, Florida</option>
+      <option value="Suwannee County, Florida">Suwannee County, Florida</option>
+      <option value="Taylor County, Florida">Taylor County, Florida</option>
+      <option value="Union County, Florida">Union County, Florida</option>
+      <option value="Volusia County, Florida">Volusia County, Florida</option>
+      <option value="Wakulla County, Florida">Wakulla County, Florida</option>
+      <option value="Walton County, Florida">Walton County, Florida</option>
+      <option value="Washington County, Florida">Washington County, Florida</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>  const data = {"Statewide":{"Enrolled in College / Grad. School":41.9,"Not Enrolled":58.1},"Alachua County, Florida":{"Enrolled in College / Grad. School":72.8,"Not Enrolled":27.2},"Baker County, Florida":{"Enrolled in College / Grad. School":29.3,"Not Enrolled":70.7},"Bay County, Florida":{"Enrolled in College / Grad. School":26.1,"Not Enrolled":73.9},"Bradford County, Florida":{"Enrolled in College / Grad. School":21,"Not Enrolled":79},"Brevard County, Florida":{"Enrolled in College / Grad. School":37.2,"Not Enrolled":62.8},"Broward County, Florida":{"Enrolled in College / Grad. School":40.6,"Not Enrolled":59.4},"Calhoun County, Florida":{"Enrolled in College / Grad. School":21.2,"Not Enrolled":78.8},"Charlotte County, Florida":{"Enrolled in College / Grad. School":29.9,"Not Enrolled":70.1},"Citrus County, Florida":{"Enrolled in College / Grad. School":30.6,"Not Enrolled":69.4},"Clay County, Florida":{"Enrolled in College / Grad. School":31.4,"Not Enrolled":68.6},"Collier County, Florida":{"Enrolled in College / Grad. School":39.9,"Not Enrolled":60.1},"Columbia County, Florida":{"Enrolled in College / Grad. School":19.8,"Not Enrolled":80.2},"DeSoto County, Florida":{"Enrolled in College / Grad. School":22.9,"Not Enrolled":77.1},"Dixie County, Florida":{"Enrolled in College / Grad. School":28.3,"Not Enrolled":71.7},"Duval County, Florida":{"Enrolled in College / Grad. School":33.8,"Not Enrolled":66.2},"Escambia County, Florida":{"Enrolled in College / Grad. School":38.7,"Not Enrolled":61.3},"Flagler County, Florida":{"Enrolled in College / Grad. School":31.6,"Not Enrolled":68.4},"Franklin County, Florida":{"Enrolled in College / Grad. School":24.1,"Not Enrolled":75.9},"Gadsden County, Florida":{"Enrolled in College / Grad. School":30.2,"Not Enrolled":69.8},"Gilchrist County, Florida":{"Enrolled in College / Grad. School":8.1,"Not Enrolled":91.9},"Glades County, Florida":{"Enrolled in College / Grad. School":25.4,"Not Enrolled":74.6},"Gulf County, Florida":{"Enrolled in College / Grad. School":18.4,"Not Enrolled":81.6},"Hamilton County, Florida":{"Enrolled in College / Grad. School":1.7,"Not Enrolled":98.3},"Hardee County, Florida":{"Enrolled in College / Grad. School":18.6,"Not Enrolled":81.4},"Hendry County, Florida":{"Enrolled in College / Grad. School":35.6,"Not Enrolled":64.4},"Hernando County, Florida":{"Enrolled in College / Grad. School":34,"Not Enrolled":66},"Highlands County, Florida":{"Enrolled in College / Grad. School":24.3,"Not Enrolled":75.7},"Hillsborough County, Florida":{"Enrolled in College / Grad. School":45.5,"Not Enrolled":54.5},"Holmes County, Florida":{"Enrolled in College / Grad. School":26.2,"Not Enrolled":73.8},"Indian River County, Florida":{"Enrolled in College / Grad. School":32.4,"Not Enrolled":67.6},"Jackson County, Florida":{"Enrolled in College / Grad. School":37,"Not Enrolled":63},"Jefferson County, Florida":{"Enrolled in College / Grad. School":38,"Not Enrolled":62},"Lafayette County, Florida":{"Enrolled in College / Grad. School":36.3,"Not Enrolled":63.7},"Lake County, Florida":{"Enrolled in College / Grad. School":25.7,"Not Enrolled":74.3},"Lee County, Florida":{"Enrolled in College / Grad. School":37.5,"Not Enrolled":62.5},"Leon County, Florida":{"Enrolled in College / Grad. School":68.3,"Not Enrolled":31.7},"Levy County, Florida":{"Enrolled in College / Grad. School":26.9,"Not Enrolled":73.1},"Liberty County, Florida":{"Enrolled in College / Grad. School":31.5,"Not Enrolled":68.5},"Madison County, Florida":{"Enrolled in College / Grad. School":12.2,"Not Enrolled":87.8},"Manatee County, Florida":{"Enrolled in College / Grad. School":36,"Not Enrolled":64},"Marion County, Florida":{"Enrolled in College / Grad. School":25.3,"Not Enrolled":74.7},"Martin County, Florida":{"Enrolled in College / Grad. School":34.7,"Not Enrolled":65.3},"Miami-Dade County, Florida":{"Enrolled in College / Grad. School":47.4,"Not Enrolled":52.6},"Monroe County, Florida":{"Enrolled in College / Grad. School":26.5,"Not Enrolled":73.5},"Nassau County, Florida":{"Enrolled in College / Grad. School":32.8,"Not Enrolled":67.2},"Okaloosa County, Florida":{"Enrolled in College / Grad. School":25.5,"Not Enrolled":74.5},"Okeechobee County, Florida":{"Enrolled in College / Grad. School":17.3,"Not Enrolled":82.7},"Orange County, Florida":{"Enrolled in College / Grad. School":50.7,"Not Enrolled":49.3},"Osceola County, Florida":{"Enrolled in College / Grad. School":38.8,"Not Enrolled":61.2},"Palm Beach County, Florida":{"Enrolled in College / Grad. School":41.8,"Not Enrolled":58.2},"Pasco County, Florida":{"Enrolled in College / Grad. School":38.5,"Not Enrolled":61.5},"Pinellas County, Florida":{"Enrolled in College / Grad. School":40.2,"Not Enrolled":59.8},"Polk County, Florida":{"Enrolled in College / Grad. School":32.8,"Not Enrolled":67.2},"Putnam County, Florida":{"Enrolled in College / Grad. School":15.2,"Not Enrolled":84.8},"St. Johns County, Florida":{"Enrolled in College / Grad. School":44.8,"Not Enrolled":55.2},"St. Lucie County, Florida":{"Enrolled in College / Grad. School":28.2,"Not Enrolled":71.8},"Santa Rosa County, Florida":{"Enrolled in College / Grad. School":27.6,"Not Enrolled":72.4},"Sarasota County, Florida":{"Enrolled in College / Grad. School":38.8,"Not Enrolled":61.2},"Seminole County, Florida":{"Enrolled in College / Grad. School":45.3,"Not Enrolled":54.7},"Sumter County, Florida":{"Enrolled in College / Grad. School":14.4,"Not Enrolled":85.6},"Suwannee County, Florida":{"Enrolled in College / Grad. School":25.5,"Not Enrolled":74.5},"Taylor County, Florida":{"Enrolled in College / Grad. School":15.8,"Not Enrolled":84.2},"Union County, Florida":{"Enrolled in College / Grad. School":11.2,"Not Enrolled":88.8},"Volusia County, Florida":{"Enrolled in College / Grad. School":46.2,"Not Enrolled":53.8},"Wakulla County, Florida":{"Enrolled in College / Grad. School":34.7,"Not Enrolled":65.3},"Walton County, Florida":{"Enrolled in College / Grad. School":28.9,"Not Enrolled":71.1},"Washington County, Florida":{"Enrolled in College / Grad. School":14,"Not Enrolled":86}};
+  const categories = ["Enrolled in College / Grad. School","Not Enrolled"];
+  const ctx = document.getElementById("barChart").getContext("2d");
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: categories,
+        datasets: [
+          {
+            label: "County/State",
+            data: values,
+            backgroundColor: ["#66c2a5", "#fc8d62"]
+          }
+        ]
+      },
+      options: {
+        indexAxis: "y",
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            ticks: {
+              callback: v => v + "%"
+            }
+          }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.dataset.label + ": " + ctx.raw + "%"
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById("countySelect").addEventListener("change", function() {
+    renderChart(Object.values(data[this.value]));
+  });
+
+  renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

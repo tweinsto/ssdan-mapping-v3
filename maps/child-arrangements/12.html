@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Living Arrangements of Children – Florida</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Children’s Living Arrangements (Under 18) – Florida</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Alachua County, Florida">Alachua County, Florida</option>
+      <option value="Baker County, Florida">Baker County, Florida</option>
+      <option value="Bay County, Florida">Bay County, Florida</option>
+      <option value="Bradford County, Florida">Bradford County, Florida</option>
+      <option value="Brevard County, Florida">Brevard County, Florida</option>
+      <option value="Broward County, Florida">Broward County, Florida</option>
+      <option value="Calhoun County, Florida">Calhoun County, Florida</option>
+      <option value="Charlotte County, Florida">Charlotte County, Florida</option>
+      <option value="Citrus County, Florida">Citrus County, Florida</option>
+      <option value="Clay County, Florida">Clay County, Florida</option>
+      <option value="Collier County, Florida">Collier County, Florida</option>
+      <option value="Columbia County, Florida">Columbia County, Florida</option>
+      <option value="DeSoto County, Florida">DeSoto County, Florida</option>
+      <option value="Dixie County, Florida">Dixie County, Florida</option>
+      <option value="Duval County, Florida">Duval County, Florida</option>
+      <option value="Escambia County, Florida">Escambia County, Florida</option>
+      <option value="Flagler County, Florida">Flagler County, Florida</option>
+      <option value="Franklin County, Florida">Franklin County, Florida</option>
+      <option value="Gadsden County, Florida">Gadsden County, Florida</option>
+      <option value="Gilchrist County, Florida">Gilchrist County, Florida</option>
+      <option value="Glades County, Florida">Glades County, Florida</option>
+      <option value="Gulf County, Florida">Gulf County, Florida</option>
+      <option value="Hamilton County, Florida">Hamilton County, Florida</option>
+      <option value="Hardee County, Florida">Hardee County, Florida</option>
+      <option value="Hendry County, Florida">Hendry County, Florida</option>
+      <option value="Hernando County, Florida">Hernando County, Florida</option>
+      <option value="Highlands County, Florida">Highlands County, Florida</option>
+      <option value="Hillsborough County, Florida">Hillsborough County, Florida</option>
+      <option value="Holmes County, Florida">Holmes County, Florida</option>
+      <option value="Indian River County, Florida">Indian River County, Florida</option>
+      <option value="Jackson County, Florida">Jackson County, Florida</option>
+      <option value="Jefferson County, Florida">Jefferson County, Florida</option>
+      <option value="Lafayette County, Florida">Lafayette County, Florida</option>
+      <option value="Lake County, Florida">Lake County, Florida</option>
+      <option value="Lee County, Florida">Lee County, Florida</option>
+      <option value="Leon County, Florida">Leon County, Florida</option>
+      <option value="Levy County, Florida">Levy County, Florida</option>
+      <option value="Liberty County, Florida">Liberty County, Florida</option>
+      <option value="Madison County, Florida">Madison County, Florida</option>
+      <option value="Manatee County, Florida">Manatee County, Florida</option>
+      <option value="Marion County, Florida">Marion County, Florida</option>
+      <option value="Martin County, Florida">Martin County, Florida</option>
+      <option value="Miami-Dade County, Florida">Miami-Dade County, Florida</option>
+      <option value="Monroe County, Florida">Monroe County, Florida</option>
+      <option value="Nassau County, Florida">Nassau County, Florida</option>
+      <option value="Okaloosa County, Florida">Okaloosa County, Florida</option>
+      <option value="Okeechobee County, Florida">Okeechobee County, Florida</option>
+      <option value="Orange County, Florida">Orange County, Florida</option>
+      <option value="Osceola County, Florida">Osceola County, Florida</option>
+      <option value="Palm Beach County, Florida">Palm Beach County, Florida</option>
+      <option value="Pasco County, Florida">Pasco County, Florida</option>
+      <option value="Pinellas County, Florida">Pinellas County, Florida</option>
+      <option value="Polk County, Florida">Polk County, Florida</option>
+      <option value="Putnam County, Florida">Putnam County, Florida</option>
+      <option value="Santa Rosa County, Florida">Santa Rosa County, Florida</option>
+      <option value="Sarasota County, Florida">Sarasota County, Florida</option>
+      <option value="Seminole County, Florida">Seminole County, Florida</option>
+      <option value="St. Johns County, Florida">St. Johns County, Florida</option>
+      <option value="St. Lucie County, Florida">St. Lucie County, Florida</option>
+      <option value="Sumter County, Florida">Sumter County, Florida</option>
+      <option value="Suwannee County, Florida">Suwannee County, Florida</option>
+      <option value="Taylor County, Florida">Taylor County, Florida</option>
+      <option value="Union County, Florida">Union County, Florida</option>
+      <option value="Volusia County, Florida">Volusia County, Florida</option>
+      <option value="Wakulla County, Florida">Wakulla County, Florida</option>
+      <option value="Walton County, Florida">Walton County, Florida</option>
+      <option value="Washington County, Florida">Washington County, Florida</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>  const data = {"Statewide":{"Married Couple (%)":63,"Cohabiting Couple (%)":9.6,"Male Householder (%)":5.1,"Female Householder (%)":22.3},"Alachua County, Florida":{"Married Couple (%)":65.8,"Cohabiting Couple (%)":5.4,"Male Householder (%)":4.8,"Female Householder (%)":24},"Baker County, Florida":{"Married Couple (%)":72.1,"Cohabiting Couple (%)":7.5,"Male Householder (%)":4.6,"Female Householder (%)":15.7},"Bay County, Florida":{"Married Couple (%)":64.8,"Cohabiting Couple (%)":9.3,"Male Householder (%)":5.7,"Female Householder (%)":20.2},"Bradford County, Florida":{"Married Couple (%)":51.7,"Cohabiting Couple (%)":16.1,"Male Householder (%)":11.9,"Female Householder (%)":20.4},"Brevard County, Florida":{"Married Couple (%)":68.9,"Cohabiting Couple (%)":8.1,"Male Householder (%)":5.2,"Female Householder (%)":17.8},"Broward County, Florida":{"Married Couple (%)":60.7,"Cohabiting Couple (%)":8.6,"Male Householder (%)":5.2,"Female Householder (%)":25.5},"Calhoun County, Florida":{"Married Couple (%)":60.3,"Cohabiting Couple (%)":10.3,"Male Householder (%)":3.8,"Female Householder (%)":25.6},"Charlotte County, Florida":{"Married Couple (%)":66,"Cohabiting Couple (%)":8.6,"Male Householder (%)":5.8,"Female Householder (%)":19.6},"Citrus County, Florida":{"Married Couple (%)":63.1,"Cohabiting Couple (%)":8.2,"Male Householder (%)":6.3,"Female Householder (%)":22.4},"Clay County, Florida":{"Married Couple (%)":70.3,"Cohabiting Couple (%)":9.6,"Male Householder (%)":3.9,"Female Householder (%)":16.1},"Collier County, Florida":{"Married Couple (%)":66.4,"Cohabiting Couple (%)":9.4,"Male Householder (%)":5,"Female Householder (%)":19.2},"Columbia County, Florida":{"Married Couple (%)":60.2,"Cohabiting Couple (%)":11.2,"Male Householder (%)":5.4,"Female Householder (%)":23.2},"DeSoto County, Florida":{"Married Couple (%)":58.7,"Cohabiting Couple (%)":7.3,"Male Householder (%)":3.7,"Female Householder (%)":30.2},"Dixie County, Florida":{"Married Couple (%)":66.3,"Cohabiting Couple (%)":10.5,"Male Householder (%)":4.6,"Female Householder (%)":18.6},"Duval County, Florida":{"Married Couple (%)":57.4,"Cohabiting Couple (%)":8.8,"Male Householder (%)":5.2,"Female Householder (%)":28.6},"Escambia County, Florida":{"Married Couple (%)":57.3,"Cohabiting Couple (%)":9.3,"Male Householder (%)":5.4,"Female Householder (%)":28},"Flagler County, Florida":{"Married Couple (%)":67.7,"Cohabiting Couple (%)":9.3,"Male Householder (%)":3.9,"Female Householder (%)":19.1},"Franklin County, Florida":{"Married Couple (%)":45.8,"Cohabiting Couple (%)":30.4,"Male Householder (%)":8.7,"Female Householder (%)":15.1},"Gadsden County, Florida":{"Married Couple (%)":45.5,"Cohabiting Couple (%)":6.5,"Male Householder (%)":2.8,"Female Householder (%)":45.2},"Gilchrist County, Florida":{"Married Couple (%)":71.9,"Cohabiting Couple (%)":7.7,"Male Householder (%)":6.7,"Female Householder (%)":13.8},"Glades County, Florida":{"Married Couple (%)":61.3,"Cohabiting Couple (%)":12.9,"Male Householder (%)":6,"Female Householder (%)":19.8},"Gulf County, Florida":{"Married Couple (%)":76.3,"Cohabiting Couple (%)":8.5,"Male Householder (%)":1.7,"Female Householder (%)":13.4},"Hamilton County, Florida":{"Married Couple (%)":48.1,"Cohabiting Couple (%)":12.6,"Male Householder (%)":5.1,"Female Householder (%)":34.2},"Hardee County, Florida":{"Married Couple (%)":58.2,"Cohabiting Couple (%)":11.1,"Male Householder (%)":7.8,"Female Householder (%)":23},"Hendry County, Florida":{"Married Couple (%)":57.5,"Cohabiting Couple (%)":11.9,"Male Householder (%)":4.4,"Female Householder (%)":26.1},"Hernando County, Florida":{"Married Couple (%)":62.4,"Cohabiting Couple (%)":14.8,"Male Householder (%)":3.7,"Female Householder (%)":19.1},"Highlands County, Florida":{"Married Couple (%)":60.6,"Cohabiting Couple (%)":14,"Male Householder (%)":4.2,"Female Householder (%)":21.2},"Hillsborough County, Florida":{"Married Couple (%)":62.5,"Cohabiting Couple (%)":9.6,"Male Householder (%)":4.7,"Female Householder (%)":23.2},"Holmes County, Florida":{"Married Couple (%)":68.3,"Cohabiting Couple (%)":8,"Male Householder (%)":7.5,"Female Householder (%)":16.1},"Indian River County, Florida":{"Married Couple (%)":61.2,"Cohabiting Couple (%)":7.4,"Male Householder (%)":6.1,"Female Householder (%)":25.4},"Jackson County, Florida":{"Married Couple (%)":55.1,"Cohabiting Couple (%)":9.6,"Male Householder (%)":5.9,"Female Householder (%)":29.5},"Jefferson County, Florida":{"Married Couple (%)":54.1,"Cohabiting Couple (%)":5.8,"Male Householder (%)":7.4,"Female Householder (%)":32.7},"Lafayette County, Florida":{"Married Couple (%)":72.6,"Cohabiting Couple (%)":10.4,"Male Householder (%)":6.2,"Female Householder (%)":10.8},"Lake County, Florida":{"Married Couple (%)":69.8,"Cohabiting Couple (%)":9.8,"Male Householder (%)":4.5,"Female Householder (%)":15.9},"Lee County, Florida":{"Married Couple (%)":63.4,"Cohabiting Couple (%)":11.3,"Male Householder (%)":4.9,"Female Householder (%)":20.4},"Leon County, Florida":{"Married Couple (%)":56,"Cohabiting Couple (%)":7.5,"Male Householder (%)":4.9,"Female Householder (%)":31.6},"Levy County, Florida":{"Married Couple (%)":56.5,"Cohabiting Couple (%)":11,"Male Householder (%)":8.3,"Female Householder (%)":24.2},"Liberty County, Florida":{"Married Couple (%)":57.3,"Cohabiting Couple (%)":8.6,"Male Householder (%)":6.8,"Female Householder (%)":27.3},"Madison County, Florida":{"Married Couple (%)":60.3,"Cohabiting Couple (%)":3.1,"Male Householder (%)":2.5,"Female Householder (%)":34.1},"Manatee County, Florida":{"Married Couple (%)":65.8,"Cohabiting Couple (%)":9.5,"Male Householder (%)":4.5,"Female Householder (%)":20.2},"Marion County, Florida":{"Married Couple (%)":57.7,"Cohabiting Couple (%)":10.8,"Male Householder (%)":8.5,"Female Householder (%)":23},"Martin County, Florida":{"Married Couple (%)":68.3,"Cohabiting Couple (%)":10.6,"Male Householder (%)":2.9,"Female Householder (%)":18.2},"Miami-Dade County, Florida":{"Married Couple (%)":59.2,"Cohabiting Couple (%)":11.2,"Male Householder (%)":4.8,"Female Householder (%)":24.8},"Monroe County, Florida":{"Married Couple (%)":71.5,"Cohabiting Couple (%)":6,"Male Householder (%)":7.9,"Female Householder (%)":14.5},"Nassau County, Florida":{"Married Couple (%)":71.6,"Cohabiting Couple (%)":6.8,"Male Householder (%)":6.2,"Female Householder (%)":15.4},"Okaloosa County, Florida":{"Married Couple (%)":68,"Cohabiting Couple (%)":7.6,"Male Householder (%)":7.5,"Female Householder (%)":16.9},"Okeechobee County, Florida":{"Married Couple (%)":60.9,"Cohabiting Couple (%)":14,"Male Householder (%)":7.8,"Female Householder (%)":17.2},"Orange County, Florida":{"Married Couple (%)":65.3,"Cohabiting Couple (%)":9.7,"Male Householder (%)":4.4,"Female Householder (%)":20.6},"Osceola County, Florida":{"Married Couple (%)":64.8,"Cohabiting Couple (%)":10.5,"Male Householder (%)":3.9,"Female Householder (%)":20.9},"Palm Beach County, Florida":{"Married Couple (%)":64.1,"Cohabiting Couple (%)":9.3,"Male Householder (%)":6.3,"Female Householder (%)":20.4},"Pasco County, Florida":{"Married Couple (%)":67.2,"Cohabiting Couple (%)":8.1,"Male Householder (%)":6.1,"Female Householder (%)":18.6},"Pinellas County, Florida":{"Married Couple (%)":61.6,"Cohabiting Couple (%)":8.1,"Male Householder (%)":5.4,"Female Householder (%)":24.9},"Polk County, Florida":{"Married Couple (%)":60.6,"Cohabiting Couple (%)":12.7,"Male Householder (%)":4.7,"Female Householder (%)":21.9},"Putnam County, Florida":{"Married Couple (%)":52.6,"Cohabiting Couple (%)":11.8,"Male Householder (%)":5.7,"Female Householder (%)":29.9},"Santa Rosa County, Florida":{"Married Couple (%)":78.1,"Cohabiting Couple (%)":5.7,"Male Householder (%)":3.6,"Female Householder (%)":12.7},"Sarasota County, Florida":{"Married Couple (%)":68.6,"Cohabiting Couple (%)":8.6,"Male Householder (%)":4,"Female Householder (%)":18.8},"Seminole County, Florida":{"Married Couple (%)":71,"Cohabiting Couple (%)":6.9,"Male Householder (%)":4.9,"Female Householder (%)":17.1},"St. Johns County, Florida":{"Married Couple (%)":80.4,"Cohabiting Couple (%)":4.6,"Male Householder (%)":3.3,"Female Householder (%)":11.7},"St. Lucie County, Florida":{"Married Couple (%)":61.4,"Cohabiting Couple (%)":9.5,"Male Householder (%)":5.2,"Female Householder (%)":23.9},"Sumter County, Florida":{"Married Couple (%)":60,"Cohabiting Couple (%)":11.3,"Male Householder (%)":2.8,"Female Householder (%)":25.8},"Suwannee County, Florida":{"Married Couple (%)":60.1,"Cohabiting Couple (%)":13.8,"Male Householder (%)":3.3,"Female Householder (%)":22.9},"Taylor County, Florida":{"Married Couple (%)":44.4,"Cohabiting Couple (%)":16.2,"Male Householder (%)":4.4,"Female Householder (%)":35},"Union County, Florida":{"Married Couple (%)":64.6,"Cohabiting Couple (%)":8.9,"Male Householder (%)":1.7,"Female Householder (%)":24.8},"Volusia County, Florida":{"Married Couple (%)":57.2,"Cohabiting Couple (%)":12.6,"Male Householder (%)":7,"Female Householder (%)":23.3},"Wakulla County, Florida":{"Married Couple (%)":70.4,"Cohabiting Couple (%)":10.9,"Male Householder (%)":3.7,"Female Householder (%)":15},"Walton County, Florida":{"Married Couple (%)":67.4,"Cohabiting Couple (%)":9.2,"Male Householder (%)":4,"Female Householder (%)":19.4},"Washington County, Florida":{"Married Couple (%)":54.8,"Cohabiting Couple (%)":7.8,"Male Householder (%)":8.2,"Female Householder (%)":29.1}};
+  const categories = ["Married Couple (%)","Cohabiting Couple (%)","Male Householder (%)","Female Householder (%)"];
+  const ctx = document.getElementById("barChart").getContext("2d");
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: categories,
+        datasets: [{
+          label: "Share of Children (%)",
+          data: values,
+          backgroundColor: ["#5DA5DA","#FAA43A","#60BD68","#F17CB0"]
+        }]
+      },
+      options: {
+        indexAxis: "y",
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            ticks: { callback: v => v + "%" },
+            title: { display: true, text: "Percent of Children" }
+          }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.raw + "%"
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById("countySelect").addEventListener("change", function() {
+    renderChart(Object.values(data[this.value]));
+  });
+
+  renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

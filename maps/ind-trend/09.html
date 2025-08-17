@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+
+</head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Median Earnings by Industry – 09</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background: white;
+    }
+    .layout {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1.5rem;
+    }
+    label {
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+    #countySelect {
+      font-size: 1rem;
+      padding: 0.4rem 0.8rem;
+      margin-bottom: 1rem;
+    }
+    canvas {
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <label for="countySelect">Median Earnings by Industry:</label>
+    <select id="countySelect"></select>
+    <canvas id="barChart"></canvas>
+  </div>
+
+  <script>
+    const data = {"Statewide":{"Agriculture & mining":57022,"Arts & food services":44928,"Construction":67357,"Education & health":70466,"Finance & real estate":107093,"Information":92060,"Manufacturing":81785,"Other services":51922,"Prof. & waste services":87885,"Public administration":89028,"Retail trade":49640,"Transport & utilities":68127,"Wholesale trade":73502},"Capitol Planning Region":{"Agriculture & mining":60370,"Arts & food services":40916,"Construction":65934,"Education & health":70365,"Finance & real estate":102258,"Information":87014,"Manufacturing":82993,"Other services":49009,"Prof. & waste services":84217,"Public administration":87829,"Retail trade":48032,"Transport & utilities":60073,"Wholesale trade":67819},"Greater Bridgeport Planning Region":{"Agriculture & mining":80764,"Arts & food services":49387,"Construction":60048,"Education & health":69441,"Finance & real estate":108065,"Information":86991,"Manufacturing":80264,"Other services":49884,"Prof. & waste services":91701,"Public administration":94669,"Retail trade":47404,"Transport & utilities":61493,"Wholesale trade":81568},"Lower Connecticut River Valley Planning Region":{"Agriculture & mining":66825,"Arts & food services":45703,"Construction":73426,"Education & health":76084,"Finance & real estate":100982,"Information":107656,"Manufacturing":86659,"Other services":53426,"Prof. & waste services":85725,"Public administration":98387,"Retail trade":49005,"Transport & utilities":87520,"Wholesale trade":71536},"Naugatuck Valley Planning Region":{"Agriculture & mining":61750,"Arts & food services":42791,"Construction":70610,"Education & health":66798,"Finance & real estate":84933,"Information":90045,"Manufacturing":72906,"Other services":53313,"Prof. & waste services":75237,"Public administration":77836,"Retail trade":49509,"Transport & utilities":71556,"Wholesale trade":65456},"Northeastern Connecticut Planning Region":{"Agriculture & mining":62045,"Arts & food services":48684,"Construction":70847,"Education & health":66185,"Finance & real estate":77440,"Information":102143,"Manufacturing":65216,"Other services":50547,"Prof. & waste services":68418,"Public administration":82943,"Retail trade":54182,"Transport & utilities":62456,"Wholesale trade":63787},"Northwest Hills Planning Region":{"Agriculture & mining":51543,"Arts & food services":40991,"Construction":70507,"Education & health":69090,"Finance & real estate":96637,"Information":85625,"Manufacturing":68350,"Other services":63406,"Prof. & waste services":79625,"Public administration":100822,"Retail trade":53880,"Transport & utilities":63315,"Wholesale trade":74348},"South Central Connecticut Planning Region":{"Agriculture & mining":33839,"Arts & food services":41692,"Construction":63445,"Education & health":72110,"Finance & real estate":78691,"Information":91531,"Manufacturing":74933,"Other services":52050,"Prof. & waste services":79565,"Public administration":89952,"Retail trade":48462,"Transport & utilities":72334,"Wholesale trade":71492},"Southeastern Connecticut Planning Region":{"Agriculture & mining":43520,"Arts & food services":45383,"Construction":70948,"Education & health":60751,"Finance & real estate":83565,"Information":78347,"Manufacturing":85622,"Other services":53673,"Prof. & waste services":81648,"Public administration":91214,"Retail trade":43465,"Transport & utilities":85068,"Wholesale trade":65202},"Western Connecticut Planning Region":{"Agriculture & mining":52216,"Arts & food services":51274,"Construction":66130,"Education & health":76021,"Finance & real estate":179332,"Information":109856,"Manufacturing":98592,"Other services":57666,"Prof. & waste services":113320,"Public administration":98608,"Retail trade":58140,"Transport & utilities":74217,"Wholesale trade":105508}};
+    const colors = {
+  'Agriculture & mining': '#FFFF01',
+  'Arts & food services': '#00008B',
+  'Construction': '#7570B1',
+  'Education & health': '#66A61E',
+  'Finance & real estate': '#E6AB01',
+  'Information': '#379',
+  'Manufacturing': '#E41A1C',
+  'Other services': '#377EF1',
+  'Prof. & waste services': '#FF7F00',
+  'Public administration': '#1B9E77',
+  'Retail trade': '#A65011',
+  'Transport & utilities': '#F781BF',
+  'Wholesale trade': '#919'
+};
+
+    const ctx = document.getElementById("barChart").getContext("2d");
+    let chart;
+
+    function renderChart(county) {
+      const values = data[county];
+      const labels = Object.keys(values);
+      const earnings = Object.values(values);
+
+      if (chart) chart.destroy();
+
+      chart = new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels: labels,
+          datasets: [{
+            label: "Median Earnings ($)",
+            data: earnings,
+            backgroundColor: labels.map(label => colors[label] || "#ccc")
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: true,
+  aspectRatio: 1.5, 
+          indexAxis: "x",
+          scales: {
+            y: {
+              beginAtZero: true,
+              title: {
+                display: true,
+                text: "Median Earnings ($)"
+              },
+              ticks: {
+                callback: function(value) {
+                  return "$" + value.toLocaleString();
+                }
+              }
+            },
+            x: {
+              ticks: {
+                maxRotation: 45,
+                minRotation: 20,
+                autoSkip: false,
+                callback: function(value, index, ticks) {
+                  let label = this.getLabelForValue(value);
+                  return label.length > 25 ? label.slice(0, 25) + "…" : label;
+                }
+              }
+            }
+          },
+          plugins: {
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  return "$" + context.parsed.y.toLocaleString();
+                }
+              }
+            },
+            legend: {
+              display: false
+            }
+          }
+        }
+      });
+    }
+
+    const select = document.getElementById("countySelect");
+    Object.keys(data).forEach(county => {
+      const option = document.createElement("option");
+      option.value = county;
+      option.text = county;
+      select.appendChild(option);
+    });
+    select.value = "Statewide";
+    select.addEventListener("change", () => renderChart(select.value));
+    renderChart("Statewide");
+  </script>
+</body>
+</html>
+</html>

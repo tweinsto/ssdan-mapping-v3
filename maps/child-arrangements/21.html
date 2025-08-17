@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Living Arrangements of Children – Kentucky</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Children’s Living Arrangements (Under 18) – Kentucky</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Adair County, Kentucky">Adair County, Kentucky</option>
+      <option value="Allen County, Kentucky">Allen County, Kentucky</option>
+      <option value="Anderson County, Kentucky">Anderson County, Kentucky</option>
+      <option value="Ballard County, Kentucky">Ballard County, Kentucky</option>
+      <option value="Barren County, Kentucky">Barren County, Kentucky</option>
+      <option value="Bath County, Kentucky">Bath County, Kentucky</option>
+      <option value="Bell County, Kentucky">Bell County, Kentucky</option>
+      <option value="Boone County, Kentucky">Boone County, Kentucky</option>
+      <option value="Bourbon County, Kentucky">Bourbon County, Kentucky</option>
+      <option value="Boyd County, Kentucky">Boyd County, Kentucky</option>
+      <option value="Boyle County, Kentucky">Boyle County, Kentucky</option>
+      <option value="Bracken County, Kentucky">Bracken County, Kentucky</option>
+      <option value="Breathitt County, Kentucky">Breathitt County, Kentucky</option>
+      <option value="Breckinridge County, Kentucky">Breckinridge County, Kentucky</option>
+      <option value="Bullitt County, Kentucky">Bullitt County, Kentucky</option>
+      <option value="Butler County, Kentucky">Butler County, Kentucky</option>
+      <option value="Caldwell County, Kentucky">Caldwell County, Kentucky</option>
+      <option value="Calloway County, Kentucky">Calloway County, Kentucky</option>
+      <option value="Campbell County, Kentucky">Campbell County, Kentucky</option>
+      <option value="Carlisle County, Kentucky">Carlisle County, Kentucky</option>
+      <option value="Carroll County, Kentucky">Carroll County, Kentucky</option>
+      <option value="Carter County, Kentucky">Carter County, Kentucky</option>
+      <option value="Casey County, Kentucky">Casey County, Kentucky</option>
+      <option value="Christian County, Kentucky">Christian County, Kentucky</option>
+      <option value="Clark County, Kentucky">Clark County, Kentucky</option>
+      <option value="Clay County, Kentucky">Clay County, Kentucky</option>
+      <option value="Clinton County, Kentucky">Clinton County, Kentucky</option>
+      <option value="Crittenden County, Kentucky">Crittenden County, Kentucky</option>
+      <option value="Cumberland County, Kentucky">Cumberland County, Kentucky</option>
+      <option value="Daviess County, Kentucky">Daviess County, Kentucky</option>
+      <option value="Edmonson County, Kentucky">Edmonson County, Kentucky</option>
+      <option value="Elliott County, Kentucky">Elliott County, Kentucky</option>
+      <option value="Estill County, Kentucky">Estill County, Kentucky</option>
+      <option value="Fayette County, Kentucky">Fayette County, Kentucky</option>
+      <option value="Fleming County, Kentucky">Fleming County, Kentucky</option>
+      <option value="Floyd County, Kentucky">Floyd County, Kentucky</option>
+      <option value="Franklin County, Kentucky">Franklin County, Kentucky</option>
+      <option value="Fulton County, Kentucky">Fulton County, Kentucky</option>
+      <option value="Gallatin County, Kentucky">Gallatin County, Kentucky</option>
+      <option value="Garrard County, Kentucky">Garrard County, Kentucky</option>
+      <option value="Grant County, Kentucky">Grant County, Kentucky</option>
+      <option value="Graves County, Kentucky">Graves County, Kentucky</option>
+      <option value="Grayson County, Kentucky">Grayson County, Kentucky</option>
+      <option value="Green County, Kentucky">Green County, Kentucky</option>
+      <option value="Greenup County, Kentucky">Greenup County, Kentucky</option>
+      <option value="Hancock County, Kentucky">Hancock County, Kentucky</option>
+      <option value="Hardin County, Kentucky">Hardin County, Kentucky</option>
+      <option value="Harlan County, Kentucky">Harlan County, Kentucky</option>
+      <option value="Harrison County, Kentucky">Harrison County, Kentucky</option>
+      <option value="Hart County, Kentucky">Hart County, Kentucky</option>
+      <option value="Henderson County, Kentucky">Henderson County, Kentucky</option>
+      <option value="Henry County, Kentucky">Henry County, Kentucky</option>
+      <option value="Hickman County, Kentucky">Hickman County, Kentucky</option>
+      <option value="Hopkins County, Kentucky">Hopkins County, Kentucky</option>
+      <option value="Jackson County, Kentucky">Jackson County, Kentucky</option>
+      <option value="Jefferson County, Kentucky">Jefferson County, Kentucky</option>
+      <option value="Jessamine County, Kentucky">Jessamine County, Kentucky</option>
+      <option value="Johnson County, Kentucky">Johnson County, Kentucky</option>
+      <option value="Kenton County, Kentucky">Kenton County, Kentucky</option>
+      <option value="Knott County, Kentucky">Knott County, Kentucky</option>
+      <option value="Knox County, Kentucky">Knox County, Kentucky</option>
+      <option value="Larue County, Kentucky">Larue County, Kentucky</option>
+      <option value="Laurel County, Kentucky">Laurel County, Kentucky</option>
+      <option value="Lawrence County, Kentucky">Lawrence County, Kentucky</option>
+      <option value="Lee County, Kentucky">Lee County, Kentucky</option>
+      <option value="Leslie County, Kentucky">Leslie County, Kentucky</option>
+      <option value="Letcher County, Kentucky">Letcher County, Kentucky</option>
+      <option value="Lewis County, Kentucky">Lewis County, Kentucky</option>
+      <option value="Lincoln County, Kentucky">Lincoln County, Kentucky</option>
+      <option value="Livingston County, Kentucky">Livingston County, Kentucky</option>
+      <option value="Logan County, Kentucky">Logan County, Kentucky</option>
+      <option value="Lyon County, Kentucky">Lyon County, Kentucky</option>
+      <option value="Madison County, Kentucky">Madison County, Kentucky</option>
+      <option value="Magoffin County, Kentucky">Magoffin County, Kentucky</option>
+      <option value="Marion County, Kentucky">Marion County, Kentucky</option>
+      <option value="Marshall County, Kentucky">Marshall County, Kentucky</option>
+      <option value="Martin County, Kentucky">Martin County, Kentucky</option>
+      <option value="Mason County, Kentucky">Mason County, Kentucky</option>
+      <option value="McCracken County, Kentucky">McCracken County, Kentucky</option>
+      <option value="McCreary County, Kentucky">McCreary County, Kentucky</option>
+      <option value="McLean County, Kentucky">McLean County, Kentucky</option>
+      <option value="Meade County, Kentucky">Meade County, Kentucky</option>
+      <option value="Menifee County, Kentucky">Menifee County, Kentucky</option>
+      <option value="Mercer County, Kentucky">Mercer County, Kentucky</option>
+      <option value="Metcalfe County, Kentucky">Metcalfe County, Kentucky</option>
+      <option value="Monroe County, Kentucky">Monroe County, Kentucky</option>
+      <option value="Montgomery County, Kentucky">Montgomery County, Kentucky</option>
+      <option value="Morgan County, Kentucky">Morgan County, Kentucky</option>
+      <option value="Muhlenberg County, Kentucky">Muhlenberg County, Kentucky</option>
+      <option value="Nelson County, Kentucky">Nelson County, Kentucky</option>
+      <option value="Nicholas County, Kentucky">Nicholas County, Kentucky</option>
+      <option value="Ohio County, Kentucky">Ohio County, Kentucky</option>
+      <option value="Oldham County, Kentucky">Oldham County, Kentucky</option>
+      <option value="Owen County, Kentucky">Owen County, Kentucky</option>
+      <option value="Owsley County, Kentucky">Owsley County, Kentucky</option>
+      <option value="Pendleton County, Kentucky">Pendleton County, Kentucky</option>
+      <option value="Perry County, Kentucky">Perry County, Kentucky</option>
+      <option value="Pike County, Kentucky">Pike County, Kentucky</option>
+      <option value="Powell County, Kentucky">Powell County, Kentucky</option>
+      <option value="Pulaski County, Kentucky">Pulaski County, Kentucky</option>
+      <option value="Robertson County, Kentucky">Robertson County, Kentucky</option>
+      <option value="Rockcastle County, Kentucky">Rockcastle County, Kentucky</option>
+      <option value="Rowan County, Kentucky">Rowan County, Kentucky</option>
+      <option value="Russell County, Kentucky">Russell County, Kentucky</option>
+      <option value="Scott County, Kentucky">Scott County, Kentucky</option>
+      <option value="Shelby County, Kentucky">Shelby County, Kentucky</option>
+      <option value="Simpson County, Kentucky">Simpson County, Kentucky</option>
+      <option value="Spencer County, Kentucky">Spencer County, Kentucky</option>
+      <option value="Taylor County, Kentucky">Taylor County, Kentucky</option>
+      <option value="Todd County, Kentucky">Todd County, Kentucky</option>
+      <option value="Trigg County, Kentucky">Trigg County, Kentucky</option>
+      <option value="Trimble County, Kentucky">Trimble County, Kentucky</option>
+      <option value="Union County, Kentucky">Union County, Kentucky</option>
+      <option value="Warren County, Kentucky">Warren County, Kentucky</option>
+      <option value="Washington County, Kentucky">Washington County, Kentucky</option>
+      <option value="Wayne County, Kentucky">Wayne County, Kentucky</option>
+      <option value="Webster County, Kentucky">Webster County, Kentucky</option>
+      <option value="Whitley County, Kentucky">Whitley County, Kentucky</option>
+      <option value="Wolfe County, Kentucky">Wolfe County, Kentucky</option>
+      <option value="Woodford County, Kentucky">Woodford County, Kentucky</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>  const data = {"Statewide":{"Married Couple (%)":65.8,"Cohabiting Couple (%)":8.8,"Male Householder (%)":5.2,"Female Householder (%)":20.2},"Adair County, Kentucky":{"Married Couple (%)":76.4,"Cohabiting Couple (%)":9.2,"Male Householder (%)":4.1,"Female Householder (%)":10.3},"Allen County, Kentucky":{"Married Couple (%)":74.8,"Cohabiting Couple (%)":2.5,"Male Householder (%)":7.1,"Female Householder (%)":15.5},"Anderson County, Kentucky":{"Married Couple (%)":73.2,"Cohabiting Couple (%)":7.7,"Male Householder (%)":5.3,"Female Householder (%)":13.7},"Ballard County, Kentucky":{"Married Couple (%)":77.6,"Cohabiting Couple (%)":10.4,"Male Householder (%)":1,"Female Householder (%)":11},"Barren County, Kentucky":{"Married Couple (%)":61.5,"Cohabiting Couple (%)":13.5,"Male Householder (%)":4.6,"Female Householder (%)":20.3},"Bath County, Kentucky":{"Married Couple (%)":71,"Cohabiting Couple (%)":6,"Male Householder (%)":1.5,"Female Householder (%)":21.5},"Bell County, Kentucky":{"Married Couple (%)":53.9,"Cohabiting Couple (%)":11.5,"Male Householder (%)":10.4,"Female Householder (%)":24.2},"Boone County, Kentucky":{"Married Couple (%)":72.2,"Cohabiting Couple (%)":9.8,"Male Householder (%)":4.4,"Female Householder (%)":13.6},"Bourbon County, Kentucky":{"Married Couple (%)":67.8,"Cohabiting Couple (%)":4.2,"Male Householder (%)":3.3,"Female Householder (%)":24.6},"Boyd County, Kentucky":{"Married Couple (%)":57.4,"Cohabiting Couple (%)":14.1,"Male Householder (%)":6.2,"Female Householder (%)":22.3},"Boyle County, Kentucky":{"Married Couple (%)":62.9,"Cohabiting Couple (%)":8.2,"Male Householder (%)":6.4,"Female Householder (%)":22.6},"Bracken County, Kentucky":{"Married Couple (%)":61.4,"Cohabiting Couple (%)":13.7,"Male Householder (%)":9.4,"Female Householder (%)":15.5},"Breathitt County, Kentucky":{"Married Couple (%)":69.3,"Cohabiting Couple (%)":10.2,"Male Householder (%)":6.8,"Female Householder (%)":13.7},"Breckinridge County, Kentucky":{"Married Couple (%)":68.7,"Cohabiting Couple (%)":7.9,"Male Householder (%)":1.9,"Female Householder (%)":21.5},"Bullitt County, Kentucky":{"Married Couple (%)":67.5,"Cohabiting Couple (%)":9.2,"Male Householder (%)":6.9,"Female Householder (%)":16.4},"Butler County, Kentucky":{"Married Couple (%)":74.1,"Cohabiting Couple (%)":10.5,"Male Householder (%)":4.3,"Female Householder (%)":11.1},"Caldwell County, Kentucky":{"Married Couple (%)":73.1,"Cohabiting Couple (%)":5.8,"Male Householder (%)":1.9,"Female Householder (%)":19.3},"Calloway County, Kentucky":{"Married Couple (%)":67.1,"Cohabiting Couple (%)":5.4,"Male Householder (%)":4.8,"Female Householder (%)":22.7},"Campbell County, Kentucky":{"Married Couple (%)":72.9,"Cohabiting Couple (%)":6.1,"Male Householder (%)":4.5,"Female Householder (%)":16.5},"Carlisle County, Kentucky":{"Married Couple (%)":67.5,"Cohabiting Couple (%)":8.9,"Male Householder (%)":6.8,"Female Householder (%)":16.8},"Carroll County, Kentucky":{"Married Couple (%)":53.9,"Cohabiting Couple (%)":10.5,"Male Householder (%)":10.2,"Female Householder (%)":25.5},"Carter County, Kentucky":{"Married Couple (%)":72.4,"Cohabiting Couple (%)":9.3,"Male Householder (%)":8.4,"Female Householder (%)":9.9},"Casey County, Kentucky":{"Married Couple (%)":71.7,"Cohabiting Couple (%)":3.8,"Male Householder (%)":1.6,"Female Householder (%)":22.9},"Christian County, Kentucky":{"Married Couple (%)":66.1,"Cohabiting Couple (%)":5.5,"Male Householder (%)":3.3,"Female Householder (%)":25.2},"Clark County, Kentucky":{"Married Couple (%)":60.6,"Cohabiting Couple (%)":8.5,"Male Householder (%)":7.3,"Female Householder (%)":23.6},"Clay County, Kentucky":{"Married Couple (%)":47.4,"Cohabiting Couple (%)":10.5,"Male Householder (%)":6.3,"Female Householder (%)":35.8},"Clinton County, Kentucky":{"Married Couple (%)":76.4,"Cohabiting Couple (%)":7.6,"Male Householder (%)":2.3,"Female Householder (%)":13.6},"Crittenden County, Kentucky":{"Married Couple (%)":70.4,"Cohabiting Couple (%)":4.3,"Male Householder (%)":2.8,"Female Householder (%)":22.5},"Cumberland County, Kentucky":{"Married Couple (%)":60.9,"Cohabiting Couple (%)":21.6,"Male Householder (%)":6.1,"Female Householder (%)":11.4},"Daviess County, Kentucky":{"Married Couple (%)":63.7,"Cohabiting Couple (%)":12.5,"Male Householder (%)":4.8,"Female Householder (%)":19.1},"Edmonson County, Kentucky":{"Married Couple (%)":70.6,"Cohabiting Couple (%)":7.1,"Male Householder (%)":2.2,"Female Householder (%)":20},"Elliott County, Kentucky":{"Married Couple (%)":47.5,"Cohabiting Couple (%)":10.2,"Male Householder (%)":2.2,"Female Householder (%)":40.1},"Estill County, Kentucky":{"Married Couple (%)":60.7,"Cohabiting Couple (%)":11,"Male Householder (%)":12.8,"Female Householder (%)":15.5},"Fayette County, Kentucky":{"Married Couple (%)":64.9,"Cohabiting Couple (%)":9.5,"Male Householder (%)":4.3,"Female Householder (%)":21.4},"Fleming County, Kentucky":{"Married Couple (%)":58.9,"Cohabiting Couple (%)":16.3,"Male Householder (%)":6.4,"Female Householder (%)":18.4},"Floyd County, Kentucky":{"Married Couple (%)":58.8,"Cohabiting Couple (%)":16.5,"Male Householder (%)":6.5,"Female Householder (%)":18.2},"Franklin County, Kentucky":{"Married Couple (%)":58.1,"Cohabiting Couple (%)":15.8,"Male Householder (%)":6.1,"Female Householder (%)":19.9},"Fulton County, Kentucky":{"Married Couple (%)":43.1,"Cohabiting Couple (%)":25.1,"Male Householder (%)":8.1,"Female Householder (%)":23.8},"Gallatin County, Kentucky":{"Married Couple (%)":64.1,"Cohabiting Couple (%)":17.5,"Male Householder (%)":2.2,"Female Householder (%)":16.3},"Garrard County, Kentucky":{"Married Couple (%)":72.9,"Cohabiting Couple (%)":5.3,"Male Householder (%)":5.9,"Female Householder (%)":15.9},"Grant County, Kentucky":{"Married Couple (%)":63.5,"Cohabiting Couple (%)":6,"Male Householder (%)":3.7,"Female Householder (%)":26.8},"Graves County, Kentucky":{"Married Couple (%)":69.8,"Cohabiting Couple (%)":12.6,"Male Householder (%)":2.5,"Female Householder (%)":15.1},"Grayson County, Kentucky":{"Married Couple (%)":67.2,"Cohabiting Couple (%)":7.7,"Male Householder (%)":6,"Female Householder (%)":19.1},"Green County, Kentucky":{"Married Couple (%)":61.3,"Cohabiting Couple (%)":11.9,"Male Householder (%)":9,"Female Householder (%)":17.7},"Greenup County, Kentucky":{"Married Couple (%)":71.1,"Cohabiting Couple (%)":10,"Male Householder (%)":4.2,"Female Householder (%)":14.7},"Hancock County, Kentucky":{"Married Couple (%)":57.9,"Cohabiting Couple (%)":10.9,"Male Householder (%)":12,"Female Householder (%)":19.1},"Hardin County, Kentucky":{"Married Couple (%)":65.9,"Cohabiting Couple (%)":9.2,"Male Householder (%)":5.4,"Female Householder (%)":19.4},"Harlan County, Kentucky":{"Married Couple (%)":65.4,"Cohabiting Couple (%)":7.7,"Male Householder (%)":3.3,"Female Householder (%)":23.7},"Harrison County, Kentucky":{"Married Couple (%)":75.3,"Cohabiting Couple (%)":9.7,"Male Householder (%)":5.5,"Female Householder (%)":9.4},"Hart County, Kentucky":{"Married Couple (%)":67.9,"Cohabiting Couple (%)":14.3,"Male Householder (%)":5,"Female Householder (%)":12.8},"Henderson County, Kentucky":{"Married Couple (%)":64.1,"Cohabiting Couple (%)":8,"Male Householder (%)":6.2,"Female Householder (%)":21.7},"Henry County, Kentucky":{"Married Couple (%)":69.3,"Cohabiting Couple (%)":9.9,"Male Householder (%)":4.4,"Female Householder (%)":16.3},"Hickman County, Kentucky":{"Married Couple (%)":48.5,"Cohabiting Couple (%)":21.7,"Male Householder (%)":1.6,"Female Householder (%)":28.2},"Hopkins County, Kentucky":{"Married Couple (%)":59.3,"Cohabiting Couple (%)":11.1,"Male Householder (%)":3.5,"Female Householder (%)":26.1},"Jackson County, Kentucky":{"Married Couple (%)":80.3,"Cohabiting Couple (%)":1.6,"Male Householder (%)":1.9,"Female Householder (%)":16.2},"Jefferson County, Kentucky":{"Married Couple (%)":59.1,"Cohabiting Couple (%)":7.9,"Male Householder (%)":5.4,"Female Householder (%)":27.7},"Jessamine County, Kentucky":{"Married Couple (%)":70.3,"Cohabiting Couple (%)":2.2,"Male Householder (%)":5.5,"Female Householder (%)":22.1},"Johnson County, Kentucky":{"Married Couple (%)":71.5,"Cohabiting Couple (%)":4.9,"Male Householder (%)":2.6,"Female Householder (%)":21},"Kenton County, Kentucky":{"Married Couple (%)":64.8,"Cohabiting Couple (%)":10.2,"Male Householder (%)":5.3,"Female Householder (%)":19.7},"Knott County, Kentucky":{"Married Couple (%)":64.1,"Cohabiting Couple (%)":6.8,"Male Householder (%)":9,"Female Householder (%)":20.1},"Knox County, Kentucky":{"Married Couple (%)":62.3,"Cohabiting Couple (%)":4.1,"Male Householder (%)":7.6,"Female Householder (%)":26},"Larue County, Kentucky":{"Married Couple (%)":70,"Cohabiting Couple (%)":6,"Male Householder (%)":4.4,"Female Householder (%)":19.7},"Laurel County, Kentucky":{"Married Couple (%)":63.3,"Cohabiting Couple (%)":9.4,"Male Householder (%)":5.3,"Female Householder (%)":22},"Lawrence County, Kentucky":{"Married Couple (%)":74.5,"Cohabiting Couple (%)":3.5,"Male Householder (%)":5.6,"Female Householder (%)":16.4},"Lee County, Kentucky":{"Married Couple (%)":54.4,"Cohabiting Couple (%)":17.6,"Male Householder (%)":7.1,"Female Householder (%)":20.8},"Leslie County, Kentucky":{"Married Couple (%)":77.1,"Cohabiting Couple (%)":1.5,"Male Householder (%)":9.7,"Female Householder (%)":11.7},"Letcher County, Kentucky":{"Married Couple (%)":69.2,"Cohabiting Couple (%)":4.7,"Male Householder (%)":10.6,"Female Householder (%)":15.5},"Lewis County, Kentucky":{"Married Couple (%)":66.2,"Cohabiting Couple (%)":7.7,"Male Householder (%)":6.6,"Female Householder (%)":19.5},"Lincoln County, Kentucky":{"Married Couple (%)":65.1,"Cohabiting Couple (%)":3.4,"Male Householder (%)":11.1,"Female Householder (%)":20.4},"Livingston County, Kentucky":{"Married Couple (%)":58.9,"Cohabiting Couple (%)":8,"Male Householder (%)":2.9,"Female Householder (%)":30.2},"Logan County, Kentucky":{"Married Couple (%)":75.1,"Cohabiting Couple (%)":4.4,"Male Householder (%)":10.2,"Female Householder (%)":10.2},"Lyon County, Kentucky":{"Married Couple (%)":75.2,"Cohabiting Couple (%)":10.4,"Male Householder (%)":2.4,"Female Householder (%)":12},"Madison County, Kentucky":{"Married Couple (%)":70.6,"Cohabiting Couple (%)":8.7,"Male Householder (%)":4.5,"Female Householder (%)":16.2},"Magoffin County, Kentucky":{"Married Couple (%)":58.1,"Cohabiting Couple (%)":8.8,"Male Householder (%)":11.2,"Female Householder (%)":21.9},"Marion County, Kentucky":{"Married Couple (%)":59.2,"Cohabiting Couple (%)":11.7,"Male Householder (%)":9,"Female Householder (%)":20.1},"Marshall County, Kentucky":{"Married Couple (%)":72.8,"Cohabiting Couple (%)":9.9,"Male Householder (%)":4.5,"Female Householder (%)":12.8},"Martin County, Kentucky":{"Married Couple (%)":78.3,"Cohabiting Couple (%)":8.5,"Male Householder (%)":5.4,"Female Householder (%)":7.7},"Mason County, Kentucky":{"Married Couple (%)":69.2,"Cohabiting Couple (%)":9,"Male Householder (%)":1.7,"Female Householder (%)":20.2},"McCracken County, Kentucky":{"Married Couple (%)":62.4,"Cohabiting Couple (%)":11.2,"Male Householder (%)":4.2,"Female Householder (%)":22.2},"McCreary County, Kentucky":{"Married Couple (%)":70.3,"Cohabiting Couple (%)":10.4,"Male Householder (%)":11.9,"Female Householder (%)":7.4},"McLean County, Kentucky":{"Married Couple (%)":84.7,"Cohabiting Couple (%)":8.1,"Male Householder (%)":1.7,"Female Householder (%)":5.6},"Meade County, Kentucky":{"Married Couple (%)":72.8,"Cohabiting Couple (%)":9.8,"Male Householder (%)":6,"Female Householder (%)":11.3},"Menifee County, Kentucky":{"Married Couple (%)":58.7,"Cohabiting Couple (%)":14.9,"Male Householder (%)":5.1,"Female Householder (%)":21.2},"Mercer County, Kentucky":{"Married Couple (%)":76.1,"Cohabiting Couple (%)":6.4,"Male Householder (%)":4.2,"Female Householder (%)":13.3},"Metcalfe County, Kentucky":{"Married Couple (%)":67,"Cohabiting Couple (%)":9.8,"Male Householder (%)":6.5,"Female Householder (%)":16.7},"Monroe County, Kentucky":{"Married Couple (%)":66.9,"Cohabiting Couple (%)":8.7,"Male Householder (%)":0.4,"Female Householder (%)":23.9},"Montgomery County, Kentucky":{"Married Couple (%)":67.4,"Cohabiting Couple (%)":13.1,"Male Householder (%)":7.8,"Female Householder (%)":11.7},"Morgan County, Kentucky":{"Married Couple (%)":74.1,"Cohabiting Couple (%)":6.5,"Male Householder (%)":4.3,"Female Householder (%)":15},"Muhlenberg County, Kentucky":{"Married Couple (%)":66.4,"Cohabiting Couple (%)":14.9,"Male Householder (%)":7.4,"Female Householder (%)":11.3},"Nelson County, Kentucky":{"Married Couple (%)":68.6,"Cohabiting Couple (%)":11.2,"Male Householder (%)":4,"Female Householder (%)":16.2},"Nicholas County, Kentucky":{"Married Couple (%)":77.3,"Cohabiting Couple (%)":9.7,"Male Householder (%)":4.9,"Female Householder (%)":8.1},"Ohio County, Kentucky":{"Married Couple (%)":65.5,"Cohabiting Couple (%)":6.4,"Male Householder (%)":9.4,"Female Householder (%)":18.8},"Oldham County, Kentucky":{"Married Couple (%)":81,"Cohabiting Couple (%)":5.3,"Male Householder (%)":4.6,"Female Householder (%)":9.1},"Owen County, Kentucky":{"Married Couple (%)":83,"Cohabiting Couple (%)":5.9,"Male Householder (%)":5.9,"Female Householder (%)":5.2},"Owsley County, Kentucky":{"Married Couple (%)":70.9,"Cohabiting Couple (%)":8.2,"Male Householder (%)":2.2,"Female Householder (%)":18.6},"Pendleton County, Kentucky":{"Married Couple (%)":74.6,"Cohabiting Couple (%)":6.4,"Male Householder (%)":6.8,"Female Householder (%)":12.2},"Perry County, Kentucky":{"Married Couple (%)":59.1,"Cohabiting Couple (%)":11.1,"Male Householder (%)":9.6,"Female Householder (%)":20.3},"Pike County, Kentucky":{"Married Couple (%)":66.6,"Cohabiting Couple (%)":4.4,"Male Householder (%)":6.4,"Female Householder (%)":22.6},"Powell County, Kentucky":{"Married Couple (%)":67.1,"Cohabiting Couple (%)":13,"Male Householder (%)":2.7,"Female Householder (%)":17.3},"Pulaski County, Kentucky":{"Married Couple (%)":58.1,"Cohabiting Couple (%)":12,"Male Householder (%)":6.3,"Female Householder (%)":23.5},"Robertson County, Kentucky":{"Married Couple (%)":47.1,"Cohabiting Couple (%)":38,"Male Householder (%)":2.2,"Female Householder (%)":12.6},"Rockcastle County, Kentucky":{"Married Couple (%)":67.9,"Cohabiting Couple (%)":9.6,"Male Householder (%)":7,"Female Householder (%)":15.5},"Rowan County, Kentucky":{"Married Couple (%)":60.9,"Cohabiting Couple (%)":8.5,"Male Householder (%)":6.3,"Female Householder (%)":24.3},"Russell County, Kentucky":{"Married Couple (%)":59.8,"Cohabiting Couple (%)":8.4,"Male Householder (%)":12.3,"Female Householder (%)":19.5},"Scott County, Kentucky":{"Married Couple (%)":70.4,"Cohabiting Couple (%)":8.5,"Male Householder (%)":3.6,"Female Householder (%)":17.5},"Shelby County, Kentucky":{"Married Couple (%)":71.3,"Cohabiting Couple (%)":6.2,"Male Householder (%)":4.3,"Female Householder (%)":18.2},"Simpson County, Kentucky":{"Married Couple (%)":63.5,"Cohabiting Couple (%)":21.1,"Male Householder (%)":2.5,"Female Householder (%)":12.9},"Spencer County, Kentucky":{"Married Couple (%)":72.7,"Cohabiting Couple (%)":9.6,"Male Householder (%)":4.6,"Female Householder (%)":13.1},"Taylor County, Kentucky":{"Married Couple (%)":64.8,"Cohabiting Couple (%)":5.3,"Male Householder (%)":1.2,"Female Householder (%)":28.7},"Todd County, Kentucky":{"Married Couple (%)":78.6,"Cohabiting Couple (%)":2.2,"Male Householder (%)":1.4,"Female Householder (%)":17.9},"Trigg County, Kentucky":{"Married Couple (%)":78.7,"Cohabiting Couple (%)":0.8,"Male Householder (%)":3.2,"Female Householder (%)":17.3},"Trimble County, Kentucky":{"Married Couple (%)":64.5,"Cohabiting Couple (%)":6.4,"Male Householder (%)":7.2,"Female Householder (%)":21.9},"Union County, Kentucky":{"Married Couple (%)":69.5,"Cohabiting Couple (%)":9.4,"Male Householder (%)":3.5,"Female Householder (%)":17.7},"Warren County, Kentucky":{"Married Couple (%)":70.9,"Cohabiting Couple (%)":7.7,"Male Householder (%)":3.3,"Female Householder (%)":18.2},"Washington County, Kentucky":{"Married Couple (%)":71.8,"Cohabiting Couple (%)":1.5,"Male Householder (%)":7.9,"Female Householder (%)":18.8},"Wayne County, Kentucky":{"Married Couple (%)":61.1,"Cohabiting Couple (%)":5.5,"Male Householder (%)":4.7,"Female Householder (%)":28.7},"Webster County, Kentucky":{"Married Couple (%)":65.6,"Cohabiting Couple (%)":12.4,"Male Householder (%)":4.7,"Female Householder (%)":17.2},"Whitley County, Kentucky":{"Married Couple (%)":70.3,"Cohabiting Couple (%)":6.8,"Male Householder (%)":3.4,"Female Householder (%)":19.5},"Wolfe County, Kentucky":{"Married Couple (%)":57.5,"Cohabiting Couple (%)":9.8,"Male Householder (%)":20.3,"Female Householder (%)":12.3},"Woodford County, Kentucky":{"Married Couple (%)":68.4,"Cohabiting Couple (%)":8,"Male Householder (%)":4.8,"Female Householder (%)":18.8}};
+  const categories = ["Married Couple (%)","Cohabiting Couple (%)","Male Householder (%)","Female Householder (%)"];
+  const ctx = document.getElementById("barChart").getContext("2d");
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: categories,
+        datasets: [{
+          label: "Share of Children (%)",
+          data: values,
+          backgroundColor: ["#5DA5DA","#FAA43A","#60BD68","#F17CB0"]
+        }]
+      },
+      options: {
+        indexAxis: "y",
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            ticks: { callback: v => v + "%" },
+            title: { display: true, text: "Percent of Children" }
+          }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.raw + "%"
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById("countySelect").addEventListener("change", function() {
+    renderChart(Object.values(data[this.value]));
+  });
+
+  renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

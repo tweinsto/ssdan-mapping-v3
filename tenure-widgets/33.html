@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+
+</head>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Owners: Year Moved In (%) – 33</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #fff;
+    }
+    .container {
+      width: 95%;
+      max-width: 1200px;
+      margin: auto;
+      text-align: center;
+    }
+    #countySelect {
+      font-size: 1rem;
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    canvas {
+      max-width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Owners: Year Moved In (%)</h2>
+    <select id="countySelect"></select>
+    <canvas id="pieChart"></canvas>
+  </div>
+
+  <script>
+    const data = {"Statewide":{"Moved in 2021 or later":4.8,"Moved in 2018–2020":15.2,"Moved in 2010–2017":27.4,"Moved in 2000–2009":22.7,"Moved in 1990–1999":14,"1989 or earlier":15.8},"Belknap County":{"Moved in 2021 or later":6.7046,"Moved in 2018–2020":14.1634,"Moved in 2010–2017":28.1224,"Moved in 2000–2009":23.2618,"Moved in 1990–1999":14.4407,"1989 or earlier":13.3071},"Carroll County":{"Moved in 2021 or later":4.8384,"Moved in 2018–2020":13.9967,"Moved in 2010–2017":27.6644,"Moved in 2000–2009":26.6054,"Moved in 1990–1999":13.1048,"1989 or earlier":13.7904},"Cheshire County":{"Moved in 2021 or later":4.6103,"Moved in 2018–2020":15.6815,"Moved in 2010–2017":23.0235,"Moved in 2000–2009":23.6528,"Moved in 1990–1999":13.9148,"1989 or earlier":19.1171},"Coos County":{"Moved in 2021 or later":5.1345,"Moved in 2018–2020":13.5844,"Moved in 2010–2017":26.5917,"Moved in 2000–2009":20.1663,"Moved in 1990–1999":14.7188,"1989 or earlier":19.8044},"Grafton County":{"Moved in 2021 or later":5.3233,"Moved in 2018–2020":16.2979,"Moved in 2010–2017":24.5444,"Moved in 2000–2009":23.5101,"Moved in 1990–1999":14.6314,"1989 or earlier":15.6929},"Hillsborough County":{"Moved in 2021 or later":4.6701,"Moved in 2018–2020":15.9903,"Moved in 2010–2017":26.719,"Moved in 2000–2009":21.8389,"Moved in 1990–1999":14.0102,"1989 or earlier":16.7716},"Merrimack County":{"Moved in 2021 or later":4.5559,"Moved in 2018–2020":15.2861,"Moved in 2010–2017":28.5036,"Moved in 2000–2009":22.1942,"Moved in 1990–1999":13.4921,"1989 or earlier":15.9681},"Rockingham County":{"Moved in 2021 or later":4.6745,"Moved in 2018–2020":14.7108,"Moved in 2010–2017":29.4838,"Moved in 2000–2009":21.9395,"Moved in 1990–1999":14.963,"1989 or earlier":14.2284},"Strafford County":{"Moved in 2021 or later":4.951,"Moved in 2018–2020":15.8641,"Moved in 2010–2017":28.2417,"Moved in 2000–2009":24.2555,"Moved in 1990–1999":11.3233,"1989 or earlier":15.3644},"Sullivan County":{"Moved in 2021 or later":4.0728,"Moved in 2018–2020":11.9774,"Moved in 2010–2017":24.5366,"Moved in 2000–2009":26.3569,"Moved in 1990–1999":14.5956,"1989 or earlier":18.4606}};
+    const colors = {
+  'Moved in 2021 or later': '#377EF1',
+  'Moved in 2018–2020': '#FF7F00',
+  'Moved in 2010–2017': '#66A61E',
+  'Moved in 2000–2009': '#E6AB01',
+  'Moved in 1990–1999': '#7570B1',
+  '1989 or earlier': '#E41A1C'
+};
+
+    const ctx = document.getElementById("pieChart").getContext("2d");
+    let chart;
+
+    function renderChart(key) {
+      const values = data[key];
+      const labels = Object.keys(values);
+      const percentages = Object.values(values);
+
+      if (chart) chart.destroy();
+
+      chart = new Chart(ctx, {
+        type: "pie",
+        data: {
+          labels: labels,
+          datasets: [{
+            data: percentages,
+            backgroundColor: labels.map(label => colors[label] || "#cccccc")
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: true,
+          aspectRatio: 1.5,
+          plugins: {
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  return context.label + ": " + context.formattedValue + "%";
+                }
+              }
+            },
+            legend: {
+              position: "right",
+              labels: {
+                usePointStyle: true,
+                pointStyle: "rect"
+              }
+            }
+          }
+        }
+      });
+    }
+
+    // Populate dropdown (Statewide first, then counties A->Z)
+    const select = document.getElementById("countySelect");
+    const keys = ["Statewide", ...Object.keys(data).filter(k => k !== "Statewide").sort()];
+    keys.forEach(k => {
+      const opt = document.createElement("option");
+      opt.value = k;
+      opt.text  = k;
+      select.appendChild(opt);
+    });
+    select.value = "Statewide";
+    select.addEventListener("change", () => renderChart(select.value));
+
+    renderChart("Statewide");
+  </script>
+</body>
+</html>
+</html>

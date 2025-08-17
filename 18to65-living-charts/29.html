@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Living Arrangements 18–64 – Missouri</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+      body { font-family: sans-serif; margin: 1.25rem 2rem; text-align: center; }
+      h2 { margin-bottom: .25rem; font-size: 1.6rem; color: #2c348b; }
+      label { margin-right: .5rem; }
+      select { padding: .45rem .6rem; font-size: 1rem; border-radius: .5rem; border: 2px solid #f39c12; }
+      canvas { width: 100%; max-width: 900px; height: 520px; }
+    </style>
+</head>
+<html>
+  <body>
+    <h2>Living Arrangements of Adults 18–64 in Missouri</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Adair County, Missouri">Adair County, Missouri</option>
+      <option value="Andrew County, Missouri">Andrew County, Missouri</option>
+      <option value="Atchison County, Missouri">Atchison County, Missouri</option>
+      <option value="Audrain County, Missouri">Audrain County, Missouri</option>
+      <option value="Barry County, Missouri">Barry County, Missouri</option>
+      <option value="Barton County, Missouri">Barton County, Missouri</option>
+      <option value="Bates County, Missouri">Bates County, Missouri</option>
+      <option value="Benton County, Missouri">Benton County, Missouri</option>
+      <option value="Bollinger County, Missouri">Bollinger County, Missouri</option>
+      <option value="Boone County, Missouri">Boone County, Missouri</option>
+      <option value="Buchanan County, Missouri">Buchanan County, Missouri</option>
+      <option value="Butler County, Missouri">Butler County, Missouri</option>
+      <option value="Caldwell County, Missouri">Caldwell County, Missouri</option>
+      <option value="Callaway County, Missouri">Callaway County, Missouri</option>
+      <option value="Camden County, Missouri">Camden County, Missouri</option>
+      <option value="Cape Girardeau County, Missouri">Cape Girardeau County, Missouri</option>
+      <option value="Carroll County, Missouri">Carroll County, Missouri</option>
+      <option value="Carter County, Missouri">Carter County, Missouri</option>
+      <option value="Cass County, Missouri">Cass County, Missouri</option>
+      <option value="Cedar County, Missouri">Cedar County, Missouri</option>
+      <option value="Chariton County, Missouri">Chariton County, Missouri</option>
+      <option value="Christian County, Missouri">Christian County, Missouri</option>
+      <option value="Clark County, Missouri">Clark County, Missouri</option>
+      <option value="Clay County, Missouri">Clay County, Missouri</option>
+      <option value="Clinton County, Missouri">Clinton County, Missouri</option>
+      <option value="Cole County, Missouri">Cole County, Missouri</option>
+      <option value="Cooper County, Missouri">Cooper County, Missouri</option>
+      <option value="Crawford County, Missouri">Crawford County, Missouri</option>
+      <option value="Dade County, Missouri">Dade County, Missouri</option>
+      <option value="Dallas County, Missouri">Dallas County, Missouri</option>
+      <option value="Daviess County, Missouri">Daviess County, Missouri</option>
+      <option value="DeKalb County, Missouri">DeKalb County, Missouri</option>
+      <option value="Dent County, Missouri">Dent County, Missouri</option>
+      <option value="Douglas County, Missouri">Douglas County, Missouri</option>
+      <option value="Dunklin County, Missouri">Dunklin County, Missouri</option>
+      <option value="Franklin County, Missouri">Franklin County, Missouri</option>
+      <option value="Gasconade County, Missouri">Gasconade County, Missouri</option>
+      <option value="Gentry County, Missouri">Gentry County, Missouri</option>
+      <option value="Greene County, Missouri">Greene County, Missouri</option>
+      <option value="Grundy County, Missouri">Grundy County, Missouri</option>
+      <option value="Harrison County, Missouri">Harrison County, Missouri</option>
+      <option value="Henry County, Missouri">Henry County, Missouri</option>
+      <option value="Hickory County, Missouri">Hickory County, Missouri</option>
+      <option value="Holt County, Missouri">Holt County, Missouri</option>
+      <option value="Howard County, Missouri">Howard County, Missouri</option>
+      <option value="Howell County, Missouri">Howell County, Missouri</option>
+      <option value="Iron County, Missouri">Iron County, Missouri</option>
+      <option value="Jackson County, Missouri">Jackson County, Missouri</option>
+      <option value="Jasper County, Missouri">Jasper County, Missouri</option>
+      <option value="Jefferson County, Missouri">Jefferson County, Missouri</option>
+      <option value="Johnson County, Missouri">Johnson County, Missouri</option>
+      <option value="Knox County, Missouri">Knox County, Missouri</option>
+      <option value="Laclede County, Missouri">Laclede County, Missouri</option>
+      <option value="Lafayette County, Missouri">Lafayette County, Missouri</option>
+      <option value="Lawrence County, Missouri">Lawrence County, Missouri</option>
+      <option value="Lewis County, Missouri">Lewis County, Missouri</option>
+      <option value="Lincoln County, Missouri">Lincoln County, Missouri</option>
+      <option value="Linn County, Missouri">Linn County, Missouri</option>
+      <option value="Livingston County, Missouri">Livingston County, Missouri</option>
+      <option value="Macon County, Missouri">Macon County, Missouri</option>
+      <option value="Madison County, Missouri">Madison County, Missouri</option>
+      <option value="Maries County, Missouri">Maries County, Missouri</option>
+      <option value="Marion County, Missouri">Marion County, Missouri</option>
+      <option value="McDonald County, Missouri">McDonald County, Missouri</option>
+      <option value="Mercer County, Missouri">Mercer County, Missouri</option>
+      <option value="Miller County, Missouri">Miller County, Missouri</option>
+      <option value="Mississippi County, Missouri">Mississippi County, Missouri</option>
+      <option value="Moniteau County, Missouri">Moniteau County, Missouri</option>
+      <option value="Monroe County, Missouri">Monroe County, Missouri</option>
+      <option value="Montgomery County, Missouri">Montgomery County, Missouri</option>
+      <option value="Morgan County, Missouri">Morgan County, Missouri</option>
+      <option value="New Madrid County, Missouri">New Madrid County, Missouri</option>
+      <option value="Newton County, Missouri">Newton County, Missouri</option>
+      <option value="Nodaway County, Missouri">Nodaway County, Missouri</option>
+      <option value="Oregon County, Missouri">Oregon County, Missouri</option>
+      <option value="Osage County, Missouri">Osage County, Missouri</option>
+      <option value="Ozark County, Missouri">Ozark County, Missouri</option>
+      <option value="Pemiscot County, Missouri">Pemiscot County, Missouri</option>
+      <option value="Perry County, Missouri">Perry County, Missouri</option>
+      <option value="Pettis County, Missouri">Pettis County, Missouri</option>
+      <option value="Phelps County, Missouri">Phelps County, Missouri</option>
+      <option value="Pike County, Missouri">Pike County, Missouri</option>
+      <option value="Platte County, Missouri">Platte County, Missouri</option>
+      <option value="Polk County, Missouri">Polk County, Missouri</option>
+      <option value="Pulaski County, Missouri">Pulaski County, Missouri</option>
+      <option value="Putnam County, Missouri">Putnam County, Missouri</option>
+      <option value="Ralls County, Missouri">Ralls County, Missouri</option>
+      <option value="Randolph County, Missouri">Randolph County, Missouri</option>
+      <option value="Ray County, Missouri">Ray County, Missouri</option>
+      <option value="Reynolds County, Missouri">Reynolds County, Missouri</option>
+      <option value="Ripley County, Missouri">Ripley County, Missouri</option>
+      <option value="Saline County, Missouri">Saline County, Missouri</option>
+      <option value="Schuyler County, Missouri">Schuyler County, Missouri</option>
+      <option value="Scotland County, Missouri">Scotland County, Missouri</option>
+      <option value="Scott County, Missouri">Scott County, Missouri</option>
+      <option value="Shannon County, Missouri">Shannon County, Missouri</option>
+      <option value="Shelby County, Missouri">Shelby County, Missouri</option>
+      <option value="St. Charles County, Missouri">St. Charles County, Missouri</option>
+      <option value="St. Clair County, Missouri">St. Clair County, Missouri</option>
+      <option value="St. Francois County, Missouri">St. Francois County, Missouri</option>
+      <option value="St. Louis County, Missouri">St. Louis County, Missouri</option>
+      <option value="St. Louis city, Missouri">St. Louis city, Missouri</option>
+      <option value="Ste. Genevieve County, Missouri">Ste. Genevieve County, Missouri</option>
+      <option value="Stoddard County, Missouri">Stoddard County, Missouri</option>
+      <option value="Stone County, Missouri">Stone County, Missouri</option>
+      <option value="Sullivan County, Missouri">Sullivan County, Missouri</option>
+      <option value="Taney County, Missouri">Taney County, Missouri</option>
+      <option value="Texas County, Missouri">Texas County, Missouri</option>
+      <option value="Vernon County, Missouri">Vernon County, Missouri</option>
+      <option value="Warren County, Missouri">Warren County, Missouri</option>
+      <option value="Washington County, Missouri">Washington County, Missouri</option>
+      <option value="Wayne County, Missouri">Wayne County, Missouri</option>
+      <option value="Webster County, Missouri">Webster County, Missouri</option>
+      <option value="Worth County, Missouri">Worth County, Missouri</option>
+      <option value="Wright County, Missouri">Wright County, Missouri</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>document.addEventListener("DOMContentLoaded", function () {
+  const data = {"Statewide":[12.7,12.7,5.2,11.1,49,9.2],"Adair County, Missouri":[13.2,13.3,18.8,5.7,41.2,7.7],"Andrew County, Missouri":[8.2,16.2,2.1,11.1,55,7.4],"Atchison County, Missouri":[13.1,10.9,2.8,10.4,54,8.8],"Audrain County, Missouri":[12.3,16.4,2.9,14.6,46.1,7.7],"Barry County, Missouri":[7.7,15.5,2.8,9.6,53.6,10.7],"Barton County, Missouri":[7.4,15.8,6.1,12.9,49.4,8.4],"Bates County, Missouri":[7.9,15.9,3.4,10.9,53.1,8.8],"Benton County, Missouri":[9.6,15.9,3.8,13.2,51,6.5],"Bollinger County, Missouri":[8.9,21.5,1.4,7.9,53.1,7.2],"Boone County, Missouri":[14.6,7.9,16.1,8.8,44.2,8.4],"Buchanan County, Missouri":[13.5,12.3,6.8,12.2,43,12.3],"Butler County, Missouri":[11.7,11.9,6.2,14.5,42.2,13.5],"Caldwell County, Missouri":[11.9,10.7,3.1,8,53.7,12.7],"Callaway County, Missouri":[8.8,13,3.8,11.5,52,11],"Camden County, Missouri":[9.4,19.1,5.8,9.6,49.3,6.8],"Cape Girardeau County, Missouri":[12.2,11.3,8.8,7.6,50.9,9.3],"Carroll County, Missouri":[11.2,11.8,3.2,8.9,54.8,10.1],"Carter County, Missouri":[13.4,24.1,6.6,12.9,30.2,12.8],"Cass County, Missouri":[8.1,13.4,2.3,10.5,57.8,7.8],"Cedar County, Missouri":[11.9,14.5,2.4,7.3,56.4,7.5],"Chariton County, Missouri":[8.6,20.1,1.1,8.6,56.4,5.3],"Christian County, Missouri":[7.9,12.7,3.4,8.6,61.9,5.4],"Clark County, Missouri":[7.5,23.5,3.6,9.8,50.5,5.1],"Clay County, Missouri":[11.1,12.5,4.4,11.4,51.2,9.4],"Clinton County, Missouri":[10.9,12.6,5.8,8.8,51.1,10.8],"Cole County, Missouri":[14.3,11.5,4.1,9.2,52.2,8.6],"Cooper County, Missouri":[10.1,14.5,2.3,9.5,55.2,8.4],"Crawford County, Missouri":[10.8,9.8,3.4,10.6,55.7,9.6],"Dade County, Missouri":[9.5,13.9,4.2,11.9,53.4,7],"Dallas County, Missouri":[9.1,13.9,2.1,10,59.2,5.7],"Daviess County, Missouri":[8.5,13.7,3.1,9.5,56.6,8.5],"DeKalb County, Missouri":[9.4,13.8,3.1,7.3,57.3,9.1],"Dent County, Missouri":[10.8,18.4,3.2,12.4,48.6,6.5],"Douglas County, Missouri":[8,10.4,8.1,10.1,59.6,3.8],"Dunklin County, Missouri":[11.8,12,3,15.9,43.9,13.5],"Franklin County, Missouri":[9.6,13.1,2.7,8.9,54.4,11.3],"Gasconade County, Missouri":[9.2,13.1,4.2,9.1,55.2,9.1],"Gentry County, Missouri":[13.4,11.4,4.5,6.8,56.5,7.4],"Greene County, Missouri":[15.8,7.6,8,9.3,48.2,11.2],"Grundy County, Missouri":[12.4,9.5,7.2,7.8,54.7,8.3],"Harrison County, Missouri":[11.6,15.4,4.2,7.6,52.7,8.4],"Henry County, Missouri":[12,10.8,5.5,12.1,49.6,9.9],"Hickory County, Missouri":[11.1,24.9,5.7,10,40.7,7.6],"Holt County, Missouri":[7.6,13,3.9,10.3,57.3,7.9],"Howard County, Missouri":[8.2,16.4,5.6,8.1,53.6,8.1],"Howell County, Missouri":[10.7,12.6,3.6,11.2,51,10.9],"Iron County, Missouri":[10.7,14.1,5.1,11.5,51.5,7],"Jackson County, Missouri":[16.9,11.8,6.1,12.7,42.4,10.1],"Jasper County, Missouri":[11,11.5,5.8,12.8,47.6,11.2],"Jefferson County, Missouri":[8,15.3,3.9,10,53.9,8.7],"Johnson County, Missouri":[12,7.8,9.5,8.4,52.3,10],"Knox County, Missouri":[8.7,29,6.2,7.8,43.4,4.9],"Laclede County, Missouri":[10.5,11.3,5.8,12.7,50,9.7],"Lafayette County, Missouri":[7.6,14,2.9,10.5,53.7,11.3],"Lawrence County, Missouri":[9.8,14,2.4,10.6,52.4,10.7],"Lewis County, Missouri":[12.6,21.7,4.4,11.8,42.5,7],"Lincoln County, Missouri":[6.5,13.1,3,11.2,56.1,10.1],"Linn County, Missouri":[11.1,12.8,1.8,8,55.6,10.7],"Livingston County, Missouri":[11,9.9,4.4,12.5,52,10.3],"Macon County, Missouri":[11.8,14.5,2.9,8.9,55,6.9],"Madison County, Missouri":[7.2,20,2.4,12.9,53,4.5],"Maries County, Missouri":[13,13.5,2.9,5.5,57.4,7.8],"Marion County, Missouri":[12.3,12.1,2.4,11.7,50.7,10.8],"McDonald County, Missouri":[8.8,12.5,5.5,13.5,50.1,9.7],"Mercer County, Missouri":[11.3,12.7,6.8,10.5,45.3,13.4],"Miller County, Missouri":[12.4,13.1,4.2,9.3,51.5,9.6],"Mississippi County, Missouri":[10.5,13.1,2.8,16,45.2,12.3],"Moniteau County, Missouri":[8.4,10,2.4,9.3,63.6,6.2],"Monroe County, Missouri":[12.5,18,3,11,50.6,4.9],"Montgomery County, Missouri":[10.1,12.2,1.7,10.2,52.9,12.9],"Morgan County, Missouri":[8.8,17.5,2.4,11.6,54.7,5],"New Madrid County, Missouri":[11.8,12.1,2.3,21,44,8.8],"Newton County, Missouri":[7.4,13.6,4.1,9,57.3,8.7],"Nodaway County, Missouri":[14,8,15,8.5,46,8.5],"Oregon County, Missouri":[9,11.4,6.8,14.2,53.3,5.4],"Osage County, Missouri":[10.1,14,5,6.7,59.9,4.3],"Ozark County, Missouri":[8,14.8,3.2,8.1,58.5,7.3],"Pemiscot County, Missouri":[13.6,13.7,5,15.2,38.9,13.7],"Perry County, Missouri":[9.6,13.5,4.4,10.1,53.4,9],"Pettis County, Missouri":[12.1,11.2,3.8,10.5,52,10.4],"Phelps County, Missouri":[12.2,9.3,11.2,11.2,46,10.1],"Pike County, Missouri":[10.1,12.5,1.6,14.1,49.9,11.9],"Platte County, Missouri":[10.4,11.1,5,10,54.8,8.8],"Polk County, Missouri":[7.6,12.1,4.2,9.3,56.7,10.1],"Pulaski County, Missouri":[11.5,12.9,5.3,11,52.5,6.8],"Putnam County, Missouri":[16.2,12.3,10.4,8.3,48,4.8],"Ralls County, Missouri":[7.6,17.9,3.2,8.7,57.8,4.8],"Randolph County, Missouri":[11.3,12.7,4.5,13.4,47.5,10.5],"Ray County, Missouri":[8,15,3.2,10.1,53.8,9.9],"Reynolds County, Missouri":[6.6,17.5,4.6,13.5,48.1,9.8],"Ripley County, Missouri":[8.5,17,4.9,12.9,52.6,4.1],"Saline County, Missouri":[10,17.6,6.8,12.8,45.7,7.2],"Schuyler County, Missouri":[6.8,25.6,4.7,7.5,50.9,4.5],"Scotland County, Missouri":[8.6,22.8,2.5,6.4,55.8,4],"Scott County, Missouri":[11.4,12.6,4.2,14.4,48.1,9.4],"Shannon County, Missouri":[10,10.3,2.8,8,58,10.9],"Shelby County, Missouri":[13.2,13.9,3.5,10.8,51.3,7.2],"St. Charles County, Missouri":[8.6,13.3,3.3,8.6,58,8.2],"St. Clair County, Missouri":[12.1,12.5,5.8,13.8,47.3,8.5],"St. Francois County, Missouri":[9.5,13.9,4.6,13.9,47.6,10.5],"St. Louis County, Missouri":[13.3,14.9,3.9,12.2,47.7,7.9],"St. Louis city, Missouri":[27.5,9.5,6.7,14.9,28.9,12.6],"Ste. Genevieve County, Missouri":[8,17.4,1.6,9.6,56,7.4],"Stoddard County, Missouri":[10.6,14.5,3.2,11.2,52.3,8.1],"Stone County, Missouri":[9.2,15,6.7,8.2,54.7,6.3],"Sullivan County, Missouri":[13.3,19.1,7.3,14.3,38.1,7.9],"Taney County, Missouri":[10.2,12.1,6.1,9.4,52.9,9.3],"Texas County, Missouri":[10.1,14.3,5.7,10.3,53.7,6],"Vernon County, Missouri":[11.6,10.1,5.8,9.5,53.3,9.7],"Warren County, Missouri":[7.4,16.7,3.2,7.3,54.8,10.7],"Washington County, Missouri":[8,12,5.4,14.9,54,5.7],"Wayne County, Missouri":[11.3,14.2,2.9,9.1,52.1,10.4],"Webster County, Missouri":[6.6,12.3,3.5,8.7,60.1,8.8],"Worth County, Missouri":[15.2,12.1,5.2,17.1,43.3,7.1],"Wright County, Missouri":[8.3,15.7,2.2,10.7,55.8,7.3]};
+  const cats = ["lives_alone_18_64","with_child_18_64","with_nonrel_18_64","with_other_rel_18_64","with_spouse_only_18_64","with_unmar_partner_18_64"];
+
+  const ORDER = [
+    "Lives alone",
+    "With child",
+    "With nonrelatives",
+    "With other relatives",
+    "With spouse only",
+    "With unmarried partner"
+  ];
+
+  const PRETTY_TO_SNAKE = {
+    "Lives alone":            "lives_alone_18_64",
+    "With child":             "with_child_18_64",
+    "With nonrelatives":      "with_nonrel_18_64",
+    "With other relatives":   "with_other_rel_18_64",
+    "With spouse only":       "with_spouse_only_18_64",
+    "With unmarried partner": "with_unmar_partner_18_64"
+  };
+
+  const COLOR_BY_CAT = {
+    "Lives alone":            "#e41a1c",
+    "With child":             "#ff7f00",
+    "With nonrelatives":      "#4daf4a",
+    "With other relatives":   "#984ea3",
+    "With spouse only":       "#377eb8",
+    "With unmarried partner": "#a65628"
+  };
+
+  // snake key → array index
+  const keyToIndex = Object.fromEntries((cats || []).map((k, i) => [String(k), i]));
+
+  function valuesFor(name) {
+    const row = data?.[name] || [];
+    return ORDER.map(lbl => {
+      const idx = keyToIndex[PRETTY_TO_SNAKE[lbl]];
+      const v = (idx != null && idx >= 0) ? row[idx] : 0;
+      return (typeof v === "number") ? v : Number(v) || 0;
+    });
+  }
+
+  const canvas = document.getElementById("barChart");
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+  let chart;
+
+  function renderChart(name) {
+    const vals = valuesFor(name);
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: ORDER,
+        datasets: [{
+          data: vals,
+          backgroundColor: ORDER.map(c => COLOR_BY_CAT[c]),
+          borderWidth: 0
+        }]
+      },
+      options: {
+        indexAxis: "y",
+        plugins: {
+          legend: { display: false },
+          tooltip: { callbacks: { label: (c) => c.raw + "%" } }
+        },
+        scales: {
+          x: { min: 0, max: 100, ticks: { callback: v => v + "%" } }
+        }
+      }
+    });
+  }
+
+  const DEFAULT_NAME = (data && Object.prototype.hasOwnProperty.call(data, "Statewide"))
+    ? "Statewide" : Object.keys(data || {})[0];
+
+  const sel = document.getElementById("countySelect");
+  if (sel) sel.addEventListener("change", e => renderChart(e.target.value));
+  if (DEFAULT_NAME) renderChart(DEFAULT_NAME);
+});</script>
+  </body>
+</html>
+</html>

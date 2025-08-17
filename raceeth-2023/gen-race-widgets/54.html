@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="utf-8"/>
+  <title>Race/Ethnicity in State 54</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          text-align: center;
+          margin: 2rem;
+          background-color: white;
+        }
+        canvas {
+          max-width: 500px;
+          margin: 1rem auto;
+        }
+        select {
+          font-size: 1rem;
+          padding: 0.4rem;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Race &amp; Ethnicity Distribution</h2>
+    <label>Select County:</label>
+    <select id="countySelect"><option value="Statewide">Statewide</option>
+<option value="Barbour County, West Virginia">Barbour County, West Virginia</option>
+<option value="Berkeley County, West Virginia">Berkeley County, West Virginia</option>
+<option value="Boone County, West Virginia">Boone County, West Virginia</option>
+<option value="Braxton County, West Virginia">Braxton County, West Virginia</option>
+<option value="Brooke County, West Virginia">Brooke County, West Virginia</option>
+<option value="Cabell County, West Virginia">Cabell County, West Virginia</option>
+<option value="Calhoun County, West Virginia">Calhoun County, West Virginia</option>
+<option value="Clay County, West Virginia">Clay County, West Virginia</option>
+<option value="Doddridge County, West Virginia">Doddridge County, West Virginia</option>
+<option value="Fayette County, West Virginia">Fayette County, West Virginia</option>
+<option value="Gilmer County, West Virginia">Gilmer County, West Virginia</option>
+<option value="Grant County, West Virginia">Grant County, West Virginia</option>
+<option value="Greenbrier County, West Virginia">Greenbrier County, West Virginia</option>
+<option value="Hampshire County, West Virginia">Hampshire County, West Virginia</option>
+<option value="Hancock County, West Virginia">Hancock County, West Virginia</option>
+<option value="Hardy County, West Virginia">Hardy County, West Virginia</option>
+<option value="Harrison County, West Virginia">Harrison County, West Virginia</option>
+<option value="Jackson County, West Virginia">Jackson County, West Virginia</option>
+<option value="Jefferson County, West Virginia">Jefferson County, West Virginia</option>
+<option value="Kanawha County, West Virginia">Kanawha County, West Virginia</option>
+<option value="Lewis County, West Virginia">Lewis County, West Virginia</option>
+<option value="Lincoln County, West Virginia">Lincoln County, West Virginia</option>
+<option value="Logan County, West Virginia">Logan County, West Virginia</option>
+<option value="Marion County, West Virginia">Marion County, West Virginia</option>
+<option value="Marshall County, West Virginia">Marshall County, West Virginia</option>
+<option value="Mason County, West Virginia">Mason County, West Virginia</option>
+<option value="McDowell County, West Virginia">McDowell County, West Virginia</option>
+<option value="Mercer County, West Virginia">Mercer County, West Virginia</option>
+<option value="Mineral County, West Virginia">Mineral County, West Virginia</option>
+<option value="Mingo County, West Virginia">Mingo County, West Virginia</option>
+<option value="Monongalia County, West Virginia">Monongalia County, West Virginia</option>
+<option value="Monroe County, West Virginia">Monroe County, West Virginia</option>
+<option value="Morgan County, West Virginia">Morgan County, West Virginia</option>
+<option value="Nicholas County, West Virginia">Nicholas County, West Virginia</option>
+<option value="Ohio County, West Virginia">Ohio County, West Virginia</option>
+<option value="Pendleton County, West Virginia">Pendleton County, West Virginia</option>
+<option value="Pleasants County, West Virginia">Pleasants County, West Virginia</option>
+<option value="Pocahontas County, West Virginia">Pocahontas County, West Virginia</option>
+<option value="Preston County, West Virginia">Preston County, West Virginia</option>
+<option value="Putnam County, West Virginia">Putnam County, West Virginia</option>
+<option value="Raleigh County, West Virginia">Raleigh County, West Virginia</option>
+<option value="Randolph County, West Virginia">Randolph County, West Virginia</option>
+<option value="Ritchie County, West Virginia">Ritchie County, West Virginia</option>
+<option value="Roane County, West Virginia">Roane County, West Virginia</option>
+<option value="Summers County, West Virginia">Summers County, West Virginia</option>
+<option value="Taylor County, West Virginia">Taylor County, West Virginia</option>
+<option value="Tucker County, West Virginia">Tucker County, West Virginia</option>
+<option value="Tyler County, West Virginia">Tyler County, West Virginia</option>
+<option value="Upshur County, West Virginia">Upshur County, West Virginia</option>
+<option value="Wayne County, West Virginia">Wayne County, West Virginia</option>
+<option value="Webster County, West Virginia">Webster County, West Virginia</option>
+<option value="Wetzel County, West Virginia">Wetzel County, West Virginia</option>
+<option value="Wirt County, West Virginia">Wirt County, West Virginia</option>
+<option value="Wood County, West Virginia">Wood County, West Virginia</option>
+<option value="Wyoming County, West Virginia">Wyoming County, West Virginia</option></select>
+    <canvas id="pieChart" width="400" height="400"></canvas>
+    <script>  let raceData = {};
+  fetch("54.json")
+    .then(resp => resp.json())
+    .then(data => {
+      raceData = data;
+      const raceLabels = ["American Indian / Alaska Native","Asian","Black","Hispanic","NHMulti","NHOther","NHWhite","Pacific Islander"];
+      const ctx = document.getElementById("pieChart").getContext("2d");
+      let chart;
+
+      function renderChart(values) {
+        if (chart) chart.destroy();
+        chart = new Chart(ctx, {
+          type: "pie",
+          data: {
+            labels: raceLabels,
+            datasets: [{
+              data: values,
+              backgroundColor: [
+                "#f94144", "#f3722c", "#f9c74f", "#90be6d",
+                "#9d4edd", "#577590", "#d0cde1", "#43aa8b"
+              ]
+            }]
+          },
+          options: {
+            responsive: true,
+            plugins: {
+              legend: {
+                position: "bottom",
+                labels: {
+                  font: { size: 14 },
+                  boxWidth: 20,
+                  padding: 15,
+                  usePointStyle: true,
+                  pointStyle: "rectRounded"
+                }
+              },
+              tooltip: {
+                callbacks: {
+                  label: function(context) {
+                    return context.label + ": " + context.parsed + "%";
+                  }
+                }
+              }
+            }
+          }
+        });
+      }
+
+      document.getElementById("countySelect").addEventListener("change", function() {
+        const selected = this.value;
+        const values = Object.values(raceData[selected]);
+        renderChart(values);
+      });
+
+      renderChart(Object.values(raceData["Statewide"]));
+      document.getElementById("countySelect").value = "Statewide";
+    });</script>
+  </body>
+</html>
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Living Arrangements of Children – Minnesota</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Children’s Living Arrangements (Under 18) – Minnesota</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Aitkin County, Minnesota">Aitkin County, Minnesota</option>
+      <option value="Anoka County, Minnesota">Anoka County, Minnesota</option>
+      <option value="Becker County, Minnesota">Becker County, Minnesota</option>
+      <option value="Beltrami County, Minnesota">Beltrami County, Minnesota</option>
+      <option value="Benton County, Minnesota">Benton County, Minnesota</option>
+      <option value="Big Stone County, Minnesota">Big Stone County, Minnesota</option>
+      <option value="Blue Earth County, Minnesota">Blue Earth County, Minnesota</option>
+      <option value="Brown County, Minnesota">Brown County, Minnesota</option>
+      <option value="Carlton County, Minnesota">Carlton County, Minnesota</option>
+      <option value="Carver County, Minnesota">Carver County, Minnesota</option>
+      <option value="Cass County, Minnesota">Cass County, Minnesota</option>
+      <option value="Chippewa County, Minnesota">Chippewa County, Minnesota</option>
+      <option value="Chisago County, Minnesota">Chisago County, Minnesota</option>
+      <option value="Clay County, Minnesota">Clay County, Minnesota</option>
+      <option value="Clearwater County, Minnesota">Clearwater County, Minnesota</option>
+      <option value="Cook County, Minnesota">Cook County, Minnesota</option>
+      <option value="Cottonwood County, Minnesota">Cottonwood County, Minnesota</option>
+      <option value="Crow Wing County, Minnesota">Crow Wing County, Minnesota</option>
+      <option value="Dakota County, Minnesota">Dakota County, Minnesota</option>
+      <option value="Dodge County, Minnesota">Dodge County, Minnesota</option>
+      <option value="Douglas County, Minnesota">Douglas County, Minnesota</option>
+      <option value="Faribault County, Minnesota">Faribault County, Minnesota</option>
+      <option value="Fillmore County, Minnesota">Fillmore County, Minnesota</option>
+      <option value="Freeborn County, Minnesota">Freeborn County, Minnesota</option>
+      <option value="Goodhue County, Minnesota">Goodhue County, Minnesota</option>
+      <option value="Grant County, Minnesota">Grant County, Minnesota</option>
+      <option value="Hennepin County, Minnesota">Hennepin County, Minnesota</option>
+      <option value="Houston County, Minnesota">Houston County, Minnesota</option>
+      <option value="Hubbard County, Minnesota">Hubbard County, Minnesota</option>
+      <option value="Isanti County, Minnesota">Isanti County, Minnesota</option>
+      <option value="Itasca County, Minnesota">Itasca County, Minnesota</option>
+      <option value="Jackson County, Minnesota">Jackson County, Minnesota</option>
+      <option value="Kanabec County, Minnesota">Kanabec County, Minnesota</option>
+      <option value="Kandiyohi County, Minnesota">Kandiyohi County, Minnesota</option>
+      <option value="Kittson County, Minnesota">Kittson County, Minnesota</option>
+      <option value="Koochiching County, Minnesota">Koochiching County, Minnesota</option>
+      <option value="Lac qui Parle County, Minnesota">Lac qui Parle County, Minnesota</option>
+      <option value="Lake County, Minnesota">Lake County, Minnesota</option>
+      <option value="Lake of the Woods County, Minnesota">Lake of the Woods County, Minnesota</option>
+      <option value="Le Sueur County, Minnesota">Le Sueur County, Minnesota</option>
+      <option value="Lincoln County, Minnesota">Lincoln County, Minnesota</option>
+      <option value="Lyon County, Minnesota">Lyon County, Minnesota</option>
+      <option value="Mahnomen County, Minnesota">Mahnomen County, Minnesota</option>
+      <option value="Marshall County, Minnesota">Marshall County, Minnesota</option>
+      <option value="Martin County, Minnesota">Martin County, Minnesota</option>
+      <option value="McLeod County, Minnesota">McLeod County, Minnesota</option>
+      <option value="Meeker County, Minnesota">Meeker County, Minnesota</option>
+      <option value="Mille Lacs County, Minnesota">Mille Lacs County, Minnesota</option>
+      <option value="Morrison County, Minnesota">Morrison County, Minnesota</option>
+      <option value="Mower County, Minnesota">Mower County, Minnesota</option>
+      <option value="Murray County, Minnesota">Murray County, Minnesota</option>
+      <option value="Nicollet County, Minnesota">Nicollet County, Minnesota</option>
+      <option value="Nobles County, Minnesota">Nobles County, Minnesota</option>
+      <option value="Norman County, Minnesota">Norman County, Minnesota</option>
+      <option value="Olmsted County, Minnesota">Olmsted County, Minnesota</option>
+      <option value="Otter Tail County, Minnesota">Otter Tail County, Minnesota</option>
+      <option value="Pennington County, Minnesota">Pennington County, Minnesota</option>
+      <option value="Pine County, Minnesota">Pine County, Minnesota</option>
+      <option value="Pipestone County, Minnesota">Pipestone County, Minnesota</option>
+      <option value="Polk County, Minnesota">Polk County, Minnesota</option>
+      <option value="Pope County, Minnesota">Pope County, Minnesota</option>
+      <option value="Ramsey County, Minnesota">Ramsey County, Minnesota</option>
+      <option value="Red Lake County, Minnesota">Red Lake County, Minnesota</option>
+      <option value="Redwood County, Minnesota">Redwood County, Minnesota</option>
+      <option value="Renville County, Minnesota">Renville County, Minnesota</option>
+      <option value="Rice County, Minnesota">Rice County, Minnesota</option>
+      <option value="Rock County, Minnesota">Rock County, Minnesota</option>
+      <option value="Roseau County, Minnesota">Roseau County, Minnesota</option>
+      <option value="Scott County, Minnesota">Scott County, Minnesota</option>
+      <option value="Sherburne County, Minnesota">Sherburne County, Minnesota</option>
+      <option value="Sibley County, Minnesota">Sibley County, Minnesota</option>
+      <option value="St. Louis County, Minnesota">St. Louis County, Minnesota</option>
+      <option value="Stearns County, Minnesota">Stearns County, Minnesota</option>
+      <option value="Steele County, Minnesota">Steele County, Minnesota</option>
+      <option value="Stevens County, Minnesota">Stevens County, Minnesota</option>
+      <option value="Swift County, Minnesota">Swift County, Minnesota</option>
+      <option value="Todd County, Minnesota">Todd County, Minnesota</option>
+      <option value="Traverse County, Minnesota">Traverse County, Minnesota</option>
+      <option value="Wabasha County, Minnesota">Wabasha County, Minnesota</option>
+      <option value="Wadena County, Minnesota">Wadena County, Minnesota</option>
+      <option value="Waseca County, Minnesota">Waseca County, Minnesota</option>
+      <option value="Washington County, Minnesota">Washington County, Minnesota</option>
+      <option value="Watonwan County, Minnesota">Watonwan County, Minnesota</option>
+      <option value="Wilkin County, Minnesota">Wilkin County, Minnesota</option>
+      <option value="Winona County, Minnesota">Winona County, Minnesota</option>
+      <option value="Wright County, Minnesota">Wright County, Minnesota</option>
+      <option value="Yellow Medicine County, Minnesota">Yellow Medicine County, Minnesota</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>  const data = {"Statewide":{"Married Couple (%)":71.4,"Cohabiting Couple (%)":9.2,"Male Householder (%)":4.6,"Female Householder (%)":14.8},"Aitkin County, Minnesota":{"Married Couple (%)":67.5,"Cohabiting Couple (%)":7.2,"Male Householder (%)":3.6,"Female Householder (%)":21.7},"Anoka County, Minnesota":{"Married Couple (%)":71.5,"Cohabiting Couple (%)":9.3,"Male Householder (%)":4.1,"Female Householder (%)":15.1},"Becker County, Minnesota":{"Married Couple (%)":69.2,"Cohabiting Couple (%)":16.7,"Male Householder (%)":3.3,"Female Householder (%)":10.8},"Beltrami County, Minnesota":{"Married Couple (%)":54.2,"Cohabiting Couple (%)":15.2,"Male Householder (%)":6.4,"Female Householder (%)":24.2},"Benton County, Minnesota":{"Married Couple (%)":66.5,"Cohabiting Couple (%)":12.3,"Male Householder (%)":7,"Female Householder (%)":14.1},"Big Stone County, Minnesota":{"Married Couple (%)":84.2,"Cohabiting Couple (%)":4.2,"Male Householder (%)":4,"Female Householder (%)":7.6},"Blue Earth County, Minnesota":{"Married Couple (%)":68.1,"Cohabiting Couple (%)":12.2,"Male Householder (%)":5.9,"Female Householder (%)":13.8},"Brown County, Minnesota":{"Married Couple (%)":75.1,"Cohabiting Couple (%)":9.2,"Male Householder (%)":3.3,"Female Householder (%)":12.5},"Carlton County, Minnesota":{"Married Couple (%)":67.1,"Cohabiting Couple (%)":7.1,"Male Householder (%)":6.7,"Female Householder (%)":19.1},"Carver County, Minnesota":{"Married Couple (%)":80.8,"Cohabiting Couple (%)":5.4,"Male Householder (%)":4.2,"Female Householder (%)":9.7},"Cass County, Minnesota":{"Married Couple (%)":61,"Cohabiting Couple (%)":17.1,"Male Householder (%)":6.8,"Female Householder (%)":15.2},"Chippewa County, Minnesota":{"Married Couple (%)":66.8,"Cohabiting Couple (%)":15.4,"Male Householder (%)":5.5,"Female Householder (%)":12.3},"Chisago County, Minnesota":{"Married Couple (%)":79.2,"Cohabiting Couple (%)":7,"Male Householder (%)":5.3,"Female Householder (%)":8.5},"Clay County, Minnesota":{"Married Couple (%)":73.2,"Cohabiting Couple (%)":9.9,"Male Householder (%)":2.9,"Female Householder (%)":14.1},"Clearwater County, Minnesota":{"Married Couple (%)":71.5,"Cohabiting Couple (%)":11.5,"Male Householder (%)":5.2,"Female Householder (%)":11.8},"Cook County, Minnesota":{"Married Couple (%)":71.5,"Cohabiting Couple (%)":4.8,"Male Householder (%)":9.5,"Female Householder (%)":14.2},"Cottonwood County, Minnesota":{"Married Couple (%)":70.4,"Cohabiting Couple (%)":8.1,"Male Householder (%)":3.4,"Female Householder (%)":18.1},"Crow Wing County, Minnesota":{"Married Couple (%)":68.8,"Cohabiting Couple (%)":11.2,"Male Householder (%)":5.1,"Female Householder (%)":14.9},"Dakota County, Minnesota":{"Married Couple (%)":73.4,"Cohabiting Couple (%)":7.2,"Male Householder (%)":3.8,"Female Householder (%)":15.6},"Dodge County, Minnesota":{"Married Couple (%)":75.5,"Cohabiting Couple (%)":10,"Male Householder (%)":6.2,"Female Householder (%)":8.4},"Douglas County, Minnesota":{"Married Couple (%)":74.8,"Cohabiting Couple (%)":7.4,"Male Householder (%)":3.5,"Female Householder (%)":14.3},"Faribault County, Minnesota":{"Married Couple (%)":63,"Cohabiting Couple (%)":20.9,"Male Householder (%)":7,"Female Householder (%)":9.1},"Fillmore County, Minnesota":{"Married Couple (%)":77.1,"Cohabiting Couple (%)":8.8,"Male Householder (%)":5,"Female Householder (%)":9},"Freeborn County, Minnesota":{"Married Couple (%)":65,"Cohabiting Couple (%)":13.8,"Male Householder (%)":7.1,"Female Householder (%)":14.1},"Goodhue County, Minnesota":{"Married Couple (%)":71.5,"Cohabiting Couple (%)":12.1,"Male Householder (%)":3.2,"Female Householder (%)":13.2},"Grant County, Minnesota":{"Married Couple (%)":71.9,"Cohabiting Couple (%)":12.3,"Male Householder (%)":4.4,"Female Householder (%)":11.3},"Hennepin County, Minnesota":{"Married Couple (%)":70.4,"Cohabiting Couple (%)":6.8,"Male Householder (%)":5.2,"Female Householder (%)":17.6},"Houston County, Minnesota":{"Married Couple (%)":76.7,"Cohabiting Couple (%)":7.5,"Male Householder (%)":4.5,"Female Householder (%)":11.3},"Hubbard County, Minnesota":{"Married Couple (%)":73.1,"Cohabiting Couple (%)":14.1,"Male Householder (%)":4.6,"Female Householder (%)":8.1},"Isanti County, Minnesota":{"Married Couple (%)":66.1,"Cohabiting Couple (%)":17.3,"Male Householder (%)":5.3,"Female Householder (%)":11.3},"Itasca County, Minnesota":{"Married Couple (%)":69.1,"Cohabiting Couple (%)":12.8,"Male Householder (%)":5,"Female Householder (%)":13.1},"Jackson County, Minnesota":{"Married Couple (%)":74,"Cohabiting Couple (%)":11.4,"Male Householder (%)":3.4,"Female Householder (%)":11.2},"Kanabec County, Minnesota":{"Married Couple (%)":74.5,"Cohabiting Couple (%)":13.7,"Male Householder (%)":4,"Female Householder (%)":7.7},"Kandiyohi County, Minnesota":{"Married Couple (%)":69.2,"Cohabiting Couple (%)":9.6,"Male Householder (%)":8,"Female Householder (%)":13.3},"Kittson County, Minnesota":{"Married Couple (%)":86.8,"Cohabiting Couple (%)":1.8,"Male Householder (%)":3,"Female Householder (%)":8.4},"Koochiching County, Minnesota":{"Married Couple (%)":60.9,"Cohabiting Couple (%)":18.8,"Male Householder (%)":7.8,"Female Householder (%)":12.5},"Lac qui Parle County, Minnesota":{"Married Couple (%)":75.4,"Cohabiting Couple (%)":9.2,"Male Householder (%)":6.5,"Female Householder (%)":8.9},"Lake County, Minnesota":{"Married Couple (%)":73.9,"Cohabiting Couple (%)":11.8,"Male Householder (%)":6.3,"Female Householder (%)":8},"Lake of the Woods County, Minnesota":{"Married Couple (%)":77,"Cohabiting Couple (%)":15.1,"Male Householder (%)":4.2,"Female Householder (%)":3.6},"Le Sueur County, Minnesota":{"Married Couple (%)":76.9,"Cohabiting Couple (%)":7.8,"Male Householder (%)":4.5,"Female Householder (%)":10.8},"Lincoln County, Minnesota":{"Married Couple (%)":84.5,"Cohabiting Couple (%)":4.3,"Male Householder (%)":2.3,"Female Householder (%)":8.9},"Lyon County, Minnesota":{"Married Couple (%)":74.6,"Cohabiting Couple (%)":7.6,"Male Householder (%)":1.9,"Female Householder (%)":15.9},"Mahnomen County, Minnesota":{"Married Couple (%)":41.5,"Cohabiting Couple (%)":18.8,"Male Householder (%)":10.9,"Female Householder (%)":28.8},"Marshall County, Minnesota":{"Married Couple (%)":70.5,"Cohabiting Couple (%)":6.9,"Male Householder (%)":8.4,"Female Householder (%)":14.2},"Martin County, Minnesota":{"Married Couple (%)":68.5,"Cohabiting Couple (%)":10.7,"Male Householder (%)":4,"Female Householder (%)":16.8},"McLeod County, Minnesota":{"Married Couple (%)":71.7,"Cohabiting Couple (%)":11,"Male Householder (%)":4.2,"Female Householder (%)":13.1},"Meeker County, Minnesota":{"Married Couple (%)":75.6,"Cohabiting Couple (%)":8.8,"Male Householder (%)":4.4,"Female Householder (%)":11.2},"Mille Lacs County, Minnesota":{"Married Couple (%)":62.5,"Cohabiting Couple (%)":14.3,"Male Householder (%)":6.8,"Female Householder (%)":16.4},"Morrison County, Minnesota":{"Married Couple (%)":69.5,"Cohabiting Couple (%)":11.7,"Male Householder (%)":5,"Female Householder (%)":13.8},"Mower County, Minnesota":{"Married Couple (%)":66.9,"Cohabiting Couple (%)":14.4,"Male Householder (%)":4,"Female Householder (%)":14.7},"Murray County, Minnesota":{"Married Couple (%)":77.5,"Cohabiting Couple (%)":8.6,"Male Householder (%)":5.1,"Female Householder (%)":8.9},"Nicollet County, Minnesota":{"Married Couple (%)":72.3,"Cohabiting Couple (%)":11,"Male Householder (%)":3.8,"Female Householder (%)":12.8},"Nobles County, Minnesota":{"Married Couple (%)":57.6,"Cohabiting Couple (%)":9.5,"Male Householder (%)":4.8,"Female Householder (%)":28.2},"Norman County, Minnesota":{"Married Couple (%)":69.4,"Cohabiting Couple (%)":12.9,"Male Householder (%)":6,"Female Householder (%)":11.6},"Olmsted County, Minnesota":{"Married Couple (%)":74.7,"Cohabiting Couple (%)":8.3,"Male Householder (%)":6.3,"Female Householder (%)":10.7},"Otter Tail County, Minnesota":{"Married Couple (%)":77.8,"Cohabiting Couple (%)":8.1,"Male Householder (%)":3.7,"Female Householder (%)":10.4},"Pennington County, Minnesota":{"Married Couple (%)":76.1,"Cohabiting Couple (%)":10.9,"Male Householder (%)":2.3,"Female Householder (%)":10.7},"Pine County, Minnesota":{"Married Couple (%)":67.9,"Cohabiting Couple (%)":17.5,"Male Householder (%)":4.7,"Female Householder (%)":9.8},"Pipestone County, Minnesota":{"Married Couple (%)":79.2,"Cohabiting Couple (%)":8.6,"Male Householder (%)":3.8,"Female Householder (%)":8.4},"Polk County, Minnesota":{"Married Couple (%)":72.5,"Cohabiting Couple (%)":8.8,"Male Householder (%)":3.9,"Female Householder (%)":14.8},"Pope County, Minnesota":{"Married Couple (%)":80.8,"Cohabiting Couple (%)":7.9,"Male Householder (%)":4.4,"Female Householder (%)":6.8},"Ramsey County, Minnesota":{"Married Couple (%)":63.3,"Cohabiting Couple (%)":12.2,"Male Householder (%)":4.3,"Female Householder (%)":20.1},"Red Lake County, Minnesota":{"Married Couple (%)":67.6,"Cohabiting Couple (%)":12.5,"Male Householder (%)":5.4,"Female Householder (%)":14.6},"Redwood County, Minnesota":{"Married Couple (%)":78.6,"Cohabiting Couple (%)":10.9,"Male Householder (%)":4.8,"Female Householder (%)":5.7},"Renville County, Minnesota":{"Married Couple (%)":67.2,"Cohabiting Couple (%)":16.8,"Male Householder (%)":5,"Female Householder (%)":11},"Rice County, Minnesota":{"Married Couple (%)":74.4,"Cohabiting Couple (%)":8,"Male Householder (%)":3.2,"Female Householder (%)":14.5},"Rock County, Minnesota":{"Married Couple (%)":81.9,"Cohabiting Couple (%)":8.8,"Male Householder (%)":0.4,"Female Householder (%)":8.9},"Roseau County, Minnesota":{"Married Couple (%)":67.6,"Cohabiting Couple (%)":11.3,"Male Householder (%)":6.3,"Female Householder (%)":14.8},"Scott County, Minnesota":{"Married Couple (%)":76.4,"Cohabiting Couple (%)":7.6,"Male Householder (%)":3.4,"Female Householder (%)":12.6},"Sherburne County, Minnesota":{"Married Couple (%)":72.6,"Cohabiting Couple (%)":8.2,"Male Householder (%)":4.5,"Female Householder (%)":14.7},"Sibley County, Minnesota":{"Married Couple (%)":80.1,"Cohabiting Couple (%)":11.6,"Male Householder (%)":3.7,"Female Householder (%)":4.6},"St. Louis County, Minnesota":{"Married Couple (%)":65.9,"Cohabiting Couple (%)":11.3,"Male Householder (%)":5.7,"Female Householder (%)":17},"Stearns County, Minnesota":{"Married Couple (%)":71.9,"Cohabiting Couple (%)":10.1,"Male Householder (%)":5.3,"Female Householder (%)":12.8},"Steele County, Minnesota":{"Married Couple (%)":74.4,"Cohabiting Couple (%)":8,"Male Householder (%)":2.9,"Female Householder (%)":14.7},"Stevens County, Minnesota":{"Married Couple (%)":83.2,"Cohabiting Couple (%)":7.3,"Male Householder (%)":2,"Female Householder (%)":7.5},"Swift County, Minnesota":{"Married Couple (%)":59.7,"Cohabiting Couple (%)":11,"Male Householder (%)":6.4,"Female Householder (%)":22.9},"Todd County, Minnesota":{"Married Couple (%)":70.8,"Cohabiting Couple (%)":12.7,"Male Householder (%)":4.2,"Female Householder (%)":12.3},"Traverse County, Minnesota":{"Married Couple (%)":78.5,"Cohabiting Couple (%)":8.8,"Male Householder (%)":1.7,"Female Householder (%)":11},"Wabasha County, Minnesota":{"Married Couple (%)":78.3,"Cohabiting Couple (%)":5.8,"Male Householder (%)":6.6,"Female Householder (%)":9.4},"Wadena County, Minnesota":{"Married Couple (%)":73,"Cohabiting Couple (%)":5.9,"Male Householder (%)":7.2,"Female Householder (%)":14},"Waseca County, Minnesota":{"Married Couple (%)":70.6,"Cohabiting Couple (%)":9.4,"Male Householder (%)":3.7,"Female Householder (%)":16.3},"Washington County, Minnesota":{"Married Couple (%)":78.2,"Cohabiting Couple (%)":7.3,"Male Householder (%)":3.7,"Female Householder (%)":10.8},"Watonwan County, Minnesota":{"Married Couple (%)":66.8,"Cohabiting Couple (%)":17.6,"Male Householder (%)":2,"Female Householder (%)":13.6},"Wilkin County, Minnesota":{"Married Couple (%)":75.8,"Cohabiting Couple (%)":13.7,"Male Householder (%)":2.9,"Female Householder (%)":7.6},"Winona County, Minnesota":{"Married Couple (%)":76,"Cohabiting Couple (%)":11.4,"Male Householder (%)":4.5,"Female Householder (%)":8},"Wright County, Minnesota":{"Married Couple (%)":81.1,"Cohabiting Couple (%)":7.2,"Male Householder (%)":3.1,"Female Householder (%)":8.6},"Yellow Medicine County, Minnesota":{"Married Couple (%)":73.4,"Cohabiting Couple (%)":7.2,"Male Householder (%)":7.6,"Female Householder (%)":11.8}};
+  const categories = ["Married Couple (%)","Cohabiting Couple (%)","Male Householder (%)","Female Householder (%)"];
+  const ctx = document.getElementById("barChart").getContext("2d");
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: categories,
+        datasets: [{
+          label: "Share of Children (%)",
+          data: values,
+          backgroundColor: ["#5DA5DA","#FAA43A","#60BD68","#F17CB0"]
+        }]
+      },
+      options: {
+        indexAxis: "y",
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            ticks: { callback: v => v + "%" },
+            title: { display: true, text: "Percent of Children" }
+          }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.raw + "%"
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById("countySelect").addEventListener("change", function() {
+    renderChart(Object.values(data[this.value]));
+  });
+
+  renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

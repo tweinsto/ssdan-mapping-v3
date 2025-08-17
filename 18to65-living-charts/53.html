@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Living Arrangements 18–64 – Washington</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+      body { font-family: sans-serif; margin: 1.25rem 2rem; text-align: center; }
+      h2 { margin-bottom: .25rem; font-size: 1.6rem; color: #2c348b; }
+      label { margin-right: .5rem; }
+      select { padding: .45rem .6rem; font-size: 1rem; border-radius: .5rem; border: 2px solid #f39c12; }
+      canvas { width: 100%; max-width: 900px; height: 520px; }
+    </style>
+</head>
+<html>
+  <body>
+    <h2>Living Arrangements of Adults 18–64 in Washington</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Adams County, Washington">Adams County, Washington</option>
+      <option value="Asotin County, Washington">Asotin County, Washington</option>
+      <option value="Benton County, Washington">Benton County, Washington</option>
+      <option value="Chelan County, Washington">Chelan County, Washington</option>
+      <option value="Clallam County, Washington">Clallam County, Washington</option>
+      <option value="Clark County, Washington">Clark County, Washington</option>
+      <option value="Columbia County, Washington">Columbia County, Washington</option>
+      <option value="Cowlitz County, Washington">Cowlitz County, Washington</option>
+      <option value="Douglas County, Washington">Douglas County, Washington</option>
+      <option value="Ferry County, Washington">Ferry County, Washington</option>
+      <option value="Franklin County, Washington">Franklin County, Washington</option>
+      <option value="Garfield County, Washington">Garfield County, Washington</option>
+      <option value="Grant County, Washington">Grant County, Washington</option>
+      <option value="Grays Harbor County, Washington">Grays Harbor County, Washington</option>
+      <option value="Island County, Washington">Island County, Washington</option>
+      <option value="Jefferson County, Washington">Jefferson County, Washington</option>
+      <option value="King County, Washington">King County, Washington</option>
+      <option value="Kitsap County, Washington">Kitsap County, Washington</option>
+      <option value="Kittitas County, Washington">Kittitas County, Washington</option>
+      <option value="Klickitat County, Washington">Klickitat County, Washington</option>
+      <option value="Lewis County, Washington">Lewis County, Washington</option>
+      <option value="Lincoln County, Washington">Lincoln County, Washington</option>
+      <option value="Mason County, Washington">Mason County, Washington</option>
+      <option value="Okanogan County, Washington">Okanogan County, Washington</option>
+      <option value="Pacific County, Washington">Pacific County, Washington</option>
+      <option value="Pend Oreille County, Washington">Pend Oreille County, Washington</option>
+      <option value="Pierce County, Washington">Pierce County, Washington</option>
+      <option value="San Juan County, Washington">San Juan County, Washington</option>
+      <option value="Skagit County, Washington">Skagit County, Washington</option>
+      <option value="Skamania County, Washington">Skamania County, Washington</option>
+      <option value="Snohomish County, Washington">Snohomish County, Washington</option>
+      <option value="Spokane County, Washington">Spokane County, Washington</option>
+      <option value="Stevens County, Washington">Stevens County, Washington</option>
+      <option value="Thurston County, Washington">Thurston County, Washington</option>
+      <option value="Wahkiakum County, Washington">Wahkiakum County, Washington</option>
+      <option value="Walla Walla County, Washington">Walla Walla County, Washington</option>
+      <option value="Whatcom County, Washington">Whatcom County, Washington</option>
+      <option value="Whitman County, Washington">Whitman County, Washington</option>
+      <option value="Yakima County, Washington">Yakima County, Washington</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>document.addEventListener("DOMContentLoaded", function () {
+  const data = {"Statewide":[10.7,11.9,7.5,10.5,49.1,10.4],"Adams County, Washington":[6,18.2,3,11.8,53,8.1],"Asotin County, Washington":[12.1,13.8,9.7,10.1,41,13.3],"Benton County, Washington":[9.9,14.9,4.7,11.9,48.7,9.9],"Chelan County, Washington":[9.5,13.7,4.8,11.4,50.4,10.2],"Clallam County, Washington":[13.4,13,7,11.9,44.4,10.2],"Clark County, Washington":[8.9,13.3,6.4,10.5,50.5,10.4],"Columbia County, Washington":[14.5,9.5,2,8.8,53.9,11.3],"Cowlitz County, Washington":[9.1,13.6,5.2,12.2,48,12],"Douglas County, Washington":[5.8,15.3,3.8,13.7,51.9,9.5],"Ferry County, Washington":[10.2,17,5.9,9.6,47.2,9.9],"Franklin County, Washington":[5,16.2,3.3,18.3,47.8,9.4],"Garfield County, Washington":[12.8,11.6,3.1,3.7,68.8,0],"Grant County, Washington":[7.9,13,4.5,13.8,47.7,13.1],"Grays Harbor County, Washington":[10.7,15.2,6.3,12.8,43.7,11.2],"Island County, Washington":[8.6,12.6,6.4,9.1,54.8,8.5],"Jefferson County, Washington":[12.6,10.8,7.6,9,52.6,7.5],"King County, Washington":[13.8,9.9,8.8,9.2,48.1,10.3],"Kitsap County, Washington":[8.5,12.6,7.7,10.1,51.6,9.4],"Kittitas County, Washington":[12,6.8,12.1,7.4,49.4,12.3],"Klickitat County, Washington":[11.4,10.5,7.9,9.2,50.4,10.6],"Lewis County, Washington":[7.5,15.2,6,12.4,47.3,11.6],"Lincoln County, Washington":[11,10.4,3.4,6.5,61.9,6.7],"Mason County, Washington":[7.7,14.9,7.9,11.3,46.3,11.9],"Okanogan County, Washington":[9.5,9.3,4,12.7,54.4,10],"Pacific County, Washington":[10.6,15,5.8,9.9,45.6,13.2],"Pend Oreille County, Washington":[9.4,10.5,7.2,11.9,47.9,13.1],"Pierce County, Washington":[9.5,12.4,6.2,11.7,49,11.2],"San Juan County, Washington":[13.3,8.7,5.4,6.9,52.9,12.8],"Skagit County, Washington":[7.9,12.9,5.9,12,50.7,10.6],"Skamania County, Washington":[8.3,12,6.7,15.6,49.7,7.7],"Snohomish County, Washington":[8.1,12.9,6.2,10.6,52.8,9.4],"Spokane County, Washington":[11.4,10.8,8.7,11.2,47.5,10.4],"Stevens County, Washington":[9.1,13.1,3.3,9.4,56.1,9],"Thurston County, Washington":[9.9,11.8,8,10.1,50.2,10],"Wahkiakum County, Washington":[9.9,6.1,5.5,5.9,66.6,6.1],"Walla Walla County, Washington":[11.7,14.3,6,10,50.5,7.5],"Whatcom County, Washington":[10,10.8,13.3,7.7,46.9,11.3],"Whitman County, Washington":[15.9,6,21.6,5.6,37.9,12.9],"Yakima County, Washington":[8,17.5,4,14,45.2,11.4]};
+  const cats = ["lives_alone_18_64","with_child_18_64","with_nonrel_18_64","with_other_rel_18_64","with_spouse_only_18_64","with_unmar_partner_18_64"];
+
+  const ORDER = [
+    "Lives alone",
+    "With child",
+    "With nonrelatives",
+    "With other relatives",
+    "With spouse only",
+    "With unmarried partner"
+  ];
+
+  const PRETTY_TO_SNAKE = {
+    "Lives alone":            "lives_alone_18_64",
+    "With child":             "with_child_18_64",
+    "With nonrelatives":      "with_nonrel_18_64",
+    "With other relatives":   "with_other_rel_18_64",
+    "With spouse only":       "with_spouse_only_18_64",
+    "With unmarried partner": "with_unmar_partner_18_64"
+  };
+
+  const COLOR_BY_CAT = {
+    "Lives alone":            "#e41a1c",
+    "With child":             "#ff7f00",
+    "With nonrelatives":      "#4daf4a",
+    "With other relatives":   "#984ea3",
+    "With spouse only":       "#377eb8",
+    "With unmarried partner": "#a65628"
+  };
+
+  // snake key → array index
+  const keyToIndex = Object.fromEntries((cats || []).map((k, i) => [String(k), i]));
+
+  function valuesFor(name) {
+    const row = data?.[name] || [];
+    return ORDER.map(lbl => {
+      const idx = keyToIndex[PRETTY_TO_SNAKE[lbl]];
+      const v = (idx != null && idx >= 0) ? row[idx] : 0;
+      return (typeof v === "number") ? v : Number(v) || 0;
+    });
+  }
+
+  const canvas = document.getElementById("barChart");
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+  let chart;
+
+  function renderChart(name) {
+    const vals = valuesFor(name);
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: ORDER,
+        datasets: [{
+          data: vals,
+          backgroundColor: ORDER.map(c => COLOR_BY_CAT[c]),
+          borderWidth: 0
+        }]
+      },
+      options: {
+        indexAxis: "y",
+        plugins: {
+          legend: { display: false },
+          tooltip: { callbacks: { label: (c) => c.raw + "%" } }
+        },
+        scales: {
+          x: { min: 0, max: 100, ticks: { callback: v => v + "%" } }
+        }
+      }
+    });
+  }
+
+  const DEFAULT_NAME = (data && Object.prototype.hasOwnProperty.call(data, "Statewide"))
+    ? "Statewide" : Object.keys(data || {})[0];
+
+  const sel = document.getElementById("countySelect");
+  if (sel) sel.addEventListener("change", e => renderChart(e.target.value));
+  if (DEFAULT_NAME) renderChart(DEFAULT_NAME);
+});</script>
+  </body>
+</html>
+</html>

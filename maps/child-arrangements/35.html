@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Living Arrangements of Children – New Mexico</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Children’s Living Arrangements (Under 18) – New Mexico</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Bernalillo County, New Mexico">Bernalillo County, New Mexico</option>
+      <option value="Catron County, New Mexico">Catron County, New Mexico</option>
+      <option value="Chaves County, New Mexico">Chaves County, New Mexico</option>
+      <option value="Cibola County, New Mexico">Cibola County, New Mexico</option>
+      <option value="Colfax County, New Mexico">Colfax County, New Mexico</option>
+      <option value="Curry County, New Mexico">Curry County, New Mexico</option>
+      <option value="De Baca County, New Mexico">De Baca County, New Mexico</option>
+      <option value="Doña Ana County, New Mexico">Doña Ana County, New Mexico</option>
+      <option value="Eddy County, New Mexico">Eddy County, New Mexico</option>
+      <option value="Grant County, New Mexico">Grant County, New Mexico</option>
+      <option value="Guadalupe County, New Mexico">Guadalupe County, New Mexico</option>
+      <option value="Harding County, New Mexico">Harding County, New Mexico</option>
+      <option value="Hidalgo County, New Mexico">Hidalgo County, New Mexico</option>
+      <option value="Lea County, New Mexico">Lea County, New Mexico</option>
+      <option value="Lincoln County, New Mexico">Lincoln County, New Mexico</option>
+      <option value="Los Alamos County, New Mexico">Los Alamos County, New Mexico</option>
+      <option value="Luna County, New Mexico">Luna County, New Mexico</option>
+      <option value="McKinley County, New Mexico">McKinley County, New Mexico</option>
+      <option value="Mora County, New Mexico">Mora County, New Mexico</option>
+      <option value="Otero County, New Mexico">Otero County, New Mexico</option>
+      <option value="Quay County, New Mexico">Quay County, New Mexico</option>
+      <option value="Rio Arriba County, New Mexico">Rio Arriba County, New Mexico</option>
+      <option value="Roosevelt County, New Mexico">Roosevelt County, New Mexico</option>
+      <option value="San Juan County, New Mexico">San Juan County, New Mexico</option>
+      <option value="San Miguel County, New Mexico">San Miguel County, New Mexico</option>
+      <option value="Sandoval County, New Mexico">Sandoval County, New Mexico</option>
+      <option value="Santa Fe County, New Mexico">Santa Fe County, New Mexico</option>
+      <option value="Sierra County, New Mexico">Sierra County, New Mexico</option>
+      <option value="Socorro County, New Mexico">Socorro County, New Mexico</option>
+      <option value="Taos County, New Mexico">Taos County, New Mexico</option>
+      <option value="Torrance County, New Mexico">Torrance County, New Mexico</option>
+      <option value="Union County, New Mexico">Union County, New Mexico</option>
+      <option value="Valencia County, New Mexico">Valencia County, New Mexico</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>  const data = {"Statewide":{"Married Couple (%)":57.1,"Cohabiting Couple (%)":12.4,"Male Householder (%)":6.9,"Female Householder (%)":23.6},"Bernalillo County, New Mexico":{"Married Couple (%)":56.6,"Cohabiting Couple (%)":12.3,"Male Householder (%)":7.3,"Female Householder (%)":23.9},"Catron County, New Mexico":{"Married Couple (%)":74.7,"Cohabiting Couple (%)":0,"Male Householder (%)":0,"Female Householder (%)":25.3},"Chaves County, New Mexico":{"Married Couple (%)":57.2,"Cohabiting Couple (%)":16.4,"Male Householder (%)":6,"Female Householder (%)":20.3},"Cibola County, New Mexico":{"Married Couple (%)":49.6,"Cohabiting Couple (%)":11,"Male Householder (%)":13.5,"Female Householder (%)":25.8},"Colfax County, New Mexico":{"Married Couple (%)":52.9,"Cohabiting Couple (%)":14.6,"Male Householder (%)":5.5,"Female Householder (%)":26.9},"Curry County, New Mexico":{"Married Couple (%)":64.8,"Cohabiting Couple (%)":8.3,"Male Householder (%)":3.4,"Female Householder (%)":23.5},"De Baca County, New Mexico":{"Married Couple (%)":43.2,"Cohabiting Couple (%)":46.9,"Male Householder (%)":3.7,"Female Householder (%)":6.3},"Doña Ana County, New Mexico":{"Married Couple (%)":57.4,"Cohabiting Couple (%)":14.1,"Male Householder (%)":6.1,"Female Householder (%)":22.4},"Eddy County, New Mexico":{"Married Couple (%)":64.9,"Cohabiting Couple (%)":8.3,"Male Householder (%)":9.3,"Female Householder (%)":17.5},"Grant County, New Mexico":{"Married Couple (%)":67.8,"Cohabiting Couple (%)":10.1,"Male Householder (%)":3.6,"Female Householder (%)":18.5},"Guadalupe County, New Mexico":{"Married Couple (%)":61.9,"Cohabiting Couple (%)":7.4,"Male Householder (%)":4.9,"Female Householder (%)":25.8},"Harding County, New Mexico":{"Married Couple (%)":96,"Cohabiting Couple (%)":0,"Male Householder (%)":2.9,"Female Householder (%)":1.2},"Hidalgo County, New Mexico":{"Married Couple (%)":56.6,"Cohabiting Couple (%)":22.4,"Male Householder (%)":4.1,"Female Householder (%)":16.9},"Lea County, New Mexico":{"Married Couple (%)":60.4,"Cohabiting Couple (%)":15.3,"Male Householder (%)":9.2,"Female Householder (%)":15.2},"Lincoln County, New Mexico":{"Married Couple (%)":55.1,"Cohabiting Couple (%)":13.1,"Male Householder (%)":7,"Female Householder (%)":24.8},"Los Alamos County, New Mexico":{"Married Couple (%)":85.3,"Cohabiting Couple (%)":1.8,"Male Householder (%)":5.1,"Female Householder (%)":7.8},"Luna County, New Mexico":{"Married Couple (%)":54,"Cohabiting Couple (%)":10.4,"Male Householder (%)":7,"Female Householder (%)":28.6},"McKinley County, New Mexico":{"Married Couple (%)":35.5,"Cohabiting Couple (%)":16.7,"Male Householder (%)":7.5,"Female Householder (%)":40.3},"Mora County, New Mexico":{"Married Couple (%)":33.6,"Cohabiting Couple (%)":2.3,"Male Householder (%)":5.7,"Female Householder (%)":58.4},"Otero County, New Mexico":{"Married Couple (%)":61.4,"Cohabiting Couple (%)":12.7,"Male Householder (%)":4.3,"Female Householder (%)":21.6},"Quay County, New Mexico":{"Married Couple (%)":63.2,"Cohabiting Couple (%)":1.9,"Male Householder (%)":0.9,"Female Householder (%)":34},"Rio Arriba County, New Mexico":{"Married Couple (%)":44.5,"Cohabiting Couple (%)":15.7,"Male Householder (%)":7.5,"Female Householder (%)":32.3},"Roosevelt County, New Mexico":{"Married Couple (%)":54.2,"Cohabiting Couple (%)":19.3,"Male Householder (%)":3.9,"Female Householder (%)":22.5},"San Juan County, New Mexico":{"Married Couple (%)":55.4,"Cohabiting Couple (%)":12.7,"Male Householder (%)":8.6,"Female Householder (%)":23.3},"San Miguel County, New Mexico":{"Married Couple (%)":40.4,"Cohabiting Couple (%)":20.4,"Male Householder (%)":11.1,"Female Householder (%)":28.1},"Sandoval County, New Mexico":{"Married Couple (%)":66.3,"Cohabiting Couple (%)":7.5,"Male Householder (%)":5.8,"Female Householder (%)":20.5},"Santa Fe County, New Mexico":{"Married Couple (%)":59.6,"Cohabiting Couple (%)":8.7,"Male Householder (%)":7.1,"Female Householder (%)":24.6},"Sierra County, New Mexico":{"Married Couple (%)":38.5,"Cohabiting Couple (%)":18.9,"Male Householder (%)":8.6,"Female Householder (%)":33.9},"Socorro County, New Mexico":{"Married Couple (%)":48.9,"Cohabiting Couple (%)":24.6,"Male Householder (%)":5.9,"Female Householder (%)":20.6},"Taos County, New Mexico":{"Married Couple (%)":40.8,"Cohabiting Couple (%)":10.3,"Male Householder (%)":9.9,"Female Householder (%)":39},"Torrance County, New Mexico":{"Married Couple (%)":66.2,"Cohabiting Couple (%)":14.5,"Male Householder (%)":4.2,"Female Householder (%)":15},"Union County, New Mexico":{"Married Couple (%)":36.3,"Cohabiting Couple (%)":24.5,"Male Householder (%)":21.2,"Female Householder (%)":17.9},"Valencia County, New Mexico":{"Married Couple (%)":59.6,"Cohabiting Couple (%)":12.9,"Male Householder (%)":4.5,"Female Householder (%)":22.9}};
+  const categories = ["Married Couple (%)","Cohabiting Couple (%)","Male Householder (%)","Female Householder (%)"];
+  const ctx = document.getElementById("barChart").getContext("2d");
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: categories,
+        datasets: [{
+          label: "Share of Children (%)",
+          data: values,
+          backgroundColor: ["#5DA5DA","#FAA43A","#60BD68","#F17CB0"]
+        }]
+      },
+      options: {
+        indexAxis: "y",
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            ticks: { callback: v => v + "%" },
+            title: { display: true, text: "Percent of Children" }
+          }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.raw + "%"
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById("countySelect").addEventListener("change", function() {
+    renderChart(Object.values(data[this.value]));
+  });
+
+  renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

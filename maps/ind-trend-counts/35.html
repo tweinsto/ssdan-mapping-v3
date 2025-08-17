@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+
+</head>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Industry Composition – 35</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #fff;
+    }
+    .container {
+      width: 95%;
+      max-width: 1200px;
+      margin: auto;
+      text-align: center;
+    }
+    canvas {
+  max-width: 100%;
+}
+    #countySelect {
+      font-size: 1rem;
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Industry Composition (Percent)</h2>
+    <select id="countySelect"></select>
+    <canvas id="pieChart"></canvas>
+  </div>
+
+  <script>
+    const data = {"Statewide":{"Agriculture & mining":3.8,"Arts & food services":10.1,"Construction":7.4,"Education & health":25.8,"Finance & real estate":4.7,"Information":1.4,"Manufacturing":4.3,"Other services":5.4,"Prof. & waste services":12.5,"Public administration":7.5,"Retail trade":10.8,"Transport & utilities":4.7,"Wholesale trade":1.7},"Bernalillo County":{"Agriculture & mining":1,"Arts & food services":9.7,"Construction":6.7,"Education & health":26.6,"Finance & real estate":5.7,"Information":1.7,"Manufacturing":4.7,"Other services":5.5,"Prof. & waste services":15.7,"Public administration":6.5,"Retail trade":10.2,"Transport & utilities":4,"Wholesale trade":2},"Catron County":{"Agriculture & mining":12.6,"Arts & food services":13.2,"Construction":7.7,"Education & health":23.4,"Finance & real estate":0,"Information":0,"Manufacturing":19.2,"Other services":0,"Prof. & waste services":10.1,"Public administration":3.3,"Retail trade":6.6,"Transport & utilities":3.9,"Wholesale trade":0},"Chaves County":{"Agriculture & mining":7.6,"Arts & food services":11.5,"Construction":5.5,"Education & health":27.3,"Finance & real estate":3.3,"Information":0.8,"Manufacturing":5.5,"Other services":5.5,"Prof. & waste services":5.8,"Public administration":6.2,"Retail trade":12.4,"Transport & utilities":7.2,"Wholesale trade":1.4},"Cibola County":{"Agriculture & mining":6.7,"Arts & food services":13.8,"Construction":8,"Education & health":26.5,"Finance & real estate":1.3,"Information":0.5,"Manufacturing":4.7,"Other services":4.9,"Prof. & waste services":5.1,"Public administration":14.2,"Retail trade":10.3,"Transport & utilities":1.8,"Wholesale trade":2},"Colfax County":{"Agriculture & mining":4.9,"Arts & food services":12.6,"Construction":5,"Education & health":22.9,"Finance & real estate":5.7,"Information":0.7,"Manufacturing":3.1,"Other services":9,"Prof. & waste services":7,"Public administration":7.1,"Retail trade":16.4,"Transport & utilities":4.2,"Wholesale trade":1.5},"Curry County":{"Agriculture & mining":6.4,"Arts & food services":10.6,"Construction":7.2,"Education & health":23.8,"Finance & real estate":3,"Information":1.7,"Manufacturing":8,"Other services":4.5,"Prof. & waste services":6.4,"Public administration":5.5,"Retail trade":12.5,"Transport & utilities":8.6,"Wholesale trade":1.7},"De Baca County":{"Agriculture & mining":25.8,"Arts & food services":0,"Construction":9.6,"Education & health":10.9,"Finance & real estate":5.5,"Information":0.6,"Manufacturing":5.7,"Other services":8.4,"Prof. & waste services":1.7,"Public administration":6,"Retail trade":2.8,"Transport & utilities":22.2,"Wholesale trade":0.9},"Doña Ana County":{"Agriculture & mining":4.1,"Arts & food services":9.2,"Construction":8.5,"Education & health":28.8,"Finance & real estate":3.8,"Information":1.1,"Manufacturing":4.6,"Other services":4.6,"Prof. & waste services":10.3,"Public administration":8,"Retail trade":10.5,"Transport & utilities":5,"Wholesale trade":1.5},"Eddy County":{"Agriculture & mining":17.2,"Arts & food services":7.9,"Construction":8.9,"Education & health":19.6,"Finance & real estate":4.1,"Information":0.7,"Manufacturing":4.7,"Other services":5,"Prof. & waste services":9.9,"Public administration":5.8,"Retail trade":9.8,"Transport & utilities":4.2,"Wholesale trade":2.2},"Grant County":{"Agriculture & mining":9.7,"Arts & food services":10.7,"Construction":7.7,"Education & health":32.5,"Finance & real estate":2.8,"Information":1.6,"Manufacturing":3.4,"Other services":4.2,"Prof. & waste services":7.9,"Public administration":4.3,"Retail trade":11.2,"Transport & utilities":2.6,"Wholesale trade":1.5},"Guadalupe County":{"Agriculture & mining":4.7,"Arts & food services":8.4,"Construction":13.3,"Education & health":22.3,"Finance & real estate":0.4,"Information":0,"Manufacturing":7.6,"Other services":4.5,"Prof. & waste services":4.6,"Public administration":9.7,"Retail trade":20.6,"Transport & utilities":4,"Wholesale trade":0},"Harding County":{"Agriculture & mining":8.7,"Arts & food services":8.7,"Construction":9.1,"Education & health":39.4,"Finance & real estate":0,"Information":0,"Manufacturing":0,"Other services":2.3,"Prof. & waste services":4.9,"Public administration":14.4,"Retail trade":3,"Transport & utilities":4.5,"Wholesale trade":4.9},"Hidalgo County":{"Agriculture & mining":16.4,"Arts & food services":10.3,"Construction":2,"Education & health":28.2,"Finance & real estate":2.7,"Information":1.9,"Manufacturing":0.8,"Other services":5.4,"Prof. & waste services":1.2,"Public administration":12.2,"Retail trade":10.1,"Transport & utilities":8.3,"Wholesale trade":0.3},"Lea County":{"Agriculture & mining":17.9,"Arts & food services":7.8,"Construction":9.4,"Education & health":16.7,"Finance & real estate":3.2,"Information":1.9,"Manufacturing":3.3,"Other services":4.7,"Prof. & waste services":7.7,"Public administration":3.7,"Retail trade":10.6,"Transport & utilities":10.5,"Wholesale trade":2.5},"Lincoln County":{"Agriculture & mining":5.4,"Arts & food services":15.2,"Construction":13.7,"Education & health":19.3,"Finance & real estate":5.7,"Information":0.6,"Manufacturing":2,"Other services":4.8,"Prof. & waste services":10.7,"Public administration":5.9,"Retail trade":10.4,"Transport & utilities":6,"Wholesale trade":0.2},"Los Alamos County":{"Agriculture & mining":0.5,"Arts & food services":6,"Construction":2,"Education & health":19,"Finance & real estate":0.9,"Information":1.6,"Manufacturing":1.5,"Other services":3.3,"Prof. & waste services":53.5,"Public administration":7.2,"Retail trade":3,"Transport & utilities":1.1,"Wholesale trade":0.4},"Luna County":{"Agriculture & mining":11.4,"Arts & food services":13.1,"Construction":8.1,"Education & health":24,"Finance & real estate":2.5,"Information":0.3,"Manufacturing":9.1,"Other services":3.1,"Prof. & waste services":3,"Public administration":6,"Retail trade":12.8,"Transport & utilities":6.3,"Wholesale trade":0.3},"McKinley County":{"Agriculture & mining":1.7,"Arts & food services":12.3,"Construction":6.1,"Education & health":34.1,"Finance & real estate":3.2,"Information":1.3,"Manufacturing":3.5,"Other services":5,"Prof. & waste services":4.1,"Public administration":8.9,"Retail trade":15.8,"Transport & utilities":3.6,"Wholesale trade":0.6},"Mora County":{"Agriculture & mining":2.4,"Arts & food services":8,"Construction":8.4,"Education & health":13.8,"Finance & real estate":5.7,"Information":0,"Manufacturing":1.3,"Other services":7.2,"Prof. & waste services":9.3,"Public administration":19.1,"Retail trade":7.9,"Transport & utilities":17,"Wholesale trade":0},"Otero County":{"Agriculture & mining":2.8,"Arts & food services":11,"Construction":11.6,"Education & health":25,"Finance & real estate":5.1,"Information":1.9,"Manufacturing":1.3,"Other services":4,"Prof. & waste services":7.2,"Public administration":10.7,"Retail trade":12.8,"Transport & utilities":5.2,"Wholesale trade":1.3},"Quay County":{"Agriculture & mining":7.7,"Arts & food services":17.9,"Construction":6.1,"Education & health":23,"Finance & real estate":2.5,"Information":0,"Manufacturing":1.5,"Other services":10.6,"Prof. & waste services":5.4,"Public administration":10.2,"Retail trade":8,"Transport & utilities":6.2,"Wholesale trade":0.9},"Rio Arriba County":{"Agriculture & mining":2.3,"Arts & food services":10.1,"Construction":8.6,"Education & health":25.6,"Finance & real estate":2.4,"Information":0.6,"Manufacturing":1,"Other services":5.8,"Prof. & waste services":20.6,"Public administration":9.8,"Retail trade":9.8,"Transport & utilities":2.8,"Wholesale trade":0.6},"Roosevelt County":{"Agriculture & mining":7.9,"Arts & food services":4.9,"Construction":5.4,"Education & health":26.8,"Finance & real estate":2.7,"Information":1.6,"Manufacturing":6.5,"Other services":7.4,"Prof. & waste services":5.1,"Public administration":9.7,"Retail trade":9.9,"Transport & utilities":8.7,"Wholesale trade":3.5},"Sandoval County":{"Agriculture & mining":1,"Arts & food services":8.5,"Construction":6.7,"Education & health":24.6,"Finance & real estate":7.1,"Information":1.2,"Manufacturing":6.1,"Other services":5,"Prof. & waste services":13.6,"Public administration":8.3,"Retail trade":11,"Transport & utilities":4.4,"Wholesale trade":2.6},"San Juan County":{"Agriculture & mining":9.4,"Arts & food services":12.3,"Construction":6.5,"Education & health":27.2,"Finance & real estate":3.6,"Information":0.9,"Manufacturing":3.4,"Other services":5.3,"Prof. & waste services":5.6,"Public administration":6.3,"Retail trade":11.3,"Transport & utilities":7,"Wholesale trade":1.3},"San Miguel County":{"Agriculture & mining":2.6,"Arts & food services":8.5,"Construction":6.2,"Education & health":39.2,"Finance & real estate":2.8,"Information":0.8,"Manufacturing":1.7,"Other services":3.9,"Prof. & waste services":7.1,"Public administration":12.6,"Retail trade":9.4,"Transport & utilities":4.4,"Wholesale trade":0.7},"Santa Fe County":{"Agriculture & mining":0.8,"Arts & food services":13.2,"Construction":7.2,"Education & health":22.8,"Finance & real estate":4.6,"Information":2,"Manufacturing":2.6,"Other services":6.3,"Prof. & waste services":16.7,"Public administration":9.4,"Retail trade":10.5,"Transport & utilities":2.8,"Wholesale trade":1.1},"Sierra County":{"Agriculture & mining":11.7,"Arts & food services":11,"Construction":5,"Education & health":32.6,"Finance & real estate":1.4,"Information":0.4,"Manufacturing":1.9,"Other services":5.3,"Prof. & waste services":6.1,"Public administration":6.9,"Retail trade":15.2,"Transport & utilities":2.4,"Wholesale trade":0},"Socorro County":{"Agriculture & mining":2.9,"Arts & food services":7.8,"Construction":4.7,"Education & health":35.8,"Finance & real estate":1.5,"Information":0.7,"Manufacturing":3.3,"Other services":6.3,"Prof. & waste services":14.3,"Public administration":7.4,"Retail trade":11.2,"Transport & utilities":2.8,"Wholesale trade":1.2},"Taos County":{"Agriculture & mining":2.4,"Arts & food services":14.7,"Construction":11.4,"Education & health":21.6,"Finance & real estate":6,"Information":1.3,"Manufacturing":1.8,"Other services":7.7,"Prof. & waste services":10.1,"Public administration":6.9,"Retail trade":13.8,"Transport & utilities":1.5,"Wholesale trade":0.9},"Torrance County":{"Agriculture & mining":5.7,"Arts & food services":11.5,"Construction":9.3,"Education & health":20.1,"Finance & real estate":3.8,"Information":0.5,"Manufacturing":5.2,"Other services":2.5,"Prof. & waste services":10.7,"Public administration":11.4,"Retail trade":11.3,"Transport & utilities":6.4,"Wholesale trade":1.6},"Union County":{"Agriculture & mining":20.3,"Arts & food services":12.9,"Construction":4.8,"Education & health":9.9,"Finance & real estate":6,"Information":3.4,"Manufacturing":5.1,"Other services":2.8,"Prof. & waste services":5.1,"Public administration":9.7,"Retail trade":13.9,"Transport & utilities":5.1,"Wholesale trade":1.1},"Valencia County":{"Agriculture & mining":2.5,"Arts & food services":7.9,"Construction":8.4,"Education & health":24.5,"Finance & real estate":4.5,"Information":1.1,"Manufacturing":5.3,"Other services":6.9,"Prof. & waste services":10.3,"Public administration":10.8,"Retail trade":11,"Transport & utilities":6.1,"Wholesale trade":0.9}};
+    const colors = {
+  'Agriculture & mining': '#FFFF01',
+  'Arts & food services': '#00008B',
+  'Construction': '#7570B1',
+  'Education & health': '#66A61E',
+  'Finance & real estate': '#E6AB01',
+  'Information': '#379',
+  'Manufacturing': '#E41A1C',
+  'Other services': '#377EF1',
+  'Prof. & waste services': '#FF7F00',
+  'Public administration': '#1B9E77',
+  'Retail trade': '#A65011',
+  'Transport & utilities': '#F781BF',
+  'Wholesale trade': '#919'
+};
+
+    const ctx = document.getElementById("pieChart").getContext("2d");
+    let chart;
+
+    function renderChart(county) {
+      const values = data[county];
+      const labels = Object.keys(values);
+      const percentages = Object.values(values);
+
+      if (chart) chart.destroy();
+
+      chart = new Chart(ctx, {
+        type: "pie",
+        data: {
+          labels: labels,
+          datasets: [{
+            data: percentages,
+            backgroundColor: labels.map(label => colors[label] || "#cccccc")
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: true,
+  aspectRatio: 1.5, // You can tweak this (e.g., 1.3, 1.5, 2)
+          plugins: {
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  return context.label + ": " + context.formattedValue + "%";
+                }
+              }
+            },
+            legend: {
+              position: "right",
+              labels: {
+                usePointStyle: true,
+                pointStyle: "rect"
+              }
+            }
+          }
+        }
+      });
+    }
+
+    const select = document.getElementById("countySelect");
+    Object.keys(data).forEach(county => {
+      const opt = document.createElement("option");
+      opt.value = county;
+      opt.text = county;
+      select.appendChild(opt);
+    });
+    select.value = "Statewide";
+    select.addEventListener("change", () => renderChart(select.value));
+    renderChart("Statewide");
+  </script>
+</body>
+</html>
+</html>

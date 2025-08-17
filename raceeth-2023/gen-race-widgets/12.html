@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="utf-8"/>
+  <title>Race/Ethnicity in State 12</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          text-align: center;
+          margin: 2rem;
+          background-color: white;
+        }
+        canvas {
+          max-width: 500px;
+          margin: 1rem auto;
+        }
+        select {
+          font-size: 1rem;
+          padding: 0.4rem;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Race &amp; Ethnicity Distribution</h2>
+    <label>Select County:</label>
+    <select id="countySelect"><option value="Statewide">Statewide</option>
+<option value="Alachua County, Florida">Alachua County, Florida</option>
+<option value="Baker County, Florida">Baker County, Florida</option>
+<option value="Bay County, Florida">Bay County, Florida</option>
+<option value="Bradford County, Florida">Bradford County, Florida</option>
+<option value="Brevard County, Florida">Brevard County, Florida</option>
+<option value="Broward County, Florida">Broward County, Florida</option>
+<option value="Calhoun County, Florida">Calhoun County, Florida</option>
+<option value="Charlotte County, Florida">Charlotte County, Florida</option>
+<option value="Citrus County, Florida">Citrus County, Florida</option>
+<option value="Clay County, Florida">Clay County, Florida</option>
+<option value="Collier County, Florida">Collier County, Florida</option>
+<option value="Columbia County, Florida">Columbia County, Florida</option>
+<option value="DeSoto County, Florida">DeSoto County, Florida</option>
+<option value="Dixie County, Florida">Dixie County, Florida</option>
+<option value="Duval County, Florida">Duval County, Florida</option>
+<option value="Escambia County, Florida">Escambia County, Florida</option>
+<option value="Flagler County, Florida">Flagler County, Florida</option>
+<option value="Franklin County, Florida">Franklin County, Florida</option>
+<option value="Gadsden County, Florida">Gadsden County, Florida</option>
+<option value="Gilchrist County, Florida">Gilchrist County, Florida</option>
+<option value="Glades County, Florida">Glades County, Florida</option>
+<option value="Gulf County, Florida">Gulf County, Florida</option>
+<option value="Hamilton County, Florida">Hamilton County, Florida</option>
+<option value="Hardee County, Florida">Hardee County, Florida</option>
+<option value="Hendry County, Florida">Hendry County, Florida</option>
+<option value="Hernando County, Florida">Hernando County, Florida</option>
+<option value="Highlands County, Florida">Highlands County, Florida</option>
+<option value="Hillsborough County, Florida">Hillsborough County, Florida</option>
+<option value="Holmes County, Florida">Holmes County, Florida</option>
+<option value="Indian River County, Florida">Indian River County, Florida</option>
+<option value="Jackson County, Florida">Jackson County, Florida</option>
+<option value="Jefferson County, Florida">Jefferson County, Florida</option>
+<option value="Lafayette County, Florida">Lafayette County, Florida</option>
+<option value="Lake County, Florida">Lake County, Florida</option>
+<option value="Lee County, Florida">Lee County, Florida</option>
+<option value="Leon County, Florida">Leon County, Florida</option>
+<option value="Levy County, Florida">Levy County, Florida</option>
+<option value="Liberty County, Florida">Liberty County, Florida</option>
+<option value="Madison County, Florida">Madison County, Florida</option>
+<option value="Manatee County, Florida">Manatee County, Florida</option>
+<option value="Marion County, Florida">Marion County, Florida</option>
+<option value="Martin County, Florida">Martin County, Florida</option>
+<option value="Miami-Dade County, Florida">Miami-Dade County, Florida</option>
+<option value="Monroe County, Florida">Monroe County, Florida</option>
+<option value="Nassau County, Florida">Nassau County, Florida</option>
+<option value="Okaloosa County, Florida">Okaloosa County, Florida</option>
+<option value="Okeechobee County, Florida">Okeechobee County, Florida</option>
+<option value="Orange County, Florida">Orange County, Florida</option>
+<option value="Osceola County, Florida">Osceola County, Florida</option>
+<option value="Palm Beach County, Florida">Palm Beach County, Florida</option>
+<option value="Pasco County, Florida">Pasco County, Florida</option>
+<option value="Pinellas County, Florida">Pinellas County, Florida</option>
+<option value="Polk County, Florida">Polk County, Florida</option>
+<option value="Putnam County, Florida">Putnam County, Florida</option>
+<option value="Santa Rosa County, Florida">Santa Rosa County, Florida</option>
+<option value="Sarasota County, Florida">Sarasota County, Florida</option>
+<option value="Seminole County, Florida">Seminole County, Florida</option>
+<option value="St. Johns County, Florida">St. Johns County, Florida</option>
+<option value="St. Lucie County, Florida">St. Lucie County, Florida</option>
+<option value="Sumter County, Florida">Sumter County, Florida</option>
+<option value="Suwannee County, Florida">Suwannee County, Florida</option>
+<option value="Taylor County, Florida">Taylor County, Florida</option>
+<option value="Union County, Florida">Union County, Florida</option>
+<option value="Volusia County, Florida">Volusia County, Florida</option>
+<option value="Wakulla County, Florida">Wakulla County, Florida</option>
+<option value="Walton County, Florida">Walton County, Florida</option>
+<option value="Washington County, Florida">Washington County, Florida</option></select>
+    <canvas id="pieChart" width="400" height="400"></canvas>
+    <script>  let raceData = {};
+  fetch("12.json")
+    .then(resp => resp.json())
+    .then(data => {
+      raceData = data;
+      const raceLabels = ["American Indian / Alaska Native","Asian","Black","Hispanic","NHMulti","NHOther","NHWhite","Pacific Islander"];
+      const ctx = document.getElementById("pieChart").getContext("2d");
+      let chart;
+
+      function renderChart(values) {
+        if (chart) chart.destroy();
+        chart = new Chart(ctx, {
+          type: "pie",
+          data: {
+            labels: raceLabels,
+            datasets: [{
+              data: values,
+              backgroundColor: [
+                "#f94144", "#f3722c", "#f9c74f", "#90be6d",
+                "#9d4edd", "#577590", "#d0cde1", "#43aa8b"
+              ]
+            }]
+          },
+          options: {
+            responsive: true,
+            plugins: {
+              legend: {
+                position: "bottom",
+                labels: {
+                  font: { size: 14 },
+                  boxWidth: 20,
+                  padding: 15,
+                  usePointStyle: true,
+                  pointStyle: "rectRounded"
+                }
+              },
+              tooltip: {
+                callbacks: {
+                  label: function(context) {
+                    return context.label + ": " + context.parsed + "%";
+                  }
+                }
+              }
+            }
+          }
+        });
+      }
+
+      document.getElementById("countySelect").addEventListener("change", function() {
+        const selected = this.value;
+        const values = Object.values(raceData[selected]);
+        renderChart(values);
+      });
+
+      renderChart(Object.values(raceData["Statewide"]));
+      document.getElementById("countySelect").value = "Statewide";
+    });</script>
+  </body>
+</html>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+
+</head>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Owners: Year Moved In (%) – 35</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #fff;
+    }
+    .container {
+      width: 95%;
+      max-width: 1200px;
+      margin: auto;
+      text-align: center;
+    }
+    #countySelect {
+      font-size: 1rem;
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    canvas {
+      max-width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Owners: Year Moved In (%)</h2>
+    <select id="countySelect"></select>
+    <canvas id="pieChart"></canvas>
+  </div>
+
+  <script>
+    const data = {"Statewide":{"Moved in 2021 or later":5.8,"Moved in 2018–2020":14.1,"Moved in 2010–2017":25,"Moved in 2000–2009":23.8,"Moved in 1990–1999":15.4,"1989 or earlier":15.9},"Bernalillo County":{"Moved in 2021 or later":6.1211,"Moved in 2018–2020":15.3721,"Moved in 2010–2017":25.7867,"Moved in 2000–2009":24.6461,"Moved in 1990–1999":14.5074,"1989 or earlier":13.5665},"Catron County":{"Moved in 2021 or later":0.693,"Moved in 2018–2020":6.8607,"Moved in 2010–2017":26.1261,"Moved in 2000–2009":31.9473,"Moved in 1990–1999":14.0679,"1989 or earlier":20.3049},"Chaves County":{"Moved in 2021 or later":5.8345,"Moved in 2018–2020":12.7914,"Moved in 2010–2017":23.2577,"Moved in 2000–2009":23.9854,"Moved in 1990–1999":17.7501,"1989 or earlier":16.3809},"Cibola County":{"Moved in 2021 or later":2.8033,"Moved in 2018–2020":11.5019,"Moved in 2010–2017":18.1278,"Moved in 2000–2009":22.0353,"Moved in 1990–1999":19.5549,"1989 or earlier":25.9769},"Colfax County":{"Moved in 2021 or later":6.08,"Moved in 2018–2020":11.2622,"Moved in 2010–2017":27.6809,"Moved in 2000–2009":18.8558,"Moved in 1990–1999":15.6234,"1989 or earlier":20.4977},"Curry County":{"Moved in 2021 or later":7.6447,"Moved in 2018–2020":12.7441,"Moved in 2010–2017":27.0526,"Moved in 2000–2009":26.8758,"Moved in 1990–1999":9.4388,"1989 or earlier":16.2439},"De Baca County":{"Moved in 2021 or later":3.3865,"Moved in 2018–2020":26.0956,"Moved in 2010–2017":6.9721,"Moved in 2000–2009":7.3705,"Moved in 1990–1999":10.9562,"1989 or earlier":45.2191},"Doña Ana County":{"Moved in 2021 or later":5.867,"Moved in 2018–2020":15.0966,"Moved in 2010–2017":27.3312,"Moved in 2000–2009":22.2489,"Moved in 1990–1999":15.4963,"1989 or earlier":13.9599},"Eddy County":{"Moved in 2021 or later":7.1223,"Moved in 2018–2020":13.847,"Moved in 2010–2017":27.9244,"Moved in 2000–2009":17.9786,"Moved in 1990–1999":13.6971,"1989 or earlier":19.4307},"Grant County":{"Moved in 2021 or later":6.2415,"Moved in 2018–2020":12.7051,"Moved in 2010–2017":21.3519,"Moved in 2000–2009":25.8419,"Moved in 1990–1999":15.0734,"1989 or earlier":18.7862},"Guadalupe County":{"Moved in 2021 or later":1.0554,"Moved in 2018–2020":6.0686,"Moved in 2010–2017":12.4011,"Moved in 2000–2009":37.9947,"Moved in 1990–1999":14.6878,"1989 or earlier":27.7924},"Harding County":{"Moved in 2021 or later":1.81,"Moved in 2018–2020":9.9548,"Moved in 2010–2017":17.1946,"Moved in 2000–2009":31.2217,"Moved in 1990–1999":11.3122,"1989 or earlier":28.5068},"Hidalgo County":{"Moved in 2021 or later":2.5641,"Moved in 2018–2020":14.7657,"Moved in 2010–2017":22.2812,"Moved in 2000–2009":21.1317,"Moved in 1990–1999":14.5889,"1989 or earlier":24.6684},"Lea County":{"Moved in 2021 or later":6.1504,"Moved in 2018–2020":11.4866,"Moved in 2010–2017":28.866,"Moved in 2000–2009":23.7582,"Moved in 1990–1999":15.2413,"1989 or earlier":14.4974},"Lincoln County":{"Moved in 2021 or later":7.7398,"Moved in 2018–2020":11.4017,"Moved in 2010–2017":22.1462,"Moved in 2000–2009":33.4272,"Moved in 1990–1999":14.1784,"1989 or earlier":11.1066},"Los Alamos County":{"Moved in 2021 or later":9.6389,"Moved in 2018–2020":15.2589,"Moved in 2010–2017":26.744,"Moved in 2000–2009":22.676,"Moved in 1990–1999":11.9588,"1989 or earlier":13.7232},"Luna County":{"Moved in 2021 or later":8.4846,"Moved in 2018–2020":14.2471,"Moved in 2010–2017":24.6418,"Moved in 2000–2009":20.5189,"Moved in 1990–1999":13.0372,"1989 or earlier":19.0704},"McKinley County":{"Moved in 2021 or later":2.6949,"Moved in 2018–2020":7.547,"Moved in 2010–2017":14.6668,"Moved in 2000–2009":20.3529,"Moved in 1990–1999":22.6963,"1989 or earlier":32.0422},"Mora County":{"Moved in 2021 or later":2.0845,"Moved in 2018–2020":11.9437,"Moved in 2010–2017":7.1549,"Moved in 2000–2009":30.7606,"Moved in 1990–1999":19.0986,"1989 or earlier":28.9577},"Otero County":{"Moved in 2021 or later":6.7241,"Moved in 2018–2020":15.8921,"Moved in 2010–2017":25.5603,"Moved in 2000–2009":24.1041,"Moved in 1990–1999":14.8854,"1989 or earlier":12.834},"Quay County":{"Moved in 2021 or later":3.6528,"Moved in 2018–2020":16.8566,"Moved in 2010–2017":19.504,"Moved in 2000–2009":20.9786,"Moved in 1990–1999":13.4718,"1989 or earlier":25.5362},"Rio Arriba County":{"Moved in 2021 or later":3.1803,"Moved in 2018–2020":6.8479,"Moved in 2010–2017":16.8248,"Moved in 2000–2009":19.6119,"Moved in 1990–1999":19.3041,"1989 or earlier":34.231},"Roosevelt County":{"Moved in 2021 or later":6.7353,"Moved in 2018–2020":13.5825,"Moved in 2010–2017":26.8069,"Moved in 2000–2009":13.1126,"Moved in 1990–1999":24.3679,"1989 or earlier":15.3949},"San Juan County":{"Moved in 2021 or later":5.543,"Moved in 2018–2020":12.6827,"Moved in 2010–2017":22.8003,"Moved in 2000–2009":22.6684,"Moved in 1990–1999":18.8123,"1989 or earlier":17.4933},"San Miguel County":{"Moved in 2021 or later":2.7705,"Moved in 2018–2020":7.5215,"Moved in 2010–2017":19.6222,"Moved in 2000–2009":21.5112,"Moved in 1990–1999":20.4007,"1989 or earlier":28.174},"Sandoval County":{"Moved in 2021 or later":5.8426,"Moved in 2018–2020":18.6564,"Moved in 2010–2017":29.5284,"Moved in 2000–2009":21.1732,"Moved in 1990–1999":13.509,"1989 or earlier":11.2904},"Santa Fe County":{"Moved in 2021 or later":5.7358,"Moved in 2018–2020":14.361,"Moved in 2010–2017":25.7285,"Moved in 2000–2009":24.9934,"Moved in 1990–1999":14.4917,"1989 or earlier":14.6897},"Sierra County":{"Moved in 2021 or later":5.9905,"Moved in 2018–2020":12.7956,"Moved in 2010–2017":22.3857,"Moved in 2000–2009":28.0347,"Moved in 1990–1999":16.8944,"1989 or earlier":13.8991},"Socorro County":{"Moved in 2021 or later":2.4225,"Moved in 2018–2020":6.8768,"Moved in 2010–2017":20.0573,"Moved in 2000–2009":23.9646,"Moved in 1990–1999":19.0414,"1989 or earlier":27.6374},"Taos County":{"Moved in 2021 or later":2.3335,"Moved in 2018–2020":10.6062,"Moved in 2010–2017":19.4666,"Moved in 2000–2009":32.8187,"Moved in 1990–1999":15.3435,"1989 or earlier":19.4315},"Torrance County":{"Moved in 2021 or later":5.9385,"Moved in 2018–2020":11.3892,"Moved in 2010–2017":27.4231,"Moved in 2000–2009":20.5726,"Moved in 1990–1999":20.0636,"1989 or earlier":14.6129},"Union County":{"Moved in 2021 or later":1.8537,"Moved in 2018–2020":9.9512,"Moved in 2010–2017":30.439,"Moved in 2000–2009":24.9756,"Moved in 1990–1999":17.1707,"1989 or earlier":15.6098},"Valencia County":{"Moved in 2021 or later":7.3447,"Moved in 2018–2020":12.7645,"Moved in 2010–2017":22.0842,"Moved in 2000–2009":27.4994,"Moved in 1990–1999":16.4642,"1989 or earlier":13.843}};
+    const colors = {
+  'Moved in 2021 or later': '#377EF1',
+  'Moved in 2018–2020': '#FF7F00',
+  'Moved in 2010–2017': '#66A61E',
+  'Moved in 2000–2009': '#E6AB01',
+  'Moved in 1990–1999': '#7570B1',
+  '1989 or earlier': '#E41A1C'
+};
+
+    const ctx = document.getElementById("pieChart").getContext("2d");
+    let chart;
+
+    function renderChart(key) {
+      const values = data[key];
+      const labels = Object.keys(values);
+      const percentages = Object.values(values);
+
+      if (chart) chart.destroy();
+
+      chart = new Chart(ctx, {
+        type: "pie",
+        data: {
+          labels: labels,
+          datasets: [{
+            data: percentages,
+            backgroundColor: labels.map(label => colors[label] || "#cccccc")
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: true,
+          aspectRatio: 1.5,
+          plugins: {
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  return context.label + ": " + context.formattedValue + "%";
+                }
+              }
+            },
+            legend: {
+              position: "right",
+              labels: {
+                usePointStyle: true,
+                pointStyle: "rect"
+              }
+            }
+          }
+        }
+      });
+    }
+
+    // Populate dropdown (Statewide first, then counties A->Z)
+    const select = document.getElementById("countySelect");
+    const keys = ["Statewide", ...Object.keys(data).filter(k => k !== "Statewide").sort()];
+    keys.forEach(k => {
+      const opt = document.createElement("option");
+      opt.value = k;
+      opt.text  = k;
+      select.appendChild(opt);
+    });
+    select.value = "Statewide";
+    select.addEventListener("change", () => renderChart(select.value));
+
+    renderChart("Statewide");
+  </script>
+</body>
+</html>
+</html>

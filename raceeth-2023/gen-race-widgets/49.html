@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="utf-8"/>
+  <title>Race/Ethnicity in State 49</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          text-align: center;
+          margin: 2rem;
+          background-color: white;
+        }
+        canvas {
+          max-width: 500px;
+          margin: 1rem auto;
+        }
+        select {
+          font-size: 1rem;
+          padding: 0.4rem;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Race &amp; Ethnicity Distribution</h2>
+    <label>Select County:</label>
+    <select id="countySelect"><option value="Statewide">Statewide</option>
+<option value="Beaver County, Utah">Beaver County, Utah</option>
+<option value="Box Elder County, Utah">Box Elder County, Utah</option>
+<option value="Cache County, Utah">Cache County, Utah</option>
+<option value="Carbon County, Utah">Carbon County, Utah</option>
+<option value="Daggett County, Utah">Daggett County, Utah</option>
+<option value="Davis County, Utah">Davis County, Utah</option>
+<option value="Duchesne County, Utah">Duchesne County, Utah</option>
+<option value="Emery County, Utah">Emery County, Utah</option>
+<option value="Garfield County, Utah">Garfield County, Utah</option>
+<option value="Grand County, Utah">Grand County, Utah</option>
+<option value="Iron County, Utah">Iron County, Utah</option>
+<option value="Juab County, Utah">Juab County, Utah</option>
+<option value="Kane County, Utah">Kane County, Utah</option>
+<option value="Millard County, Utah">Millard County, Utah</option>
+<option value="Morgan County, Utah">Morgan County, Utah</option>
+<option value="Piute County, Utah">Piute County, Utah</option>
+<option value="Rich County, Utah">Rich County, Utah</option>
+<option value="Salt Lake County, Utah">Salt Lake County, Utah</option>
+<option value="San Juan County, Utah">San Juan County, Utah</option>
+<option value="Sanpete County, Utah">Sanpete County, Utah</option>
+<option value="Sevier County, Utah">Sevier County, Utah</option>
+<option value="Summit County, Utah">Summit County, Utah</option>
+<option value="Tooele County, Utah">Tooele County, Utah</option>
+<option value="Uintah County, Utah">Uintah County, Utah</option>
+<option value="Utah County, Utah">Utah County, Utah</option>
+<option value="Wasatch County, Utah">Wasatch County, Utah</option>
+<option value="Washington County, Utah">Washington County, Utah</option>
+<option value="Wayne County, Utah">Wayne County, Utah</option>
+<option value="Weber County, Utah">Weber County, Utah</option></select>
+    <canvas id="pieChart" width="400" height="400"></canvas>
+    <script>  let raceData = {};
+  fetch("49.json")
+    .then(resp => resp.json())
+    .then(data => {
+      raceData = data;
+      const raceLabels = ["American Indian / Alaska Native","Asian","Black","Hispanic","NHMulti","NHOther","NHWhite","Pacific Islander"];
+      const ctx = document.getElementById("pieChart").getContext("2d");
+      let chart;
+
+      function renderChart(values) {
+        if (chart) chart.destroy();
+        chart = new Chart(ctx, {
+          type: "pie",
+          data: {
+            labels: raceLabels,
+            datasets: [{
+              data: values,
+              backgroundColor: [
+                "#f94144", "#f3722c", "#f9c74f", "#90be6d",
+                "#9d4edd", "#577590", "#d0cde1", "#43aa8b"
+              ]
+            }]
+          },
+          options: {
+            responsive: true,
+            plugins: {
+              legend: {
+                position: "bottom",
+                labels: {
+                  font: { size: 14 },
+                  boxWidth: 20,
+                  padding: 15,
+                  usePointStyle: true,
+                  pointStyle: "rectRounded"
+                }
+              },
+              tooltip: {
+                callbacks: {
+                  label: function(context) {
+                    return context.label + ": " + context.parsed + "%";
+                  }
+                }
+              }
+            }
+          }
+        });
+      }
+
+      document.getElementById("countySelect").addEventListener("change", function() {
+        const selected = this.value;
+        const values = Object.values(raceData[selected]);
+        renderChart(values);
+      });
+
+      renderChart(Object.values(raceData["Statewide"]));
+      document.getElementById("countySelect").value = "Statewide";
+    });</script>
+  </body>
+</html>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Internet Access Over Time –  California</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+                      h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+                      select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; border-radius: 5px; border: 1px solid #999; }
+                      canvas { width: 100%; max-width: 850px; height: 450px; margin-top: 1rem; }</style>
+</head>
+<html>
+  <body>
+    <h2>Internet Access in  California (2013–2023)</h2>
+    <label>Select County: </label>
+    <select id="countySelect"><option value='Statewide'>Statewide</option>
+<option value='Alameda County, California'>Alameda County, California</option>
+<option value='Alpine County, California'>Alpine County, California</option>
+<option value='Amador County, California'>Amador County, California</option>
+<option value='Butte County, California'>Butte County, California</option>
+<option value='Calaveras County, California'>Calaveras County, California</option>
+<option value='Colusa County, California'>Colusa County, California</option>
+<option value='Contra Costa County, California'>Contra Costa County, California</option>
+<option value='Del Norte County, California'>Del Norte County, California</option>
+<option value='El Dorado County, California'>El Dorado County, California</option>
+<option value='Fresno County, California'>Fresno County, California</option>
+<option value='Glenn County, California'>Glenn County, California</option>
+<option value='Humboldt County, California'>Humboldt County, California</option>
+<option value='Imperial County, California'>Imperial County, California</option>
+<option value='Inyo County, California'>Inyo County, California</option>
+<option value='Kern County, California'>Kern County, California</option>
+<option value='Kings County, California'>Kings County, California</option>
+<option value='Lake County, California'>Lake County, California</option>
+<option value='Lassen County, California'>Lassen County, California</option>
+<option value='Los Angeles County, California'>Los Angeles County, California</option>
+<option value='Madera County, California'>Madera County, California</option>
+<option value='Marin County, California'>Marin County, California</option>
+<option value='Mariposa County, California'>Mariposa County, California</option>
+<option value='Mendocino County, California'>Mendocino County, California</option>
+<option value='Merced County, California'>Merced County, California</option>
+<option value='Modoc County, California'>Modoc County, California</option>
+<option value='Mono County, California'>Mono County, California</option>
+<option value='Monterey County, California'>Monterey County, California</option>
+<option value='Napa County, California'>Napa County, California</option>
+<option value='Nevada County, California'>Nevada County, California</option>
+<option value='Orange County, California'>Orange County, California</option>
+<option value='Placer County, California'>Placer County, California</option>
+<option value='Plumas County, California'>Plumas County, California</option>
+<option value='Riverside County, California'>Riverside County, California</option>
+<option value='Sacramento County, California'>Sacramento County, California</option>
+<option value='San Benito County, California'>San Benito County, California</option>
+<option value='San Bernardino County, California'>San Bernardino County, California</option>
+<option value='San Diego County, California'>San Diego County, California</option>
+<option value='San Francisco County, California'>San Francisco County, California</option>
+<option value='San Joaquin County, California'>San Joaquin County, California</option>
+<option value='San Luis Obispo County, California'>San Luis Obispo County, California</option>
+<option value='San Mateo County, California'>San Mateo County, California</option>
+<option value='Santa Barbara County, California'>Santa Barbara County, California</option>
+<option value='Santa Clara County, California'>Santa Clara County, California</option>
+<option value='Santa Cruz County, California'>Santa Cruz County, California</option>
+<option value='Shasta County, California'>Shasta County, California</option>
+<option value='Sierra County, California'>Sierra County, California</option>
+<option value='Siskiyou County, California'>Siskiyou County, California</option>
+<option value='Solano County, California'>Solano County, California</option>
+<option value='Sonoma County, California'>Sonoma County, California</option>
+<option value='Stanislaus County, California'>Stanislaus County, California</option>
+<option value='Sutter County, California'>Sutter County, California</option>
+<option value='Tehama County, California'>Tehama County, California</option>
+<option value='Trinity County, California'>Trinity County, California</option>
+<option value='Tulare County, California'>Tulare County, California</option>
+<option value='Tuolumne County, California'>Tuolumne County, California</option>
+<option value='Ventura County, California'>Ventura County, California</option>
+<option value='Yolo County, California'>Yolo County, California</option>
+<option value='Yuba County, California'>Yuba County, California</option></select>
+    <canvas id="lineChart" width="850" height="450"></canvas>
+    <script>const internetData = {"Statewide":{"2017":86,"2018":87.8,"2019":89.4,"2020":91.3,"2021":92.6,"2022":93.6,"2023":94.5},"Alameda County, California":{"2017":88.8,"2018":90.3,"2019":91.2,"2020":92.9,"2021":93.9,"2022":94.5,"2023":95.2},"Alpine County, California":{"2017":91.1,"2018":89.3,"2019":90,"2020":94.5,"2021":94.7,"2022":93.3,"2023":94.5},"Amador County, California":{"2017":83.3,"2018":85.8,"2019":88.4,"2020":87.8,"2021":89.5,"2022":90,"2023":90.8},"Butte County, California":{"2017":84.9,"2018":86.5,"2019":88.3,"2020":90.4,"2021":91.7,"2022":92,"2023":93.1},"Calaveras County, California":{"2017":80.6,"2018":82.9,"2019":86.7,"2020":88.3,"2021":89.7,"2022":89.9,"2023":91.1},"Colusa County, California":{"2017":78,"2018":79.3,"2019":82.5,"2020":81.5,"2021":81.4,"2022":83.6,"2023":86.1},"Contra Costa County, California":{"2017":90.8,"2018":92.2,"2019":93.4,"2020":94.7,"2021":95.5,"2022":96.2,"2023":96.7},"Del Norte County, California":{"2017":80.1,"2018":82.6,"2019":85,"2020":87.8,"2021":91.2,"2022":92.5,"2023":92.6},"El Dorado County, California":{"2017":87.6,"2018":89,"2019":89.9,"2020":90.8,"2021":91.7,"2022":93.1,"2023":93.8},"Fresno County, California":{"2017":79.4,"2018":81.6,"2019":83.2,"2020":85.6,"2021":87,"2022":88.5,"2023":90.3},"Glenn County, California":{"2017":69.4,"2018":73.9,"2019":75.9,"2020":77.7,"2021":84.3,"2022":87.2,"2023":91.6},"Humboldt County, California":{"2017":83.9,"2018":84.7,"2019":86.3,"2020":88.1,"2021":89.7,"2022":90.4,"2023":92.4},"Imperial County, California":{"2017":73.9,"2018":77.7,"2019":80.8,"2020":84.3,"2021":87.5,"2022":89.7,"2023":91.1},"Inyo County, California":{"2017":82.3,"2018":83.2,"2019":84,"2020":86,"2021":86.3,"2022":85.3,"2023":85},"Kern County, California":{"2017":78.3,"2018":80.7,"2019":83,"2020":86.2,"2021":88.1,"2022":90.1,"2023":91.9},"Kings County, California":{"2017":77.9,"2018":81,"2019":83.4,"2020":85.6,"2021":87.2,"2022":88.9,"2023":90.7},"Lake County, California":{"2017":74.2,"2018":75.9,"2019":79.1,"2020":83.1,"2021":85.7,"2022":86.6,"2023":88.4},"Lassen County, California":{"2017":77.3,"2018":80.2,"2019":81.6,"2020":84.7,"2021":86.1,"2022":88,"2023":89.3},"Los Angeles County, California":{"2017":83.7,"2018":85.6,"2019":87.4,"2020":89.7,"2021":91.3,"2022":92.5,"2023":93.7},"Madera County, California":{"2017":76.3,"2018":80.2,"2019":83,"2020":87.3,"2021":89.4,"2022":91.2,"2023":92.3},"Marin County, California":{"2017":91.8,"2018":93.1,"2019":93.7,"2020":95,"2021":95.7,"2022":96.4,"2023":96.6},"Mariposa County, California":{"2017":77,"2018":81.9,"2019":80.2,"2020":83.7,"2021":85.4,"2022":87,"2023":87},"Mendocino County, California":{"2017":79.3,"2018":81.8,"2019":84.2,"2020":85.8,"2021":87,"2022":88.5,"2023":89.7},"Merced County, California":{"2017":79.7,"2018":83,"2019":86.6,"2020":89.3,"2021":90.9,"2022":91.7,"2023":90.8},"Modoc County, California":{"2017":70.7,"2018":72.1,"2019":72.7,"2020":78.5,"2021":78.4,"2022":81.5,"2023":84.7},"Mono County, California":{"2017":79.2,"2018":87.1,"2019":87.3,"2020":91.7,"2021":95.2,"2022":95.6,"2023":96.7},"Monterey County, California":{"2017":81.7,"2018":83.6,"2019":86.3,"2020":89.5,"2021":92.4,"2022":93.7,"2023":95.2},"Napa County, California":{"2017":88.7,"2018":90,"2019":91.5,"2020":92.8,"2021":93.9,"2022":94.5,"2023":95.1},"Nevada County, California":{"2017":86.8,"2018":87.8,"2019":88.5,"2020":90.1,"2021":90.8,"2022":92.4,"2023":93.8},"Orange County, California":{"2017":90.5,"2018":91.8,"2019":92.8,"2020":93.9,"2021":94.7,"2022":95.4,"2023":96.1},"Placer County, California":{"2017":90.2,"2018":91.2,"2019":92.2,"2020":93.3,"2021":94.3,"2022":94.9,"2023":95.7},"Plumas County, California":{"2017":76,"2018":79.7,"2019":80.9,"2020":85.2,"2021":86.4,"2022":87.6,"2023":87.2},"Riverside County, California":{"2017":85.8,"2018":87.5,"2019":89.1,"2020":91.6,"2021":93,"2022":93.9,"2023":95},"Sacramento County, California":{"2017":86.8,"2018":88.7,"2019":90.5,"2020":92.5,"2021":93.7,"2022":94.6,"2023":95.4},"San Benito County, California":{"2017":89.8,"2018":90.9,"2019":91.9,"2020":92.8,"2021":93.3,"2022":94.2,"2023":95.4},"San Bernardino County, California":{"2017":84.5,"2018":86.7,"2019":89.1,"2020":91.2,"2021":92.6,"2022":93.5,"2023":94.6},"San Diego County, California":{"2017":89.4,"2018":90.9,"2019":92.1,"2020":93.6,"2021":94.7,"2022":95.3,"2023":95.9},"San Francisco County, California":{"2017":87.5,"2018":88.7,"2019":90.2,"2020":91.9,"2021":92.9,"2022":93.9,"2023":94.8},"San Joaquin County, California":{"2017":81.2,"2018":83.4,"2019":85.7,"2020":88.6,"2021":90.4,"2022":92.1,"2023":93.6},"San Luis Obispo County, California":{"2017":88.6,"2018":89.3,"2019":90.8,"2020":91.8,"2021":93.1,"2022":93.7,"2023":94.6},"San Mateo County, California":{"2017":90.7,"2018":91.8,"2019":92.8,"2020":94.1,"2021":94.9,"2022":95.8,"2023":96.5},"Santa Barbara County, California":{"2017":86.1,"2018":88.7,"2019":90.8,"2020":92.6,"2021":93.5,"2022":94.2,"2023":94.7},"Santa Clara County, California":{"2017":92,"2018":93.1,"2019":94,"2020":94.9,"2021":95.7,"2022":96.3,"2023":96.7},"Santa Cruz County, California":{"2017":88.1,"2018":89.1,"2019":89.9,"2020":92.6,"2021":93.7,"2022":95,"2023":95.8},"Shasta County, California":{"2017":79.9,"2018":82.8,"2019":84.5,"2020":88.1,"2021":90.2,"2022":91.2,"2023":92.3},"Sierra County, California":{"2017":70.9,"2018":75.1,"2019":78.7,"2020":81.6,"2021":82.7,"2022":81.9,"2023":78.9},"Siskiyou County, California":{"2017":78.7,"2018":81,"2019":83.1,"2020":84.9,"2021":86,"2022":87.1,"2023":89},"Solano County, California":{"2017":89.1,"2018":91,"2019":92.4,"2020":93.7,"2021":94.6,"2022":95,"2023":95.7},"Sonoma County, California":{"2017":89,"2018":90.5,"2019":92.1,"2020":93.3,"2021":94.5,"2022":95.3,"2023":95.8},"Stanislaus County, California":{"2017":82.2,"2018":85.1,"2019":86.8,"2020":88.4,"2021":90.6,"2022":91.7,"2023":93.1},"Sutter County, California":{"2017":82.3,"2018":84.6,"2019":85.2,"2020":87.5,"2021":88.5,"2022":89.5,"2023":90.4},"Tehama County, California":{"2017":74.4,"2018":75.4,"2019":79.1,"2020":83.8,"2021":86.1,"2022":86.9,"2023":89.1},"Trinity County, California":{"2017":68.5,"2018":69.7,"2019":70.3,"2020":75.2,"2021":79.9,"2022":81.9,"2023":82.6},"Tulare County, California":{"2017":74.3,"2018":77.3,"2019":80.8,"2020":84.3,"2021":86.2,"2022":88.2,"2023":90.7},"Tuolumne County, California":{"2017":80.3,"2018":82.3,"2019":85.3,"2020":87.1,"2021":88.2,"2022":88.9,"2023":90.3},"Ventura County, California":{"2017":87.3,"2018":88.6,"2019":90,"2020":91.4,"2021":93,"2022":93.9,"2023":95},"Yolo County, California":{"2017":87.6,"2018":89.8,"2019":91.1,"2020":92.2,"2021":93.3,"2022":94.1,"2023":94.8},"Yuba County, California":{"2017":83.5,"2018":83.8,"2019":86.1,"2020":88.6,"2021":90.1,"2022":91.2,"2023":93.5}};
+const ctx = document.getElementById('lineChart').getContext('2d');
+let chart;
+
+function renderChart(data) {
+  const labels = Object.keys(data);
+  const values = Object.values(data);
+
+  if (chart) chart.destroy();
+  chart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: labels,
+      datasets: [{
+        label: '% With Internet',
+        data: values,
+        fill: false,
+        borderColor: 'teal',
+        backgroundColor: 'teal',
+        tension: 0.3,
+        pointRadius: 4
+      }]
+    },
+    options: {
+      responsive: true,
+      scales: {
+        y: {
+          beginAtZero: true,
+          max: 100,
+          title: { display: true, text: '% With Internet' }
+        },
+        x: {
+          title: { display: true, text: 'Year' }
+        }
+      },
+      plugins: {
+        tooltip: {
+          callbacks: {
+            label: function(ctx) {
+              return ctx.parsed.y.toFixed(1) + '%';
+            }
+          }
+        }
+      }
+    }
+  });
+}
+
+document.getElementById('countySelect').addEventListener('change', function() {
+  renderChart(internetData[this.value]);
+});
+renderChart(internetData['Statewide']);</script>
+  </body>
+</html>
+</html>

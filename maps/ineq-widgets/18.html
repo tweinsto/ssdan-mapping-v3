@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Income Distribution – Indiana</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          text-align: center;
+          margin: 2rem;
+        }
+        select {
+          font-size: 1rem;
+          padding: 0.4rem;
+          margin-bottom: 1rem;
+        }
+        canvas {
+          width: 100%;
+          max-width: 700px;
+          height: 400px;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Income Share by Quintile – Indiana</h2>
+    <label>Select County, State:</label>
+    <select id="countySelect"><option value='Statewide'>Statewide</option>
+<option value='Adams, Indiana'>Adams, Indiana</option>
+<option value='Allen, Indiana'>Allen, Indiana</option>
+<option value='Bartholomew, Indiana'>Bartholomew, Indiana</option>
+<option value='Benton, Indiana'>Benton, Indiana</option>
+<option value='Blackford, Indiana'>Blackford, Indiana</option>
+<option value='Boone, Indiana'>Boone, Indiana</option>
+<option value='Brown, Indiana'>Brown, Indiana</option>
+<option value='Carroll, Indiana'>Carroll, Indiana</option>
+<option value='Cass, Indiana'>Cass, Indiana</option>
+<option value='Clark, Indiana'>Clark, Indiana</option>
+<option value='Clay, Indiana'>Clay, Indiana</option>
+<option value='Clinton, Indiana'>Clinton, Indiana</option>
+<option value='Crawford, Indiana'>Crawford, Indiana</option>
+<option value='Daviess, Indiana'>Daviess, Indiana</option>
+<option value='Dearborn, Indiana'>Dearborn, Indiana</option>
+<option value='Decatur, Indiana'>Decatur, Indiana</option>
+<option value='DeKalb, Indiana'>DeKalb, Indiana</option>
+<option value='Delaware, Indiana'>Delaware, Indiana</option>
+<option value='Dubois, Indiana'>Dubois, Indiana</option>
+<option value='Elkhart, Indiana'>Elkhart, Indiana</option>
+<option value='Fayette, Indiana'>Fayette, Indiana</option>
+<option value='Floyd, Indiana'>Floyd, Indiana</option>
+<option value='Fountain, Indiana'>Fountain, Indiana</option>
+<option value='Franklin, Indiana'>Franklin, Indiana</option>
+<option value='Fulton, Indiana'>Fulton, Indiana</option>
+<option value='Gibson, Indiana'>Gibson, Indiana</option>
+<option value='Grant, Indiana'>Grant, Indiana</option>
+<option value='Greene, Indiana'>Greene, Indiana</option>
+<option value='Hamilton, Indiana'>Hamilton, Indiana</option>
+<option value='Hancock, Indiana'>Hancock, Indiana</option>
+<option value='Harrison, Indiana'>Harrison, Indiana</option>
+<option value='Hendricks, Indiana'>Hendricks, Indiana</option>
+<option value='Henry, Indiana'>Henry, Indiana</option>
+<option value='Howard, Indiana'>Howard, Indiana</option>
+<option value='Huntington, Indiana'>Huntington, Indiana</option>
+<option value='Jackson, Indiana'>Jackson, Indiana</option>
+<option value='Jasper, Indiana'>Jasper, Indiana</option>
+<option value='Jay, Indiana'>Jay, Indiana</option>
+<option value='Jefferson, Indiana'>Jefferson, Indiana</option>
+<option value='Jennings, Indiana'>Jennings, Indiana</option>
+<option value='Johnson, Indiana'>Johnson, Indiana</option>
+<option value='Knox, Indiana'>Knox, Indiana</option>
+<option value='Kosciusko, Indiana'>Kosciusko, Indiana</option>
+<option value='LaGrange, Indiana'>LaGrange, Indiana</option>
+<option value='Lake, Indiana'>Lake, Indiana</option>
+<option value='LaPorte, Indiana'>LaPorte, Indiana</option>
+<option value='Lawrence, Indiana'>Lawrence, Indiana</option>
+<option value='Madison, Indiana'>Madison, Indiana</option>
+<option value='Marion, Indiana'>Marion, Indiana</option>
+<option value='Marshall, Indiana'>Marshall, Indiana</option>
+<option value='Martin, Indiana'>Martin, Indiana</option>
+<option value='Miami, Indiana'>Miami, Indiana</option>
+<option value='Monroe, Indiana'>Monroe, Indiana</option>
+<option value='Montgomery, Indiana'>Montgomery, Indiana</option>
+<option value='Morgan, Indiana'>Morgan, Indiana</option>
+<option value='Newton, Indiana'>Newton, Indiana</option>
+<option value='Noble, Indiana'>Noble, Indiana</option>
+<option value='Ohio, Indiana'>Ohio, Indiana</option>
+<option value='Orange, Indiana'>Orange, Indiana</option>
+<option value='Owen, Indiana'>Owen, Indiana</option>
+<option value='Parke, Indiana'>Parke, Indiana</option>
+<option value='Perry, Indiana'>Perry, Indiana</option>
+<option value='Pike, Indiana'>Pike, Indiana</option>
+<option value='Porter, Indiana'>Porter, Indiana</option>
+<option value='Posey, Indiana'>Posey, Indiana</option>
+<option value='Pulaski, Indiana'>Pulaski, Indiana</option>
+<option value='Putnam, Indiana'>Putnam, Indiana</option>
+<option value='Randolph, Indiana'>Randolph, Indiana</option>
+<option value='Ripley, Indiana'>Ripley, Indiana</option>
+<option value='Rush, Indiana'>Rush, Indiana</option>
+<option value='Scott, Indiana'>Scott, Indiana</option>
+<option value='Shelby, Indiana'>Shelby, Indiana</option>
+<option value='Spencer, Indiana'>Spencer, Indiana</option>
+<option value='St. Joseph, Indiana'>St. Joseph, Indiana</option>
+<option value='Starke, Indiana'>Starke, Indiana</option>
+<option value='Steuben, Indiana'>Steuben, Indiana</option>
+<option value='Sullivan, Indiana'>Sullivan, Indiana</option>
+<option value='Switzerland, Indiana'>Switzerland, Indiana</option>
+<option value='Tippecanoe, Indiana'>Tippecanoe, Indiana</option>
+<option value='Tipton, Indiana'>Tipton, Indiana</option>
+<option value='Union, Indiana'>Union, Indiana</option>
+<option value='Vanderburgh, Indiana'>Vanderburgh, Indiana</option>
+<option value='Vermillion, Indiana'>Vermillion, Indiana</option>
+<option value='Vigo, Indiana'>Vigo, Indiana</option>
+<option value='Wabash, Indiana'>Wabash, Indiana</option>
+<option value='Warren, Indiana'>Warren, Indiana</option>
+<option value='Warrick, Indiana'>Warrick, Indiana</option>
+<option value='Washington, Indiana'>Washington, Indiana</option>
+<option value='Wayne, Indiana'>Wayne, Indiana</option>
+<option value='Wells, Indiana'>Wells, Indiana</option>
+<option value='White, Indiana'>White, Indiana</option>
+<option value='Whitley, Indiana'>Whitley, Indiana</option></select>
+    <canvas id="barChart" width="700" height="400"></canvas>
+    <script>  const incomeData = {"Statewide":[5.8,9.3,13.8,26.8,44.3],"Adams, Indiana":[6.1,9.4,13.7,26.4,44.5],"Allen, Indiana":[5.3,8.4,12.6,26.7,47],"Bartholomew, Indiana":[5.4,8.9,13.3,27,45.4],"Benton, Indiana":[5.7,8.5,12.9,27.5,45.5],"Blackford, Indiana":[4.9,8.2,13.3,28.4,45.2],"Boone, Indiana":[4.3,7.1,11.1,27,50.5],"Brown, Indiana":[5.5,8.9,13.2,27.3,45.1],"Carroll, Indiana":[5.6,9,13.7,26.6,45.1],"Cass, Indiana":[6.4,9.9,15.1,27.4,41.2],"Clark, Indiana":[6.2,9.6,14.1,26.7,43.3],"Clay, Indiana":[4.5,7.4,11,25.5,51.6],"Clinton, Indiana":[6.9,10.3,15.4,26.8,40.6],"Crawford, Indiana":[5,8.6,13.8,27.1,45.5],"Daviess, Indiana":[5.5,9.3,14.2,26.6,44.4],"Dearborn, Indiana":[6.1,10.1,14.3,26.5,43],"Decatur, Indiana":[6,9.3,13.2,26.9,44.7],"DeKalb, Indiana":[6.2,9.7,14.1,26.7,43.3],"Delaware, Indiana":[5.4,9.1,13.9,27.4,44.2],"Dubois, Indiana":[6.2,9.9,14.5,27.7,41.8],"Elkhart, Indiana":[5.3,8.5,13,26.8,46.4],"Fayette, Indiana":[5.5,9.7,15.2,27.8,41.8],"Floyd, Indiana":[5.6,8.8,13.4,27.3,44.9],"Fountain, Indiana":[6.3,10,14.2,26.3,43.2],"Franklin, Indiana":[6.3,10.2,14.3,26.9,42.3],"Fulton, Indiana":[5.6,9,13.8,27.3,44.3],"Gibson, Indiana":[6.4,10.1,15.1,27,41.4],"Grant, Indiana":[5.4,8.6,13.4,27,45.6],"Greene, Indiana":[5.2,8.5,12.6,26.6,47.1],"Hamilton, Indiana":[5.3,8.4,12.8,26.9,46.5],"Hancock, Indiana":[6.3,9.3,13.4,26,45],"Harrison, Indiana":[6.2,9.7,14.4,26.6,43.2],"Hendricks, Indiana":[6.7,9.9,13.9,26.1,43.4],"Henry, Indiana":[5.7,8.8,13.3,26.4,45.8],"Howard, Indiana":[5.6,8.9,13.5,26.8,45.2],"Huntington, Indiana":[5.7,8.8,13.2,26.1,46.4],"Jackson, Indiana":[6.6,10.4,15.3,27.7,39.9],"Jasper, Indiana":[6.2,9.9,14.1,26.2,43.5],"Jay, Indiana":[6.4,9.9,14.9,26.9,41.9],"Jefferson, Indiana":[5.2,8.3,12.6,26.4,47.4],"Jennings, Indiana":[6.9,11,15.7,26.8,39.6],"Johnson, Indiana":[5.7,8.8,12.8,26.6,46.2],"Knox, Indiana":[5.2,8.2,12.7,27.2,46.8],"Kosciusko, Indiana":[6,9.8,14,26.8,43.4],"LaGrange, Indiana":[6.2,9.4,12.9,26,45.6],"Lake, Indiana":[5.1,8.6,13.4,27.2,45.7],"LaPorte, Indiana":[5.6,9.2,13.7,27.1,44.4],"Lawrence, Indiana":[6.2,10.4,15.3,27.4,40.7],"Madison, Indiana":[5.5,8.8,12.9,26.5,46.4],"Marion, Indiana":[4.8,7.8,12.1,27,48.4],"Marshall, Indiana":[6,9.2,13.5,26.2,45.1],"Martin, Indiana":[6,9.9,14.9,27.7,41.5],"Miami, Indiana":[6.1,9.7,14.6,27.3,42.3],"Monroe, Indiana":[4.4,7.9,12.6,27.6,47.5],"Montgomery, Indiana":[5.7,9.2,13.8,26.4,44.9],"Morgan, Indiana":[5.6,9.1,13.6,27,44.7],"Newton, Indiana":[6.8,10.9,15,26.4,40.9],"Noble, Indiana":[6.5,10.1,14.5,26.8,42.1],"Ohio, Indiana":[6.3,9.7,14.2,25.6,44.3],"Orange, Indiana":[4.8,8.6,13.1,25.9,47.5],"Owen, Indiana":[5.4,8.6,12.8,26.3,46.9],"Parke, Indiana":[5.2,9.1,12.9,26.3,46.4],"Perry, Indiana":[6,10.5,16.3,27.6,39.6],"Pike, Indiana":[6.1,10,14.9,27.4,41.5],"Porter, Indiana":[5.6,9,13.3,26.6,45.5],"Posey, Indiana":[6.9,10.8,16.8,27.8,37.6],"Pulaski, Indiana":[5.9,9.4,14.3,27.2,43.3],"Putnam, Indiana":[6.3,10.2,14.8,27.1,41.6],"Randolph, Indiana":[5.8,9.5,14,26.8,43.9],"Ripley, Indiana":[5.7,9.3,13.9,26.3,44.8],"Rush, Indiana":[7.1,11.3,16.5,27,38.1],"Scott, Indiana":[5.7,9.9,15.2,29,40.3],"Shelby, Indiana":[5.8,9.6,14.1,27.1,43.5],"Spencer, Indiana":[5.8,9.6,14.3,26.2,44.1],"St. Joseph, Indiana":[4.6,7.6,11.8,26.6,49.4],"Starke, Indiana":[6.1,10.2,14.5,26.6,42.6],"Steuben, Indiana":[5.6,8.6,12.7,26.3,46.7],"Sullivan, Indiana":[5.5,8.5,12.8,26.7,46.5],"Switzerland, Indiana":[7.1,10.8,15.7,27.7,38.7],"Tippecanoe, Indiana":[4.6,7.9,12.7,27.2,47.6],"Tipton, Indiana":[7.1,10.6,15.6,26.3,40.5],"Union, Indiana":[6,9.9,13.6,25.6,44.9],"Vanderburgh, Indiana":[5,7.9,12,26.4,48.7],"Vermillion, Indiana":[6.4,10.3,16.1,26.5,40.6],"Vigo, Indiana":[4.4,7.6,12.2,27.2,48.6],"Wabash, Indiana":[6,9.9,14.6,26.7,42.7],"Warren, Indiana":[6.7,10.6,16.4,26.5,39.8],"Warrick, Indiana":[5.1,8,11.5,25.3,50.1],"Washington, Indiana":[6.4,10.5,15.5,27.7,40],"Wayne, Indiana":[4.6,7.9,12,26.6,48.9],"Wells, Indiana":[5.9,9.2,13.1,26.1,45.7],"White, Indiana":[5.9,9.4,13.5,26.7,44.5],"Whitley, Indiana":[6.5,9.7,13.9,26.5,43.4]};
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Bottom 20%', 'Second 20%', 'Middle 20%', 'Fourth 20%', 'Top 20%'],
+        datasets: [{
+          label: 'Share (%)',
+          data: values,
+          backgroundColor: '#4576a7'
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.parsed.y + '%'
+            }
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 100,
+            title: {
+              display: true,
+              text: 'Income Share (%)'
+            }
+          },
+          x: {
+            title: {
+              display: true,
+              text: 'Quintile'
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(Object.values(incomeData[this.value]));
+  });
+
+  renderChart(Object.values(incomeData['Statewide']));</script>
+  </body>
+</html>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Internet Access Over Time –  Maryland</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+                      h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+                      select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; border-radius: 5px; border: 1px solid #999; }
+                      canvas { width: 100%; max-width: 850px; height: 450px; margin-top: 1rem; }</style>
+</head>
+<html>
+  <body>
+    <h2>Internet Access in  Maryland (2013–2023)</h2>
+    <label>Select County: </label>
+    <select id="countySelect"><option value='Statewide'>Statewide</option>
+<option value='Allegany County, Maryland'>Allegany County, Maryland</option>
+<option value='Anne Arundel County, Maryland'>Anne Arundel County, Maryland</option>
+<option value='Baltimore city, Maryland'>Baltimore city, Maryland</option>
+<option value='Baltimore County, Maryland'>Baltimore County, Maryland</option>
+<option value='Calvert County, Maryland'>Calvert County, Maryland</option>
+<option value='Caroline County, Maryland'>Caroline County, Maryland</option>
+<option value='Carroll County, Maryland'>Carroll County, Maryland</option>
+<option value='Cecil County, Maryland'>Cecil County, Maryland</option>
+<option value='Charles County, Maryland'>Charles County, Maryland</option>
+<option value='Dorchester County, Maryland'>Dorchester County, Maryland</option>
+<option value='Frederick County, Maryland'>Frederick County, Maryland</option>
+<option value='Garrett County, Maryland'>Garrett County, Maryland</option>
+<option value='Harford County, Maryland'>Harford County, Maryland</option>
+<option value='Howard County, Maryland'>Howard County, Maryland</option>
+<option value='Kent County, Maryland'>Kent County, Maryland</option>
+<option value='Montgomery County, Maryland'>Montgomery County, Maryland</option>
+<option value='Prince George's County, Maryland'>Prince George's County, Maryland</option>
+<option value='Queen Anne's County, Maryland'>Queen Anne's County, Maryland</option>
+<option value='Somerset County, Maryland'>Somerset County, Maryland</option>
+<option value='St. Mary's County, Maryland'>St. Mary's County, Maryland</option>
+<option value='Talbot County, Maryland'>Talbot County, Maryland</option>
+<option value='Washington County, Maryland'>Washington County, Maryland</option>
+<option value='Wicomico County, Maryland'>Wicomico County, Maryland</option>
+<option value='Worcester County, Maryland'>Worcester County, Maryland</option></select>
+    <canvas id="lineChart" width="850" height="450"></canvas>
+    <script>const internetData = {"Statewide":{"2017":86.5,"2018":87.9,"2019":89.3,"2020":91.1,"2021":92.1,"2022":93,"2023":94},"Allegany County, Maryland":{"2017":74.4,"2018":76.5,"2019":79,"2020":82.8,"2021":83.9,"2022":84.9,"2023":86.4},"Anne Arundel County, Maryland":{"2017":90.5,"2018":91.7,"2019":92.9,"2020":94.4,"2021":95.1,"2022":96,"2023":96.6},"Baltimore city, Maryland":{"2017":75.4,"2018":77.9,"2019":79.6,"2020":82.4,"2021":84.1,"2022":86.1,"2023":88.2},"Baltimore County, Maryland":{"2017":86.6,"2018":88.2,"2019":89.6,"2020":91.2,"2021":92.2,"2022":93,"2023":94.1},"Calvert County, Maryland":{"2017":90.8,"2018":90.9,"2019":92.2,"2020":92.1,"2021":93,"2022":93.5,"2023":94.7},"Caroline County, Maryland":{"2017":77,"2018":79.8,"2019":83,"2020":86.1,"2021":87.1,"2022":88.6,"2023":89.1},"Carroll County, Maryland":{"2017":86.7,"2018":88.2,"2019":89.4,"2020":90.5,"2021":91.7,"2022":92.2,"2023":93.1},"Cecil County, Maryland":{"2017":82.7,"2018":83.8,"2019":87.4,"2020":90.5,"2021":91.1,"2022":91.6,"2023":93},"Charles County, Maryland":{"2017":86.8,"2018":87.3,"2019":89,"2020":90.9,"2021":91.9,"2022":93,"2023":94.6},"Dorchester County, Maryland":{"2017":75.2,"2018":76.7,"2019":80,"2020":82.6,"2021":84.8,"2022":87.5,"2023":88.7},"Frederick County, Maryland":{"2017":89,"2018":90.2,"2019":91.4,"2020":91.8,"2021":92.8,"2022":93.1,"2023":93.7},"Garrett County, Maryland":{"2017":73.8,"2018":77.3,"2019":80.3,"2020":82.7,"2021":85,"2022":86.1,"2023":86},"Harford County, Maryland":{"2017":88.4,"2018":89.2,"2019":90.6,"2020":92.4,"2021":93.7,"2022":94.4,"2023":95.1},"Howard County, Maryland":{"2017":94.8,"2018":95.3,"2019":95.6,"2020":96.1,"2021":96.6,"2022":96.9,"2023":97.4},"Kent County, Maryland":{"2017":75.9,"2018":76.3,"2019":78.2,"2020":78.7,"2021":82.8,"2022":84.2,"2023":86.5},"Montgomery County, Maryland":{"2017":92.5,"2018":93.3,"2019":94.2,"2020":95.2,"2021":96.1,"2022":96.5,"2023":97},"Prince George's County, Maryland":{"2017":86.7,"2018":88.5,"2019":90,"2020":92.2,"2021":93.3,"2022":94.2,"2023":95.1},"Queen Anne's County, Maryland":{"2017":88.1,"2018":88.8,"2019":90.1,"2020":92,"2021":92.7,"2022":93.2,"2023":93.7},"Somerset County, Maryland":{"2017":70.9,"2018":73.7,"2019":77.8,"2020":82.9,"2021":83.7,"2022":83.9,"2023":86.9},"St. Mary's County, Maryland":{"2017":83.9,"2018":86.4,"2019":87.5,"2020":89.9,"2021":91.2,"2022":91.7,"2023":92.4},"Talbot County, Maryland":{"2017":83,"2018":86,"2019":87.9,"2020":88.6,"2021":89.8,"2022":89.8,"2023":90.9},"Washington County, Maryland":{"2017":78.1,"2018":79.6,"2019":81.4,"2020":85.1,"2021":85.9,"2022":87.6,"2023":89.1},"Wicomico County, Maryland":{"2017":80.8,"2018":82,"2019":84.1,"2020":86.8,"2021":88.3,"2022":89.5,"2023":91.6},"Worcester County, Maryland":{"2017":81.6,"2018":83.3,"2019":85.9,"2020":87.6,"2021":89.5,"2022":90.5,"2023":91.8}};
+const ctx = document.getElementById('lineChart').getContext('2d');
+let chart;
+
+function renderChart(data) {
+  const labels = Object.keys(data);
+  const values = Object.values(data);
+
+  if (chart) chart.destroy();
+  chart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: labels,
+      datasets: [{
+        label: '% With Internet',
+        data: values,
+        fill: false,
+        borderColor: 'teal',
+        backgroundColor: 'teal',
+        tension: 0.3,
+        pointRadius: 4
+      }]
+    },
+    options: {
+      responsive: true,
+      scales: {
+        y: {
+          beginAtZero: true,
+          max: 100,
+          title: { display: true, text: '% With Internet' }
+        },
+        x: {
+          title: { display: true, text: 'Year' }
+        }
+      },
+      plugins: {
+        tooltip: {
+          callbacks: {
+            label: function(ctx) {
+              return ctx.parsed.y.toFixed(1) + '%';
+            }
+          }
+        }
+      }
+    }
+  });
+}
+
+document.getElementById('countySelect').addEventListener('change', function() {
+  renderChart(internetData[this.value]);
+});
+renderChart(internetData['Statewide']);</script>
+  </body>
+</html>
+</html>

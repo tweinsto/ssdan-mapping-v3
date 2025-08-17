@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Educational Enrollment – Iowa</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Educational Enrollment (Age 18–24) in Iowa</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Adair County, Iowa">Adair County, Iowa</option>
+      <option value="Adams County, Iowa">Adams County, Iowa</option>
+      <option value="Allamakee County, Iowa">Allamakee County, Iowa</option>
+      <option value="Appanoose County, Iowa">Appanoose County, Iowa</option>
+      <option value="Audubon County, Iowa">Audubon County, Iowa</option>
+      <option value="Benton County, Iowa">Benton County, Iowa</option>
+      <option value="Black Hawk County, Iowa">Black Hawk County, Iowa</option>
+      <option value="Boone County, Iowa">Boone County, Iowa</option>
+      <option value="Bremer County, Iowa">Bremer County, Iowa</option>
+      <option value="Buchanan County, Iowa">Buchanan County, Iowa</option>
+      <option value="Buena Vista County, Iowa">Buena Vista County, Iowa</option>
+      <option value="Butler County, Iowa">Butler County, Iowa</option>
+      <option value="Calhoun County, Iowa">Calhoun County, Iowa</option>
+      <option value="Carroll County, Iowa">Carroll County, Iowa</option>
+      <option value="Cass County, Iowa">Cass County, Iowa</option>
+      <option value="Cedar County, Iowa">Cedar County, Iowa</option>
+      <option value="Cerro Gordo County, Iowa">Cerro Gordo County, Iowa</option>
+      <option value="Cherokee County, Iowa">Cherokee County, Iowa</option>
+      <option value="Chickasaw County, Iowa">Chickasaw County, Iowa</option>
+      <option value="Clarke County, Iowa">Clarke County, Iowa</option>
+      <option value="Clay County, Iowa">Clay County, Iowa</option>
+      <option value="Clayton County, Iowa">Clayton County, Iowa</option>
+      <option value="Clinton County, Iowa">Clinton County, Iowa</option>
+      <option value="Crawford County, Iowa">Crawford County, Iowa</option>
+      <option value="Dallas County, Iowa">Dallas County, Iowa</option>
+      <option value="Davis County, Iowa">Davis County, Iowa</option>
+      <option value="Decatur County, Iowa">Decatur County, Iowa</option>
+      <option value="Delaware County, Iowa">Delaware County, Iowa</option>
+      <option value="Des Moines County, Iowa">Des Moines County, Iowa</option>
+      <option value="Dickinson County, Iowa">Dickinson County, Iowa</option>
+      <option value="Dubuque County, Iowa">Dubuque County, Iowa</option>
+      <option value="Emmet County, Iowa">Emmet County, Iowa</option>
+      <option value="Fayette County, Iowa">Fayette County, Iowa</option>
+      <option value="Floyd County, Iowa">Floyd County, Iowa</option>
+      <option value="Franklin County, Iowa">Franklin County, Iowa</option>
+      <option value="Fremont County, Iowa">Fremont County, Iowa</option>
+      <option value="Greene County, Iowa">Greene County, Iowa</option>
+      <option value="Grundy County, Iowa">Grundy County, Iowa</option>
+      <option value="Guthrie County, Iowa">Guthrie County, Iowa</option>
+      <option value="Hamilton County, Iowa">Hamilton County, Iowa</option>
+      <option value="Hancock County, Iowa">Hancock County, Iowa</option>
+      <option value="Hardin County, Iowa">Hardin County, Iowa</option>
+      <option value="Harrison County, Iowa">Harrison County, Iowa</option>
+      <option value="Henry County, Iowa">Henry County, Iowa</option>
+      <option value="Howard County, Iowa">Howard County, Iowa</option>
+      <option value="Humboldt County, Iowa">Humboldt County, Iowa</option>
+      <option value="Ida County, Iowa">Ida County, Iowa</option>
+      <option value="Iowa County, Iowa">Iowa County, Iowa</option>
+      <option value="Jackson County, Iowa">Jackson County, Iowa</option>
+      <option value="Jasper County, Iowa">Jasper County, Iowa</option>
+      <option value="Jefferson County, Iowa">Jefferson County, Iowa</option>
+      <option value="Johnson County, Iowa">Johnson County, Iowa</option>
+      <option value="Jones County, Iowa">Jones County, Iowa</option>
+      <option value="Keokuk County, Iowa">Keokuk County, Iowa</option>
+      <option value="Kossuth County, Iowa">Kossuth County, Iowa</option>
+      <option value="Lee County, Iowa">Lee County, Iowa</option>
+      <option value="Linn County, Iowa">Linn County, Iowa</option>
+      <option value="Louisa County, Iowa">Louisa County, Iowa</option>
+      <option value="Lucas County, Iowa">Lucas County, Iowa</option>
+      <option value="Lyon County, Iowa">Lyon County, Iowa</option>
+      <option value="Madison County, Iowa">Madison County, Iowa</option>
+      <option value="Mahaska County, Iowa">Mahaska County, Iowa</option>
+      <option value="Marion County, Iowa">Marion County, Iowa</option>
+      <option value="Marshall County, Iowa">Marshall County, Iowa</option>
+      <option value="Mills County, Iowa">Mills County, Iowa</option>
+      <option value="Mitchell County, Iowa">Mitchell County, Iowa</option>
+      <option value="Monona County, Iowa">Monona County, Iowa</option>
+      <option value="Monroe County, Iowa">Monroe County, Iowa</option>
+      <option value="Montgomery County, Iowa">Montgomery County, Iowa</option>
+      <option value="Muscatine County, Iowa">Muscatine County, Iowa</option>
+      <option value="O&#39;Brien County, Iowa">O'Brien County, Iowa</option>
+      <option value="Osceola County, Iowa">Osceola County, Iowa</option>
+      <option value="Page County, Iowa">Page County, Iowa</option>
+      <option value="Palo Alto County, Iowa">Palo Alto County, Iowa</option>
+      <option value="Plymouth County, Iowa">Plymouth County, Iowa</option>
+      <option value="Pocahontas County, Iowa">Pocahontas County, Iowa</option>
+      <option value="Polk County, Iowa">Polk County, Iowa</option>
+      <option value="Pottawattamie County, Iowa">Pottawattamie County, Iowa</option>
+      <option value="Poweshiek County, Iowa">Poweshiek County, Iowa</option>
+      <option value="Ringgold County, Iowa">Ringgold County, Iowa</option>
+      <option value="Sac County, Iowa">Sac County, Iowa</option>
+      <option value="Scott County, Iowa">Scott County, Iowa</option>
+      <option value="Shelby County, Iowa">Shelby County, Iowa</option>
+      <option value="Sioux County, Iowa">Sioux County, Iowa</option>
+      <option value="Story County, Iowa">Story County, Iowa</option>
+      <option value="Tama County, Iowa">Tama County, Iowa</option>
+      <option value="Taylor County, Iowa">Taylor County, Iowa</option>
+      <option value="Union County, Iowa">Union County, Iowa</option>
+      <option value="Van Buren County, Iowa">Van Buren County, Iowa</option>
+      <option value="Wapello County, Iowa">Wapello County, Iowa</option>
+      <option value="Warren County, Iowa">Warren County, Iowa</option>
+      <option value="Washington County, Iowa">Washington County, Iowa</option>
+      <option value="Wayne County, Iowa">Wayne County, Iowa</option>
+      <option value="Webster County, Iowa">Webster County, Iowa</option>
+      <option value="Winnebago County, Iowa">Winnebago County, Iowa</option>
+      <option value="Winneshiek County, Iowa">Winneshiek County, Iowa</option>
+      <option value="Woodbury County, Iowa">Woodbury County, Iowa</option>
+      <option value="Worth County, Iowa">Worth County, Iowa</option>
+      <option value="Wright County, Iowa">Wright County, Iowa</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>  const data = {"Statewide":{"Enrolled in College / Grad. School":43,"Not Enrolled":57},"Adair County, Iowa":{"Enrolled in College / Grad. School":20.8,"Not Enrolled":79.2},"Adams County, Iowa":{"Enrolled in College / Grad. School":11.5,"Not Enrolled":88.5},"Allamakee County, Iowa":{"Enrolled in College / Grad. School":34.2,"Not Enrolled":65.8},"Appanoose County, Iowa":{"Enrolled in College / Grad. School":19.9,"Not Enrolled":80.1},"Audubon County, Iowa":{"Enrolled in College / Grad. School":11.7,"Not Enrolled":88.3},"Benton County, Iowa":{"Enrolled in College / Grad. School":24.1,"Not Enrolled":75.9},"Black Hawk County, Iowa":{"Enrolled in College / Grad. School":54.2,"Not Enrolled":45.8},"Boone County, Iowa":{"Enrolled in College / Grad. School":27.3,"Not Enrolled":72.7},"Bremer County, Iowa":{"Enrolled in College / Grad. School":65.8,"Not Enrolled":34.2},"Buchanan County, Iowa":{"Enrolled in College / Grad. School":15.3,"Not Enrolled":84.7},"Buena Vista County, Iowa":{"Enrolled in College / Grad. School":46.4,"Not Enrolled":53.6},"Butler County, Iowa":{"Enrolled in College / Grad. School":18.2,"Not Enrolled":81.8},"Calhoun County, Iowa":{"Enrolled in College / Grad. School":22.8,"Not Enrolled":77.2},"Carroll County, Iowa":{"Enrolled in College / Grad. School":20.4,"Not Enrolled":79.6},"Cass County, Iowa":{"Enrolled in College / Grad. School":12.4,"Not Enrolled":87.6},"Cedar County, Iowa":{"Enrolled in College / Grad. School":24.8,"Not Enrolled":75.2},"Cerro Gordo County, Iowa":{"Enrolled in College / Grad. School":27.1,"Not Enrolled":72.9},"Cherokee County, Iowa":{"Enrolled in College / Grad. School":15.8,"Not Enrolled":84.2},"Chickasaw County, Iowa":{"Enrolled in College / Grad. School":20,"Not Enrolled":80},"Clarke County, Iowa":{"Enrolled in College / Grad. School":25.8,"Not Enrolled":74.2},"Clay County, Iowa":{"Enrolled in College / Grad. School":26.7,"Not Enrolled":73.3},"Clayton County, Iowa":{"Enrolled in College / Grad. School":16.5,"Not Enrolled":83.5},"Clinton County, Iowa":{"Enrolled in College / Grad. School":20.7,"Not Enrolled":79.3},"Crawford County, Iowa":{"Enrolled in College / Grad. School":28.1,"Not Enrolled":71.9},"Dallas County, Iowa":{"Enrolled in College / Grad. School":27.8,"Not Enrolled":72.2},"Davis County, Iowa":{"Enrolled in College / Grad. School":11.3,"Not Enrolled":88.7},"Decatur County, Iowa":{"Enrolled in College / Grad. School":57.2,"Not Enrolled":42.8},"Delaware County, Iowa":{"Enrolled in College / Grad. School":23.2,"Not Enrolled":76.8},"Des Moines County, Iowa":{"Enrolled in College / Grad. School":24.4,"Not Enrolled":75.6},"Dickinson County, Iowa":{"Enrolled in College / Grad. School":14.4,"Not Enrolled":85.6},"Dubuque County, Iowa":{"Enrolled in College / Grad. School":48.4,"Not Enrolled":51.6},"Emmet County, Iowa":{"Enrolled in College / Grad. School":52.5,"Not Enrolled":47.5},"Fayette County, Iowa":{"Enrolled in College / Grad. School":43.7,"Not Enrolled":56.3},"Floyd County, Iowa":{"Enrolled in College / Grad. School":22.8,"Not Enrolled":77.2},"Franklin County, Iowa":{"Enrolled in College / Grad. School":22.6,"Not Enrolled":77.4},"Fremont County, Iowa":{"Enrolled in College / Grad. School":17.9,"Not Enrolled":82.1},"Greene County, Iowa":{"Enrolled in College / Grad. School":9,"Not Enrolled":91},"Grundy County, Iowa":{"Enrolled in College / Grad. School":33.7,"Not Enrolled":66.3},"Guthrie County, Iowa":{"Enrolled in College / Grad. School":24.1,"Not Enrolled":75.9},"Hamilton County, Iowa":{"Enrolled in College / Grad. School":12,"Not Enrolled":88},"Hancock County, Iowa":{"Enrolled in College / Grad. School":13.5,"Not Enrolled":86.5},"Hardin County, Iowa":{"Enrolled in College / Grad. School":36.8,"Not Enrolled":63.2},"Harrison County, Iowa":{"Enrolled in College / Grad. School":20.2,"Not Enrolled":79.8},"Henry County, Iowa":{"Enrolled in College / Grad. School":39.8,"Not Enrolled":60.2},"Howard County, Iowa":{"Enrolled in College / Grad. School":17.2,"Not Enrolled":82.8},"Humboldt County, Iowa":{"Enrolled in College / Grad. School":20.8,"Not Enrolled":79.2},"Ida County, Iowa":{"Enrolled in College / Grad. School":15.7,"Not Enrolled":84.3},"Iowa County, Iowa":{"Enrolled in College / Grad. School":16.9,"Not Enrolled":83.1},"Jackson County, Iowa":{"Enrolled in College / Grad. School":26.3,"Not Enrolled":73.7},"Jasper County, Iowa":{"Enrolled in College / Grad. School":18.6,"Not Enrolled":81.4},"Jefferson County, Iowa":{"Enrolled in College / Grad. School":35.1,"Not Enrolled":64.9},"Johnson County, Iowa":{"Enrolled in College / Grad. School":74.4,"Not Enrolled":25.6},"Jones County, Iowa":{"Enrolled in College / Grad. School":23,"Not Enrolled":77},"Keokuk County, Iowa":{"Enrolled in College / Grad. School":13.8,"Not Enrolled":86.2},"Kossuth County, Iowa":{"Enrolled in College / Grad. School":19.4,"Not Enrolled":80.6},"Lee County, Iowa":{"Enrolled in College / Grad. School":21.8,"Not Enrolled":78.2},"Linn County, Iowa":{"Enrolled in College / Grad. School":41.1,"Not Enrolled":58.9},"Louisa County, Iowa":{"Enrolled in College / Grad. School":33.7,"Not Enrolled":66.3},"Lucas County, Iowa":{"Enrolled in College / Grad. School":11.9,"Not Enrolled":88.1},"Lyon County, Iowa":{"Enrolled in College / Grad. School":27,"Not Enrolled":73},"Madison County, Iowa":{"Enrolled in College / Grad. School":20.4,"Not Enrolled":79.6},"Mahaska County, Iowa":{"Enrolled in College / Grad. School":42.6,"Not Enrolled":57.4},"Marion County, Iowa":{"Enrolled in College / Grad. School":44.1,"Not Enrolled":55.9},"Marshall County, Iowa":{"Enrolled in College / Grad. School":20.4,"Not Enrolled":79.6},"Mills County, Iowa":{"Enrolled in College / Grad. School":34.7,"Not Enrolled":65.3},"Mitchell County, Iowa":{"Enrolled in College / Grad. School":22.4,"Not Enrolled":77.6},"Monona County, Iowa":{"Enrolled in College / Grad. School":21.8,"Not Enrolled":78.2},"Monroe County, Iowa":{"Enrolled in College / Grad. School":16.9,"Not Enrolled":83.1},"Montgomery County, Iowa":{"Enrolled in College / Grad. School":13.2,"Not Enrolled":86.8},"Muscatine County, Iowa":{"Enrolled in College / Grad. School":24.5,"Not Enrolled":75.5},"O'Brien County, Iowa":{"Enrolled in College / Grad. School":24.1,"Not Enrolled":75.9},"Osceola County, Iowa":{"Enrolled in College / Grad. School":30.3,"Not Enrolled":69.7},"Page County, Iowa":{"Enrolled in College / Grad. School":11.3,"Not Enrolled":88.7},"Palo Alto County, Iowa":{"Enrolled in College / Grad. School":27.2,"Not Enrolled":72.8},"Plymouth County, Iowa":{"Enrolled in College / Grad. School":24.9,"Not Enrolled":75.1},"Pocahontas County, Iowa":{"Enrolled in College / Grad. School":19.9,"Not Enrolled":80.1},"Polk County, Iowa":{"Enrolled in College / Grad. School":31.6,"Not Enrolled":68.4},"Pottawattamie County, Iowa":{"Enrolled in College / Grad. School":31.8,"Not Enrolled":68.2},"Poweshiek County, Iowa":{"Enrolled in College / Grad. School":56.3,"Not Enrolled":43.7},"Ringgold County, Iowa":{"Enrolled in College / Grad. School":14.9,"Not Enrolled":85.1},"Sac County, Iowa":{"Enrolled in College / Grad. School":25.3,"Not Enrolled":74.7},"Scott County, Iowa":{"Enrolled in College / Grad. School":31.5,"Not Enrolled":68.5},"Shelby County, Iowa":{"Enrolled in College / Grad. School":16.2,"Not Enrolled":83.8},"Sioux County, Iowa":{"Enrolled in College / Grad. School":57.3,"Not Enrolled":42.7},"Story County, Iowa":{"Enrolled in College / Grad. School":82.3,"Not Enrolled":17.7},"Tama County, Iowa":{"Enrolled in College / Grad. School":21.5,"Not Enrolled":78.5},"Taylor County, Iowa":{"Enrolled in College / Grad. School":17.2,"Not Enrolled":82.8},"Union County, Iowa":{"Enrolled in College / Grad. School":36.4,"Not Enrolled":63.6},"Van Buren County, Iowa":{"Enrolled in College / Grad. School":14.9,"Not Enrolled":85.1},"Wapello County, Iowa":{"Enrolled in College / Grad. School":34.7,"Not Enrolled":65.3},"Warren County, Iowa":{"Enrolled in College / Grad. School":48.6,"Not Enrolled":51.4},"Washington County, Iowa":{"Enrolled in College / Grad. School":16.9,"Not Enrolled":83.1},"Wayne County, Iowa":{"Enrolled in College / Grad. School":19.1,"Not Enrolled":80.9},"Webster County, Iowa":{"Enrolled in College / Grad. School":34.9,"Not Enrolled":65.1},"Winnebago County, Iowa":{"Enrolled in College / Grad. School":52,"Not Enrolled":48},"Winneshiek County, Iowa":{"Enrolled in College / Grad. School":69.9,"Not Enrolled":30.1},"Woodbury County, Iowa":{"Enrolled in College / Grad. School":37,"Not Enrolled":63},"Worth County, Iowa":{"Enrolled in College / Grad. School":22.7,"Not Enrolled":77.3},"Wright County, Iowa":{"Enrolled in College / Grad. School":22,"Not Enrolled":78}};
+  const categories = ["Enrolled in College / Grad. School","Not Enrolled"];
+  const ctx = document.getElementById("barChart").getContext("2d");
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: categories,
+        datasets: [
+          {
+            label: "County/State",
+            data: values,
+            backgroundColor: ["#66c2a5", "#fc8d62"]
+          }
+        ]
+      },
+      options: {
+        indexAxis: "y",
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            ticks: {
+              callback: v => v + "%"
+            }
+          }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.dataset.label + ": " + ctx.raw + "%"
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById("countySelect").addEventListener("change", function() {
+    renderChart(Object.values(data[this.value]));
+  });
+
+  renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

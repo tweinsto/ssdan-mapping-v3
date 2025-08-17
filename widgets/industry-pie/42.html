@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <title>Industry Distribution – Pennsylvania</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+        canvas { max-width: 600px; height: 500px; }
+        select { padding: 0.5rem; font-size: 1rem; margin: 1rem; }
+        .legend { max-width: 600px; margin: 1rem auto; display: flex; flex-wrap: wrap; justify-content: center; font-size: 0.9rem; }
+        .legend-item { display: flex; align-items: center; margin: 0.3rem 1rem; }
+        .legend-color { width: 12px; height: 12px; margin-right: 6px; border: 1px solid #444; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Industry Distribution in Pennsylvania</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Adams County, Pennsylvania">Adams County, Pennsylvania</option>
+      <option value="Allegheny County, Pennsylvania">Allegheny County, Pennsylvania</option>
+      <option value="Armstrong County, Pennsylvania">Armstrong County, Pennsylvania</option>
+      <option value="Beaver County, Pennsylvania">Beaver County, Pennsylvania</option>
+      <option value="Bedford County, Pennsylvania">Bedford County, Pennsylvania</option>
+      <option value="Berks County, Pennsylvania">Berks County, Pennsylvania</option>
+      <option value="Blair County, Pennsylvania">Blair County, Pennsylvania</option>
+      <option value="Bradford County, Pennsylvania">Bradford County, Pennsylvania</option>
+      <option value="Bucks County, Pennsylvania">Bucks County, Pennsylvania</option>
+      <option value="Butler County, Pennsylvania">Butler County, Pennsylvania</option>
+      <option value="Cambria County, Pennsylvania">Cambria County, Pennsylvania</option>
+      <option value="Cameron County, Pennsylvania">Cameron County, Pennsylvania</option>
+      <option value="Carbon County, Pennsylvania">Carbon County, Pennsylvania</option>
+      <option value="Centre County, Pennsylvania">Centre County, Pennsylvania</option>
+      <option value="Chester County, Pennsylvania">Chester County, Pennsylvania</option>
+      <option value="Clarion County, Pennsylvania">Clarion County, Pennsylvania</option>
+      <option value="Clearfield County, Pennsylvania">Clearfield County, Pennsylvania</option>
+      <option value="Clinton County, Pennsylvania">Clinton County, Pennsylvania</option>
+      <option value="Columbia County, Pennsylvania">Columbia County, Pennsylvania</option>
+      <option value="Crawford County, Pennsylvania">Crawford County, Pennsylvania</option>
+      <option value="Cumberland County, Pennsylvania">Cumberland County, Pennsylvania</option>
+      <option value="Dauphin County, Pennsylvania">Dauphin County, Pennsylvania</option>
+      <option value="Delaware County, Pennsylvania">Delaware County, Pennsylvania</option>
+      <option value="Elk County, Pennsylvania">Elk County, Pennsylvania</option>
+      <option value="Erie County, Pennsylvania">Erie County, Pennsylvania</option>
+      <option value="Fayette County, Pennsylvania">Fayette County, Pennsylvania</option>
+      <option value="Forest County, Pennsylvania">Forest County, Pennsylvania</option>
+      <option value="Franklin County, Pennsylvania">Franklin County, Pennsylvania</option>
+      <option value="Fulton County, Pennsylvania">Fulton County, Pennsylvania</option>
+      <option value="Greene County, Pennsylvania">Greene County, Pennsylvania</option>
+      <option value="Huntingdon County, Pennsylvania">Huntingdon County, Pennsylvania</option>
+      <option value="Indiana County, Pennsylvania">Indiana County, Pennsylvania</option>
+      <option value="Jefferson County, Pennsylvania">Jefferson County, Pennsylvania</option>
+      <option value="Juniata County, Pennsylvania">Juniata County, Pennsylvania</option>
+      <option value="Lackawanna County, Pennsylvania">Lackawanna County, Pennsylvania</option>
+      <option value="Lancaster County, Pennsylvania">Lancaster County, Pennsylvania</option>
+      <option value="Lawrence County, Pennsylvania">Lawrence County, Pennsylvania</option>
+      <option value="Lebanon County, Pennsylvania">Lebanon County, Pennsylvania</option>
+      <option value="Lehigh County, Pennsylvania">Lehigh County, Pennsylvania</option>
+      <option value="Luzerne County, Pennsylvania">Luzerne County, Pennsylvania</option>
+      <option value="Lycoming County, Pennsylvania">Lycoming County, Pennsylvania</option>
+      <option value="McKean County, Pennsylvania">McKean County, Pennsylvania</option>
+      <option value="Mercer County, Pennsylvania">Mercer County, Pennsylvania</option>
+      <option value="Mifflin County, Pennsylvania">Mifflin County, Pennsylvania</option>
+      <option value="Monroe County, Pennsylvania">Monroe County, Pennsylvania</option>
+      <option value="Montgomery County, Pennsylvania">Montgomery County, Pennsylvania</option>
+      <option value="Montour County, Pennsylvania">Montour County, Pennsylvania</option>
+      <option value="Northampton County, Pennsylvania">Northampton County, Pennsylvania</option>
+      <option value="Northumberland County, Pennsylvania">Northumberland County, Pennsylvania</option>
+      <option value="Perry County, Pennsylvania">Perry County, Pennsylvania</option>
+      <option value="Philadelphia County, Pennsylvania">Philadelphia County, Pennsylvania</option>
+      <option value="Pike County, Pennsylvania">Pike County, Pennsylvania</option>
+      <option value="Potter County, Pennsylvania">Potter County, Pennsylvania</option>
+      <option value="Schuylkill County, Pennsylvania">Schuylkill County, Pennsylvania</option>
+      <option value="Snyder County, Pennsylvania">Snyder County, Pennsylvania</option>
+      <option value="Somerset County, Pennsylvania">Somerset County, Pennsylvania</option>
+      <option value="Sullivan County, Pennsylvania">Sullivan County, Pennsylvania</option>
+      <option value="Susquehanna County, Pennsylvania">Susquehanna County, Pennsylvania</option>
+      <option value="Tioga County, Pennsylvania">Tioga County, Pennsylvania</option>
+      <option value="Union County, Pennsylvania">Union County, Pennsylvania</option>
+      <option value="Venango County, Pennsylvania">Venango County, Pennsylvania</option>
+      <option value="Warren County, Pennsylvania">Warren County, Pennsylvania</option>
+      <option value="Washington County, Pennsylvania">Washington County, Pennsylvania</option>
+      <option value="Wayne County, Pennsylvania">Wayne County, Pennsylvania</option>
+      <option value="Westmoreland County, Pennsylvania">Westmoreland County, Pennsylvania</option>
+      <option value="Wyoming County, Pennsylvania">Wyoming County, Pennsylvania</option>
+      <option value="York County, Pennsylvania">York County, Pennsylvania</option>
+    </select>
+    <canvas id="pieChart"></canvas>
+    <div class="legend">
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#66CC66;"></div>
+        <span>Agriculture, forestry, fishing, and hunting</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#996600;"></div>
+        <span>Mining</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FF6600;"></div>
+        <span>Utilities</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FFCC33;"></div>
+        <span>Construction</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FF0000;"></div>
+        <span>Manufacturing</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FF66FF;"></div>
+        <span>Wholesale trade</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#3399FF;"></div>
+        <span>Retail trade</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#00CC99;"></div>
+        <span>Transportation and warehousing</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#999966;"></div>
+        <span>Information</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#6666FF;"></div>
+        <span>Finance and insurance</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FF99CC;"></div>
+        <span>Professional, scientific, and technical services</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#66CCCC;"></div>
+        <span>Educational services</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FF9933;"></div>
+        <span>Healthcare and social assistance</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#CC99FF;"></div>
+        <span>Arts, entertainment, and recreation</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FF9999;"></div>
+        <span>Accommodation and food services</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#CCCC00;"></div>
+        <span>Other services</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#663300;"></div>
+        <span>Public administration</span>
+      </div>
+    </div>
+    <script>const data = [];
+const colors = ["#66CC66","#996600","#FF6600","#FFCC33","#FF0000","#FF66FF","#3399FF","#00CC99","#999966","#6666FF","#FF99CC","#66CCCC","#FF9933","#CC99FF","#FF9999","#CCCC00","#663300"];
+let chart;
+function renderChart(region) {
+  const ctx = document.getElementById("pieChart").getContext("2d");
+  const labels = Object.keys(data[region]);
+  const values = Object.values(data[region]);
+  const backgroundColors = labels.map(l => colors[l] || "#999");
+  if (chart) chart.destroy();
+  chart = new Chart(ctx, {
+    type: "pie",
+    data: {
+      labels: labels,
+      datasets: [{
+        data: values,
+        backgroundColor: backgroundColors
+      }]
+    },
+    options: {
+      plugins: {
+        tooltip: {
+          callbacks: {
+            label: ctx => ctx.label + ": " + ctx.raw + "%"
+          }
+        }
+      }
+    }
+  });
+}
+document.getElementById("countySelect").addEventListener("change", function() {
+  renderChart(this.value);
+});
+renderChart("Statewide");</script>
+  </body>
+</html>
+</html>

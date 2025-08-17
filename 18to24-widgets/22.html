@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Educational Enrollment – Louisiana</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Educational Enrollment (Age 18–24) in Louisiana</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Acadia Parish, Louisiana">Acadia Parish, Louisiana</option>
+      <option value="Allen Parish, Louisiana">Allen Parish, Louisiana</option>
+      <option value="Ascension Parish, Louisiana">Ascension Parish, Louisiana</option>
+      <option value="Assumption Parish, Louisiana">Assumption Parish, Louisiana</option>
+      <option value="Avoyelles Parish, Louisiana">Avoyelles Parish, Louisiana</option>
+      <option value="Beauregard Parish, Louisiana">Beauregard Parish, Louisiana</option>
+      <option value="Bienville Parish, Louisiana">Bienville Parish, Louisiana</option>
+      <option value="Bossier Parish, Louisiana">Bossier Parish, Louisiana</option>
+      <option value="Caddo Parish, Louisiana">Caddo Parish, Louisiana</option>
+      <option value="Calcasieu Parish, Louisiana">Calcasieu Parish, Louisiana</option>
+      <option value="Caldwell Parish, Louisiana">Caldwell Parish, Louisiana</option>
+      <option value="Cameron Parish, Louisiana">Cameron Parish, Louisiana</option>
+      <option value="Catahoula Parish, Louisiana">Catahoula Parish, Louisiana</option>
+      <option value="Claiborne Parish, Louisiana">Claiborne Parish, Louisiana</option>
+      <option value="Concordia Parish, Louisiana">Concordia Parish, Louisiana</option>
+      <option value="De Soto Parish, Louisiana">De Soto Parish, Louisiana</option>
+      <option value="East Baton Rouge Parish, Louisiana">East Baton Rouge Parish, Louisiana</option>
+      <option value="East Carroll Parish, Louisiana">East Carroll Parish, Louisiana</option>
+      <option value="East Feliciana Parish, Louisiana">East Feliciana Parish, Louisiana</option>
+      <option value="Evangeline Parish, Louisiana">Evangeline Parish, Louisiana</option>
+      <option value="Franklin Parish, Louisiana">Franklin Parish, Louisiana</option>
+      <option value="Grant Parish, Louisiana">Grant Parish, Louisiana</option>
+      <option value="Iberia Parish, Louisiana">Iberia Parish, Louisiana</option>
+      <option value="Iberville Parish, Louisiana">Iberville Parish, Louisiana</option>
+      <option value="Jackson Parish, Louisiana">Jackson Parish, Louisiana</option>
+      <option value="Jefferson Davis Parish, Louisiana">Jefferson Davis Parish, Louisiana</option>
+      <option value="Jefferson Parish, Louisiana">Jefferson Parish, Louisiana</option>
+      <option value="Lafayette Parish, Louisiana">Lafayette Parish, Louisiana</option>
+      <option value="Lafourche Parish, Louisiana">Lafourche Parish, Louisiana</option>
+      <option value="LaSalle Parish, Louisiana">LaSalle Parish, Louisiana</option>
+      <option value="Lincoln Parish, Louisiana">Lincoln Parish, Louisiana</option>
+      <option value="Livingston Parish, Louisiana">Livingston Parish, Louisiana</option>
+      <option value="Madison Parish, Louisiana">Madison Parish, Louisiana</option>
+      <option value="Morehouse Parish, Louisiana">Morehouse Parish, Louisiana</option>
+      <option value="Natchitoches Parish, Louisiana">Natchitoches Parish, Louisiana</option>
+      <option value="Orleans Parish, Louisiana">Orleans Parish, Louisiana</option>
+      <option value="Ouachita Parish, Louisiana">Ouachita Parish, Louisiana</option>
+      <option value="Plaquemines Parish, Louisiana">Plaquemines Parish, Louisiana</option>
+      <option value="Pointe Coupee Parish, Louisiana">Pointe Coupee Parish, Louisiana</option>
+      <option value="Rapides Parish, Louisiana">Rapides Parish, Louisiana</option>
+      <option value="Red River Parish, Louisiana">Red River Parish, Louisiana</option>
+      <option value="Richland Parish, Louisiana">Richland Parish, Louisiana</option>
+      <option value="Sabine Parish, Louisiana">Sabine Parish, Louisiana</option>
+      <option value="St. Bernard Parish, Louisiana">St. Bernard Parish, Louisiana</option>
+      <option value="St. Charles Parish, Louisiana">St. Charles Parish, Louisiana</option>
+      <option value="St. Helena Parish, Louisiana">St. Helena Parish, Louisiana</option>
+      <option value="St. James Parish, Louisiana">St. James Parish, Louisiana</option>
+      <option value="St. John the Baptist Parish, Louisiana">St. John the Baptist Parish, Louisiana</option>
+      <option value="St. Landry Parish, Louisiana">St. Landry Parish, Louisiana</option>
+      <option value="St. Martin Parish, Louisiana">St. Martin Parish, Louisiana</option>
+      <option value="St. Mary Parish, Louisiana">St. Mary Parish, Louisiana</option>
+      <option value="St. Tammany Parish, Louisiana">St. Tammany Parish, Louisiana</option>
+      <option value="Tangipahoa Parish, Louisiana">Tangipahoa Parish, Louisiana</option>
+      <option value="Tensas Parish, Louisiana">Tensas Parish, Louisiana</option>
+      <option value="Terrebonne Parish, Louisiana">Terrebonne Parish, Louisiana</option>
+      <option value="Union Parish, Louisiana">Union Parish, Louisiana</option>
+      <option value="Vermilion Parish, Louisiana">Vermilion Parish, Louisiana</option>
+      <option value="Vernon Parish, Louisiana">Vernon Parish, Louisiana</option>
+      <option value="Washington Parish, Louisiana">Washington Parish, Louisiana</option>
+      <option value="Webster Parish, Louisiana">Webster Parish, Louisiana</option>
+      <option value="West Baton Rouge Parish, Louisiana">West Baton Rouge Parish, Louisiana</option>
+      <option value="West Carroll Parish, Louisiana">West Carroll Parish, Louisiana</option>
+      <option value="West Feliciana Parish, Louisiana">West Feliciana Parish, Louisiana</option>
+      <option value="Winn Parish, Louisiana">Winn Parish, Louisiana</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>  const data = {"Statewide":{"Enrolled in College / Grad. School":38.1,"Not Enrolled":61.9},"Acadia Parish, Louisiana":{"Enrolled in College / Grad. School":27.5,"Not Enrolled":72.5},"Allen Parish, Louisiana":{"Enrolled in College / Grad. School":20.5,"Not Enrolled":79.5},"Ascension Parish, Louisiana":{"Enrolled in College / Grad. School":37.1,"Not Enrolled":62.9},"Assumption Parish, Louisiana":{"Enrolled in College / Grad. School":12.7,"Not Enrolled":87.3},"Avoyelles Parish, Louisiana":{"Enrolled in College / Grad. School":28.1,"Not Enrolled":71.9},"Beauregard Parish, Louisiana":{"Enrolled in College / Grad. School":27.9,"Not Enrolled":72.1},"Bienville Parish, Louisiana":{"Enrolled in College / Grad. School":26.1,"Not Enrolled":73.9},"Bossier Parish, Louisiana":{"Enrolled in College / Grad. School":33,"Not Enrolled":67},"Caddo Parish, Louisiana":{"Enrolled in College / Grad. School":28.8,"Not Enrolled":71.2},"Calcasieu Parish, Louisiana":{"Enrolled in College / Grad. School":39.6,"Not Enrolled":60.4},"Caldwell Parish, Louisiana":{"Enrolled in College / Grad. School":32.5,"Not Enrolled":67.5},"Cameron Parish, Louisiana":{"Enrolled in College / Grad. School":28.7,"Not Enrolled":71.3},"Catahoula Parish, Louisiana":{"Enrolled in College / Grad. School":9,"Not Enrolled":91},"Claiborne Parish, Louisiana":{"Enrolled in College / Grad. School":25.3,"Not Enrolled":74.7},"Concordia Parish, Louisiana":{"Enrolled in College / Grad. School":14.6,"Not Enrolled":85.4},"De Soto Parish, Louisiana":{"Enrolled in College / Grad. School":26.6,"Not Enrolled":73.4},"East Baton Rouge Parish, Louisiana":{"Enrolled in College / Grad. School":55.5,"Not Enrolled":44.5},"East Carroll Parish, Louisiana":{"Enrolled in College / Grad. School":13,"Not Enrolled":87},"East Feliciana Parish, Louisiana":{"Enrolled in College / Grad. School":17.3,"Not Enrolled":82.7},"Evangeline Parish, Louisiana":{"Enrolled in College / Grad. School":20.6,"Not Enrolled":79.4},"Franklin Parish, Louisiana":{"Enrolled in College / Grad. School":9.1,"Not Enrolled":90.9},"Grant Parish, Louisiana":{"Enrolled in College / Grad. School":10.5,"Not Enrolled":89.5},"Iberia Parish, Louisiana":{"Enrolled in College / Grad. School":19,"Not Enrolled":81},"Iberville Parish, Louisiana":{"Enrolled in College / Grad. School":18.9,"Not Enrolled":81.1},"Jackson Parish, Louisiana":{"Enrolled in College / Grad. School":16.8,"Not Enrolled":83.2},"Jefferson Parish, Louisiana":{"Enrolled in College / Grad. School":28.5,"Not Enrolled":71.5},"Jefferson Davis Parish, Louisiana":{"Enrolled in College / Grad. School":39.6,"Not Enrolled":60.4},"Lafayette Parish, Louisiana":{"Enrolled in College / Grad. School":42.5,"Not Enrolled":57.5},"Lafourche Parish, Louisiana":{"Enrolled in College / Grad. School":36.9,"Not Enrolled":63.1},"LaSalle Parish, Louisiana":{"Enrolled in College / Grad. School":20.4,"Not Enrolled":79.6},"Lincoln Parish, Louisiana":{"Enrolled in College / Grad. School":65.5,"Not Enrolled":34.5},"Livingston Parish, Louisiana":{"Enrolled in College / Grad. School":30.5,"Not Enrolled":69.5},"Madison Parish, Louisiana":{"Enrolled in College / Grad. School":10.9,"Not Enrolled":89.1},"Morehouse Parish, Louisiana":{"Enrolled in College / Grad. School":23.7,"Not Enrolled":76.3},"Natchitoches Parish, Louisiana":{"Enrolled in College / Grad. School":64.2,"Not Enrolled":35.8},"Orleans Parish, Louisiana":{"Enrolled in College / Grad. School":56.7,"Not Enrolled":43.3},"Ouachita Parish, Louisiana":{"Enrolled in College / Grad. School":44.3,"Not Enrolled":55.7},"Plaquemines Parish, Louisiana":{"Enrolled in College / Grad. School":30.9,"Not Enrolled":69.1},"Pointe Coupee Parish, Louisiana":{"Enrolled in College / Grad. School":22.1,"Not Enrolled":77.9},"Rapides Parish, Louisiana":{"Enrolled in College / Grad. School":29.9,"Not Enrolled":70.1},"Red River Parish, Louisiana":{"Enrolled in College / Grad. School":41.8,"Not Enrolled":58.2},"Richland Parish, Louisiana":{"Enrolled in College / Grad. School":14.1,"Not Enrolled":85.9},"Sabine Parish, Louisiana":{"Enrolled in College / Grad. School":18.8,"Not Enrolled":81.2},"St. Bernard Parish, Louisiana":{"Enrolled in College / Grad. School":31.1,"Not Enrolled":68.9},"St. Charles Parish, Louisiana":{"Enrolled in College / Grad. School":36,"Not Enrolled":64},"St. Helena Parish, Louisiana":{"Enrolled in College / Grad. School":42.7,"Not Enrolled":57.3},"St. James Parish, Louisiana":{"Enrolled in College / Grad. School":34.8,"Not Enrolled":65.2},"St. John the Baptist Parish, Louisiana":{"Enrolled in College / Grad. School":28.9,"Not Enrolled":71.1},"St. Landry Parish, Louisiana":{"Enrolled in College / Grad. School":24.7,"Not Enrolled":75.3},"St. Martin Parish, Louisiana":{"Enrolled in College / Grad. School":25.4,"Not Enrolled":74.6},"St. Mary Parish, Louisiana":{"Enrolled in College / Grad. School":13.4,"Not Enrolled":86.6},"St. Tammany Parish, Louisiana":{"Enrolled in College / Grad. School":31.8,"Not Enrolled":68.2},"Tangipahoa Parish, Louisiana":{"Enrolled in College / Grad. School":45.6,"Not Enrolled":54.4},"Tensas Parish, Louisiana":{"Enrolled in College / Grad. School":15,"Not Enrolled":85},"Terrebonne Parish, Louisiana":{"Enrolled in College / Grad. School":21.2,"Not Enrolled":78.8},"Union Parish, Louisiana":{"Enrolled in College / Grad. School":29.3,"Not Enrolled":70.7},"Vermilion Parish, Louisiana":{"Enrolled in College / Grad. School":24.4,"Not Enrolled":75.6},"Vernon Parish, Louisiana":{"Enrolled in College / Grad. School":11.5,"Not Enrolled":88.5},"Washington Parish, Louisiana":{"Enrolled in College / Grad. School":16.9,"Not Enrolled":83.1},"Webster Parish, Louisiana":{"Enrolled in College / Grad. School":25,"Not Enrolled":75},"West Baton Rouge Parish, Louisiana":{"Enrolled in College / Grad. School":32.5,"Not Enrolled":67.5},"West Carroll Parish, Louisiana":{"Enrolled in College / Grad. School":14.3,"Not Enrolled":85.7},"West Feliciana Parish, Louisiana":{"Enrolled in College / Grad. School":34.1,"Not Enrolled":65.9},"Winn Parish, Louisiana":{"Enrolled in College / Grad. School":17.3,"Not Enrolled":82.7}};
+  const categories = ["Enrolled in College / Grad. School","Not Enrolled"];
+  const ctx = document.getElementById("barChart").getContext("2d");
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: categories,
+        datasets: [
+          {
+            label: "County/State",
+            data: values,
+            backgroundColor: ["#66c2a5", "#fc8d62"]
+          }
+        ]
+      },
+      options: {
+        indexAxis: "y",
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            ticks: {
+              callback: v => v + "%"
+            }
+          }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.dataset.label + ": " + ctx.raw + "%"
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById("countySelect").addEventListener("change", function() {
+    renderChart(Object.values(data[this.value]));
+  });
+
+  renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

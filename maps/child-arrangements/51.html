@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Living Arrangements of Children – Virginia</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Children’s Living Arrangements (Under 18) – Virginia</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Accomack County, Virginia">Accomack County, Virginia</option>
+      <option value="Albemarle County, Virginia">Albemarle County, Virginia</option>
+      <option value="Alexandria city, Virginia">Alexandria city, Virginia</option>
+      <option value="Alleghany County, Virginia">Alleghany County, Virginia</option>
+      <option value="Amelia County, Virginia">Amelia County, Virginia</option>
+      <option value="Amherst County, Virginia">Amherst County, Virginia</option>
+      <option value="Appomattox County, Virginia">Appomattox County, Virginia</option>
+      <option value="Arlington County, Virginia">Arlington County, Virginia</option>
+      <option value="Augusta County, Virginia">Augusta County, Virginia</option>
+      <option value="Bath County, Virginia">Bath County, Virginia</option>
+      <option value="Bedford County, Virginia">Bedford County, Virginia</option>
+      <option value="Bland County, Virginia">Bland County, Virginia</option>
+      <option value="Botetourt County, Virginia">Botetourt County, Virginia</option>
+      <option value="Bristol city, Virginia">Bristol city, Virginia</option>
+      <option value="Brunswick County, Virginia">Brunswick County, Virginia</option>
+      <option value="Buchanan County, Virginia">Buchanan County, Virginia</option>
+      <option value="Buckingham County, Virginia">Buckingham County, Virginia</option>
+      <option value="Buena Vista city, Virginia">Buena Vista city, Virginia</option>
+      <option value="Campbell County, Virginia">Campbell County, Virginia</option>
+      <option value="Caroline County, Virginia">Caroline County, Virginia</option>
+      <option value="Carroll County, Virginia">Carroll County, Virginia</option>
+      <option value="Charles City County, Virginia">Charles City County, Virginia</option>
+      <option value="Charlotte County, Virginia">Charlotte County, Virginia</option>
+      <option value="Charlottesville city, Virginia">Charlottesville city, Virginia</option>
+      <option value="Chesapeake city, Virginia">Chesapeake city, Virginia</option>
+      <option value="Chesterfield County, Virginia">Chesterfield County, Virginia</option>
+      <option value="Clarke County, Virginia">Clarke County, Virginia</option>
+      <option value="Colonial Heights city, Virginia">Colonial Heights city, Virginia</option>
+      <option value="Covington city, Virginia">Covington city, Virginia</option>
+      <option value="Craig County, Virginia">Craig County, Virginia</option>
+      <option value="Culpeper County, Virginia">Culpeper County, Virginia</option>
+      <option value="Cumberland County, Virginia">Cumberland County, Virginia</option>
+      <option value="Danville city, Virginia">Danville city, Virginia</option>
+      <option value="Dickenson County, Virginia">Dickenson County, Virginia</option>
+      <option value="Dinwiddie County, Virginia">Dinwiddie County, Virginia</option>
+      <option value="Emporia city, Virginia">Emporia city, Virginia</option>
+      <option value="Essex County, Virginia">Essex County, Virginia</option>
+      <option value="Fairfax city, Virginia">Fairfax city, Virginia</option>
+      <option value="Fairfax County, Virginia">Fairfax County, Virginia</option>
+      <option value="Falls Church city, Virginia">Falls Church city, Virginia</option>
+      <option value="Fauquier County, Virginia">Fauquier County, Virginia</option>
+      <option value="Floyd County, Virginia">Floyd County, Virginia</option>
+      <option value="Fluvanna County, Virginia">Fluvanna County, Virginia</option>
+      <option value="Franklin city, Virginia">Franklin city, Virginia</option>
+      <option value="Franklin County, Virginia">Franklin County, Virginia</option>
+      <option value="Frederick County, Virginia">Frederick County, Virginia</option>
+      <option value="Fredericksburg city, Virginia">Fredericksburg city, Virginia</option>
+      <option value="Galax city, Virginia">Galax city, Virginia</option>
+      <option value="Giles County, Virginia">Giles County, Virginia</option>
+      <option value="Gloucester County, Virginia">Gloucester County, Virginia</option>
+      <option value="Goochland County, Virginia">Goochland County, Virginia</option>
+      <option value="Grayson County, Virginia">Grayson County, Virginia</option>
+      <option value="Greene County, Virginia">Greene County, Virginia</option>
+      <option value="Greensville County, Virginia">Greensville County, Virginia</option>
+      <option value="Halifax County, Virginia">Halifax County, Virginia</option>
+      <option value="Hampton city, Virginia">Hampton city, Virginia</option>
+      <option value="Hanover County, Virginia">Hanover County, Virginia</option>
+      <option value="Harrisonburg city, Virginia">Harrisonburg city, Virginia</option>
+      <option value="Henrico County, Virginia">Henrico County, Virginia</option>
+      <option value="Henry County, Virginia">Henry County, Virginia</option>
+      <option value="Highland County, Virginia">Highland County, Virginia</option>
+      <option value="Hopewell city, Virginia">Hopewell city, Virginia</option>
+      <option value="Isle of Wight County, Virginia">Isle of Wight County, Virginia</option>
+      <option value="James City County, Virginia">James City County, Virginia</option>
+      <option value="King and Queen County, Virginia">King and Queen County, Virginia</option>
+      <option value="King George County, Virginia">King George County, Virginia</option>
+      <option value="King William County, Virginia">King William County, Virginia</option>
+      <option value="Lancaster County, Virginia">Lancaster County, Virginia</option>
+      <option value="Lee County, Virginia">Lee County, Virginia</option>
+      <option value="Lexington city, Virginia">Lexington city, Virginia</option>
+      <option value="Loudoun County, Virginia">Loudoun County, Virginia</option>
+      <option value="Louisa County, Virginia">Louisa County, Virginia</option>
+      <option value="Lunenburg County, Virginia">Lunenburg County, Virginia</option>
+      <option value="Lynchburg city, Virginia">Lynchburg city, Virginia</option>
+      <option value="Madison County, Virginia">Madison County, Virginia</option>
+      <option value="Manassas city, Virginia">Manassas city, Virginia</option>
+      <option value="Manassas Park city, Virginia">Manassas Park city, Virginia</option>
+      <option value="Martinsville city, Virginia">Martinsville city, Virginia</option>
+      <option value="Mathews County, Virginia">Mathews County, Virginia</option>
+      <option value="Mecklenburg County, Virginia">Mecklenburg County, Virginia</option>
+      <option value="Middlesex County, Virginia">Middlesex County, Virginia</option>
+      <option value="Montgomery County, Virginia">Montgomery County, Virginia</option>
+      <option value="Nelson County, Virginia">Nelson County, Virginia</option>
+      <option value="New Kent County, Virginia">New Kent County, Virginia</option>
+      <option value="Newport News city, Virginia">Newport News city, Virginia</option>
+      <option value="Norfolk city, Virginia">Norfolk city, Virginia</option>
+      <option value="Northampton County, Virginia">Northampton County, Virginia</option>
+      <option value="Northumberland County, Virginia">Northumberland County, Virginia</option>
+      <option value="Norton city, Virginia">Norton city, Virginia</option>
+      <option value="Nottoway County, Virginia">Nottoway County, Virginia</option>
+      <option value="Orange County, Virginia">Orange County, Virginia</option>
+      <option value="Page County, Virginia">Page County, Virginia</option>
+      <option value="Patrick County, Virginia">Patrick County, Virginia</option>
+      <option value="Petersburg city, Virginia">Petersburg city, Virginia</option>
+      <option value="Pittsylvania County, Virginia">Pittsylvania County, Virginia</option>
+      <option value="Poquoson city, Virginia">Poquoson city, Virginia</option>
+      <option value="Portsmouth city, Virginia">Portsmouth city, Virginia</option>
+      <option value="Powhatan County, Virginia">Powhatan County, Virginia</option>
+      <option value="Prince Edward County, Virginia">Prince Edward County, Virginia</option>
+      <option value="Prince George County, Virginia">Prince George County, Virginia</option>
+      <option value="Prince William County, Virginia">Prince William County, Virginia</option>
+      <option value="Pulaski County, Virginia">Pulaski County, Virginia</option>
+      <option value="Radford city, Virginia">Radford city, Virginia</option>
+      <option value="Rappahannock County, Virginia">Rappahannock County, Virginia</option>
+      <option value="Richmond city, Virginia">Richmond city, Virginia</option>
+      <option value="Richmond County, Virginia">Richmond County, Virginia</option>
+      <option value="Roanoke city, Virginia">Roanoke city, Virginia</option>
+      <option value="Roanoke County, Virginia">Roanoke County, Virginia</option>
+      <option value="Rockbridge County, Virginia">Rockbridge County, Virginia</option>
+      <option value="Rockingham County, Virginia">Rockingham County, Virginia</option>
+      <option value="Russell County, Virginia">Russell County, Virginia</option>
+      <option value="Salem city, Virginia">Salem city, Virginia</option>
+      <option value="Scott County, Virginia">Scott County, Virginia</option>
+      <option value="Shenandoah County, Virginia">Shenandoah County, Virginia</option>
+      <option value="Smyth County, Virginia">Smyth County, Virginia</option>
+      <option value="Southampton County, Virginia">Southampton County, Virginia</option>
+      <option value="Spotsylvania County, Virginia">Spotsylvania County, Virginia</option>
+      <option value="Stafford County, Virginia">Stafford County, Virginia</option>
+      <option value="Staunton city, Virginia">Staunton city, Virginia</option>
+      <option value="Suffolk city, Virginia">Suffolk city, Virginia</option>
+      <option value="Surry County, Virginia">Surry County, Virginia</option>
+      <option value="Sussex County, Virginia">Sussex County, Virginia</option>
+      <option value="Tazewell County, Virginia">Tazewell County, Virginia</option>
+      <option value="Virginia Beach city, Virginia">Virginia Beach city, Virginia</option>
+      <option value="Warren County, Virginia">Warren County, Virginia</option>
+      <option value="Washington County, Virginia">Washington County, Virginia</option>
+      <option value="Waynesboro city, Virginia">Waynesboro city, Virginia</option>
+      <option value="Westmoreland County, Virginia">Westmoreland County, Virginia</option>
+      <option value="Williamsburg city, Virginia">Williamsburg city, Virginia</option>
+      <option value="Winchester city, Virginia">Winchester city, Virginia</option>
+      <option value="Wise County, Virginia">Wise County, Virginia</option>
+      <option value="Wythe County, Virginia">Wythe County, Virginia</option>
+      <option value="York County, Virginia">York County, Virginia</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>  const data = {"Statewide":{"Married Couple (%)":69.6,"Cohabiting Couple (%)":6.8,"Male Householder (%)":4.5,"Female Householder (%)":19.1},"Accomack County, Virginia":{"Married Couple (%)":53.6,"Cohabiting Couple (%)":13.1,"Male Householder (%)":3.8,"Female Householder (%)":29.6},"Albemarle County, Virginia":{"Married Couple (%)":72.7,"Cohabiting Couple (%)":6.7,"Male Householder (%)":4.8,"Female Householder (%)":15.8},"Alexandria city, Virginia":{"Married Couple (%)":71.2,"Cohabiting Couple (%)":6.4,"Male Householder (%)":3.5,"Female Householder (%)":18.9},"Alleghany County, Virginia":{"Married Couple (%)":64.5,"Cohabiting Couple (%)":8.8,"Male Householder (%)":12.2,"Female Householder (%)":14.5},"Amelia County, Virginia":{"Married Couple (%)":89.1,"Cohabiting Couple (%)":1.6,"Male Householder (%)":0.8,"Female Householder (%)":8.5},"Amherst County, Virginia":{"Married Couple (%)":66.6,"Cohabiting Couple (%)":7.7,"Male Householder (%)":4.3,"Female Householder (%)":21.4},"Appomattox County, Virginia":{"Married Couple (%)":64.5,"Cohabiting Couple (%)":8.1,"Male Householder (%)":4.8,"Female Householder (%)":22.5},"Arlington County, Virginia":{"Married Couple (%)":80.1,"Cohabiting Couple (%)":3.8,"Male Householder (%)":4.7,"Female Householder (%)":11.4},"Augusta County, Virginia":{"Married Couple (%)":74.5,"Cohabiting Couple (%)":9,"Male Householder (%)":4.4,"Female Householder (%)":12},"Bath County, Virginia":{"Married Couple (%)":81.3,"Cohabiting Couple (%)":5.9,"Male Householder (%)":4.1,"Female Householder (%)":8.6},"Bedford County, Virginia":{"Married Couple (%)":76.2,"Cohabiting Couple (%)":6.4,"Male Householder (%)":3.4,"Female Householder (%)":14},"Bland County, Virginia":{"Married Couple (%)":76.3,"Cohabiting Couple (%)":10,"Male Householder (%)":0,"Female Householder (%)":13.7},"Botetourt County, Virginia":{"Married Couple (%)":77.4,"Cohabiting Couple (%)":7.8,"Male Householder (%)":5.7,"Female Householder (%)":9.1},"Bristol city, Virginia":{"Married Couple (%)":46.5,"Cohabiting Couple (%)":16.3,"Male Householder (%)":7.9,"Female Householder (%)":29.3},"Brunswick County, Virginia":{"Married Couple (%)":39.3,"Cohabiting Couple (%)":18.7,"Male Householder (%)":3.3,"Female Householder (%)":38.7},"Buchanan County, Virginia":{"Married Couple (%)":62.3,"Cohabiting Couple (%)":11.4,"Male Householder (%)":4.7,"Female Householder (%)":21.7},"Buckingham County, Virginia":{"Married Couple (%)":64.7,"Cohabiting Couple (%)":5.6,"Male Householder (%)":9.3,"Female Householder (%)":20.4},"Buena Vista city, Virginia":{"Married Couple (%)":49.6,"Cohabiting Couple (%)":6.7,"Male Householder (%)":16.9,"Female Householder (%)":26.8},"Campbell County, Virginia":{"Married Couple (%)":72.2,"Cohabiting Couple (%)":9.4,"Male Householder (%)":3.6,"Female Householder (%)":14.8},"Caroline County, Virginia":{"Married Couple (%)":67.8,"Cohabiting Couple (%)":6.7,"Male Householder (%)":5.2,"Female Householder (%)":20.3},"Carroll County, Virginia":{"Married Couple (%)":69.9,"Cohabiting Couple (%)":4.4,"Male Householder (%)":3.8,"Female Householder (%)":21.9},"Charles City County, Virginia":{"Married Couple (%)":51.1,"Cohabiting Couple (%)":11.5,"Male Householder (%)":7.6,"Female Householder (%)":29.8},"Charlotte County, Virginia":{"Married Couple (%)":55.5,"Cohabiting Couple (%)":2.5,"Male Householder (%)":5.4,"Female Householder (%)":36.6},"Charlottesville city, Virginia":{"Married Couple (%)":56.6,"Cohabiting Couple (%)":7.2,"Male Householder (%)":5.2,"Female Householder (%)":30.9},"Chesapeake city, Virginia":{"Married Couple (%)":69.9,"Cohabiting Couple (%)":4.5,"Male Householder (%)":3.7,"Female Householder (%)":22},"Chesterfield County, Virginia":{"Married Couple (%)":71.9,"Cohabiting Couple (%)":6.9,"Male Householder (%)":4.5,"Female Householder (%)":16.7},"Clarke County, Virginia":{"Married Couple (%)":79,"Cohabiting Couple (%)":8.5,"Male Householder (%)":4.2,"Female Householder (%)":8.4},"Colonial Heights city, Virginia":{"Married Couple (%)":51.1,"Cohabiting Couple (%)":11.3,"Male Householder (%)":1.1,"Female Householder (%)":36.5},"Covington city, Virginia":{"Married Couple (%)":45.3,"Cohabiting Couple (%)":13.4,"Male Householder (%)":8.1,"Female Householder (%)":33.2},"Craig County, Virginia":{"Married Couple (%)":87.9,"Cohabiting Couple (%)":0.7,"Male Householder (%)":0.2,"Female Householder (%)":11.3},"Culpeper County, Virginia":{"Married Couple (%)":66.8,"Cohabiting Couple (%)":13.6,"Male Householder (%)":2.1,"Female Householder (%)":17.5},"Cumberland County, Virginia":{"Married Couple (%)":71.5,"Cohabiting Couple (%)":8.2,"Male Householder (%)":0,"Female Householder (%)":20.3},"Danville city, Virginia":{"Married Couple (%)":32.9,"Cohabiting Couple (%)":6.7,"Male Householder (%)":5.9,"Female Householder (%)":54.5},"Dickenson County, Virginia":{"Married Couple (%)":71.3,"Cohabiting Couple (%)":10.5,"Male Householder (%)":3.7,"Female Householder (%)":14.5},"Dinwiddie County, Virginia":{"Married Couple (%)":68.3,"Cohabiting Couple (%)":10.8,"Male Householder (%)":9,"Female Householder (%)":11.8},"Emporia city, Virginia":{"Married Couple (%)":50.3,"Cohabiting Couple (%)":20.6,"Male Householder (%)":1.8,"Female Householder (%)":27.4},"Essex County, Virginia":{"Married Couple (%)":61.5,"Cohabiting Couple (%)":9.1,"Male Householder (%)":5,"Female Householder (%)":24.4},"Fairfax city, Virginia":{"Married Couple (%)":79.3,"Cohabiting Couple (%)":3,"Male Householder (%)":9.4,"Female Householder (%)":8.4},"Fairfax County, Virginia":{"Married Couple (%)":80.4,"Cohabiting Couple (%)":4.2,"Male Householder (%)":3.8,"Female Householder (%)":11.6},"Falls Church city, Virginia":{"Married Couple (%)":81.6,"Cohabiting Couple (%)":1.2,"Male Householder (%)":4.6,"Female Householder (%)":12.6},"Fauquier County, Virginia":{"Married Couple (%)":78.8,"Cohabiting Couple (%)":5.5,"Male Householder (%)":4,"Female Householder (%)":11.8},"Floyd County, Virginia":{"Married Couple (%)":72.7,"Cohabiting Couple (%)":8.7,"Male Householder (%)":11,"Female Householder (%)":7.6},"Fluvanna County, Virginia":{"Married Couple (%)":81.7,"Cohabiting Couple (%)":5.3,"Male Householder (%)":4.3,"Female Householder (%)":8.7},"Franklin city, Virginia":{"Married Couple (%)":61,"Cohabiting Couple (%)":7.3,"Male Householder (%)":2.5,"Female Householder (%)":29.2},"Franklin County, Virginia":{"Married Couple (%)":66.8,"Cohabiting Couple (%)":12.4,"Male Householder (%)":5.4,"Female Householder (%)":15.4},"Frederick County, Virginia":{"Married Couple (%)":72.8,"Cohabiting Couple (%)":5.6,"Male Householder (%)":6.6,"Female Householder (%)":15},"Fredericksburg city, Virginia":{"Married Couple (%)":57.9,"Cohabiting Couple (%)":8.7,"Male Householder (%)":5.6,"Female Householder (%)":27.7},"Galax city, Virginia":{"Married Couple (%)":54.2,"Cohabiting Couple (%)":5.3,"Male Householder (%)":4.2,"Female Householder (%)":36.3},"Giles County, Virginia":{"Married Couple (%)":81.6,"Cohabiting Couple (%)":4.2,"Male Householder (%)":2.5,"Female Householder (%)":11.7},"Gloucester County, Virginia":{"Married Couple (%)":76.1,"Cohabiting Couple (%)":5.3,"Male Householder (%)":2.7,"Female Householder (%)":15.9},"Goochland County, Virginia":{"Married Couple (%)":89.4,"Cohabiting Couple (%)":1.1,"Male Householder (%)":1,"Female Householder (%)":8.5},"Grayson County, Virginia":{"Married Couple (%)":73.3,"Cohabiting Couple (%)":2.1,"Male Householder (%)":6.5,"Female Householder (%)":18.1},"Greene County, Virginia":{"Married Couple (%)":70.7,"Cohabiting Couple (%)":10,"Male Householder (%)":7.9,"Female Householder (%)":11.4},"Greensville County, Virginia":{"Married Couple (%)":46.2,"Cohabiting Couple (%)":19.6,"Male Householder (%)":0.5,"Female Householder (%)":33.7},"Halifax County, Virginia":{"Married Couple (%)":49.3,"Cohabiting Couple (%)":3.4,"Male Householder (%)":5.3,"Female Householder (%)":42},"Hampton city, Virginia":{"Married Couple (%)":53.2,"Cohabiting Couple (%)":8.9,"Male Householder (%)":5.7,"Female Householder (%)":32.2},"Hanover County, Virginia":{"Married Couple (%)":77,"Cohabiting Couple (%)":6.1,"Male Householder (%)":3.7,"Female Householder (%)":13.2},"Harrisonburg city, Virginia":{"Married Couple (%)":61.4,"Cohabiting Couple (%)":12.6,"Male Householder (%)":3.4,"Female Householder (%)":22.5},"Henrico County, Virginia":{"Married Couple (%)":66.1,"Cohabiting Couple (%)":5.4,"Male Householder (%)":4.8,"Female Householder (%)":23.8},"Henry County, Virginia":{"Married Couple (%)":62.4,"Cohabiting Couple (%)":9,"Male Householder (%)":5.2,"Female Householder (%)":23.4},"Highland County, Virginia":{"Married Couple (%)":84.1,"Cohabiting Couple (%)":2.2,"Male Householder (%)":9.6,"Female Householder (%)":4.1},"Hopewell city, Virginia":{"Married Couple (%)":43.8,"Cohabiting Couple (%)":8.1,"Male Householder (%)":4.8,"Female Householder (%)":43.4},"Isle of Wight County, Virginia":{"Married Couple (%)":76.8,"Cohabiting Couple (%)":4.9,"Male Householder (%)":3.4,"Female Householder (%)":14.9},"James City County, Virginia":{"Married Couple (%)":68.6,"Cohabiting Couple (%)":5.3,"Male Householder (%)":5.3,"Female Householder (%)":20.7},"King and Queen County, Virginia":{"Married Couple (%)":56.3,"Cohabiting Couple (%)":12.7,"Male Householder (%)":2,"Female Householder (%)":29},"King George County, Virginia":{"Married Couple (%)":76.7,"Cohabiting Couple (%)":5.7,"Male Householder (%)":2.5,"Female Householder (%)":15.1},"King William County, Virginia":{"Married Couple (%)":69.6,"Cohabiting Couple (%)":8.6,"Male Householder (%)":4.8,"Female Householder (%)":16.9},"Lancaster County, Virginia":{"Married Couple (%)":51.2,"Cohabiting Couple (%)":6.1,"Male Householder (%)":5,"Female Householder (%)":37.7},"Lee County, Virginia":{"Married Couple (%)":62,"Cohabiting Couple (%)":7.1,"Male Householder (%)":5.4,"Female Householder (%)":25.6},"Lexington city, Virginia":{"Married Couple (%)":61,"Cohabiting Couple (%)":0,"Male Householder (%)":21.5,"Female Householder (%)":17.5},"Loudoun County, Virginia":{"Married Couple (%)":84.7,"Cohabiting Couple (%)":3.3,"Male Householder (%)":3.6,"Female Householder (%)":8.5},"Louisa County, Virginia":{"Married Couple (%)":72,"Cohabiting Couple (%)":10.2,"Male Householder (%)":3.3,"Female Householder (%)":14.5},"Lunenburg County, Virginia":{"Married Couple (%)":55,"Cohabiting Couple (%)":8,"Male Householder (%)":5.9,"Female Householder (%)":31.1},"Lynchburg city, Virginia":{"Married Couple (%)":53.9,"Cohabiting Couple (%)":2.6,"Male Householder (%)":5.9,"Female Householder (%)":37.6},"Madison County, Virginia":{"Married Couple (%)":76.4,"Cohabiting Couple (%)":9.8,"Male Householder (%)":2.9,"Female Householder (%)":10.9},"Manassas city, Virginia":{"Married Couple (%)":73.8,"Cohabiting Couple (%)":12.4,"Male Householder (%)":3.2,"Female Householder (%)":10.6},"Manassas Park city, Virginia":{"Married Couple (%)":68.2,"Cohabiting Couple (%)":11.8,"Male Householder (%)":1.1,"Female Householder (%)":19},"Martinsville city, Virginia":{"Married Couple (%)":42,"Cohabiting Couple (%)":10.6,"Male Householder (%)":7.1,"Female Householder (%)":40.2},"Mathews County, Virginia":{"Married Couple (%)":71.9,"Cohabiting Couple (%)":11.9,"Male Householder (%)":2,"Female Householder (%)":14.3},"Mecklenburg County, Virginia":{"Married Couple (%)":47.5,"Cohabiting Couple (%)":15.4,"Male Householder (%)":9,"Female Householder (%)":28.1},"Middlesex County, Virginia":{"Married Couple (%)":49.9,"Cohabiting Couple (%)":7.6,"Male Householder (%)":12.1,"Female Householder (%)":30.4},"Montgomery County, Virginia":{"Married Couple (%)":78,"Cohabiting Couple (%)":7.5,"Male Householder (%)":3,"Female Householder (%)":11.5},"Nelson County, Virginia":{"Married Couple (%)":83.6,"Cohabiting Couple (%)":6.6,"Male Householder (%)":2.9,"Female Householder (%)":6.9},"New Kent County, Virginia":{"Married Couple (%)":86.4,"Cohabiting Couple (%)":3.2,"Male Householder (%)":0.3,"Female Householder (%)":10.1},"Newport News city, Virginia":{"Married Couple (%)":52.4,"Cohabiting Couple (%)":9.6,"Male Householder (%)":4.9,"Female Householder (%)":33.1},"Norfolk city, Virginia":{"Married Couple (%)":49.9,"Cohabiting Couple (%)":9.1,"Male Householder (%)":4.7,"Female Householder (%)":36.3},"Northampton County, Virginia":{"Married Couple (%)":57.7,"Cohabiting Couple (%)":7.9,"Male Householder (%)":3,"Female Householder (%)":31.4},"Northumberland County, Virginia":{"Married Couple (%)":51.5,"Cohabiting Couple (%)":3.9,"Male Householder (%)":3.1,"Female Householder (%)":41.5},"Norton city, Virginia":{"Married Couple (%)":51.7,"Cohabiting Couple (%)":13.2,"Male Householder (%)":3.5,"Female Householder (%)":31.6},"Nottoway County, Virginia":{"Married Couple (%)":60.6,"Cohabiting Couple (%)":14.7,"Male Householder (%)":2.6,"Female Householder (%)":22.1},"Orange County, Virginia":{"Married Couple (%)":66.6,"Cohabiting Couple (%)":12.2,"Male Householder (%)":3.5,"Female Householder (%)":17.7},"Page County, Virginia":{"Married Couple (%)":76.2,"Cohabiting Couple (%)":6.5,"Male Householder (%)":4.2,"Female Householder (%)":13.1},"Patrick County, Virginia":{"Married Couple (%)":80.4,"Cohabiting Couple (%)":5.9,"Male Householder (%)":6.3,"Female Householder (%)":7.4},"Petersburg city, Virginia":{"Married Couple (%)":30.4,"Cohabiting Couple (%)":11,"Male Householder (%)":6.2,"Female Householder (%)":52.3},"Pittsylvania County, Virginia":{"Married Couple (%)":58.3,"Cohabiting Couple (%)":10.1,"Male Householder (%)":6.7,"Female Householder (%)":24.9},"Poquoson city, Virginia":{"Married Couple (%)":83.9,"Cohabiting Couple (%)":3.9,"Male Householder (%)":3.8,"Female Householder (%)":8.3},"Portsmouth city, Virginia":{"Married Couple (%)":47.1,"Cohabiting Couple (%)":8.5,"Male Householder (%)":4.7,"Female Householder (%)":39.7},"Powhatan County, Virginia":{"Married Couple (%)":79.5,"Cohabiting Couple (%)":8,"Male Householder (%)":4.5,"Female Householder (%)":8.1},"Prince Edward County, Virginia":{"Married Couple (%)":50.8,"Cohabiting Couple (%)":16.4,"Male Householder (%)":4.8,"Female Householder (%)":28.1},"Prince George County, Virginia":{"Married Couple (%)":61,"Cohabiting Couple (%)":9,"Male Householder (%)":5.3,"Female Householder (%)":24.8},"Prince William County, Virginia":{"Married Couple (%)":74.9,"Cohabiting Couple (%)":6.7,"Male Householder (%)":5,"Female Householder (%)":13.3},"Pulaski County, Virginia":{"Married Couple (%)":65.2,"Cohabiting Couple (%)":10.4,"Male Householder (%)":7.3,"Female Householder (%)":17.1},"Radford city, Virginia":{"Married Couple (%)":64.3,"Cohabiting Couple (%)":8,"Male Householder (%)":2.1,"Female Householder (%)":25.6},"Rappahannock County, Virginia":{"Married Couple (%)":58.9,"Cohabiting Couple (%)":24.4,"Male Householder (%)":6.9,"Female Householder (%)":9.8},"Richmond city, Virginia":{"Married Couple (%)":39.6,"Cohabiting Couple (%)":10.2,"Male Householder (%)":5.1,"Female Householder (%)":45},"Richmond County, Virginia":{"Married Couple (%)":65.8,"Cohabiting Couple (%)":17.7,"Male Householder (%)":1.3,"Female Householder (%)":15.2},"Roanoke city, Virginia":{"Married Couple (%)":42.9,"Cohabiting Couple (%)":12.4,"Male Householder (%)":4.9,"Female Householder (%)":39.8},"Roanoke County, Virginia":{"Married Couple (%)":72.8,"Cohabiting Couple (%)":8,"Male Householder (%)":5.4,"Female Householder (%)":13.9},"Rockbridge County, Virginia":{"Married Couple (%)":60.8,"Cohabiting Couple (%)":17.3,"Male Householder (%)":7.4,"Female Householder (%)":14.5},"Rockingham County, Virginia":{"Married Couple (%)":72.6,"Cohabiting Couple (%)":12.6,"Male Householder (%)":2.8,"Female Householder (%)":12},"Russell County, Virginia":{"Married Couple (%)":72.6,"Cohabiting Couple (%)":8.5,"Male Householder (%)":4.8,"Female Householder (%)":14},"Salem city, Virginia":{"Married Couple (%)":58.8,"Cohabiting Couple (%)":11.6,"Male Householder (%)":9.5,"Female Householder (%)":20},"Scott County, Virginia":{"Married Couple (%)":71,"Cohabiting Couple (%)":6.4,"Male Householder (%)":5.9,"Female Householder (%)":16.7},"Shenandoah County, Virginia":{"Married Couple (%)":63.6,"Cohabiting Couple (%)":11,"Male Householder (%)":5,"Female Householder (%)":20.3},"Smyth County, Virginia":{"Married Couple (%)":58.7,"Cohabiting Couple (%)":8.3,"Male Householder (%)":6.5,"Female Householder (%)":26.5},"Southampton County, Virginia":{"Married Couple (%)":60.8,"Cohabiting Couple (%)":6.2,"Male Householder (%)":6.1,"Female Householder (%)":26.9},"Spotsylvania County, Virginia":{"Married Couple (%)":75.5,"Cohabiting Couple (%)":6.2,"Male Householder (%)":4.2,"Female Householder (%)":14},"Stafford County, Virginia":{"Married Couple (%)":80.1,"Cohabiting Couple (%)":5,"Male Householder (%)":2.1,"Female Householder (%)":12.8},"Staunton city, Virginia":{"Married Couple (%)":58.9,"Cohabiting Couple (%)":9.9,"Male Householder (%)":4.5,"Female Householder (%)":26.7},"Suffolk city, Virginia":{"Married Couple (%)":65.7,"Cohabiting Couple (%)":6.2,"Male Householder (%)":3.9,"Female Householder (%)":24.2},"Surry County, Virginia":{"Married Couple (%)":62.4,"Cohabiting Couple (%)":1,"Male Householder (%)":0.4,"Female Householder (%)":36.3},"Sussex County, Virginia":{"Married Couple (%)":44.8,"Cohabiting Couple (%)":17.8,"Male Householder (%)":2.6,"Female Householder (%)":34.8},"Tazewell County, Virginia":{"Married Couple (%)":61.9,"Cohabiting Couple (%)":11.7,"Male Householder (%)":4.5,"Female Householder (%)":22},"Virginia Beach city, Virginia":{"Married Couple (%)":67.2,"Cohabiting Couple (%)":6.2,"Male Householder (%)":4.9,"Female Householder (%)":21.7},"Warren County, Virginia":{"Married Couple (%)":71.3,"Cohabiting Couple (%)":9.4,"Male Householder (%)":3.8,"Female Householder (%)":15.4},"Washington County, Virginia":{"Married Couple (%)":73.7,"Cohabiting Couple (%)":6.7,"Male Householder (%)":3.7,"Female Householder (%)":15.9},"Waynesboro city, Virginia":{"Married Couple (%)":53,"Cohabiting Couple (%)":20,"Male Householder (%)":10.6,"Female Householder (%)":16.5},"Westmoreland County, Virginia":{"Married Couple (%)":51.8,"Cohabiting Couple (%)":2.3,"Male Householder (%)":16.9,"Female Householder (%)":28.9},"Williamsburg city, Virginia":{"Married Couple (%)":68.2,"Cohabiting Couple (%)":0,"Male Householder (%)":1.3,"Female Householder (%)":30.5},"Winchester city, Virginia":{"Married Couple (%)":50.3,"Cohabiting Couple (%)":16.9,"Male Householder (%)":6,"Female Householder (%)":26.7},"Wise County, Virginia":{"Married Couple (%)":60.8,"Cohabiting Couple (%)":13.2,"Male Householder (%)":4.1,"Female Householder (%)":21.9},"Wythe County, Virginia":{"Married Couple (%)":72.9,"Cohabiting Couple (%)":6.5,"Male Householder (%)":4.9,"Female Householder (%)":15.7},"York County, Virginia":{"Married Couple (%)":78.2,"Cohabiting Couple (%)":2.8,"Male Householder (%)":4.4,"Female Householder (%)":14.6}};
+  const categories = ["Married Couple (%)","Cohabiting Couple (%)","Male Householder (%)","Female Householder (%)"];
+  const ctx = document.getElementById("barChart").getContext("2d");
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: categories,
+        datasets: [{
+          label: "Share of Children (%)",
+          data: values,
+          backgroundColor: ["#5DA5DA","#FAA43A","#60BD68","#F17CB0"]
+        }]
+      },
+      options: {
+        indexAxis: "y",
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            ticks: { callback: v => v + "%" },
+            title: { display: true, text: "Percent of Children" }
+          }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.raw + "%"
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById("countySelect").addEventListener("change", function() {
+    renderChart(Object.values(data[this.value]));
+  });
+
+  renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Living Arrangements 18–64 – Massachusetts</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+      body { font-family: sans-serif; margin: 1.25rem 2rem; text-align: center; }
+      h2 { margin-bottom: .25rem; font-size: 1.6rem; color: #2c348b; }
+      label { margin-right: .5rem; }
+      select { padding: .45rem .6rem; font-size: 1rem; border-radius: .5rem; border: 2px solid #f39c12; }
+      canvas { width: 100%; max-width: 900px; height: 520px; }
+    </style>
+</head>
+<html>
+  <body>
+    <h2>Living Arrangements of Adults 18–64 in Massachusetts</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Barnstable County, Massachusetts">Barnstable County, Massachusetts</option>
+      <option value="Berkshire County, Massachusetts">Berkshire County, Massachusetts</option>
+      <option value="Bristol County, Massachusetts">Bristol County, Massachusetts</option>
+      <option value="Dukes County, Massachusetts">Dukes County, Massachusetts</option>
+      <option value="Essex County, Massachusetts">Essex County, Massachusetts</option>
+      <option value="Franklin County, Massachusetts">Franklin County, Massachusetts</option>
+      <option value="Hampden County, Massachusetts">Hampden County, Massachusetts</option>
+      <option value="Hampshire County, Massachusetts">Hampshire County, Massachusetts</option>
+      <option value="Middlesex County, Massachusetts">Middlesex County, Massachusetts</option>
+      <option value="Nantucket County, Massachusetts">Nantucket County, Massachusetts</option>
+      <option value="Norfolk County, Massachusetts">Norfolk County, Massachusetts</option>
+      <option value="Plymouth County, Massachusetts">Plymouth County, Massachusetts</option>
+      <option value="Suffolk County, Massachusetts">Suffolk County, Massachusetts</option>
+      <option value="Worcester County, Massachusetts">Worcester County, Massachusetts</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>document.addEventListener("DOMContentLoaded", function () {
+  const data = {"Statewide":[10.6,15,7.4,11.7,45.9,9.3],"Barnstable County, Massachusetts":[10.5,17.3,5.1,11,48.1,8],"Berkshire County, Massachusetts":[13.7,14.3,5,10,44.4,12.5],"Bristol County, Massachusetts":[10.5,16,4.3,13.1,44.8,11.3],"Dukes County, Massachusetts":[11.2,20.5,11.7,14.3,37.4,4.9],"Essex County, Massachusetts":[9.2,17.2,4.4,13.6,47,8.6],"Franklin County, Massachusetts":[11.9,13.7,6.7,8.9,45.7,13.1],"Hampden County, Massachusetts":[11.4,18.5,4.1,14.9,40.4,10.8],"Hampshire County, Massachusetts":[12.2,11.4,10.2,8.3,46.9,11.1],"Middlesex County, Massachusetts":[9.7,13.1,8.7,9.6,50.1,8.8],"Nantucket County, Massachusetts":[13.2,16,12.6,5.6,48.8,3.7],"Norfolk County, Massachusetts":[9.3,15.5,5.5,9.7,52.6,7.4],"Plymouth County, Massachusetts":[7.9,18.9,3.4,10.8,51,7.9],"Suffolk County, Massachusetts":[16.1,11.6,17.2,15,29.4,10.7],"Worcester County, Massachusetts":[9.8,15,5.8,11.8,47.9,9.7]};
+  const cats = ["lives_alone_18_64","with_child_18_64","with_nonrel_18_64","with_other_rel_18_64","with_spouse_only_18_64","with_unmar_partner_18_64"];
+
+  const ORDER = [
+    "Lives alone",
+    "With child",
+    "With nonrelatives",
+    "With other relatives",
+    "With spouse only",
+    "With unmarried partner"
+  ];
+
+  const PRETTY_TO_SNAKE = {
+    "Lives alone":            "lives_alone_18_64",
+    "With child":             "with_child_18_64",
+    "With nonrelatives":      "with_nonrel_18_64",
+    "With other relatives":   "with_other_rel_18_64",
+    "With spouse only":       "with_spouse_only_18_64",
+    "With unmarried partner": "with_unmar_partner_18_64"
+  };
+
+  const COLOR_BY_CAT = {
+    "Lives alone":            "#e41a1c",
+    "With child":             "#ff7f00",
+    "With nonrelatives":      "#4daf4a",
+    "With other relatives":   "#984ea3",
+    "With spouse only":       "#377eb8",
+    "With unmarried partner": "#a65628"
+  };
+
+  // snake key → array index
+  const keyToIndex = Object.fromEntries((cats || []).map((k, i) => [String(k), i]));
+
+  function valuesFor(name) {
+    const row = data?.[name] || [];
+    return ORDER.map(lbl => {
+      const idx = keyToIndex[PRETTY_TO_SNAKE[lbl]];
+      const v = (idx != null && idx >= 0) ? row[idx] : 0;
+      return (typeof v === "number") ? v : Number(v) || 0;
+    });
+  }
+
+  const canvas = document.getElementById("barChart");
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+  let chart;
+
+  function renderChart(name) {
+    const vals = valuesFor(name);
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: ORDER,
+        datasets: [{
+          data: vals,
+          backgroundColor: ORDER.map(c => COLOR_BY_CAT[c]),
+          borderWidth: 0
+        }]
+      },
+      options: {
+        indexAxis: "y",
+        plugins: {
+          legend: { display: false },
+          tooltip: { callbacks: { label: (c) => c.raw + "%" } }
+        },
+        scales: {
+          x: { min: 0, max: 100, ticks: { callback: v => v + "%" } }
+        }
+      }
+    });
+  }
+
+  const DEFAULT_NAME = (data && Object.prototype.hasOwnProperty.call(data, "Statewide"))
+    ? "Statewide" : Object.keys(data || {})[0];
+
+  const sel = document.getElementById("countySelect");
+  if (sel) sel.addEventListener("change", e => renderChart(e.target.value));
+  if (DEFAULT_NAME) renderChart(DEFAULT_NAME);
+});</script>
+  </body>
+</html>
+</html>

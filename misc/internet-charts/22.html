@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Internet Access Over Time –  Louisiana</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+                      h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+                      select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; border-radius: 5px; border: 1px solid #999; }
+                      canvas { width: 100%; max-width: 850px; height: 450px; margin-top: 1rem; }</style>
+</head>
+<html>
+  <body>
+    <h2>Internet Access in  Louisiana (2013–2023)</h2>
+    <label>Select County: </label>
+    <select id="countySelect"><option value='Statewide'>Statewide</option>
+<option value='Acadia Parish, Louisiana'>Acadia Parish, Louisiana</option>
+<option value='Allen Parish, Louisiana'>Allen Parish, Louisiana</option>
+<option value='Ascension Parish, Louisiana'>Ascension Parish, Louisiana</option>
+<option value='Assumption Parish, Louisiana'>Assumption Parish, Louisiana</option>
+<option value='Avoyelles Parish, Louisiana'>Avoyelles Parish, Louisiana</option>
+<option value='Beauregard Parish, Louisiana'>Beauregard Parish, Louisiana</option>
+<option value='Bienville Parish, Louisiana'>Bienville Parish, Louisiana</option>
+<option value='Bossier Parish, Louisiana'>Bossier Parish, Louisiana</option>
+<option value='Caddo Parish, Louisiana'>Caddo Parish, Louisiana</option>
+<option value='Calcasieu Parish, Louisiana'>Calcasieu Parish, Louisiana</option>
+<option value='Caldwell Parish, Louisiana'>Caldwell Parish, Louisiana</option>
+<option value='Cameron Parish, Louisiana'>Cameron Parish, Louisiana</option>
+<option value='Catahoula Parish, Louisiana'>Catahoula Parish, Louisiana</option>
+<option value='Claiborne Parish, Louisiana'>Claiborne Parish, Louisiana</option>
+<option value='Concordia Parish, Louisiana'>Concordia Parish, Louisiana</option>
+<option value='De Soto Parish, Louisiana'>De Soto Parish, Louisiana</option>
+<option value='East Baton Rouge Parish, Louisiana'>East Baton Rouge Parish, Louisiana</option>
+<option value='East Carroll Parish, Louisiana'>East Carroll Parish, Louisiana</option>
+<option value='East Feliciana Parish, Louisiana'>East Feliciana Parish, Louisiana</option>
+<option value='Evangeline Parish, Louisiana'>Evangeline Parish, Louisiana</option>
+<option value='Franklin Parish, Louisiana'>Franklin Parish, Louisiana</option>
+<option value='Grant Parish, Louisiana'>Grant Parish, Louisiana</option>
+<option value='Iberia Parish, Louisiana'>Iberia Parish, Louisiana</option>
+<option value='Iberville Parish, Louisiana'>Iberville Parish, Louisiana</option>
+<option value='Jackson Parish, Louisiana'>Jackson Parish, Louisiana</option>
+<option value='Jefferson Davis Parish, Louisiana'>Jefferson Davis Parish, Louisiana</option>
+<option value='Jefferson Parish, Louisiana'>Jefferson Parish, Louisiana</option>
+<option value='Lafayette Parish, Louisiana'>Lafayette Parish, Louisiana</option>
+<option value='Lafourche Parish, Louisiana'>Lafourche Parish, Louisiana</option>
+<option value='LaSalle Parish, Louisiana'>LaSalle Parish, Louisiana</option>
+<option value='Lincoln Parish, Louisiana'>Lincoln Parish, Louisiana</option>
+<option value='Livingston Parish, Louisiana'>Livingston Parish, Louisiana</option>
+<option value='Madison Parish, Louisiana'>Madison Parish, Louisiana</option>
+<option value='Morehouse Parish, Louisiana'>Morehouse Parish, Louisiana</option>
+<option value='Natchitoches Parish, Louisiana'>Natchitoches Parish, Louisiana</option>
+<option value='Orleans Parish, Louisiana'>Orleans Parish, Louisiana</option>
+<option value='Ouachita Parish, Louisiana'>Ouachita Parish, Louisiana</option>
+<option value='Plaquemines Parish, Louisiana'>Plaquemines Parish, Louisiana</option>
+<option value='Pointe Coupee Parish, Louisiana'>Pointe Coupee Parish, Louisiana</option>
+<option value='Rapides Parish, Louisiana'>Rapides Parish, Louisiana</option>
+<option value='Red River Parish, Louisiana'>Red River Parish, Louisiana</option>
+<option value='Richland Parish, Louisiana'>Richland Parish, Louisiana</option>
+<option value='Sabine Parish, Louisiana'>Sabine Parish, Louisiana</option>
+<option value='St. Bernard Parish, Louisiana'>St. Bernard Parish, Louisiana</option>
+<option value='St. Charles Parish, Louisiana'>St. Charles Parish, Louisiana</option>
+<option value='St. Helena Parish, Louisiana'>St. Helena Parish, Louisiana</option>
+<option value='St. James Parish, Louisiana'>St. James Parish, Louisiana</option>
+<option value='St. John the Baptist Parish, Louisiana'>St. John the Baptist Parish, Louisiana</option>
+<option value='St. Landry Parish, Louisiana'>St. Landry Parish, Louisiana</option>
+<option value='St. Martin Parish, Louisiana'>St. Martin Parish, Louisiana</option>
+<option value='St. Mary Parish, Louisiana'>St. Mary Parish, Louisiana</option>
+<option value='St. Tammany Parish, Louisiana'>St. Tammany Parish, Louisiana</option>
+<option value='Tangipahoa Parish, Louisiana'>Tangipahoa Parish, Louisiana</option>
+<option value='Tensas Parish, Louisiana'>Tensas Parish, Louisiana</option>
+<option value='Terrebonne Parish, Louisiana'>Terrebonne Parish, Louisiana</option>
+<option value='Union Parish, Louisiana'>Union Parish, Louisiana</option>
+<option value='Vermilion Parish, Louisiana'>Vermilion Parish, Louisiana</option>
+<option value='Vernon Parish, Louisiana'>Vernon Parish, Louisiana</option>
+<option value='Washington Parish, Louisiana'>Washington Parish, Louisiana</option>
+<option value='Webster Parish, Louisiana'>Webster Parish, Louisiana</option>
+<option value='West Baton Rouge Parish, Louisiana'>West Baton Rouge Parish, Louisiana</option>
+<option value='West Carroll Parish, Louisiana'>West Carroll Parish, Louisiana</option>
+<option value='West Feliciana Parish, Louisiana'>West Feliciana Parish, Louisiana</option>
+<option value='Winn Parish, Louisiana'>Winn Parish, Louisiana</option></select>
+    <canvas id="lineChart" width="850" height="450"></canvas>
+    <script>const internetData = {"Statewide":{"2017":74.5,"2018":76.8,"2019":79.2,"2020":82.2,"2021":84.1,"2022":85.9,"2023":87.6},"Acadia Parish, Louisiana":{"2017":68.8,"2018":73.6,"2019":79,"2020":79.8,"2021":79.9,"2022":80.6,"2023":81.8},"Allen Parish, Louisiana":{"2017":69.2,"2018":71.2,"2019":73.4,"2020":77.7,"2021":77,"2022":78,"2023":78.9},"Ascension Parish, Louisiana":{"2017":85.8,"2018":87.4,"2019":89.4,"2020":91.4,"2021":91.8,"2022":93.4,"2023":94.3},"Assumption Parish, Louisiana":{"2017":70.3,"2018":72.9,"2019":74.7,"2020":78,"2021":76.9,"2022":81.7,"2023":85},"Avoyelles Parish, Louisiana":{"2017":66.3,"2018":70.3,"2019":73,"2020":78.7,"2021":77.8,"2022":77.1,"2023":77.9},"Beauregard Parish, Louisiana":{"2017":73.3,"2018":76.6,"2019":79.7,"2020":84.2,"2021":86.9,"2022":89.2,"2023":90.1},"Bienville Parish, Louisiana":{"2017":63.2,"2018":65.4,"2019":66.8,"2020":68.9,"2021":72.3,"2022":67.5,"2023":69.6},"Bossier Parish, Louisiana":{"2017":77.5,"2018":79.7,"2019":79.8,"2020":82.3,"2021":83,"2022":84.1,"2023":86.5},"Caddo Parish, Louisiana":{"2017":72.8,"2018":74.8,"2019":75.4,"2020":78.6,"2021":81.1,"2022":83.1,"2023":85.2},"Calcasieu Parish, Louisiana":{"2017":75.7,"2018":77.1,"2019":78.4,"2020":81.9,"2021":83.3,"2022":85.3,"2023":87.4},"Caldwell Parish, Louisiana":{"2017":60.4,"2018":61.1,"2019":66.4,"2020":70.4,"2021":70.8,"2022":73.8,"2023":79.5},"Cameron Parish, Louisiana":{"2017":71.6,"2018":75.6,"2019":78.8,"2020":85,"2021":83.2,"2022":84.8,"2023":83.1},"Catahoula Parish, Louisiana":{"2017":57,"2018":61.4,"2019":63,"2020":69.4,"2021":73.1,"2022":76.9,"2023":77.2},"Claiborne Parish, Louisiana":{"2017":48.6,"2018":49.9,"2019":50.4,"2020":52.9,"2021":53.1,"2022":51.1,"2023":54.6},"Concordia Parish, Louisiana":{"2017":59.3,"2018":62.5,"2019":68.1,"2020":74.3,"2021":74.4,"2022":79.1,"2023":83.4},"De Soto Parish, Louisiana":{"2017":68.3,"2018":71.2,"2019":74.2,"2020":79,"2021":79.2,"2022":81,"2023":81.5},"East Baton Rouge Parish, Louisiana":{"2017":81.9,"2018":84.3,"2019":87.2,"2020":88.8,"2021":90,"2022":91.4,"2023":92.2},"East Carroll Parish, Louisiana":{"2017":37.9,"2018":37.2,"2019":44.7,"2020":52.8,"2021":59.2,"2022":70.3,"2023":75.6},"East Feliciana Parish, Louisiana":{"2017":61.9,"2018":65.2,"2019":70,"2020":76.7,"2021":77.3,"2022":80.4,"2023":82.6},"Evangeline Parish, Louisiana":{"2017":60.3,"2018":64.3,"2019":68.2,"2020":71.4,"2021":75.7,"2022":77.5,"2023":80.5},"Franklin Parish, Louisiana":{"2017":55.7,"2018":57.7,"2019":61.1,"2020":65,"2021":67.3,"2022":71.1,"2023":75},"Grant Parish, Louisiana":{"2017":62.2,"2018":64.8,"2019":67.5,"2020":72.2,"2021":76.3,"2022":78.4,"2023":79.2},"Iberia Parish, Louisiana":{"2017":72,"2018":76,"2019":79.3,"2020":82.1,"2021":84.4,"2022":85.4,"2023":86.6},"Iberville Parish, Louisiana":{"2017":70.9,"2018":75,"2019":77.2,"2020":81.7,"2021":84.2,"2022":85,"2023":87.9},"Jackson Parish, Louisiana":{"2017":68.6,"2018":70.6,"2019":72.1,"2020":77.1,"2021":77.8,"2022":76.1,"2023":79.5},"Jefferson Davis Parish, Louisiana":{"2017":67.4,"2018":70.9,"2019":71.6,"2020":73.1,"2021":75.9,"2022":79,"2023":78},"Jefferson Parish, Louisiana":{"2017":76.3,"2018":78,"2019":80.4,"2020":83.4,"2021":85.8,"2022":87.6,"2023":89.3},"Lafayette Parish, Louisiana":{"2017":84.1,"2018":85.5,"2019":87.2,"2020":88.4,"2021":89.3,"2022":91.2,"2023":92.3},"Lafourche Parish, Louisiana":{"2017":75.9,"2018":78,"2019":79.7,"2020":81.6,"2021":83,"2022":84.4,"2023":86.4},"LaSalle Parish, Louisiana":{"2017":67.7,"2018":73,"2019":76.9,"2020":80.1,"2021":84.2,"2022":88.3,"2023":87.8},"Lincoln Parish, Louisiana":{"2017":79.6,"2018":81.4,"2019":84.3,"2020":86.4,"2021":87.2,"2022":84.2,"2023":83.5},"Livingston Parish, Louisiana":{"2017":80.5,"2018":83.7,"2019":86.7,"2020":91.1,"2021":93,"2022":93.8,"2023":94.3},"Madison Parish, Louisiana":{"2017":51.4,"2018":53.4,"2019":59.3,"2020":66.8,"2021":71.1,"2022":72.4,"2023":77.8},"Morehouse Parish, Louisiana":{"2017":55.5,"2018":55.7,"2019":58.2,"2020":62,"2021":67.3,"2022":73.9,"2023":79.2},"Natchitoches Parish, Louisiana":{"2017":62.2,"2018":61.9,"2019":64.2,"2020":67,"2021":70.2,"2022":75.9,"2023":83.6},"Orleans Parish, Louisiana":{"2017":70.7,"2018":73.4,"2019":76.5,"2020":80.8,"2021":82.8,"2022":85.1,"2023":87.3},"Ouachita Parish, Louisiana":{"2017":71.6,"2018":73.8,"2019":75.6,"2020":79.2,"2021":81.9,"2022":85.2,"2023":87.6},"Plaquemines Parish, Louisiana":{"2017":76.9,"2018":79.5,"2019":82.3,"2020":85,"2021":87.6,"2022":88.4,"2023":89.6},"Pointe Coupee Parish, Louisiana":{"2017":67.8,"2018":70.8,"2019":74.1,"2020":78.1,"2021":80.6,"2022":82.4,"2023":83.6},"Rapides Parish, Louisiana":{"2017":76.2,"2018":78.7,"2019":80.8,"2020":83.5,"2021":85,"2022":86.7,"2023":87.3},"Red River Parish, Louisiana":{"2017":66.1,"2018":68.9,"2019":70,"2020":73.7,"2021":79.8,"2022":76.6,"2023":74.9},"Richland Parish, Louisiana":{"2017":53.1,"2018":57.6,"2019":58.8,"2020":65.4,"2021":70.3,"2022":72.7,"2023":75.4},"Sabine Parish, Louisiana":{"2017":62.1,"2018":61.3,"2019":64.9,"2020":70.3,"2021":70.7,"2022":75.8,"2023":81.6},"St. Bernard Parish, Louisiana":{"2017":71.8,"2018":76.1,"2019":80.4,"2020":82.4,"2021":84,"2022":85.6,"2023":87.1},"St. Charles Parish, Louisiana":{"2017":83.3,"2018":86.5,"2019":87.2,"2020":89.6,"2021":90.2,"2022":92.5,"2023":93.8},"St. Helena Parish, Louisiana":{"2017":52.3,"2018":59.1,"2019":66.4,"2020":66.3,"2021":66.1,"2022":66.9,"2023":70.1},"St. James Parish, Louisiana":{"2017":71.2,"2018":74,"2019":74.3,"2020":79.4,"2021":81.1,"2022":83.5,"2023":87},"St. John the Baptist Parish, Louisiana":{"2017":75.2,"2018":78.3,"2019":81,"2020":83.8,"2021":86.7,"2022":89.2,"2023":91.6},"St. Landry Parish, Louisiana":{"2017":66.6,"2018":67.9,"2019":68.3,"2020":71.5,"2021":72.9,"2022":73.9,"2023":78.4},"St. Martin Parish, Louisiana":{"2017":74.1,"2018":76.3,"2019":78.7,"2020":81,"2021":80.8,"2022":83.3,"2023":83.4},"St. Mary Parish, Louisiana":{"2017":69.8,"2018":71.4,"2019":75.3,"2020":77.3,"2021":81.8,"2022":85.9,"2023":88},"St. Tammany Parish, Louisiana":{"2017":86.6,"2018":87.4,"2019":88.9,"2020":91.2,"2021":92.2,"2022":93.3,"2023":94.4},"Tangipahoa Parish, Louisiana":{"2017":76.2,"2018":78.2,"2019":80.5,"2020":83.3,"2021":84,"2022":85.5,"2023":88.6},"Tensas Parish, Louisiana":{"2017":46.7,"2018":47.1,"2019":53.7,"2020":59.8,"2021":65.6,"2022":63.5,"2023":70.7},"Terrebonne Parish, Louisiana":{"2017":72.6,"2018":74.9,"2019":78.2,"2020":83.6,"2021":84.7,"2022":87,"2023":88.6},"Union Parish, Louisiana":{"2017":56.2,"2018":57.2,"2019":59.5,"2020":64,"2021":66.6,"2022":69.9,"2023":71.2},"Vermilion Parish, Louisiana":{"2017":73.2,"2018":78.4,"2019":82.5,"2020":85,"2021":88.7,"2022":90.3,"2023":90.2},"Vernon Parish, Louisiana":{"2017":75.6,"2018":77.6,"2019":79.6,"2020":83.1,"2021":86.3,"2022":87.3,"2023":88.7},"Washington Parish, Louisiana":{"2017":57.8,"2018":62.2,"2019":69.3,"2020":73.4,"2021":73,"2022":73.4,"2023":74.2},"Webster Parish, Louisiana":{"2017":53.5,"2018":52.6,"2019":52.6,"2020":56.4,"2021":60.6,"2022":62.5,"2023":64.8},"West Baton Rouge Parish, Louisiana":{"2017":76.7,"2018":81.2,"2019":86.1,"2020":89.3,"2021":88,"2022":89.4,"2023":91.6},"West Carroll Parish, Louisiana":{"2017":47.9,"2018":50.5,"2019":49.7,"2020":59.8,"2021":66.2,"2022":69.9,"2023":73.2},"West Feliciana Parish, Louisiana":{"2017":72,"2018":74.8,"2019":83,"2020":82.1,"2021":90.6,"2022":91.1,"2023":92.4},"Winn Parish, Louisiana":{"2017":67.3,"2018":71.5,"2019":75.3,"2020":76,"2021":76,"2022":77.9,"2023":79.5}};
+const ctx = document.getElementById('lineChart').getContext('2d');
+let chart;
+
+function renderChart(data) {
+  const labels = Object.keys(data);
+  const values = Object.values(data);
+
+  if (chart) chart.destroy();
+  chart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: labels,
+      datasets: [{
+        label: '% With Internet',
+        data: values,
+        fill: false,
+        borderColor: 'teal',
+        backgroundColor: 'teal',
+        tension: 0.3,
+        pointRadius: 4
+      }]
+    },
+    options: {
+      responsive: true,
+      scales: {
+        y: {
+          beginAtZero: true,
+          max: 100,
+          title: { display: true, text: '% With Internet' }
+        },
+        x: {
+          title: { display: true, text: 'Year' }
+        }
+      },
+      plugins: {
+        tooltip: {
+          callbacks: {
+            label: function(ctx) {
+              return ctx.parsed.y.toFixed(1) + '%';
+            }
+          }
+        }
+      }
+    }
+  });
+}
+
+document.getElementById('countySelect').addEventListener('change', function() {
+  renderChart(internetData[this.value]);
+});
+renderChart(internetData['Statewide']);</script>
+  </body>
+</html>
+</html>

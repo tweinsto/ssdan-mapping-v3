@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+
+</head>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Owners: Year Moved In (%) – 32</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #fff;
+    }
+    .container {
+      width: 95%;
+      max-width: 1200px;
+      margin: auto;
+      text-align: center;
+    }
+    #countySelect {
+      font-size: 1rem;
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    canvas {
+      max-width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Owners: Year Moved In (%)</h2>
+    <select id="countySelect"></select>
+    <canvas id="pieChart"></canvas>
+  </div>
+
+  <script>
+    const data = {"Statewide":{"Moved in 2021 or later":7.2,"Moved in 2018–2020":20.4,"Moved in 2010–2017":34.3,"Moved in 2000–2009":22.7,"Moved in 1990–1999":10.5,"1989 or earlier":5},"Carson City":{"Moved in 2021 or later":6.0201,"Moved in 2018–2020":16.6154,"Moved in 2010–2017":29.6589,"Moved in 2000–2009":21.9666,"Moved in 1990–1999":18.0535,"1989 or earlier":7.6856},"Churchill County":{"Moved in 2021 or later":5.4834,"Moved in 2018–2020":15.423,"Moved in 2010–2017":26.9789,"Moved in 2000–2009":25.3323,"Moved in 1990–1999":16.1027,"1989 or earlier":10.6798},"Clark County":{"Moved in 2021 or later":7.6926,"Moved in 2018–2020":21.0939,"Moved in 2010–2017":35.1094,"Moved in 2000–2009":22.5185,"Moved in 1990–1999":9.9008,"1989 or earlier":3.6848},"Douglas County":{"Moved in 2021 or later":4.8693,"Moved in 2018–2020":16.6949,"Moved in 2010–2017":36.3416,"Moved in 2000–2009":21.7699,"Moved in 1990–1999":13.4648,"1989 or earlier":6.8594},"Elko County":{"Moved in 2021 or later":5.7734,"Moved in 2018–2020":18.228,"Moved in 2010–2017":28.7291,"Moved in 2000–2009":24.2193,"Moved in 1990–1999":14.154,"1989 or earlier":8.8962},"Esmeralda County":{"Moved in 2021 or later":11.4894,"Moved in 2018–2020":11.4894,"Moved in 2010–2017":22.1277,"Moved in 2000–2009":32.3404,"Moved in 1990–1999":3.4043,"1989 or earlier":19.1489},"Eureka County":{"Moved in 2021 or later":0,"Moved in 2018–2020":20.0743,"Moved in 2010–2017":35.1301,"Moved in 2000–2009":12.0818,"Moved in 1990–1999":21.1896,"1989 or earlier":11.5242},"Humboldt County":{"Moved in 2021 or later":3.1475,"Moved in 2018–2020":20.7305,"Moved in 2010–2017":28.3078,"Moved in 2000–2009":24.3443,"Moved in 1990–1999":14.7465,"1989 or earlier":8.7235},"Lander County":{"Moved in 2021 or later":7.352,"Moved in 2018–2020":16.2655,"Moved in 2010–2017":36.9551,"Moved in 2000–2009":13.2726,"Moved in 1990–1999":16.7859,"1989 or earlier":9.3689},"Lincoln County":{"Moved in 2021 or later":2.3353,"Moved in 2018–2020":11.176,"Moved in 2010–2017":24.6038,"Moved in 2000–2009":28.4404,"Moved in 1990–1999":18.2652,"1989 or earlier":15.1793},"Lyon County":{"Moved in 2021 or later":6.043,"Moved in 2018–2020":21.2844,"Moved in 2010–2017":35.8011,"Moved in 2000–2009":24.6683,"Moved in 1990–1999":7.6709,"1989 or earlier":4.5323},"Mineral County":{"Moved in 2021 or later":8.4309,"Moved in 2018–2020":18.345,"Moved in 2010–2017":24.1218,"Moved in 2000–2009":10.0703,"Moved in 1990–1999":15.0664,"1989 or earlier":23.9657},"Nye County":{"Moved in 2021 or later":8.6867,"Moved in 2018–2020":17.749,"Moved in 2010–2017":31.4211,"Moved in 2000–2009":26.8718,"Moved in 1990–1999":11.4793,"1989 or earlier":3.7921},"Pershing County":{"Moved in 2021 or later":1.6764,"Moved in 2018–2020":14.6501,"Moved in 2010–2017":26.6035,"Moved in 2000–2009":22.0845,"Moved in 1990–1999":14.1399,"1989 or earlier":20.8455},"Storey County":{"Moved in 2021 or later":7.3425,"Moved in 2018–2020":26.3562,"Moved in 2010–2017":29.6438,"Moved in 2000–2009":17.3699,"Moved in 1990–1999":8.1096,"1989 or earlier":11.1781},"Washoe County":{"Moved in 2021 or later":6.3167,"Moved in 2018–2020":19.3633,"Moved in 2010–2017":33.3136,"Moved in 2000–2009":22.4129,"Moved in 1990–1999":10.7529,"1989 or earlier":7.8407},"White Pine County":{"Moved in 2021 or later":9.4661,"Moved in 2018–2020":14.5021,"Moved in 2010–2017":18.5536,"Moved in 2000–2009":27.7925,"Moved in 1990–1999":11.7001,"1989 or earlier":17.9856}};
+    const colors = {
+  'Moved in 2021 or later': '#377EF1',
+  'Moved in 2018–2020': '#FF7F00',
+  'Moved in 2010–2017': '#66A61E',
+  'Moved in 2000–2009': '#E6AB01',
+  'Moved in 1990–1999': '#7570B1',
+  '1989 or earlier': '#E41A1C'
+};
+
+    const ctx = document.getElementById("pieChart").getContext("2d");
+    let chart;
+
+    function renderChart(key) {
+      const values = data[key];
+      const labels = Object.keys(values);
+      const percentages = Object.values(values);
+
+      if (chart) chart.destroy();
+
+      chart = new Chart(ctx, {
+        type: "pie",
+        data: {
+          labels: labels,
+          datasets: [{
+            data: percentages,
+            backgroundColor: labels.map(label => colors[label] || "#cccccc")
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: true,
+          aspectRatio: 1.5,
+          plugins: {
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  return context.label + ": " + context.formattedValue + "%";
+                }
+              }
+            },
+            legend: {
+              position: "right",
+              labels: {
+                usePointStyle: true,
+                pointStyle: "rect"
+              }
+            }
+          }
+        }
+      });
+    }
+
+    // Populate dropdown (Statewide first, then counties A->Z)
+    const select = document.getElementById("countySelect");
+    const keys = ["Statewide", ...Object.keys(data).filter(k => k !== "Statewide").sort()];
+    keys.forEach(k => {
+      const opt = document.createElement("option");
+      opt.value = k;
+      opt.text  = k;
+      select.appendChild(opt);
+    });
+    select.value = "Statewide";
+    select.addEventListener("change", () => renderChart(select.value));
+
+    renderChart("Statewide");
+  </script>
+</body>
+</html>
+</html>

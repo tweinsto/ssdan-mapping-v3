@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Population Growth</title>
+  <link rel="stylesheet" href="../style.css" />
+  <style>
+    :root{
+      --page-max: 1400px;   /* total page cap */
+      --gap: 1.25rem;       /* space between columns */
+      --left-max: 780px;    /* MAX width for map column */
+      --left-min: 520px;    /* MIN width for map column */
+      --right-w: 560px;     /* FIXED width for rankings column */
+
+      /* sanity check:
+         780 + 560 + ~20px gap = ~1360px < 1400px, so no wrap needed on desktop */
+    }
+
+    /* No horizontal scroll */
+    html, body { width: 100%; overflow-x: hidden; }
+    *, *::before, *::after { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background-color: #f2f2f2;
+    }
+
+    /* --- TOP BAR (left buttons + right link list) --- */
+    .top-controls{
+      display:flex;
+      flex-wrap: wrap;              /* link list can drop below on smaller widths */
+      justify-content:flex-start;
+      align-items:flex-start;
+      gap: 1rem;
+      padding:0.5rem 2rem;
+      margin: 1cm auto -0.5rem;
+      background:#fff;
+      border-bottom:1px solid #ddd;
+      min-height:160px;
+      max-width: var(--page-max);
+      width: 100%;
+    }
+
+    .left-stack {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* pushes desc to top, buttons to bottom */
+  flex: 1 1 720px;
+  min-width: 560px;
+  max-width: 900px;
+}
+
+.site-desc {
+  min-height: 72px;
+  padding-right: 1rem;
+  margin-top: 0;  /* no negative shift needed */
+  color: #333;
+  line-height: 1.35;
+  margin-top: -4rem;
+}
+
+
+.ranking-toggle {
+  margin-top: 0; /* sits at bottom of left-stack */
+}
+
+
+    .ranking-toggle button {
+      white-space: nowrap;
+      font-size: 1.15rem;
+      font-weight: 600;
+      padding: 1.2rem 1.5rem;      /* sized to fit 3 comfortably */
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      background-color: #f5f7fb;
+      color: #2a2a2a;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      transition: background-color 0.2s ease, box-shadow 0.2s ease;
+      cursor: pointer;
+      margin-bottom: .5rem;
+      margin-top: 1.5rem;
+      flex: 0 0 auto;
+    }
+    .ranking-toggle button:hover {
+      background-color: #dee3f7;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+    }
+    .ranking-toggle button.active {
+      background-color: #3e49a8;
+      color: white;
+      border: none;
+      box-shadow: 0 3px 8px rgba(62, 73, 168, 0.4);
+    }
+
+    /* RIGHT: link list sits snug next to buttons; wraps below on narrow widths */
+    .link-list {
+      flex: 0 1 560px;
+      max-width: 800px;
+      background-color: #f4f6ff;
+      padding: 1rem;
+      border: 2px solid #3e49a8;
+      border-radius: 10px;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+      font-size: 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      margin-top: -3rem;
+      margin-left: 2rem;
+      margin-bottom: 0;
+      padding-top: 0;
+          /* pulls it upward in flex context */
+    }
+    .link-list h4 {
+      font-size: 1.2rem;
+      margin-bottom: 0.75rem;
+      text-align: center;
+      color: #222;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 0.5rem;
+    }
+    .link-columns {
+      display: flex;
+      justify-content: space-around;
+      text-align: left;
+      gap: 1rem;
+    }
+    .link-col { flex: 1; min-width: 0; }
+    .link-box {
+      border: 2px solid #ccc;
+      border-radius: 8px;
+      padding: 0.75rem;
+      background-color: white;
+    }
+    .link-title {
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-bottom: 0.4rem;
+    }
+    .link-sub { font-size: 0.87rem; }
+    .link-sub a { text-decoration: none; color: #0056b3; }
+    .link-sub a:hover { text-decoration: underline; }
+
+    h1#mapTitle {
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin: 0.6rem auto 0.3rem;
+      max-width: var(--page-max);
+      width: 100%;
+      padding: 3 2rem;
+      margin-bottom: 1.5rem;
+      margin-top: 1.5rem;
+    }
+    h1#mapTitle span {
+      display: block;
+      font-size: 1.05rem;
+      font-weight: 400;
+      color: #555;
+    }
+
+    /* --- MAIN LAYOUT (map + rankings) --- */
+    .page-container{
+      max-width: var(--page-max);
+      width: 100%;
+      margin: 0 auto;
+      padding: 0 1rem 1rem;
+    }
+
+    .main-wrapper {
+      display: flex;
+      flex-wrap: nowrap;            /* ✅ keep side-by-side on desktop */
+      justify-content: flex-start;
+      align-items: flex-start;
+      gap: var(--gap);
+      margin-top: 0.5rem;
+    }
+
+    .map-wrap{
+      /* Fill remaining space but never exceed left-max.
+         min-width:0 avoids overflow from flex content */
+      flex: 1 1 auto;
+      min-width: 0;
+      max-width: var(--left-max);
+    }
+    .map-frame {
+      width: 100%;
+      height: 500px;
+      border: 2px solid #262e8c;
+      border-radius: 8px;
+      box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+      display: block;
+    }
+
+    .rankings-section {
+     border: 2px solid #122381;  /* thin solid border matching background */
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+      flex: 0 0 var(--right-w);     /* ✅ fixed width column */
+      max-width: var(--right-w);
+  
+    }
+    iframe { border: none; max-width: 100%; }
+
+    #bottom-left-label {
+      position: fixed;
+      bottom: 10px;
+      left: 12px;
+      font-size: 15px;
+      color: #444;
+      background: rgba(255,255,255,0.85);
+      border-radius: 4px;
+      padding: 2px 6px;
+    }
+
+    /* --- RESPONSIVE: stack columns only when truly necessary --- */
+    @media (max-width: 1200px){
+      .left-stack{ min-width: 520px; }
+      .link-list{ flex-basis: 480px; max-width: 480px; }
+      .map-frame { height: 480px; }
+    }
+    @media (max-width: 1050px){
+      .main-wrapper{ flex-wrap: wrap; }   /* allow stacking now */
+      .map-wrap{ max-width: 100%; width: 100%; }
+      .rankings-section{ flex: 1 1 520px; width: 100%; }
+    }
+    @media (max-width: 700px){
+      .ranking-toggle{ flex-wrap: wrap; }
+      .ranking-toggle button{ font-size: 1rem; padding: .9rem 1rem; }
+      .left-stack{ min-width: 100%; }
+      .map-frame { height: 440px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="top-controls">
+    <!-- LEFT: description + buttons -->
+    <div class="left-stack">
+      <div class="site-desc">
+        <p>Website Description</p>
+      </div>
+
+      <div class="ranking-toggle">
+        <button id="btnGrowth2000" class="active">Growth 2000–2023</button>
+        <button id="btnGrowth2018">Growth 2018–2023</button>
+        <button id="btnPop">Population 2023</button>
+      </div>
+    </div>
+
+    <!-- RIGHT: Age-based menu -->
+    <div class="link-list">
+      <h4><strong>Explore Age-Based Population Data (2023)</strong></h4>
+      <div class="link-columns">
+        <div class="link-col">
+          <div class="link-box">
+            <div class="link-title">Median Age</div>
+            <div class="link-sub">
+              <span style="text-decoration: underline;">View:</span>
+              <a href="../maps/median-age-countyview.html">County</a> |
+              <a href="median-age.html">State</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="link-col">
+          <div class="link-box">
+            <div class="link-title">Age 18–24</div>
+            <div class="link-sub">
+              <span style="text-decoration: underline;">View:</span>
+              <a href="../maps/18-24-countyview.html">County</a> |
+              <a href="male+female-18-24.html">State</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="link-col">
+          <div class="link-box">
+            <div class="link-title">Age 65+</div>
+            <div class="link-sub">
+              <span style="text-decoration: underline;">View:</span>
+              <a href="seventy-plus-county.html">County</a> |
+              <a href="seventy-plus.html">State</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Title -->
+  <h1 id="mapTitle">Population Growth in the United States (2000–2023)
+    <span style="color: #3e49a8;">Click a state to explore further</span>
+  </h1>
+
+  <!-- Main Content -->
+  <div class="page-container">
+    <div class="main-wrapper">
+      <!-- LEFT: Map -->
+      <div class="map-wrap">
+        <iframe id="mapFrame" class="map-frame" src="population_map.html" title="Population Map"></iframe>
+      </div>
+
+      <!-- RIGHT: Rankings -->
+      <div class="rankings-section">
+        <iframe id="rankingFrame" src="growth-rates.html" title="Population Rankings" width="100%" height="800"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <div id="bottom-left-label">
+    <strong>Source:</strong>
+    <a href="https://www.census.gov/programs-surveys/acs" target="_blank" style="color: #003366; text-decoration: underline;">ACS 2023</a>
+  </div>
+
+  <script>
+    const btnGrowth2000 = document.getElementById('btnGrowth2000');
+    const btnGrowth2018 = document.getElementById('btnGrowth2018');
+    const btnPop        = document.getElementById('btnPop');
+    const mapTitle      = document.getElementById('mapTitle');
+    const mapFrame      = document.getElementById('mapFrame');
+    const rankingFrame  = document.getElementById('rankingFrame');
+
+    function activateButton(button, mapSrc, rankSrc, titleText) {
+      [btnPop, btnGrowth2000, btnGrowth2018].forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
+      mapFrame.src = mapSrc;
+      rankingFrame.src = rankSrc;
+      mapTitle.innerHTML = titleText + ' <span style="color: #3e49a8;">Click a state to explore further</span>';
+    }
+
+    btnGrowth2000.addEventListener('click', () =>
+      activateButton(btnGrowth2000, "population_map.html", "growth-rates.html", "Population Growth in the United States (2000–2023)")
+    );
+
+    btnGrowth2018.addEventListener('click', () =>
+      activateButton(btnGrowth2018, "population_map_18-23.html", "growth-2018-2023.html", "Population Growth in the United States (2018–2023)")
+    );
+
+    btnPop.addEventListener('click', () =>
+      activateButton(btnPop, "population_map_general.html", "pop-ranks.html", "Population in the United States (2023)")
+    );
+
+    // Restore last active view on page load
+    window.addEventListener('DOMContentLoaded', () => {
+      const savedView = sessionStorage.getItem('activeMap');
+      if (savedView === 'growth2018') {
+        btnGrowth2018.click();
+      } else if (savedView === 'pop') {
+        btnPop.click();
+      } else {
+        btnGrowth2000.click(); // default
+      }
+    });
+
+    // Save state whe

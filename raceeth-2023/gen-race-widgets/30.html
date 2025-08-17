@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="utf-8"/>
+  <title>Race/Ethnicity in State 30</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          text-align: center;
+          margin: 2rem;
+          background-color: white;
+        }
+        canvas {
+          max-width: 500px;
+          margin: 1rem auto;
+        }
+        select {
+          font-size: 1rem;
+          padding: 0.4rem;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Race &amp; Ethnicity Distribution</h2>
+    <label>Select County:</label>
+    <select id="countySelect"><option value="Statewide">Statewide</option>
+<option value="Beaverhead County, Montana">Beaverhead County, Montana</option>
+<option value="Big Horn County, Montana">Big Horn County, Montana</option>
+<option value="Blaine County, Montana">Blaine County, Montana</option>
+<option value="Broadwater County, Montana">Broadwater County, Montana</option>
+<option value="Carbon County, Montana">Carbon County, Montana</option>
+<option value="Carter County, Montana">Carter County, Montana</option>
+<option value="Cascade County, Montana">Cascade County, Montana</option>
+<option value="Chouteau County, Montana">Chouteau County, Montana</option>
+<option value="Custer County, Montana">Custer County, Montana</option>
+<option value="Daniels County, Montana">Daniels County, Montana</option>
+<option value="Dawson County, Montana">Dawson County, Montana</option>
+<option value="Deer Lodge County, Montana">Deer Lodge County, Montana</option>
+<option value="Fallon County, Montana">Fallon County, Montana</option>
+<option value="Fergus County, Montana">Fergus County, Montana</option>
+<option value="Flathead County, Montana">Flathead County, Montana</option>
+<option value="Gallatin County, Montana">Gallatin County, Montana</option>
+<option value="Garfield County, Montana">Garfield County, Montana</option>
+<option value="Glacier County, Montana">Glacier County, Montana</option>
+<option value="Golden Valley County, Montana">Golden Valley County, Montana</option>
+<option value="Granite County, Montana">Granite County, Montana</option>
+<option value="Hill County, Montana">Hill County, Montana</option>
+<option value="Jefferson County, Montana">Jefferson County, Montana</option>
+<option value="Judith Basin County, Montana">Judith Basin County, Montana</option>
+<option value="Lake County, Montana">Lake County, Montana</option>
+<option value="Lewis and Clark County, Montana">Lewis and Clark County, Montana</option>
+<option value="Liberty County, Montana">Liberty County, Montana</option>
+<option value="Lincoln County, Montana">Lincoln County, Montana</option>
+<option value="Madison County, Montana">Madison County, Montana</option>
+<option value="McCone County, Montana">McCone County, Montana</option>
+<option value="Meagher County, Montana">Meagher County, Montana</option>
+<option value="Mineral County, Montana">Mineral County, Montana</option>
+<option value="Missoula County, Montana">Missoula County, Montana</option>
+<option value="Musselshell County, Montana">Musselshell County, Montana</option>
+<option value="Park County, Montana">Park County, Montana</option>
+<option value="Petroleum County, Montana">Petroleum County, Montana</option>
+<option value="Phillips County, Montana">Phillips County, Montana</option>
+<option value="Pondera County, Montana">Pondera County, Montana</option>
+<option value="Powder River County, Montana">Powder River County, Montana</option>
+<option value="Powell County, Montana">Powell County, Montana</option>
+<option value="Prairie County, Montana">Prairie County, Montana</option>
+<option value="Ravalli County, Montana">Ravalli County, Montana</option>
+<option value="Richland County, Montana">Richland County, Montana</option>
+<option value="Roosevelt County, Montana">Roosevelt County, Montana</option>
+<option value="Rosebud County, Montana">Rosebud County, Montana</option>
+<option value="Sanders County, Montana">Sanders County, Montana</option>
+<option value="Sheridan County, Montana">Sheridan County, Montana</option>
+<option value="Silver Bow County, Montana">Silver Bow County, Montana</option>
+<option value="Stillwater County, Montana">Stillwater County, Montana</option>
+<option value="Sweet Grass County, Montana">Sweet Grass County, Montana</option>
+<option value="Teton County, Montana">Teton County, Montana</option>
+<option value="Toole County, Montana">Toole County, Montana</option>
+<option value="Treasure County, Montana">Treasure County, Montana</option>
+<option value="Valley County, Montana">Valley County, Montana</option>
+<option value="Wheatland County, Montana">Wheatland County, Montana</option>
+<option value="Wibaux County, Montana">Wibaux County, Montana</option>
+<option value="Yellowstone County, Montana">Yellowstone County, Montana</option></select>
+    <canvas id="pieChart" width="400" height="400"></canvas>
+    <script>  let raceData = {};
+  fetch("30.json")
+    .then(resp => resp.json())
+    .then(data => {
+      raceData = data;
+      const raceLabels = ["American Indian / Alaska Native","Asian","Black","Hispanic","NHMulti","NHOther","NHWhite","Pacific Islander"];
+      const ctx = document.getElementById("pieChart").getContext("2d");
+      let chart;
+
+      function renderChart(values) {
+        if (chart) chart.destroy();
+        chart = new Chart(ctx, {
+          type: "pie",
+          data: {
+            labels: raceLabels,
+            datasets: [{
+              data: values,
+              backgroundColor: [
+                "#f94144", "#f3722c", "#f9c74f", "#90be6d",
+                "#9d4edd", "#577590", "#d0cde1", "#43aa8b"
+              ]
+            }]
+          },
+          options: {
+            responsive: true,
+            plugins: {
+              legend: {
+                position: "bottom",
+                labels: {
+                  font: { size: 14 },
+                  boxWidth: 20,
+                  padding: 15,
+                  usePointStyle: true,
+                  pointStyle: "rectRounded"
+                }
+              },
+              tooltip: {
+                callbacks: {
+                  label: function(context) {
+                    return context.label + ": " + context.parsed + "%";
+                  }
+                }
+              }
+            }
+          }
+        });
+      }
+
+      document.getElementById("countySelect").addEventListener("change", function() {
+        const selected = this.value;
+        const values = Object.values(raceData[selected]);
+        renderChart(values);
+      });
+
+      renderChart(Object.values(raceData["Statewide"]));
+      document.getElementById("countySelect").value = "Statewide";
+    });</script>
+  </body>
+</html>
+</html>

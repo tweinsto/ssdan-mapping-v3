@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+
+</head>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Owners: Year Moved In (%) – 26</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #fff;
+    }
+    .container {
+      width: 95%;
+      max-width: 1200px;
+      margin: auto;
+      text-align: center;
+    }
+    #countySelect {
+      font-size: 1rem;
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    canvas {
+      max-width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Owners: Year Moved In (%)</h2>
+    <select id="countySelect"></select>
+    <canvas id="pieChart"></canvas>
+  </div>
+
+  <script>
+    const data = {"Statewide":{"Moved in 2021 or later":5,"Moved in 2018–2020":14.1,"Moved in 2010–2017":28,"Moved in 2000–2009":20.5,"Moved in 1990–1999":15.4,"1989 or earlier":16.9},"Alcona County":{"Moved in 2021 or later":4.9935,"Moved in 2018–2020":14.4134,"Moved in 2010–2017":25.0109,"Moved in 2000–2009":22.874,"Moved in 1990–1999":18.0113,"1989 or earlier":14.6969},"Alger County":{"Moved in 2021 or later":3.2642,"Moved in 2018–2020":11.4587,"Moved in 2010–2017":27.0656,"Moved in 2000–2009":20.1632,"Moved in 1990–1999":16.219,"1989 or earlier":21.8293},"Allegan County":{"Moved in 2021 or later":4.1254,"Moved in 2018–2020":15.3341,"Moved in 2010–2017":30.0457,"Moved in 2000–2009":20.0021,"Moved in 1990–1999":15.1766,"1989 or earlier":15.3161},"Alpena County":{"Moved in 2021 or later":3.2727,"Moved in 2018–2020":14.7419,"Moved in 2010–2017":24.9456,"Moved in 2000–2009":18.4892,"Moved in 1990–1999":15.4143,"1989 or earlier":23.1362},"Antrim County":{"Moved in 2021 or later":5.8646,"Moved in 2018–2020":15.1146,"Moved in 2010–2017":29.4271,"Moved in 2000–2009":22.625,"Moved in 1990–1999":15.2083,"1989 or earlier":11.7604},"Arenac County":{"Moved in 2021 or later":3.7441,"Moved in 2018–2020":13.8677,"Moved in 2010–2017":23.7368,"Moved in 2000–2009":22.2828,"Moved in 1990–1999":16.8666,"1989 or earlier":19.502},"Baraga County":{"Moved in 2021 or later":4.6729,"Moved in 2018–2020":11.3318,"Moved in 2010–2017":22.6246,"Moved in 2000–2009":22.0794,"Moved in 1990–1999":19.081,"1989 or earlier":20.2103},"Barry County":{"Moved in 2021 or later":4.7676,"Moved in 2018–2020":15.8396,"Moved in 2010–2017":29.262,"Moved in 2000–2009":19.7412,"Moved in 1990–1999":13.2607,"1989 or earlier":17.129},"Bay County":{"Moved in 2021 or later":4.3733,"Moved in 2018–2020":12.1257,"Moved in 2010–2017":24.4818,"Moved in 2000–2009":21.5108,"Moved in 1990–1999":15.3853,"1989 or earlier":22.1231},"Benzie County":{"Moved in 2021 or later":4.3312,"Moved in 2018–2020":12.1855,"Moved in 2010–2017":27.6041,"Moved in 2000–2009":24.2946,"Moved in 1990–1999":19.7956,"1989 or earlier":11.7889},"Berrien County":{"Moved in 2021 or later":5.0204,"Moved in 2018–2020":14.4458,"Moved in 2010–2017":25.5728,"Moved in 2000–2009":20.4703,"Moved in 1990–1999":15.5104,"1989 or earlier":18.9804},"Branch County":{"Moved in 2021 or later":5.0255,"Moved in 2018–2020":13.4065,"Moved in 2010–2017":26.7978,"Moved in 2000–2009":21.3605,"Moved in 1990–1999":15.3741,"1989 or earlier":18.0355},"Calhoun County":{"Moved in 2021 or later":5.6292,"Moved in 2018–2020":12.7316,"Moved in 2010–2017":28.0091,"Moved in 2000–2009":19.8754,"Moved in 1990–1999":13.7034,"1989 or earlier":20.0512},"Cass County":{"Moved in 2021 or later":4.5685,"Moved in 2018–2020":13.2403,"Moved in 2010–2017":27.2283,"Moved in 2000–2009":21.0467,"Moved in 1990–1999":15.2125,"1989 or earlier":18.7036},"Charlevoix County":{"Moved in 2021 or later":4.8667,"Moved in 2018–2020":14.4126,"Moved in 2010–2017":28.924,"Moved in 2000–2009":20.0494,"Moved in 1990–1999":15.7354,"1989 or earlier":16.0118},"Cheboygan County":{"Moved in 2021 or later":4.9645,"Moved in 2018–2020":11.4707,"Moved in 2010–2017":27.4795,"Moved in 2000–2009":22.9306,"Moved in 1990–1999":14.5216,"1989 or earlier":18.6331},"Chippewa County":{"Moved in 2021 or later":5.742,"Moved in 2018–2020":13.2936,"Moved in 2010–2017":25.7263,"Moved in 2000–2009":21.5397,"Moved in 1990–1999":16.502,"1989 or earlier":17.1965},"Clare County":{"Moved in 2021 or later":6.4356,"Moved in 2018–2020":15.01,"Moved in 2010–2017":28.8265,"Moved in 2000–2009":22.0949,"Moved in 1990–1999":14.8382,"1989 or earlier":12.7948},"Clinton County":{"Moved in 2021 or later":5.4306,"Moved in 2018–2020":14.591,"Moved in 2010–2017":26.7906,"Moved in 2000–2009":20.1026,"Moved in 1990–1999":15.1772,"1989 or earlier":17.908},"Crawford County":{"Moved in 2021 or later":6.4312,"Moved in 2018–2020":14.312,"Moved in 2010–2017":25.194,"Moved in 2000–2009":23.6831,"Moved in 1990–1999":16.3944,"1989 or earlier":13.9853},"Delta County":{"Moved in 2021 or later":4.0793,"Moved in 2018–2020":13.6538,"Moved in 2010–2017":22.2924,"Moved in 2000–2009":19.2289,"Moved in 1990–1999":16.6773,"1989 or earlier":24.0681},"Dickinson County":{"Moved in 2021 or later":5.1441,"Moved in 2018–2020":13.2631,"Moved in 2010–2017":23.6339,"Moved in 2000–2009":21.8366,"Moved in 1990–1999":16.0727,"1989 or earlier":20.0496},"Eaton County":{"Moved in 2021 or later":5.258,"Moved in 2018–2020":13.663,"Moved in 2010–2017":29.0069,"Moved in 2000–2009":18.5477,"Moved in 1990–1999":15.7351,"1989 or earlier":17.7893},"Emmet County":{"Moved in 2021 or later":4.7173,"Moved in 2018–2020":14.6067,"Moved in 2010–2017":29.1689,"Moved in 2000–2009":22.6592,"Moved in 1990–1999":16.1584,"1989 or earlier":12.6895},"Genesee County":{"Moved in 2021 or later":4.6273,"Moved in 2018–2020":13.949,"Moved in 2010–2017":28.9815,"Moved in 2000–2009":20.0959,"Moved in 1990–1999":14.5141,"1989 or earlier":17.8323},"Gladwin County":{"Moved in 2021 or later":6.176,"Moved in 2018–2020":16.2965,"Moved in 2010–2017":26.0847,"Moved in 2000–2009":23.77,"Moved in 1990–1999":13.7015,"1989 or earlier":13.9714},"Gogebic County":{"Moved in 2021 or later":3.9198,"Moved in 2018–2020":11.8826,"Moved in 2010–2017":21.7437,"Moved in 2000–2009":23.0093,"Moved in 1990–1999":17.3668,"1989 or earlier":22.0777},"Grand Traverse County":{"Moved in 2021 or later":4.8281,"Moved in 2018–2020":17.0055,"Moved in 2010–2017":29.2522,"Moved in 2000–2009":22.0216,"Moved in 1990–1999":15.6128,"1989 or earlier":11.2798},"Gratiot County":{"Moved in 2021 or later":5.34,"Moved in 2018–2020":14.5779,"Moved in 2010–2017":23.641,"Moved in 2000–2009":21.0191,"Moved in 1990–1999":14.438,"1989 or earlier":20.9841},"Hillsdale County":{"Moved in 2021 or later":4.3683,"Moved in 2018–2020":15.6691,"Moved in 2010–2017":24.371,"Moved in 2000–2009":22.0279,"Moved in 1990–1999":15.4617,"1989 or earlier":18.102},"Houghton County":{"Moved in 2021 or later":5.9032,"Moved in 2018–2020":13.6691,"Moved in 2010–2017":25.9584,"Moved in 2000–2009":19.2076,"Moved in 1990–1999":14.6053,"1989 or earlier":20.6564},"Huron County":{"Moved in 2021 or later":3.8302,"Moved in 2018–2020":11.4203,"Moved in 2010–2017":22.8229,"Moved in 2000–2009":18.9751,"Moved in 1990–1999":18.3147,"1989 or earlier":24.6368},"Ingham County":{"Moved in 2021 or later":5.8088,"Moved in 2018–2020":16.1888,"Moved in 2010–2017":27.5298,"Moved in 2000–2009":20.1132,"Moved in 1990–1999":14.6502,"1989 or earlier":15.7091},"Ionia County":{"Moved in 2021 or later":5.9115,"Moved in 2018–2020":15.3192,"Moved in 2010–2017":26.8269,"Moved in 2000–2009":18.883,"Moved in 1990–1999":14.6493,"1989 or earlier":18.4101},"Iosco County":{"Moved in 2021 or later":4.7835,"Moved in 2018–2020":13.2652,"Moved in 2010–2017":30.7765,"Moved in 2000–2009":20.7354,"Moved in 1990–1999":15.973,"1989 or earlier":14.4663},"Iron County":{"Moved in 2021 or later":4.0517,"Moved in 2018–2020":12.2865,"Moved in 2010–2017":22.339,"Moved in 2000–2009":20.0175,"Moved in 1990–1999":16.9514,"1989 or earlier":24.3539},"Isabella County":{"Moved in 2021 or later":5.9543,"Moved in 2018–2020":12.1769,"Moved in 2010–2017":26.5524,"Moved in 2000–2009":20.3429,"Moved in 1990–1999":17.6143,"1989 or earlier":17.3592},"Jackson County":{"Moved in 2021 or later":4.7706,"Moved in 2018–2020":15.0249,"Moved in 2010–2017":27.6785,"Moved in 2000–2009":19.0717,"Moved in 1990–1999":16.1461,"1989 or earlier":17.3082},"Kalamazoo County":{"Moved in 2021 or later":5.4718,"Moved in 2018–2020":16.0211,"Moved in 2010–2017":30.1951,"Moved in 2000–2009":19.9756,"Moved in 1990–1999":13.7679,"1989 or earlier":14.5685},"Kalkaska County":{"Moved in 2021 or later":5.083,"Moved in 2018–2020":14.3005,"Moved in 2010–2017":31.7872,"Moved in 2000–2009":22.4215,"Moved in 1990–1999":14.182,"1989 or earlier":12.2258},"Kent County":{"Moved in 2021 or later":5.24,"Moved in 2018–2020":16.3223,"Moved in 2010–2017":31.8142,"Moved in 2000–2009":20.3242,"Moved in 1990–1999":14.2288,"1989 or earlier":12.0705},"Keweenaw County":{"Moved in 2021 or later":1.6,"Moved in 2018–2020":22.1,"Moved in 2010–2017":19.5,"Moved in 2000–2009":25.2,"Moved in 1990–1999":18.5,"1989 or earlier":13.1},"Lake County":{"Moved in 2021 or later":7.4444,"Moved in 2018–2020":14.0145,"Moved in 2010–2017":27.8541,"Moved in 2000–2009":23.0577,"Moved in 1990–1999":16.9123,"1989 or earlier":10.717},"Lapeer County":{"Moved in 2021 or later":3.9401,"Moved in 2018–2020":12.9773,"Moved in 2010–2017":28.1575,"Moved in 2000–2009":19.7747,"Moved in 1990–1999":18.0711,"1989 or earlier":17.0793},"Leelanau County":{"Moved in 2021 or later":3.3692,"Moved in 2018–2020":14.8573,"Moved in 2010–2017":25.1989,"Moved in 2000–2009":23.0697,"Moved in 1990–1999":17.4544,"1989 or earlier":16.0505},"Lenawee County":{"Moved in 2021 or later":4.0568,"Moved in 2018–2020":13.966,"Moved in 2010–2017":28.1712,"Moved in 2000–2009":20.3198,"Moved in 1990–1999":14.2806,"1989 or earlier":19.2057},"Livingston County":{"Moved in 2021 or later":4.8103,"Moved in 2018–2020":14.7479,"Moved in 2010–2017":31.5083,"Moved in 2000–2009":21.9137,"Moved in 1990–1999":15.0178,"1989 or earlier":12.002},"Luce County":{"Moved in 2021 or later":4.1248,"Moved in 2018–2020":17.3982,"Moved in 2010–2017":23.9556,"Moved in 2000–2009":22.0518,"Moved in 1990–1999":13.432,"1989 or earlier":19.0375},"Mackinac County":{"Moved in 2021 or later":7.8086,"Moved in 2018–2020":11.9899,"Moved in 2010–2017":20.7809,"Moved in 2000–2009":23.4257,"Moved in 1990–1999":17.0529,"1989 or earlier":18.9421},"Macomb County":{"Moved in 2021 or later":4.9206,"Moved in 2018–2020":14.1417,"Moved in 2010–2017":28.0168,"Moved in 2000–2009":21.6701,"Moved in 1990–1999":15.8811,"1989 or earlier":15.3698},"Manistee County":{"Moved in 2021 or later":4.0948,"Moved in 2018–2020":13.7845,"Moved in 2010–2017":25.313,"Moved in 2000–2009":21.3649,"Moved in 1990–1999":16.1534,"1989 or earlier":19.2893},"Marquette County":{"Moved in 2021 or later":4.7526,"Moved in 2018–2020":15.3099,"Moved in 2010–2017":23.4104,"Moved in 2000–2009":20.6112,"Moved in 1990–1999":15.2595,"1989 or earlier":20.6565},"Mason County":{"Moved in 2021 or later":7.1554,"Moved in 2018–2020":14.7438,"Moved in 2010–2017":27.5183,"Moved in 2000–2009":20.0845,"Moved in 1990–1999":13.2591,"1989 or earlier":17.2389},"Mecosta County":{"Moved in 2021 or later":3.949,"Moved in 2018–2020":17.1606,"Moved in 2010–2017":25.3816,"Moved in 2000–2009":23.0235,"Moved in 1990–1999":16.0946,"1989 or earlier":14.3907},"Menominee County":{"Moved in 2021 or later":4.0253,"Moved in 2018–2020":10.933,"Moved in 2010–2017":21.9903,"Moved in 2000–2009":19.1452,"Moved in 1990–1999":17.8407,"1989 or earlier":26.0653},"Midland County":{"Moved in 2021 or later":5.6169,"Moved in 2018–2020":15.9829,"Moved in 2010–2017":27.8038,"Moved in 2000–2009":19.0295,"Moved in 1990–1999":15.1557,"1989 or earlier":16.4112},"Missaukee County":{"Moved in 2021 or later":6.0694,"Moved in 2018–2020":14.9033,"Moved in 2010–2017":25.6288,"Moved in 2000–2009":20.5363,"Moved in 1990–1999":14.2382,"1989 or earlier":18.624},"Monroe County":{"Moved in 2021 or later":5.2984,"Moved in 2018–2020":13.2461,"Moved in 2010–2017":24.5269,"Moved in 2000–2009":21.8915,"Moved in 1990–1999":16.8355,"1989 or earlier":18.2015},"Montcalm County":{"Moved in 2021 or later":6.3227,"Moved in 2018–2020":16.3031,"Moved in 2010–2017":24.2178,"Moved in 2000–2009":22.7115,"Moved in 1990–1999":13.8143,"1989 or earlier":16.6306},"Montmorency County":{"Moved in 2021 or later":6.847,"Moved in 2018–2020":20.1819,"Moved in 2010–2017":25.4249,"Moved in 2000–2009":19.2004,"Moved in 1990–1999":16.1839,"1989 or earlier":12.1618},"Muskegon County":{"Moved in 2021 or later":5.3936,"Moved in 2018–2020":14.8558,"Moved in 2010–2017":28.3027,"Moved in 2000–2009":20.3351,"Moved in 1990–1999":14.2922,"1989 or earlier":16.8206},"Newaygo County":{"Moved in 2021 or later":5.0217,"Moved in 2018–2020":12.462,"Moved in 2010–2017":30.5415,"Moved in 2000–2009":20.2419,"Moved in 1990–1999":17.7757,"1989 or earlier":13.9572},"Oakland County":{"Moved in 2021 or later":5.1272,"Moved in 2018–2020":14.3688,"Moved in 2010–2017":29.565,"Moved in 2000–2009":19.8737,"Moved in 1990–1999":16.1984,"1989 or earlier":14.8669},"Oceana County":{"Moved in 2021 or later":3.5768,"Moved in 2018–2020":14.1924,"Moved in 2010–2017":24.0284,"Moved in 2000–2009":23.5584,"Moved in 1990–1999":16.6342,"1989 or earlier":18.0099},"Ogemaw County":{"Moved in 2021 or later":5.3002,"Moved in 2018–2020":13.2837,"Moved in 2010–2017":26.7933,"Moved in 2000–2009":21.4134,"Moved in 1990–1999":17.415,"1989 or earlier":15.7944},"Ontonagon County":{"Moved in 2021 or later":3.8476,"Moved in 2018–2020":10.504,"Moved in 2010–2017":19.0843,"Moved in 2000–2009":21.0081,"Moved in 1990–1999":14.3902,"1989 or earlier":31.1658},"Osceola County":{"Moved in 2021 or later":4.8591,"Moved in 2018–2020":13.5633,"Moved in 2010–2017":27.2715,"Moved in 2000–2009":20.5952,"Moved in 1990–1999":16.3945,"1989 or earlier":17.3163},"Oscoda County":{"Moved in 2021 or later":6.167,"Moved in 2018–2020":15.4649,"Moved in 2010–2017":23.1815,"Moved in 2000–2009":22.3593,"Moved in 1990–1999":17.1094,"1989 or earlier":15.7179},"Otsego County":{"Moved in 2021 or later":7.5434,"Moved in 2018–2020":17.4303,"Moved in 2010–2017":23.8195,"Moved in 2000–2009":23.563,"Moved in 1990–1999":15.8797,"1989 or earlier":11.764},"Ottawa County":{"Moved in 2021 or later":5.6414,"Moved in 2018–2020":16.3926,"Moved in 2010–2017":31.1908,"Moved in 2000–2009":19.761,"Moved in 1990–1999":14.555,"1989 or earlier":12.4592},"Presque Isle County":{"Moved in 2021 or later":4.7308,"Moved in 2018–2020":13.5922,"Moved in 2010–2017":26.7255,"Moved in 2000–2009":19.8764,"Moved in 1990–1999":13.5216,"1989 or earlier":21.5534},"Roscommon County":{"Moved in 2021 or later":6.1473,"Moved in 2018–2020":17.5121,"Moved in 2010–2017":27.8025,"Moved in 2000–2009":22.554,"Moved in 1990–1999":12.3463,"1989 or earlier":13.6378},"Saginaw County":{"Moved in 2021 or later":4.4686,"Moved in 2018–2020":11.0953,"Moved in 2010–2017":25.1043,"Moved in 2000–2009":20.4709,"Moved in 1990–1999":16.1144,"1989 or earlier":22.7464},"Sanilac County":{"Moved in 2021 or later":4.8144,"Moved in 2018–2020":12.8921,"Moved in 2010–2017":25.8685,"Moved in 2000–2009":20.0786,"Moved in 1990–1999":17.0608,"1989 or earlier":19.2856},"Schoolcraft County":{"Moved in 2021 or later":5.4261,"Moved in 2018–2020":14.9908,"Moved in 2010–2017":19.4053,"Moved in 2000–2009":25.9657,"Moved in 1990–1999":15.1134,"1989 or earlier":19.0987},"Shiawassee County":{"Moved in 2021 or later":4.7295,"Moved in 2018–2020":12.8144,"Moved in 2010–2017":26.0534,"Moved in 2000–2009":19.1098,"Moved in 1990–1999":14.919,"1989 or earlier":22.3739},"St. Clair County":{"Moved in 2021 or later":5.8205,"Moved in 2018–2020":14.4348,"Moved in 2010–2017":25.9137,"Moved in 2000–2009":20.6598,"Moved in 1990–1999":17.8082,"1989 or earlier":15.363},"St. Joseph County":{"Moved in 2021 or later":4.7963,"Moved in 2018–2020":13.5828,"Moved in 2010–2017":24.8887,"Moved in 2000–2009":20.9322,"Moved in 1990–1999":17.8718,"1989 or earlier":17.9282},"Tuscola County":{"Moved in 2021 or later":4.5638,"Moved in 2018–2020":10.6471,"Moved in 2010–2017":23.9069,"Moved in 2000–2009":19.3157,"Moved in 1990–1999":16.2221,"1989 or earlier":25.3443},"Van Buren County":{"Moved in 2021 or later":4.5916,"Moved in 2018–2020":13.6964,"Moved in 2010–2017":26.1458,"Moved in 2000–2009":21.579,"Moved in 1990–1999":17.8504,"1989 or earlier":16.1368},"Washtenaw County":{"Moved in 2021 or later":5.6192,"Moved in 2018–2020":13.7387,"Moved in 2010–2017":27.1644,"Moved in 2000–2009":23.7618,"Moved in 1990–1999":16.2228,"1989 or earlier":13.4931},"Wayne County":{"Moved in 2021 or later":4.497,"Moved in 2018–2020":12.2524,"Moved in 2010–2017":27.2958,"Moved in 2000–2009":19.6444,"Moved in 1990–1999":14.8736,"1989 or earlier":21.4368},"Wexford County":{"Moved in 2021 or later":4.8687,"Moved in 2018–2020":17.1227,"Moved in 2010–2017":28.7087,"Moved in 2000–2009":20.8017,"Moved in 1990–1999":14.2766,"1989 or earlier":14.2217}};
+    const colors = {
+  'Moved in 2021 or later': '#377EF1',
+  'Moved in 2018–2020': '#FF7F00',
+  'Moved in 2010–2017': '#66A61E',
+  'Moved in 2000–2009': '#E6AB01',
+  'Moved in 1990–1999': '#7570B1',
+  '1989 or earlier': '#E41A1C'
+};
+
+    const ctx = document.getElementById("pieChart").getContext("2d");
+    let chart;
+
+    function renderChart(key) {
+      const values = data[key];
+      const labels = Object.keys(values);
+      const percentages = Object.values(values);
+
+      if (chart) chart.destroy();
+
+      chart = new Chart(ctx, {
+        type: "pie",
+        data: {
+          labels: labels,
+          datasets: [{
+            data: percentages,
+            backgroundColor: labels.map(label => colors[label] || "#cccccc")
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: true,
+          aspectRatio: 1.5,
+          plugins: {
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  return context.label + ": " + context.formattedValue + "%";
+                }
+              }
+            },
+            legend: {
+              position: "right",
+              labels: {
+                usePointStyle: true,
+                pointStyle: "rect"
+              }
+            }
+          }
+        }
+      });
+    }
+
+    // Populate dropdown (Statewide first, then counties A->Z)
+    const select = document.getElementById("countySelect");
+    const keys = ["Statewide", ...Object.keys(data).filter(k => k !== "Statewide").sort()];
+    keys.forEach(k => {
+      const opt = document.createElement("option");
+      opt.value = k;
+      opt.text  = k;
+      select.appendChild(opt);
+    });
+    select.value = "Statewide";
+    select.addEventListener("change", () => renderChart(select.value));
+
+    renderChart("Statewide");
+  </script>
+</body>
+</html>
+</html>

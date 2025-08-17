@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <title>Industry Distribution – Louisiana</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+        canvas { max-width: 600px; height: 500px; }
+        select { padding: 0.5rem; font-size: 1rem; margin: 1rem; }
+        .legend { max-width: 600px; margin: 1rem auto; display: flex; flex-wrap: wrap; justify-content: center; font-size: 0.9rem; }
+        .legend-item { display: flex; align-items: center; margin: 0.3rem 1rem; }
+        .legend-color { width: 12px; height: 12px; margin-right: 6px; border: 1px solid #444; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Industry Distribution in Louisiana</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Acadia Parish, Louisiana">Acadia Parish, Louisiana</option>
+      <option value="Allen Parish, Louisiana">Allen Parish, Louisiana</option>
+      <option value="Ascension Parish, Louisiana">Ascension Parish, Louisiana</option>
+      <option value="Assumption Parish, Louisiana">Assumption Parish, Louisiana</option>
+      <option value="Avoyelles Parish, Louisiana">Avoyelles Parish, Louisiana</option>
+      <option value="Beauregard Parish, Louisiana">Beauregard Parish, Louisiana</option>
+      <option value="Bienville Parish, Louisiana">Bienville Parish, Louisiana</option>
+      <option value="Bossier Parish, Louisiana">Bossier Parish, Louisiana</option>
+      <option value="Caddo Parish, Louisiana">Caddo Parish, Louisiana</option>
+      <option value="Calcasieu Parish, Louisiana">Calcasieu Parish, Louisiana</option>
+      <option value="Caldwell Parish, Louisiana">Caldwell Parish, Louisiana</option>
+      <option value="Cameron Parish, Louisiana">Cameron Parish, Louisiana</option>
+      <option value="Catahoula Parish, Louisiana">Catahoula Parish, Louisiana</option>
+      <option value="Claiborne Parish, Louisiana">Claiborne Parish, Louisiana</option>
+      <option value="Concordia Parish, Louisiana">Concordia Parish, Louisiana</option>
+      <option value="De Soto Parish, Louisiana">De Soto Parish, Louisiana</option>
+      <option value="East Baton Rouge Parish, Louisiana">East Baton Rouge Parish, Louisiana</option>
+      <option value="East Carroll Parish, Louisiana">East Carroll Parish, Louisiana</option>
+      <option value="East Feliciana Parish, Louisiana">East Feliciana Parish, Louisiana</option>
+      <option value="Evangeline Parish, Louisiana">Evangeline Parish, Louisiana</option>
+      <option value="Franklin Parish, Louisiana">Franklin Parish, Louisiana</option>
+      <option value="Grant Parish, Louisiana">Grant Parish, Louisiana</option>
+      <option value="Iberia Parish, Louisiana">Iberia Parish, Louisiana</option>
+      <option value="Iberville Parish, Louisiana">Iberville Parish, Louisiana</option>
+      <option value="Jackson Parish, Louisiana">Jackson Parish, Louisiana</option>
+      <option value="Jefferson Davis Parish, Louisiana">Jefferson Davis Parish, Louisiana</option>
+      <option value="Jefferson Parish, Louisiana">Jefferson Parish, Louisiana</option>
+      <option value="Lafayette Parish, Louisiana">Lafayette Parish, Louisiana</option>
+      <option value="Lafourche Parish, Louisiana">Lafourche Parish, Louisiana</option>
+      <option value="LaSalle Parish, Louisiana">LaSalle Parish, Louisiana</option>
+      <option value="Lincoln Parish, Louisiana">Lincoln Parish, Louisiana</option>
+      <option value="Livingston Parish, Louisiana">Livingston Parish, Louisiana</option>
+      <option value="Madison Parish, Louisiana">Madison Parish, Louisiana</option>
+      <option value="Morehouse Parish, Louisiana">Morehouse Parish, Louisiana</option>
+      <option value="Natchitoches Parish, Louisiana">Natchitoches Parish, Louisiana</option>
+      <option value="Orleans Parish, Louisiana">Orleans Parish, Louisiana</option>
+      <option value="Ouachita Parish, Louisiana">Ouachita Parish, Louisiana</option>
+      <option value="Plaquemines Parish, Louisiana">Plaquemines Parish, Louisiana</option>
+      <option value="Pointe Coupee Parish, Louisiana">Pointe Coupee Parish, Louisiana</option>
+      <option value="Rapides Parish, Louisiana">Rapides Parish, Louisiana</option>
+      <option value="Red River Parish, Louisiana">Red River Parish, Louisiana</option>
+      <option value="Richland Parish, Louisiana">Richland Parish, Louisiana</option>
+      <option value="Sabine Parish, Louisiana">Sabine Parish, Louisiana</option>
+      <option value="St. Bernard Parish, Louisiana">St. Bernard Parish, Louisiana</option>
+      <option value="St. Charles Parish, Louisiana">St. Charles Parish, Louisiana</option>
+      <option value="St. Helena Parish, Louisiana">St. Helena Parish, Louisiana</option>
+      <option value="St. James Parish, Louisiana">St. James Parish, Louisiana</option>
+      <option value="St. John the Baptist Parish, Louisiana">St. John the Baptist Parish, Louisiana</option>
+      <option value="St. Landry Parish, Louisiana">St. Landry Parish, Louisiana</option>
+      <option value="St. Martin Parish, Louisiana">St. Martin Parish, Louisiana</option>
+      <option value="St. Mary Parish, Louisiana">St. Mary Parish, Louisiana</option>
+      <option value="St. Tammany Parish, Louisiana">St. Tammany Parish, Louisiana</option>
+      <option value="Tangipahoa Parish, Louisiana">Tangipahoa Parish, Louisiana</option>
+      <option value="Tensas Parish, Louisiana">Tensas Parish, Louisiana</option>
+      <option value="Terrebonne Parish, Louisiana">Terrebonne Parish, Louisiana</option>
+      <option value="Union Parish, Louisiana">Union Parish, Louisiana</option>
+      <option value="Vermilion Parish, Louisiana">Vermilion Parish, Louisiana</option>
+      <option value="Vernon Parish, Louisiana">Vernon Parish, Louisiana</option>
+      <option value="Washington Parish, Louisiana">Washington Parish, Louisiana</option>
+      <option value="Webster Parish, Louisiana">Webster Parish, Louisiana</option>
+      <option value="West Baton Rouge Parish, Louisiana">West Baton Rouge Parish, Louisiana</option>
+      <option value="West Carroll Parish, Louisiana">West Carroll Parish, Louisiana</option>
+      <option value="West Feliciana Parish, Louisiana">West Feliciana Parish, Louisiana</option>
+      <option value="Winn Parish, Louisiana">Winn Parish, Louisiana</option>
+    </select>
+    <canvas id="pieChart"></canvas>
+    <div class="legend">
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#66CC66;"></div>
+        <span>Agriculture, forestry, fishing, and hunting</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#996600;"></div>
+        <span>Mining</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FF6600;"></div>
+        <span>Utilities</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FFCC33;"></div>
+        <span>Construction</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FF0000;"></div>
+        <span>Manufacturing</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FF66FF;"></div>
+        <span>Wholesale trade</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#3399FF;"></div>
+        <span>Retail trade</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#00CC99;"></div>
+        <span>Transportation and warehousing</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#999966;"></div>
+        <span>Information</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#6666FF;"></div>
+        <span>Finance and insurance</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FF99CC;"></div>
+        <span>Professional, scientific, and technical services</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#66CCCC;"></div>
+        <span>Educational services</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FF9933;"></div>
+        <span>Healthcare and social assistance</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#CC99FF;"></div>
+        <span>Arts, entertainment, and recreation</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FF9999;"></div>
+        <span>Accommodation and food services</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#CCCC00;"></div>
+        <span>Other services</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#663300;"></div>
+        <span>Public administration</span>
+      </div>
+    </div>
+    <script>const data = [];
+const colors = ["#66CC66","#996600","#FF6600","#FFCC33","#FF0000","#FF66FF","#3399FF","#00CC99","#999966","#6666FF","#FF99CC","#66CCCC","#FF9933","#CC99FF","#FF9999","#CCCC00","#663300"];
+let chart;
+function renderChart(region) {
+  const ctx = document.getElementById("pieChart").getContext("2d");
+  const labels = Object.keys(data[region]);
+  const values = Object.values(data[region]);
+  const backgroundColors = labels.map(l => colors[l] || "#999");
+  if (chart) chart.destroy();
+  chart = new Chart(ctx, {
+    type: "pie",
+    data: {
+      labels: labels,
+      datasets: [{
+        data: values,
+        backgroundColor: backgroundColors
+      }]
+    },
+    options: {
+      plugins: {
+        tooltip: {
+          callbacks: {
+            label: ctx => ctx.label + ": " + ctx.raw + "%"
+          }
+        }
+      }
+    }
+  });
+}
+document.getElementById("countySelect").addEventListener("change", function() {
+  renderChart(this.value);
+});
+renderChart("Statewide");</script>
+  </body>
+</html>
+</html>

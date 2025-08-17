@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Age Distribution Under 18 –  New York</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          margin: 1rem 2rem;
+          text-align: center;
+        }
+        h2 {
+          margin-bottom: 0.25rem;
+          font-size: 1.6rem;
+        }
+        select {
+          padding: 0.4rem;
+          font-size: 1rem;
+          margin: 1rem 0;
+          border-radius: 5px;
+          border: 1px solid #999;
+        }
+        canvas {
+          width: 100%;
+          max-width: 850px;
+          height: 500px;
+          margin-top: 1rem;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Age Distribution Under 18 in  New York (2023)</h2>
+    <label>Select County:</label>
+            <select id="countySelect">
+          <option value='Statewide'>Statewide</option>
+<option value='Albany County, New York'>Albany County, New York</option>
+<option value='Allegany County, New York'>Allegany County, New York</option>
+<option value='Bronx County, New York'>Bronx County, New York</option>
+<option value='Broome County, New York'>Broome County, New York</option>
+<option value='Cattaraugus County, New York'>Cattaraugus County, New York</option>
+<option value='Cayuga County, New York'>Cayuga County, New York</option>
+<option value='Chautauqua County, New York'>Chautauqua County, New York</option>
+<option value='Chemung County, New York'>Chemung County, New York</option>
+<option value='Chenango County, New York'>Chenango County, New York</option>
+<option value='Clinton County, New York'>Clinton County, New York</option>
+<option value='Columbia County, New York'>Columbia County, New York</option>
+<option value='Cortland County, New York'>Cortland County, New York</option>
+<option value='Delaware County, New York'>Delaware County, New York</option>
+<option value='Dutchess County, New York'>Dutchess County, New York</option>
+<option value='Erie County, New York'>Erie County, New York</option>
+<option value='Essex County, New York'>Essex County, New York</option>
+<option value='Franklin County, New York'>Franklin County, New York</option>
+<option value='Fulton County, New York'>Fulton County, New York</option>
+<option value='Genesee County, New York'>Genesee County, New York</option>
+<option value='Greene County, New York'>Greene County, New York</option>
+<option value='Hamilton County, New York'>Hamilton County, New York</option>
+<option value='Herkimer County, New York'>Herkimer County, New York</option>
+<option value='Jefferson County, New York'>Jefferson County, New York</option>
+<option value='Kings County, New York'>Kings County, New York</option>
+<option value='Lewis County, New York'>Lewis County, New York</option>
+<option value='Livingston County, New York'>Livingston County, New York</option>
+<option value='Madison County, New York'>Madison County, New York</option>
+<option value='Monroe County, New York'>Monroe County, New York</option>
+<option value='Montgomery County, New York'>Montgomery County, New York</option>
+<option value='Nassau County, New York'>Nassau County, New York</option>
+<option value='New York County, New York'>New York County, New York</option>
+<option value='Niagara County, New York'>Niagara County, New York</option>
+<option value='Oneida County, New York'>Oneida County, New York</option>
+<option value='Onondaga County, New York'>Onondaga County, New York</option>
+<option value='Ontario County, New York'>Ontario County, New York</option>
+<option value='Orange County, New York'>Orange County, New York</option>
+<option value='Orleans County, New York'>Orleans County, New York</option>
+<option value='Oswego County, New York'>Oswego County, New York</option>
+<option value='Otsego County, New York'>Otsego County, New York</option>
+<option value='Putnam County, New York'>Putnam County, New York</option>
+<option value='Queens County, New York'>Queens County, New York</option>
+<option value='Rensselaer County, New York'>Rensselaer County, New York</option>
+<option value='Richmond County, New York'>Richmond County, New York</option>
+<option value='Rockland County, New York'>Rockland County, New York</option>
+<option value='Saratoga County, New York'>Saratoga County, New York</option>
+<option value='Schenectady County, New York'>Schenectady County, New York</option>
+<option value='Schoharie County, New York'>Schoharie County, New York</option>
+<option value='Schuyler County, New York'>Schuyler County, New York</option>
+<option value='Seneca County, New York'>Seneca County, New York</option>
+<option value='St. Lawrence County, New York'>St. Lawrence County, New York</option>
+<option value='Steuben County, New York'>Steuben County, New York</option>
+<option value='Suffolk County, New York'>Suffolk County, New York</option>
+<option value='Sullivan County, New York'>Sullivan County, New York</option>
+<option value='Tioga County, New York'>Tioga County, New York</option>
+<option value='Tompkins County, New York'>Tompkins County, New York</option>
+<option value='Ulster County, New York'>Ulster County, New York</option>
+<option value='Warren County, New York'>Warren County, New York</option>
+<option value='Washington County, New York'>Washington County, New York</option>
+<option value='Wayne County, New York'>Wayne County, New York</option>
+<option value='Westchester County, New York'>Westchester County, New York</option>
+<option value='Wyoming County, New York'>Wyoming County, New York</option>
+<option value='Yates County, New York'>Yates County, New York</option>
+        </select>
+    <canvas id="barChart" width="850" height="500"></canvas>
+    <script>  const ageData = {"Statewide":[-13.7,13.1,-14.9,14.1,-8.9,8.5,-13.7,13.1],"Albany County, New York":[-13.2,12.8,-14,13.2,-14.9,14.3,-8.8,8.8],"Allegany County, New York":[-12.7,12.9,-14.7,11.3,-14.2,15.8,-9.9,8.5],"Bronx County, New York":[-14,13.4,-13.7,12.7,-14.9,14.8,-8.4,8.1],"Broome County, New York":[-13,12.4,-13.8,12.5,-15.7,14.8,-9.1,8.7],"Cattaraugus County, New York":[-13.1,12.1,-16.3,13.9,-12.6,13.7,-9.4,9],"Cayuga County, New York":[-13,11.8,-13.5,13.2,-15.7,13.8,-9.9,9],"Chautauqua County, New York":[-13,12.6,-14.4,14.1,-14.3,13.8,-9.3,8.5],"Chemung County, New York":[-12.1,12.7,-14.1,12.9,-15,15.4,-9.1,8.8],"Chenango County, New York":[-12.2,12.7,-13.2,13.1,-15.8,14.7,-9.5,8.8],"Clinton County, New York":[-12.8,11.9,-14.7,13.6,-15,14.7,-8.5,8.8],"Columbia County, New York":[-11.7,12.4,-11.5,11.5,-17.4,13.3,-13.1,9.3],"Cortland County, New York":[-13.1,12.1,-16,12.4,-14.1,13.8,-9.8,8.8],"Delaware County, New York":[-11.6,13.4,-13.6,13.5,-15.1,12.7,-10.7,9.4],"Dutchess County, New York":[-12.5,12.1,-12.8,13.3,-15.8,13.6,-10.3,9.5],"Erie County, New York":[-13.4,12.8,-13.9,14.5,-14.8,13,-8.9,8.6],"Essex County, New York":[-12.2,11.6,-12.4,14.3,-15.7,13.4,-11.8,8.6],"Franklin County, New York":[-11.5,12.5,-15.4,11.6,-13.2,16.4,-10.1,9.3],"Fulton County, New York":[-11.8,11.4,-14.4,12,-16.4,15.8,-9.2,9],"Genesee County, New York":[-13.9,11.4,-12.3,13.6,-16.1,14.6,-9.4,8.7],"Greene County, New York":[-13.1,13,-10,10.4,-19.4,16,-8.5,9.5],"Hamilton County, New York":[-9.8,14.1,-14,11.9,-14.4,14.7,-10.8,10.4],"Herkimer County, New York":[-12.2,11.5,-14.2,12.8,-15.4,15,-9.7,9.3],"Jefferson County, New York":[-15.7,15,-15.4,14.1,-12.6,12.6,-7.3,7.3],"Kings County, New York":[-15.1,14.5,-13.7,13.2,-14.5,13.6,-7.9,7.6],"Lewis County, New York":[-12.9,12.8,-12,12.4,-16.3,15.2,-9.3,9.2],"Livingston County, New York":[-12.6,11.9,-15,12.4,-14.3,14.3,-10.1,9.5],"Madison County, New York":[-12.5,12.3,-16.3,11,-13.7,15.6,-9.1,9.4],"Monroe County, New York":[-13.1,12.6,-13.2,13.3,-15.5,14.3,-9.2,8.7],"Montgomery County, New York":[-13.3,13.4,-13.3,11.8,-15.3,14.7,-9.9,8.3],"Nassau County, New York":[-12.6,12.1,-13.9,13.4,-15.3,14.2,-9.5,9],"New York County, New York":[-15.5,14.9,-13.4,12.8,-14,13.8,-7.7,7.8],"Niagara County, New York":[-12.7,12.7,-14.7,14.2,-14,13.8,-9,8.9],"Oneida County, New York":[-13.3,12.3,-14.3,12.5,-14.7,15.3,-9,8.5],"Onondaga County, New York":[-13.3,12.8,-13.2,13.8,-15.6,13.7,-9,8.6],"Ontario County, New York":[-11.9,11.9,-14.6,14.4,-14.8,13.8,-9.7,8.9],"Orange County, New York":[-13.4,12.8,-13.5,13.2,-15,14,-9.3,8.8],"Orleans County, New York":[-13.1,11.3,-13.5,12.2,-15.5,14.9,-9.2,10.3],"Oswego County, New York":[-12.8,12.5,-14.3,12.8,-15.2,14.1,-9.6,8.7],"Otsego County, New York":[-13.6,12.7,-12.5,12.5,-16.2,14.6,-8.8,9],"Putnam County, New York":[-12.1,11.5,-10.9,11.6,-18.1,15.2,-10.9,9.8],"Queens County, New York":[-14.5,13.8,-13.5,12.9,-15,14,-8.4,7.9],"Rensselaer County, New York":[-13.2,12.4,-14.4,12.4,-14.7,14.8,-9.3,8.8],"Richmond County, New York":[-12.9,12.1,-13.9,12.9,-15.3,14.5,-9.3,9],"Rockland County, New York":[-14.8,14.2,-14,13.1,-13.7,13.5,-8.5,8.1],"St. Lawrence County, New York":[-12.4,12,-14.3,12.7,-15.6,14.4,-9.3,9.2],"Saratoga County, New York":[-12.3,11.8,-15.6,14.8,-13.9,13.3,-9.3,9.1],"Schenectady County, New York":[-14,12.9,-13.9,14.1,-14.8,13,-9,8.4],"Schoharie County, New York":[-12.9,11.5,-15.2,12.5,-14.4,14,-9.6,9.8],"Schuyler County, New York":[-12.5,12.6,-13.2,11.2,-15.4,16.3,-9.7,9.2],"Seneca County, New York":[-14.2,12.7,-12.8,14.1,-16.3,13.1,-8.7,8.1],"Steuben County, New York":[-13.4,11.9,-13.9,12.5,-15.3,15.4,-9.1,8.6],"Suffolk County, New York":[-12.9,12.5,-13.3,12.7,-15.2,14.6,-9.7,9.2],"Sullivan County, New York":[-14.2,13.3,-15.2,14.1,-13.3,12.5,-8.4,8.9],"Tioga County, New York":[-13,12.2,-11,12.7,-17.6,14.4,-9.8,9.2],"Tompkins County, New York":[-14.2,10.6,-15.4,13.1,-13.2,14.6,-9.4,9.6],"Ulster County, New York":[-13.1,12,-13.2,14.6,-15.1,12.9,-9.7,9.5],"Warren County, New York":[-12.1,11.8,-14.5,14.6,-15.5,13.7,-9.4,8.4],"Washington County, New York":[-12.7,11.8,-15.3,9.7,-14.4,17.8,-9.5,8.8],"Wayne County, New York":[-12.8,12.8,-15.3,12.3,-14.1,14.8,-9,8.8],"Westchester County, New York":[-12.7,12.1,-13.7,13,-15.4,14.3,-9.7,9.1],"Wyoming County, New York":[-12.1,13.2,-14.3,13.9,-13.4,14.5,-9.3,9.4],"Yates County, New York":[-14.9,12.8,-13.5,13.3,-13.6,15.8,-7.9,8.2]};
+  const ageBins = ["0–4","5–9","10–14","15–17"];
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(data) {
+    const maleData = data.filter((_, i) => i % 2 === 0);
+    const femaleData = data.filter((_, i) => i % 2 === 1);
+
+    const maxValue = Math.max(
+      ...maleData.map(Math.abs),
+      ...femaleData.map(Math.abs)
+    );
+    const padding = 1.0;
+    const xMax = +(maxValue + padding).toFixed(1);
+
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ageBins,
+        datasets: [
+          {
+            label: 'Male',
+            data: maleData,
+            backgroundColor: 'dodgerblue'
+          },
+          {
+            label: 'Female',
+            data: femaleData,
+            backgroundColor: 'lightpink'
+          }
+        ]
+      },
+      options: {
+        indexAxis: 'y',
+        responsive: true,
+        scales: {
+          x: {
+            min: -xMax,
+            max: xMax,
+            ticks: {
+              callback: value => Math.abs(value).toFixed(1) + '%'
+            }
+          },
+          y: {
+            stacked: false
+          }
+        },
+        plugins: {
+          legend: {
+            position: 'top',
+            align: 'start',
+            labels: {
+              usePointStyle: true
+            }
+          },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.dataset.label + ': ' + Math.abs(ctx.parsed.x).toFixed(1) + '%'
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(Object.values(ageData[this.value]));
+  });
+
+  renderChart(Object.values(ageData['Statewide']));</script>
+  </body>
+</html>
+</html>

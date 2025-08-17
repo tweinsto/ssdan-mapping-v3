@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Race by Year – Pennsylvania</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      margin: 1em;
+    }
+    #buttons button {
+      margin: 0 5px;
+    }
+    #chart-container {
+      width: 90%;
+      max-width: 800px;
+      margin: auto;
+    }
+    
+    #buttons button.active {
+  background-color: dodgerblue;
+  color: white;
+  border: none;
+  border-radius: 4px;
+}
+
+  </style>
+</head>
+<body>
+  <h2>Race/Ethnicity Population – Pennsylvania</h2>
+
+  <label for="countySelect">County:</label>
+  <select id="countySelect">
+    <option value="Statewide" selected>Statewide</option>
+<option value="Adams County">Adams County</option>
+<option value="Allegheny County">Allegheny County</option>
+<option value="Armstrong County">Armstrong County</option>
+<option value="Beaver County">Beaver County</option>
+<option value="Bedford County">Bedford County</option>
+<option value="Berks County">Berks County</option>
+<option value="Blair County">Blair County</option>
+<option value="Bradford County">Bradford County</option>
+<option value="Bucks County">Bucks County</option>
+<option value="Butler County">Butler County</option>
+<option value="Cambria County">Cambria County</option>
+<option value="Cameron County">Cameron County</option>
+<option value="Carbon County">Carbon County</option>
+<option value="Centre County">Centre County</option>
+<option value="Chester County">Chester County</option>
+<option value="Clarion County">Clarion County</option>
+<option value="Clearfield County">Clearfield County</option>
+<option value="Clinton County">Clinton County</option>
+<option value="Columbia County">Columbia County</option>
+<option value="Crawford County">Crawford County</option>
+<option value="Cumberland County">Cumberland County</option>
+<option value="Dauphin County">Dauphin County</option>
+<option value="Delaware County">Delaware County</option>
+<option value="Elk County">Elk County</option>
+<option value="Erie County">Erie County</option>
+<option value="Fayette County">Fayette County</option>
+<option value="Forest County">Forest County</option>
+<option value="Franklin County">Franklin County</option>
+<option value="Fulton County">Fulton County</option>
+<option value="Greene County">Greene County</option>
+<option value="Huntingdon County">Huntingdon County</option>
+<option value="Indiana County">Indiana County</option>
+<option value="Jefferson County">Jefferson County</option>
+<option value="Juniata County">Juniata County</option>
+<option value="Lackawanna County">Lackawanna County</option>
+<option value="Lancaster County">Lancaster County</option>
+<option value="Lawrence County">Lawrence County</option>
+<option value="Lebanon County">Lebanon County</option>
+<option value="Lehigh County">Lehigh County</option>
+<option value="Luzerne County">Luzerne County</option>
+<option value="Lycoming County">Lycoming County</option>
+<option value="McKean County">McKean County</option>
+<option value="Mercer County">Mercer County</option>
+<option value="Mifflin County">Mifflin County</option>
+<option value="Monroe County">Monroe County</option>
+<option value="Montgomery County">Montgomery County</option>
+<option value="Montour County">Montour County</option>
+<option value="Northampton County">Northampton County</option>
+<option value="Northumberland County">Northumberland County</option>
+<option value="Perry County">Perry County</option>
+<option value="Philadelphia County">Philadelphia County</option>
+<option value="Pike County">Pike County</option>
+<option value="Potter County">Potter County</option>
+<option value="Schuylkill County">Schuylkill County</option>
+<option value="Snyder County">Snyder County</option>
+<option value="Somerset County">Somerset County</option>
+<option value="Sullivan County">Sullivan County</option>
+<option value="Susquehanna County">Susquehanna County</option>
+<option value="Tioga County">Tioga County</option>
+<option value="Union County">Union County</option>
+<option value="Venango County">Venango County</option>
+<option value="Warren County">Warren County</option>
+<option value="Washington County">Washington County</option>
+<option value="Wayne County">Wayne County</option>
+<option value="Westmoreland County">Westmoreland County</option>
+<option value="Wyoming County">Wyoming County</option>
+<option value="York County">York County</option>
+  </select>
+
+  <div id="buttons">
+  <button id="btn2010" onclick="updateChart(2010)">2010</button>
+  <button id="btn2020" onclick="updateChart(2020)">2020</button>
+</div>
+
+  <div id="chart-container">
+    <canvas id="raceChart"></canvas>
+  </div>
+
+   <script>
+    let data = null;
+    let chart = null;
+    let currentYear = 2010;
+
+    fetch("42.json")
+      .then(res => res.json())
+      .then(json => {
+        data = json;
+        document.getElementById("countySelect").addEventListener("change", () => updateChart(currentYear));
+        updateChart(currentYear);
+      });
+
+    function updateChart(year) {
+      currentYear = year;
+
+      // Highlight selected button
+      document.querySelectorAll("#buttons button").forEach(btn => btn.classList.remove("active"));
+      const activeBtn = document.getElementById(`btn${year}`);
+      if (activeBtn) activeBtn.classList.add("active");
+
+      const county = document.getElementById("countySelect").value;
+      const entry = data[county] && data[county][year];
+      if (!entry) return;
+
+      const races = Object.keys(entry[0]).filter(k => !["state_fips", "county", "year", "total"].includes(k));
+      const values = races.map(r => entry[0][r]);
+
+      const config = {
+        type: "bar",
+        data: {
+          labels: races,
+          datasets: [{
+            label: "Population",
+            data: values,
+            backgroundColor: "dodgerblue"
+          }]
+        },
+        options: {
+          plugins: {
+            legend: { display: false }
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              ticks: {
+                callback: function(value) {
+                  return value.toLocaleString();
+                }
+              }
+            }
+          }
+        }
+      };
+
+      if (chart) {
+        chart.destroy();
+      }
+      chart = new Chart(document.getElementById("raceChart"), config);
+    }
+  </script>
+</body>
+</html>

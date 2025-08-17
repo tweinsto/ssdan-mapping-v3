@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+
+</head>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Owners: Year Moved In (%) – 28</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #fff;
+    }
+    .container {
+      width: 95%;
+      max-width: 1200px;
+      margin: auto;
+      text-align: center;
+    }
+    #countySelect {
+      font-size: 1rem;
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    canvas {
+      max-width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Owners: Year Moved In (%)</h2>
+    <select id="countySelect"></select>
+    <canvas id="pieChart"></canvas>
+  </div>
+
+  <script>
+    const data = {"Statewide":{"Moved in 2021 or later":4.8,"Moved in 2018–2020":13.5,"Moved in 2010–2017":26,"Moved in 2000–2009":23.3,"Moved in 1990–1999":15.3,"1989 or earlier":17.1},"Adams County":{"Moved in 2021 or later":5.1489,"Moved in 2018–2020":9.1406,"Moved in 2010–2017":19.7894,"Moved in 2000–2009":22.6759,"Moved in 1990–1999":14.4455,"1989 or earlier":28.7999},"Alcorn County":{"Moved in 2021 or later":5.3105,"Moved in 2018–2020":13.394,"Moved in 2010–2017":27.4732,"Moved in 2000–2009":17.5482,"Moved in 1990–1999":18.8758,"1989 or earlier":17.3983},"Amite County":{"Moved in 2021 or later":4.1803,"Moved in 2018–2020":17.8279,"Moved in 2010–2017":19.0574,"Moved in 2000–2009":23.832,"Moved in 1990–1999":13.0738,"1989 or earlier":22.0287},"Attala County":{"Moved in 2021 or later":1.9584,"Moved in 2018–2020":7.7125,"Moved in 2010–2017":29.255,"Moved in 2000–2009":21.9665,"Moved in 1990–1999":17.4238,"1989 or earlier":21.6838},"Benton County":{"Moved in 2021 or later":6.5054,"Moved in 2018–2020":19.7541,"Moved in 2010–2017":22.8084,"Moved in 2000–2009":20.3491,"Moved in 1990–1999":12.0587,"1989 or earlier":18.5244},"Bolivar County":{"Moved in 2021 or later":3.2516,"Moved in 2018–2020":13.0614,"Moved in 2010–2017":27.6109,"Moved in 2000–2009":16.6299,"Moved in 1990–1999":17.8562,"1989 or earlier":21.59},"Calhoun County":{"Moved in 2021 or later":4.398,"Moved in 2018–2020":9.5169,"Moved in 2010–2017":16.9911,"Moved in 2000–2009":22.2783,"Moved in 1990–1999":17.0151,"1989 or earlier":29.8005},"Carroll County":{"Moved in 2021 or later":3.0682,"Moved in 2018–2020":9.3238,"Moved in 2010–2017":26.0947,"Moved in 2000–2009":23.1755,"Moved in 1990–1999":15.7581,"1989 or earlier":22.5797},"Chickasaw County":{"Moved in 2021 or later":4.2965,"Moved in 2018–2020":6.5004,"Moved in 2010–2017":22.5289,"Moved in 2000–2009":23.7088,"Moved in 1990–1999":15.5833,"1989 or earlier":27.382},"Choctaw County":{"Moved in 2021 or later":3.5018,"Moved in 2018–2020":8.5199,"Moved in 2010–2017":26.8231,"Moved in 2000–2009":21.9134,"Moved in 1990–1999":19.1697,"1989 or earlier":20.0722},"Claiborne County":{"Moved in 2021 or later":3.6585,"Moved in 2018–2020":5.4878,"Moved in 2010–2017":18.4803,"Moved in 2000–2009":28.3771,"Moved in 1990–1999":25,"1989 or earlier":18.9962},"Clarke County":{"Moved in 2021 or later":3.3143,"Moved in 2018–2020":10.6857,"Moved in 2010–2017":24.8381,"Moved in 2000–2009":20.0381,"Moved in 1990–1999":15.6,"1989 or earlier":25.5238},"Clay County":{"Moved in 2021 or later":2.6715,"Moved in 2018–2020":8.9113,"Moved in 2010–2017":29.0759,"Moved in 2000–2009":17.6761,"Moved in 1990–1999":20.0183,"1989 or earlier":21.6468},"Coahoma County":{"Moved in 2021 or later":2.5233,"Moved in 2018–2020":13.4803,"Moved in 2010–2017":20.5501,"Moved in 2000–2009":23.0052,"Moved in 1990–1999":17.0039,"1989 or earlier":23.4371},"Copiah County":{"Moved in 2021 or later":3.4483,"Moved in 2018–2020":9.0909,"Moved in 2010–2017":22.6114,"Moved in 2000–2009":24.6422,"Moved in 1990–1999":20.4716,"1989 or earlier":19.7356},"Covington County":{"Moved in 2021 or later":2.5098,"Moved in 2018–2020":8.3287,"Moved in 2010–2017":23.6475,"Moved in 2000–2009":26.5105,"Moved in 1990–1999":20.1896,"1989 or earlier":18.8139},"DeSoto County":{"Moved in 2021 or later":5.9017,"Moved in 2018–2020":19.3459,"Moved in 2010–2017":29.9885,"Moved in 2000–2009":25.0195,"Moved in 1990–1999":12.1371,"1989 or earlier":7.6074},"Forrest County":{"Moved in 2021 or later":5.1285,"Moved in 2018–2020":12.6444,"Moved in 2010–2017":28.3306,"Moved in 2000–2009":25.4126,"Moved in 1990–1999":14.5602,"1989 or earlier":13.9236},"Franklin County":{"Moved in 2021 or later":0.8475,"Moved in 2018–2020":9.5339,"Moved in 2010–2017":21.4407,"Moved in 2000–2009":25.9746,"Moved in 1990–1999":18.4322,"1989 or earlier":23.7712},"George County":{"Moved in 2021 or later":6.9849,"Moved in 2018–2020":17.3127,"Moved in 2010–2017":27.5754,"Moved in 2000–2009":20.6816,"Moved in 1990–1999":10.796,"1989 or earlier":16.6493},"Greene County":{"Moved in 2021 or later":2.5176,"Moved in 2018–2020":17.422,"Moved in 2010–2017":33.9376,"Moved in 2000–2009":14.8372,"Moved in 1990–1999":11.4132,"1989 or earlier":19.8724},"Grenada County":{"Moved in 2021 or later":3.352,"Moved in 2018–2020":15.121,"Moved in 2010–2017":23.4451,"Moved in 2000–2009":24.2644,"Moved in 1990–1999":15.7914,"1989 or earlier":18.0261},"Hancock County":{"Moved in 2021 or later":7.3734,"Moved in 2018–2020":17.7382,"Moved in 2010–2017":25.7367,"Moved in 2000–2009":28.9195,"Moved in 1990–1999":10.8879,"1989 or earlier":9.3443},"Harrison County":{"Moved in 2021 or later":6.0642,"Moved in 2018–2020":16.1766,"Moved in 2010–2017":28.1322,"Moved in 2000–2009":22.6147,"Moved in 1990–1999":14.1321,"1989 or earlier":12.8803},"Hinds County":{"Moved in 2021 or later":4.1091,"Moved in 2018–2020":10.8099,"Moved in 2010–2017":23.9304,"Moved in 2000–2009":24.6447,"Moved in 1990–1999":18.1114,"1989 or earlier":18.3945},"Holmes County":{"Moved in 2021 or later":1.7331,"Moved in 2018–2020":11.912,"Moved in 2010–2017":21.238,"Moved in 2000–2009":23.6039,"Moved in 1990–1999":16.0935,"1989 or earlier":25.4195},"Humphreys County":{"Moved in 2021 or later":1.0045,"Moved in 2018–2020":3.0692,"Moved in 2010–2017":22.3772,"Moved in 2000–2009":24.6652,"Moved in 1990–1999":17.8571,"1989 or earlier":31.0268},"Issaquena County":{"Moved in 2021 or later":1.2605,"Moved in 2018–2020":5.4622,"Moved in 2010–2017":24.3697,"Moved in 2000–2009":14.7059,"Moved in 1990–1999":31.0924,"1989 or earlier":23.1092},"Itawamba County":{"Moved in 2021 or later":3.5939,"Moved in 2018–2020":14.2662,"Moved in 2010–2017":26.6466,"Moved in 2000–2009":18.6526,"Moved in 1990–1999":15.701,"1989 or earlier":21.1397},"Jackson County":{"Moved in 2021 or later":5.6088,"Moved in 2018–2020":13.7563,"Moved in 2010–2017":24.9982,"Moved in 2000–2009":24.7229,"Moved in 1990–1999":12.9986,"1989 or earlier":17.9154},"Jasper County":{"Moved in 2021 or later":3.4236,"Moved in 2018–2020":10.2144,"Moved in 2010–2017":21.313,"Moved in 2000–2009":22.8555,"Moved in 1990–1999":20.1279,"1989 or earlier":22.0655},"Jefferson County":{"Moved in 2021 or later":2.246,"Moved in 2018–2020":3.0481,"Moved in 2010–2017":18.2888,"Moved in 2000–2009":15.7754,"Moved in 1990–1999":26.0428,"1989 or earlier":34.5989},"Jefferson Davis County":{"Moved in 2021 or later":5.6951,"Moved in 2018–2020":4.6622,"Moved in 2010–2017":23.7577,"Moved in 2000–2009":21.1055,"Moved in 1990–1999":19.5701,"1989 or earlier":25.2094},"Jones County":{"Moved in 2021 or later":3.157,"Moved in 2018–2020":9.2672,"Moved in 2010–2017":28.854,"Moved in 2000–2009":21.2562,"Moved in 1990–1999":12.8926,"1989 or earlier":24.573},"Kemper County":{"Moved in 2021 or later":4.2989,"Moved in 2018–2020":6.0265,"Moved in 2010–2017":21.9365,"Moved in 2000–2009":25.7533,"Moved in 1990–1999":17.5974,"1989 or earlier":24.3873},"Lafayette County":{"Moved in 2021 or later":5.6391,"Moved in 2018–2020":13.1921,"Moved in 2010–2017":37.4487,"Moved in 2000–2009":20.9159,"Moved in 1990–1999":12.8161,"1989 or earlier":9.988},"Lamar County":{"Moved in 2021 or later":7.101,"Moved in 2018–2020":16.2526,"Moved in 2010–2017":28.5798,"Moved in 2000–2009":25.8847,"Moved in 1990–1999":12.8252,"1989 or earlier":9.3567},"Lauderdale County":{"Moved in 2021 or later":3.5728,"Moved in 2018–2020":11.8429,"Moved in 2010–2017":25.3864,"Moved in 2000–2009":24.6829,"Moved in 1990–1999":15.3216,"1989 or earlier":19.1935},"Lawrence County":{"Moved in 2021 or later":5.1841,"Moved in 2018–2020":12.068,"Moved in 2010–2017":24.9008,"Moved in 2000–2009":21.0482,"Moved in 1990–1999":10.8782,"1989 or earlier":25.9207},"Leake County":{"Moved in 2021 or later":2.1246,"Moved in 2018–2020":9.9089,"Moved in 2010–2017":21.8889,"Moved in 2000–2009":24.9598,"Moved in 1990–1999":15.2116,"1989 or earlier":25.9061},"Lee County":{"Moved in 2021 or later":4.2064,"Moved in 2018–2020":16.481,"Moved in 2010–2017":28.9524,"Moved in 2000–2009":21.3451,"Moved in 1990–1999":14.4538,"1989 or earlier":14.5612},"Leflore County":{"Moved in 2021 or later":1.2799,"Moved in 2018–2020":7.2714,"Moved in 2010–2017":19.2358,"Moved in 2000–2009":22.686,"Moved in 1990–1999":24.0772,"1989 or earlier":25.4498},"Lincoln County":{"Moved in 2021 or later":2.9124,"Moved in 2018–2020":11.14,"Moved in 2010–2017":25.2236,"Moved in 2000–2009":25.5565,"Moved in 1990–1999":13.73,"1989 or earlier":21.4375},"Lowndes County":{"Moved in 2021 or later":6.0039,"Moved in 2018–2020":13.5686,"Moved in 2010–2017":25.8015,"Moved in 2000–2009":19.446,"Moved in 1990–1999":17.8571,"1989 or earlier":17.3228},"Madison County":{"Moved in 2021 or later":6.7167,"Moved in 2018–2020":18.5319,"Moved in 2010–2017":31.4226,"Moved in 2000–2009":21.7066,"Moved in 1990–1999":13.5082,"1989 or earlier":8.114},"Marion County":{"Moved in 2021 or later":2.5167,"Moved in 2018–2020":8.4121,"Moved in 2010–2017":21.9132,"Moved in 2000–2009":27.6974,"Moved in 1990–1999":17.3943,"1989 or earlier":22.0662},"Marshall County":{"Moved in 2021 or later":4.2885,"Moved in 2018–2020":14.8009,"Moved in 2010–2017":22.9907,"Moved in 2000–2009":25.7105,"Moved in 1990–1999":16.5325,"1989 or earlier":15.6769},"Monroe County":{"Moved in 2021 or later":4.7796,"Moved in 2018–2020":10.7899,"Moved in 2010–2017":26.722,"Moved in 2000–2009":17.1151,"Moved in 1990–1999":17.7065,"1989 or earlier":22.8869},"Montgomery County":{"Moved in 2021 or later":10.3953,"Moved in 2018–2020":9.2972,"Moved in 2010–2017":24.451,"Moved in 2000–2009":17.7526,"Moved in 1990–1999":19.4729,"1989 or earlier":18.631},"Neshoba County":{"Moved in 2021 or later":3.3957,"Moved in 2018–2020":14.7192,"Moved in 2010–2017":23.8735,"Moved in 2000–2009":20.8005,"Moved in 1990–1999":19.1091,"1989 or earlier":18.102},"Newton County":{"Moved in 2021 or later":2.0254,"Moved in 2018–2020":10.5549,"Moved in 2010–2017":27.1036,"Moved in 2000–2009":25.6545,"Moved in 1990–1999":13.453,"1989 or earlier":21.2086},"Noxubee County":{"Moved in 2021 or later":4.8797,"Moved in 2018–2020":19.6933,"Moved in 2010–2017":14.9878,"Moved in 2000–2009":24.3639,"Moved in 1990–1999":14.8135,"1989 or earlier":21.2618},"Oktibbeha County":{"Moved in 2021 or later":5.9062,"Moved in 2018–2020":14.5185,"Moved in 2010–2017":27.8914,"Moved in 2000–2009":19.4568,"Moved in 1990–1999":14.7259,"1989 or earlier":17.5012},"Panola County":{"Moved in 2021 or later":4.1525,"Moved in 2018–2020":12.5161,"Moved in 2010–2017":24.0117,"Moved in 2000–2009":23.695,"Moved in 1990–1999":18.8974,"1989 or earlier":16.7273},"Pearl River County":{"Moved in 2021 or later":5.6223,"Moved in 2018–2020":13.5194,"Moved in 2010–2017":24.6686,"Moved in 2000–2009":25.41,"Moved in 1990–1999":16.2604,"1989 or earlier":14.5192},"Perry County":{"Moved in 2021 or later":6.3666,"Moved in 2018–2020":9.4127,"Moved in 2010–2017":26.7014,"Moved in 2000–2009":20.9385,"Moved in 1990–1999":20.0055,"1989 or earlier":16.5752},"Pike County":{"Moved in 2021 or later":4.5254,"Moved in 2018–2020":12.1626,"Moved in 2010–2017":22.6367,"Moved in 2000–2009":27.594,"Moved in 1990–1999":12.0251,"1989 or earlier":21.0562},"Pontotoc County":{"Moved in 2021 or later":3.4943,"Moved in 2018–2020":16.8042,"Moved in 2010–2017":24.266,"Moved in 2000–2009":22.0699,"Moved in 1990–1999":15.2026,"1989 or earlier":18.1631},"Prentiss County":{"Moved in 2021 or later":4.6427,"Moved in 2018–2020":12.2225,"Moved in 2010–2017":24.3097,"Moved in 2000–2009":22.2523,"Moved in 1990–1999":17.2442,"1989 or earlier":19.3286},"Quitman County":{"Moved in 2021 or later":4.6313,"Moved in 2018–2020":13.6502,"Moved in 2010–2017":14.1987,"Moved in 2000–2009":28.3973,"Moved in 1990–1999":15.9659,"1989 or earlier":23.1566},"Rankin County":{"Moved in 2021 or later":5.6636,"Moved in 2018–2020":15.69,"Moved in 2010–2017":28.2661,"Moved in 2000–2009":25.5456,"Moved in 1990–1999":13.1834,"1989 or earlier":11.6513},"Scott County":{"Moved in 2021 or later":3.236,"Moved in 2018–2020":12.6852,"Moved in 2010–2017":20.9118,"Moved in 2000–2009":23.8458,"Moved in 1990–1999":18.7401,"1989 or earlier":20.581},"Sharkey County":{"Moved in 2021 or later":4.5403,"Moved in 2018–2020":10.2157,"Moved in 2010–2017":35.5278,"Moved in 2000–2009":13.2804,"Moved in 1990–1999":17.8207,"1989 or earlier":18.6152},"Simpson County":{"Moved in 2021 or later":2.5052,"Moved in 2018–2020":11.6693,"Moved in 2010–2017":25.1947,"Moved in 2000–2009":25.026,"Moved in 1990–1999":14.46,"1989 or earlier":21.1449},"Smith County":{"Moved in 2021 or later":3.6695,"Moved in 2018–2020":12.8326,"Moved in 2010–2017":22.0172,"Moved in 2000–2009":22.5966,"Moved in 1990–1999":12.8112,"1989 or earlier":26.073},"Stone County":{"Moved in 2021 or later":9.2918,"Moved in 2018–2020":9.1029,"Moved in 2010–2017":32.2946,"Moved in 2000–2009":25.7035,"Moved in 1990–1999":12.4079,"1989 or earlier":11.1992},"Sunflower County":{"Moved in 2021 or later":1.7416,"Moved in 2018–2020":11.9929,"Moved in 2010–2017":19.7531,"Moved in 2000–2009":21.8915,"Moved in 1990–1999":14.9912,"1989 or earlier":29.6296},"Tallahatchie County":{"Moved in 2021 or later":7.8838,"Moved in 2018–2020":6.9848,"Moved in 2010–2017":18.7414,"Moved in 2000–2009":24.5505,"Moved in 1990–1999":17.3582,"1989 or earlier":24.4813},"Tate County":{"Moved in 2021 or later":4.4379,"Moved in 2018–2020":14.0939,"Moved in 2010–2017":19.2608,"Moved in 2000–2009":25.8729,"Moved in 1990–1999":21.678,"1989 or earlier":14.6566},"Tippah County":{"Moved in 2021 or later":3.5423,"Moved in 2018–2020":10.0615,"Moved in 2010–2017":25.1621,"Moved in 2000–2009":19.2749,"Moved in 1990–1999":22.8006,"1989 or earlier":19.1585},"Tishomingo County":{"Moved in 2021 or later":4.9687,"Moved in 2018–2020":13.0409,"Moved in 2010–2017":27.9916,"Moved in 2000–2009":25.4551,"Moved in 1990–1999":11.2355,"1989 or earlier":17.3083},"Tunica County":{"Moved in 2021 or later":3.0654,"Moved in 2018–2020":11.5123,"Moved in 2010–2017":23.5695,"Moved in 2000–2009":22.4114,"Moved in 1990–1999":18.8692,"1989 or earlier":20.5722},"Union County":{"Moved in 2021 or later":3.3168,"Moved in 2018–2020":9.4557,"Moved in 2010–2017":25.331,"Moved in 2000–2009":25.759,"Moved in 1990–1999":15.6614,"1989 or earlier":20.4761},"Walthall County":{"Moved in 2021 or later":4.4881,"Moved in 2018–2020":15.5213,"Moved in 2010–2017":18.6302,"Moved in 2000–2009":20.4535,"Moved in 1990–1999":17.9523,"1989 or earlier":22.9547},"Warren County":{"Moved in 2021 or later":3.7498,"Moved in 2018–2020":13.7548,"Moved in 2010–2017":26.2903,"Moved in 2000–2009":20.2021,"Moved in 1990–1999":18.3815,"1989 or earlier":17.6215},"Washington County":{"Moved in 2021 or later":4.8277,"Moved in 2018–2020":12.0794,"Moved in 2010–2017":19.147,"Moved in 2000–2009":25.0588,"Moved in 1990–1999":15.6081,"1989 or earlier":23.2791},"Wayne County":{"Moved in 2021 or later":2.129,"Moved in 2018–2020":11.1922,"Moved in 2010–2017":24.3461,"Moved in 2000–2009":21.6241,"Moved in 1990–1999":14.4161,"1989 or earlier":26.2926},"Webster County":{"Moved in 2021 or later":5.4079,"Moved in 2018–2020":10.7221,"Moved in 2010–2017":25.9456,"Moved in 2000–2009":22.3507,"Moved in 1990–1999":20.7877,"1989 or earlier":14.7859},"Wilkinson County":{"Moved in 2021 or later":1.6955,"Moved in 2018–2020":6.4504,"Moved in 2010–2017":21.1574,"Moved in 2000–2009":19.7199,"Moved in 1990–1999":17.3977,"1989 or earlier":33.5791},"Winston County":{"Moved in 2021 or later":3.591,"Moved in 2018–2020":10.0223,"Moved in 2010–2017":20.7141,"Moved in 2000–2009":19.4563,"Moved in 1990–1999":17.3666,"1989 or earlier":28.8497},"Yalobusha County":{"Moved in 2021 or later":2.6264,"Moved in 2018–2020":18.9494,"Moved in 2010–2017":18.6106,"Moved in 2000–2009":22.423,"Moved in 1990–1999":11.4374,"1989 or earlier":25.9531},"Yazoo County":{"Moved in 2021 or later":4.5122,"Moved in 2018–2020":10.9959,"Moved in 2010–2017":29.5528,"Moved in 2000–2009":22.9065,"Moved in 1990–1999":13.9024,"1989 or earlier":18.1301}};
+    const colors = {
+  'Moved in 2021 or later': '#377EF1',
+  'Moved in 2018–2020': '#FF7F00',
+  'Moved in 2010–2017': '#66A61E',
+  'Moved in 2000–2009': '#E6AB01',
+  'Moved in 1990–1999': '#7570B1',
+  '1989 or earlier': '#E41A1C'
+};
+
+    const ctx = document.getElementById("pieChart").getContext("2d");
+    let chart;
+
+    function renderChart(key) {
+      const values = data[key];
+      const labels = Object.keys(values);
+      const percentages = Object.values(values);
+
+      if (chart) chart.destroy();
+
+      chart = new Chart(ctx, {
+        type: "pie",
+        data: {
+          labels: labels,
+          datasets: [{
+            data: percentages,
+            backgroundColor: labels.map(label => colors[label] || "#cccccc")
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: true,
+          aspectRatio: 1.5,
+          plugins: {
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  return context.label + ": " + context.formattedValue + "%";
+                }
+              }
+            },
+            legend: {
+              position: "right",
+              labels: {
+                usePointStyle: true,
+                pointStyle: "rect"
+              }
+            }
+          }
+        }
+      });
+    }
+
+    // Populate dropdown (Statewide first, then counties A->Z)
+    const select = document.getElementById("countySelect");
+    const keys = ["Statewide", ...Object.keys(data).filter(k => k !== "Statewide").sort()];
+    keys.forEach(k => {
+      const opt = document.createElement("option");
+      opt.value = k;
+      opt.text  = k;
+      select.appendChild(opt);
+    });
+    select.value = "Statewide";
+    select.addEventListener("change", () => renderChart(select.value));
+
+    renderChart("Statewide");
+  </script>
+</body>
+</html>
+</html>

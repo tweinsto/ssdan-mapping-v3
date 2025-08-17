@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+
+</head>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Owners: Year Moved In (%) – 09</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #fff;
+    }
+    .container {
+      width: 95%;
+      max-width: 1200px;
+      margin: auto;
+      text-align: center;
+    }
+    #countySelect {
+      font-size: 1rem;
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    canvas {
+      max-width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Owners: Year Moved In (%)</h2>
+    <select id="countySelect"></select>
+    <canvas id="pieChart"></canvas>
+  </div>
+
+  <script>
+    const data = {"Statewide":{"Moved in 2021 or later":5.3,"Moved in 2018–2020":13.3,"Moved in 2010–2017":24.1,"Moved in 2000–2009":23.2,"Moved in 1990–1999":15.5,"1989 or earlier":18.7},"Capitol Planning Region":{"Moved in 2021 or later":5.0227,"Moved in 2018–2020":12.8074,"Moved in 2010–2017":24.5857,"Moved in 2000–2009":23.1381,"Moved in 1990–1999":15.4636,"1989 or earlier":18.9825},"Greater Bridgeport Planning Region":{"Moved in 2021 or later":5.2726,"Moved in 2018–2020":12.7737,"Moved in 2010–2017":24.1436,"Moved in 2000–2009":23.0733,"Moved in 1990–1999":16.4099,"1989 or earlier":18.3268},"Lower Connecticut River Valley Planning Region":{"Moved in 2021 or later":5.207,"Moved in 2018–2020":14.1261,"Moved in 2010–2017":24.4137,"Moved in 2000–2009":23.0198,"Moved in 1990–1999":14.4149,"1989 or earlier":18.8185},"Naugatuck Valley Planning Region":{"Moved in 2021 or later":5.5774,"Moved in 2018–2020":14.1756,"Moved in 2010–2017":24.0446,"Moved in 2000–2009":23.5903,"Moved in 1990–1999":14.7136,"1989 or earlier":17.8985},"Northeastern Connecticut Planning Region":{"Moved in 2021 or later":6.4019,"Moved in 2018–2020":13.9501,"Moved in 2010–2017":23.1875,"Moved in 2000–2009":23.3786,"Moved in 1990–1999":14.6003,"1989 or earlier":18.4816},"Northwest Hills Planning Region":{"Moved in 2021 or later":5.277,"Moved in 2018–2020":13.9674,"Moved in 2010–2017":19.2248,"Moved in 2000–2009":22.6887,"Moved in 1990–1999":17.8713,"1989 or earlier":20.9708},"South Central Connecticut Planning Region":{"Moved in 2021 or later":4.6821,"Moved in 2018–2020":12.8194,"Moved in 2010–2017":22.8877,"Moved in 2000–2009":22.9798,"Moved in 1990–1999":16.2318,"1989 or earlier":20.3991},"Southeastern Connecticut Planning Region":{"Moved in 2021 or later":5.6471,"Moved in 2018–2020":12.8665,"Moved in 2010–2017":22.9823,"Moved in 2000–2009":24.0634,"Moved in 1990–1999":14.8419,"1989 or earlier":19.5988},"Western Connecticut Planning Region":{"Moved in 2021 or later":5.8851,"Moved in 2018–2020":13.616,"Moved in 2010–2017":26.0894,"Moved in 2000–2009":22.6964,"Moved in 1990–1999":15.3902,"1989 or earlier":16.3228}};
+    const colors = {
+  'Moved in 2021 or later': '#377EF1',
+  'Moved in 2018–2020': '#FF7F00',
+  'Moved in 2010–2017': '#66A61E',
+  'Moved in 2000–2009': '#E6AB01',
+  'Moved in 1990–1999': '#7570B1',
+  '1989 or earlier': '#E41A1C'
+};
+
+    const ctx = document.getElementById("pieChart").getContext("2d");
+    let chart;
+
+    function renderChart(key) {
+      const values = data[key];
+      const labels = Object.keys(values);
+      const percentages = Object.values(values);
+
+      if (chart) chart.destroy();
+
+      chart = new Chart(ctx, {
+        type: "pie",
+        data: {
+          labels: labels,
+          datasets: [{
+            data: percentages,
+            backgroundColor: labels.map(label => colors[label] || "#cccccc")
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: true,
+          aspectRatio: 1.5,
+          plugins: {
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  return context.label + ": " + context.formattedValue + "%";
+                }
+              }
+            },
+            legend: {
+              position: "right",
+              labels: {
+                usePointStyle: true,
+                pointStyle: "rect"
+              }
+            }
+          }
+        }
+      });
+    }
+
+    // Populate dropdown (Statewide first, then counties A->Z)
+    const select = document.getElementById("countySelect");
+    const keys = ["Statewide", ...Object.keys(data).filter(k => k !== "Statewide").sort()];
+    keys.forEach(k => {
+      const opt = document.createElement("option");
+      opt.value = k;
+      opt.text  = k;
+      select.appendChild(opt);
+    });
+    select.value = "Statewide";
+    select.addEventListener("change", () => renderChart(select.value));
+
+    renderChart("Statewide");
+  </script>
+</body>
+</html>
+</html>

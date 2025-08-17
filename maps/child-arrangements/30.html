@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Living Arrangements of Children – Montana</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Children’s Living Arrangements (Under 18) – Montana</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Beaverhead County, Montana">Beaverhead County, Montana</option>
+      <option value="Big Horn County, Montana">Big Horn County, Montana</option>
+      <option value="Blaine County, Montana">Blaine County, Montana</option>
+      <option value="Broadwater County, Montana">Broadwater County, Montana</option>
+      <option value="Carbon County, Montana">Carbon County, Montana</option>
+      <option value="Carter County, Montana">Carter County, Montana</option>
+      <option value="Cascade County, Montana">Cascade County, Montana</option>
+      <option value="Chouteau County, Montana">Chouteau County, Montana</option>
+      <option value="Custer County, Montana">Custer County, Montana</option>
+      <option value="Daniels County, Montana">Daniels County, Montana</option>
+      <option value="Dawson County, Montana">Dawson County, Montana</option>
+      <option value="Deer Lodge County, Montana">Deer Lodge County, Montana</option>
+      <option value="Fallon County, Montana">Fallon County, Montana</option>
+      <option value="Fergus County, Montana">Fergus County, Montana</option>
+      <option value="Flathead County, Montana">Flathead County, Montana</option>
+      <option value="Gallatin County, Montana">Gallatin County, Montana</option>
+      <option value="Garfield County, Montana">Garfield County, Montana</option>
+      <option value="Glacier County, Montana">Glacier County, Montana</option>
+      <option value="Golden Valley County, Montana">Golden Valley County, Montana</option>
+      <option value="Granite County, Montana">Granite County, Montana</option>
+      <option value="Hill County, Montana">Hill County, Montana</option>
+      <option value="Jefferson County, Montana">Jefferson County, Montana</option>
+      <option value="Judith Basin County, Montana">Judith Basin County, Montana</option>
+      <option value="Lake County, Montana">Lake County, Montana</option>
+      <option value="Lewis and Clark County, Montana">Lewis and Clark County, Montana</option>
+      <option value="Liberty County, Montana">Liberty County, Montana</option>
+      <option value="Lincoln County, Montana">Lincoln County, Montana</option>
+      <option value="Madison County, Montana">Madison County, Montana</option>
+      <option value="McCone County, Montana">McCone County, Montana</option>
+      <option value="Meagher County, Montana">Meagher County, Montana</option>
+      <option value="Mineral County, Montana">Mineral County, Montana</option>
+      <option value="Missoula County, Montana">Missoula County, Montana</option>
+      <option value="Musselshell County, Montana">Musselshell County, Montana</option>
+      <option value="Park County, Montana">Park County, Montana</option>
+      <option value="Petroleum County, Montana">Petroleum County, Montana</option>
+      <option value="Phillips County, Montana">Phillips County, Montana</option>
+      <option value="Pondera County, Montana">Pondera County, Montana</option>
+      <option value="Powder River County, Montana">Powder River County, Montana</option>
+      <option value="Powell County, Montana">Powell County, Montana</option>
+      <option value="Prairie County, Montana">Prairie County, Montana</option>
+      <option value="Ravalli County, Montana">Ravalli County, Montana</option>
+      <option value="Richland County, Montana">Richland County, Montana</option>
+      <option value="Roosevelt County, Montana">Roosevelt County, Montana</option>
+      <option value="Rosebud County, Montana">Rosebud County, Montana</option>
+      <option value="Sanders County, Montana">Sanders County, Montana</option>
+      <option value="Sheridan County, Montana">Sheridan County, Montana</option>
+      <option value="Silver Bow County, Montana">Silver Bow County, Montana</option>
+      <option value="Stillwater County, Montana">Stillwater County, Montana</option>
+      <option value="Sweet Grass County, Montana">Sweet Grass County, Montana</option>
+      <option value="Teton County, Montana">Teton County, Montana</option>
+      <option value="Toole County, Montana">Toole County, Montana</option>
+      <option value="Treasure County, Montana">Treasure County, Montana</option>
+      <option value="Valley County, Montana">Valley County, Montana</option>
+      <option value="Wheatland County, Montana">Wheatland County, Montana</option>
+      <option value="Wibaux County, Montana">Wibaux County, Montana</option>
+      <option value="Yellowstone County, Montana">Yellowstone County, Montana</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>  const data = {"Statewide":{"Married Couple (%)":71.1,"Cohabiting Couple (%)":8.8,"Male Householder (%)":5.4,"Female Householder (%)":14.8},"Beaverhead County, Montana":{"Married Couple (%)":77,"Cohabiting Couple (%)":7.5,"Male Householder (%)":2,"Female Householder (%)":13.5},"Big Horn County, Montana":{"Married Couple (%)":61.5,"Cohabiting Couple (%)":12.9,"Male Householder (%)":4.5,"Female Householder (%)":21.1},"Blaine County, Montana":{"Married Couple (%)":53.6,"Cohabiting Couple (%)":10.9,"Male Householder (%)":10.9,"Female Householder (%)":24.6},"Broadwater County, Montana":{"Married Couple (%)":78.8,"Cohabiting Couple (%)":9.2,"Male Householder (%)":2.7,"Female Householder (%)":9.4},"Carbon County, Montana":{"Married Couple (%)":68.9,"Cohabiting Couple (%)":8.7,"Male Householder (%)":2.5,"Female Householder (%)":19.8},"Carter County, Montana":{"Married Couple (%)":93.7,"Cohabiting Couple (%)":0.4,"Male Householder (%)":0,"Female Householder (%)":5.9},"Cascade County, Montana":{"Married Couple (%)":68.6,"Cohabiting Couple (%)":8.5,"Male Householder (%)":4.9,"Female Householder (%)":18},"Chouteau County, Montana":{"Married Couple (%)":76,"Cohabiting Couple (%)":4.8,"Male Householder (%)":9.4,"Female Householder (%)":9.9},"Custer County, Montana":{"Married Couple (%)":72.3,"Cohabiting Couple (%)":13.3,"Male Householder (%)":6.4,"Female Householder (%)":8},"Daniels County, Montana":{"Married Couple (%)":66.8,"Cohabiting Couple (%)":4.9,"Male Householder (%)":3.6,"Female Householder (%)":24.8},"Dawson County, Montana":{"Married Couple (%)":73,"Cohabiting Couple (%)":4.8,"Male Householder (%)":1.2,"Female Householder (%)":21},"Deer Lodge County, Montana":{"Married Couple (%)":65.4,"Cohabiting Couple (%)":2.8,"Male Householder (%)":9,"Female Householder (%)":22.8},"Fallon County, Montana":{"Married Couple (%)":84,"Cohabiting Couple (%)":3.4,"Male Householder (%)":0,"Female Householder (%)":12.6},"Fergus County, Montana":{"Married Couple (%)":60.1,"Cohabiting Couple (%)":20.3,"Male Householder (%)":7.1,"Female Householder (%)":12.6},"Flathead County, Montana":{"Married Couple (%)":75.4,"Cohabiting Couple (%)":8,"Male Householder (%)":5.8,"Female Householder (%)":10.9},"Gallatin County, Montana":{"Married Couple (%)":80.1,"Cohabiting Couple (%)":5.1,"Male Householder (%)":3.3,"Female Householder (%)":11.5},"Garfield County, Montana":{"Married Couple (%)":94.1,"Cohabiting Couple (%)":0,"Male Householder (%)":2.7,"Female Householder (%)":3.2},"Glacier County, Montana":{"Married Couple (%)":51.8,"Cohabiting Couple (%)":10.3,"Male Householder (%)":12.1,"Female Householder (%)":25.8},"Golden Valley County, Montana":{"Married Couple (%)":88.5,"Cohabiting Couple (%)":10.7,"Male Householder (%)":0,"Female Householder (%)":0.8},"Granite County, Montana":{"Married Couple (%)":73.5,"Cohabiting Couple (%)":16.2,"Male Householder (%)":5.7,"Female Householder (%)":4.7},"Hill County, Montana":{"Married Couple (%)":53.5,"Cohabiting Couple (%)":17.4,"Male Householder (%)":6.3,"Female Householder (%)":22.7},"Jefferson County, Montana":{"Married Couple (%)":80.7,"Cohabiting Couple (%)":6.1,"Male Householder (%)":3.6,"Female Householder (%)":9.6},"Judith Basin County, Montana":{"Married Couple (%)":68.2,"Cohabiting Couple (%)":3.1,"Male Householder (%)":1.5,"Female Householder (%)":27.2},"Lake County, Montana":{"Married Couple (%)":67.5,"Cohabiting Couple (%)":4.3,"Male Householder (%)":6.3,"Female Householder (%)":21.9},"Lewis and Clark County, Montana":{"Married Couple (%)":68.5,"Cohabiting Couple (%)":10,"Male Householder (%)":4.7,"Female Householder (%)":16.8},"Liberty County, Montana":{"Married Couple (%)":68.4,"Cohabiting Couple (%)":12.2,"Male Householder (%)":5.9,"Female Householder (%)":13.4},"Lincoln County, Montana":{"Married Couple (%)":62.3,"Cohabiting Couple (%)":17.3,"Male Householder (%)":2.3,"Female Householder (%)":18.1},"Madison County, Montana":{"Married Couple (%)":92.6,"Cohabiting Couple (%)":2.6,"Male Householder (%)":2,"Female Householder (%)":2.8},"McCone County, Montana":{"Married Couple (%)":87.5,"Cohabiting Couple (%)":1.7,"Male Householder (%)":0.9,"Female Householder (%)":9.9},"Meagher County, Montana":{"Married Couple (%)":85.7,"Cohabiting Couple (%)":14.3,"Male Householder (%)":0,"Female Householder (%)":0},"Mineral County, Montana":{"Married Couple (%)":60.2,"Cohabiting Couple (%)":27.5,"Male Householder (%)":2.3,"Female Householder (%)":9.9},"Missoula County, Montana":{"Married Couple (%)":70.5,"Cohabiting Couple (%)":8.1,"Male Householder (%)":6.5,"Female Householder (%)":14.9},"Musselshell County, Montana":{"Married Couple (%)":78.7,"Cohabiting Couple (%)":3.8,"Male Householder (%)":3.1,"Female Householder (%)":14.4},"Park County, Montana":{"Married Couple (%)":71.2,"Cohabiting Couple (%)":11.3,"Male Householder (%)":7,"Female Householder (%)":10.5},"Petroleum County, Montana":{"Married Couple (%)":94.3,"Cohabiting Couple (%)":0,"Male Householder (%)":5.7,"Female Householder (%)":0},"Phillips County, Montana":{"Married Couple (%)":71,"Cohabiting Couple (%)":13.3,"Male Householder (%)":12.3,"Female Householder (%)":3.3},"Pondera County, Montana":{"Married Couple (%)":75.3,"Cohabiting Couple (%)":11.7,"Male Householder (%)":6.4,"Female Householder (%)":6.6},"Powder River County, Montana":{"Married Couple (%)":82.5,"Cohabiting Couple (%)":10.5,"Male Householder (%)":0,"Female Householder (%)":7.1},"Powell County, Montana":{"Married Couple (%)":66.8,"Cohabiting Couple (%)":19.3,"Male Householder (%)":0,"Female Householder (%)":13.9},"Prairie County, Montana":{"Married Couple (%)":84.8,"Cohabiting Couple (%)":10.7,"Male Householder (%)":4.4,"Female Householder (%)":0},"Ravalli County, Montana":{"Married Couple (%)":77.1,"Cohabiting Couple (%)":8.7,"Male Householder (%)":1.6,"Female Householder (%)":12.6},"Richland County, Montana":{"Married Couple (%)":79.4,"Cohabiting Couple (%)":5.3,"Male Householder (%)":5.5,"Female Householder (%)":9.8},"Roosevelt County, Montana":{"Married Couple (%)":53.2,"Cohabiting Couple (%)":16.5,"Male Householder (%)":2.6,"Female Householder (%)":27.6},"Rosebud County, Montana":{"Married Couple (%)":65.1,"Cohabiting Couple (%)":3.4,"Male Householder (%)":2.3,"Female Householder (%)":29.2},"Sanders County, Montana":{"Married Couple (%)":68.5,"Cohabiting Couple (%)":13.3,"Male Householder (%)":2.9,"Female Householder (%)":15.4},"Sheridan County, Montana":{"Married Couple (%)":90.4,"Cohabiting Couple (%)":3.8,"Male Householder (%)":2.3,"Female Householder (%)":3.5},"Silver Bow County, Montana":{"Married Couple (%)":70.2,"Cohabiting Couple (%)":8.4,"Male Householder (%)":8.4,"Female Householder (%)":13},"Stillwater County, Montana":{"Married Couple (%)":78.8,"Cohabiting Couple (%)":1.1,"Male Householder (%)":3.4,"Female Householder (%)":16.7},"Sweet Grass County, Montana":{"Married Couple (%)":83.6,"Cohabiting Couple (%)":0,"Male Householder (%)":5.4,"Female Householder (%)":11},"Teton County, Montana":{"Married Couple (%)":91.7,"Cohabiting Couple (%)":3.7,"Male Householder (%)":1,"Female Householder (%)":3.6},"Toole County, Montana":{"Married Couple (%)":83,"Cohabiting Couple (%)":3.3,"Male Householder (%)":3.7,"Female Householder (%)":10},"Treasure County, Montana":{"Married Couple (%)":64.2,"Cohabiting Couple (%)":9.2,"Male Householder (%)":3.3,"Female Householder (%)":23.3},"Valley County, Montana":{"Married Couple (%)":68.6,"Cohabiting Couple (%)":8.1,"Male Householder (%)":2.5,"Female Householder (%)":20.8},"Wheatland County, Montana":{"Married Couple (%)":68.1,"Cohabiting Couple (%)":9.6,"Male Householder (%)":0.4,"Female Householder (%)":21.9},"Wibaux County, Montana":{"Married Couple (%)":96,"Cohabiting Couple (%)":1.2,"Male Householder (%)":0,"Female Householder (%)":2.8},"Yellowstone County, Montana":{"Married Couple (%)":68.9,"Cohabiting Couple (%)":9.8,"Male Householder (%)":7.6,"Female Householder (%)":13.7}};
+  const categories = ["Married Couple (%)","Cohabiting Couple (%)","Male Householder (%)","Female Householder (%)"];
+  const ctx = document.getElementById("barChart").getContext("2d");
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: categories,
+        datasets: [{
+          label: "Share of Children (%)",
+          data: values,
+          backgroundColor: ["#5DA5DA","#FAA43A","#60BD68","#F17CB0"]
+        }]
+      },
+      options: {
+        indexAxis: "y",
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            ticks: { callback: v => v + "%" },
+            title: { display: true, text: "Percent of Children" }
+          }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.raw + "%"
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById("countySelect").addEventListener("change", function() {
+    renderChart(Object.values(data[this.value]));
+  });
+
+  renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

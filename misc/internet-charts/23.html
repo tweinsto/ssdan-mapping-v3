@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Internet Access Over Time –  Maine</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+                      h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+                      select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; border-radius: 5px; border: 1px solid #999; }
+                      canvas { width: 100%; max-width: 850px; height: 450px; margin-top: 1rem; }</style>
+</head>
+<html>
+  <body>
+    <h2>Internet Access in  Maine (2013–2023)</h2>
+    <label>Select County: </label>
+    <select id="countySelect"><option value='Statewide'>Statewide</option>
+<option value='Androscoggin County, Maine'>Androscoggin County, Maine</option>
+<option value='Aroostook County, Maine'>Aroostook County, Maine</option>
+<option value='Cumberland County, Maine'>Cumberland County, Maine</option>
+<option value='Franklin County, Maine'>Franklin County, Maine</option>
+<option value='Hancock County, Maine'>Hancock County, Maine</option>
+<option value='Kennebec County, Maine'>Kennebec County, Maine</option>
+<option value='Knox County, Maine'>Knox County, Maine</option>
+<option value='Lincoln County, Maine'>Lincoln County, Maine</option>
+<option value='Oxford County, Maine'>Oxford County, Maine</option>
+<option value='Penobscot County, Maine'>Penobscot County, Maine</option>
+<option value='Piscataquis County, Maine'>Piscataquis County, Maine</option>
+<option value='Sagadahoc County, Maine'>Sagadahoc County, Maine</option>
+<option value='Somerset County, Maine'>Somerset County, Maine</option>
+<option value='Waldo County, Maine'>Waldo County, Maine</option>
+<option value='Washington County, Maine'>Washington County, Maine</option>
+<option value='York County, Maine'>York County, Maine</option></select>
+    <canvas id="lineChart" width="850" height="450"></canvas>
+    <script>const internetData = {"Statewide":{"2017":82.6,"2018":84.6,"2019":86.3,"2020":88.2,"2021":89.6,"2022":90.5,"2023":91.9},"Androscoggin County, Maine":{"2017":81.9,"2018":83.9,"2019":85.8,"2020":87.3,"2021":88.4,"2022":90.2,"2023":91.8},"Aroostook County, Maine":{"2017":73.7,"2018":75.3,"2019":76.2,"2020":79.1,"2021":81.4,"2022":83.2,"2023":85.2},"Cumberland County, Maine":{"2017":88.2,"2018":89.8,"2019":91,"2020":92.2,"2021":93,"2022":93.6,"2023":94.3},"Franklin County, Maine":{"2017":81.1,"2018":81.5,"2019":82.3,"2020":83.9,"2021":85.7,"2022":86.4,"2023":88.4},"Hancock County, Maine":{"2017":81.2,"2018":83.3,"2019":86.2,"2020":87.7,"2021":89.3,"2022":90,"2023":91.7},"Kennebec County, Maine":{"2017":81.2,"2018":83.1,"2019":85.2,"2020":87.9,"2021":88.9,"2022":90,"2023":91.9},"Knox County, Maine":{"2017":83.5,"2018":87.3,"2019":89.4,"2020":90.7,"2021":92.2,"2022":91.4,"2023":92.5},"Lincoln County, Maine":{"2017":80.8,"2018":82.5,"2019":85.1,"2020":86.4,"2021":86.7,"2022":88.8,"2023":90.1},"Oxford County, Maine":{"2017":77.5,"2018":79.9,"2019":82.5,"2020":84.3,"2021":85.5,"2022":85.6,"2023":88.1},"Penobscot County, Maine":{"2017":82.1,"2018":84.4,"2019":86.5,"2020":88.2,"2021":89.2,"2022":90.1,"2023":91.4},"Piscataquis County, Maine":{"2017":75.1,"2018":76.9,"2019":78.8,"2020":83.6,"2021":85.4,"2022":87.1,"2023":88.6},"Sagadahoc County, Maine":{"2017":83.3,"2018":86.4,"2019":86.9,"2020":90.4,"2021":92.7,"2022":93,"2023":93.9},"Somerset County, Maine":{"2017":75.1,"2018":77.1,"2019":80.4,"2020":82.7,"2021":84,"2022":86.4,"2023":88.3},"Waldo County, Maine":{"2017":81.1,"2018":82.2,"2019":84,"2020":86.8,"2021":89.2,"2022":89.9,"2023":91.1},"Washington County, Maine":{"2017":74.9,"2018":76.8,"2019":79.8,"2020":82.3,"2021":83.6,"2022":84.9,"2023":86.7},"York County, Maine":{"2017":85.7,"2018":87.5,"2019":88.8,"2020":90.7,"2021":92.3,"2022":93.2,"2023":94.2}};
+const ctx = document.getElementById('lineChart').getContext('2d');
+let chart;
+
+function renderChart(data) {
+  const labels = Object.keys(data);
+  const values = Object.values(data);
+
+  if (chart) chart.destroy();
+  chart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: labels,
+      datasets: [{
+        label: '% With Internet',
+        data: values,
+        fill: false,
+        borderColor: 'teal',
+        backgroundColor: 'teal',
+        tension: 0.3,
+        pointRadius: 4
+      }]
+    },
+    options: {
+      responsive: true,
+      scales: {
+        y: {
+          beginAtZero: true,
+          max: 100,
+          title: { display: true, text: '% With Internet' }
+        },
+        x: {
+          title: { display: true, text: 'Year' }
+        }
+      },
+      plugins: {
+        tooltip: {
+          callbacks: {
+            label: function(ctx) {
+              return ctx.parsed.y.toFixed(1) + '%';
+            }
+          }
+        }
+      }
+    }
+  });
+}
+
+document.getElementById('countySelect').addEventListener('change', function() {
+  renderChart(internetData[this.value]);
+});
+renderChart(internetData['Statewide']);</script>
+  </body>
+</html>
+</html>

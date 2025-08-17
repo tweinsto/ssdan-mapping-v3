@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Age Distribution Under 18 –  New Jersey</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          margin: 1rem 2rem;
+          text-align: center;
+        }
+        h2 {
+          margin-bottom: 0.25rem;
+          font-size: 1.6rem;
+        }
+        select {
+          padding: 0.4rem;
+          font-size: 1rem;
+          margin: 1rem 0;
+          border-radius: 5px;
+          border: 1px solid #999;
+        }
+        canvas {
+          width: 100%;
+          max-width: 850px;
+          height: 500px;
+          margin-top: 1rem;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Age Distribution Under 18 in  New Jersey (2023)</h2>
+    <label>Select County:</label>
+            <select id="countySelect">
+          <option value='Statewide'>Statewide</option>
+<option value='Atlantic County, New Jersey'>Atlantic County, New Jersey</option>
+<option value='Bergen County, New Jersey'>Bergen County, New Jersey</option>
+<option value='Burlington County, New Jersey'>Burlington County, New Jersey</option>
+<option value='Camden County, New Jersey'>Camden County, New Jersey</option>
+<option value='Cape May County, New Jersey'>Cape May County, New Jersey</option>
+<option value='Cumberland County, New Jersey'>Cumberland County, New Jersey</option>
+<option value='Essex County, New Jersey'>Essex County, New Jersey</option>
+<option value='Gloucester County, New Jersey'>Gloucester County, New Jersey</option>
+<option value='Hudson County, New Jersey'>Hudson County, New Jersey</option>
+<option value='Hunterdon County, New Jersey'>Hunterdon County, New Jersey</option>
+<option value='Mercer County, New Jersey'>Mercer County, New Jersey</option>
+<option value='Middlesex County, New Jersey'>Middlesex County, New Jersey</option>
+<option value='Monmouth County, New Jersey'>Monmouth County, New Jersey</option>
+<option value='Morris County, New Jersey'>Morris County, New Jersey</option>
+<option value='Ocean County, New Jersey'>Ocean County, New Jersey</option>
+<option value='Passaic County, New Jersey'>Passaic County, New Jersey</option>
+<option value='Salem County, New Jersey'>Salem County, New Jersey</option>
+<option value='Somerset County, New Jersey'>Somerset County, New Jersey</option>
+<option value='Sussex County, New Jersey'>Sussex County, New Jersey</option>
+<option value='Union County, New Jersey'>Union County, New Jersey</option>
+<option value='Warren County, New Jersey'>Warren County, New Jersey</option>
+        </select>
+    <canvas id="barChart" width="850" height="500"></canvas>
+    <script>  const ageData = {"Statewide":[-13.3,12.6,-14.8,14.3,-9.1,8.7,-14,13.2],"Atlantic County, New Jersey":[-12.8,12.1,-13.7,12.9,-15.7,14.7,-9.3,8.9],"Bergen County, New Jersey":[-12.4,11.8,-13.3,13,-15.8,14.8,-9.6,9.2],"Burlington County, New Jersey":[-12.7,11.9,-14.1,13.5,-14.7,14.3,-9.6,9.3],"Camden County, New Jersey":[-13.4,12.8,-14.5,13.6,-14.2,14,-9,8.6],"Cape May County, New Jersey":[-11.5,13.5,-14.8,13.7,-14,15.1,-9.3,8],"Cumberland County, New Jersey":[-13.1,12.2,-14.8,12.5,-14.3,16.1,-8.6,8.5],"Essex County, New Jersey":[-13.5,13,-14.3,12.8,-14.7,14.9,-8.5,8.3],"Gloucester County, New Jersey":[-12.1,11.4,-14.7,14.4,-14.6,13.6,-9.8,9.3],"Hudson County, New Jersey":[-16.4,15.8,-14.2,13.5,-12.8,12.5,-7.4,7.3],"Hunterdon County, New Jersey":[-11.4,11.3,-13.4,13.1,-15.4,14.4,-10.7,10.2],"Mercer County, New Jersey":[-13.2,12.4,-14.2,12.6,-14.9,14.9,-9.1,8.6],"Middlesex County, New Jersey":[-12.9,12.2,-13.9,13.3,-15.2,14.4,-9.2,8.9],"Monmouth County, New Jersey":[-12,11.7,-13.5,13.8,-15.3,13.8,-10.1,9.7],"Morris County, New Jersey":[-12.4,11.6,-13.7,13,-15.4,14.2,-10.1,9.6],"Ocean County, New Jersey":[-15.1,14.2,-14.6,12.9,-13.4,13.7,-8.2,7.9],"Passaic County, New Jersey":[-13.7,13.2,-14.1,13,-14.7,14.2,-8.8,8.4],"Salem County, New Jersey":[-12.6,12.7,-11.4,15.8,-17.3,12.6,-9.4,8.2],"Somerset County, New Jersey":[-11.9,11.3,-14,13.3,-15.3,14.3,-10.4,9.6],"Sussex County, New Jersey":[-12.6,11.4,-14.3,13.7,-14.2,13.9,-10.2,9.8],"Union County, New Jersey":[-13.5,12.7,-13.7,13.4,-15,14.3,-8.8,8.5],"Warren County, New Jersey":[-12.4,11.4,-12.9,11.7,-16,15.7,-10.2,9.6]};
+  const ageBins = ["0–4","5–9","10–14","15–17"];
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(data) {
+    const maleData = data.filter((_, i) => i % 2 === 0);
+    const femaleData = data.filter((_, i) => i % 2 === 1);
+
+    const maxValue = Math.max(
+      ...maleData.map(Math.abs),
+      ...femaleData.map(Math.abs)
+    );
+    const padding = 1.0;
+    const xMax = +(maxValue + padding).toFixed(1);
+
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ageBins,
+        datasets: [
+          {
+            label: 'Male',
+            data: maleData,
+            backgroundColor: 'dodgerblue'
+          },
+          {
+            label: 'Female',
+            data: femaleData,
+            backgroundColor: 'lightpink'
+          }
+        ]
+      },
+      options: {
+        indexAxis: 'y',
+        responsive: true,
+        scales: {
+          x: {
+            min: -xMax,
+            max: xMax,
+            ticks: {
+              callback: value => Math.abs(value).toFixed(1) + '%'
+            }
+          },
+          y: {
+            stacked: false
+          }
+        },
+        plugins: {
+          legend: {
+            position: 'top',
+            align: 'start',
+            labels: {
+              usePointStyle: true
+            }
+          },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.dataset.label + ': ' + Math.abs(ctx.parsed.x).toFixed(1) + '%'
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(Object.values(ageData[this.value]));
+  });
+
+  renderChart(Object.values(ageData['Statewide']));</script>
+  </body>
+</html>
+</html>

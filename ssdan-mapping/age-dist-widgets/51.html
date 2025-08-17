@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Age Pyramid –  Virginia</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+      body {
+        font-family: sans-serif;
+        margin: 1rem 2rem;
+        text-align: center;
+      }
+      h2 {
+        margin-bottom: 0.25rem;
+        font-size: 1.6rem;
+      }
+      select {
+        padding: 0.4rem;
+        font-size: 1rem;
+        margin: 1rem 0;
+        border-radius: 5px;
+        border: 1px solid #999;
+      }
+      canvas {
+        width: 100%;
+        max-width: 850px;
+        height: 500px;
+        margin-top: 1rem;
+      }
+    </style>
+</head>
+<html>
+  <body>
+    <h2>Age Distribution in  Virginia (2023)</h2>
+    <label>Select County:</label>
+          <select id="countySelect">
+        <option value='Statewide'>Statewide</option>
+<option value='Accomack County, Virginia'>Accomack County, Virginia</option>
+<option value='Albemarle County, Virginia'>Albemarle County, Virginia</option>
+<option value='Alexandria city, Virginia'>Alexandria city, Virginia</option>
+<option value='Alleghany County, Virginia'>Alleghany County, Virginia</option>
+<option value='Amelia County, Virginia'>Amelia County, Virginia</option>
+<option value='Amherst County, Virginia'>Amherst County, Virginia</option>
+<option value='Appomattox County, Virginia'>Appomattox County, Virginia</option>
+<option value='Arlington County, Virginia'>Arlington County, Virginia</option>
+<option value='Augusta County, Virginia'>Augusta County, Virginia</option>
+<option value='Bath County, Virginia'>Bath County, Virginia</option>
+<option value='Bedford County, Virginia'>Bedford County, Virginia</option>
+<option value='Bland County, Virginia'>Bland County, Virginia</option>
+<option value='Botetourt County, Virginia'>Botetourt County, Virginia</option>
+<option value='Bristol city, Virginia'>Bristol city, Virginia</option>
+<option value='Brunswick County, Virginia'>Brunswick County, Virginia</option>
+<option value='Buchanan County, Virginia'>Buchanan County, Virginia</option>
+<option value='Buckingham County, Virginia'>Buckingham County, Virginia</option>
+<option value='Buena Vista city, Virginia'>Buena Vista city, Virginia</option>
+<option value='Campbell County, Virginia'>Campbell County, Virginia</option>
+<option value='Caroline County, Virginia'>Caroline County, Virginia</option>
+<option value='Carroll County, Virginia'>Carroll County, Virginia</option>
+<option value='Charles City County, Virginia'>Charles City County, Virginia</option>
+<option value='Charlotte County, Virginia'>Charlotte County, Virginia</option>
+<option value='Charlottesville city, Virginia'>Charlottesville city, Virginia</option>
+<option value='Chesapeake city, Virginia'>Chesapeake city, Virginia</option>
+<option value='Chesterfield County, Virginia'>Chesterfield County, Virginia</option>
+<option value='Clarke County, Virginia'>Clarke County, Virginia</option>
+<option value='Colonial Heights city, Virginia'>Colonial Heights city, Virginia</option>
+<option value='Covington city, Virginia'>Covington city, Virginia</option>
+<option value='Craig County, Virginia'>Craig County, Virginia</option>
+<option value='Culpeper County, Virginia'>Culpeper County, Virginia</option>
+<option value='Cumberland County, Virginia'>Cumberland County, Virginia</option>
+<option value='Danville city, Virginia'>Danville city, Virginia</option>
+<option value='Dickenson County, Virginia'>Dickenson County, Virginia</option>
+<option value='Dinwiddie County, Virginia'>Dinwiddie County, Virginia</option>
+<option value='Emporia city, Virginia'>Emporia city, Virginia</option>
+<option value='Essex County, Virginia'>Essex County, Virginia</option>
+<option value='Fairfax city, Virginia'>Fairfax city, Virginia</option>
+<option value='Fairfax County, Virginia'>Fairfax County, Virginia</option>
+<option value='Falls Church city, Virginia'>Falls Church city, Virginia</option>
+<option value='Fauquier County, Virginia'>Fauquier County, Virginia</option>
+<option value='Floyd County, Virginia'>Floyd County, Virginia</option>
+<option value='Fluvanna County, Virginia'>Fluvanna County, Virginia</option>
+<option value='Franklin city, Virginia'>Franklin city, Virginia</option>
+<option value='Franklin County, Virginia'>Franklin County, Virginia</option>
+<option value='Frederick County, Virginia'>Frederick County, Virginia</option>
+<option value='Fredericksburg city, Virginia'>Fredericksburg city, Virginia</option>
+<option value='Galax city, Virginia'>Galax city, Virginia</option>
+<option value='Giles County, Virginia'>Giles County, Virginia</option>
+<option value='Gloucester County, Virginia'>Gloucester County, Virginia</option>
+<option value='Goochland County, Virginia'>Goochland County, Virginia</option>
+<option value='Grayson County, Virginia'>Grayson County, Virginia</option>
+<option value='Greene County, Virginia'>Greene County, Virginia</option>
+<option value='Greensville County, Virginia'>Greensville County, Virginia</option>
+<option value='Halifax County, Virginia'>Halifax County, Virginia</option>
+<option value='Hampton city, Virginia'>Hampton city, Virginia</option>
+<option value='Hanover County, Virginia'>Hanover County, Virginia</option>
+<option value='Harrisonburg city, Virginia'>Harrisonburg city, Virginia</option>
+<option value='Henrico County, Virginia'>Henrico County, Virginia</option>
+<option value='Henry County, Virginia'>Henry County, Virginia</option>
+<option value='Highland County, Virginia'>Highland County, Virginia</option>
+<option value='Hopewell city, Virginia'>Hopewell city, Virginia</option>
+<option value='Isle of Wight County, Virginia'>Isle of Wight County, Virginia</option>
+<option value='James City County, Virginia'>James City County, Virginia</option>
+<option value='King and Queen County, Virginia'>King and Queen County, Virginia</option>
+<option value='King George County, Virginia'>King George County, Virginia</option>
+<option value='King William County, Virginia'>King William County, Virginia</option>
+<option value='Lancaster County, Virginia'>Lancaster County, Virginia</option>
+<option value='Lee County, Virginia'>Lee County, Virginia</option>
+<option value='Lexington city, Virginia'>Lexington city, Virginia</option>
+<option value='Loudoun County, Virginia'>Loudoun County, Virginia</option>
+<option value='Louisa County, Virginia'>Louisa County, Virginia</option>
+<option value='Lunenburg County, Virginia'>Lunenburg County, Virginia</option>
+<option value='Lynchburg city, Virginia'>Lynchburg city, Virginia</option>
+<option value='Madison County, Virginia'>Madison County, Virginia</option>
+<option value='Manassas city, Virginia'>Manassas city, Virginia</option>
+<option value='Manassas Park city, Virginia'>Manassas Park city, Virginia</option>
+<option value='Martinsville city, Virginia'>Martinsville city, Virginia</option>
+<option value='Mathews County, Virginia'>Mathews County, Virginia</option>
+<option value='Mecklenburg County, Virginia'>Mecklenburg County, Virginia</option>
+<option value='Middlesex County, Virginia'>Middlesex County, Virginia</option>
+<option value='Montgomery County, Virginia'>Montgomery County, Virginia</option>
+<option value='Nelson County, Virginia'>Nelson County, Virginia</option>
+<option value='New Kent County, Virginia'>New Kent County, Virginia</option>
+<option value='Newport News city, Virginia'>Newport News city, Virginia</option>
+<option value='Norfolk city, Virginia'>Norfolk city, Virginia</option>
+<option value='Northampton County, Virginia'>Northampton County, Virginia</option>
+<option value='Northumberland County, Virginia'>Northumberland County, Virginia</option>
+<option value='Norton city, Virginia'>Norton city, Virginia</option>
+<option value='Nottoway County, Virginia'>Nottoway County, Virginia</option>
+<option value='Orange County, Virginia'>Orange County, Virginia</option>
+<option value='Page County, Virginia'>Page County, Virginia</option>
+<option value='Patrick County, Virginia'>Patrick County, Virginia</option>
+<option value='Petersburg city, Virginia'>Petersburg city, Virginia</option>
+<option value='Pittsylvania County, Virginia'>Pittsylvania County, Virginia</option>
+<option value='Poquoson city, Virginia'>Poquoson city, Virginia</option>
+<option value='Portsmouth city, Virginia'>Portsmouth city, Virginia</option>
+<option value='Powhatan County, Virginia'>Powhatan County, Virginia</option>
+<option value='Prince Edward County, Virginia'>Prince Edward County, Virginia</option>
+<option value='Prince George County, Virginia'>Prince George County, Virginia</option>
+<option value='Prince William County, Virginia'>Prince William County, Virginia</option>
+<option value='Pulaski County, Virginia'>Pulaski County, Virginia</option>
+<option value='Radford city, Virginia'>Radford city, Virginia</option>
+<option value='Rappahannock County, Virginia'>Rappahannock County, Virginia</option>
+<option value='Richmond city, Virginia'>Richmond city, Virginia</option>
+<option value='Richmond County, Virginia'>Richmond County, Virginia</option>
+<option value='Roanoke city, Virginia'>Roanoke city, Virginia</option>
+<option value='Roanoke County, Virginia'>Roanoke County, Virginia</option>
+<option value='Rockbridge County, Virginia'>Rockbridge County, Virginia</option>
+<option value='Rockingham County, Virginia'>Rockingham County, Virginia</option>
+<option value='Russell County, Virginia'>Russell County, Virginia</option>
+<option value='Salem city, Virginia'>Salem city, Virginia</option>
+<option value='Scott County, Virginia'>Scott County, Virginia</option>
+<option value='Shenandoah County, Virginia'>Shenandoah County, Virginia</option>
+<option value='Smyth County, Virginia'>Smyth County, Virginia</option>
+<option value='Southampton County, Virginia'>Southampton County, Virginia</option>
+<option value='Spotsylvania County, Virginia'>Spotsylvania County, Virginia</option>
+<option value='Stafford County, Virginia'>Stafford County, Virginia</option>
+<option value='Staunton city, Virginia'>Staunton city, Virginia</option>
+<option value='Suffolk city, Virginia'>Suffolk city, Virginia</option>
+<option value='Surry County, Virginia'>Surry County, Virginia</option>
+<option value='Sussex County, Virginia'>Sussex County, Virginia</option>
+<option value='Tazewell County, Virginia'>Tazewell County, Virginia</option>
+<option value='Virginia Beach city, Virginia'>Virginia Beach city, Virginia</option>
+<option value='Warren County, Virginia'>Warren County, Virginia</option>
+<option value='Washington County, Virginia'>Washington County, Virginia</option>
+<option value='Waynesboro city, Virginia'>Waynesboro city, Virginia</option>
+<option value='Westmoreland County, Virginia'>Westmoreland County, Virginia</option>
+<option value='Williamsburg city, Virginia'>Williamsburg city, Virginia</option>
+<option value='Winchester city, Virginia'>Winchester city, Virginia</option>
+<option value='Wise County, Virginia'>Wise County, Virginia</option>
+<option value='Wythe County, Virginia'>Wythe County, Virginia</option>
+<option value='York County, Virginia'>York County, Virginia</option>
+      </select>
+    <canvas id="barChart" width="850" height="500"></canvas>
+    <script>  const ageData = {"Statewide":[-2.9,2.8,-3.3,3.1,-2,1.9,-3.1,2.9],"Accomack County, Virginia":[-2.3,3,-3,2,-3.1,3.9,-1.9,1.6],"Albemarle County, Virginia":[-2.6,2.5,-2.7,2.7,-3,2.7,-1.8,1.7],"Alleghany County, Virginia":[-2.2,1.9,-2.1,2,-4.2,2.4,-1.8,1.6],"Amelia County, Virginia":[-2.5,3.2,-2.3,2.4,-4.6,2.5,-1.4,1.9],"Amherst County, Virginia":[-2.4,2.7,-2.8,2.8,-3.2,2.7,-1.7,1.7],"Appomattox County, Virginia":[-2.8,3.2,-2.6,2.3,-3.7,4,-1.6,1.6],"Arlington County, Virginia":[-2.6,2.6,-2.6,2.4,-2.6,2.5,-1.4,1.4],"Augusta County, Virginia":[-2.3,2.1,-2.7,2.6,-2.7,2.5,-2,1.7],"Bath County, Virginia":[-3,1.4,-3.7,1.6,-3.2,2.3,-0,2],"Bedford County, Virginia":[-2.1,2.4,-3.2,2.8,-2.7,2.7,-1.8,2.1],"Bland County, Virginia":[-2.7,0.4,-2,2.5,-2.4,1.4,-1.2,1.6],"Botetourt County, Virginia":[-2.2,2.1,-2.2,2.7,-3.1,2.5,-2.2,1.7],"Brunswick County, Virginia":[-1.9,2.2,-1.6,3.1,-2.6,1.2,-1.4,1.5],"Buchanan County, Virginia":[-2.3,2.1,-1.5,2.2,-3.4,2.4,-1.6,1.6],"Buckingham County, Virginia":[-2.7,2,-2.2,2.7,-3,2.5,-1.6,1.5],"Campbell County, Virginia":[-2.2,2.7,-3.1,2.8,-2.5,2.7,-2,1.7],"Caroline County, Virginia":[-3.4,2.6,-4.1,3.3,-2.5,3.4,-2.1,1.3],"Carroll County, Virginia":[-2.1,2.2,-1.3,2.3,-3.8,2.6,-2,1.6],"Charles City County, Virginia":[-2.2,1.5,-1.6,1.8,-2.5,2.1,-1.5,1.4],"Charlotte County, Virginia":[-3,2.5,-3.9,2.9,-2.8,3.2,-2.7,1.6],"Chesterfield County, Virginia":[-3,2.9,-3.4,3,-3.5,3.6,-2.3,2.1],"Clarke County, Virginia":[-2,1.7,-2.6,2.5,-2.1,3.5,-2,2.6],"Craig County, Virginia":[-3.2,4.2,-3.8,2.9,-3.3,4.3,-2.6,0.8],"Culpeper County, Virginia":[-3.2,3.1,-3.6,3.2,-3.4,4.1,-2.3,2.1],"Cumberland County, Virginia":[-2.6,2.1,-2.1,1.3,-3.7,3.3,-3.1,1.3],"Dickenson County, Virginia":[-2.3,2.2,-2.2,2,-3.7,3.3,-1.9,1.7],"Dinwiddie County, Virginia":[-2.4,2.4,-2.9,3.4,-3.8,1.9,-1.7,1.7],"Essex County, Virginia":[-1.8,3,-1.9,2.1,-3.1,3.2,-0.8,2],"Fairfax County, Virginia":[-3,2.9,-3.3,3,-3.4,3.3,-2.1,2],"Fauquier County, Virginia":[-2.8,2.9,-3.5,3,-3.4,3.5,-2.1,2.3],"Floyd County, Virginia":[-2.2,2,-2.3,2.6,-3,2.7,-2,1.8],"Fluvanna County, Virginia":[-2.4,2.8,-2.8,3.5,-2.6,2.1,-1.8,1.7],"Franklin County, Virginia":[-2.2,2.6,-1.9,2.6,-3.4,2.5,-2,1.6],"Frederick County, Virginia":[-3,2.6,-3.2,2.6,-3.5,3.7,-2.4,1.8],"Giles County, Virginia":[-2.3,2.6,-3.8,3.4,-2,2.4,-1.8,1.7],"Gloucester County, Virginia":[-2.4,2.3,-2.8,2.9,-3.4,2.7,-2,1.6],"Goochland County, Virginia":[-2.4,1.4,-2.1,1.9,-2.9,2.4,-1.7,1.8],"Grayson County, Virginia":[-2.1,1.8,-2.5,2.2,-2.6,2.5,-1.4,1.4],"Greene County, Virginia":[-3.1,3,-2.6,3,-3,4.3,-1.9,2.4],"Greensville County, Virginia":[-1.9,2,-1.6,2,-3.8,2.1,-1.1,1.8],"Halifax County, Virginia":[-2.7,2.5,-3.2,2.8,-2.4,2.7,-2.1,1.9],"Hanover County, Virginia":[-2.6,2.4,-2.9,2.6,-3.7,3.4,-2.2,2],"Henrico County, Virginia":[-3,2.8,-3.1,3,-3.3,3.1,-2,1.9],"Henry County, Virginia":[-2.4,2.1,-2.5,2.4,-3.2,3.3,-1.6,2],"Highland County, Virginia":[-1.8,0.8,-1.4,3.5,-1.2,2.2,-0.8,2.2],"Isle of Wight County, Virginia":[-2.6,2.3,-3.7,3,-2.8,2.9,-2,2],"James City County, Virginia":[-2.3,2.5,-2.8,2.3,-2.8,3.1,-1.9,1.9],"King and Queen County, Virginia":[-2.9,1.6,-2.6,3.5,-2.5,2.1,-1,1.6],"King George County, Virginia":[-2.6,3.2,-4,2.7,-3.5,4.5,-2.3,1.9],"King William County, Virginia":[-3.4,3,-3.2,2.2,-3.3,4.2,-1.9,1.8],"Lancaster County, Virginia":[-1.9,1.3,-2.4,1.7,-2.2,2.3,-0.8,2.1],"Lee County, Virginia":[-2.3,2.1,-2.4,1.8,-3.3,3.1,-1.7,1.7],"Loudoun County, Virginia":[-3.3,3.1,-3.8,3.7,-4.3,3.9,-2.5,2.4],"Louisa County, Virginia":[-2.8,2.4,-2.5,2.5,-3.1,3.1,-2.1,1.6],"Lunenburg County, Virginia":[-2.6,2.2,-3.6,1.9,-2.6,3.2,-1.5,2.2],"Madison County, Virginia":[-2.3,3.4,-2.2,2.4,-3.1,3.1,-2,1.7],"Mathews County, Virginia":[-1.7,1.6,-2.9,1.6,-2.7,1.2,-2.5,1.4],"Mecklenburg County, Virginia":[-2.6,2.4,-2.2,1.9,-3,3,-2,1.4],"Middlesex County, Virginia":[-1.9,1.5,-3,2.1,-2.1,2.6,-1.3,1.3],"Montgomery County, Virginia":[-2,1.8,-1.8,2.4,-2.5,2.1,-1.4,1.3],"Nelson County, Virginia":[-3.2,2.3,-2,2.5,-3.3,1.5,-2.1,0.6],"New Kent County, Virginia":[-2.2,2.3,-2.4,2.8,-4.1,2.3,-1.9,1.5],"Northampton County, Virginia":[-2.3,1.8,-2.4,2.8,-4.4,1.4,-2.1,1.7],"Northumberland County, Virginia":[-1.6,2.9,-0.5,1.7,-3.2,1.9,-0.7,2.4],"Nottoway County, Virginia":[-2.9,2.2,-3.4,2.4,-1.8,2.8,-1.4,2.3],"Orange County, Virginia":[-3.3,2.6,-3.7,2.3,-3,3.1,-1.7,1.8],"Page County, Virginia":[-2.6,2.3,-3.3,2.8,-2.4,2.5,-2,1.8],"Patrick County, Virginia":[-2.1,2.2,-1.9,2.5,-3.3,2.1,-1.7,1.6],"Pittsylvania County, Virginia":[-2.3,1.9,-2.4,2,-2.6,3,-2,1.8],"Powhatan County, Virginia":[-2.2,2.3,-2.2,1.7,-3.1,3.2,-1.8,1.5],"Prince Edward County, Virginia":[-2.3,1.9,-1.8,2.4,-2.2,2.1,-1.5,0.8],"Prince George County, Virginia":[-2.6,2.2,-2.2,2.2,-3.7,3.3,-1.9,1.5],"Prince William County, Virginia":[-3.5,3.3,-3.9,3.6,-4,3.7,-2.4,2.3],"Pulaski County, Virginia":[-2.3,2.3,-2.3,2.1,-2.6,3.1,-1.6,1.6],"Rappahannock County, Virginia":[-2.1,1,-2,2.3,-3.7,2.5,-2.6,1.4],"Richmond County, Virginia":[-2.4,2.8,-2.3,2.6,-2.3,2.7,-2,0.5],"Roanoke County, Virginia":[-2.4,2.1,-2.9,2.9,-3.1,2.7,-2,1.9],"Rockbridge County, Virginia":[-1.9,2,-1.8,3,-3.3,2.2,-1.8,1.8],"Rockingham County, Virginia":[-3,2.7,-2.8,3.2,-3.7,2.9,-2,2],"Russell County, Virginia":[-2.4,2.3,-2.5,2.1,-2.8,3,-1.8,1.7],"Scott County, Virginia":[-2.1,1.8,-2.5,2.5,-3,2.6,-1.8,1.7],"Shenandoah County, Virginia":[-2.7,3,-3,2.9,-3.1,2.9,-2,1.9],"Smyth County, Virginia":[-2.3,2.2,-2.4,2.3,-3.1,3.3,-2,1.7],"Southampton County, Virginia":[-2.2,2.4,-2.9,2.5,-2.6,2.6,-2,1.9],"Spotsylvania County, Virginia":[-3,2.8,-3.1,3.3,-4.1,3.6,-2.3,2.2],"Stafford County, Virginia":[-3.2,3,-3.4,3.6,-4.4,3.8,-2.5,2.4],"Surry County, Virginia":[-3.3,1.8,-2.2,1.9,-1.8,2.4,-1.3,2.3],"Sussex County, Virginia":[-2.2,1.9,-2.7,2.1,-1.9,2.5,-1,1.5],"Tazewell County, Virginia":[-2.3,2.4,-3.6,2.6,-2.5,2.6,-1.9,1.8],"Warren County, Virginia":[-2.7,2.5,-3.5,3.3,-3.4,2.5,-1.7,1.9],"Washington County, Virginia":[-2.1,2,-2.6,2.4,-2.5,2.3,-1.6,1.8],"Westmoreland County, Virginia":[-1.9,3.2,-2.8,2.2,-2.4,2.4,-1.5,1.8],"Wise County, Virginia":[-2.4,2.2,-2.3,2.6,-3.1,3,-1.7,1.8],"Wythe County, Virginia":[-2.3,2.8,-2.5,2.6,-3,2.4,-2.2,1.8],"York County, Virginia":[-2.7,2.5,-3.4,3.7,-3.6,3.1,-2.1,2.3],"Alexandria city, Virginia":[-3.4,3.3,-2.5,2.1,-2.2,2.4,-1.2,1.2],"Bristol city, Virginia":[-3.2,2,-2.9,2.6,-3.1,2.8,-1.3,2.3],"Buena Vista city, Virginia":[-1.2,3.8,-2.7,2.3,-3.4,3.8,-3.8,0.6],"Charlottesville city, Virginia":[-3,2.4,-2.3,2,-2,2.3,-1,1.1],"Chesapeake city, Virginia":[-3.1,3,-3.4,3.3,-3.7,3.4,-2.2,2.1],"Colonial Heights city, Virginia":[-2,4,-3.7,3.1,-3.8,3.7,-1.9,1.9],"Covington city, Virginia":[-3.2,2.7,-2.3,4.2,-5,3.7,-0.2,1.5],"Danville city, Virginia":[-2.8,3.1,-3.6,3,-3.1,2.9,-2,1.8],"Emporia city, Virginia":[-3.3,1.9,-5.2,5.2,-3.9,2.2,-4.2,1.1],"Fairfax city, Virginia":[-3.7,4,-3.1,3.1,-3.9,2.5,-1.6,2.1],"Falls Church city, Virginia":[-2.9,1.9,-3.4,1.6,-4.2,5.2,-3.1,1.9],"Franklin city, Virginia":[-5.1,2.4,-4.6,2.4,-3.1,4.7,-1.9,2.4],"Fredericksburg city, Virginia":[-3.6,2.6,-2.6,2.4,-3.7,3.3,-1,1.9],"Galax city, Virginia":[-3.9,4.1,-4.2,2.3,-1.6,4.3,-2.2,1.8],"Hampton city, Virginia":[-3.1,2.9,-3,2.7,-3.1,3.1,-1.8,1.7],"Harrisonburg city, Virginia":[-2.8,2.4,-2.5,2.7,-2.2,1.9,-1.4,1.3],"Hopewell city, Virginia":[-4.4,3.3,-4.9,3.1,-2.6,3.4,-1.9,2],"Lexington city, Virginia":[-1.6,1.7,-0.7,0.7,-0.6,0.5,-0.8,0.6],"Lynchburg city, Virginia":[-3,3,-2.5,2.3,-2.8,2.7,-1.6,1.5],"Manassas city, Virginia":[-4.1,3.7,-3.4,4.1,-4.5,2.9,-2.2,2],"Manassas Park city, Virginia":[-2.7,3.2,-2.7,2.5,-4.1,5.2,-2.1,1.7],"Martinsville city, Virginia":[-2.4,2.5,-6,4.1,-3.9,2.8,-2,2.5],"Newport News city, Virginia":[-3.6,3.4,-3.7,3.1,-2.8,3.1,-1.8,1.7],"Norfolk city, Virginia":[-3.3,3.2,-3,2.7,-2.6,2.7,-1.5,1.4],"Norton city, Virginia":[-1.5,2.1,-2.4,1.7,-2.8,4.6,-2.7,1.1],"Petersburg city, Virginia":[-3.7,4.1,-4.3,3.4,-2.1,2.4,-1.4,1.5],"Poquoson city, Virginia":[-2.7,2.3,-2.9,3.1,-3.8,3.3,-2.3,2.5],"Portsmouth city, Virginia":[-3.7,3.4,-2.9,3.1,-3.5,3.3,-1.7,1.7],"Radford city, Virginia":[-1.8,2.4,-1.3,1.4,-1.8,1.7,-0.6,1.3],"Richmond city, Virginia":[-3,2.9,-2.6,2.3,-2.1,2.3,-1.2,1.2],"Roanoke city, Virginia":[-2.9,3.6,-3.2,3.1,-3.2,3.1,-1.8,1.8],"Salem city, Virginia":[-2.3,1.8,-1.8,2.7,-3.6,3.4,-1.8,1.6],"Staunton city, Virginia":[-3.5,2.6,-2.9,2.1,-2.1,2.9,-1.3,1.7],"Suffolk city, Virginia":[-3.2,3.1,-3.5,2.8,-3.3,3.7,-2,2.1],"Virginia Beach city, Virginia":[-3.1,2.9,-3.2,3.1,-3.2,2.9,-1.9,1.8],"Waynesboro city, Virginia":[-3.6,3,-3.5,4,-2.6,2,-2.6,1.2],"Williamsburg city, Virginia":[-1.7,0.6,-1.2,1.7,-2.4,0.8,-0.9,1.2],"Winchester city, Virginia":[-3,3.1,-4.1,2.1,-3,3.4,-1.7,2.1]};
+  const ageBins = ["0–4","5–9","10–14","15–17"];
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(data) {
+    const maleData = data.filter((_, i) => i % 2 === 0);
+    const femaleData = data.filter((_, i) => i % 2 === 1);
+
+    const maxValue = Math.max(
+      ...maleData.map(Math.abs),
+      ...femaleData.map(Math.abs)
+    );
+    const padding = 1.0;
+    const xMax = +(maxValue + padding).toFixed(1);
+
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ageBins,
+        datasets: [
+          {
+            label: 'Male',
+            data: maleData,
+            backgroundColor: 'darkslategray'
+          },
+          {
+            label: 'Female',
+            data: femaleData,
+            backgroundColor: 'darkorange'
+          }
+        ]
+      },
+      options: {
+        indexAxis: 'y',
+        responsive: true,
+        scales: {
+          x: {
+            min: -xMax,
+            max: xMax,
+            ticks: {
+              callback: value => Math.abs(value).toFixed(1) + '%'
+            }
+          },
+          y: {
+            stacked: false
+          }
+        },
+        plugins: {
+          legend: {
+            position: 'top',
+            align: 'start',
+            labels: {
+              usePointStyle: true
+            }
+          },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.dataset.label + ': ' + Math.abs(ctx.parsed.x).toFixed(1) + '%'
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(Object.values(ageData[this.value]));
+  });
+
+  renderChart(Object.values(ageData['Statewide']));</script>
+  </body>
+</html>
+</html>

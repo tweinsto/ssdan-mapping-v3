@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Language Spoken at Home – Maryland</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          text-align: center;
+          margin: 2rem;
+        }
+        select {
+          font-size: 1rem;
+          padding: 0.4rem;
+          margin-bottom: 1rem;
+        }
+        canvas {
+          width: 100%;
+          max-width: 700px;
+          height: 800px;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Language Spoken at Home – Maryland</h2>
+    <label>Select County, State:</label>
+    <select id="countySelect"><option value='Statewide'>Statewide</option>
+<option value='Allegany County, Maryland'>Allegany County, Maryland</option>
+<option value='Anne Arundel County, Maryland'>Anne Arundel County, Maryland</option>
+<option value='Baltimore city, Maryland'>Baltimore city, Maryland</option>
+<option value='Baltimore County, Maryland'>Baltimore County, Maryland</option>
+<option value='Calvert County, Maryland'>Calvert County, Maryland</option>
+<option value='Caroline County, Maryland'>Caroline County, Maryland</option>
+<option value='Carroll County, Maryland'>Carroll County, Maryland</option>
+<option value='Cecil County, Maryland'>Cecil County, Maryland</option>
+<option value='Charles County, Maryland'>Charles County, Maryland</option>
+<option value='Dorchester County, Maryland'>Dorchester County, Maryland</option>
+<option value='Frederick County, Maryland'>Frederick County, Maryland</option>
+<option value='Garrett County, Maryland'>Garrett County, Maryland</option>
+<option value='Harford County, Maryland'>Harford County, Maryland</option>
+<option value='Howard County, Maryland'>Howard County, Maryland</option>
+<option value='Kent County, Maryland'>Kent County, Maryland</option>
+<option value='Montgomery County, Maryland'>Montgomery County, Maryland</option>
+<option value='Prince George's County, Maryland'>Prince George's County, Maryland</option>
+<option value='Queen Anne's County, Maryland'>Queen Anne's County, Maryland</option>
+<option value='Somerset County, Maryland'>Somerset County, Maryland</option>
+<option value='St. Mary's County, Maryland'>St. Mary's County, Maryland</option>
+<option value='Talbot County, Maryland'>Talbot County, Maryland</option>
+<option value='Washington County, Maryland'>Washington County, Maryland</option>
+<option value='Wicomico County, Maryland'>Wicomico County, Maryland</option>
+<option value='Worcester County, Maryland'>Worcester County, Maryland</option></select>
+    <canvas id="barChart" width="700" height="700"></canvas>
+    <script>  const languageData = {"Statewide":{"Arabic":0.4,"Chinese (incl. Mandarin, Cantonese)":1.3,"English":78.8,"French, Haitian, or Cajun":1.6,"German or other West Germanic":0.6,"Korean":0.7,"Other Asian & Pacific":1.1,"Other Indo-European":2.7,"Other and Unspecified":2.7,"Russian, Polish, other Slavic":0.8,"Spanish":8.4,"Tagalog (incl. Filipino)":0.7,"Vietnamese":0.3},"Allegany County, Maryland":{"Arabic":0.1,"Chinese (incl. Mandarin, Cantonese)":0.5,"English":95.6,"French, Haitian, or Cajun":0.3,"German or other West Germanic":0.6,"Korean":0.1,"Other Asian & Pacific":0.2,"Other Indo-European":0.4,"Other and Unspecified":0,"Russian, Polish, other Slavic":0.1,"Spanish":1.9,"Tagalog (incl. Filipino)":0.1,"Vietnamese":0.1},"Anne Arundel County, Maryland":{"Arabic":0.3,"Chinese (incl. Mandarin, Cantonese)":0.6,"English":83.8,"French, Haitian, or Cajun":0.7,"German or other West Germanic":0.8,"Korean":0.5,"Other Asian & Pacific":0.8,"Other Indo-European":2.1,"Other and Unspecified":1.5,"Russian, Polish, other Slavic":0.5,"Spanish":7.1,"Tagalog (incl. Filipino)":1,"Vietnamese":0.2},"Baltimore city, Maryland":{"Arabic":0.6,"Chinese (incl. Mandarin, Cantonese)":0.6,"English":87,"French, Haitian, or Cajun":1.2,"German or other West Germanic":0.4,"Korean":0.4,"Other Asian & Pacific":0.6,"Other Indo-European":1.3,"Other and Unspecified":1.4,"Russian, Polish, other Slavic":0.5,"Spanish":5.6,"Tagalog (incl. Filipino)":0.2,"Vietnamese":0.1},"Baltimore County, Maryland":{"Arabic":0.5,"Chinese (incl. Mandarin, Cantonese)":0.8,"English":83.5,"French, Haitian, or Cajun":0.9,"German or other West Germanic":0.4,"Korean":0.5,"Other Asian & Pacific":0.7,"Other Indo-European":3,"Other and Unspecified":2.7,"Russian, Polish, other Slavic":1.2,"Spanish":4.9,"Tagalog (incl. Filipino)":0.6,"Vietnamese":0.2},"Calvert County, Maryland":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0.2,"English":92.7,"French, Haitian, or Cajun":0.5,"German or other West Germanic":0.6,"Korean":0,"Other Asian & Pacific":0.4,"Other Indo-European":1.1,"Other and Unspecified":0.3,"Russian, Polish, other Slavic":0.4,"Spanish":3.1,"Tagalog (incl. Filipino)":0.6,"Vietnamese":0.1},"Caroline County, Maryland":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0.1,"English":92.6,"French, Haitian, or Cajun":0.6,"German or other West Germanic":0.1,"Korean":0,"Other Asian & Pacific":0.2,"Other Indo-European":0.5,"Other and Unspecified":0.8,"Russian, Polish, other Slavic":0.3,"Spanish":4.6,"Tagalog (incl. Filipino)":0.1,"Vietnamese":0},"Carroll County, Maryland":{"Arabic":0.1,"Chinese (incl. Mandarin, Cantonese)":0.4,"English":91.9,"French, Haitian, or Cajun":0.4,"German or other West Germanic":0.7,"Korean":0.3,"Other Asian & Pacific":0.5,"Other Indo-European":1.1,"Other and Unspecified":0.4,"Russian, Polish, other Slavic":0.4,"Spanish":3.5,"Tagalog (incl. Filipino)":0.2,"Vietnamese":0.1},"Cecil County, Maryland":{"Arabic":0.1,"Chinese (incl. Mandarin, Cantonese)":0.3,"English":91.5,"French, Haitian, or Cajun":0.4,"German or other West Germanic":0.7,"Korean":0,"Other Asian & Pacific":0.4,"Other Indo-European":0.9,"Other and Unspecified":0.7,"Russian, Polish, other Slavic":0.2,"Spanish":4.4,"Tagalog (incl. Filipino)":0.2,"Vietnamese":0},"Charles County, Maryland":{"Arabic":0.2,"Chinese (incl. Mandarin, Cantonese)":0.4,"English":87.6,"French, Haitian, or Cajun":0.8,"German or other West Germanic":0.5,"Korean":0.4,"Other Asian & Pacific":0.5,"Other Indo-European":1,"Other and Unspecified":1.5,"Russian, Polish, other Slavic":0.2,"Spanish":5.4,"Tagalog (incl. Filipino)":1.2,"Vietnamese":0.2},"Dorchester County, Maryland":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0.3,"English":94.9,"French, Haitian, or Cajun":0.4,"German or other West Germanic":0.4,"Korean":0,"Other Asian & Pacific":0.1,"Other Indo-European":0.6,"Other and Unspecified":0.2,"Russian, Polish, other Slavic":0.1,"Spanish":2.9,"Tagalog (incl. Filipino)":0.1,"Vietnamese":0},"Frederick County, Maryland":{"Arabic":0.2,"Chinese (incl. Mandarin, Cantonese)":0.7,"English":81.5,"French, Haitian, or Cajun":1,"German or other West Germanic":0.6,"Korean":0.4,"Other Asian & Pacific":1.1,"Other Indo-European":2.3,"Other and Unspecified":1.4,"Russian, Polish, other Slavic":0.8,"Spanish":9.2,"Tagalog (incl. Filipino)":0.5,"Vietnamese":0.2},"Garrett County, Maryland":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":95.9,"French, Haitian, or Cajun":0.1,"German or other West Germanic":1.5,"Korean":0,"Other Asian & Pacific":0.2,"Other Indo-European":0.3,"Other and Unspecified":0,"Russian, Polish, other Slavic":0,"Spanish":1.8,"Tagalog (incl. Filipino)":0.1,"Vietnamese":0},"Harford County, Maryland":{"Arabic":0.1,"Chinese (incl. Mandarin, Cantonese)":0.5,"English":89.1,"French, Haitian, or Cajun":0.4,"German or other West Germanic":1,"Korean":0.5,"Other Asian & Pacific":0.4,"Other Indo-European":1.4,"Other and Unspecified":0.9,"Russian, Polish, other Slavic":0.8,"Spanish":4.1,"Tagalog (incl. Filipino)":0.4,"Vietnamese":0.3},"Howard County, Maryland":{"Arabic":0.9,"Chinese (incl. Mandarin, Cantonese)":3.5,"English":70.3,"French, Haitian, or Cajun":1.2,"German or other West Germanic":0.4,"Korean":3.4,"Other Asian & Pacific":3.3,"Other Indo-European":5.8,"Other and Unspecified":3,"Russian, Polish, other Slavic":0.9,"Spanish":6.2,"Tagalog (incl. Filipino)":0.5,"Vietnamese":0.5},"Kent County, Maryland":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0.1,"English":94.6,"French, Haitian, or Cajun":0.8,"German or other West Germanic":0.3,"Korean":0,"Other Asian & Pacific":0.1,"Other Indo-European":1.1,"Other and Unspecified":0,"Russian, Polish, other Slavic":0.1,"Spanish":2.9,"Tagalog (incl. Filipino)":0,"Vietnamese":0},"Montgomery County, Maryland":{"Arabic":0.7,"Chinese (incl. Mandarin, Cantonese)":4.2,"English":55.9,"French, Haitian, or Cajun":3.5,"German or other West Germanic":0.8,"Korean":1.5,"Other Asian & Pacific":2.5,"Other Indo-European":6.3,"Other and Unspecified":5.3,"Russian, Polish, other Slavic":1.6,"Spanish":15.7,"Tagalog (incl. Filipino)":1,"Vietnamese":1},"Prince George's County, Maryland":{"Arabic":0.3,"Chinese (incl. Mandarin, Cantonese)":0.6,"English":72.5,"French, Haitian, or Cajun":2.9,"German or other West Germanic":0.2,"Korean":0.4,"Other Asian & Pacific":0.8,"Other Indo-European":1.4,"Other and Unspecified":5.3,"Russian, Polish, other Slavic":0.1,"Spanish":14.4,"Tagalog (incl. Filipino)":0.8,"Vietnamese":0.2},"Queen Anne's County, Maryland":{"Arabic":0.1,"Chinese (incl. Mandarin, Cantonese)":0.4,"English":92.6,"French, Haitian, or Cajun":0.4,"German or other West Germanic":0.4,"Korean":0.1,"Other Asian & Pacific":0.4,"Other Indo-European":0.9,"Other and Unspecified":0.4,"Russian, Polish, other Slavic":0.2,"Spanish":3.5,"Tagalog (incl. Filipino)":0.6,"Vietnamese":0},"Somerset County, Maryland":{"Arabic":1.3,"Chinese (incl. Mandarin, Cantonese)":0,"English":95.5,"French, Haitian, or Cajun":0.1,"German or other West Germanic":0,"Korean":0,"Other Asian & Pacific":0.1,"Other Indo-European":0,"Other and Unspecified":1.8,"Russian, Polish, other Slavic":0,"Spanish":1.1,"Tagalog (incl. Filipino)":0.1,"Vietnamese":0},"St. Mary's County, Maryland":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0.4,"English":91.3,"French, Haitian, or Cajun":0.5,"German or other West Germanic":0.8,"Korean":0.2,"Other Asian & Pacific":0.6,"Other Indo-European":0.8,"Other and Unspecified":0.6,"Russian, Polish, other Slavic":0.3,"Spanish":3.4,"Tagalog (incl. Filipino)":0.8,"Vietnamese":0.1},"Talbot County, Maryland":{"Arabic":0.1,"Chinese (incl. Mandarin, Cantonese)":0.2,"English":91.4,"French, Haitian, or Cajun":0.5,"German or other West Germanic":0.2,"Korean":0,"Other Asian & Pacific":0.1,"Other Indo-European":1.3,"Other and Unspecified":0.2,"Russian, Polish, other Slavic":0.3,"Spanish":5.4,"Tagalog (incl. Filipino)":0.2,"Vietnamese":0.1},"Washington County, Maryland":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0.4,"English":89.7,"French, Haitian, or Cajun":0.7,"German or other West Germanic":0.5,"Korean":0.2,"Other Asian & Pacific":0.3,"Other Indo-European":1,"Other and Unspecified":1.4,"Russian, Polish, other Slavic":0.2,"Spanish":5.1,"Tagalog (incl. Filipino)":0.4,"Vietnamese":0.1},"Wicomico County, Maryland":{"Arabic":0.1,"Chinese (incl. Mandarin, Cantonese)":0.4,"English":86.6,"French, Haitian, or Cajun":3.3,"German or other West Germanic":0.5,"Korean":0.8,"Other Asian & Pacific":0.3,"Other Indo-European":1.6,"Other and Unspecified":0.2,"Russian, Polish, other Slavic":0.3,"Spanish":5.3,"Tagalog (incl. Filipino)":0.3,"Vietnamese":0.2},"Worcester County, Maryland":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0.3,"English":91,"French, Haitian, or Cajun":0.7,"German or other West Germanic":0.4,"Korean":0,"Other Asian & Pacific":0.5,"Other Indo-European":2,"Other and Unspecified":0.4,"Russian, Polish, other Slavic":1.3,"Spanish":3.1,"Tagalog (incl. Filipino)":0,"Vietnamese":0.3}};
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: Object.keys(values),
+        datasets: [{
+          label: 'Share (%)',
+          data: Object.values(values),
+          backgroundColor: '#4576a7'
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.parsed.y + '%'
+            }
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 100,
+            title: {
+              display: true,
+              text: 'Population Share (%)'
+            }
+          },
+          x: {
+            title: {
+              display: true,
+              text: 'Language Group'
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(languageData[this.value]);
+  });
+
+  renderChart(languageData['Statewide']);</script>
+  </body>
+</html>
+</html>

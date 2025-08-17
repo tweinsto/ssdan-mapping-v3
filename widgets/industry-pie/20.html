@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <title>Industry Distribution – Kansas</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+        canvas { max-width: 600px; height: 500px; }
+        select { padding: 0.5rem; font-size: 1rem; margin: 1rem; }
+        .legend { max-width: 600px; margin: 1rem auto; display: flex; flex-wrap: wrap; justify-content: center; font-size: 0.9rem; }
+        .legend-item { display: flex; align-items: center; margin: 0.3rem 1rem; }
+        .legend-color { width: 12px; height: 12px; margin-right: 6px; border: 1px solid #444; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Industry Distribution in Kansas</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Allen County, Kansas">Allen County, Kansas</option>
+      <option value="Anderson County, Kansas">Anderson County, Kansas</option>
+      <option value="Atchison County, Kansas">Atchison County, Kansas</option>
+      <option value="Barber County, Kansas">Barber County, Kansas</option>
+      <option value="Barton County, Kansas">Barton County, Kansas</option>
+      <option value="Bourbon County, Kansas">Bourbon County, Kansas</option>
+      <option value="Brown County, Kansas">Brown County, Kansas</option>
+      <option value="Butler County, Kansas">Butler County, Kansas</option>
+      <option value="Chase County, Kansas">Chase County, Kansas</option>
+      <option value="Chautauqua County, Kansas">Chautauqua County, Kansas</option>
+      <option value="Cherokee County, Kansas">Cherokee County, Kansas</option>
+      <option value="Cheyenne County, Kansas">Cheyenne County, Kansas</option>
+      <option value="Clark County, Kansas">Clark County, Kansas</option>
+      <option value="Clay County, Kansas">Clay County, Kansas</option>
+      <option value="Cloud County, Kansas">Cloud County, Kansas</option>
+      <option value="Coffey County, Kansas">Coffey County, Kansas</option>
+      <option value="Comanche County, Kansas">Comanche County, Kansas</option>
+      <option value="Cowley County, Kansas">Cowley County, Kansas</option>
+      <option value="Crawford County, Kansas">Crawford County, Kansas</option>
+      <option value="Decatur County, Kansas">Decatur County, Kansas</option>
+      <option value="Dickinson County, Kansas">Dickinson County, Kansas</option>
+      <option value="Doniphan County, Kansas">Doniphan County, Kansas</option>
+      <option value="Douglas County, Kansas">Douglas County, Kansas</option>
+      <option value="Edwards County, Kansas">Edwards County, Kansas</option>
+      <option value="Elk County, Kansas">Elk County, Kansas</option>
+      <option value="Ellis County, Kansas">Ellis County, Kansas</option>
+      <option value="Ellsworth County, Kansas">Ellsworth County, Kansas</option>
+      <option value="Finney County, Kansas">Finney County, Kansas</option>
+      <option value="Ford County, Kansas">Ford County, Kansas</option>
+      <option value="Franklin County, Kansas">Franklin County, Kansas</option>
+      <option value="Geary County, Kansas">Geary County, Kansas</option>
+      <option value="Gove County, Kansas">Gove County, Kansas</option>
+      <option value="Graham County, Kansas">Graham County, Kansas</option>
+      <option value="Grant County, Kansas">Grant County, Kansas</option>
+      <option value="Gray County, Kansas">Gray County, Kansas</option>
+      <option value="Greeley County, Kansas">Greeley County, Kansas</option>
+      <option value="Greenwood County, Kansas">Greenwood County, Kansas</option>
+      <option value="Hamilton County, Kansas">Hamilton County, Kansas</option>
+      <option value="Harper County, Kansas">Harper County, Kansas</option>
+      <option value="Harvey County, Kansas">Harvey County, Kansas</option>
+      <option value="Haskell County, Kansas">Haskell County, Kansas</option>
+      <option value="Hodgeman County, Kansas">Hodgeman County, Kansas</option>
+      <option value="Jackson County, Kansas">Jackson County, Kansas</option>
+      <option value="Jefferson County, Kansas">Jefferson County, Kansas</option>
+      <option value="Jewell County, Kansas">Jewell County, Kansas</option>
+      <option value="Johnson County, Kansas">Johnson County, Kansas</option>
+      <option value="Kearny County, Kansas">Kearny County, Kansas</option>
+      <option value="Kingman County, Kansas">Kingman County, Kansas</option>
+      <option value="Kiowa County, Kansas">Kiowa County, Kansas</option>
+      <option value="Labette County, Kansas">Labette County, Kansas</option>
+      <option value="Lane County, Kansas">Lane County, Kansas</option>
+      <option value="Leavenworth County, Kansas">Leavenworth County, Kansas</option>
+      <option value="Lincoln County, Kansas">Lincoln County, Kansas</option>
+      <option value="Linn County, Kansas">Linn County, Kansas</option>
+      <option value="Logan County, Kansas">Logan County, Kansas</option>
+      <option value="Lyon County, Kansas">Lyon County, Kansas</option>
+      <option value="Marion County, Kansas">Marion County, Kansas</option>
+      <option value="Marshall County, Kansas">Marshall County, Kansas</option>
+      <option value="McPherson County, Kansas">McPherson County, Kansas</option>
+      <option value="Meade County, Kansas">Meade County, Kansas</option>
+      <option value="Miami County, Kansas">Miami County, Kansas</option>
+      <option value="Mitchell County, Kansas">Mitchell County, Kansas</option>
+      <option value="Montgomery County, Kansas">Montgomery County, Kansas</option>
+      <option value="Morris County, Kansas">Morris County, Kansas</option>
+      <option value="Morton County, Kansas">Morton County, Kansas</option>
+      <option value="Nemaha County, Kansas">Nemaha County, Kansas</option>
+      <option value="Neosho County, Kansas">Neosho County, Kansas</option>
+      <option value="Ness County, Kansas">Ness County, Kansas</option>
+      <option value="Norton County, Kansas">Norton County, Kansas</option>
+      <option value="Osage County, Kansas">Osage County, Kansas</option>
+      <option value="Osborne County, Kansas">Osborne County, Kansas</option>
+      <option value="Ottawa County, Kansas">Ottawa County, Kansas</option>
+      <option value="Pawnee County, Kansas">Pawnee County, Kansas</option>
+      <option value="Phillips County, Kansas">Phillips County, Kansas</option>
+      <option value="Pottawatomie County, Kansas">Pottawatomie County, Kansas</option>
+      <option value="Pratt County, Kansas">Pratt County, Kansas</option>
+      <option value="Rawlins County, Kansas">Rawlins County, Kansas</option>
+      <option value="Reno County, Kansas">Reno County, Kansas</option>
+      <option value="Republic County, Kansas">Republic County, Kansas</option>
+      <option value="Rice County, Kansas">Rice County, Kansas</option>
+      <option value="Riley County, Kansas">Riley County, Kansas</option>
+      <option value="Rooks County, Kansas">Rooks County, Kansas</option>
+      <option value="Rush County, Kansas">Rush County, Kansas</option>
+      <option value="Russell County, Kansas">Russell County, Kansas</option>
+      <option value="Saline County, Kansas">Saline County, Kansas</option>
+      <option value="Scott County, Kansas">Scott County, Kansas</option>
+      <option value="Sedgwick County, Kansas">Sedgwick County, Kansas</option>
+      <option value="Seward County, Kansas">Seward County, Kansas</option>
+      <option value="Shawnee County, Kansas">Shawnee County, Kansas</option>
+      <option value="Sheridan County, Kansas">Sheridan County, Kansas</option>
+      <option value="Sherman County, Kansas">Sherman County, Kansas</option>
+      <option value="Smith County, Kansas">Smith County, Kansas</option>
+      <option value="Stafford County, Kansas">Stafford County, Kansas</option>
+      <option value="Stanton County, Kansas">Stanton County, Kansas</option>
+      <option value="Stevens County, Kansas">Stevens County, Kansas</option>
+      <option value="Sumner County, Kansas">Sumner County, Kansas</option>
+      <option value="Thomas County, Kansas">Thomas County, Kansas</option>
+      <option value="Trego County, Kansas">Trego County, Kansas</option>
+      <option value="Wabaunsee County, Kansas">Wabaunsee County, Kansas</option>
+      <option value="Wallace County, Kansas">Wallace County, Kansas</option>
+      <option value="Washington County, Kansas">Washington County, Kansas</option>
+      <option value="Wichita County, Kansas">Wichita County, Kansas</option>
+      <option value="Wilson County, Kansas">Wilson County, Kansas</option>
+      <option value="Woodson County, Kansas">Woodson County, Kansas</option>
+      <option value="Wyandotte County, Kansas">Wyandotte County, Kansas</option>
+    </select>
+    <canvas id="pieChart"></canvas>
+    <div class="legend">
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#66CC66;"></div>
+        <span>Agriculture, forestry, fishing, and hunting</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#996600;"></div>
+        <span>Mining</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FF6600;"></div>
+        <span>Utilities</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FFCC33;"></div>
+        <span>Construction</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FF0000;"></div>
+        <span>Manufacturing</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FF66FF;"></div>
+        <span>Wholesale trade</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#3399FF;"></div>
+        <span>Retail trade</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#00CC99;"></div>
+        <span>Transportation and warehousing</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#999966;"></div>
+        <span>Information</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#6666FF;"></div>
+        <span>Finance and insurance</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FF99CC;"></div>
+        <span>Professional, scientific, and technical services</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#66CCCC;"></div>
+        <span>Educational services</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FF9933;"></div>
+        <span>Healthcare and social assistance</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#CC99FF;"></div>
+        <span>Arts, entertainment, and recreation</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FF9999;"></div>
+        <span>Accommodation and food services</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#CCCC00;"></div>
+        <span>Other services</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#663300;"></div>
+        <span>Public administration</span>
+      </div>
+    </div>
+    <script>const data = [];
+const colors = ["#66CC66","#996600","#FF6600","#FFCC33","#FF0000","#FF66FF","#3399FF","#00CC99","#999966","#6666FF","#FF99CC","#66CCCC","#FF9933","#CC99FF","#FF9999","#CCCC00","#663300"];
+let chart;
+function renderChart(region) {
+  const ctx = document.getElementById("pieChart").getContext("2d");
+  const labels = Object.keys(data[region]);
+  const values = Object.values(data[region]);
+  const backgroundColors = labels.map(l => colors[l] || "#999");
+  if (chart) chart.destroy();
+  chart = new Chart(ctx, {
+    type: "pie",
+    data: {
+      labels: labels,
+      datasets: [{
+        data: values,
+        backgroundColor: backgroundColors
+      }]
+    },
+    options: {
+      plugins: {
+        tooltip: {
+          callbacks: {
+            label: ctx => ctx.label + ": " + ctx.raw + "%"
+          }
+        }
+      }
+    }
+  });
+}
+document.getElementById("countySelect").addEventListener("change", function() {
+  renderChart(this.value);
+});
+renderChart("Statewide");</script>
+  </body>
+</html>
+</html>

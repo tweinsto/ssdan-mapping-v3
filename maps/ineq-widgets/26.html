@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Income Distribution – Michigan</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          text-align: center;
+          margin: 2rem;
+        }
+        select {
+          font-size: 1rem;
+          padding: 0.4rem;
+          margin-bottom: 1rem;
+        }
+        canvas {
+          width: 100%;
+          max-width: 700px;
+          height: 400px;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Income Share by Quintile – Michigan</h2>
+    <label>Select County, State:</label>
+    <select id="countySelect"><option value='Statewide'>Statewide</option>
+<option value='Alcona, Michigan'>Alcona, Michigan</option>
+<option value='Alger, Michigan'>Alger, Michigan</option>
+<option value='Allegan, Michigan'>Allegan, Michigan</option>
+<option value='Alpena, Michigan'>Alpena, Michigan</option>
+<option value='Antrim, Michigan'>Antrim, Michigan</option>
+<option value='Arenac, Michigan'>Arenac, Michigan</option>
+<option value='Baraga, Michigan'>Baraga, Michigan</option>
+<option value='Barry, Michigan'>Barry, Michigan</option>
+<option value='Bay, Michigan'>Bay, Michigan</option>
+<option value='Benzie, Michigan'>Benzie, Michigan</option>
+<option value='Berrien, Michigan'>Berrien, Michigan</option>
+<option value='Branch, Michigan'>Branch, Michigan</option>
+<option value='Calhoun, Michigan'>Calhoun, Michigan</option>
+<option value='Cass, Michigan'>Cass, Michigan</option>
+<option value='Charlevoix, Michigan'>Charlevoix, Michigan</option>
+<option value='Cheboygan, Michigan'>Cheboygan, Michigan</option>
+<option value='Chippewa, Michigan'>Chippewa, Michigan</option>
+<option value='Clare, Michigan'>Clare, Michigan</option>
+<option value='Clinton, Michigan'>Clinton, Michigan</option>
+<option value='Crawford, Michigan'>Crawford, Michigan</option>
+<option value='Delta, Michigan'>Delta, Michigan</option>
+<option value='Dickinson, Michigan'>Dickinson, Michigan</option>
+<option value='Eaton, Michigan'>Eaton, Michigan</option>
+<option value='Emmet, Michigan'>Emmet, Michigan</option>
+<option value='Genesee, Michigan'>Genesee, Michigan</option>
+<option value='Gladwin, Michigan'>Gladwin, Michigan</option>
+<option value='Gogebic, Michigan'>Gogebic, Michigan</option>
+<option value='Grand Traverse, Michigan'>Grand Traverse, Michigan</option>
+<option value='Gratiot, Michigan'>Gratiot, Michigan</option>
+<option value='Hillsdale, Michigan'>Hillsdale, Michigan</option>
+<option value='Houghton, Michigan'>Houghton, Michigan</option>
+<option value='Huron, Michigan'>Huron, Michigan</option>
+<option value='Ingham, Michigan'>Ingham, Michigan</option>
+<option value='Ionia, Michigan'>Ionia, Michigan</option>
+<option value='Iosco, Michigan'>Iosco, Michigan</option>
+<option value='Iron, Michigan'>Iron, Michigan</option>
+<option value='Isabella, Michigan'>Isabella, Michigan</option>
+<option value='Jackson, Michigan'>Jackson, Michigan</option>
+<option value='Kalamazoo, Michigan'>Kalamazoo, Michigan</option>
+<option value='Kalkaska, Michigan'>Kalkaska, Michigan</option>
+<option value='Kent, Michigan'>Kent, Michigan</option>
+<option value='Keweenaw, Michigan'>Keweenaw, Michigan</option>
+<option value='Lake, Michigan'>Lake, Michigan</option>
+<option value='Lapeer, Michigan'>Lapeer, Michigan</option>
+<option value='Leelanau, Michigan'>Leelanau, Michigan</option>
+<option value='Lenawee, Michigan'>Lenawee, Michigan</option>
+<option value='Livingston, Michigan'>Livingston, Michigan</option>
+<option value='Luce, Michigan'>Luce, Michigan</option>
+<option value='Mackinac, Michigan'>Mackinac, Michigan</option>
+<option value='Macomb, Michigan'>Macomb, Michigan</option>
+<option value='Manistee, Michigan'>Manistee, Michigan</option>
+<option value='Marquette, Michigan'>Marquette, Michigan</option>
+<option value='Mason, Michigan'>Mason, Michigan</option>
+<option value='Mecosta, Michigan'>Mecosta, Michigan</option>
+<option value='Menominee, Michigan'>Menominee, Michigan</option>
+<option value='Midland, Michigan'>Midland, Michigan</option>
+<option value='Missaukee, Michigan'>Missaukee, Michigan</option>
+<option value='Monroe, Michigan'>Monroe, Michigan</option>
+<option value='Montcalm, Michigan'>Montcalm, Michigan</option>
+<option value='Montmorency, Michigan'>Montmorency, Michigan</option>
+<option value='Muskegon, Michigan'>Muskegon, Michigan</option>
+<option value='Newaygo, Michigan'>Newaygo, Michigan</option>
+<option value='Oakland, Michigan'>Oakland, Michigan</option>
+<option value='Oceana, Michigan'>Oceana, Michigan</option>
+<option value='Ogemaw, Michigan'>Ogemaw, Michigan</option>
+<option value='Ontonagon, Michigan'>Ontonagon, Michigan</option>
+<option value='Osceola, Michigan'>Osceola, Michigan</option>
+<option value='Oscoda, Michigan'>Oscoda, Michigan</option>
+<option value='Otsego, Michigan'>Otsego, Michigan</option>
+<option value='Ottawa, Michigan'>Ottawa, Michigan</option>
+<option value='Presque Isle, Michigan'>Presque Isle, Michigan</option>
+<option value='Roscommon, Michigan'>Roscommon, Michigan</option>
+<option value='Saginaw, Michigan'>Saginaw, Michigan</option>
+<option value='Sanilac, Michigan'>Sanilac, Michigan</option>
+<option value='Schoolcraft, Michigan'>Schoolcraft, Michigan</option>
+<option value='Shiawassee, Michigan'>Shiawassee, Michigan</option>
+<option value='St. Clair, Michigan'>St. Clair, Michigan</option>
+<option value='St. Joseph, Michigan'>St. Joseph, Michigan</option>
+<option value='Tuscola, Michigan'>Tuscola, Michigan</option>
+<option value='Van Buren, Michigan'>Van Buren, Michigan</option>
+<option value='Washtenaw, Michigan'>Washtenaw, Michigan</option>
+<option value='Wayne, Michigan'>Wayne, Michigan</option>
+<option value='Wexford, Michigan'>Wexford, Michigan</option></select>
+    <canvas id="barChart" width="700" height="400"></canvas>
+    <script>  const incomeData = {"Statewide":[5.4,8.7,13.2,26.9,45.8],"Alcona, Michigan":[5.5,8.9,13.4,26.7,45.5],"Alger, Michigan":[6.6,10.5,14.9,27.1,40.9],"Allegan, Michigan":[6,9.3,13.2,26.4,45.1],"Alpena, Michigan":[4.7,7.6,12.1,26.5,49],"Antrim, Michigan":[5.5,8.7,12.6,26.5,46.7],"Arenac, Michigan":[6.2,9.7,14.1,27.1,42.9],"Baraga, Michigan":[5.2,8.9,13.8,27.2,45],"Barry, Michigan":[5.3,8.3,12.3,25.9,48.3],"Bay, Michigan":[5.6,9.1,14.2,27.7,43.5],"Benzie, Michigan":[5,7.9,11.5,25.8,49.9],"Berrien, Michigan":[4.5,7.7,12.4,27.4,48],"Branch, Michigan":[5.8,9.1,13.2,26.4,45.6],"Calhoun, Michigan":[5.2,8.5,13.1,27.4,45.9],"Cass, Michigan":[4.7,7.8,12.3,26.9,48.3],"Charlevoix, Michigan":[5.1,8,11.8,26.5,48.6],"Cheboygan, Michigan":[5.2,8.6,12.6,26.8,46.9],"Chippewa, Michigan":[5.1,8.5,12.5,26.2,47.6],"Clare, Michigan":[5.1,8.1,12.2,26.4,48.3],"Clinton, Michigan":[5.6,9,13.6,26.6,45.2],"Crawford, Michigan":[6.5,10.6,15.5,27.4,40],"Delta, Michigan":[4.5,7.5,11.8,26.6,49.6],"Dickinson, Michigan":[5.7,9.1,13.4,26.9,44.8],"Eaton, Michigan":[6.3,9.7,14.1,26.7,43.2],"Emmet, Michigan":[4.8,7.4,11.5,27,49.2],"Genesee, Michigan":[5,8.1,12.6,27.3,47.1],"Gladwin, Michigan":[5.3,8.5,13.3,26.8,46.1],"Gogebic, Michigan":[4.7,8,12.4,27.9,47],"Grand Traverse, Michigan":[5.3,8.4,12.1,26,48.3],"Gratiot, Michigan":[5.2,8.1,12.2,26.4,48.1],"Hillsdale, Michigan":[5.5,8.8,13.1,26.8,45.9],"Houghton, Michigan":[4.8,8.1,12.8,27.8,46.5],"Huron, Michigan":[5.4,8.7,13,27.1,45.8],"Ingham, Michigan":[4.7,7.9,12.4,27.3,47.7],"Ionia, Michigan":[6.6,10.3,14.5,26.4,42.2],"Iosco, Michigan":[4.9,8.3,12.7,27.3,46.7],"Iron, Michigan":[5.2,9,13.7,26.7,45.5],"Isabella, Michigan":[4.6,8.1,13,27.5,46.8],"Jackson, Michigan":[5.2,8.2,12.5,26.8,47.3],"Kalamazoo, Michigan":[4.8,7.9,12.5,27.1,47.8],"Kalkaska, Michigan":[5.7,9,13.5,26,45.8],"Kent, Michigan":[5.2,8.2,12.4,26.4,47.8],"Keweenaw, Michigan":[4.4,6.3,10.8,26.8,51.7],"Lake, Michigan":[5.2,8.8,12.9,27.2,46],"Lapeer, Michigan":[6,9.1,13.6,26.5,44.8],"Leelanau, Michigan":[4.7,7.4,10.9,26,51],"Lenawee, Michigan":[6,9.4,14.1,27.1,43.3],"Livingston, Michigan":[5.9,9.3,13.6,26.5,44.7],"Luce, Michigan":[5.8,9.6,14.1,27.8,42.7],"Mackinac, Michigan":[5.3,8.7,13.1,26.4,46.5],"Macomb, Michigan":[5.7,9.3,14,27,44],"Manistee, Michigan":[5.1,8.1,11.9,26.4,48.5],"Marquette, Michigan":[5.9,9.5,13.8,26.7,44.1],"Mason, Michigan":[5.5,9,13.6,27.1,44.9],"Mecosta, Michigan":[6.1,9.8,14.9,27.2,41.9],"Menominee, Michigan":[5.8,9.3,14.4,27.5,43],"Midland, Michigan":[5,8.5,13.2,27.5,45.8],"Missaukee, Michigan":[5.7,8.9,12.9,26.4,46.2],"Monroe, Michigan":[5.7,9.3,14.2,27.1,43.7],"Montcalm, Michigan":[6.9,10.6,15,27.1,40.4],"Montmorency, Michigan":[5.8,9.3,14.2,27.7,43],"Muskegon, Michigan":[5.4,8.6,12.8,26.3,47],"Newaygo, Michigan":[5.9,9.5,14.1,26.9,43.6],"Oakland, Michigan":[4.8,8,12.4,27.1,47.6],"Oceana, Michigan":[5.7,9,13.3,26.2,45.8],"Ogemaw, Michigan":[5.2,8.5,13.1,27,46.2],"Ontonagon, Michigan":[5.9,9.2,13.7,26.6,44.6],"Osceola, Michigan":[5.9,9.3,13.8,26.8,44.2],"Oscoda, Michigan":[6,9.6,14.2,27.2,42.8],"Otsego, Michigan":[5.8,9.1,13.5,26.7,44.9],"Ottawa, Michigan":[5.9,9.2,13.4,26.7,44.8],"Presque Isle, Michigan":[5.2,8.2,12.5,26.2,47.8],"Roscommon, Michigan":[4.8,7.6,11.7,26.6,49.3],"Saginaw, Michigan":[4.7,7.6,11.9,27.2,48.6],"Sanilac, Michigan":[5.9,9.1,13.9,27.1,44.1],"Schoolcraft, Michigan":[4.8,7.9,12,26,49.3],"Shiawassee, Michigan":[6,9.5,14.6,26.9,42.9],"St. Clair, Michigan":[5.6,9.1,13.6,27,44.7],"St. Joseph, Michigan":[6.1,9.9,14.6,26.6,42.7],"Tuscola, Michigan":[6.5,10.2,14.8,26.8,41.6],"Van Buren, Michigan":[5.7,9.8,14.7,27.2,42.7],"Washtenaw, Michigan":[4.4,7.6,12,27.5,48.5],"Wayne, Michigan":[4.4,7.7,12.5,27.8,47.7],"Wexford, Michigan":[5.4,8.8,13,26.8,46]};
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Bottom 20%', 'Second 20%', 'Middle 20%', 'Fourth 20%', 'Top 20%'],
+        datasets: [{
+          label: 'Share (%)',
+          data: values,
+          backgroundColor: '#4576a7'
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.parsed.y + '%'
+            }
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 100,
+            title: {
+              display: true,
+              text: 'Income Share (%)'
+            }
+          },
+          x: {
+            title: {
+              display: true,
+              text: 'Quintile'
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(Object.values(incomeData[this.value]));
+  });
+
+  renderChart(Object.values(incomeData['Statewide']));</script>
+  </body>
+</html>
+</html>

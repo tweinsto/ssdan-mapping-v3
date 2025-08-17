@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Language Spoken at Home – Utah</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          text-align: center;
+          margin: 2rem;
+        }
+        select {
+          font-size: 1rem;
+          padding: 0.4rem;
+          margin-bottom: 1rem;
+        }
+        canvas {
+          width: 100%;
+          max-width: 700px;
+          height: 800px;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Language Spoken at Home – Utah</h2>
+    <label>Select County, State:</label>
+    <select id="countySelect"><option value='Statewide'>Statewide</option>
+<option value='Beaver County, Utah'>Beaver County, Utah</option>
+<option value='Box Elder County, Utah'>Box Elder County, Utah</option>
+<option value='Cache County, Utah'>Cache County, Utah</option>
+<option value='Carbon County, Utah'>Carbon County, Utah</option>
+<option value='Daggett County, Utah'>Daggett County, Utah</option>
+<option value='Davis County, Utah'>Davis County, Utah</option>
+<option value='Duchesne County, Utah'>Duchesne County, Utah</option>
+<option value='Emery County, Utah'>Emery County, Utah</option>
+<option value='Garfield County, Utah'>Garfield County, Utah</option>
+<option value='Grand County, Utah'>Grand County, Utah</option>
+<option value='Iron County, Utah'>Iron County, Utah</option>
+<option value='Juab County, Utah'>Juab County, Utah</option>
+<option value='Kane County, Utah'>Kane County, Utah</option>
+<option value='Millard County, Utah'>Millard County, Utah</option>
+<option value='Morgan County, Utah'>Morgan County, Utah</option>
+<option value='Piute County, Utah'>Piute County, Utah</option>
+<option value='Rich County, Utah'>Rich County, Utah</option>
+<option value='Salt Lake County, Utah'>Salt Lake County, Utah</option>
+<option value='San Juan County, Utah'>San Juan County, Utah</option>
+<option value='Sanpete County, Utah'>Sanpete County, Utah</option>
+<option value='Sevier County, Utah'>Sevier County, Utah</option>
+<option value='Summit County, Utah'>Summit County, Utah</option>
+<option value='Tooele County, Utah'>Tooele County, Utah</option>
+<option value='Uintah County, Utah'>Uintah County, Utah</option>
+<option value='Utah County, Utah'>Utah County, Utah</option>
+<option value='Wasatch County, Utah'>Wasatch County, Utah</option>
+<option value='Washington County, Utah'>Washington County, Utah</option>
+<option value='Wayne County, Utah'>Wayne County, Utah</option>
+<option value='Weber County, Utah'>Weber County, Utah</option></select>
+    <canvas id="barChart" width="700" height="700"></canvas>
+    <script>  const languageData = {"Statewide":{"Arabic":0.2,"Chinese (incl. Mandarin, Cantonese)":0.8,"English":80.7,"French, Haitian, or Cajun":0.5,"German or other West Germanic":0.7,"Korean":0.2,"Other Asian & Pacific":1.4,"Other Indo-European":1.7,"Other and Unspecified":0.6,"Russian, Polish, other Slavic":0.5,"Spanish":12.1,"Tagalog (incl. Filipino)":0.3,"Vietnamese":0.3},"Beaver County, Utah":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":88.1,"French, Haitian, or Cajun":0.5,"German or other West Germanic":0,"Korean":0,"Other Asian & Pacific":0,"Other Indo-European":0.2,"Other and Unspecified":0,"Russian, Polish, other Slavic":0.1,"Spanish":11,"Tagalog (incl. Filipino)":0,"Vietnamese":0},"Box Elder County, Utah":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0.2,"English":90.5,"French, Haitian, or Cajun":0.2,"German or other West Germanic":0.6,"Korean":0,"Other Asian & Pacific":0.1,"Other Indo-European":0.2,"Other and Unspecified":0.1,"Russian, Polish, other Slavic":0.1,"Spanish":7.9,"Tagalog (incl. Filipino)":0.1,"Vietnamese":0},"Cache County, Utah":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0.6,"English":85.2,"French, Haitian, or Cajun":0.5,"German or other West Germanic":0.5,"Korean":0.2,"Other Asian & Pacific":1.3,"Other Indo-European":1.1,"Other and Unspecified":0.3,"Russian, Polish, other Slavic":0.2,"Spanish":9.9,"Tagalog (incl. Filipino)":0.1,"Vietnamese":0.1},"Carbon County, Utah":{"Arabic":0.1,"Chinese (incl. Mandarin, Cantonese)":0,"English":91.6,"French, Haitian, or Cajun":0,"German or other West Germanic":0.2,"Korean":0,"Other Asian & Pacific":0,"Other Indo-European":0.7,"Other and Unspecified":0.3,"Russian, Polish, other Slavic":0,"Spanish":6.7,"Tagalog (incl. Filipino)":0.3,"Vietnamese":0},"Daggett County, Utah":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":99.6,"French, Haitian, or Cajun":0,"German or other West Germanic":0,"Korean":0,"Other Asian & Pacific":0,"Other Indo-European":0,"Other and Unspecified":0,"Russian, Polish, other Slavic":0,"Spanish":0.4,"Tagalog (incl. Filipino)":0,"Vietnamese":0},"Davis County, Utah":{"Arabic":0.1,"Chinese (incl. Mandarin, Cantonese)":0.5,"English":84.4,"French, Haitian, or Cajun":0.5,"German or other West Germanic":0.9,"Korean":0.2,"Other Asian & Pacific":1.2,"Other Indo-European":1,"Other and Unspecified":0.3,"Russian, Polish, other Slavic":0.2,"Spanish":9.8,"Tagalog (incl. Filipino)":0.7,"Vietnamese":0.2},"Duchesne County, Utah":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0.3,"English":90.8,"French, Haitian, or Cajun":0.1,"German or other West Germanic":0.3,"Korean":0.2,"Other Asian & Pacific":0.3,"Other Indo-European":0.3,"Other and Unspecified":0.8,"Russian, Polish, other Slavic":0,"Spanish":6.5,"Tagalog (incl. Filipino)":0.3,"Vietnamese":0},"Emery County, Utah":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":1,"English":92,"French, Haitian, or Cajun":0,"German or other West Germanic":0.2,"Korean":0.1,"Other Asian & Pacific":0.6,"Other Indo-European":0.4,"Other and Unspecified":0.6,"Russian, Polish, other Slavic":0,"Spanish":5.2,"Tagalog (incl. Filipino)":0,"Vietnamese":0},"Garfield County, Utah":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":92.8,"French, Haitian, or Cajun":0.5,"German or other West Germanic":0.3,"Korean":0,"Other Asian & Pacific":0.7,"Other Indo-European":0,"Other and Unspecified":0,"Russian, Polish, other Slavic":0,"Spanish":5.7,"Tagalog (incl. Filipino)":0,"Vietnamese":0},"Grand County, Utah":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":90,"French, Haitian, or Cajun":0,"German or other West Germanic":0.2,"Korean":0,"Other Asian & Pacific":1.3,"Other Indo-European":0.4,"Other and Unspecified":3.2,"Russian, Polish, other Slavic":0.4,"Spanish":4.6,"Tagalog (incl. Filipino)":0,"Vietnamese":0},"Iron County, Utah":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0.7,"English":87.8,"French, Haitian, or Cajun":0.4,"German or other West Germanic":0.3,"Korean":0,"Other Asian & Pacific":0.7,"Other Indo-European":0.9,"Other and Unspecified":0.3,"Russian, Polish, other Slavic":0.2,"Spanish":8.3,"Tagalog (incl. Filipino)":0.4,"Vietnamese":0},"Juab County, Utah":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":93.1,"French, Haitian, or Cajun":0,"German or other West Germanic":0.2,"Korean":0,"Other Asian & Pacific":0,"Other Indo-European":0.2,"Other and Unspecified":0.1,"Russian, Polish, other Slavic":0,"Spanish":5.9,"Tagalog (incl. Filipino)":0.5,"Vietnamese":0},"Kane County, Utah":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":96.3,"French, Haitian, or Cajun":0.5,"German or other West Germanic":0.6,"Korean":0,"Other Asian & Pacific":0,"Other Indo-European":0,"Other and Unspecified":0.3,"Russian, Polish, other Slavic":0,"Spanish":1.9,"Tagalog (incl. Filipino)":0,"Vietnamese":0.4},"Millard County, Utah":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0.2,"English":87.5,"French, Haitian, or Cajun":0,"German or other West Germanic":0.3,"Korean":0.1,"Other Asian & Pacific":0.8,"Other Indo-European":0.6,"Other and Unspecified":0,"Russian, Polish, other Slavic":0,"Spanish":10.3,"Tagalog (incl. Filipino)":0.3,"Vietnamese":0},"Morgan County, Utah":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0.6,"English":89.3,"French, Haitian, or Cajun":0.2,"German or other West Germanic":1.2,"Korean":0,"Other Asian & Pacific":0.2,"Other Indo-European":2.8,"Other and Unspecified":0.5,"Russian, Polish, other Slavic":0.6,"Spanish":4.6,"Tagalog (incl. Filipino)":0,"Vietnamese":0},"Piute County, Utah":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":95.4,"French, Haitian, or Cajun":0,"German or other West Germanic":0,"Korean":0,"Other Asian & Pacific":0,"Other Indo-European":0,"Other and Unspecified":0,"Russian, Polish, other Slavic":0,"Spanish":4.6,"Tagalog (incl. Filipino)":0,"Vietnamese":0},"Rich County, Utah":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":93.9,"French, Haitian, or Cajun":0,"German or other West Germanic":1.2,"Korean":0,"Other Asian & Pacific":0,"Other Indo-European":0,"Other and Unspecified":0.4,"Russian, Polish, other Slavic":0,"Spanish":4.5,"Tagalog (incl. Filipino)":0,"Vietnamese":0},"Salt Lake County, Utah":{"Arabic":0.4,"Chinese (incl. Mandarin, Cantonese)":1,"English":76.6,"French, Haitian, or Cajun":0.6,"German or other West Germanic":0.7,"Korean":0.3,"Other Asian & Pacific":2,"Other Indo-European":2.3,"Other and Unspecified":0.7,"Russian, Polish, other Slavic":0.9,"Spanish":13.8,"Tagalog (incl. Filipino)":0.4,"Vietnamese":0.5},"San Juan County, Utah":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0.1,"English":53.3,"French, Haitian, or Cajun":0.2,"German or other West Germanic":0.1,"Korean":0,"Other Asian & Pacific":1.6,"Other Indo-European":0,"Other and Unspecified":39.5,"Russian, Polish, other Slavic":0.2,"Spanish":5,"Tagalog (incl. Filipino)":0,"Vietnamese":0},"Sanpete County, Utah":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":87.8,"French, Haitian, or Cajun":0.1,"German or other West Germanic":0.7,"Korean":0,"Other Asian & Pacific":0.9,"Other Indo-European":1.1,"Other and Unspecified":0,"Russian, Polish, other Slavic":0.2,"Spanish":8.5,"Tagalog (incl. Filipino)":0.7,"Vietnamese":0},"Sevier County, Utah":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":93.7,"French, Haitian, or Cajun":0.3,"German or other West Germanic":0.4,"Korean":0,"Other Asian & Pacific":0.4,"Other Indo-European":0.4,"Other and Unspecified":0.2,"Russian, Polish, other Slavic":0,"Spanish":4.2,"Tagalog (incl. Filipino)":0.3,"Vietnamese":0.1},"Summit County, Utah":{"Arabic":0.1,"Chinese (incl. Mandarin, Cantonese)":0.4,"English":83,"French, Haitian, or Cajun":1,"German or other West Germanic":1.4,"Korean":0.2,"Other Asian & Pacific":0.3,"Other Indo-European":1.1,"Other and Unspecified":0.2,"Russian, Polish, other Slavic":0.8,"Spanish":10.9,"Tagalog (incl. Filipino)":0.6,"Vietnamese":0},"Tooele County, Utah":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0.5,"English":81.4,"French, Haitian, or Cajun":1.1,"German or other West Germanic":0.8,"Korean":0.4,"Other Asian & Pacific":1,"Other Indo-European":1.8,"Other and Unspecified":0.3,"Russian, Polish, other Slavic":0.4,"Spanish":11.9,"Tagalog (incl. Filipino)":0.2,"Vietnamese":0.1},"Uintah County, Utah":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":91.3,"French, Haitian, or Cajun":0,"German or other West Germanic":0.2,"Korean":0,"Other Asian & Pacific":0.8,"Other Indo-European":0.4,"Other and Unspecified":2.1,"Russian, Polish, other Slavic":0.2,"Spanish":4.9,"Tagalog (incl. Filipino)":0,"Vietnamese":0},"Utah County, Utah":{"Arabic":0.1,"Chinese (incl. Mandarin, Cantonese)":1.1,"English":77.8,"French, Haitian, or Cajun":0.8,"German or other West Germanic":0.7,"Korean":0.4,"Other Asian & Pacific":1.5,"Other Indo-European":2,"Other and Unspecified":0.3,"Russian, Polish, other Slavic":0.4,"Spanish":14.5,"Tagalog (incl. Filipino)":0.2,"Vietnamese":0.1},"Wasatch County, Utah":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0.3,"English":81.6,"French, Haitian, or Cajun":0.4,"German or other West Germanic":1.2,"Korean":0,"Other Asian & Pacific":0.1,"Other Indo-European":2.7,"Other and Unspecified":0,"Russian, Polish, other Slavic":0.4,"Spanish":12.6,"Tagalog (incl. Filipino)":0.6,"Vietnamese":0},"Washington County, Utah":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0.3,"English":86.6,"French, Haitian, or Cajun":0.5,"German or other West Germanic":0.8,"Korean":0,"Other Asian & Pacific":0.9,"Other Indo-European":1,"Other and Unspecified":0.4,"Russian, Polish, other Slavic":0.1,"Spanish":8.9,"Tagalog (incl. Filipino)":0.2,"Vietnamese":0.2},"Wayne County, Utah":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":88.7,"French, Haitian, or Cajun":0.1,"German or other West Germanic":1.3,"Korean":0,"Other Asian & Pacific":0,"Other Indo-European":6.4,"Other and Unspecified":0,"Russian, Polish, other Slavic":0,"Spanish":3.6,"Tagalog (incl. Filipino)":0,"Vietnamese":0},"Weber County, Utah":{"Arabic":0.1,"Chinese (incl. Mandarin, Cantonese)":0.5,"English":83.2,"French, Haitian, or Cajun":0.3,"German or other West Germanic":0.6,"Korean":0.2,"Other Asian & Pacific":0.5,"Other Indo-European":0.9,"Other and Unspecified":0.2,"Russian, Polish, other Slavic":0.2,"Spanish":12.9,"Tagalog (incl. Filipino)":0.3,"Vietnamese":0.1}};
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: Object.keys(values),
+        datasets: [{
+          label: 'Share (%)',
+          data: Object.values(values),
+          backgroundColor: '#4576a7'
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.parsed.y + '%'
+            }
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 100,
+            title: {
+              display: true,
+              text: 'Population Share (%)'
+            }
+          },
+          x: {
+            title: {
+              display: true,
+              text: 'Language Group'
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(languageData[this.value]);
+  });
+
+  renderChart(languageData['Statewide']);</script>
+  </body>
+</html>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="utf-8"/>
+  <title>Race/Ethnicity in State 02</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          text-align: center;
+          margin: 2rem;
+          background-color: white;
+        }
+        canvas {
+          max-width: 500px;
+          margin: 1rem auto;
+        }
+        select {
+          font-size: 1rem;
+          padding: 0.4rem;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Race &amp; Ethnicity Distribution</h2>
+    <label>Select County:</label>
+    <select id="countySelect"><option value="Statewide">Statewide</option>
+<option value="Aleutians East Borough, Alaska">Aleutians East Borough, Alaska</option>
+<option value="Aleutians West Census Area, Alaska">Aleutians West Census Area, Alaska</option>
+<option value="Anchorage Municipality, Alaska">Anchorage Municipality, Alaska</option>
+<option value="Bethel Census Area, Alaska">Bethel Census Area, Alaska</option>
+<option value="Bristol Bay Borough, Alaska">Bristol Bay Borough, Alaska</option>
+<option value="Chugach Census Area, Alaska">Chugach Census Area, Alaska</option>
+<option value="Copper River Census Area, Alaska">Copper River Census Area, Alaska</option>
+<option value="Denali Borough, Alaska">Denali Borough, Alaska</option>
+<option value="Dillingham Census Area, Alaska">Dillingham Census Area, Alaska</option>
+<option value="Fairbanks North Star Borough, Alaska">Fairbanks North Star Borough, Alaska</option>
+<option value="Haines Borough, Alaska">Haines Borough, Alaska</option>
+<option value="Hoonah-Angoon Census Area, Alaska">Hoonah-Angoon Census Area, Alaska</option>
+<option value="Juneau City and Borough, Alaska">Juneau City and Borough, Alaska</option>
+<option value="Kenai Peninsula Borough, Alaska">Kenai Peninsula Borough, Alaska</option>
+<option value="Ketchikan Gateway Borough, Alaska">Ketchikan Gateway Borough, Alaska</option>
+<option value="Kodiak Island Borough, Alaska">Kodiak Island Borough, Alaska</option>
+<option value="Kusilvak Census Area, Alaska">Kusilvak Census Area, Alaska</option>
+<option value="Lake and Peninsula Borough, Alaska">Lake and Peninsula Borough, Alaska</option>
+<option value="Matanuska-Susitna Borough, Alaska">Matanuska-Susitna Borough, Alaska</option>
+<option value="Nome Census Area, Alaska">Nome Census Area, Alaska</option>
+<option value="North Slope Borough, Alaska">North Slope Borough, Alaska</option>
+<option value="Northwest Arctic Borough, Alaska">Northwest Arctic Borough, Alaska</option>
+<option value="Petersburg Borough, Alaska">Petersburg Borough, Alaska</option>
+<option value="Prince of Wales-Hyder Census Area, Alaska">Prince of Wales-Hyder Census Area, Alaska</option>
+<option value="Sitka City and Borough, Alaska">Sitka City and Borough, Alaska</option>
+<option value="Skagway Municipality, Alaska">Skagway Municipality, Alaska</option>
+<option value="Southeast Fairbanks Census Area, Alaska">Southeast Fairbanks Census Area, Alaska</option>
+<option value="Wrangell City and Borough, Alaska">Wrangell City and Borough, Alaska</option>
+<option value="Yakutat City and Borough, Alaska">Yakutat City and Borough, Alaska</option>
+<option value="Yukon-Koyukuk Census Area, Alaska">Yukon-Koyukuk Census Area, Alaska</option></select>
+    <canvas id="pieChart" width="400" height="400"></canvas>
+    <script>  let raceData = {};
+  fetch("02.json")
+    .then(resp => resp.json())
+    .then(data => {
+      raceData = data;
+      const raceLabels = ["American Indian / Alaska Native","Asian","Black","Hispanic","NHMulti","NHOther","NHWhite","Pacific Islander"];
+      const ctx = document.getElementById("pieChart").getContext("2d");
+      let chart;
+
+      function renderChart(values) {
+        if (chart) chart.destroy();
+        chart = new Chart(ctx, {
+          type: "pie",
+          data: {
+            labels: raceLabels,
+            datasets: [{
+              data: values,
+              backgroundColor: [
+                "#f94144", "#f3722c", "#f9c74f", "#90be6d",
+                "#9d4edd", "#577590", "#d0cde1", "#43aa8b"
+              ]
+            }]
+          },
+          options: {
+            responsive: true,
+            plugins: {
+              legend: {
+                position: "bottom",
+                labels: {
+                  font: { size: 14 },
+                  boxWidth: 20,
+                  padding: 15,
+                  usePointStyle: true,
+                  pointStyle: "rectRounded"
+                }
+              },
+              tooltip: {
+                callbacks: {
+                  label: function(context) {
+                    return context.label + ": " + context.parsed + "%";
+                  }
+                }
+              }
+            }
+          }
+        });
+      }
+
+      document.getElementById("countySelect").addEventListener("change", function() {
+        const selected = this.value;
+        const values = Object.values(raceData[selected]);
+        renderChart(values);
+      });
+
+      renderChart(Object.values(raceData["Statewide"]));
+      document.getElementById("countySelect").value = "Statewide";
+    });</script>
+  </body>
+</html>
+</html>

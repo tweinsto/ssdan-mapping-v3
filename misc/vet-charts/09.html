@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Veteran Labor Force Status – Connecticut</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Labor Force Status of Veterans (Age 18–64) in Connecticut</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Capitol Planning Region, Connecticut">Capitol Planning Region, Connecticut</option>
+      <option value="Greater Bridgeport Planning Region, Connecticut">Greater Bridgeport Planning Region, Connecticut</option>
+      <option value="Lower Connecticut River Valley Planning Region, Connecticut">Lower Connecticut River Valley Planning Region, Connecticut</option>
+      <option value="Naugatuck Valley Planning Region, Connecticut">Naugatuck Valley Planning Region, Connecticut</option>
+      <option value="Northeastern Connecticut Planning Region, Connecticut">Northeastern Connecticut Planning Region, Connecticut</option>
+      <option value="Northwest Hills Planning Region, Connecticut">Northwest Hills Planning Region, Connecticut</option>
+      <option value="South Central Connecticut Planning Region, Connecticut">South Central Connecticut Planning Region, Connecticut</option>
+      <option value="Southeastern Connecticut Planning Region, Connecticut">Southeastern Connecticut Planning Region, Connecticut</option>
+      <option value="Western Connecticut Planning Region, Connecticut">Western Connecticut Planning Region, Connecticut</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>        const data = {"Statewide":[78.6,3.5,18],"Capitol Planning Region, Connecticut":[78.8,3.2,18],"Greater Bridgeport Planning Region, Connecticut":[73.9,6.2,19.9],"Lower Connecticut River Valley Planning Region, Connecticut":[83.5,1.5,15],"Naugatuck Valley Planning Region, Connecticut":[76.7,6.5,16.8],"Northeastern Connecticut Planning Region, Connecticut":[76.4,4.8,18.8],"Northwest Hills Planning Region, Connecticut":[85.7,1.1,13.3],"South Central Connecticut Planning Region, Connecticut":[72.9,3,24],"Southeastern Connecticut Planning Region, Connecticut":[82.1,1.5,16.4],"Western Connecticut Planning Region, Connecticut":[81.2,3.6,15.2]};
+        const nationalAvg = [73.9,23,3.2];
+        const categories = ["Employed","Unemployed","Not in Labor Force"];
+        const ctx = document.getElementById("barChart").getContext("2d");
+        let chart;
+
+        function renderChart(values) {
+          if (chart) chart.destroy();
+          chart = new Chart(ctx, {
+            type: "bar",
+            data: {
+              labels: categories,
+              datasets: [
+                {
+                  label: "County/State",
+                  data: values,
+                  backgroundColor: ["#66c2a5", "#fc8d62", "#8da0cb"]
+                },
+                {
+                  label: null,
+                  data: categories.map(c => nationalAvg[c]),
+                  type: "line",
+                  borderColor: "black",
+                  borderWidth: 2,
+                  pointRadius: 0,
+                  fill: false
+                }
+              ]
+            },
+            options: {
+              indexAxis: "y",
+              scales: {
+                x: {
+                  min: 0,
+                  max: 100,
+                  ticks: {
+                    callback: v => v + "%"
+                  }
+                }
+              },
+              plugins: {
+                legend: {
+  display: false
+},
+                tooltip: {
+                  callbacks: {
+                    label: ctx => ctx.dataset.label ? ctx.dataset.label + ": " + ctx.raw + "%" : null
+                  }
+                }
+              }
+            }
+          });
+        }
+
+        document.getElementById("countySelect").addEventListener("change", function() {
+          renderChart(Object.values(data[this.value]));
+        });
+
+        renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

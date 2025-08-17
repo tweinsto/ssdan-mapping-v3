@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Living Arrangements of Children – Wyoming</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Children’s Living Arrangements (Under 18) – Wyoming</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Albany County, Wyoming">Albany County, Wyoming</option>
+      <option value="Big Horn County, Wyoming">Big Horn County, Wyoming</option>
+      <option value="Campbell County, Wyoming">Campbell County, Wyoming</option>
+      <option value="Carbon County, Wyoming">Carbon County, Wyoming</option>
+      <option value="Converse County, Wyoming">Converse County, Wyoming</option>
+      <option value="Crook County, Wyoming">Crook County, Wyoming</option>
+      <option value="Fremont County, Wyoming">Fremont County, Wyoming</option>
+      <option value="Goshen County, Wyoming">Goshen County, Wyoming</option>
+      <option value="Hot Springs County, Wyoming">Hot Springs County, Wyoming</option>
+      <option value="Johnson County, Wyoming">Johnson County, Wyoming</option>
+      <option value="Laramie County, Wyoming">Laramie County, Wyoming</option>
+      <option value="Lincoln County, Wyoming">Lincoln County, Wyoming</option>
+      <option value="Natrona County, Wyoming">Natrona County, Wyoming</option>
+      <option value="Niobrara County, Wyoming">Niobrara County, Wyoming</option>
+      <option value="Park County, Wyoming">Park County, Wyoming</option>
+      <option value="Platte County, Wyoming">Platte County, Wyoming</option>
+      <option value="Sheridan County, Wyoming">Sheridan County, Wyoming</option>
+      <option value="Sublette County, Wyoming">Sublette County, Wyoming</option>
+      <option value="Sweetwater County, Wyoming">Sweetwater County, Wyoming</option>
+      <option value="Teton County, Wyoming">Teton County, Wyoming</option>
+      <option value="Uinta County, Wyoming">Uinta County, Wyoming</option>
+      <option value="Washakie County, Wyoming">Washakie County, Wyoming</option>
+      <option value="Weston County, Wyoming">Weston County, Wyoming</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>  const data = {"Statewide":{"Married Couple (%)":74.3,"Cohabiting Couple (%)":7.5,"Male Householder (%)":5.1,"Female Householder (%)":13},"Albany County, Wyoming":{"Married Couple (%)":78.6,"Cohabiting Couple (%)":5.2,"Male Householder (%)":4,"Female Householder (%)":12.2},"Big Horn County, Wyoming":{"Married Couple (%)":79.8,"Cohabiting Couple (%)":7.3,"Male Householder (%)":2.6,"Female Householder (%)":10.3},"Campbell County, Wyoming":{"Married Couple (%)":72.8,"Cohabiting Couple (%)":9.1,"Male Householder (%)":4,"Female Householder (%)":14.1},"Carbon County, Wyoming":{"Married Couple (%)":64.8,"Cohabiting Couple (%)":12,"Male Householder (%)":7.7,"Female Householder (%)":15.5},"Converse County, Wyoming":{"Married Couple (%)":73.4,"Cohabiting Couple (%)":12.8,"Male Householder (%)":2.6,"Female Householder (%)":11.2},"Crook County, Wyoming":{"Married Couple (%)":92.2,"Cohabiting Couple (%)":1,"Male Householder (%)":2.6,"Female Householder (%)":4.3},"Fremont County, Wyoming":{"Married Couple (%)":60.2,"Cohabiting Couple (%)":9.9,"Male Householder (%)":8.6,"Female Householder (%)":21.3},"Goshen County, Wyoming":{"Married Couple (%)":74.3,"Cohabiting Couple (%)":10.2,"Male Householder (%)":6.1,"Female Householder (%)":9.4},"Hot Springs County, Wyoming":{"Married Couple (%)":76.7,"Cohabiting Couple (%)":4.2,"Male Householder (%)":3.5,"Female Householder (%)":15.5},"Johnson County, Wyoming":{"Married Couple (%)":83.4,"Cohabiting Couple (%)":1.5,"Male Householder (%)":1.7,"Female Householder (%)":13.4},"Laramie County, Wyoming":{"Married Couple (%)":71,"Cohabiting Couple (%)":9.1,"Male Householder (%)":4.9,"Female Householder (%)":15},"Lincoln County, Wyoming":{"Married Couple (%)":86.4,"Cohabiting Couple (%)":6.1,"Male Householder (%)":3.2,"Female Householder (%)":4.2},"Natrona County, Wyoming":{"Married Couple (%)":74.4,"Cohabiting Couple (%)":5.9,"Male Householder (%)":6.4,"Female Householder (%)":13.3},"Niobrara County, Wyoming":{"Married Couple (%)":76.9,"Cohabiting Couple (%)":13.5,"Male Householder (%)":2.3,"Female Householder (%)":7.3},"Park County, Wyoming":{"Married Couple (%)":76.7,"Cohabiting Couple (%)":1.4,"Male Householder (%)":9.2,"Female Householder (%)":12.7},"Platte County, Wyoming":{"Married Couple (%)":79.2,"Cohabiting Couple (%)":12.4,"Male Householder (%)":3.2,"Female Householder (%)":5.2},"Sheridan County, Wyoming":{"Married Couple (%)":81.3,"Cohabiting Couple (%)":3.6,"Male Householder (%)":3.5,"Female Householder (%)":11.5},"Sublette County, Wyoming":{"Married Couple (%)":80.6,"Cohabiting Couple (%)":2.8,"Male Householder (%)":2.5,"Female Householder (%)":14.2},"Sweetwater County, Wyoming":{"Married Couple (%)":74.1,"Cohabiting Couple (%)":8.7,"Male Householder (%)":5.3,"Female Householder (%)":11.8},"Teton County, Wyoming":{"Married Couple (%)":79.1,"Cohabiting Couple (%)":6.1,"Male Householder (%)":5.2,"Female Householder (%)":9.5},"Uinta County, Wyoming":{"Married Couple (%)":79.7,"Cohabiting Couple (%)":7.8,"Male Householder (%)":2.5,"Female Householder (%)":10},"Washakie County, Wyoming":{"Married Couple (%)":75.5,"Cohabiting Couple (%)":8.5,"Male Householder (%)":1.2,"Female Householder (%)":14.8},"Weston County, Wyoming":{"Married Couple (%)":60.2,"Cohabiting Couple (%)":19,"Male Householder (%)":8,"Female Householder (%)":12.8}};
+  const categories = ["Married Couple (%)","Cohabiting Couple (%)","Male Householder (%)","Female Householder (%)"];
+  const ctx = document.getElementById("barChart").getContext("2d");
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: categories,
+        datasets: [{
+          label: "Share of Children (%)",
+          data: values,
+          backgroundColor: ["#5DA5DA","#FAA43A","#60BD68","#F17CB0"]
+        }]
+      },
+      options: {
+        indexAxis: "y",
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            ticks: { callback: v => v + "%" },
+            title: { display: true, text: "Percent of Children" }
+          }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.raw + "%"
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById("countySelect").addEventListener("change", function() {
+    renderChart(Object.values(data[this.value]));
+  });
+
+  renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Living Arrangements of Children – Rhode Island</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Children’s Living Arrangements (Under 18) – Rhode Island</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Bristol County, Rhode Island">Bristol County, Rhode Island</option>
+      <option value="Kent County, Rhode Island">Kent County, Rhode Island</option>
+      <option value="Newport County, Rhode Island">Newport County, Rhode Island</option>
+      <option value="Providence County, Rhode Island">Providence County, Rhode Island</option>
+      <option value="Washington County, Rhode Island">Washington County, Rhode Island</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>  const data = {"Statewide":{"Married Couple (%)":64.2,"Cohabiting Couple (%)":10.2,"Male Householder (%)":4.8,"Female Householder (%)":20.7},"Bristol County, Rhode Island":{"Married Couple (%)":75.7,"Cohabiting Couple (%)":4.6,"Male Householder (%)":5.1,"Female Householder (%)":14.7},"Kent County, Rhode Island":{"Married Couple (%)":72.5,"Cohabiting Couple (%)":8.6,"Male Householder (%)":4.5,"Female Householder (%)":14.4},"Newport County, Rhode Island":{"Married Couple (%)":72.8,"Cohabiting Couple (%)":5.9,"Male Householder (%)":4.5,"Female Householder (%)":16.8},"Providence County, Rhode Island":{"Married Couple (%)":59.3,"Cohabiting Couple (%)":12.3,"Male Householder (%)":5.1,"Female Householder (%)":23.3},"Washington County, Rhode Island":{"Married Couple (%)":73.1,"Cohabiting Couple (%)":4.3,"Male Householder (%)":3.9,"Female Householder (%)":18.8}};
+  const categories = ["Married Couple (%)","Cohabiting Couple (%)","Male Householder (%)","Female Householder (%)"];
+  const ctx = document.getElementById("barChart").getContext("2d");
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: categories,
+        datasets: [{
+          label: "Share of Children (%)",
+          data: values,
+          backgroundColor: ["#5DA5DA","#FAA43A","#60BD68","#F17CB0"]
+        }]
+      },
+      options: {
+        indexAxis: "y",
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            ticks: { callback: v => v + "%" },
+            title: { display: true, text: "Percent of Children" }
+          }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.raw + "%"
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById("countySelect").addEventListener("change", function() {
+    renderChart(Object.values(data[this.value]));
+  });
+
+  renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

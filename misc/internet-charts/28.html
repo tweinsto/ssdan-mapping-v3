@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Internet Access Over Time –  Mississippi</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+                      h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+                      select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; border-radius: 5px; border: 1px solid #999; }
+                      canvas { width: 100%; max-width: 850px; height: 450px; margin-top: 1rem; }</style>
+</head>
+<html>
+  <body>
+    <h2>Internet Access in  Mississippi (2013–2023)</h2>
+    <label>Select County: </label>
+    <select id="countySelect"><option value='Statewide'>Statewide</option>
+<option value='Adams County, Mississippi'>Adams County, Mississippi</option>
+<option value='Alcorn County, Mississippi'>Alcorn County, Mississippi</option>
+<option value='Amite County, Mississippi'>Amite County, Mississippi</option>
+<option value='Attala County, Mississippi'>Attala County, Mississippi</option>
+<option value='Benton County, Mississippi'>Benton County, Mississippi</option>
+<option value='Bolivar County, Mississippi'>Bolivar County, Mississippi</option>
+<option value='Calhoun County, Mississippi'>Calhoun County, Mississippi</option>
+<option value='Carroll County, Mississippi'>Carroll County, Mississippi</option>
+<option value='Chickasaw County, Mississippi'>Chickasaw County, Mississippi</option>
+<option value='Choctaw County, Mississippi'>Choctaw County, Mississippi</option>
+<option value='Claiborne County, Mississippi'>Claiborne County, Mississippi</option>
+<option value='Clarke County, Mississippi'>Clarke County, Mississippi</option>
+<option value='Clay County, Mississippi'>Clay County, Mississippi</option>
+<option value='Coahoma County, Mississippi'>Coahoma County, Mississippi</option>
+<option value='Copiah County, Mississippi'>Copiah County, Mississippi</option>
+<option value='Covington County, Mississippi'>Covington County, Mississippi</option>
+<option value='DeSoto County, Mississippi'>DeSoto County, Mississippi</option>
+<option value='Forrest County, Mississippi'>Forrest County, Mississippi</option>
+<option value='Franklin County, Mississippi'>Franklin County, Mississippi</option>
+<option value='George County, Mississippi'>George County, Mississippi</option>
+<option value='Greene County, Mississippi'>Greene County, Mississippi</option>
+<option value='Grenada County, Mississippi'>Grenada County, Mississippi</option>
+<option value='Hancock County, Mississippi'>Hancock County, Mississippi</option>
+<option value='Harrison County, Mississippi'>Harrison County, Mississippi</option>
+<option value='Hinds County, Mississippi'>Hinds County, Mississippi</option>
+<option value='Holmes County, Mississippi'>Holmes County, Mississippi</option>
+<option value='Humphreys County, Mississippi'>Humphreys County, Mississippi</option>
+<option value='Issaquena County, Mississippi'>Issaquena County, Mississippi</option>
+<option value='Itawamba County, Mississippi'>Itawamba County, Mississippi</option>
+<option value='Jackson County, Mississippi'>Jackson County, Mississippi</option>
+<option value='Jasper County, Mississippi'>Jasper County, Mississippi</option>
+<option value='Jefferson County, Mississippi'>Jefferson County, Mississippi</option>
+<option value='Jefferson Davis County, Mississippi'>Jefferson Davis County, Mississippi</option>
+<option value='Jones County, Mississippi'>Jones County, Mississippi</option>
+<option value='Kemper County, Mississippi'>Kemper County, Mississippi</option>
+<option value='Lafayette County, Mississippi'>Lafayette County, Mississippi</option>
+<option value='Lamar County, Mississippi'>Lamar County, Mississippi</option>
+<option value='Lauderdale County, Mississippi'>Lauderdale County, Mississippi</option>
+<option value='Lawrence County, Mississippi'>Lawrence County, Mississippi</option>
+<option value='Leake County, Mississippi'>Leake County, Mississippi</option>
+<option value='Lee County, Mississippi'>Lee County, Mississippi</option>
+<option value='Leflore County, Mississippi'>Leflore County, Mississippi</option>
+<option value='Lincoln County, Mississippi'>Lincoln County, Mississippi</option>
+<option value='Lowndes County, Mississippi'>Lowndes County, Mississippi</option>
+<option value='Madison County, Mississippi'>Madison County, Mississippi</option>
+<option value='Marion County, Mississippi'>Marion County, Mississippi</option>
+<option value='Marshall County, Mississippi'>Marshall County, Mississippi</option>
+<option value='Monroe County, Mississippi'>Monroe County, Mississippi</option>
+<option value='Montgomery County, Mississippi'>Montgomery County, Mississippi</option>
+<option value='Neshoba County, Mississippi'>Neshoba County, Mississippi</option>
+<option value='Newton County, Mississippi'>Newton County, Mississippi</option>
+<option value='Noxubee County, Mississippi'>Noxubee County, Mississippi</option>
+<option value='Oktibbeha County, Mississippi'>Oktibbeha County, Mississippi</option>
+<option value='Panola County, Mississippi'>Panola County, Mississippi</option>
+<option value='Pearl River County, Mississippi'>Pearl River County, Mississippi</option>
+<option value='Perry County, Mississippi'>Perry County, Mississippi</option>
+<option value='Pike County, Mississippi'>Pike County, Mississippi</option>
+<option value='Pontotoc County, Mississippi'>Pontotoc County, Mississippi</option>
+<option value='Prentiss County, Mississippi'>Prentiss County, Mississippi</option>
+<option value='Quitman County, Mississippi'>Quitman County, Mississippi</option>
+<option value='Rankin County, Mississippi'>Rankin County, Mississippi</option>
+<option value='Scott County, Mississippi'>Scott County, Mississippi</option>
+<option value='Sharkey County, Mississippi'>Sharkey County, Mississippi</option>
+<option value='Simpson County, Mississippi'>Simpson County, Mississippi</option>
+<option value='Smith County, Mississippi'>Smith County, Mississippi</option>
+<option value='Stone County, Mississippi'>Stone County, Mississippi</option>
+<option value='Sunflower County, Mississippi'>Sunflower County, Mississippi</option>
+<option value='Tallahatchie County, Mississippi'>Tallahatchie County, Mississippi</option>
+<option value='Tate County, Mississippi'>Tate County, Mississippi</option>
+<option value='Tippah County, Mississippi'>Tippah County, Mississippi</option>
+<option value='Tishomingo County, Mississippi'>Tishomingo County, Mississippi</option>
+<option value='Tunica County, Mississippi'>Tunica County, Mississippi</option>
+<option value='Union County, Mississippi'>Union County, Mississippi</option>
+<option value='Walthall County, Mississippi'>Walthall County, Mississippi</option>
+<option value='Warren County, Mississippi'>Warren County, Mississippi</option>
+<option value='Washington County, Mississippi'>Washington County, Mississippi</option>
+<option value='Wayne County, Mississippi'>Wayne County, Mississippi</option>
+<option value='Webster County, Mississippi'>Webster County, Mississippi</option>
+<option value='Wilkinson County, Mississippi'>Wilkinson County, Mississippi</option>
+<option value='Winston County, Mississippi'>Winston County, Mississippi</option>
+<option value='Yalobusha County, Mississippi'>Yalobusha County, Mississippi</option>
+<option value='Yazoo County, Mississippi'>Yazoo County, Mississippi</option></select>
+    <canvas id="lineChart" width="850" height="450"></canvas>
+    <script>const internetData = {"Statewide":{"2017":70,"2018":73,"2019":75.6,"2020":79.3,"2021":81.4,"2022":83.4,"2023":85.3},"Adams County, Mississippi":{"2017":69.8,"2018":72.7,"2019":74.8,"2020":76.4,"2021":79.2,"2022":82.7,"2023":82.9},"Alcorn County, Mississippi":{"2017":67.6,"2018":74.7,"2019":74.9,"2020":75.3,"2021":76.4,"2022":79.2,"2023":80.5},"Amite County, Mississippi":{"2017":55,"2018":59.7,"2019":63.4,"2020":66.8,"2021":66.6,"2022":69.8,"2023":66.7},"Attala County, Mississippi":{"2017":64.3,"2018":68.2,"2019":72.4,"2020":78,"2021":80.1,"2022":81,"2023":81.8},"Benton County, Mississippi":{"2017":60.4,"2018":61.1,"2019":65,"2020":65.7,"2021":65.5,"2022":66.8,"2023":67},"Bolivar County, Mississippi":{"2017":56.6,"2018":59.4,"2019":62.6,"2020":70.3,"2021":74.5,"2022":78.9,"2023":80.3},"Calhoun County, Mississippi":{"2017":60.9,"2018":65.9,"2019":69,"2020":73.9,"2021":77.3,"2022":79.6,"2023":81.4},"Carroll County, Mississippi":{"2017":62.5,"2018":66.7,"2019":64.6,"2020":65.3,"2021":67.1,"2022":64.7,"2023":73.7},"Chickasaw County, Mississippi":{"2017":57.8,"2018":59.1,"2019":64.2,"2020":66.7,"2021":71,"2022":73.5,"2023":77.7},"Choctaw County, Mississippi":{"2017":60.8,"2018":63.1,"2019":69.3,"2020":73.5,"2021":75.1,"2022":81.4,"2023":80.8},"Claiborne County, Mississippi":{"2017":58.6,"2018":63.1,"2019":67,"2020":70.8,"2021":70.8,"2022":75.1,"2023":79.1},"Clarke County, Mississippi":{"2017":59.8,"2018":63.3,"2019":68.1,"2020":70.7,"2021":73.4,"2022":76.8,"2023":78.5},"Clay County, Mississippi":{"2017":64.7,"2018":69.3,"2019":74.2,"2020":78.3,"2021":79.8,"2022":80.6,"2023":83.6},"Coahoma County, Mississippi":{"2017":55.9,"2018":62.1,"2019":63.9,"2020":68.4,"2021":71.1,"2022":74.8,"2023":76.7},"Copiah County, Mississippi":{"2017":52.7,"2018":56.2,"2019":60.9,"2020":67.9,"2021":71.5,"2022":77.2,"2023":79.8},"Covington County, Mississippi":{"2017":59.6,"2018":60.6,"2019":56.5,"2020":59.9,"2021":63.4,"2022":64.2,"2023":67.3},"DeSoto County, Mississippi":{"2017":84.3,"2018":87.4,"2019":88.9,"2020":91.1,"2021":91.8,"2022":92.6,"2023":93.5},"Forrest County, Mississippi":{"2017":76.3,"2018":77.6,"2019":79,"2020":80.4,"2021":82.5,"2022":84.1,"2023":86.6},"Franklin County, Mississippi":{"2017":73.1,"2018":76.3,"2019":75.1,"2020":79.7,"2021":84,"2022":84.2,"2023":83.7},"George County, Mississippi":{"2017":65,"2018":66.9,"2019":67.6,"2020":71.3,"2021":74.9,"2022":78.9,"2023":83},"Greene County, Mississippi":{"2017":69.6,"2018":72.8,"2019":67.4,"2020":67.9,"2021":68.1,"2022":69.4,"2023":73.6},"Grenada County, Mississippi":{"2017":62.2,"2018":67.6,"2019":70.2,"2020":78.3,"2021":78.5,"2022":78.2,"2023":82.8},"Hancock County, Mississippi":{"2017":77.6,"2018":79.1,"2019":79.9,"2020":83.1,"2021":85,"2022":87.3,"2023":87.6},"Harrison County, Mississippi":{"2017":77.7,"2018":79.4,"2019":82.5,"2020":85.4,"2021":87,"2022":88.5,"2023":89.7},"Hinds County, Mississippi":{"2017":73.5,"2018":77.4,"2019":81,"2020":85.8,"2021":87.4,"2022":88.8,"2023":90.1},"Holmes County, Mississippi":{"2017":40.6,"2018":45.1,"2019":50.3,"2020":56.4,"2021":63.5,"2022":67.6,"2023":70.5},"Humphreys County, Mississippi":{"2017":57.2,"2018":65.9,"2019":67.3,"2020":73.4,"2021":76.5,"2022":78,"2023":77.5},"Issaquena County, Mississippi":{"2017":49.2,"2018":50.2,"2019":42.2,"2020":48.1,"2021":44.4,"2022":43.6,"2023":58.8},"Itawamba County, Mississippi":{"2017":73.6,"2018":77.4,"2019":76.9,"2020":80.2,"2021":79.6,"2022":82.8,"2023":83.3},"Jackson County, Mississippi":{"2017":76.2,"2018":79.4,"2019":81.6,"2020":85.2,"2021":86.9,"2022":88.5,"2023":90},"Jasper County, Mississippi":{"2017":57.6,"2018":57.3,"2019":53.1,"2020":56.7,"2021":55.6,"2022":60.8,"2023":64.6},"Jefferson County, Mississippi":{"2017":57.2,"2018":62,"2019":69.1,"2020":82.1,"2021":86.8,"2022":87.9,"2023":88.2},"Jefferson Davis County, Mississippi":{"2017":49.2,"2018":51.5,"2019":60.9,"2020":68.9,"2021":69.9,"2022":75.9,"2023":79.9},"Jones County, Mississippi":{"2017":55.3,"2018":58.2,"2019":60.4,"2020":66,"2021":66.6,"2022":70,"2023":75.3},"Kemper County, Mississippi":{"2017":52.3,"2018":55.7,"2019":58.5,"2020":63.7,"2021":66.9,"2022":76.8,"2023":78.7},"Lafayette County, Mississippi":{"2017":83.3,"2018":85.3,"2019":88.7,"2020":91.3,"2021":90.7,"2022":92.4,"2023":94.1},"Lamar County, Mississippi":{"2017":83.4,"2018":85,"2019":86.8,"2020":88.1,"2021":89.8,"2022":91.3,"2023":91.1},"Lauderdale County, Mississippi":{"2017":71.1,"2018":73.9,"2019":76.7,"2020":80.1,"2021":82.8,"2022":83.7,"2023":85.7},"Lawrence County, Mississippi":{"2017":53.7,"2018":56.5,"2019":57.5,"2020":58.3,"2021":63.2,"2022":66.9,"2023":71.8},"Leake County, Mississippi":{"2017":62.6,"2018":64.9,"2019":67,"2020":70.2,"2021":72.4,"2022":73.8,"2023":77.2},"Lee County, Mississippi":{"2017":73.8,"2018":77.3,"2019":79.1,"2020":81.3,"2021":84.4,"2022":86.6,"2023":88.3},"Leflore County, Mississippi":{"2017":45.3,"2018":48,"2019":52.7,"2020":59.1,"2021":61.1,"2022":65.7,"2023":70},"Lincoln County, Mississippi":{"2017":60.8,"2018":64.4,"2019":68.7,"2020":75.1,"2021":79.4,"2022":82.7,"2023":84.1},"Lowndes County, Mississippi":{"2017":75.6,"2018":79,"2019":81.1,"2020":82.6,"2021":84,"2022":85.9,"2023":86.5},"Madison County, Mississippi":{"2017":81.6,"2018":84.7,"2019":87.2,"2020":89.3,"2021":91.2,"2022":92.2,"2023":93.3},"Marion County, Mississippi":{"2017":60.7,"2018":60.7,"2019":62.7,"2020":68.4,"2021":69.6,"2022":74.9,"2023":82.6},"Marshall County, Mississippi":{"2017":56.4,"2018":62.7,"2019":70.1,"2020":78.7,"2021":79,"2022":81,"2023":82.3},"Monroe County, Mississippi":{"2017":60.9,"2018":67.2,"2019":72.6,"2020":79.1,"2021":82.5,"2022":84.6,"2023":85.8},"Montgomery County, Mississippi":{"2017":64.6,"2018":70.2,"2019":71.2,"2020":72.8,"2021":74.6,"2022":75.1,"2023":75},"Neshoba County, Mississippi":{"2017":65.1,"2018":68.8,"2019":71.5,"2020":73.9,"2021":76.4,"2022":79.2,"2023":81.8},"Newton County, Mississippi":{"2017":65.7,"2018":67,"2019":69.7,"2020":72.1,"2021":72.8,"2022":74.2,"2023":74.1},"Noxubee County, Mississippi":{"2017":56.5,"2018":60.3,"2019":62.4,"2020":66.8,"2021":71.9,"2022":74.1,"2023":72.7},"Oktibbeha County, Mississippi":{"2017":78.6,"2018":81.2,"2019":83.9,"2020":85.7,"2021":88.4,"2022":90.3,"2023":92},"Panola County, Mississippi":{"2017":56.2,"2018":60.2,"2019":65.5,"2020":71.5,"2021":70.4,"2022":74.6,"2023":77.1},"Pearl River County, Mississippi":{"2017":75.6,"2018":79,"2019":80.8,"2020":83.5,"2021":84.1,"2022":85,"2023":87},"Perry County, Mississippi":{"2017":66,"2018":69,"2019":73.2,"2020":72.2,"2021":72.5,"2022":76.3,"2023":76.5},"Pike County, Mississippi":{"2017":57.1,"2018":58.9,"2019":61.1,"2020":68.4,"2021":73.2,"2022":80,"2023":80.1},"Pontotoc County, Mississippi":{"2017":63.3,"2018":65.4,"2019":70.6,"2020":72.7,"2021":75.2,"2022":79.4,"2023":80.6},"Prentiss County, Mississippi":{"2017":67.8,"2018":70,"2019":74.8,"2020":79,"2021":81.6,"2022":84.3,"2023":85.2},"Quitman County, Mississippi":{"2017":50.2,"2018":54.3,"2019":59.9,"2020":60.8,"2021":63.7,"2022":64.7,"2023":68.9},"Rankin County, Mississippi":{"2017":83.8,"2018":84.4,"2019":85.9,"2020":89.1,"2021":90.5,"2022":91.2,"2023":93.3},"Scott County, Mississippi":{"2017":55.8,"2018":61.3,"2019":64.9,"2020":70.4,"2021":73.9,"2022":79.2,"2023":80.2},"Sharkey County, Mississippi":{"2017":63.5,"2018":63,"2019":64,"2020":71,"2021":72.7,"2022":73.6,"2023":78.6},"Simpson County, Mississippi":{"2017":58,"2018":62.4,"2019":67.1,"2020":74.3,"2021":75.2,"2022":76.9,"2023":79.5},"Smith County, Mississippi":{"2017":54.4,"2018":56.8,"2019":56,"2020":56,"2021":58.7,"2022":60.7,"2023":64.5},"Stone County, Mississippi":{"2017":67.6,"2018":73.1,"2019":72.6,"2020":81.1,"2021":85.1,"2022":79,"2023":84.4},"Sunflower County, Mississippi":{"2017":58.3,"2018":61,"2019":62.6,"2020":69.1,"2021":71.6,"2022":75.5,"2023":77.6},"Tallahatchie County, Mississippi":{"2017":53.4,"2018":54.2,"2019":57.6,"2020":60.1,"2021":63.4,"2022":69.1,"2023":69.8},"Tate County, Mississippi":{"2017":70,"2018":74,"2019":76,"2020":79.7,"2021":81.5,"2022":83.1,"2023":85.6},"Tippah County, Mississippi":{"2017":68.7,"2018":69.6,"2019":73.4,"2020":75,"2021":77.2,"2022":79.7,"2023":84.8},"Tishomingo County, Mississippi":{"2017":65.6,"2018":70.9,"2019":72.7,"2020":74.4,"2021":76.1,"2022":77.8,"2023":81},"Tunica County, Mississippi":{"2017":69.2,"2018":70.9,"2019":74.2,"2020":78.3,"2021":84,"2022":85.1,"2023":86.6},"Union County, Mississippi":{"2017":67.3,"2018":70.1,"2019":71.8,"2020":77.2,"2021":80.4,"2022":81.6,"2023":83.7},"Walthall County, Mississippi":{"2017":54.1,"2018":53.7,"2019":56.1,"2020":58.5,"2021":66.5,"2022":73.4,"2023":80.1},"Warren County, Mississippi":{"2017":74.2,"2018":76.4,"2019":79.2,"2020":82.2,"2021":83.7,"2022":83.2,"2023":84.8},"Washington County, Mississippi":{"2017":65.1,"2018":66.3,"2019":66.9,"2020":71.2,"2021":72.5,"2022":74.8,"2023":77.3},"Wayne County, Mississippi":{"2017":64.4,"2018":68,"2019":65.6,"2020":73.1,"2021":80.4,"2022":80.8,"2023":83.1},"Webster County, Mississippi":{"2017":66.8,"2018":69.9,"2019":69.6,"2020":75.1,"2021":75.5,"2022":78,"2023":83},"Wilkinson County, Mississippi":{"2017":52.4,"2018":51.1,"2019":54.1,"2020":63.3,"2021":68.4,"2022":72.6,"2023":75.6},"Winston County, Mississippi":{"2017":59.4,"2018":63.6,"2019":66,"2020":68.4,"2021":70,"2022":71.6,"2023":78.6},"Yalobusha County, Mississippi":{"2017":49.5,"2018":54.3,"2019":57.8,"2020":61.5,"2021":68.1,"2022":72.4,"2023":77.8},"Yazoo County, Mississippi":{"2017":56.9,"2018":60.8,"2019":69.4,"2020":75.9,"2021":77,"2022":78.6,"2023":79}};
+const ctx = document.getElementById('lineChart').getContext('2d');
+let chart;
+
+function renderChart(data) {
+  const labels = Object.keys(data);
+  const values = Object.values(data);
+
+  if (chart) chart.destroy();
+  chart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: labels,
+      datasets: [{
+        label: '% With Internet',
+        data: values,
+        fill: false,
+        borderColor: 'teal',
+        backgroundColor: 'teal',
+        tension: 0.3,
+        pointRadius: 4
+      }]
+    },
+    options: {
+      responsive: true,
+      scales: {
+        y: {
+          beginAtZero: true,
+          max: 100,
+          title: { display: true, text: '% With Internet' }
+        },
+        x: {
+          title: { display: true, text: 'Year' }
+        }
+      },
+      plugins: {
+        tooltip: {
+          callbacks: {
+            label: function(ctx) {
+              return ctx.parsed.y.toFixed(1) + '%';
+            }
+          }
+        }
+      }
+    }
+  });
+}
+
+document.getElementById('countySelect').addEventListener('change', function() {
+  renderChart(internetData[this.value]);
+});
+renderChart(internetData['Statewide']);</script>
+  </body>
+</html>
+</html>

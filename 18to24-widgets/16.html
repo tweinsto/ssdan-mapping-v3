@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Educational Enrollment – Idaho</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Educational Enrollment (Age 18–24) in Idaho</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Ada County, Idaho">Ada County, Idaho</option>
+      <option value="Adams County, Idaho">Adams County, Idaho</option>
+      <option value="Bannock County, Idaho">Bannock County, Idaho</option>
+      <option value="Bear Lake County, Idaho">Bear Lake County, Idaho</option>
+      <option value="Benewah County, Idaho">Benewah County, Idaho</option>
+      <option value="Bingham County, Idaho">Bingham County, Idaho</option>
+      <option value="Blaine County, Idaho">Blaine County, Idaho</option>
+      <option value="Boise County, Idaho">Boise County, Idaho</option>
+      <option value="Bonner County, Idaho">Bonner County, Idaho</option>
+      <option value="Bonneville County, Idaho">Bonneville County, Idaho</option>
+      <option value="Boundary County, Idaho">Boundary County, Idaho</option>
+      <option value="Butte County, Idaho">Butte County, Idaho</option>
+      <option value="Camas County, Idaho">Camas County, Idaho</option>
+      <option value="Canyon County, Idaho">Canyon County, Idaho</option>
+      <option value="Caribou County, Idaho">Caribou County, Idaho</option>
+      <option value="Cassia County, Idaho">Cassia County, Idaho</option>
+      <option value="Clark County, Idaho">Clark County, Idaho</option>
+      <option value="Clearwater County, Idaho">Clearwater County, Idaho</option>
+      <option value="Custer County, Idaho">Custer County, Idaho</option>
+      <option value="Elmore County, Idaho">Elmore County, Idaho</option>
+      <option value="Franklin County, Idaho">Franklin County, Idaho</option>
+      <option value="Fremont County, Idaho">Fremont County, Idaho</option>
+      <option value="Gem County, Idaho">Gem County, Idaho</option>
+      <option value="Gooding County, Idaho">Gooding County, Idaho</option>
+      <option value="Idaho County, Idaho">Idaho County, Idaho</option>
+      <option value="Jefferson County, Idaho">Jefferson County, Idaho</option>
+      <option value="Jerome County, Idaho">Jerome County, Idaho</option>
+      <option value="Kootenai County, Idaho">Kootenai County, Idaho</option>
+      <option value="Latah County, Idaho">Latah County, Idaho</option>
+      <option value="Lemhi County, Idaho">Lemhi County, Idaho</option>
+      <option value="Lewis County, Idaho">Lewis County, Idaho</option>
+      <option value="Lincoln County, Idaho">Lincoln County, Idaho</option>
+      <option value="Madison County, Idaho">Madison County, Idaho</option>
+      <option value="Minidoka County, Idaho">Minidoka County, Idaho</option>
+      <option value="Nez Perce County, Idaho">Nez Perce County, Idaho</option>
+      <option value="Oneida County, Idaho">Oneida County, Idaho</option>
+      <option value="Owyhee County, Idaho">Owyhee County, Idaho</option>
+      <option value="Payette County, Idaho">Payette County, Idaho</option>
+      <option value="Power County, Idaho">Power County, Idaho</option>
+      <option value="Shoshone County, Idaho">Shoshone County, Idaho</option>
+      <option value="Teton County, Idaho">Teton County, Idaho</option>
+      <option value="Twin Falls County, Idaho">Twin Falls County, Idaho</option>
+      <option value="Valley County, Idaho">Valley County, Idaho</option>
+      <option value="Washington County, Idaho">Washington County, Idaho</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>  const data = {"Statewide":{"Enrolled in College / Grad. School":38.7,"Not Enrolled":61.3},"Ada County, Idaho":{"Enrolled in College / Grad. School":42.2,"Not Enrolled":57.8},"Adams County, Idaho":{"Enrolled in College / Grad. School":19.1,"Not Enrolled":80.9},"Bannock County, Idaho":{"Enrolled in College / Grad. School":48.1,"Not Enrolled":51.9},"Bear Lake County, Idaho":{"Enrolled in College / Grad. School":19.7,"Not Enrolled":80.3},"Benewah County, Idaho":{"Enrolled in College / Grad. School":4.2,"Not Enrolled":95.8},"Bingham County, Idaho":{"Enrolled in College / Grad. School":23.9,"Not Enrolled":76.1},"Blaine County, Idaho":{"Enrolled in College / Grad. School":15.3,"Not Enrolled":84.7},"Boise County, Idaho":{"Enrolled in College / Grad. School":18.6,"Not Enrolled":81.4},"Bonner County, Idaho":{"Enrolled in College / Grad. School":17.1,"Not Enrolled":82.9},"Bonneville County, Idaho":{"Enrolled in College / Grad. School":20.5,"Not Enrolled":79.5},"Boundary County, Idaho":{"Enrolled in College / Grad. School":17.5,"Not Enrolled":82.5},"Butte County, Idaho":{"Enrolled in College / Grad. School":15.3,"Not Enrolled":84.7},"Camas County, Idaho":{"Enrolled in College / Grad. School":71.4,"Not Enrolled":28.6},"Canyon County, Idaho":{"Enrolled in College / Grad. School":26.9,"Not Enrolled":73.1},"Caribou County, Idaho":{"Enrolled in College / Grad. School":26.5,"Not Enrolled":73.5},"Cassia County, Idaho":{"Enrolled in College / Grad. School":12.6,"Not Enrolled":87.4},"Clark County, Idaho":{"Enrolled in College / Grad. School":2.6,"Not Enrolled":97.4},"Clearwater County, Idaho":{"Enrolled in College / Grad. School":15.7,"Not Enrolled":84.3},"Custer County, Idaho":{"Enrolled in College / Grad. School":14.8,"Not Enrolled":85.2},"Elmore County, Idaho":{"Enrolled in College / Grad. School":20.8,"Not Enrolled":79.2},"Franklin County, Idaho":{"Enrolled in College / Grad. School":28.8,"Not Enrolled":71.2},"Fremont County, Idaho":{"Enrolled in College / Grad. School":31.9,"Not Enrolled":68.1},"Gem County, Idaho":{"Enrolled in College / Grad. School":15,"Not Enrolled":85},"Gooding County, Idaho":{"Enrolled in College / Grad. School":23.3,"Not Enrolled":76.7},"Idaho County, Idaho":{"Enrolled in College / Grad. School":11.6,"Not Enrolled":88.4},"Jefferson County, Idaho":{"Enrolled in College / Grad. School":23,"Not Enrolled":77},"Jerome County, Idaho":{"Enrolled in College / Grad. School":14.4,"Not Enrolled":85.6},"Kootenai County, Idaho":{"Enrolled in College / Grad. School":22.1,"Not Enrolled":77.9},"Latah County, Idaho":{"Enrolled in College / Grad. School":82.3,"Not Enrolled":17.7},"Lemhi County, Idaho":{"Enrolled in College / Grad. School":18.1,"Not Enrolled":81.9},"Lewis County, Idaho":{"Enrolled in College / Grad. School":18.4,"Not Enrolled":81.6},"Lincoln County, Idaho":{"Enrolled in College / Grad. School":24.1,"Not Enrolled":75.9},"Madison County, Idaho":{"Enrolled in College / Grad. School":77.9,"Not Enrolled":22.1},"Minidoka County, Idaho":{"Enrolled in College / Grad. School":15.5,"Not Enrolled":84.5},"Nez Perce County, Idaho":{"Enrolled in College / Grad. School":40.8,"Not Enrolled":59.2},"Oneida County, Idaho":{"Enrolled in College / Grad. School":8,"Not Enrolled":92},"Owyhee County, Idaho":{"Enrolled in College / Grad. School":7.8,"Not Enrolled":92.2},"Payette County, Idaho":{"Enrolled in College / Grad. School":14.6,"Not Enrolled":85.4},"Power County, Idaho":{"Enrolled in College / Grad. School":22.6,"Not Enrolled":77.4},"Shoshone County, Idaho":{"Enrolled in College / Grad. School":4.8,"Not Enrolled":95.2},"Teton County, Idaho":{"Enrolled in College / Grad. School":18.5,"Not Enrolled":81.5},"Twin Falls County, Idaho":{"Enrolled in College / Grad. School":25,"Not Enrolled":75},"Valley County, Idaho":{"Enrolled in College / Grad. School":39.7,"Not Enrolled":60.3},"Washington County, Idaho":{"Enrolled in College / Grad. School":22.9,"Not Enrolled":77.1}};
+  const categories = ["Enrolled in College / Grad. School","Not Enrolled"];
+  const ctx = document.getElementById("barChart").getContext("2d");
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: categories,
+        datasets: [
+          {
+            label: "County/State",
+            data: values,
+            backgroundColor: ["#66c2a5", "#fc8d62"]
+          }
+        ]
+      },
+      options: {
+        indexAxis: "y",
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            ticks: {
+              callback: v => v + "%"
+            }
+          }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.dataset.label + ": " + ctx.raw + "%"
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById("countySelect").addEventListener("change", function() {
+    renderChart(Object.values(data[this.value]));
+  });
+
+  renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

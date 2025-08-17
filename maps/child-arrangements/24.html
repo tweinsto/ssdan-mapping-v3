@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Living Arrangements of Children – Maryland</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Children’s Living Arrangements (Under 18) – Maryland</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Allegany County, Maryland">Allegany County, Maryland</option>
+      <option value="Anne Arundel County, Maryland">Anne Arundel County, Maryland</option>
+      <option value="Baltimore city, Maryland">Baltimore city, Maryland</option>
+      <option value="Baltimore County, Maryland">Baltimore County, Maryland</option>
+      <option value="Calvert County, Maryland">Calvert County, Maryland</option>
+      <option value="Caroline County, Maryland">Caroline County, Maryland</option>
+      <option value="Carroll County, Maryland">Carroll County, Maryland</option>
+      <option value="Cecil County, Maryland">Cecil County, Maryland</option>
+      <option value="Charles County, Maryland">Charles County, Maryland</option>
+      <option value="Dorchester County, Maryland">Dorchester County, Maryland</option>
+      <option value="Frederick County, Maryland">Frederick County, Maryland</option>
+      <option value="Garrett County, Maryland">Garrett County, Maryland</option>
+      <option value="Harford County, Maryland">Harford County, Maryland</option>
+      <option value="Howard County, Maryland">Howard County, Maryland</option>
+      <option value="Kent County, Maryland">Kent County, Maryland</option>
+      <option value="Montgomery County, Maryland">Montgomery County, Maryland</option>
+      <option value="Prince George&#39;s County, Maryland">Prince George's County, Maryland</option>
+      <option value="Queen Anne&#39;s County, Maryland">Queen Anne's County, Maryland</option>
+      <option value="Somerset County, Maryland">Somerset County, Maryland</option>
+      <option value="St. Mary&#39;s County, Maryland">St. Mary's County, Maryland</option>
+      <option value="Talbot County, Maryland">Talbot County, Maryland</option>
+      <option value="Washington County, Maryland">Washington County, Maryland</option>
+      <option value="Wicomico County, Maryland">Wicomico County, Maryland</option>
+      <option value="Worcester County, Maryland">Worcester County, Maryland</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>  const data = {"Statewide":{"Married Couple (%)":66.2,"Cohabiting Couple (%)":8.1,"Male Householder (%)":4.7,"Female Householder (%)":20.9},"Allegany County, Maryland":{"Married Couple (%)":62.7,"Cohabiting Couple (%)":13.5,"Male Householder (%)":4.2,"Female Householder (%)":19.6},"Anne Arundel County, Maryland":{"Married Couple (%)":72.3,"Cohabiting Couple (%)":7.7,"Male Householder (%)":4.3,"Female Householder (%)":15.7},"Baltimore city, Maryland":{"Married Couple (%)":40.6,"Cohabiting Couple (%)":9.7,"Male Householder (%)":5.6,"Female Householder (%)":44.2},"Baltimore County, Maryland":{"Married Couple (%)":64.6,"Cohabiting Couple (%)":7.6,"Male Householder (%)":5.3,"Female Householder (%)":22.5},"Calvert County, Maryland":{"Married Couple (%)":77.7,"Cohabiting Couple (%)":6.5,"Male Householder (%)":3.1,"Female Householder (%)":12.6},"Caroline County, Maryland":{"Married Couple (%)":58.7,"Cohabiting Couple (%)":10.2,"Male Householder (%)":4,"Female Householder (%)":27.1},"Carroll County, Maryland":{"Married Couple (%)":80.4,"Cohabiting Couple (%)":5.6,"Male Householder (%)":3.1,"Female Householder (%)":11},"Cecil County, Maryland":{"Married Couple (%)":70.3,"Cohabiting Couple (%)":10.6,"Male Householder (%)":4.1,"Female Householder (%)":15},"Charles County, Maryland":{"Married Couple (%)":71.4,"Cohabiting Couple (%)":6.8,"Male Householder (%)":3.5,"Female Householder (%)":18.4},"Dorchester County, Maryland":{"Married Couple (%)":45.5,"Cohabiting Couple (%)":20.5,"Male Householder (%)":6.4,"Female Householder (%)":27.5},"Frederick County, Maryland":{"Married Couple (%)":74.5,"Cohabiting Couple (%)":6.8,"Male Householder (%)":3.6,"Female Householder (%)":15.1},"Garrett County, Maryland":{"Married Couple (%)":70.5,"Cohabiting Couple (%)":10.9,"Male Householder (%)":3.7,"Female Householder (%)":14.9},"Harford County, Maryland":{"Married Couple (%)":74.7,"Cohabiting Couple (%)":6.4,"Male Householder (%)":5.1,"Female Householder (%)":13.8},"Howard County, Maryland":{"Married Couple (%)":78.3,"Cohabiting Couple (%)":4.8,"Male Householder (%)":3.7,"Female Householder (%)":13.2},"Kent County, Maryland":{"Married Couple (%)":52.3,"Cohabiting Couple (%)":13.7,"Male Householder (%)":5.7,"Female Householder (%)":28.3},"Montgomery County, Maryland":{"Married Couple (%)":74.6,"Cohabiting Couple (%)":5.3,"Male Householder (%)":3.8,"Female Householder (%)":16.2},"Prince George's County, Maryland":{"Married Couple (%)":56,"Cohabiting Couple (%)":11.5,"Male Householder (%)":6.5,"Female Householder (%)":26},"Queen Anne's County, Maryland":{"Married Couple (%)":73.3,"Cohabiting Couple (%)":8.7,"Male Householder (%)":1.8,"Female Householder (%)":16.2},"Somerset County, Maryland":{"Married Couple (%)":60.3,"Cohabiting Couple (%)":9.7,"Male Householder (%)":4.8,"Female Householder (%)":25.2},"St. Mary's County, Maryland":{"Married Couple (%)":71.1,"Cohabiting Couple (%)":6.6,"Male Householder (%)":4.9,"Female Householder (%)":17.4},"Talbot County, Maryland":{"Married Couple (%)":67.2,"Cohabiting Couple (%)":7.8,"Male Householder (%)":3.9,"Female Householder (%)":21.1},"Washington County, Maryland":{"Married Couple (%)":62.4,"Cohabiting Couple (%)":14.4,"Male Householder (%)":6.3,"Female Householder (%)":16.8},"Wicomico County, Maryland":{"Married Couple (%)":59.5,"Cohabiting Couple (%)":13,"Male Householder (%)":4,"Female Householder (%)":23.5},"Worcester County, Maryland":{"Married Couple (%)":62.8,"Cohabiting Couple (%)":8.5,"Male Householder (%)":5.2,"Female Householder (%)":23.5}};
+  const categories = ["Married Couple (%)","Cohabiting Couple (%)","Male Householder (%)","Female Householder (%)"];
+  const ctx = document.getElementById("barChart").getContext("2d");
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: categories,
+        datasets: [{
+          label: "Share of Children (%)",
+          data: values,
+          backgroundColor: ["#5DA5DA","#FAA43A","#60BD68","#F17CB0"]
+        }]
+      },
+      options: {
+        indexAxis: "y",
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            ticks: { callback: v => v + "%" },
+            title: { display: true, text: "Percent of Children" }
+          }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.raw + "%"
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById("countySelect").addEventListener("change", function() {
+    renderChart(Object.values(data[this.value]));
+  });
+
+  renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

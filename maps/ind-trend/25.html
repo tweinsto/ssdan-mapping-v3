@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+
+</head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Median Earnings by Industry – 25</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background: white;
+    }
+    .layout {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1.5rem;
+    }
+    label {
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+    #countySelect {
+      font-size: 1rem;
+      padding: 0.4rem 0.8rem;
+      margin-bottom: 1rem;
+    }
+    canvas {
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <label for="countySelect">Median Earnings by Industry:</label>
+    <select id="countySelect"></select>
+    <canvas id="barChart"></canvas>
+  </div>
+
+  <script>
+    const data = {"Statewide":{"Agriculture & mining":56351,"Arts & food services":47778,"Construction":72982,"Education & health":72794,"Finance & real estate":101157,"Information":100494,"Manufacturing":85738,"Other services":54823,"Prof. & waste services":104655,"Public administration":90586,"Retail trade":57160,"Transport & utilities":69742,"Wholesale trade":74099},"Barnstable County":{"Agriculture & mining":51514,"Arts & food services":55668,"Construction":65391,"Education & health":72226,"Finance & real estate":87578,"Information":97419,"Manufacturing":78727,"Other services":50488,"Prof. & waste services":93180,"Public administration":90195,"Retail trade":53180,"Transport & utilities":77181,"Wholesale trade":70109},"Berkshire County":{"Agriculture & mining":32375,"Arts & food services":45505,"Construction":70493,"Education & health":64074,"Finance & real estate":70540,"Information":62056,"Manufacturing":66478,"Other services":44154,"Prof. & waste services":80366,"Public administration":81680,"Retail trade":45424,"Transport & utilities":63750,"Wholesale trade":72177},"Bristol County":{"Agriculture & mining":45441,"Arts & food services":47485,"Construction":74411,"Education & health":65889,"Finance & real estate":81413,"Information":84946,"Manufacturing":67188,"Other services":51850,"Prof. & waste services":76038,"Public administration":82839,"Retail trade":53715,"Transport & utilities":71520,"Wholesale trade":67669},"Dukes County":{"Agriculture & mining":53879,"Arts & food services":73182,"Construction":66603,"Education & health":72520,"Finance & real estate":250001,"Information":100123,"Manufacturing":65670,"Other services":55476,"Prof. & waste services":96365,"Public administration":72396,"Retail trade":51304,"Transport & utilities":14670,"Wholesale trade":32031},"Essex County":{"Agriculture & mining":71635,"Arts & food services":48325,"Construction":73313,"Education & health":70512,"Finance & real estate":97221,"Information":96474,"Manufacturing":79038,"Other services":53572,"Prof. & waste services":95514,"Public administration":88077,"Retail trade":54646,"Transport & utilities":65409,"Wholesale trade":75585},"Franklin County":{"Agriculture & mining":47151,"Arts & food services":31419,"Construction":65370,"Education & health":62172,"Finance & real estate":71510,"Information":75417,"Manufacturing":61946,"Other services":52031,"Prof. & waste services":73049,"Public administration":83480,"Retail trade":42319,"Transport & utilities":79792,"Wholesale trade":68438},"Hampden County":{"Agriculture & mining":49609,"Arts & food services":38343,"Construction":66153,"Education & health":60280,"Finance & real estate":76783,"Information":69942,"Manufacturing":65078,"Other services":46600,"Prof. & waste services":66054,"Public administration":80364,"Retail trade":50937,"Transport & utilities":67317,"Wholesale trade":61607},"Hampshire County":{"Agriculture & mining":48971,"Arts & food services":38703,"Construction":75417,"Education & health":74871,"Finance & real estate":84263,"Information":75341,"Manufacturing":72094,"Other services":57515,"Prof. & waste services":88843,"Public administration":87768,"Retail trade":54754,"Transport & utilities":73416,"Wholesale trade":68611},"Middlesex County":{"Agriculture & mining":58581,"Arts & food services":48224,"Construction":71834,"Education & health":80588,"Finance & real estate":112830,"Information":116638,"Manufacturing":109710,"Other services":60510,"Prof. & waste services":120184,"Public administration":96733,"Retail trade":62584,"Transport & utilities":71429,"Wholesale trade":89951},"Nantucket County":{"Agriculture & mining":27313,"Arts & food services":71691,"Construction":93894,"Education & health":77614,"Finance & real estate":105804,"Information":103365,"Manufacturing":66731,"Other services":70739,"Prof. & waste services":108656,"Public administration":87946,"Retail trade":51486,"Transport & utilities":54009,"Wholesale trade":108684},"Norfolk County":{"Agriculture & mining":104615,"Arts & food services":53023,"Construction":87752,"Education & health":85288,"Finance & real estate":117065,"Information":105080,"Manufacturing":103123,"Other services":61880,"Prof. & waste services":117870,"Public administration":97745,"Retail trade":70727,"Transport & utilities":83255,"Wholesale trade":88629},"Plymouth County":{"Agriculture & mining":72088,"Arts & food services":52640,"Construction":79154,"Education & health":70861,"Finance & real estate":103244,"Information":109734,"Manufacturing":92317,"Other services":53282,"Prof. & waste services":102862,"Public administration":93223,"Retail trade":60075,"Transport & utilities":77627,"Wholesale trade":75426},"Suffolk County":{"Agriculture & mining":70729,"Arts & food services":46862,"Construction":70556,"Education & health":71145,"Finance & real estate":102836,"Information":90732,"Manufacturing":92061,"Other services":52888,"Prof. & waste services":100272,"Public administration":89630,"Retail trade":58266,"Transport & utilities":60535,"Wholesale trade":75063},"Worcester County":{"Agriculture & mining":54980,"Arts & food services":44337,"Construction":70796,"Education & health":69000,"Finance & real estate":89528,"Information":90952,"Manufacturing":79839,"Other services":54829,"Prof. & waste services":93681,"Public administration":89153,"Retail trade":54384,"Transport & utilities":66891,"Wholesale trade":69759}};
+    const colors = {
+  'Agriculture & mining': '#FFFF01',
+  'Arts & food services': '#00008B',
+  'Construction': '#7570B1',
+  'Education & health': '#66A61E',
+  'Finance & real estate': '#E6AB01',
+  'Information': '#379',
+  'Manufacturing': '#E41A1C',
+  'Other services': '#377EF1',
+  'Prof. & waste services': '#FF7F00',
+  'Public administration': '#1B9E77',
+  'Retail trade': '#A65011',
+  'Transport & utilities': '#F781BF',
+  'Wholesale trade': '#919'
+};
+
+    const ctx = document.getElementById("barChart").getContext("2d");
+    let chart;
+
+    function renderChart(county) {
+      const values = data[county];
+      const labels = Object.keys(values);
+      const earnings = Object.values(values);
+
+      if (chart) chart.destroy();
+
+      chart = new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels: labels,
+          datasets: [{
+            label: "Median Earnings ($)",
+            data: earnings,
+            backgroundColor: labels.map(label => colors[label] || "#ccc")
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: true,
+  aspectRatio: 1.5, 
+          indexAxis: "x",
+          scales: {
+            y: {
+              beginAtZero: true,
+              title: {
+                display: true,
+                text: "Median Earnings ($)"
+              },
+              ticks: {
+                callback: function(value) {
+                  return "$" + value.toLocaleString();
+                }
+              }
+            },
+            x: {
+              ticks: {
+                maxRotation: 45,
+                minRotation: 20,
+                autoSkip: false,
+                callback: function(value, index, ticks) {
+                  let label = this.getLabelForValue(value);
+                  return label.length > 25 ? label.slice(0, 25) + "…" : label;
+                }
+              }
+            }
+          },
+          plugins: {
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  return "$" + context.parsed.y.toLocaleString();
+                }
+              }
+            },
+            legend: {
+              display: false
+            }
+          }
+        }
+      });
+    }
+
+    const select = document.getElementById("countySelect");
+    Object.keys(data).forEach(county => {
+      const option = document.createElement("option");
+      option.value = county;
+      option.text = county;
+      select.appendChild(option);
+    });
+    select.value = "Statewide";
+    select.addEventListener("change", () => renderChart(select.value));
+    renderChart("Statewide");
+  </script>
+</body>
+</html>
+</html>

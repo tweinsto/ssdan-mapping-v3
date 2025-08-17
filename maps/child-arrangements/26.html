@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Living Arrangements of Children – Michigan</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Children’s Living Arrangements (Under 18) – Michigan</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Alcona County, Michigan">Alcona County, Michigan</option>
+      <option value="Alger County, Michigan">Alger County, Michigan</option>
+      <option value="Allegan County, Michigan">Allegan County, Michigan</option>
+      <option value="Alpena County, Michigan">Alpena County, Michigan</option>
+      <option value="Antrim County, Michigan">Antrim County, Michigan</option>
+      <option value="Arenac County, Michigan">Arenac County, Michigan</option>
+      <option value="Baraga County, Michigan">Baraga County, Michigan</option>
+      <option value="Barry County, Michigan">Barry County, Michigan</option>
+      <option value="Bay County, Michigan">Bay County, Michigan</option>
+      <option value="Benzie County, Michigan">Benzie County, Michigan</option>
+      <option value="Berrien County, Michigan">Berrien County, Michigan</option>
+      <option value="Branch County, Michigan">Branch County, Michigan</option>
+      <option value="Calhoun County, Michigan">Calhoun County, Michigan</option>
+      <option value="Cass County, Michigan">Cass County, Michigan</option>
+      <option value="Charlevoix County, Michigan">Charlevoix County, Michigan</option>
+      <option value="Cheboygan County, Michigan">Cheboygan County, Michigan</option>
+      <option value="Chippewa County, Michigan">Chippewa County, Michigan</option>
+      <option value="Clare County, Michigan">Clare County, Michigan</option>
+      <option value="Clinton County, Michigan">Clinton County, Michigan</option>
+      <option value="Crawford County, Michigan">Crawford County, Michigan</option>
+      <option value="Delta County, Michigan">Delta County, Michigan</option>
+      <option value="Dickinson County, Michigan">Dickinson County, Michigan</option>
+      <option value="Eaton County, Michigan">Eaton County, Michigan</option>
+      <option value="Emmet County, Michigan">Emmet County, Michigan</option>
+      <option value="Genesee County, Michigan">Genesee County, Michigan</option>
+      <option value="Gladwin County, Michigan">Gladwin County, Michigan</option>
+      <option value="Gogebic County, Michigan">Gogebic County, Michigan</option>
+      <option value="Grand Traverse County, Michigan">Grand Traverse County, Michigan</option>
+      <option value="Gratiot County, Michigan">Gratiot County, Michigan</option>
+      <option value="Hillsdale County, Michigan">Hillsdale County, Michigan</option>
+      <option value="Houghton County, Michigan">Houghton County, Michigan</option>
+      <option value="Huron County, Michigan">Huron County, Michigan</option>
+      <option value="Ingham County, Michigan">Ingham County, Michigan</option>
+      <option value="Ionia County, Michigan">Ionia County, Michigan</option>
+      <option value="Iosco County, Michigan">Iosco County, Michigan</option>
+      <option value="Iron County, Michigan">Iron County, Michigan</option>
+      <option value="Isabella County, Michigan">Isabella County, Michigan</option>
+      <option value="Jackson County, Michigan">Jackson County, Michigan</option>
+      <option value="Kalamazoo County, Michigan">Kalamazoo County, Michigan</option>
+      <option value="Kalkaska County, Michigan">Kalkaska County, Michigan</option>
+      <option value="Kent County, Michigan">Kent County, Michigan</option>
+      <option value="Keweenaw County, Michigan">Keweenaw County, Michigan</option>
+      <option value="Lake County, Michigan">Lake County, Michigan</option>
+      <option value="Lapeer County, Michigan">Lapeer County, Michigan</option>
+      <option value="Leelanau County, Michigan">Leelanau County, Michigan</option>
+      <option value="Lenawee County, Michigan">Lenawee County, Michigan</option>
+      <option value="Livingston County, Michigan">Livingston County, Michigan</option>
+      <option value="Luce County, Michigan">Luce County, Michigan</option>
+      <option value="Mackinac County, Michigan">Mackinac County, Michigan</option>
+      <option value="Macomb County, Michigan">Macomb County, Michigan</option>
+      <option value="Manistee County, Michigan">Manistee County, Michigan</option>
+      <option value="Marquette County, Michigan">Marquette County, Michigan</option>
+      <option value="Mason County, Michigan">Mason County, Michigan</option>
+      <option value="Mecosta County, Michigan">Mecosta County, Michigan</option>
+      <option value="Menominee County, Michigan">Menominee County, Michigan</option>
+      <option value="Midland County, Michigan">Midland County, Michigan</option>
+      <option value="Missaukee County, Michigan">Missaukee County, Michigan</option>
+      <option value="Monroe County, Michigan">Monroe County, Michigan</option>
+      <option value="Montcalm County, Michigan">Montcalm County, Michigan</option>
+      <option value="Montmorency County, Michigan">Montmorency County, Michigan</option>
+      <option value="Muskegon County, Michigan">Muskegon County, Michigan</option>
+      <option value="Newaygo County, Michigan">Newaygo County, Michigan</option>
+      <option value="Oakland County, Michigan">Oakland County, Michigan</option>
+      <option value="Oceana County, Michigan">Oceana County, Michigan</option>
+      <option value="Ogemaw County, Michigan">Ogemaw County, Michigan</option>
+      <option value="Ontonagon County, Michigan">Ontonagon County, Michigan</option>
+      <option value="Osceola County, Michigan">Osceola County, Michigan</option>
+      <option value="Oscoda County, Michigan">Oscoda County, Michigan</option>
+      <option value="Otsego County, Michigan">Otsego County, Michigan</option>
+      <option value="Ottawa County, Michigan">Ottawa County, Michigan</option>
+      <option value="Presque Isle County, Michigan">Presque Isle County, Michigan</option>
+      <option value="Roscommon County, Michigan">Roscommon County, Michigan</option>
+      <option value="Saginaw County, Michigan">Saginaw County, Michigan</option>
+      <option value="Sanilac County, Michigan">Sanilac County, Michigan</option>
+      <option value="Schoolcraft County, Michigan">Schoolcraft County, Michigan</option>
+      <option value="Shiawassee County, Michigan">Shiawassee County, Michigan</option>
+      <option value="St. Clair County, Michigan">St. Clair County, Michigan</option>
+      <option value="St. Joseph County, Michigan">St. Joseph County, Michigan</option>
+      <option value="Tuscola County, Michigan">Tuscola County, Michigan</option>
+      <option value="Van Buren County, Michigan">Van Buren County, Michigan</option>
+      <option value="Washtenaw County, Michigan">Washtenaw County, Michigan</option>
+      <option value="Wayne County, Michigan">Wayne County, Michigan</option>
+      <option value="Wexford County, Michigan">Wexford County, Michigan</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>  const data = {"Statewide":{"Married Couple (%)":66.1,"Cohabiting Couple (%)":9,"Male Householder (%)":5,"Female Householder (%)":20},"Alcona County, Michigan":{"Married Couple (%)":56.4,"Cohabiting Couple (%)":23.4,"Male Householder (%)":5.5,"Female Householder (%)":14.7},"Alger County, Michigan":{"Married Couple (%)":82,"Cohabiting Couple (%)":6.6,"Male Householder (%)":2.1,"Female Householder (%)":9.3},"Allegan County, Michigan":{"Married Couple (%)":72.3,"Cohabiting Couple (%)":8.2,"Male Householder (%)":5.9,"Female Householder (%)":13.5},"Alpena County, Michigan":{"Married Couple (%)":56,"Cohabiting Couple (%)":19.5,"Male Householder (%)":5.1,"Female Householder (%)":19.5},"Antrim County, Michigan":{"Married Couple (%)":72.6,"Cohabiting Couple (%)":9.5,"Male Householder (%)":7.3,"Female Householder (%)":10.6},"Arenac County, Michigan":{"Married Couple (%)":64,"Cohabiting Couple (%)":15.8,"Male Householder (%)":3.8,"Female Householder (%)":16.3},"Baraga County, Michigan":{"Married Couple (%)":73,"Cohabiting Couple (%)":12.4,"Male Householder (%)":3.1,"Female Householder (%)":11.5},"Barry County, Michigan":{"Married Couple (%)":79,"Cohabiting Couple (%)":5.2,"Male Householder (%)":5.2,"Female Householder (%)":10.6},"Bay County, Michigan":{"Married Couple (%)":59.8,"Cohabiting Couple (%)":15.9,"Male Householder (%)":6,"Female Householder (%)":18.2},"Benzie County, Michigan":{"Married Couple (%)":77.9,"Cohabiting Couple (%)":7,"Male Householder (%)":6.3,"Female Householder (%)":8.8},"Berrien County, Michigan":{"Married Couple (%)":58.1,"Cohabiting Couple (%)":10.6,"Male Householder (%)":6.6,"Female Householder (%)":24.6},"Branch County, Michigan":{"Married Couple (%)":72.1,"Cohabiting Couple (%)":9.5,"Male Householder (%)":3.6,"Female Householder (%)":14.8},"Calhoun County, Michigan":{"Married Couple (%)":57.5,"Cohabiting Couple (%)":12.6,"Male Householder (%)":6.4,"Female Householder (%)":23.5},"Cass County, Michigan":{"Married Couple (%)":64.1,"Cohabiting Couple (%)":15.2,"Male Householder (%)":4.8,"Female Householder (%)":15.8},"Charlevoix County, Michigan":{"Married Couple (%)":67.6,"Cohabiting Couple (%)":10,"Male Householder (%)":5.5,"Female Householder (%)":16.9},"Cheboygan County, Michigan":{"Married Couple (%)":71.4,"Cohabiting Couple (%)":7.6,"Male Householder (%)":5.6,"Female Householder (%)":15.4},"Chippewa County, Michigan":{"Married Couple (%)":60.1,"Cohabiting Couple (%)":14.3,"Male Householder (%)":5.9,"Female Householder (%)":19.6},"Clare County, Michigan":{"Married Couple (%)":69.9,"Cohabiting Couple (%)":12.1,"Male Householder (%)":4.4,"Female Householder (%)":13.7},"Clinton County, Michigan":{"Married Couple (%)":73.5,"Cohabiting Couple (%)":10.9,"Male Householder (%)":5.2,"Female Householder (%)":10.3},"Crawford County, Michigan":{"Married Couple (%)":63.1,"Cohabiting Couple (%)":11.8,"Male Householder (%)":7,"Female Householder (%)":18.1},"Delta County, Michigan":{"Married Couple (%)":70.8,"Cohabiting Couple (%)":7.8,"Male Householder (%)":6.6,"Female Householder (%)":14.8},"Dickinson County, Michigan":{"Married Couple (%)":79.3,"Cohabiting Couple (%)":8.6,"Male Householder (%)":2.8,"Female Householder (%)":9.3},"Eaton County, Michigan":{"Married Couple (%)":73.2,"Cohabiting Couple (%)":9.3,"Male Householder (%)":4.6,"Female Householder (%)":12.8},"Emmet County, Michigan":{"Married Couple (%)":75,"Cohabiting Couple (%)":8.3,"Male Householder (%)":4.4,"Female Householder (%)":12.3},"Genesee County, Michigan":{"Married Couple (%)":55,"Cohabiting Couple (%)":12.8,"Male Householder (%)":4.8,"Female Householder (%)":27.3},"Gladwin County, Michigan":{"Married Couple (%)":77.7,"Cohabiting Couple (%)":8.9,"Male Householder (%)":4.2,"Female Householder (%)":9.2},"Gogebic County, Michigan":{"Married Couple (%)":65,"Cohabiting Couple (%)":15.4,"Male Householder (%)":3.2,"Female Householder (%)":16.3},"Grand Traverse County, Michigan":{"Married Couple (%)":71.6,"Cohabiting Couple (%)":6.9,"Male Householder (%)":7.1,"Female Householder (%)":14.4},"Gratiot County, Michigan":{"Married Couple (%)":57.2,"Cohabiting Couple (%)":15.8,"Male Householder (%)":6.8,"Female Householder (%)":20.2},"Hillsdale County, Michigan":{"Married Couple (%)":71.2,"Cohabiting Couple (%)":9.1,"Male Householder (%)":5.7,"Female Householder (%)":14.1},"Houghton County, Michigan":{"Married Couple (%)":76,"Cohabiting Couple (%)":9.6,"Male Householder (%)":4.6,"Female Householder (%)":9.8},"Huron County, Michigan":{"Married Couple (%)":75,"Cohabiting Couple (%)":8.7,"Male Householder (%)":6.1,"Female Householder (%)":10.2},"Ingham County, Michigan":{"Married Couple (%)":64.2,"Cohabiting Couple (%)":9.4,"Male Householder (%)":5.6,"Female Householder (%)":20.7},"Ionia County, Michigan":{"Married Couple (%)":66.8,"Cohabiting Couple (%)":11.5,"Male Householder (%)":7.2,"Female Householder (%)":14.5},"Iosco County, Michigan":{"Married Couple (%)":61.2,"Cohabiting Couple (%)":18.7,"Male Householder (%)":5.2,"Female Householder (%)":14.9},"Iron County, Michigan":{"Married Couple (%)":56.1,"Cohabiting Couple (%)":14.8,"Male Householder (%)":7.8,"Female Householder (%)":21.3},"Isabella County, Michigan":{"Married Couple (%)":63.8,"Cohabiting Couple (%)":13.1,"Male Householder (%)":8.7,"Female Householder (%)":14.4},"Jackson County, Michigan":{"Married Couple (%)":60.8,"Cohabiting Couple (%)":9.1,"Male Householder (%)":6.8,"Female Householder (%)":23.3},"Kalamazoo County, Michigan":{"Married Couple (%)":67.9,"Cohabiting Couple (%)":9.4,"Male Householder (%)":4.7,"Female Householder (%)":17.9},"Kalkaska County, Michigan":{"Married Couple (%)":67.6,"Cohabiting Couple (%)":13.4,"Male Householder (%)":7.3,"Female Householder (%)":11.7},"Kent County, Michigan":{"Married Couple (%)":69.7,"Cohabiting Couple (%)":7.7,"Male Householder (%)":3.5,"Female Householder (%)":19.1},"Keweenaw County, Michigan":{"Married Couple (%)":88.8,"Cohabiting Couple (%)":1,"Male Householder (%)":3.5,"Female Householder (%)":6.7},"Lake County, Michigan":{"Married Couple (%)":67.8,"Cohabiting Couple (%)":5.9,"Male Householder (%)":6.8,"Female Householder (%)":19.5},"Lapeer County, Michigan":{"Married Couple (%)":70.7,"Cohabiting Couple (%)":10.5,"Male Householder (%)":4.7,"Female Householder (%)":14.1},"Leelanau County, Michigan":{"Married Couple (%)":74,"Cohabiting Couple (%)":7.5,"Male Householder (%)":4.1,"Female Householder (%)":14.4},"Lenawee County, Michigan":{"Married Couple (%)":68.3,"Cohabiting Couple (%)":11.9,"Male Householder (%)":4.2,"Female Householder (%)":15.7},"Livingston County, Michigan":{"Married Couple (%)":81.9,"Cohabiting Couple (%)":5.4,"Male Householder (%)":3.6,"Female Householder (%)":9.1},"Luce County, Michigan":{"Married Couple (%)":60.1,"Cohabiting Couple (%)":20.1,"Male Householder (%)":5.2,"Female Householder (%)":14.6},"Mackinac County, Michigan":{"Married Couple (%)":56.1,"Cohabiting Couple (%)":18.6,"Male Householder (%)":10.6,"Female Householder (%)":14.8},"Macomb County, Michigan":{"Married Couple (%)":68.8,"Cohabiting Couple (%)":8.3,"Male Householder (%)":5.2,"Female Householder (%)":17.8},"Manistee County, Michigan":{"Married Couple (%)":69.4,"Cohabiting Couple (%)":9.9,"Male Householder (%)":4.8,"Female Householder (%)":15.8},"Marquette County, Michigan":{"Married Couple (%)":71.3,"Cohabiting Couple (%)":10,"Male Householder (%)":4.8,"Female Householder (%)":13.9},"Mason County, Michigan":{"Married Couple (%)":67.3,"Cohabiting Couple (%)":9,"Male Householder (%)":3.8,"Female Householder (%)":20},"Mecosta County, Michigan":{"Married Couple (%)":68.3,"Cohabiting Couple (%)":13.2,"Male Householder (%)":4.4,"Female Householder (%)":14.1},"Menominee County, Michigan":{"Married Couple (%)":66.2,"Cohabiting Couple (%)":13.5,"Male Householder (%)":5,"Female Householder (%)":15.3},"Midland County, Michigan":{"Married Couple (%)":75,"Cohabiting Couple (%)":8.1,"Male Householder (%)":4.1,"Female Householder (%)":12.8},"Missaukee County, Michigan":{"Married Couple (%)":73.2,"Cohabiting Couple (%)":14.5,"Male Householder (%)":4.2,"Female Householder (%)":8.1},"Monroe County, Michigan":{"Married Couple (%)":69.8,"Cohabiting Couple (%)":11.1,"Male Householder (%)":4.3,"Female Householder (%)":14.8},"Montcalm County, Michigan":{"Married Couple (%)":72.4,"Cohabiting Couple (%)":10.7,"Male Householder (%)":5.1,"Female Householder (%)":11.8},"Montmorency County, Michigan":{"Married Couple (%)":66.4,"Cohabiting Couple (%)":11.4,"Male Householder (%)":4,"Female Householder (%)":18.1},"Muskegon County, Michigan":{"Married Couple (%)":60.4,"Cohabiting Couple (%)":11.8,"Male Householder (%)":5.5,"Female Householder (%)":22.3},"Newaygo County, Michigan":{"Married Couple (%)":67.9,"Cohabiting Couple (%)":7.8,"Male Householder (%)":6.8,"Female Householder (%)":17.6},"Oakland County, Michigan":{"Married Couple (%)":75.1,"Cohabiting Couple (%)":6,"Male Householder (%)":4.1,"Female Householder (%)":14.9},"Oceana County, Michigan":{"Married Couple (%)":63.7,"Cohabiting Couple (%)":16.4,"Male Householder (%)":4.9,"Female Householder (%)":15},"Ogemaw County, Michigan":{"Married Couple (%)":59.7,"Cohabiting Couple (%)":18.8,"Male Householder (%)":7.3,"Female Householder (%)":14.2},"Ontonagon County, Michigan":{"Married Couple (%)":64.2,"Cohabiting Couple (%)":21.6,"Male Householder (%)":4.9,"Female Householder (%)":9.3},"Osceola County, Michigan":{"Married Couple (%)":68,"Cohabiting Couple (%)":13.7,"Male Householder (%)":5.1,"Female Householder (%)":13.3},"Oscoda County, Michigan":{"Married Couple (%)":67.9,"Cohabiting Couple (%)":13.8,"Male Householder (%)":3.6,"Female Householder (%)":14.6},"Otsego County, Michigan":{"Married Couple (%)":64.6,"Cohabiting Couple (%)":6.8,"Male Householder (%)":10.3,"Female Householder (%)":18.2},"Ottawa County, Michigan":{"Married Couple (%)":79.2,"Cohabiting Couple (%)":6.9,"Male Householder (%)":3.7,"Female Householder (%)":10.1},"Presque Isle County, Michigan":{"Married Couple (%)":70.5,"Cohabiting Couple (%)":10.5,"Male Householder (%)":3.7,"Female Householder (%)":15.4},"Roscommon County, Michigan":{"Married Couple (%)":64.4,"Cohabiting Couple (%)":16.5,"Male Householder (%)":8.1,"Female Householder (%)":10.9},"Saginaw County, Michigan":{"Married Couple (%)":58,"Cohabiting Couple (%)":13.1,"Male Householder (%)":3.5,"Female Householder (%)":25.3},"Sanilac County, Michigan":{"Married Couple (%)":68.8,"Cohabiting Couple (%)":14,"Male Householder (%)":6.3,"Female Householder (%)":10.9},"Schoolcraft County, Michigan":{"Married Couple (%)":61.6,"Cohabiting Couple (%)":14.2,"Male Householder (%)":10.7,"Female Householder (%)":13.6},"Shiawassee County, Michigan":{"Married Couple (%)":69.6,"Cohabiting Couple (%)":10.4,"Male Householder (%)":4.1,"Female Householder (%)":15.9},"St. Clair County, Michigan":{"Married Couple (%)":66.8,"Cohabiting Couple (%)":10.4,"Male Householder (%)":5.4,"Female Householder (%)":17.4},"St. Joseph County, Michigan":{"Married Couple (%)":69.5,"Cohabiting Couple (%)":12.9,"Male Householder (%)":6.6,"Female Householder (%)":10.9},"Tuscola County, Michigan":{"Married Couple (%)":69,"Cohabiting Couple (%)":11.9,"Male Householder (%)":6.3,"Female Householder (%)":12.8},"Van Buren County, Michigan":{"Married Couple (%)":65.4,"Cohabiting Couple (%)":9.1,"Male Householder (%)":4,"Female Householder (%)":21.5},"Washtenaw County, Michigan":{"Married Couple (%)":73.5,"Cohabiting Couple (%)":4.3,"Male Householder (%)":4.5,"Female Householder (%)":17.7},"Wayne County, Michigan":{"Married Couple (%)":54.2,"Cohabiting Couple (%)":8.4,"Male Householder (%)":5.6,"Female Householder (%)":31.8},"Wexford County, Michigan":{"Married Couple (%)":68,"Cohabiting Couple (%)":12.5,"Male Householder (%)":4.8,"Female Householder (%)":14.7}};
+  const categories = ["Married Couple (%)","Cohabiting Couple (%)","Male Householder (%)","Female Householder (%)"];
+  const ctx = document.getElementById("barChart").getContext("2d");
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: categories,
+        datasets: [{
+          label: "Share of Children (%)",
+          data: values,
+          backgroundColor: ["#5DA5DA","#FAA43A","#60BD68","#F17CB0"]
+        }]
+      },
+      options: {
+        indexAxis: "y",
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            ticks: { callback: v => v + "%" },
+            title: { display: true, text: "Percent of Children" }
+          }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.raw + "%"
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById("countySelect").addEventListener("change", function() {
+    renderChart(Object.values(data[this.value]));
+  });
+
+  renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

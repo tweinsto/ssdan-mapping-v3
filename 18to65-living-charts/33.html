@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Living Arrangements 18–64 – New Hampshire</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+      body { font-family: sans-serif; margin: 1.25rem 2rem; text-align: center; }
+      h2 { margin-bottom: .25rem; font-size: 1.6rem; color: #2c348b; }
+      label { margin-right: .5rem; }
+      select { padding: .45rem .6rem; font-size: 1rem; border-radius: .5rem; border: 2px solid #f39c12; }
+      canvas { width: 100%; max-width: 900px; height: 520px; }
+    </style>
+</head>
+<html>
+  <body>
+    <h2>Living Arrangements of Adults 18–64 in New Hampshire</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Belknap County, New Hampshire">Belknap County, New Hampshire</option>
+      <option value="Carroll County, New Hampshire">Carroll County, New Hampshire</option>
+      <option value="Cheshire County, New Hampshire">Cheshire County, New Hampshire</option>
+      <option value="Coos County, New Hampshire">Coos County, New Hampshire</option>
+      <option value="Grafton County, New Hampshire">Grafton County, New Hampshire</option>
+      <option value="Hillsborough County, New Hampshire">Hillsborough County, New Hampshire</option>
+      <option value="Merrimack County, New Hampshire">Merrimack County, New Hampshire</option>
+      <option value="Rockingham County, New Hampshire">Rockingham County, New Hampshire</option>
+      <option value="Strafford County, New Hampshire">Strafford County, New Hampshire</option>
+      <option value="Sullivan County, New Hampshire">Sullivan County, New Hampshire</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>document.addEventListener("DOMContentLoaded", function () {
+  const data = {"Statewide":[9.7,14.8,5.2,8.9,50.5,11],"Belknap County, New Hampshire":[9.7,17.6,3.7,10,50.5,8.4],"Carroll County, New Hampshire":[8.9,16,3.4,9.6,50.9,11.2],"Cheshire County, New Hampshire":[10.6,12.1,6.7,7.2,50.9,12.6],"Coos County, New Hampshire":[12.8,10.9,2.8,7,51.9,14.6],"Grafton County, New Hampshire":[11.2,15.2,7.2,8.5,46.1,11.7],"Hillsborough County, New Hampshire":[10.4,14.8,5.1,9.7,48.8,11.2],"Merrimack County, New Hampshire":[8.9,13.3,5.1,9,52.7,11],"Rockingham County, New Hampshire":[8.1,16.4,3.7,8,54.1,9.8],"Strafford County, New Hampshire":[10.3,11.6,8.4,8,49.7,11.9],"Sullivan County, New Hampshire":[9.5,18.8,7.4,11,42.4,10.9]};
+  const cats = ["lives_alone_18_64","with_child_18_64","with_nonrel_18_64","with_other_rel_18_64","with_spouse_only_18_64","with_unmar_partner_18_64"];
+
+  const ORDER = [
+    "Lives alone",
+    "With child",
+    "With nonrelatives",
+    "With other relatives",
+    "With spouse only",
+    "With unmarried partner"
+  ];
+
+  const PRETTY_TO_SNAKE = {
+    "Lives alone":            "lives_alone_18_64",
+    "With child":             "with_child_18_64",
+    "With nonrelatives":      "with_nonrel_18_64",
+    "With other relatives":   "with_other_rel_18_64",
+    "With spouse only":       "with_spouse_only_18_64",
+    "With unmarried partner": "with_unmar_partner_18_64"
+  };
+
+  const COLOR_BY_CAT = {
+    "Lives alone":            "#e41a1c",
+    "With child":             "#ff7f00",
+    "With nonrelatives":      "#4daf4a",
+    "With other relatives":   "#984ea3",
+    "With spouse only":       "#377eb8",
+    "With unmarried partner": "#a65628"
+  };
+
+  // snake key → array index
+  const keyToIndex = Object.fromEntries((cats || []).map((k, i) => [String(k), i]));
+
+  function valuesFor(name) {
+    const row = data?.[name] || [];
+    return ORDER.map(lbl => {
+      const idx = keyToIndex[PRETTY_TO_SNAKE[lbl]];
+      const v = (idx != null && idx >= 0) ? row[idx] : 0;
+      return (typeof v === "number") ? v : Number(v) || 0;
+    });
+  }
+
+  const canvas = document.getElementById("barChart");
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+  let chart;
+
+  function renderChart(name) {
+    const vals = valuesFor(name);
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: ORDER,
+        datasets: [{
+          data: vals,
+          backgroundColor: ORDER.map(c => COLOR_BY_CAT[c]),
+          borderWidth: 0
+        }]
+      },
+      options: {
+        indexAxis: "y",
+        plugins: {
+          legend: { display: false },
+          tooltip: { callbacks: { label: (c) => c.raw + "%" } }
+        },
+        scales: {
+          x: { min: 0, max: 100, ticks: { callback: v => v + "%" } }
+        }
+      }
+    });
+  }
+
+  const DEFAULT_NAME = (data && Object.prototype.hasOwnProperty.call(data, "Statewide"))
+    ? "Statewide" : Object.keys(data || {})[0];
+
+  const sel = document.getElementById("countySelect");
+  if (sel) sel.addEventListener("change", e => renderChart(e.target.value));
+  if (DEFAULT_NAME) renderChart(DEFAULT_NAME);
+});</script>
+  </body>
+</html>
+</html>

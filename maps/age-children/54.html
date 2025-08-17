@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Age Distribution Under 18 –  West Virginia</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          margin: 1rem 2rem;
+          text-align: center;
+        }
+        h2 {
+          margin-bottom: 0.25rem;
+          font-size: 1.6rem;
+        }
+        select {
+          padding: 0.4rem;
+          font-size: 1rem;
+          margin: 1rem 0;
+          border-radius: 5px;
+          border: 1px solid #999;
+        }
+        canvas {
+          width: 100%;
+          max-width: 850px;
+          height: 500px;
+          margin-top: 1rem;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Age Distribution Under 18 in  West Virginia (2023)</h2>
+    <label>Select County:</label>
+            <select id="countySelect">
+          <option value='Statewide'>Statewide</option>
+<option value='Barbour County, West Virginia'>Barbour County, West Virginia</option>
+<option value='Berkeley County, West Virginia'>Berkeley County, West Virginia</option>
+<option value='Boone County, West Virginia'>Boone County, West Virginia</option>
+<option value='Braxton County, West Virginia'>Braxton County, West Virginia</option>
+<option value='Brooke County, West Virginia'>Brooke County, West Virginia</option>
+<option value='Cabell County, West Virginia'>Cabell County, West Virginia</option>
+<option value='Calhoun County, West Virginia'>Calhoun County, West Virginia</option>
+<option value='Clay County, West Virginia'>Clay County, West Virginia</option>
+<option value='Doddridge County, West Virginia'>Doddridge County, West Virginia</option>
+<option value='Fayette County, West Virginia'>Fayette County, West Virginia</option>
+<option value='Gilmer County, West Virginia'>Gilmer County, West Virginia</option>
+<option value='Grant County, West Virginia'>Grant County, West Virginia</option>
+<option value='Greenbrier County, West Virginia'>Greenbrier County, West Virginia</option>
+<option value='Hampshire County, West Virginia'>Hampshire County, West Virginia</option>
+<option value='Hancock County, West Virginia'>Hancock County, West Virginia</option>
+<option value='Hardy County, West Virginia'>Hardy County, West Virginia</option>
+<option value='Harrison County, West Virginia'>Harrison County, West Virginia</option>
+<option value='Jackson County, West Virginia'>Jackson County, West Virginia</option>
+<option value='Jefferson County, West Virginia'>Jefferson County, West Virginia</option>
+<option value='Kanawha County, West Virginia'>Kanawha County, West Virginia</option>
+<option value='Lewis County, West Virginia'>Lewis County, West Virginia</option>
+<option value='Lincoln County, West Virginia'>Lincoln County, West Virginia</option>
+<option value='Logan County, West Virginia'>Logan County, West Virginia</option>
+<option value='Marion County, West Virginia'>Marion County, West Virginia</option>
+<option value='Marshall County, West Virginia'>Marshall County, West Virginia</option>
+<option value='Mason County, West Virginia'>Mason County, West Virginia</option>
+<option value='McDowell County, West Virginia'>McDowell County, West Virginia</option>
+<option value='Mercer County, West Virginia'>Mercer County, West Virginia</option>
+<option value='Mineral County, West Virginia'>Mineral County, West Virginia</option>
+<option value='Mingo County, West Virginia'>Mingo County, West Virginia</option>
+<option value='Monongalia County, West Virginia'>Monongalia County, West Virginia</option>
+<option value='Monroe County, West Virginia'>Monroe County, West Virginia</option>
+<option value='Morgan County, West Virginia'>Morgan County, West Virginia</option>
+<option value='Nicholas County, West Virginia'>Nicholas County, West Virginia</option>
+<option value='Ohio County, West Virginia'>Ohio County, West Virginia</option>
+<option value='Pendleton County, West Virginia'>Pendleton County, West Virginia</option>
+<option value='Pleasants County, West Virginia'>Pleasants County, West Virginia</option>
+<option value='Pocahontas County, West Virginia'>Pocahontas County, West Virginia</option>
+<option value='Preston County, West Virginia'>Preston County, West Virginia</option>
+<option value='Putnam County, West Virginia'>Putnam County, West Virginia</option>
+<option value='Raleigh County, West Virginia'>Raleigh County, West Virginia</option>
+<option value='Randolph County, West Virginia'>Randolph County, West Virginia</option>
+<option value='Ritchie County, West Virginia'>Ritchie County, West Virginia</option>
+<option value='Roane County, West Virginia'>Roane County, West Virginia</option>
+<option value='Summers County, West Virginia'>Summers County, West Virginia</option>
+<option value='Taylor County, West Virginia'>Taylor County, West Virginia</option>
+<option value='Tucker County, West Virginia'>Tucker County, West Virginia</option>
+<option value='Tyler County, West Virginia'>Tyler County, West Virginia</option>
+<option value='Upshur County, West Virginia'>Upshur County, West Virginia</option>
+<option value='Wayne County, West Virginia'>Wayne County, West Virginia</option>
+<option value='Webster County, West Virginia'>Webster County, West Virginia</option>
+<option value='Wetzel County, West Virginia'>Wetzel County, West Virginia</option>
+<option value='Wirt County, West Virginia'>Wirt County, West Virginia</option>
+<option value='Wood County, West Virginia'>Wood County, West Virginia</option>
+<option value='Wyoming County, West Virginia'>Wyoming County, West Virginia</option>
+        </select>
+    <canvas id="barChart" width="850" height="500"></canvas>
+    <script>  const ageData = {"Statewide":[-12.8,12.1,-15.4,14.3,-9.4,8.8,-13.8,13.5],"Barbour County, West Virginia":[-12.2,11.4,-18.2,13.2,-10.9,15.5,-9.7,8.9],"Berkeley County, West Virginia":[-13.2,12.9,-13.4,13.9,-15.7,13.3,-8.2,9.3],"Boone County, West Virginia":[-12.4,11.4,-13,9.1,-16.6,18.1,-10.1,9.2],"Braxton County, West Virginia":[-15.9,6.5,-12.9,15.6,-18.1,13,-9.4,8.6],"Brooke County, West Virginia":[-12,12.1,-12.5,12.6,-15.9,15.5,-10.1,9.4],"Cabell County, West Virginia":[-14.1,12.6,-14.4,13.1,-14.6,13.6,-9.4,8.2],"Calhoun County, West Virginia":[-5.7,16.3,-14.3,25.5,-11.5,9.7,-11.3,5.8],"Clay County, West Virginia":[-11.2,11.8,-15.1,10.3,-14.7,18.4,-9.9,8.7],"Doddridge County, West Virginia":[-13.8,10.9,-16.6,14.1,-12.1,11.9,-7.4,13.2],"Fayette County, West Virginia":[-11.1,12.2,-13.4,16.8,-16.6,12,-9.3,8.6],"Gilmer County, West Virginia":[-5.3,18.4,-19.9,6.7,-14.2,19.8,-7.5,8.3],"Grant County, West Virginia":[-13.6,13.3,-18.4,17.2,-9.4,10.2,-12,6],"Greenbrier County, West Virginia":[-13.3,12.5,-15.4,13.2,-12.3,15.8,-8.6,9],"Hampshire County, West Virginia":[-13.6,14.2,-10.6,14.3,-16.8,11.6,-9.9,8.9],"Hancock County, West Virginia":[-12,10.9,-16.2,15.6,-14.9,11.7,-10,8.7],"Hardy County, West Virginia":[-12.5,12.1,-15.4,14.6,-13.9,11.9,-11,8.4],"Harrison County, West Virginia":[-12.6,12.7,-14.5,13,-14.5,15.2,-8.9,8.6],"Jackson County, West Virginia":[-13,11.9,-13.8,14.1,-15.3,13.6,-9.6,8.7],"Jefferson County, West Virginia":[-12.4,11,-14.1,15,-14.7,13.5,-9.7,9.6],"Kanawha County, West Virginia":[-12.8,12.1,-12.2,14.7,-16.6,13.4,-9.4,8.8],"Lewis County, West Virginia":[-12,11.8,-14.5,15.9,-15.1,12.2,-10.5,8.1],"Lincoln County, West Virginia":[-11.8,11.8,-12.9,9.7,-16.8,17.8,-9.4,9.7],"Logan County, West Virginia":[-12,12.1,-15.7,6.8,-14.3,20.3,-10.2,8.5],"McDowell County, West Virginia":[-11.6,11.3,-16.5,16.7,-14,12.4,-9.2,8.4],"Marion County, West Virginia":[-13.5,11.5,-13.7,14.8,-16,13.2,-9.4,7.9],"Marshall County, West Virginia":[-11.8,11.2,-13.1,11.6,-16.9,16.8,-9.4,9.2],"Mason County, West Virginia":[-14.9,11.8,-14.9,12.4,-15.3,12.2,-9.5,9.1],"Mercer County, West Virginia":[-13,12.2,-17.9,13.6,-12.3,15.3,-7.6,8.1],"Mineral County, West Virginia":[-13.1,11.4,-10.5,10.5,-18.9,17.9,-9.2,8.5],"Mingo County, West Virginia":[-13,12.2,-11.2,9.8,-17.1,15.3,-12.7,8.7],"Monongalia County, West Virginia":[-14.1,13.7,-14,13.4,-15.1,13.3,-8.4,7.9],"Monroe County, West Virginia":[-13.1,13.2,-14.3,15.9,-15.3,11.2,-3.2,13.9],"Morgan County, West Virginia":[-11.1,13.4,-15.4,8.4,-13.8,18.5,-10.6,8.8],"Nicholas County, West Virginia":[-11.9,10.3,-14.3,17.1,-14.9,11.5,-11.4,8.4],"Ohio County, West Virginia":[-13.4,12.5,-14.5,12.3,-14.2,15,-8.7,9.3],"Pendleton County, West Virginia":[-15.3,10.4,-20.8,12.3,-9.5,14,-9.3,8.5],"Pleasants County, West Virginia":[-12.3,12,-8.2,3.6,-19.5,19.5,-14.8,10],"Pocahontas County, West Virginia":[-12.5,12.4,-12.7,11.6,-15.4,17.3,-9.6,8.6],"Preston County, West Virginia":[-13.5,12.1,-12.7,14.3,-17.3,12.8,-8.6,8.8],"Putnam County, West Virginia":[-10.9,10.6,-14.5,13.4,-17,13.4,-10.7,9.7],"Raleigh County, West Virginia":[-11.9,11.9,-13.7,13.8,-15.5,15.1,-9.4,8.6],"Randolph County, West Virginia":[-14.2,12.9,-12.1,15,-16,11.7,-9.6,8.6],"Ritchie County, West Virginia":[-12,12.3,-6.3,14.4,-20.8,14.7,-10.2,9.3],"Roane County, West Virginia":[-11.6,10.5,-13.3,17.7,-14.2,10.7,-9.9,12],"Summers County, West Virginia":[-18.2,4.1,-14.4,14,-13.3,17.2,-10.6,8.2],"Taylor County, West Virginia":[-11.5,11.7,-14.6,9.1,-14.5,20.9,-9,8.6],"Tucker County, West Virginia":[-12.6,13,-11.9,16.1,-14.7,11.4,-11,9.2],"Tyler County, West Virginia":[-11.6,13.3,-11.1,15.4,-17.8,13,-9,8.9],"Upshur County, West Virginia":[-12.8,11.8,-11.5,13.9,-16.6,14.8,-9.3,9.3],"Wayne County, West Virginia":[-11.8,12.6,-14.7,11.5,-13.7,17,-9.9,8.9],"Webster County, West Virginia":[-11.6,12.2,-6.5,13.1,-22.9,15.9,-13.6,4.3],"Wetzel County, West Virginia":[-15,12,-16.6,15.7,-13.4,10.3,-8.7,8.3],"Wirt County, West Virginia":[-11.6,10.6,-15.1,5,-15.3,24.1,-7.9,10.4],"Wood County, West Virginia":[-12.9,12.3,-13.8,12.9,-14.8,15.7,-9.1,8.6],"Wyoming County, West Virginia":[-11,11.8,-11.5,11.6,-16.9,16.3,-9.5,11.4]};
+  const ageBins = ["0–4","5–9","10–14","15–17"];
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(data) {
+    const maleData = data.filter((_, i) => i % 2 === 0);
+    const femaleData = data.filter((_, i) => i % 2 === 1);
+
+    const maxValue = Math.max(
+      ...maleData.map(Math.abs),
+      ...femaleData.map(Math.abs)
+    );
+    const padding = 1.0;
+    const xMax = +(maxValue + padding).toFixed(1);
+
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ageBins,
+        datasets: [
+          {
+            label: 'Male',
+            data: maleData,
+            backgroundColor: 'dodgerblue'
+          },
+          {
+            label: 'Female',
+            data: femaleData,
+            backgroundColor: 'lightpink'
+          }
+        ]
+      },
+      options: {
+        indexAxis: 'y',
+        responsive: true,
+        scales: {
+          x: {
+            min: -xMax,
+            max: xMax,
+            ticks: {
+              callback: value => Math.abs(value).toFixed(1) + '%'
+            }
+          },
+          y: {
+            stacked: false
+          }
+        },
+        plugins: {
+          legend: {
+            position: 'top',
+            align: 'start',
+            labels: {
+              usePointStyle: true
+            }
+          },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.dataset.label + ': ' + Math.abs(ctx.parsed.x).toFixed(1) + '%'
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(Object.values(ageData[this.value]));
+  });
+
+  renderChart(Object.values(ageData['Statewide']));</script>
+  </body>
+</html>
+</html>

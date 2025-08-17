@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="utf-8"/>
+  <title>Race/Ethnicity in State 35</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          text-align: center;
+          margin: 2rem;
+          background-color: white;
+        }
+        canvas {
+          max-width: 500px;
+          margin: 1rem auto;
+        }
+        select {
+          font-size: 1rem;
+          padding: 0.4rem;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Race &amp; Ethnicity Distribution</h2>
+    <label>Select County:</label>
+    <select id="countySelect"><option value="Statewide">Statewide</option>
+<option value="Bernalillo County, New Mexico">Bernalillo County, New Mexico</option>
+<option value="Catron County, New Mexico">Catron County, New Mexico</option>
+<option value="Chaves County, New Mexico">Chaves County, New Mexico</option>
+<option value="Cibola County, New Mexico">Cibola County, New Mexico</option>
+<option value="Colfax County, New Mexico">Colfax County, New Mexico</option>
+<option value="Curry County, New Mexico">Curry County, New Mexico</option>
+<option value="De Baca County, New Mexico">De Baca County, New Mexico</option>
+<option value="Doña Ana County, New Mexico">Doña Ana County, New Mexico</option>
+<option value="Eddy County, New Mexico">Eddy County, New Mexico</option>
+<option value="Grant County, New Mexico">Grant County, New Mexico</option>
+<option value="Guadalupe County, New Mexico">Guadalupe County, New Mexico</option>
+<option value="Harding County, New Mexico">Harding County, New Mexico</option>
+<option value="Hidalgo County, New Mexico">Hidalgo County, New Mexico</option>
+<option value="Lea County, New Mexico">Lea County, New Mexico</option>
+<option value="Lincoln County, New Mexico">Lincoln County, New Mexico</option>
+<option value="Los Alamos County, New Mexico">Los Alamos County, New Mexico</option>
+<option value="Luna County, New Mexico">Luna County, New Mexico</option>
+<option value="McKinley County, New Mexico">McKinley County, New Mexico</option>
+<option value="Mora County, New Mexico">Mora County, New Mexico</option>
+<option value="Otero County, New Mexico">Otero County, New Mexico</option>
+<option value="Quay County, New Mexico">Quay County, New Mexico</option>
+<option value="Rio Arriba County, New Mexico">Rio Arriba County, New Mexico</option>
+<option value="Roosevelt County, New Mexico">Roosevelt County, New Mexico</option>
+<option value="San Juan County, New Mexico">San Juan County, New Mexico</option>
+<option value="San Miguel County, New Mexico">San Miguel County, New Mexico</option>
+<option value="Sandoval County, New Mexico">Sandoval County, New Mexico</option>
+<option value="Santa Fe County, New Mexico">Santa Fe County, New Mexico</option>
+<option value="Sierra County, New Mexico">Sierra County, New Mexico</option>
+<option value="Socorro County, New Mexico">Socorro County, New Mexico</option>
+<option value="Taos County, New Mexico">Taos County, New Mexico</option>
+<option value="Torrance County, New Mexico">Torrance County, New Mexico</option>
+<option value="Union County, New Mexico">Union County, New Mexico</option>
+<option value="Valencia County, New Mexico">Valencia County, New Mexico</option></select>
+    <canvas id="pieChart" width="400" height="400"></canvas>
+    <script>  let raceData = {};
+  fetch("35.json")
+    .then(resp => resp.json())
+    .then(data => {
+      raceData = data;
+      const raceLabels = ["American Indian / Alaska Native","Asian","Black","Hispanic","NHMulti","NHOther","NHWhite","Pacific Islander"];
+      const ctx = document.getElementById("pieChart").getContext("2d");
+      let chart;
+
+      function renderChart(values) {
+        if (chart) chart.destroy();
+        chart = new Chart(ctx, {
+          type: "pie",
+          data: {
+            labels: raceLabels,
+            datasets: [{
+              data: values,
+              backgroundColor: [
+                "#f94144", "#f3722c", "#f9c74f", "#90be6d",
+                "#9d4edd", "#577590", "#d0cde1", "#43aa8b"
+              ]
+            }]
+          },
+          options: {
+            responsive: true,
+            plugins: {
+              legend: {
+                position: "bottom",
+                labels: {
+                  font: { size: 14 },
+                  boxWidth: 20,
+                  padding: 15,
+                  usePointStyle: true,
+                  pointStyle: "rectRounded"
+                }
+              },
+              tooltip: {
+                callbacks: {
+                  label: function(context) {
+                    return context.label + ": " + context.parsed + "%";
+                  }
+                }
+              }
+            }
+          }
+        });
+      }
+
+      document.getElementById("countySelect").addEventListener("change", function() {
+        const selected = this.value;
+        const values = Object.values(raceData[selected]);
+        renderChart(values);
+      });
+
+      renderChart(Object.values(raceData["Statewide"]));
+      document.getElementById("countySelect").value = "Statewide";
+    });</script>
+  </body>
+</html>
+</html>

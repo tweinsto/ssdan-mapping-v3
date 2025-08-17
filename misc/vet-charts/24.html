@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Veteran Labor Force Status – Maryland</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Labor Force Status of Veterans (Age 18–64) in Maryland</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Allegany County, Maryland">Allegany County, Maryland</option>
+      <option value="Anne Arundel County, Maryland">Anne Arundel County, Maryland</option>
+      <option value="Baltimore city, Maryland">Baltimore city, Maryland</option>
+      <option value="Baltimore County, Maryland">Baltimore County, Maryland</option>
+      <option value="Calvert County, Maryland">Calvert County, Maryland</option>
+      <option value="Caroline County, Maryland">Caroline County, Maryland</option>
+      <option value="Carroll County, Maryland">Carroll County, Maryland</option>
+      <option value="Cecil County, Maryland">Cecil County, Maryland</option>
+      <option value="Charles County, Maryland">Charles County, Maryland</option>
+      <option value="Dorchester County, Maryland">Dorchester County, Maryland</option>
+      <option value="Frederick County, Maryland">Frederick County, Maryland</option>
+      <option value="Garrett County, Maryland">Garrett County, Maryland</option>
+      <option value="Harford County, Maryland">Harford County, Maryland</option>
+      <option value="Howard County, Maryland">Howard County, Maryland</option>
+      <option value="Kent County, Maryland">Kent County, Maryland</option>
+      <option value="Montgomery County, Maryland">Montgomery County, Maryland</option>
+      <option value="Prince George&#39;s County, Maryland">Prince George's County, Maryland</option>
+      <option value="Queen Anne&#39;s County, Maryland">Queen Anne's County, Maryland</option>
+      <option value="Somerset County, Maryland">Somerset County, Maryland</option>
+      <option value="St. Mary&#39;s County, Maryland">St. Mary's County, Maryland</option>
+      <option value="Talbot County, Maryland">Talbot County, Maryland</option>
+      <option value="Washington County, Maryland">Washington County, Maryland</option>
+      <option value="Wicomico County, Maryland">Wicomico County, Maryland</option>
+      <option value="Worcester County, Maryland">Worcester County, Maryland</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>        const data = {"Statewide":[80.9,2.5,16.6],"Allegany County, Maryland":[61.6,1.9,36.5],"Anne Arundel County, Maryland":[85.1,1.8,13.1],"Baltimore County, Maryland":[76.7,2.2,21.1],"Baltimore city, Maryland":[67.2,4.2,28.6],"Calvert County, Maryland":[86.7,1.2,12.1],"Caroline County, Maryland":[85.3,0,14.7],"Carroll County, Maryland":[83.5,3.8,12.8],"Cecil County, Maryland":[82.9,1.7,15.4],"Charles County, Maryland":[85.2,2.4,12.3],"Dorchester County, Maryland":[84.8,0,15.2],"Frederick County, Maryland":[87.2,0.9,11.9],"Garrett County, Maryland":[62.3,5.2,32.6],"Harford County, Maryland":[87.2,0.7,12.2],"Howard County, Maryland":[82.8,2.6,14.6],"Kent County, Maryland":[76.2,3.9,19.8],"Montgomery County, Maryland":[81.6,3.7,14.7],"Prince George's County, Maryland":[78,3.8,18.1],"Queen Anne's County, Maryland":[73.3,0.9,25.8],"Somerset County, Maryland":[54.7,0,45.3],"St. Mary's County, Maryland":[88.8,1.5,9.7],"Talbot County, Maryland":[72.5,5.7,21.8],"Washington County, Maryland":[77.1,1.9,21],"Wicomico County, Maryland":[71.4,5,23.6],"Worcester County, Maryland":[78.2,0,21.8]};
+        const nationalAvg = [73.9,23,3.2];
+        const categories = ["Employed","Unemployed","Not in Labor Force"];
+        const ctx = document.getElementById("barChart").getContext("2d");
+        let chart;
+
+        function renderChart(values) {
+          if (chart) chart.destroy();
+          chart = new Chart(ctx, {
+            type: "bar",
+            data: {
+              labels: categories,
+              datasets: [
+                {
+                  label: "County/State",
+                  data: values,
+                  backgroundColor: ["#66c2a5", "#fc8d62", "#8da0cb"]
+                },
+                {
+                  label: null,
+                  data: categories.map(c => nationalAvg[c]),
+                  type: "line",
+                  borderColor: "black",
+                  borderWidth: 2,
+                  pointRadius: 0,
+                  fill: false
+                }
+              ]
+            },
+            options: {
+              indexAxis: "y",
+              scales: {
+                x: {
+                  min: 0,
+                  max: 100,
+                  ticks: {
+                    callback: v => v + "%"
+                  }
+                }
+              },
+              plugins: {
+                legend: {
+  display: false
+},
+                tooltip: {
+                  callbacks: {
+                    label: ctx => ctx.dataset.label ? ctx.dataset.label + ": " + ctx.raw + "%" : null
+                  }
+                }
+              }
+            }
+          });
+        }
+
+        document.getElementById("countySelect").addEventListener("change", function() {
+          renderChart(Object.values(data[this.value]));
+        });
+
+        renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

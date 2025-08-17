@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Living Arrangements – Wyoming</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          margin: 1rem 2rem;
+          text-align: center;
+        }
+        h2 {
+          font-size: 1.5rem;
+          margin-bottom: 0.5rem;
+        }
+        select {
+          font-size: 1rem;
+          padding: 0.4rem;
+          margin: 1rem 0;
+          border: 1px solid #999;
+          border-radius: 5px;
+        }
+        canvas {
+          width: 100%;
+          max-width: 850px;
+          height: 600px;
+          margin-top: 1rem;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Living Arrangements of Adults 65+ in Wyoming</h2>
+    <label>Select County:</label>
+            <select id="countySelect">
+          <option value='Statewide'>Default</option>
+<option value='Albany County, Wyoming'>Albany County, Wyoming</option>
+<option value='Big Horn County, Wyoming'>Big Horn County, Wyoming</option>
+<option value='Campbell County, Wyoming'>Campbell County, Wyoming</option>
+<option value='Carbon County, Wyoming'>Carbon County, Wyoming</option>
+<option value='Converse County, Wyoming'>Converse County, Wyoming</option>
+<option value='Crook County, Wyoming'>Crook County, Wyoming</option>
+<option value='Fremont County, Wyoming'>Fremont County, Wyoming</option>
+<option value='Goshen County, Wyoming'>Goshen County, Wyoming</option>
+<option value='Hot Springs County, Wyoming'>Hot Springs County, Wyoming</option>
+<option value='Johnson County, Wyoming'>Johnson County, Wyoming</option>
+<option value='Laramie County, Wyoming'>Laramie County, Wyoming</option>
+<option value='Lincoln County, Wyoming'>Lincoln County, Wyoming</option>
+<option value='Natrona County, Wyoming'>Natrona County, Wyoming</option>
+<option value='Niobrara County, Wyoming'>Niobrara County, Wyoming</option>
+<option value='Park County, Wyoming'>Park County, Wyoming</option>
+<option value='Platte County, Wyoming'>Platte County, Wyoming</option>
+<option value='Sheridan County, Wyoming'>Sheridan County, Wyoming</option>
+<option value='Sublette County, Wyoming'>Sublette County, Wyoming</option>
+<option value='Sweetwater County, Wyoming'>Sweetwater County, Wyoming</option>
+<option value='Teton County, Wyoming'>Teton County, Wyoming</option>
+<option value='Uinta County, Wyoming'>Uinta County, Wyoming</option>
+<option value='Washakie County, Wyoming'>Washakie County, Wyoming</option>
+<option value='Weston County, Wyoming'>Weston County, Wyoming</option>
+        </select>
+    <canvas id="barChart"></canvas>
+    <script>  const chartData = {"Statewide":[0,0,0,0,0,0],"Albany County, Wyoming":[0,0,0,0,0,0],"Big Horn County, Wyoming":[0,0,0,0,0,0],"Campbell County, Wyoming":[0,0,0,0,0,0],"Carbon County, Wyoming":[0,0,0,0,0,0],"Converse County, Wyoming":[0,0,0,0,0,0],"Crook County, Wyoming":[0,0,0,0,0,0],"Fremont County, Wyoming":[0,0,0,0,0,0],"Goshen County, Wyoming":[0,0,0,0,0,0],"Hot Springs County, Wyoming":[0,0,0,0,0,0],"Johnson County, Wyoming":[0,0,0,0,0,0],"Laramie County, Wyoming":[0,0,0,0,0,0],"Lincoln County, Wyoming":[0,0,0,0,0,0],"Natrona County, Wyoming":[0,0,0,0,0,0],"Niobrara County, Wyoming":[0,0,0,0,0,0],"Park County, Wyoming":[0,0,0,0,0,0],"Platte County, Wyoming":[0,0,0,0,0,0],"Sheridan County, Wyoming":[0,0,0,0,0,0],"Sublette County, Wyoming":[0,0,0,0,0,0],"Sweetwater County, Wyoming":[0,0,0,0,0,0],"Teton County, Wyoming":[0,0,0,0,0,0],"Uinta County, Wyoming":[0,0,0,0,0,0],"Washakie County, Wyoming":[0,0,0,0,0,0],"Weston County, Wyoming":[0,0,0,0,0,0]};
+  const categories = ["With unmarried partner","With spouse only","With other relatives","With nonrelatives","With child","Lives alone"];
+  const usAverages = [27.3,0.3,2.3,14.5,53.2,2.4];
+
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(data) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: categories,
+        datasets: [
+          {
+            label: 'Percent (County/State)',
+            data: data,
+            backgroundColor: '#4576a7'
+          },
+          {
+            label: 'National Average',
+            data: categories.map(c => usAverages[c] || 0),
+            type: 'line',
+            borderColor: '#000',
+            borderWidth: 1,
+            pointRadius: 0,
+            fill: false
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        indexAxis: 'y',
+        scales: {
+          x: {
+            title: {
+              display: true,
+              text: 'Percent of 65+ Population'
+            },
+            min: 0,
+            max: 100,
+            ticks: {
+              callback: value => value + '%'
+            }
+          }
+        },
+        plugins: {
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.dataset.label + ': ' + ctx.parsed.x + '%'
+            }
+          },
+          legend: {
+            position: 'top',
+            align: 'start'
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(Object.values(chartData[this.value]));
+  });
+
+  renderChart(Object.values(chartData['Statewide']));</script>
+  </body>
+</html>
+</html>

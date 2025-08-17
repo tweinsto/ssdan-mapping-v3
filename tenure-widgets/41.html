@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+
+</head>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Owners: Year Moved In (%) – 41</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #fff;
+    }
+    .container {
+      width: 95%;
+      max-width: 1200px;
+      margin: auto;
+      text-align: center;
+    }
+    #countySelect {
+      font-size: 1rem;
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    canvas {
+      max-width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Owners: Year Moved In (%)</h2>
+    <select id="countySelect"></select>
+    <canvas id="pieChart"></canvas>
+  </div>
+
+  <script>
+    const data = {"Statewide":{"Moved in 2021 or later":6.4,"Moved in 2018–2020":17.6,"Moved in 2010–2017":30.2,"Moved in 2000–2009":22.2,"Moved in 1990–1999":13,"1989 or earlier":10.6},"Baker County":{"Moved in 2021 or later":4.5214,"Moved in 2018–2020":15.891,"Moved in 2010–2017":28.112,"Moved in 2000–2009":26.9202,"Moved in 1990–1999":12.2966,"1989 or earlier":12.2588},"Benton County":{"Moved in 2021 or later":6.8245,"Moved in 2018–2020":12.9265,"Moved in 2010–2017":27.5592,"Moved in 2000–2009":23.9325,"Moved in 1990–1999":14.917,"1989 or earlier":13.8402},"Clackamas County":{"Moved in 2021 or later":6.7261,"Moved in 2018–2020":16.7799,"Moved in 2010–2017":30.9762,"Moved in 2000–2009":20.7889,"Moved in 1990–1999":13.8018,"1989 or earlier":10.9271},"Clatsop County":{"Moved in 2021 or later":7.0609,"Moved in 2018–2020":19.6953,"Moved in 2010–2017":29.4982,"Moved in 2000–2009":18.8262,"Moved in 1990–1999":12.509,"1989 or earlier":12.4104},"Columbia County":{"Moved in 2021 or later":5.8163,"Moved in 2018–2020":14.6492,"Moved in 2010–2017":24.375,"Moved in 2000–2009":25.2423,"Moved in 1990–1999":18.074,"1989 or earlier":11.8431},"Coos County":{"Moved in 2021 or later":6.2957,"Moved in 2018–2020":20.425,"Moved in 2010–2017":26.4072,"Moved in 2000–2009":19.7233,"Moved in 1990–1999":14.8609,"1989 or earlier":12.2879},"Crook County":{"Moved in 2021 or later":7.4267,"Moved in 2018–2020":19.2499,"Moved in 2010–2017":36.1153,"Moved in 2000–2009":19.7839,"Moved in 1990–1999":12.233,"1989 or earlier":5.1913},"Curry County":{"Moved in 2021 or later":6.5972,"Moved in 2018–2020":18.5834,"Moved in 2010–2017":33.0333,"Moved in 2000–2009":21.426,"Moved in 1990–1999":10.411,"1989 or earlier":9.9491},"Deschutes County":{"Moved in 2021 or later":8.5157,"Moved in 2018–2020":22.2577,"Moved in 2010–2017":36.7337,"Moved in 2000–2009":19.5239,"Moved in 1990–1999":8.2167,"1989 or earlier":4.7523},"Douglas County":{"Moved in 2021 or later":6.2754,"Moved in 2018–2020":18.8858,"Moved in 2010–2017":27.4749,"Moved in 2000–2009":19.0172,"Moved in 1990–1999":13.2971,"1989 or earlier":15.0496},"Gilliam County":{"Moved in 2021 or later":1.5221,"Moved in 2018–2020":10.9589,"Moved in 2010–2017":23.8965,"Moved in 2000–2009":23.1355,"Moved in 1990–1999":21.1568,"1989 or earlier":19.3303},"Grant County":{"Moved in 2021 or later":5.0314,"Moved in 2018–2020":13.5405,"Moved in 2010–2017":27.34,"Moved in 2000–2009":20.9767,"Moved in 1990–1999":15.7973,"1989 or earlier":17.3141},"Harney County":{"Moved in 2021 or later":4.9289,"Moved in 2018–2020":12.3697,"Moved in 2010–2017":21.9905,"Moved in 2000–2009":29.9052,"Moved in 1990–1999":14.7393,"1989 or earlier":16.0664},"Hood River County":{"Moved in 2021 or later":6.3334,"Moved in 2018–2020":13.5786,"Moved in 2010–2017":28.5086,"Moved in 2000–2009":26.2944,"Moved in 1990–1999":15.1416,"1989 or earlier":10.1433},"Jackson County":{"Moved in 2021 or later":6.7428,"Moved in 2018–2020":19.7091,"Moved in 2010–2017":30.1975,"Moved in 2000–2009":22.058,"Moved in 1990–1999":11.7766,"1989 or earlier":9.516},"Jefferson County":{"Moved in 2021 or later":7.8092,"Moved in 2018–2020":18.3023,"Moved in 2010–2017":34.5998,"Moved in 2000–2009":18.9329,"Moved in 1990–1999":12.5788,"1989 or earlier":7.7769},"Josephine County":{"Moved in 2021 or later":5.2056,"Moved in 2018–2020":16.1158,"Moved in 2010–2017":31.0722,"Moved in 2000–2009":21.8434,"Moved in 1990–1999":12.8066,"1989 or earlier":12.9564},"Klamath County":{"Moved in 2021 or later":6.3768,"Moved in 2018–2020":20.003,"Moved in 2010–2017":28.9527,"Moved in 2000–2009":19.771,"Moved in 1990–1999":12.8746,"1989 or earlier":12.022},"Lake County":{"Moved in 2021 or later":4.4634,"Moved in 2018–2020":15.7645,"Moved in 2010–2017":30.1519,"Moved in 2000–2009":24.5489,"Moved in 1990–1999":9.7816,"1989 or earlier":15.2896},"Lane County":{"Moved in 2021 or later":5.8233,"Moved in 2018–2020":16.5556,"Moved in 2010–2017":28.8314,"Moved in 2000–2009":21.9429,"Moved in 1990–1999":13.834,"1989 or earlier":13.0127},"Lincoln County":{"Moved in 2021 or later":6.2914,"Moved in 2018–2020":21.1392,"Moved in 2010–2017":29.8429,"Moved in 2000–2009":20.6113,"Moved in 1990–1999":12.8222,"1989 or earlier":9.2929},"Linn County":{"Moved in 2021 or later":5.4544,"Moved in 2018–2020":18.3761,"Moved in 2010–2017":29.6744,"Moved in 2000–2009":21.8913,"Moved in 1990–1999":12.5439,"1989 or earlier":12.0599},"Malheur County":{"Moved in 2021 or later":4.8075,"Moved in 2018–2020":17.3449,"Moved in 2010–2017":30.7934,"Moved in 2000–2009":20.3299,"Moved in 1990–1999":12.0817,"1989 or earlier":14.6426},"Marion County":{"Moved in 2021 or later":5.5252,"Moved in 2018–2020":17.7054,"Moved in 2010–2017":30.4595,"Moved in 2000–2009":23.1191,"Moved in 1990–1999":14.0441,"1989 or earlier":9.1467},"Morrow County":{"Moved in 2021 or later":7.2757,"Moved in 2018–2020":13.1485,"Moved in 2010–2017":26.7863,"Moved in 2000–2009":27.3736,"Moved in 1990–1999":11.9413,"1989 or earlier":13.4747},"Multnomah County":{"Moved in 2021 or later":7.1076,"Moved in 2018–2020":16.6355,"Moved in 2010–2017":29.5185,"Moved in 2000–2009":23.6447,"Moved in 1990–1999":12.0104,"1989 or earlier":11.0831},"Polk County":{"Moved in 2021 or later":7.3194,"Moved in 2018–2020":17.5285,"Moved in 2010–2017":31.307,"Moved in 2000–2009":22.3194,"Moved in 1990–1999":12.999,"1989 or earlier":8.5266},"Sherman County":{"Moved in 2021 or later":1.711,"Moved in 2018–2020":12.1673,"Moved in 2010–2017":18.8213,"Moved in 2000–2009":25.2852,"Moved in 1990–1999":17.8707,"1989 or earlier":24.1445},"Tillamook County":{"Moved in 2021 or later":6.13,"Moved in 2018–2020":20.148,"Moved in 2010–2017":28.5219,"Moved in 2000–2009":21.455,"Moved in 1990–1999":14.2494,"1989 or earlier":9.4957},"Umatilla County":{"Moved in 2021 or later":5.9852,"Moved in 2018–2020":16.038,"Moved in 2010–2017":30.0845,"Moved in 2000–2009":24.7015,"Moved in 1990–1999":13.8299,"1989 or earlier":9.3608},"Union County":{"Moved in 2021 or later":3.0951,"Moved in 2018–2020":16.4456,"Moved in 2010–2017":27.0147,"Moved in 2000–2009":20.2967,"Moved in 1990–1999":15.5755,"1989 or earlier":17.5724},"Wallowa County":{"Moved in 2021 or later":2.9251,"Moved in 2018–2020":21.8019,"Moved in 2010–2017":25.234,"Moved in 2000–2009":22.1139,"Moved in 1990–1999":19.7348,"1989 or earlier":8.1903},"Wasco County":{"Moved in 2021 or later":4.5837,"Moved in 2018–2020":15.1291,"Moved in 2010–2017":27.2266,"Moved in 2000–2009":23.4697,"Moved in 1990–1999":14.3748,"1989 or earlier":15.2161},"Washington County":{"Moved in 2021 or later":5.8378,"Moved in 2018–2020":17.4575,"Moved in 2010–2017":31.2024,"Moved in 2000–2009":23.279,"Moved in 1990–1999":13.0309,"1989 or earlier":9.1925},"Wheeler County":{"Moved in 2021 or later":4.793,"Moved in 2018–2020":16.3399,"Moved in 2010–2017":33.5512,"Moved in 2000–2009":19.1721,"Moved in 1990–1999":10.0218,"1989 or earlier":16.122},"Yamhill County":{"Moved in 2021 or later":5.5369,"Moved in 2018–2020":19.5487,"Moved in 2010–2017":30.3906,"Moved in 2000–2009":21.3194,"Moved in 1990–1999":15.0646,"1989 or earlier":8.1397}};
+    const colors = {
+  'Moved in 2021 or later': '#377EF1',
+  'Moved in 2018–2020': '#FF7F00',
+  'Moved in 2010–2017': '#66A61E',
+  'Moved in 2000–2009': '#E6AB01',
+  'Moved in 1990–1999': '#7570B1',
+  '1989 or earlier': '#E41A1C'
+};
+
+    const ctx = document.getElementById("pieChart").getContext("2d");
+    let chart;
+
+    function renderChart(key) {
+      const values = data[key];
+      const labels = Object.keys(values);
+      const percentages = Object.values(values);
+
+      if (chart) chart.destroy();
+
+      chart = new Chart(ctx, {
+        type: "pie",
+        data: {
+          labels: labels,
+          datasets: [{
+            data: percentages,
+            backgroundColor: labels.map(label => colors[label] || "#cccccc")
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: true,
+          aspectRatio: 1.5,
+          plugins: {
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  return context.label + ": " + context.formattedValue + "%";
+                }
+              }
+            },
+            legend: {
+              position: "right",
+              labels: {
+                usePointStyle: true,
+                pointStyle: "rect"
+              }
+            }
+          }
+        }
+      });
+    }
+
+    // Populate dropdown (Statewide first, then counties A->Z)
+    const select = document.getElementById("countySelect");
+    const keys = ["Statewide", ...Object.keys(data).filter(k => k !== "Statewide").sort()];
+    keys.forEach(k => {
+      const opt = document.createElement("option");
+      opt.value = k;
+      opt.text  = k;
+      select.appendChild(opt);
+    });
+    select.value = "Statewide";
+    select.addEventListener("change", () => renderChart(select.value));
+
+    renderChart("Statewide");
+  </script>
+</body>
+</html>
+</html>

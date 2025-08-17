@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Age Distribution Under 18 –  California</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          margin: 1rem 2rem;
+          text-align: center;
+        }
+        h2 {
+          margin-bottom: 0.25rem;
+          font-size: 1.6rem;
+        }
+        select {
+          padding: 0.4rem;
+          font-size: 1rem;
+          margin: 1rem 0;
+          border-radius: 5px;
+          border: 1px solid #999;
+        }
+        canvas {
+          width: 100%;
+          max-width: 850px;
+          height: 500px;
+          margin-top: 1rem;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Age Distribution Under 18 in  California (2023)</h2>
+    <label>Select County:</label>
+            <select id="countySelect">
+          <option value='Statewide'>Statewide</option>
+<option value='Alameda County, California'>Alameda County, California</option>
+<option value='Alpine County, California'>Alpine County, California</option>
+<option value='Amador County, California'>Amador County, California</option>
+<option value='Butte County, California'>Butte County, California</option>
+<option value='Calaveras County, California'>Calaveras County, California</option>
+<option value='Colusa County, California'>Colusa County, California</option>
+<option value='Contra Costa County, California'>Contra Costa County, California</option>
+<option value='Del Norte County, California'>Del Norte County, California</option>
+<option value='El Dorado County, California'>El Dorado County, California</option>
+<option value='Fresno County, California'>Fresno County, California</option>
+<option value='Glenn County, California'>Glenn County, California</option>
+<option value='Humboldt County, California'>Humboldt County, California</option>
+<option value='Imperial County, California'>Imperial County, California</option>
+<option value='Inyo County, California'>Inyo County, California</option>
+<option value='Kern County, California'>Kern County, California</option>
+<option value='Kings County, California'>Kings County, California</option>
+<option value='Lake County, California'>Lake County, California</option>
+<option value='Lassen County, California'>Lassen County, California</option>
+<option value='Los Angeles County, California'>Los Angeles County, California</option>
+<option value='Madera County, California'>Madera County, California</option>
+<option value='Marin County, California'>Marin County, California</option>
+<option value='Mariposa County, California'>Mariposa County, California</option>
+<option value='Mendocino County, California'>Mendocino County, California</option>
+<option value='Merced County, California'>Merced County, California</option>
+<option value='Modoc County, California'>Modoc County, California</option>
+<option value='Mono County, California'>Mono County, California</option>
+<option value='Monterey County, California'>Monterey County, California</option>
+<option value='Napa County, California'>Napa County, California</option>
+<option value='Nevada County, California'>Nevada County, California</option>
+<option value='Orange County, California'>Orange County, California</option>
+<option value='Placer County, California'>Placer County, California</option>
+<option value='Plumas County, California'>Plumas County, California</option>
+<option value='Riverside County, California'>Riverside County, California</option>
+<option value='Sacramento County, California'>Sacramento County, California</option>
+<option value='San Benito County, California'>San Benito County, California</option>
+<option value='San Bernardino County, California'>San Bernardino County, California</option>
+<option value='San Diego County, California'>San Diego County, California</option>
+<option value='San Francisco County, California'>San Francisco County, California</option>
+<option value='San Joaquin County, California'>San Joaquin County, California</option>
+<option value='San Luis Obispo County, California'>San Luis Obispo County, California</option>
+<option value='San Mateo County, California'>San Mateo County, California</option>
+<option value='Santa Barbara County, California'>Santa Barbara County, California</option>
+<option value='Santa Clara County, California'>Santa Clara County, California</option>
+<option value='Santa Cruz County, California'>Santa Cruz County, California</option>
+<option value='Shasta County, California'>Shasta County, California</option>
+<option value='Sierra County, California'>Sierra County, California</option>
+<option value='Siskiyou County, California'>Siskiyou County, California</option>
+<option value='Solano County, California'>Solano County, California</option>
+<option value='Sonoma County, California'>Sonoma County, California</option>
+<option value='Stanislaus County, California'>Stanislaus County, California</option>
+<option value='Sutter County, California'>Sutter County, California</option>
+<option value='Tehama County, California'>Tehama County, California</option>
+<option value='Trinity County, California'>Trinity County, California</option>
+<option value='Tulare County, California'>Tulare County, California</option>
+<option value='Tuolumne County, California'>Tuolumne County, California</option>
+<option value='Ventura County, California'>Ventura County, California</option>
+<option value='Yolo County, California'>Yolo County, California</option>
+<option value='Yuba County, California'>Yuba County, California</option>
+        </select>
+    <canvas id="barChart" width="850" height="500"></canvas>
+    <script>  const ageData = {"Statewide":[-13,12.4,-15.3,14.5,-9.1,8.7,-13.8,13.2],"Alameda County, California":[-13.6,13,-14.3,13.4,-14.5,14,-8.7,8.3],"Alpine County, California":[-19.1,23,-17.8,3.9,-5.7,8.9,-10.4,11.2],"Amador County, California":[-13.4,11.6,-13.1,13.8,-16.8,12.4,-10,8.9],"Butte County, California":[-13.1,12.6,-15.2,13.3,-14,14.1,-9,8.5],"Calaveras County, California":[-12.9,11,-16.2,11.8,-10.8,16.5,-12.2,8.7],"Colusa County, California":[-12.1,12.2,-17,11.7,-12.3,15.2,-10.7,8.8],"Contra Costa County, California":[-12.3,11.9,-13.4,13.4,-15.6,14.6,-9.6,9.2],"Del Norte County, California":[-11.5,12.9,-16.7,10.5,-14.9,17.2,-12.6,3.7],"El Dorado County, California":[-11.9,11.1,-13,13.4,-16.4,14.8,-10,9.6],"Fresno County, California":[-12.9,12.5,-13.9,13.4,-15.5,14.6,-8.8,8.3],"Glenn County, California":[-13.2,11.5,-11.1,11.9,-19.6,14.5,-8.9,9.4],"Humboldt County, California":[-12.7,12.5,-14.6,14.1,-14.5,14.1,-8.8,8.6],"Imperial County, California":[-12.9,12.5,-12.7,13.8,-16.5,14.6,-8.7,8.2],"Inyo County, California":[-11.8,12.7,-12.5,14.2,-17.5,13.6,-10.6,7.1],"Kern County, California":[-12.8,12.2,-14.1,13.3,-15.3,15,-8.8,8.5],"Kings County, California":[-13.3,13.5,-12.5,11,-16.4,17,-8.5,7.9],"Lake County, California":[-12.8,12.5,-14.7,14.4,-15.2,13.4,-9.3,7.8],"Lassen County, California":[-13.3,13.1,-13,13.8,-15.6,13.5,-9.6,8],"Los Angeles County, California":[-12.9,12.3,-13.6,13.2,-15.6,14.6,-9.1,8.7],"Madera County, California":[-13.1,11.7,-14.2,13.2,-15.5,14.6,-9.1,8.7],"Marin County, California":[-11.5,11,-14,13,-15.1,15,-10.4,10],"Mariposa County, California":[-5.7,14.2,-21.7,13.9,-13,13,-8.2,10.4],"Mendocino County, California":[-12,13.5,-15.2,13.9,-13.6,14.7,-9.3,7.8],"Merced County, California":[-12.8,12,-14.1,13.6,-15.5,14.2,-9.3,8.7],"Modoc County, California":[-13.4,11.2,-16.1,15.5,-12.2,16.9,-3.4,11.3],"Mono County, California":[-20.3,8,-7.4,14.4,-27.7,5.7,-6.6,9.8],"Monterey County, California":[-12.9,12.6,-14.2,13.6,-15.1,14.3,-8.7,8.6],"Napa County, California":[-11.8,11.3,-13.9,11.6,-15.2,16.2,-10.5,9.6],"Nevada County, California":[-12.3,11.2,-14.5,12.5,-15.5,15.4,-9.2,9.2],"Orange County, California":[-12.9,12.3,-13.5,12.9,-15.4,14.6,-9.4,9],"Placer County, California":[-11.9,11,-13.9,12.9,-16.1,15.5,-9.6,9.1],"Plumas County, California":[-12.6,11.8,-11,16.2,-17.1,10.5,-14.2,6.7],"Riverside County, California":[-12.4,11.8,-14,13.1,-15.3,14.9,-9.3,9],"Sacramento County, California":[-13.4,12.7,-13.8,13.1,-15.3,14.5,-8.9,8.5],"San Benito County, California":[-12.1,13,-13.4,13.5,-15.3,14.4,-9.1,9.1],"San Bernardino County, California":[-12.9,12.3,-13.6,13.4,-15.5,14.5,-9.1,8.6],"San Diego County, California":[-13.8,13.2,-13.8,13.2,-15,14.1,-8.6,8.2],"San Francisco County, California":[-15.8,15,-14.1,13,-13.5,13.2,-7.8,7.7],"San Joaquin County, California":[-12.7,12.2,-13.5,12.5,-16,15.3,-9.2,8.6],"San Luis Obispo County, California":[-12.5,12.4,-13.2,14,-15.9,13.9,-9.3,8.8],"San Mateo County, California":[-13.4,12.8,-13.7,12.7,-15.1,14.5,-9.1,8.7],"Santa Barbara County, California":[-13.9,13.1,-13.8,12.2,-14.8,15,-8.6,8.5],"Santa Clara County, California":[-13.1,12.3,-13.8,13,-15.2,14.4,-9.3,8.8],"Santa Cruz County, California":[-12.2,12,-14.1,13.5,-15.2,14.1,-9.8,9.2],"Shasta County, California":[-12.9,12.3,-14.5,13.6,-15,14.3,-9,8.3],"Sierra County, California":[-0,0,-14.6,10.9,-24.1,32.7,-5.7,12],"Siskiyou County, California":[-12.3,11.4,-12,12.9,-17.7,16.2,-9.6,7.8],"Solano County, California":[-13.5,12.6,-13.4,14.1,-15.6,13.8,-8.7,8.4],"Sonoma County, California":[-12.4,11.9,-14.4,12.9,-14.6,14.9,-9.7,9.3],"Stanislaus County, California":[-12.8,12.5,-13.6,13.1,-15.5,14.8,-9.1,8.6],"Sutter County, California":[-12.8,11.9,-15.1,14.8,-14.8,12.3,-9.7,8.7],"Tehama County, California":[-12.2,12.1,-16.3,14.1,-13.7,14.3,-9,8.4],"Trinity County, California":[-9.6,13.7,-13.7,12.5,-18.5,14.8,-6,11.3],"Tulare County, California":[-12.6,11.9,-14.3,13.2,-15.3,15,-9,8.7],"Tuolumne County, California":[-13.9,11.7,-15.4,12.3,-13.1,15.4,-7.9,10.3],"Ventura County, California":[-12.3,11.8,-13.6,13.3,-15.6,14.7,-9.5,9.2],"Yolo County, California":[-12.4,11.8,-14.5,13.6,-14.6,14.8,-9.4,9],"Yuba County, California":[-14.1,12.8,-15.3,16.3,-13.3,13.2,-7.8,7.2]};
+  const ageBins = ["0–4","5–9","10–14","15–17"];
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(data) {
+    const maleData = data.filter((_, i) => i % 2 === 0);
+    const femaleData = data.filter((_, i) => i % 2 === 1);
+
+    const maxValue = Math.max(
+      ...maleData.map(Math.abs),
+      ...femaleData.map(Math.abs)
+    );
+    const padding = 1.0;
+    const xMax = +(maxValue + padding).toFixed(1);
+
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ageBins,
+        datasets: [
+          {
+            label: 'Male',
+            data: maleData,
+            backgroundColor: 'dodgerblue'
+          },
+          {
+            label: 'Female',
+            data: femaleData,
+            backgroundColor: 'lightpink'
+          }
+        ]
+      },
+      options: {
+        indexAxis: 'y',
+        responsive: true,
+        scales: {
+          x: {
+            min: -xMax,
+            max: xMax,
+            ticks: {
+              callback: value => Math.abs(value).toFixed(1) + '%'
+            }
+          },
+          y: {
+            stacked: false
+          }
+        },
+        plugins: {
+          legend: {
+            position: 'top',
+            align: 'start',
+            labels: {
+              usePointStyle: true
+            }
+          },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.dataset.label + ': ' + Math.abs(ctx.parsed.x).toFixed(1) + '%'
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(Object.values(ageData[this.value]));
+  });
+
+  renderChart(Object.values(ageData['Statewide']));</script>
+  </body>
+</html>
+</html>

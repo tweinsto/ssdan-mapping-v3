@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Living Arrangements of Children – Oklahoma</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Children’s Living Arrangements (Under 18) – Oklahoma</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Adair County, Oklahoma">Adair County, Oklahoma</option>
+      <option value="Alfalfa County, Oklahoma">Alfalfa County, Oklahoma</option>
+      <option value="Atoka County, Oklahoma">Atoka County, Oklahoma</option>
+      <option value="Beaver County, Oklahoma">Beaver County, Oklahoma</option>
+      <option value="Beckham County, Oklahoma">Beckham County, Oklahoma</option>
+      <option value="Blaine County, Oklahoma">Blaine County, Oklahoma</option>
+      <option value="Bryan County, Oklahoma">Bryan County, Oklahoma</option>
+      <option value="Caddo County, Oklahoma">Caddo County, Oklahoma</option>
+      <option value="Canadian County, Oklahoma">Canadian County, Oklahoma</option>
+      <option value="Carter County, Oklahoma">Carter County, Oklahoma</option>
+      <option value="Cherokee County, Oklahoma">Cherokee County, Oklahoma</option>
+      <option value="Choctaw County, Oklahoma">Choctaw County, Oklahoma</option>
+      <option value="Cimarron County, Oklahoma">Cimarron County, Oklahoma</option>
+      <option value="Cleveland County, Oklahoma">Cleveland County, Oklahoma</option>
+      <option value="Coal County, Oklahoma">Coal County, Oklahoma</option>
+      <option value="Comanche County, Oklahoma">Comanche County, Oklahoma</option>
+      <option value="Cotton County, Oklahoma">Cotton County, Oklahoma</option>
+      <option value="Craig County, Oklahoma">Craig County, Oklahoma</option>
+      <option value="Creek County, Oklahoma">Creek County, Oklahoma</option>
+      <option value="Custer County, Oklahoma">Custer County, Oklahoma</option>
+      <option value="Delaware County, Oklahoma">Delaware County, Oklahoma</option>
+      <option value="Dewey County, Oklahoma">Dewey County, Oklahoma</option>
+      <option value="Ellis County, Oklahoma">Ellis County, Oklahoma</option>
+      <option value="Garfield County, Oklahoma">Garfield County, Oklahoma</option>
+      <option value="Garvin County, Oklahoma">Garvin County, Oklahoma</option>
+      <option value="Grady County, Oklahoma">Grady County, Oklahoma</option>
+      <option value="Grant County, Oklahoma">Grant County, Oklahoma</option>
+      <option value="Greer County, Oklahoma">Greer County, Oklahoma</option>
+      <option value="Harmon County, Oklahoma">Harmon County, Oklahoma</option>
+      <option value="Harper County, Oklahoma">Harper County, Oklahoma</option>
+      <option value="Haskell County, Oklahoma">Haskell County, Oklahoma</option>
+      <option value="Hughes County, Oklahoma">Hughes County, Oklahoma</option>
+      <option value="Jackson County, Oklahoma">Jackson County, Oklahoma</option>
+      <option value="Jefferson County, Oklahoma">Jefferson County, Oklahoma</option>
+      <option value="Johnston County, Oklahoma">Johnston County, Oklahoma</option>
+      <option value="Kay County, Oklahoma">Kay County, Oklahoma</option>
+      <option value="Kingfisher County, Oklahoma">Kingfisher County, Oklahoma</option>
+      <option value="Kiowa County, Oklahoma">Kiowa County, Oklahoma</option>
+      <option value="Latimer County, Oklahoma">Latimer County, Oklahoma</option>
+      <option value="Le Flore County, Oklahoma">Le Flore County, Oklahoma</option>
+      <option value="Lincoln County, Oklahoma">Lincoln County, Oklahoma</option>
+      <option value="Logan County, Oklahoma">Logan County, Oklahoma</option>
+      <option value="Love County, Oklahoma">Love County, Oklahoma</option>
+      <option value="Major County, Oklahoma">Major County, Oklahoma</option>
+      <option value="Marshall County, Oklahoma">Marshall County, Oklahoma</option>
+      <option value="Mayes County, Oklahoma">Mayes County, Oklahoma</option>
+      <option value="McClain County, Oklahoma">McClain County, Oklahoma</option>
+      <option value="McCurtain County, Oklahoma">McCurtain County, Oklahoma</option>
+      <option value="McIntosh County, Oklahoma">McIntosh County, Oklahoma</option>
+      <option value="Murray County, Oklahoma">Murray County, Oklahoma</option>
+      <option value="Muskogee County, Oklahoma">Muskogee County, Oklahoma</option>
+      <option value="Noble County, Oklahoma">Noble County, Oklahoma</option>
+      <option value="Nowata County, Oklahoma">Nowata County, Oklahoma</option>
+      <option value="Okfuskee County, Oklahoma">Okfuskee County, Oklahoma</option>
+      <option value="Oklahoma County, Oklahoma">Oklahoma County, Oklahoma</option>
+      <option value="Okmulgee County, Oklahoma">Okmulgee County, Oklahoma</option>
+      <option value="Osage County, Oklahoma">Osage County, Oklahoma</option>
+      <option value="Ottawa County, Oklahoma">Ottawa County, Oklahoma</option>
+      <option value="Pawnee County, Oklahoma">Pawnee County, Oklahoma</option>
+      <option value="Payne County, Oklahoma">Payne County, Oklahoma</option>
+      <option value="Pittsburg County, Oklahoma">Pittsburg County, Oklahoma</option>
+      <option value="Pontotoc County, Oklahoma">Pontotoc County, Oklahoma</option>
+      <option value="Pottawatomie County, Oklahoma">Pottawatomie County, Oklahoma</option>
+      <option value="Pushmataha County, Oklahoma">Pushmataha County, Oklahoma</option>
+      <option value="Roger Mills County, Oklahoma">Roger Mills County, Oklahoma</option>
+      <option value="Rogers County, Oklahoma">Rogers County, Oklahoma</option>
+      <option value="Seminole County, Oklahoma">Seminole County, Oklahoma</option>
+      <option value="Sequoyah County, Oklahoma">Sequoyah County, Oklahoma</option>
+      <option value="Stephens County, Oklahoma">Stephens County, Oklahoma</option>
+      <option value="Texas County, Oklahoma">Texas County, Oklahoma</option>
+      <option value="Tillman County, Oklahoma">Tillman County, Oklahoma</option>
+      <option value="Tulsa County, Oklahoma">Tulsa County, Oklahoma</option>
+      <option value="Wagoner County, Oklahoma">Wagoner County, Oklahoma</option>
+      <option value="Washington County, Oklahoma">Washington County, Oklahoma</option>
+      <option value="Washita County, Oklahoma">Washita County, Oklahoma</option>
+      <option value="Woods County, Oklahoma">Woods County, Oklahoma</option>
+      <option value="Woodward County, Oklahoma">Woodward County, Oklahoma</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>  const data = {"Statewide":{"Married Couple (%)":65.9,"Cohabiting Couple (%)":8.7,"Male Householder (%)":5.4,"Female Householder (%)":20.1},"Adair County, Oklahoma":{"Married Couple (%)":60.9,"Cohabiting Couple (%)":10.4,"Male Householder (%)":4.5,"Female Householder (%)":24.3},"Alfalfa County, Oklahoma":{"Married Couple (%)":79.6,"Cohabiting Couple (%)":12.6,"Male Householder (%)":1.7,"Female Householder (%)":6.1},"Atoka County, Oklahoma":{"Married Couple (%)":72.1,"Cohabiting Couple (%)":6.9,"Male Householder (%)":6.8,"Female Householder (%)":14.3},"Beaver County, Oklahoma":{"Married Couple (%)":70.4,"Cohabiting Couple (%)":14.2,"Male Householder (%)":3.5,"Female Householder (%)":11.8},"Beckham County, Oklahoma":{"Married Couple (%)":59.7,"Cohabiting Couple (%)":15.3,"Male Householder (%)":6.6,"Female Householder (%)":18.4},"Blaine County, Oklahoma":{"Married Couple (%)":61.3,"Cohabiting Couple (%)":10.4,"Male Householder (%)":8.1,"Female Householder (%)":20.2},"Bryan County, Oklahoma":{"Married Couple (%)":61,"Cohabiting Couple (%)":14.2,"Male Householder (%)":6,"Female Householder (%)":18.7},"Caddo County, Oklahoma":{"Married Couple (%)":62,"Cohabiting Couple (%)":9,"Male Householder (%)":4.1,"Female Householder (%)":24.9},"Canadian County, Oklahoma":{"Married Couple (%)":75.5,"Cohabiting Couple (%)":7.1,"Male Householder (%)":3.3,"Female Householder (%)":14.1},"Carter County, Oklahoma":{"Married Couple (%)":61.8,"Cohabiting Couple (%)":10,"Male Householder (%)":6.6,"Female Householder (%)":21.5},"Cherokee County, Oklahoma":{"Married Couple (%)":65,"Cohabiting Couple (%)":9.4,"Male Householder (%)":5.5,"Female Householder (%)":20.2},"Choctaw County, Oklahoma":{"Married Couple (%)":52.6,"Cohabiting Couple (%)":10.2,"Male Householder (%)":6.3,"Female Householder (%)":30.9},"Cimarron County, Oklahoma":{"Married Couple (%)":64.4,"Cohabiting Couple (%)":6.9,"Male Householder (%)":0,"Female Householder (%)":28.8},"Cleveland County, Oklahoma":{"Married Couple (%)":71.2,"Cohabiting Couple (%)":7.6,"Male Householder (%)":4.9,"Female Householder (%)":16.3},"Coal County, Oklahoma":{"Married Couple (%)":62.3,"Cohabiting Couple (%)":10.1,"Male Householder (%)":7.7,"Female Householder (%)":19.9},"Comanche County, Oklahoma":{"Married Couple (%)":60,"Cohabiting Couple (%)":8.3,"Male Householder (%)":6.5,"Female Householder (%)":25.2},"Cotton County, Oklahoma":{"Married Couple (%)":70.5,"Cohabiting Couple (%)":13.4,"Male Householder (%)":3.1,"Female Householder (%)":13},"Craig County, Oklahoma":{"Married Couple (%)":59.7,"Cohabiting Couple (%)":9.7,"Male Householder (%)":9.3,"Female Householder (%)":21.3},"Creek County, Oklahoma":{"Married Couple (%)":70.9,"Cohabiting Couple (%)":7.4,"Male Householder (%)":6.1,"Female Householder (%)":15.6},"Custer County, Oklahoma":{"Married Couple (%)":75,"Cohabiting Couple (%)":6.7,"Male Householder (%)":5,"Female Householder (%)":13.3},"Delaware County, Oklahoma":{"Married Couple (%)":63.1,"Cohabiting Couple (%)":10.2,"Male Householder (%)":6.1,"Female Householder (%)":20.6},"Dewey County, Oklahoma":{"Married Couple (%)":78.3,"Cohabiting Couple (%)":5.2,"Male Householder (%)":0.9,"Female Householder (%)":15.6},"Ellis County, Oklahoma":{"Married Couple (%)":74.2,"Cohabiting Couple (%)":13.9,"Male Householder (%)":2.5,"Female Householder (%)":9.4},"Garfield County, Oklahoma":{"Married Couple (%)":64,"Cohabiting Couple (%)":9.1,"Male Householder (%)":5.2,"Female Householder (%)":21.7},"Garvin County, Oklahoma":{"Married Couple (%)":67.1,"Cohabiting Couple (%)":9.5,"Male Householder (%)":4.3,"Female Householder (%)":19.1},"Grady County, Oklahoma":{"Married Couple (%)":74.8,"Cohabiting Couple (%)":7.4,"Male Householder (%)":4.3,"Female Householder (%)":13.5},"Grant County, Oklahoma":{"Married Couple (%)":74.4,"Cohabiting Couple (%)":10.6,"Male Householder (%)":0.9,"Female Householder (%)":14.1},"Greer County, Oklahoma":{"Married Couple (%)":82.1,"Cohabiting Couple (%)":4.9,"Male Householder (%)":0.3,"Female Householder (%)":12.7},"Harmon County, Oklahoma":{"Married Couple (%)":65.3,"Cohabiting Couple (%)":10.3,"Male Householder (%)":3.5,"Female Householder (%)":20.9},"Harper County, Oklahoma":{"Married Couple (%)":85.2,"Cohabiting Couple (%)":5.3,"Male Householder (%)":7.7,"Female Householder (%)":1.8},"Haskell County, Oklahoma":{"Married Couple (%)":69.1,"Cohabiting Couple (%)":6,"Male Householder (%)":6.6,"Female Householder (%)":18.2},"Hughes County, Oklahoma":{"Married Couple (%)":66.2,"Cohabiting Couple (%)":5.5,"Male Householder (%)":8.1,"Female Householder (%)":20.2},"Jackson County, Oklahoma":{"Married Couple (%)":61.6,"Cohabiting Couple (%)":8.2,"Male Householder (%)":4.5,"Female Householder (%)":25.7},"Jefferson County, Oklahoma":{"Married Couple (%)":47.4,"Cohabiting Couple (%)":10.2,"Male Householder (%)":7,"Female Householder (%)":35.4},"Johnston County, Oklahoma":{"Married Couple (%)":60.2,"Cohabiting Couple (%)":11.9,"Male Householder (%)":7.2,"Female Householder (%)":20.6},"Kay County, Oklahoma":{"Married Couple (%)":58.7,"Cohabiting Couple (%)":11.1,"Male Householder (%)":6.3,"Female Householder (%)":23.9},"Kingfisher County, Oklahoma":{"Married Couple (%)":72.4,"Cohabiting Couple (%)":10.1,"Male Householder (%)":4.1,"Female Householder (%)":13.3},"Kiowa County, Oklahoma":{"Married Couple (%)":55.3,"Cohabiting Couple (%)":16.5,"Male Householder (%)":5.6,"Female Householder (%)":22.6},"Latimer County, Oklahoma":{"Married Couple (%)":58.1,"Cohabiting Couple (%)":10.5,"Male Householder (%)":8,"Female Householder (%)":23.4},"Le Flore County, Oklahoma":{"Married Couple (%)":66.1,"Cohabiting Couple (%)":9.4,"Male Householder (%)":5.9,"Female Householder (%)":18.6},"Lincoln County, Oklahoma":{"Married Couple (%)":68.8,"Cohabiting Couple (%)":6.7,"Male Householder (%)":6.9,"Female Householder (%)":17.6},"Logan County, Oklahoma":{"Married Couple (%)":79.5,"Cohabiting Couple (%)":6.4,"Male Householder (%)":4.4,"Female Householder (%)":9.7},"Love County, Oklahoma":{"Married Couple (%)":69.1,"Cohabiting Couple (%)":6.9,"Male Householder (%)":7.9,"Female Householder (%)":16.1},"Major County, Oklahoma":{"Married Couple (%)":77.1,"Cohabiting Couple (%)":5.2,"Male Householder (%)":8.5,"Female Householder (%)":9.2},"Marshall County, Oklahoma":{"Married Couple (%)":67.6,"Cohabiting Couple (%)":14.8,"Male Householder (%)":2.8,"Female Householder (%)":14.8},"Mayes County, Oklahoma":{"Married Couple (%)":66.8,"Cohabiting Couple (%)":10.3,"Male Householder (%)":3.7,"Female Householder (%)":19.2},"McClain County, Oklahoma":{"Married Couple (%)":79,"Cohabiting Couple (%)":4.9,"Male Householder (%)":6.6,"Female Householder (%)":9.5},"McCurtain County, Oklahoma":{"Married Couple (%)":56.9,"Cohabiting Couple (%)":8.5,"Male Householder (%)":6.3,"Female Householder (%)":28.2},"McIntosh County, Oklahoma":{"Married Couple (%)":63.3,"Cohabiting Couple (%)":5,"Male Householder (%)":6.2,"Female Householder (%)":25.4},"Murray County, Oklahoma":{"Married Couple (%)":71.4,"Cohabiting Couple (%)":5,"Male Householder (%)":2.4,"Female Householder (%)":21.2},"Muskogee County, Oklahoma":{"Married Couple (%)":58.1,"Cohabiting Couple (%)":7.7,"Male Householder (%)":4.8,"Female Householder (%)":29.4},"Noble County, Oklahoma":{"Married Couple (%)":77.6,"Cohabiting Couple (%)":4.6,"Male Householder (%)":5.2,"Female Householder (%)":12.6},"Nowata County, Oklahoma":{"Married Couple (%)":64,"Cohabiting Couple (%)":9.4,"Male Householder (%)":4.4,"Female Householder (%)":22.2},"Okfuskee County, Oklahoma":{"Married Couple (%)":62.3,"Cohabiting Couple (%)":7.8,"Male Householder (%)":5.1,"Female Householder (%)":24.8},"Oklahoma County, Oklahoma":{"Married Couple (%)":61.8,"Cohabiting Couple (%)":9.3,"Male Householder (%)":5.3,"Female Householder (%)":23.6},"Okmulgee County, Oklahoma":{"Married Couple (%)":62.2,"Cohabiting Couple (%)":9.4,"Male Householder (%)":7.9,"Female Householder (%)":20.6},"Osage County, Oklahoma":{"Married Couple (%)":67.5,"Cohabiting Couple (%)":7.1,"Male Householder (%)":5.3,"Female Householder (%)":20.1},"Ottawa County, Oklahoma":{"Married Couple (%)":57.4,"Cohabiting Couple (%)":12.7,"Male Householder (%)":7.2,"Female Householder (%)":22.8},"Pawnee County, Oklahoma":{"Married Couple (%)":69.6,"Cohabiting Couple (%)":7.3,"Male Householder (%)":7.5,"Female Householder (%)":15.7},"Payne County, Oklahoma":{"Married Couple (%)":66.8,"Cohabiting Couple (%)":6.7,"Male Householder (%)":8,"Female Householder (%)":18.6},"Pittsburg County, Oklahoma":{"Married Couple (%)":65.3,"Cohabiting Couple (%)":10.6,"Male Householder (%)":6.2,"Female Householder (%)":17.9},"Pontotoc County, Oklahoma":{"Married Couple (%)":65.2,"Cohabiting Couple (%)":8.7,"Male Householder (%)":7.9,"Female Householder (%)":18.3},"Pottawatomie County, Oklahoma":{"Married Couple (%)":69.1,"Cohabiting Couple (%)":7.6,"Male Householder (%)":4.5,"Female Householder (%)":18.7},"Pushmataha County, Oklahoma":{"Married Couple (%)":62.6,"Cohabiting Couple (%)":7,"Male Householder (%)":6.9,"Female Householder (%)":23.5},"Roger Mills County, Oklahoma":{"Married Couple (%)":71.8,"Cohabiting Couple (%)":12.5,"Male Householder (%)":1.5,"Female Householder (%)":14.3},"Rogers County, Oklahoma":{"Married Couple (%)":74.3,"Cohabiting Couple (%)":8.2,"Male Householder (%)":3.8,"Female Householder (%)":13.7},"Seminole County, Oklahoma":{"Married Couple (%)":60.2,"Cohabiting Couple (%)":8.8,"Male Householder (%)":5.8,"Female Householder (%)":25.2},"Sequoyah County, Oklahoma":{"Married Couple (%)":66.2,"Cohabiting Couple (%)":8.2,"Male Householder (%)":6.6,"Female Householder (%)":19},"Stephens County, Oklahoma":{"Married Couple (%)":70.4,"Cohabiting Couple (%)":7.3,"Male Householder (%)":6.4,"Female Householder (%)":15.9},"Texas County, Oklahoma":{"Married Couple (%)":64.2,"Cohabiting Couple (%)":12.1,"Male Householder (%)":5.9,"Female Householder (%)":17.9},"Tillman County, Oklahoma":{"Married Couple (%)":64.5,"Cohabiting Couple (%)":13.3,"Male Householder (%)":2.9,"Female Householder (%)":19.3},"Tulsa County, Oklahoma":{"Married Couple (%)":64.4,"Cohabiting Couple (%)":8.4,"Male Householder (%)":5.8,"Female Householder (%)":21.4},"Wagoner County, Oklahoma":{"Married Couple (%)":74.9,"Cohabiting Couple (%)":6.4,"Male Householder (%)":3.9,"Female Householder (%)":14.9},"Washington County, Oklahoma":{"Married Couple (%)":64,"Cohabiting Couple (%)":13.7,"Male Householder (%)":4.4,"Female Householder (%)":17.9},"Washita County, Oklahoma":{"Married Couple (%)":68.6,"Cohabiting Couple (%)":9.7,"Male Householder (%)":3.3,"Female Householder (%)":18.5},"Woods County, Oklahoma":{"Married Couple (%)":67.6,"Cohabiting Couple (%)":8.2,"Male Householder (%)":2.3,"Female Householder (%)":21.9},"Woodward County, Oklahoma":{"Married Couple (%)":73.5,"Cohabiting Couple (%)":5.6,"Male Householder (%)":2,"Female Householder (%)":18.8}};
+  const categories = ["Married Couple (%)","Cohabiting Couple (%)","Male Householder (%)","Female Householder (%)"];
+  const ctx = document.getElementById("barChart").getContext("2d");
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: categories,
+        datasets: [{
+          label: "Share of Children (%)",
+          data: values,
+          backgroundColor: ["#5DA5DA","#FAA43A","#60BD68","#F17CB0"]
+        }]
+      },
+      options: {
+        indexAxis: "y",
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            ticks: { callback: v => v + "%" },
+            title: { display: true, text: "Percent of Children" }
+          }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.raw + "%"
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById("countySelect").addEventListener("change", function() {
+    renderChart(Object.values(data[this.value]));
+  });
+
+  renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

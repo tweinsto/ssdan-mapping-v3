@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Living Arrangements 18–64 – Oregon</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+      body { font-family: sans-serif; margin: 1.25rem 2rem; text-align: center; }
+      h2 { margin-bottom: .25rem; font-size: 1.6rem; color: #2c348b; }
+      label { margin-right: .5rem; }
+      select { padding: .45rem .6rem; font-size: 1rem; border-radius: .5rem; border: 2px solid #f39c12; }
+      canvas { width: 100%; max-width: 900px; height: 520px; }
+    </style>
+</head>
+<html>
+  <body>
+    <h2>Living Arrangements of Adults 18–64 in Oregon</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Baker County, Oregon">Baker County, Oregon</option>
+      <option value="Benton County, Oregon">Benton County, Oregon</option>
+      <option value="Clackamas County, Oregon">Clackamas County, Oregon</option>
+      <option value="Clatsop County, Oregon">Clatsop County, Oregon</option>
+      <option value="Columbia County, Oregon">Columbia County, Oregon</option>
+      <option value="Coos County, Oregon">Coos County, Oregon</option>
+      <option value="Crook County, Oregon">Crook County, Oregon</option>
+      <option value="Curry County, Oregon">Curry County, Oregon</option>
+      <option value="Deschutes County, Oregon">Deschutes County, Oregon</option>
+      <option value="Douglas County, Oregon">Douglas County, Oregon</option>
+      <option value="Gilliam County, Oregon">Gilliam County, Oregon</option>
+      <option value="Grant County, Oregon">Grant County, Oregon</option>
+      <option value="Harney County, Oregon">Harney County, Oregon</option>
+      <option value="Hood River County, Oregon">Hood River County, Oregon</option>
+      <option value="Jackson County, Oregon">Jackson County, Oregon</option>
+      <option value="Jefferson County, Oregon">Jefferson County, Oregon</option>
+      <option value="Josephine County, Oregon">Josephine County, Oregon</option>
+      <option value="Klamath County, Oregon">Klamath County, Oregon</option>
+      <option value="Lake County, Oregon">Lake County, Oregon</option>
+      <option value="Lane County, Oregon">Lane County, Oregon</option>
+      <option value="Lincoln County, Oregon">Lincoln County, Oregon</option>
+      <option value="Linn County, Oregon">Linn County, Oregon</option>
+      <option value="Malheur County, Oregon">Malheur County, Oregon</option>
+      <option value="Marion County, Oregon">Marion County, Oregon</option>
+      <option value="Morrow County, Oregon">Morrow County, Oregon</option>
+      <option value="Multnomah County, Oregon">Multnomah County, Oregon</option>
+      <option value="Polk County, Oregon">Polk County, Oregon</option>
+      <option value="Sherman County, Oregon">Sherman County, Oregon</option>
+      <option value="Tillamook County, Oregon">Tillamook County, Oregon</option>
+      <option value="Umatilla County, Oregon">Umatilla County, Oregon</option>
+      <option value="Union County, Oregon">Union County, Oregon</option>
+      <option value="Wallowa County, Oregon">Wallowa County, Oregon</option>
+      <option value="Wasco County, Oregon">Wasco County, Oregon</option>
+      <option value="Washington County, Oregon">Washington County, Oregon</option>
+      <option value="Wheeler County, Oregon">Wheeler County, Oregon</option>
+      <option value="Yamhill County, Oregon">Yamhill County, Oregon</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>document.addEventListener("DOMContentLoaded", function () {
+  const data = {"Statewide":[10.9,11.8,8.9,10.9,46.4,11.2],"Baker County, Oregon":[15.8,12.5,5.7,7.8,50.3,8],"Benton County, Oregon":[12.1,8.2,22,8.4,38.2,11.1],"Clackamas County, Oregon":[7.9,14.1,6.3,10.8,52.8,8.2],"Clatsop County, Oregon":[16.1,12.6,7.2,10.8,44.7,8.7],"Columbia County, Oregon":[8,14.3,6.3,10.5,52,8.8],"Coos County, Oregon":[12.2,12,6.9,11.6,44.9,12.3],"Crook County, Oregon":[7.7,12.9,4.5,9.4,56,9.5],"Curry County, Oregon":[11.5,8.9,3.6,10.5,52.4,13.1],"Deschutes County, Oregon":[9.4,10.1,8.6,10.2,50.8,11],"Douglas County, Oregon":[10.5,13.2,6.2,11.6,46.9,11.6],"Gilliam County, Oregon":[14.6,9,12.4,15.1,39.9,8.8],"Grant County, Oregon":[10.6,7.2,3.6,4.8,59.5,14.4],"Harney County, Oregon":[11.1,18.5,6.3,9.3,51.8,2.9],"Hood River County, Oregon":[8.6,14.3,5.4,9.1,51.4,11.2],"Jackson County, Oregon":[10.1,11.7,7.9,11.1,49,10.2],"Jefferson County, Oregon":[6.6,19,3.6,17.6,43,10.3],"Josephine County, Oregon":[9.4,13.5,7.7,12.7,45.8,10.9],"Klamath County, Oregon":[11.7,12.1,7,10.7,46,12.5],"Lake County, Oregon":[11.7,9.4,4.1,12.5,51.3,11.1],"Lane County, Oregon":[11.7,11.3,13.5,9.9,40.6,13],"Lincoln County, Oregon":[12.3,12.1,8.2,12.9,42.3,12.2],"Linn County, Oregon":[9.1,12.3,7,11,50.6,10],"Malheur County, Oregon":[8.8,17.9,7.3,18.3,40.4,7.3],"Marion County, Oregon":[8.6,14.2,6.7,14.2,46.5,9.8],"Morrow County, Oregon":[6.3,14.7,6.4,12.6,47.8,12.2],"Multnomah County, Oregon":[15.8,9.1,11.7,9.9,39.6,13.9],"Polk County, Oregon":[7.6,16.1,6.4,11.6,48.2,10.1],"Sherman County, Oregon":[15.7,18.3,2.4,8.5,43.9,11.2],"Tillamook County, Oregon":[9.5,10.8,5.4,10.2,51.4,12.6],"Umatilla County, Oregon":[7.8,14.2,8.3,13.8,45.9,10],"Union County, Oregon":[9.4,8.5,9.8,11,51.9,9.3],"Wallowa County, Oregon":[15.4,7,6.7,9,55.9,6],"Wasco County, Oregon":[11.8,13.6,6.4,8.7,48.2,11.3],"Washington County, Oregon":[9.1,11.6,7.3,10.3,51.4,10.4],"Wheeler County, Oregon":[8.6,5.4,1.6,19.9,62.2,2.3],"Yamhill County, Oregon":[7,15.4,6.1,12,49.6,9.9]};
+  const cats = ["lives_alone_18_64","with_child_18_64","with_nonrel_18_64","with_other_rel_18_64","with_spouse_only_18_64","with_unmar_partner_18_64"];
+
+  const ORDER = [
+    "Lives alone",
+    "With child",
+    "With nonrelatives",
+    "With other relatives",
+    "With spouse only",
+    "With unmarried partner"
+  ];
+
+  const PRETTY_TO_SNAKE = {
+    "Lives alone":            "lives_alone_18_64",
+    "With child":             "with_child_18_64",
+    "With nonrelatives":      "with_nonrel_18_64",
+    "With other relatives":   "with_other_rel_18_64",
+    "With spouse only":       "with_spouse_only_18_64",
+    "With unmarried partner": "with_unmar_partner_18_64"
+  };
+
+  const COLOR_BY_CAT = {
+    "Lives alone":            "#e41a1c",
+    "With child":             "#ff7f00",
+    "With nonrelatives":      "#4daf4a",
+    "With other relatives":   "#984ea3",
+    "With spouse only":       "#377eb8",
+    "With unmarried partner": "#a65628"
+  };
+
+  // snake key → array index
+  const keyToIndex = Object.fromEntries((cats || []).map((k, i) => [String(k), i]));
+
+  function valuesFor(name) {
+    const row = data?.[name] || [];
+    return ORDER.map(lbl => {
+      const idx = keyToIndex[PRETTY_TO_SNAKE[lbl]];
+      const v = (idx != null && idx >= 0) ? row[idx] : 0;
+      return (typeof v === "number") ? v : Number(v) || 0;
+    });
+  }
+
+  const canvas = document.getElementById("barChart");
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+  let chart;
+
+  function renderChart(name) {
+    const vals = valuesFor(name);
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: ORDER,
+        datasets: [{
+          data: vals,
+          backgroundColor: ORDER.map(c => COLOR_BY_CAT[c]),
+          borderWidth: 0
+        }]
+      },
+      options: {
+        indexAxis: "y",
+        plugins: {
+          legend: { display: false },
+          tooltip: { callbacks: { label: (c) => c.raw + "%" } }
+        },
+        scales: {
+          x: { min: 0, max: 100, ticks: { callback: v => v + "%" } }
+        }
+      }
+    });
+  }
+
+  const DEFAULT_NAME = (data && Object.prototype.hasOwnProperty.call(data, "Statewide"))
+    ? "Statewide" : Object.keys(data || {})[0];
+
+  const sel = document.getElementById("countySelect");
+  if (sel) sel.addEventListener("change", e => renderChart(e.target.value));
+  if (DEFAULT_NAME) renderChart(DEFAULT_NAME);
+});</script>
+  </body>
+</html>
+</html>

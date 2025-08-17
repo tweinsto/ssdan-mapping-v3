@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Income Distribution – South Carolina</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          text-align: center;
+          margin: 2rem;
+        }
+        select {
+          font-size: 1rem;
+          padding: 0.4rem;
+          margin-bottom: 1rem;
+        }
+        canvas {
+          width: 100%;
+          max-width: 700px;
+          height: 400px;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Income Share by Quintile – South Carolina</h2>
+    <label>Select County, State:</label>
+    <select id="countySelect"><option value='Statewide'>Statewide</option>
+<option value='Abbeville, South Carolina'>Abbeville, South Carolina</option>
+<option value='Aiken, South Carolina'>Aiken, South Carolina</option>
+<option value='Allendale, South Carolina'>Allendale, South Carolina</option>
+<option value='Anderson, South Carolina'>Anderson, South Carolina</option>
+<option value='Bamberg, South Carolina'>Bamberg, South Carolina</option>
+<option value='Barnwell, South Carolina'>Barnwell, South Carolina</option>
+<option value='Beaufort, South Carolina'>Beaufort, South Carolina</option>
+<option value='Berkeley, South Carolina'>Berkeley, South Carolina</option>
+<option value='Calhoun, South Carolina'>Calhoun, South Carolina</option>
+<option value='Charleston, South Carolina'>Charleston, South Carolina</option>
+<option value='Cherokee, South Carolina'>Cherokee, South Carolina</option>
+<option value='Chester, South Carolina'>Chester, South Carolina</option>
+<option value='Chesterfield, South Carolina'>Chesterfield, South Carolina</option>
+<option value='Clarendon, South Carolina'>Clarendon, South Carolina</option>
+<option value='Colleton, South Carolina'>Colleton, South Carolina</option>
+<option value='Darlington, South Carolina'>Darlington, South Carolina</option>
+<option value='Dillon, South Carolina'>Dillon, South Carolina</option>
+<option value='Dorchester, South Carolina'>Dorchester, South Carolina</option>
+<option value='Edgefield, South Carolina'>Edgefield, South Carolina</option>
+<option value='Fairfield, South Carolina'>Fairfield, South Carolina</option>
+<option value='Florence, South Carolina'>Florence, South Carolina</option>
+<option value='Georgetown, South Carolina'>Georgetown, South Carolina</option>
+<option value='Greenville, South Carolina'>Greenville, South Carolina</option>
+<option value='Greenwood, South Carolina'>Greenwood, South Carolina</option>
+<option value='Hampton, South Carolina'>Hampton, South Carolina</option>
+<option value='Horry, South Carolina'>Horry, South Carolina</option>
+<option value='Jasper, South Carolina'>Jasper, South Carolina</option>
+<option value='Kershaw, South Carolina'>Kershaw, South Carolina</option>
+<option value='Lancaster, South Carolina'>Lancaster, South Carolina</option>
+<option value='Laurens, South Carolina'>Laurens, South Carolina</option>
+<option value='Lee, South Carolina'>Lee, South Carolina</option>
+<option value='Lexington, South Carolina'>Lexington, South Carolina</option>
+<option value='Marion, South Carolina'>Marion, South Carolina</option>
+<option value='Marlboro, South Carolina'>Marlboro, South Carolina</option>
+<option value='McCormick, South Carolina'>McCormick, South Carolina</option>
+<option value='Newberry, South Carolina'>Newberry, South Carolina</option>
+<option value='Oconee, South Carolina'>Oconee, South Carolina</option>
+<option value='Orangeburg, South Carolina'>Orangeburg, South Carolina</option>
+<option value='Pickens, South Carolina'>Pickens, South Carolina</option>
+<option value='Richland, South Carolina'>Richland, South Carolina</option>
+<option value='Saluda, South Carolina'>Saluda, South Carolina</option>
+<option value='Spartanburg, South Carolina'>Spartanburg, South Carolina</option>
+<option value='Sumter, South Carolina'>Sumter, South Carolina</option>
+<option value='Union, South Carolina'>Union, South Carolina</option>
+<option value='Williamsburg, South Carolina'>Williamsburg, South Carolina</option>
+<option value='York, South Carolina'>York, South Carolina</option></select>
+    <canvas id="barChart" width="700" height="400"></canvas>
+    <script>  const incomeData = {"Statewide":[4.7,8,12.7,27.4,47.2],"Abbeville, South Carolina":[5.2,8.2,13.4,28.1,45],"Aiken, South Carolina":[5.1,8.6,13.2,27.3,45.8],"Allendale, South Carolina":[3.3,5.9,10.3,27,53.4],"Anderson, South Carolina":[4.8,7.9,12.2,26.7,48.5],"Bamberg, South Carolina":[4.4,8.8,13.9,28.8,44.2],"Barnwell, South Carolina":[3.9,7.8,14.3,28.4,45.6],"Beaufort, South Carolina":[4.4,7,10.8,27.1,50.7],"Berkeley, South Carolina":[5.7,8.9,12.8,26,46.7],"Calhoun, South Carolina":[5,8.8,14.1,27.9,44.2],"Charleston, South Carolina":[3.9,6.6,10.5,27.1,51.9],"Cherokee, South Carolina":[5,8.4,13.2,27.4,45.9],"Chester, South Carolina":[5.1,8.5,12.6,26.9,46.8],"Chesterfield, South Carolina":[4.5,7.4,11.9,27,49.1],"Clarendon, South Carolina":[4.2,7.6,12.5,27.3,48.5],"Colleton, South Carolina":[5,8.1,13.2,27.9,45.8],"Darlington, South Carolina":[4,6.9,11.7,28,49.5],"Dillon, South Carolina":[5,8.5,13.1,27.8,45.6],"Dorchester, South Carolina":[6,9.5,14.3,27.1,43.1],"Edgefield, South Carolina":[4.7,9.1,14.1,27.6,44.5],"Fairfield, South Carolina":[4.3,7.1,12.9,28.7,47],"Florence, South Carolina":[4.4,7.9,12.8,27.6,47.3],"Georgetown, South Carolina":[4.2,6.7,10.6,26.7,51.7],"Greenville, South Carolina":[4.7,7.6,11.9,26.9,48.9],"Greenwood, South Carolina":[4.4,7.4,12.4,27.3,48.5],"Hampton, South Carolina":[5.3,8.2,13.3,27.7,45.5],"Horry, South Carolina":[5.2,8.4,12.6,26.8,47],"Jasper, South Carolina":[5.6,9.3,14.3,27.4,43.4],"Kershaw, South Carolina":[4.7,7.9,12.3,26.5,48.6],"Lancaster, South Carolina":[4.8,8.2,12.8,27.5,46.6],"Laurens, South Carolina":[5.3,8.8,13.6,27.2,45],"Lee, South Carolina":[4.8,8.3,13.1,27.1,46.8],"Lexington, South Carolina":[5.6,9,13.4,27.1,44.9],"Marion, South Carolina":[4.1,7.1,11.2,27.1,50.5],"Marlboro, South Carolina":[4.2,7.6,12.3,28.2,47.6],"McCormick, South Carolina":[4.7,8,12.5,26.1,48.6],"Newberry, South Carolina":[4.8,8.1,12.5,26.6,48],"Oconee, South Carolina":[4.2,7,11.4,26.7,50.7],"Orangeburg, South Carolina":[4.2,7.6,12.8,28.2,47.2],"Pickens, South Carolina":[4.3,7.2,11.4,26.1,50.9],"Richland, South Carolina":[4.5,7.4,12,27.7,48.5],"Saluda, South Carolina":[5.2,8.5,13.4,27.6,45.3],"Spartanburg, South Carolina":[5.2,8.4,12.8,27.1,46.6],"Sumter, South Carolina":[5.2,8.9,14,28,43.9],"Union, South Carolina":[5,8.4,14.3,28.8,43.4],"Williamsburg, South Carolina":[3.9,7.8,12.3,27.6,48.4],"York, South Carolina":[5.4,8.7,13.5,27.2,45.2]};
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Bottom 20%', 'Second 20%', 'Middle 20%', 'Fourth 20%', 'Top 20%'],
+        datasets: [{
+          label: 'Share (%)',
+          data: values,
+          backgroundColor: '#4576a7'
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.parsed.y + '%'
+            }
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 100,
+            title: {
+              display: true,
+              text: 'Income Share (%)'
+            }
+          },
+          x: {
+            title: {
+              display: true,
+              text: 'Quintile'
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(Object.values(incomeData[this.value]));
+  });
+
+  renderChart(Object.values(incomeData['Statewide']));</script>
+  </body>
+</html>
+</html>

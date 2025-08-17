@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Internet Access Over Time –  Montana</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+                      h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+                      select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; border-radius: 5px; border: 1px solid #999; }
+                      canvas { width: 100%; max-width: 850px; height: 450px; margin-top: 1rem; }</style>
+</head>
+<html>
+  <body>
+    <h2>Internet Access in  Montana (2013–2023)</h2>
+    <label>Select County: </label>
+    <select id="countySelect"><option value='Statewide'>Statewide</option>
+<option value='Beaverhead County, Montana'>Beaverhead County, Montana</option>
+<option value='Big Horn County, Montana'>Big Horn County, Montana</option>
+<option value='Blaine County, Montana'>Blaine County, Montana</option>
+<option value='Broadwater County, Montana'>Broadwater County, Montana</option>
+<option value='Carbon County, Montana'>Carbon County, Montana</option>
+<option value='Carter County, Montana'>Carter County, Montana</option>
+<option value='Cascade County, Montana'>Cascade County, Montana</option>
+<option value='Chouteau County, Montana'>Chouteau County, Montana</option>
+<option value='Custer County, Montana'>Custer County, Montana</option>
+<option value='Daniels County, Montana'>Daniels County, Montana</option>
+<option value='Dawson County, Montana'>Dawson County, Montana</option>
+<option value='Deer Lodge County, Montana'>Deer Lodge County, Montana</option>
+<option value='Fallon County, Montana'>Fallon County, Montana</option>
+<option value='Fergus County, Montana'>Fergus County, Montana</option>
+<option value='Flathead County, Montana'>Flathead County, Montana</option>
+<option value='Gallatin County, Montana'>Gallatin County, Montana</option>
+<option value='Garfield County, Montana'>Garfield County, Montana</option>
+<option value='Glacier County, Montana'>Glacier County, Montana</option>
+<option value='Golden Valley County, Montana'>Golden Valley County, Montana</option>
+<option value='Granite County, Montana'>Granite County, Montana</option>
+<option value='Hill County, Montana'>Hill County, Montana</option>
+<option value='Jefferson County, Montana'>Jefferson County, Montana</option>
+<option value='Judith Basin County, Montana'>Judith Basin County, Montana</option>
+<option value='Lake County, Montana'>Lake County, Montana</option>
+<option value='Lewis and Clark County, Montana'>Lewis and Clark County, Montana</option>
+<option value='Liberty County, Montana'>Liberty County, Montana</option>
+<option value='Lincoln County, Montana'>Lincoln County, Montana</option>
+<option value='Madison County, Montana'>Madison County, Montana</option>
+<option value='McCone County, Montana'>McCone County, Montana</option>
+<option value='Meagher County, Montana'>Meagher County, Montana</option>
+<option value='Mineral County, Montana'>Mineral County, Montana</option>
+<option value='Missoula County, Montana'>Missoula County, Montana</option>
+<option value='Musselshell County, Montana'>Musselshell County, Montana</option>
+<option value='Park County, Montana'>Park County, Montana</option>
+<option value='Petroleum County, Montana'>Petroleum County, Montana</option>
+<option value='Phillips County, Montana'>Phillips County, Montana</option>
+<option value='Pondera County, Montana'>Pondera County, Montana</option>
+<option value='Powder River County, Montana'>Powder River County, Montana</option>
+<option value='Powell County, Montana'>Powell County, Montana</option>
+<option value='Prairie County, Montana'>Prairie County, Montana</option>
+<option value='Ravalli County, Montana'>Ravalli County, Montana</option>
+<option value='Richland County, Montana'>Richland County, Montana</option>
+<option value='Roosevelt County, Montana'>Roosevelt County, Montana</option>
+<option value='Rosebud County, Montana'>Rosebud County, Montana</option>
+<option value='Sanders County, Montana'>Sanders County, Montana</option>
+<option value='Sheridan County, Montana'>Sheridan County, Montana</option>
+<option value='Silver Bow County, Montana'>Silver Bow County, Montana</option>
+<option value='Stillwater County, Montana'>Stillwater County, Montana</option>
+<option value='Sweet Grass County, Montana'>Sweet Grass County, Montana</option>
+<option value='Teton County, Montana'>Teton County, Montana</option>
+<option value='Toole County, Montana'>Toole County, Montana</option>
+<option value='Treasure County, Montana'>Treasure County, Montana</option>
+<option value='Valley County, Montana'>Valley County, Montana</option>
+<option value='Wheatland County, Montana'>Wheatland County, Montana</option>
+<option value='Wibaux County, Montana'>Wibaux County, Montana</option>
+<option value='Yellowstone County, Montana'>Yellowstone County, Montana</option></select>
+    <canvas id="lineChart" width="850" height="450"></canvas>
+    <script>const internetData = {"Statewide":{"2017":81,"2018":82.5,"2019":84.6,"2020":86.8,"2021":88.4,"2022":89.7,"2023":91.3},"Beaverhead County, Montana":{"2017":77.7,"2018":80.9,"2019":82.4,"2020":87.6,"2021":85.2,"2022":88,"2023":89.5},"Big Horn County, Montana":{"2017":62.7,"2018":65.2,"2019":71.7,"2020":77.9,"2021":78.9,"2022":81.6,"2023":84.9},"Blaine County, Montana":{"2017":69.3,"2018":71.2,"2019":75.2,"2020":78.9,"2021":80.6,"2022":81.8,"2023":85.4},"Broadwater County, Montana":{"2017":74.3,"2018":76.7,"2019":78.5,"2020":81.8,"2021":80,"2022":82.5,"2023":86.4},"Carbon County, Montana":{"2017":76.8,"2018":80.8,"2019":82.1,"2020":85.3,"2021":86.1,"2022":86.5,"2023":88.7},"Carter County, Montana":{"2017":73.8,"2018":78.4,"2019":81.8,"2020":84,"2021":84.8,"2022":87.8,"2023":90.2},"Cascade County, Montana":{"2017":77,"2018":78.3,"2019":79.8,"2020":82.5,"2021":84.8,"2022":87.1,"2023":89.9},"Chouteau County, Montana":{"2017":73.4,"2018":73.8,"2019":74.7,"2020":76.2,"2021":74.8,"2022":75.2,"2023":75.6},"Custer County, Montana":{"2017":80.5,"2018":79.3,"2019":81.1,"2020":85.9,"2021":86.6,"2022":88.1,"2023":91},"Daniels County, Montana":{"2017":76.6,"2018":75.1,"2019":77.5,"2020":78.4,"2021":79.8,"2022":80.8,"2023":87},"Dawson County, Montana":{"2017":78.4,"2018":79.5,"2019":79.7,"2020":86.3,"2021":89.5,"2022":88.1,"2023":90},"Deer Lodge County, Montana":{"2017":72.4,"2018":73.2,"2019":75.8,"2020":78,"2021":80.6,"2022":79,"2023":80.9},"Fallon County, Montana":{"2017":80,"2018":83.1,"2019":82.5,"2020":83.8,"2021":87.2,"2022":92.4,"2023":91.4},"Fergus County, Montana":{"2017":77.9,"2018":81.4,"2019":82.3,"2020":87.8,"2021":88.4,"2022":90.4,"2023":90.5},"Flathead County, Montana":{"2017":83.6,"2018":85.2,"2019":87.1,"2020":87.9,"2021":90.1,"2022":91.6,"2023":93.1},"Gallatin County, Montana":{"2017":89.6,"2018":90.2,"2019":91.1,"2020":93.5,"2021":94.8,"2022":95.1,"2023":96.3},"Garfield County, Montana":{"2017":73.4,"2018":77,"2019":79.5,"2020":85.1,"2021":86.9,"2022":93.4,"2023":92.1},"Glacier County, Montana":{"2017":57.4,"2018":62.1,"2019":69.3,"2020":74.7,"2021":75,"2022":82.5,"2023":86.6},"Golden Valley County, Montana":{"2017":74.2,"2018":75.7,"2019":73.5,"2020":74.8,"2021":80.8,"2022":83.1,"2023":79.6},"Granite County, Montana":{"2017":80.7,"2018":79.7,"2019":81.7,"2020":83.8,"2021":84,"2022":85.2,"2023":87.1},"Hill County, Montana":{"2017":78.1,"2018":81.1,"2019":82.7,"2020":85.5,"2021":83.2,"2022":85.2,"2023":84.8},"Jefferson County, Montana":{"2017":83.4,"2018":84.3,"2019":84.9,"2020":89.2,"2021":90.5,"2022":91.9,"2023":92.3},"Judith Basin County, Montana":{"2017":78.5,"2018":82.4,"2019":81.5,"2020":83.8,"2021":83.8,"2022":86.9,"2023":88.2},"Lake County, Montana":{"2017":75.8,"2018":78.2,"2019":81.4,"2020":82.7,"2021":83.2,"2022":84.8,"2023":86.2},"Lewis and Clark County, Montana":{"2017":82.8,"2018":83.8,"2019":85.9,"2020":88.4,"2021":88.3,"2022":90.4,"2023":92},"Liberty County, Montana":{"2017":68,"2018":74.8,"2019":75,"2020":72.4,"2021":72.5,"2022":70.8,"2023":72.4},"Lincoln County, Montana":{"2017":75.8,"2018":76.7,"2019":81,"2020":84.3,"2021":86.5,"2022":88.8,"2023":90.6},"Madison County, Montana":{"2017":74.7,"2018":78.5,"2019":83.7,"2020":87.4,"2021":89.4,"2022":89.9,"2023":91.7},"McCone County, Montana":{"2017":70.8,"2018":72.9,"2019":77,"2020":80.8,"2021":84.2,"2022":84.5,"2023":83.7},"Meagher County, Montana":{"2017":70.3,"2018":72.4,"2019":71.9,"2020":76.4,"2021":80,"2022":82.7,"2023":83.3},"Mineral County, Montana":{"2017":67.5,"2018":69.7,"2019":68.9,"2020":70.8,"2021":77.7,"2022":80.8,"2023":82.2},"Missoula County, Montana":{"2017":86,"2018":87.8,"2019":89.2,"2020":91.6,"2021":93.1,"2022":93.8,"2023":94.6},"Musselshell County, Montana":{"2017":76.6,"2018":73.3,"2019":78.3,"2020":78.4,"2021":78.2,"2022":82.1,"2023":85.2},"Park County, Montana":{"2017":80.9,"2018":84.9,"2019":85.4,"2020":88.2,"2021":89.6,"2022":90.2,"2023":91.9},"Petroleum County, Montana":{"2017":79.6,"2018":80.7,"2019":85.8,"2020":88.7,"2021":92.8,"2022":89.9,"2023":86},"Phillips County, Montana":{"2017":73.2,"2018":72.7,"2019":74.9,"2020":79.4,"2021":82.9,"2022":86,"2023":91},"Pondera County, Montana":{"2017":71.4,"2018":76.4,"2019":77.8,"2020":81,"2021":85.1,"2022":86.1,"2023":84},"Powder River County, Montana":{"2017":80.2,"2018":86.5,"2019":89.1,"2020":86.4,"2021":87.6,"2022":90.9,"2023":88.8},"Powell County, Montana":{"2017":71.2,"2018":75,"2019":78.9,"2020":68.9,"2021":73.7,"2022":84.7,"2023":81.9},"Prairie County, Montana":{"2017":73.4,"2018":77,"2019":80.7,"2020":81.7,"2021":85.3,"2022":88,"2023":80},"Ravalli County, Montana":{"2017":80,"2018":81.6,"2019":84.7,"2020":87.8,"2021":89.7,"2022":89.4,"2023":91.1},"Richland County, Montana":{"2017":78.5,"2018":79.7,"2019":80.8,"2020":83.3,"2021":84.9,"2022":85.3,"2023":87.4},"Roosevelt County, Montana":{"2017":69.1,"2018":69.2,"2019":68.3,"2020":69.8,"2021":68.7,"2022":68.2,"2023":69.3},"Rosebud County, Montana":{"2017":69.3,"2018":69.4,"2019":74.2,"2020":77.8,"2021":79.6,"2022":80,"2023":81.2},"Sanders County, Montana":{"2017":69.3,"2018":70.4,"2019":74,"2020":79.6,"2021":81.6,"2022":86.2,"2023":89.2},"Sheridan County, Montana":{"2017":83.1,"2018":83.8,"2019":86.3,"2020":84.3,"2021":85.5,"2022":87.1,"2023":89.8},"Silver Bow County, Montana":{"2017":76.9,"2018":77.5,"2019":81.6,"2020":84.4,"2021":86.2,"2022":88.6,"2023":89.6},"Stillwater County, Montana":{"2017":81.2,"2018":84.9,"2019":85.2,"2020":85.2,"2021":88.3,"2022":86.9,"2023":87.9},"Sweet Grass County, Montana":{"2017":75.6,"2018":77.5,"2019":79.1,"2020":84.1,"2021":87.5,"2022":89.2,"2023":90.1},"Teton County, Montana":{"2017":78.6,"2018":79,"2019":79.4,"2020":81.1,"2021":83.5,"2022":84.1,"2023":86.2},"Toole County, Montana":{"2017":77.9,"2018":77.6,"2019":82.2,"2020":86,"2021":89.7,"2022":92.5,"2023":94.6},"Treasure County, Montana":{"2017":79.5,"2018":80.8,"2019":79.5,"2020":78.1,"2021":84.5,"2022":90.1,"2023":91.6},"Valley County, Montana":{"2017":79.7,"2018":80.4,"2019":83,"2020":83.2,"2021":82.4,"2022":85.8,"2023":87.8},"Wheatland County, Montana":{"2017":68.7,"2018":75.6,"2019":76,"2020":74,"2021":76.3,"2022":80.1,"2023":81.2},"Wibaux County, Montana":{"2017":60.8,"2018":68,"2019":71.3,"2020":75.1,"2021":75.4,"2022":81.3,"2023":89.5},"Yellowstone County, Montana":{"2017":85.2,"2018":85.9,"2019":87.9,"2020":89,"2021":90.7,"2022":91.5,"2023":93.3}};
+const ctx = document.getElementById('lineChart').getContext('2d');
+let chart;
+
+function renderChart(data) {
+  const labels = Object.keys(data);
+  const values = Object.values(data);
+
+  if (chart) chart.destroy();
+  chart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: labels,
+      datasets: [{
+        label: '% With Internet',
+        data: values,
+        fill: false,
+        borderColor: 'teal',
+        backgroundColor: 'teal',
+        tension: 0.3,
+        pointRadius: 4
+      }]
+    },
+    options: {
+      responsive: true,
+      scales: {
+        y: {
+          beginAtZero: true,
+          max: 100,
+          title: { display: true, text: '% With Internet' }
+        },
+        x: {
+          title: { display: true, text: 'Year' }
+        }
+      },
+      plugins: {
+        tooltip: {
+          callbacks: {
+            label: function(ctx) {
+              return ctx.parsed.y.toFixed(1) + '%';
+            }
+          }
+        }
+      }
+    }
+  });
+}
+
+document.getElementById('countySelect').addEventListener('change', function() {
+  renderChart(internetData[this.value]);
+});
+renderChart(internetData['Statewide']);</script>
+  </body>
+</html>
+</html>

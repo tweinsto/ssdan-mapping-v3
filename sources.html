@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sources | SSDAN Mapview</title>
+  <link rel="stylesheet" href="../style.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background-color: #f2f2f2;
+    }
+
+    .main-wrapper {
+      max-width: 900px;
+      margin: 4rem auto 2rem;
+      padding: 0 1.5rem;
+    }
+
+    h1 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    h2 {
+      font-size: 1.1rem;
+      margin-top: 2rem;
+      margin-bottom: 0.75rem;
+      color: #3e49a8;
+    }
+
+    p, li {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: #333;
+    }
+
+    ul {
+      padding-left: 1.2rem;
+    }
+
+    a {
+      color: #1a73e8;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="main-wrapper">
+    <h1>Sources & Methodology</h1>
+
+    <h2>Data Sources</h2>
+    <ul>
+      <li><strong>American Community Survey (ACS) 5-Year Estimates, 2023:</strong> Used for most county and state-level demographic, economic, and housing variables.</li>
+      <li><strong>Decennial Census (2000):</strong> Used for comparison values, especially in population growth and change over time visualizations.</li>
+    </ul>
+
+    <h2>Variable Documentation</h2>
+    <p>
+      Data was retrieved using variable codes from the Census API. Key variables include:
+    </p>
+    <ul>
+      <li><code>B20004_001</code> – Median Earnings</li>
+      <li><code>B15003</code> – Educational Attainment</li>
+      <li><code>B17001</code> – Poverty Status</li>
+      <li><code>B01001</code> – Age Distribution</li>
+      <li><code>B03002</code> – Race and Ethnicity</li>
+    </ul>
+
+    <h2>Data Access and Tools</h2>
+    <ul>
+      <li>Data was accessed using the <code>tidycensus</code> package in R, which interfaces with the Census Bureau API.</li>
+      <li>Data processing and cleaning were done using <code>dplyr</code>, <code>tidyr</code>, and <code>purrr</code>.</li>
+      <li>Geographic data (county/state shapes) were handled using <code>sf</code>.</li>
+      <li>Maps were rendered using <code>leaflet</code> for interactivity and saved as static HTML.</li>
+      <li>Charts were generated using <code>ggplot2</code> and <code>plotly</code>.</li>
+    </ul>
+
+    <h2>Map and Visualization Notes</h2>
+    <ul>
+      <li>Color scales were generated with <code>RColorBrewer</code> palettes, adjusted to match topic range.</li>
+      <li>Some states have customized color breaks for clarity, especially in small-range variables.</li>
+      <li>Static HTML maps were exported for performance and integrated into the site structure.</li>
+    </ul>
+
+    <h2>Attribution</h2>
+    <ul>
+      <li>Data provided by the U.S. Census Bureau. While data is public, visualizations and interpretations are original to SSDAN.</li>
+      <li>Mapping and analysis tools are built in R using open-source packages.</li>
+    </ul>
+
+    <h2>Contact</h2>
+    <p>
+      Questions about data sources or technical methods can be directed to SSDAN at <a href="mailto:ssdan@umich.edu">ssdan@umich.edu</a>.
+    </p>
+  </div>
+</body>
+</html>

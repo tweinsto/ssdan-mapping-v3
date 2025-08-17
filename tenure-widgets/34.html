@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+
+</head>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Owners: Year Moved In (%) – 34</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #fff;
+    }
+    .container {
+      width: 95%;
+      max-width: 1200px;
+      margin: auto;
+      text-align: center;
+    }
+    #countySelect {
+      font-size: 1rem;
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    canvas {
+      max-width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Owners: Year Moved In (%)</h2>
+    <select id="countySelect"></select>
+    <canvas id="pieChart"></canvas>
+  </div>
+
+  <script>
+    const data = {"Statewide":{"Moved in 2021 or later":5.2,"Moved in 2018–2020":13.6,"Moved in 2010–2017":24.5,"Moved in 2000–2009":23.7,"Moved in 1990–1999":15.8,"1989 or earlier":17.2},"Atlantic County":{"Moved in 2021 or later":4.6077,"Moved in 2018–2020":14.0658,"Moved in 2010–2017":23.7315,"Moved in 2000–2009":26.6821,"Moved in 1990–1999":14.8496,"1989 or earlier":16.0632},"Bergen County":{"Moved in 2021 or later":4.6496,"Moved in 2018–2020":11.6008,"Moved in 2010–2017":24.5961,"Moved in 2000–2009":23.4169,"Moved in 1990–1999":16.1911,"1989 or earlier":19.5455},"Burlington County":{"Moved in 2021 or later":5.0643,"Moved in 2018–2020":14.7692,"Moved in 2010–2017":23.622,"Moved in 2000–2009":24.4598,"Moved in 1990–1999":15.901,"1989 or earlier":16.1838},"Camden County":{"Moved in 2021 or later":5.1698,"Moved in 2018–2020":13.7024,"Moved in 2010–2017":21.0504,"Moved in 2000–2009":23.6372,"Moved in 1990–1999":15.8491,"1989 or earlier":20.5911},"Cape May County":{"Moved in 2021 or later":6.7567,"Moved in 2018–2020":17.0352,"Moved in 2010–2017":24.7783,"Moved in 2000–2009":20.398,"Moved in 1990–1999":14.963,"1989 or earlier":16.0688},"Cumberland County":{"Moved in 2021 or later":4.5387,"Moved in 2018–2020":11.4797,"Moved in 2010–2017":23.1596,"Moved in 2000–2009":22.396,"Moved in 1990–1999":15.6495,"1989 or earlier":22.7764},"Essex County":{"Moved in 2021 or later":5.2597,"Moved in 2018–2020":14.4026,"Moved in 2010–2017":24.0697,"Moved in 2000–2009":22.6854,"Moved in 1990–1999":15.1283,"1989 or earlier":18.4542},"Gloucester County":{"Moved in 2021 or later":5.3123,"Moved in 2018–2020":14.135,"Moved in 2010–2017":23.3259,"Moved in 2000–2009":23.4385,"Moved in 1990–1999":16.8795,"1989 or earlier":16.9088},"Hudson County":{"Moved in 2021 or later":6.1003,"Moved in 2018–2020":16.5278,"Moved in 2010–2017":26.0612,"Moved in 2000–2009":22.0258,"Moved in 1990–1999":12.7344,"1989 or earlier":16.5506},"Hunterdon County":{"Moved in 2021 or later":5.9597,"Moved in 2018–2020":13.288,"Moved in 2010–2017":23.8364,"Moved in 2000–2009":22.3178,"Moved in 1990–1999":17.6541,"1989 or earlier":16.944},"Mercer County":{"Moved in 2021 or later":5.7839,"Moved in 2018–2020":11.3461,"Moved in 2010–2017":24.0789,"Moved in 2000–2009":24.0126,"Moved in 1990–1999":16.0906,"1989 or earlier":18.6879},"Middlesex County":{"Moved in 2021 or later":4.3158,"Moved in 2018–2020":12.6354,"Moved in 2010–2017":24.8815,"Moved in 2000–2009":26.0117,"Moved in 1990–1999":15.67,"1989 or earlier":16.4856},"Monmouth County":{"Moved in 2021 or later":4.9598,"Moved in 2018–2020":13.448,"Moved in 2010–2017":26.0905,"Moved in 2000–2009":21.8689,"Moved in 1990–1999":17.9915,"1989 or earlier":15.6413},"Morris County":{"Moved in 2021 or later":5.4179,"Moved in 2018–2020":12.9575,"Moved in 2010–2017":24.7082,"Moved in 2000–2009":22.0532,"Moved in 1990–1999":16.2226,"1989 or earlier":18.6406},"Ocean County":{"Moved in 2021 or later":5.4878,"Moved in 2018–2020":16.0554,"Moved in 2010–2017":27.2571,"Moved in 2000–2009":25.7243,"Moved in 1990–1999":13.8067,"1989 or earlier":11.6686},"Passaic County":{"Moved in 2021 or later":5.2802,"Moved in 2018–2020":11.7848,"Moved in 2010–2017":23.3856,"Moved in 2000–2009":25.7683,"Moved in 1990–1999":15.4886,"1989 or earlier":18.2925},"Salem County":{"Moved in 2021 or later":3.4728,"Moved in 2018–2020":9.9786,"Moved in 2010–2017":22.7196,"Moved in 2000–2009":21.609,"Moved in 1990–1999":16.3434,"1989 or earlier":25.8766},"Somerset County":{"Moved in 2021 or later":5.4795,"Moved in 2018–2020":13.9596,"Moved in 2010–2017":25.907,"Moved in 2000–2009":23.6439,"Moved in 1990–1999":16.8917,"1989 or earlier":14.1183},"Sussex County":{"Moved in 2021 or later":6.7217,"Moved in 2018–2020":14.7808,"Moved in 2010–2017":22.351,"Moved in 2000–2009":22.9138,"Moved in 1990–1999":15.8573,"1989 or earlier":17.3754},"Union County":{"Moved in 2021 or later":5.2897,"Moved in 2018–2020":13.7501,"Moved in 2010–2017":23.505,"Moved in 2000–2009":23.0755,"Moved in 1990–1999":15.4732,"1989 or earlier":18.9064},"Warren County":{"Moved in 2021 or later":3.5853,"Moved in 2018–2020":13.6345,"Moved in 2010–2017":24.1299,"Moved in 2000–2009":21.4521,"Moved in 1990–1999":19.3225,"1989 or earlier":17.8758}};
+    const colors = {
+  'Moved in 2021 or later': '#377EF1',
+  'Moved in 2018–2020': '#FF7F00',
+  'Moved in 2010–2017': '#66A61E',
+  'Moved in 2000–2009': '#E6AB01',
+  'Moved in 1990–1999': '#7570B1',
+  '1989 or earlier': '#E41A1C'
+};
+
+    const ctx = document.getElementById("pieChart").getContext("2d");
+    let chart;
+
+    function renderChart(key) {
+      const values = data[key];
+      const labels = Object.keys(values);
+      const percentages = Object.values(values);
+
+      if (chart) chart.destroy();
+
+      chart = new Chart(ctx, {
+        type: "pie",
+        data: {
+          labels: labels,
+          datasets: [{
+            data: percentages,
+            backgroundColor: labels.map(label => colors[label] || "#cccccc")
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: true,
+          aspectRatio: 1.5,
+          plugins: {
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  return context.label + ": " + context.formattedValue + "%";
+                }
+              }
+            },
+            legend: {
+              position: "right",
+              labels: {
+                usePointStyle: true,
+                pointStyle: "rect"
+              }
+            }
+          }
+        }
+      });
+    }
+
+    // Populate dropdown (Statewide first, then counties A->Z)
+    const select = document.getElementById("countySelect");
+    const keys = ["Statewide", ...Object.keys(data).filter(k => k !== "Statewide").sort()];
+    keys.forEach(k => {
+      const opt = document.createElement("option");
+      opt.value = k;
+      opt.text  = k;
+      select.appendChild(opt);
+    });
+    select.value = "Statewide";
+    select.addEventListener("change", () => renderChart(select.value));
+
+    renderChart("Statewide");
+  </script>
+</body>
+</html>
+</html>

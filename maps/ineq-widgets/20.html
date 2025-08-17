@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Income Distribution – Kansas</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          text-align: center;
+          margin: 2rem;
+        }
+        select {
+          font-size: 1rem;
+          padding: 0.4rem;
+          margin-bottom: 1rem;
+        }
+        canvas {
+          width: 100%;
+          max-width: 700px;
+          height: 400px;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Income Share by Quintile – Kansas</h2>
+    <label>Select County, State:</label>
+    <select id="countySelect"><option value='Statewide'>Statewide</option>
+<option value='Allen, Kansas'>Allen, Kansas</option>
+<option value='Anderson, Kansas'>Anderson, Kansas</option>
+<option value='Atchison, Kansas'>Atchison, Kansas</option>
+<option value='Barber, Kansas'>Barber, Kansas</option>
+<option value='Barton, Kansas'>Barton, Kansas</option>
+<option value='Bourbon, Kansas'>Bourbon, Kansas</option>
+<option value='Brown, Kansas'>Brown, Kansas</option>
+<option value='Butler, Kansas'>Butler, Kansas</option>
+<option value='Chase, Kansas'>Chase, Kansas</option>
+<option value='Chautauqua, Kansas'>Chautauqua, Kansas</option>
+<option value='Cherokee, Kansas'>Cherokee, Kansas</option>
+<option value='Cheyenne, Kansas'>Cheyenne, Kansas</option>
+<option value='Clark, Kansas'>Clark, Kansas</option>
+<option value='Clay, Kansas'>Clay, Kansas</option>
+<option value='Cloud, Kansas'>Cloud, Kansas</option>
+<option value='Coffey, Kansas'>Coffey, Kansas</option>
+<option value='Comanche, Kansas'>Comanche, Kansas</option>
+<option value='Cowley, Kansas'>Cowley, Kansas</option>
+<option value='Crawford, Kansas'>Crawford, Kansas</option>
+<option value='Decatur, Kansas'>Decatur, Kansas</option>
+<option value='Dickinson, Kansas'>Dickinson, Kansas</option>
+<option value='Doniphan, Kansas'>Doniphan, Kansas</option>
+<option value='Douglas, Kansas'>Douglas, Kansas</option>
+<option value='Edwards, Kansas'>Edwards, Kansas</option>
+<option value='Elk, Kansas'>Elk, Kansas</option>
+<option value='Ellis, Kansas'>Ellis, Kansas</option>
+<option value='Ellsworth, Kansas'>Ellsworth, Kansas</option>
+<option value='Finney, Kansas'>Finney, Kansas</option>
+<option value='Ford, Kansas'>Ford, Kansas</option>
+<option value='Franklin, Kansas'>Franklin, Kansas</option>
+<option value='Geary, Kansas'>Geary, Kansas</option>
+<option value='Gove, Kansas'>Gove, Kansas</option>
+<option value='Graham, Kansas'>Graham, Kansas</option>
+<option value='Grant, Kansas'>Grant, Kansas</option>
+<option value='Gray, Kansas'>Gray, Kansas</option>
+<option value='Greeley, Kansas'>Greeley, Kansas</option>
+<option value='Greenwood, Kansas'>Greenwood, Kansas</option>
+<option value='Hamilton, Kansas'>Hamilton, Kansas</option>
+<option value='Harper, Kansas'>Harper, Kansas</option>
+<option value='Harvey, Kansas'>Harvey, Kansas</option>
+<option value='Haskell, Kansas'>Haskell, Kansas</option>
+<option value='Hodgeman, Kansas'>Hodgeman, Kansas</option>
+<option value='Jackson, Kansas'>Jackson, Kansas</option>
+<option value='Jefferson, Kansas'>Jefferson, Kansas</option>
+<option value='Jewell, Kansas'>Jewell, Kansas</option>
+<option value='Johnson, Kansas'>Johnson, Kansas</option>
+<option value='Kearny, Kansas'>Kearny, Kansas</option>
+<option value='Kingman, Kansas'>Kingman, Kansas</option>
+<option value='Kiowa, Kansas'>Kiowa, Kansas</option>
+<option value='Labette, Kansas'>Labette, Kansas</option>
+<option value='Lane, Kansas'>Lane, Kansas</option>
+<option value='Leavenworth, Kansas'>Leavenworth, Kansas</option>
+<option value='Lincoln, Kansas'>Lincoln, Kansas</option>
+<option value='Linn, Kansas'>Linn, Kansas</option>
+<option value='Logan, Kansas'>Logan, Kansas</option>
+<option value='Lyon, Kansas'>Lyon, Kansas</option>
+<option value='Marion, Kansas'>Marion, Kansas</option>
+<option value='Marshall, Kansas'>Marshall, Kansas</option>
+<option value='McPherson, Kansas'>McPherson, Kansas</option>
+<option value='Meade, Kansas'>Meade, Kansas</option>
+<option value='Miami, Kansas'>Miami, Kansas</option>
+<option value='Mitchell, Kansas'>Mitchell, Kansas</option>
+<option value='Montgomery, Kansas'>Montgomery, Kansas</option>
+<option value='Morris, Kansas'>Morris, Kansas</option>
+<option value='Morton, Kansas'>Morton, Kansas</option>
+<option value='Nemaha, Kansas'>Nemaha, Kansas</option>
+<option value='Neosho, Kansas'>Neosho, Kansas</option>
+<option value='Ness, Kansas'>Ness, Kansas</option>
+<option value='Norton, Kansas'>Norton, Kansas</option>
+<option value='Osage, Kansas'>Osage, Kansas</option>
+<option value='Osborne, Kansas'>Osborne, Kansas</option>
+<option value='Ottawa, Kansas'>Ottawa, Kansas</option>
+<option value='Pawnee, Kansas'>Pawnee, Kansas</option>
+<option value='Phillips, Kansas'>Phillips, Kansas</option>
+<option value='Pottawatomie, Kansas'>Pottawatomie, Kansas</option>
+<option value='Pratt, Kansas'>Pratt, Kansas</option>
+<option value='Rawlins, Kansas'>Rawlins, Kansas</option>
+<option value='Reno, Kansas'>Reno, Kansas</option>
+<option value='Republic, Kansas'>Republic, Kansas</option>
+<option value='Rice, Kansas'>Rice, Kansas</option>
+<option value='Riley, Kansas'>Riley, Kansas</option>
+<option value='Rooks, Kansas'>Rooks, Kansas</option>
+<option value='Rush, Kansas'>Rush, Kansas</option>
+<option value='Russell, Kansas'>Russell, Kansas</option>
+<option value='Saline, Kansas'>Saline, Kansas</option>
+<option value='Scott, Kansas'>Scott, Kansas</option>
+<option value='Sedgwick, Kansas'>Sedgwick, Kansas</option>
+<option value='Seward, Kansas'>Seward, Kansas</option>
+<option value='Shawnee, Kansas'>Shawnee, Kansas</option>
+<option value='Sheridan, Kansas'>Sheridan, Kansas</option>
+<option value='Sherman, Kansas'>Sherman, Kansas</option>
+<option value='Smith, Kansas'>Smith, Kansas</option>
+<option value='Stafford, Kansas'>Stafford, Kansas</option>
+<option value='Stanton, Kansas'>Stanton, Kansas</option>
+<option value='Stevens, Kansas'>Stevens, Kansas</option>
+<option value='Sumner, Kansas'>Sumner, Kansas</option>
+<option value='Thomas, Kansas'>Thomas, Kansas</option>
+<option value='Trego, Kansas'>Trego, Kansas</option>
+<option value='Wabaunsee, Kansas'>Wabaunsee, Kansas</option>
+<option value='Wallace, Kansas'>Wallace, Kansas</option>
+<option value='Washington, Kansas'>Washington, Kansas</option>
+<option value='Wichita, Kansas'>Wichita, Kansas</option>
+<option value='Wilson, Kansas'>Wilson, Kansas</option>
+<option value='Woodson, Kansas'>Woodson, Kansas</option>
+<option value='Wyandotte, Kansas'>Wyandotte, Kansas</option></select>
+    <canvas id="barChart" width="700" height="400"></canvas>
+    <script>  const incomeData = {"Statewide":[5.7,9.1,13.6,26.9,44.6],"Allen, Kansas":[6.4,10,15.5,27.6,40.5],"Anderson, Kansas":[5.7,10.6,14.7,26.1,42.9],"Atchison, Kansas":[5.5,9.2,14.6,26.7,44],"Barber, Kansas":[5.5,8.4,12.5,27.2,46.4],"Barton, Kansas":[5.6,9.1,14,27,44.3],"Bourbon, Kansas":[6,10.5,15.9,27,40.5],"Brown, Kansas":[5.9,9.2,13.7,27.5,43.7],"Butler, Kansas":[5.8,9.2,13.7,26.3,45],"Chase, Kansas":[5.2,8.4,12.4,26.2,47.8],"Chautauqua, Kansas":[5.2,8,12,25.7,49.1],"Cherokee, Kansas":[5.8,9.6,14.4,27,43.1],"Cheyenne, Kansas":[5.4,9.2,13.1,27.3,44.9],"Clark, Kansas":[6.7,10.1,15,28.9,39.4],"Clay, Kansas":[5.9,9.3,13.3,26.7,44.8],"Cloud, Kansas":[6.3,9.6,13.9,26.7,43.5],"Coffey, Kansas":[6.3,10.2,16.2,28,39.3],"Comanche, Kansas":[6,9.7,14.2,27.3,42.8],"Cowley, Kansas":[5.1,8.3,12.7,26.3,47.7],"Crawford, Kansas":[4.7,8,12.9,27.5,46.9],"Decatur, Kansas":[5.9,9,14.1,28.1,42.8],"Dickinson, Kansas":[6.6,9.8,14.1,27.1,42.4],"Doniphan, Kansas":[6.1,10.8,15.6,27.7,39.8],"Douglas, Kansas":[5,8.5,13.6,28.2,44.8],"Edwards, Kansas":[5.5,8.2,13.5,26.9,45.9],"Elk, Kansas":[6.1,10.9,16.6,28.3,38.1],"Ellis, Kansas":[4.2,6.8,11.1,25.8,52.1],"Ellsworth, Kansas":[6.9,10.1,15.1,26.9,41.1],"Finney, Kansas":[6.7,9.8,14.9,26.6,42.1],"Ford, Kansas":[6.4,10.3,15.1,27.3,40.9],"Franklin, Kansas":[6.6,11,16.3,27.5,38.7],"Geary, Kansas":[6.8,10.9,15.7,27.3,39.2],"Gove, Kansas":[5.8,9.2,13.7,27.3,44.1],"Graham, Kansas":[6.7,9.7,13.9,28.2,41.4],"Grant, Kansas":[5.6,8.6,14.2,26.6,45],"Gray, Kansas":[5.8,9.6,13.8,26.3,44.4],"Greeley, Kansas":[7,9.6,13,26.2,44.1],"Greenwood, Kansas":[4.5,7.3,11.1,26.5,50.6],"Hamilton, Kansas":[6.9,10.8,18.7,28.5,35.2],"Harper, Kansas":[5.4,8.6,12.4,26.9,46.7],"Harvey, Kansas":[6.6,10.1,14.1,26.8,42.5],"Haskell, Kansas":[7,10.2,16.4,27,39.4],"Hodgeman, Kansas":[6.5,9.1,14.7,27.1,42.6],"Jackson, Kansas":[7,10.7,15.8,26.9,39.6],"Jefferson, Kansas":[6.7,10.3,14.9,26.5,41.6],"Jewell, Kansas":[4.8,8,12.9,26.9,47.4],"Johnson, Kansas":[5.3,8.2,12.2,26.6,47.8],"Kearny, Kansas":[7.5,11.4,17.3,27,36.8],"Kingman, Kansas":[6,9.2,14.2,26.6,44],"Kiowa, Kansas":[4.6,6.8,9.1,24.4,55.1],"Labette, Kansas":[5.6,9.3,14.1,27.5,43.5],"Lane, Kansas":[5.2,7.6,13.6,26.7,46.9],"Leavenworth, Kansas":[6.5,10.3,15.1,27.2,40.8],"Lincoln, Kansas":[5.6,8.8,14.9,28.3,42.5],"Linn, Kansas":[5.4,8.2,12.7,26.5,47.1],"Logan, Kansas":[5.4,8.8,12.5,27.4,45.9],"Lyon, Kansas":[6.1,9.7,14,26.7,43.5],"Marion, Kansas":[5.3,7.8,11.4,25.9,49.6],"Marshall, Kansas":[5.6,9.5,13.6,26.3,44.9],"McPherson, Kansas":[6.8,11,15.5,27.2,39.6],"Meade, Kansas":[3.6,5.9,8.4,23.9,58.2],"Miami, Kansas":[6.4,10,14.7,26.5,42.5],"Mitchell, Kansas":[5.2,8,12.2,27.5,47.2],"Montgomery, Kansas":[5.9,9.5,14.2,27.5,42.9],"Morris, Kansas":[4.8,8.1,12.8,26.6,47.7],"Morton, Kansas":[6,10.7,16.1,28.1,39.1],"Nemaha, Kansas":[5.3,8.8,12.9,25.8,47.2],"Neosho, Kansas":[5.4,9.3,14.2,27.7,43.4],"Ness, Kansas":[4.7,7.1,11.2,25.8,51.2],"Norton, Kansas":[6.2,9.6,14.9,29.6,39.7],"Osage, Kansas":[6.8,10.7,15,26.8,40.7],"Osborne, Kansas":[5.5,9.4,14.2,27.6,43.3],"Ottawa, Kansas":[6.3,10,14.4,27,42.2],"Pawnee, Kansas":[4.4,7.6,12.1,27.8,48],"Phillips, Kansas":[5.5,9.1,12.7,27.5,45.2],"Pottawatomie, Kansas":[6.7,10.3,14.6,26.5,41.8],"Pratt, Kansas":[5.4,8.5,12.5,26.3,47.3],"Rawlins, Kansas":[6.4,10.2,14.4,25.9,43.2],"Reno, Kansas":[5.6,9.1,13.6,26.8,45],"Republic, Kansas":[5.6,9.2,14.4,27.3,43.5],"Rice, Kansas":[6.1,9.2,13.4,26.3,45],"Riley, Kansas":[4.5,7.7,12,27.4,48.4],"Rooks, Kansas":[7.4,10.3,15.4,26.3,40.6],"Rush, Kansas":[3.4,5.6,7.8,25.3,58],"Russell, Kansas":[5.6,9,12.8,27.2,45.4],"Saline, Kansas":[5.5,8.9,13.3,26.6,45.8],"Scott, Kansas":[6.2,9.6,14.6,26.3,43.3],"Sedgwick, Kansas":[4.9,7.9,12.2,26.6,48.4],"Seward, Kansas":[6.3,9.5,13.9,27.8,42.5],"Shawnee, Kansas":[5.4,8.6,13.4,26.9,45.7],"Sheridan, Kansas":[4,7.4,12.3,28.9,47.4],"Sherman, Kansas":[3.3,5.1,8.1,26.2,57.3],"Smith, Kansas":[5.3,8.3,13.1,27.4,45.9],"Stafford, Kansas":[5.4,8.1,12.1,27.2,47.1],"Stanton, Kansas":[5.7,9.1,13.6,26.9,44.6],"Stevens, Kansas":[5,6.8,10.4,25.2,52.7],"Sumner, Kansas":[6.5,9.9,15.7,28,40],"Thomas, Kansas":[5.1,8.1,11.7,26.2,48.9],"Trego, Kansas":[5.7,9.4,12.7,26.2,46],"Wabaunsee, Kansas":[7.1,10.2,14.9,27.4,40.5],"Wallace, Kansas":[5.5,8.2,12.1,25.4,48.9],"Washington, Kansas":[5.7,9,13.3,27.1,44.9],"Wichita, Kansas":[4.8,8.4,12,27.5,47.3],"Wilson, Kansas":[5.1,8.4,13,26.8,46.6],"Woodson, Kansas":[5.9,8.2,13.4,27.1,45.4],"Wyandotte, Kansas":[5.9,9.7,14.8,27.6,42]};
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Bottom 20%', 'Second 20%', 'Middle 20%', 'Fourth 20%', 'Top 20%'],
+        datasets: [{
+          label: 'Share (%)',
+          data: values,
+          backgroundColor: '#4576a7'
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.parsed.y + '%'
+            }
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 100,
+            title: {
+              display: true,
+              text: 'Income Share (%)'
+            }
+          },
+          x: {
+            title: {
+              display: true,
+              text: 'Quintile'
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(Object.values(incomeData[this.value]));
+  });
+
+  renderChart(Object.values(incomeData['Statewide']));</script>
+  </body>
+</html>
+</html>

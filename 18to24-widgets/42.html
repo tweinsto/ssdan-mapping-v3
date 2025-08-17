@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Educational Enrollment – Pennsylvania</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Educational Enrollment (Age 18–24) in Pennsylvania</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Adams County, Pennsylvania">Adams County, Pennsylvania</option>
+      <option value="Allegheny County, Pennsylvania">Allegheny County, Pennsylvania</option>
+      <option value="Armstrong County, Pennsylvania">Armstrong County, Pennsylvania</option>
+      <option value="Beaver County, Pennsylvania">Beaver County, Pennsylvania</option>
+      <option value="Bedford County, Pennsylvania">Bedford County, Pennsylvania</option>
+      <option value="Berks County, Pennsylvania">Berks County, Pennsylvania</option>
+      <option value="Blair County, Pennsylvania">Blair County, Pennsylvania</option>
+      <option value="Bradford County, Pennsylvania">Bradford County, Pennsylvania</option>
+      <option value="Bucks County, Pennsylvania">Bucks County, Pennsylvania</option>
+      <option value="Butler County, Pennsylvania">Butler County, Pennsylvania</option>
+      <option value="Cambria County, Pennsylvania">Cambria County, Pennsylvania</option>
+      <option value="Cameron County, Pennsylvania">Cameron County, Pennsylvania</option>
+      <option value="Carbon County, Pennsylvania">Carbon County, Pennsylvania</option>
+      <option value="Centre County, Pennsylvania">Centre County, Pennsylvania</option>
+      <option value="Chester County, Pennsylvania">Chester County, Pennsylvania</option>
+      <option value="Clarion County, Pennsylvania">Clarion County, Pennsylvania</option>
+      <option value="Clearfield County, Pennsylvania">Clearfield County, Pennsylvania</option>
+      <option value="Clinton County, Pennsylvania">Clinton County, Pennsylvania</option>
+      <option value="Columbia County, Pennsylvania">Columbia County, Pennsylvania</option>
+      <option value="Crawford County, Pennsylvania">Crawford County, Pennsylvania</option>
+      <option value="Cumberland County, Pennsylvania">Cumberland County, Pennsylvania</option>
+      <option value="Dauphin County, Pennsylvania">Dauphin County, Pennsylvania</option>
+      <option value="Delaware County, Pennsylvania">Delaware County, Pennsylvania</option>
+      <option value="Elk County, Pennsylvania">Elk County, Pennsylvania</option>
+      <option value="Erie County, Pennsylvania">Erie County, Pennsylvania</option>
+      <option value="Fayette County, Pennsylvania">Fayette County, Pennsylvania</option>
+      <option value="Forest County, Pennsylvania">Forest County, Pennsylvania</option>
+      <option value="Franklin County, Pennsylvania">Franklin County, Pennsylvania</option>
+      <option value="Fulton County, Pennsylvania">Fulton County, Pennsylvania</option>
+      <option value="Greene County, Pennsylvania">Greene County, Pennsylvania</option>
+      <option value="Huntingdon County, Pennsylvania">Huntingdon County, Pennsylvania</option>
+      <option value="Indiana County, Pennsylvania">Indiana County, Pennsylvania</option>
+      <option value="Jefferson County, Pennsylvania">Jefferson County, Pennsylvania</option>
+      <option value="Juniata County, Pennsylvania">Juniata County, Pennsylvania</option>
+      <option value="Lackawanna County, Pennsylvania">Lackawanna County, Pennsylvania</option>
+      <option value="Lancaster County, Pennsylvania">Lancaster County, Pennsylvania</option>
+      <option value="Lawrence County, Pennsylvania">Lawrence County, Pennsylvania</option>
+      <option value="Lebanon County, Pennsylvania">Lebanon County, Pennsylvania</option>
+      <option value="Lehigh County, Pennsylvania">Lehigh County, Pennsylvania</option>
+      <option value="Luzerne County, Pennsylvania">Luzerne County, Pennsylvania</option>
+      <option value="Lycoming County, Pennsylvania">Lycoming County, Pennsylvania</option>
+      <option value="McKean County, Pennsylvania">McKean County, Pennsylvania</option>
+      <option value="Mercer County, Pennsylvania">Mercer County, Pennsylvania</option>
+      <option value="Mifflin County, Pennsylvania">Mifflin County, Pennsylvania</option>
+      <option value="Monroe County, Pennsylvania">Monroe County, Pennsylvania</option>
+      <option value="Montgomery County, Pennsylvania">Montgomery County, Pennsylvania</option>
+      <option value="Montour County, Pennsylvania">Montour County, Pennsylvania</option>
+      <option value="Northampton County, Pennsylvania">Northampton County, Pennsylvania</option>
+      <option value="Northumberland County, Pennsylvania">Northumberland County, Pennsylvania</option>
+      <option value="Perry County, Pennsylvania">Perry County, Pennsylvania</option>
+      <option value="Philadelphia County, Pennsylvania">Philadelphia County, Pennsylvania</option>
+      <option value="Pike County, Pennsylvania">Pike County, Pennsylvania</option>
+      <option value="Potter County, Pennsylvania">Potter County, Pennsylvania</option>
+      <option value="Schuylkill County, Pennsylvania">Schuylkill County, Pennsylvania</option>
+      <option value="Snyder County, Pennsylvania">Snyder County, Pennsylvania</option>
+      <option value="Somerset County, Pennsylvania">Somerset County, Pennsylvania</option>
+      <option value="Sullivan County, Pennsylvania">Sullivan County, Pennsylvania</option>
+      <option value="Susquehanna County, Pennsylvania">Susquehanna County, Pennsylvania</option>
+      <option value="Tioga County, Pennsylvania">Tioga County, Pennsylvania</option>
+      <option value="Union County, Pennsylvania">Union County, Pennsylvania</option>
+      <option value="Venango County, Pennsylvania">Venango County, Pennsylvania</option>
+      <option value="Warren County, Pennsylvania">Warren County, Pennsylvania</option>
+      <option value="Washington County, Pennsylvania">Washington County, Pennsylvania</option>
+      <option value="Wayne County, Pennsylvania">Wayne County, Pennsylvania</option>
+      <option value="Westmoreland County, Pennsylvania">Westmoreland County, Pennsylvania</option>
+      <option value="Wyoming County, Pennsylvania">Wyoming County, Pennsylvania</option>
+      <option value="York County, Pennsylvania">York County, Pennsylvania</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>  const data = {"Statewide":{"Enrolled in College / Grad. School":44.2,"Not Enrolled":55.8},"Adams County, Pennsylvania":{"Enrolled in College / Grad. School":46,"Not Enrolled":54},"Allegheny County, Pennsylvania":{"Enrolled in College / Grad. School":52.5,"Not Enrolled":47.5},"Armstrong County, Pennsylvania":{"Enrolled in College / Grad. School":25.5,"Not Enrolled":74.5},"Beaver County, Pennsylvania":{"Enrolled in College / Grad. School":33.7,"Not Enrolled":66.3},"Bedford County, Pennsylvania":{"Enrolled in College / Grad. School":21.3,"Not Enrolled":78.7},"Berks County, Pennsylvania":{"Enrolled in College / Grad. School":41.3,"Not Enrolled":58.7},"Blair County, Pennsylvania":{"Enrolled in College / Grad. School":33.4,"Not Enrolled":66.6},"Bradford County, Pennsylvania":{"Enrolled in College / Grad. School":15.3,"Not Enrolled":84.7},"Bucks County, Pennsylvania":{"Enrolled in College / Grad. School":38.2,"Not Enrolled":61.8},"Butler County, Pennsylvania":{"Enrolled in College / Grad. School":45.6,"Not Enrolled":54.4},"Cambria County, Pennsylvania":{"Enrolled in College / Grad. School":49.7,"Not Enrolled":50.3},"Cameron County, Pennsylvania":{"Enrolled in College / Grad. School":15.7,"Not Enrolled":84.3},"Carbon County, Pennsylvania":{"Enrolled in College / Grad. School":21.2,"Not Enrolled":78.8},"Centre County, Pennsylvania":{"Enrolled in College / Grad. School":85.4,"Not Enrolled":14.6},"Chester County, Pennsylvania":{"Enrolled in College / Grad. School":49.1,"Not Enrolled":50.9},"Clarion County, Pennsylvania":{"Enrolled in College / Grad. School":56.7,"Not Enrolled":43.3},"Clearfield County, Pennsylvania":{"Enrolled in College / Grad. School":23.8,"Not Enrolled":76.2},"Clinton County, Pennsylvania":{"Enrolled in College / Grad. School":40.1,"Not Enrolled":59.9},"Columbia County, Pennsylvania":{"Enrolled in College / Grad. School":59.9,"Not Enrolled":40.1},"Crawford County, Pennsylvania":{"Enrolled in College / Grad. School":40.5,"Not Enrolled":59.5},"Cumberland County, Pennsylvania":{"Enrolled in College / Grad. School":51.1,"Not Enrolled":48.9},"Dauphin County, Pennsylvania":{"Enrolled in College / Grad. School":31.9,"Not Enrolled":68.1},"Delaware County, Pennsylvania":{"Enrolled in College / Grad. School":50.5,"Not Enrolled":49.5},"Elk County, Pennsylvania":{"Enrolled in College / Grad. School":24.7,"Not Enrolled":75.3},"Erie County, Pennsylvania":{"Enrolled in College / Grad. School":47.5,"Not Enrolled":52.5},"Fayette County, Pennsylvania":{"Enrolled in College / Grad. School":25.5,"Not Enrolled":74.5},"Forest County, Pennsylvania":{"Enrolled in College / Grad. School":7.6,"Not Enrolled":92.4},"Franklin County, Pennsylvania":{"Enrolled in College / Grad. School":21.3,"Not Enrolled":78.7},"Fulton County, Pennsylvania":{"Enrolled in College / Grad. School":23.4,"Not Enrolled":76.6},"Greene County, Pennsylvania":{"Enrolled in College / Grad. School":46.2,"Not Enrolled":53.8},"Huntingdon County, Pennsylvania":{"Enrolled in College / Grad. School":44.6,"Not Enrolled":55.4},"Indiana County, Pennsylvania":{"Enrolled in College / Grad. School":55.8,"Not Enrolled":44.2},"Jefferson County, Pennsylvania":{"Enrolled in College / Grad. School":22.2,"Not Enrolled":77.8},"Juniata County, Pennsylvania":{"Enrolled in College / Grad. School":12.1,"Not Enrolled":87.9},"Lackawanna County, Pennsylvania":{"Enrolled in College / Grad. School":51.8,"Not Enrolled":48.2},"Lancaster County, Pennsylvania":{"Enrolled in College / Grad. School":36.4,"Not Enrolled":63.6},"Lawrence County, Pennsylvania":{"Enrolled in College / Grad. School":37.2,"Not Enrolled":62.8},"Lebanon County, Pennsylvania":{"Enrolled in College / Grad. School":33,"Not Enrolled":67},"Lehigh County, Pennsylvania":{"Enrolled in College / Grad. School":38.4,"Not Enrolled":61.6},"Luzerne County, Pennsylvania":{"Enrolled in College / Grad. School":40,"Not Enrolled":60},"Lycoming County, Pennsylvania":{"Enrolled in College / Grad. School":48.6,"Not Enrolled":51.4},"McKean County, Pennsylvania":{"Enrolled in College / Grad. School":39.4,"Not Enrolled":60.6},"Mercer County, Pennsylvania":{"Enrolled in College / Grad. School":48.8,"Not Enrolled":51.2},"Mifflin County, Pennsylvania":{"Enrolled in College / Grad. School":15.1,"Not Enrolled":84.9},"Monroe County, Pennsylvania":{"Enrolled in College / Grad. School":37.6,"Not Enrolled":62.4},"Montgomery County, Pennsylvania":{"Enrolled in College / Grad. School":44.2,"Not Enrolled":55.8},"Montour County, Pennsylvania":{"Enrolled in College / Grad. School":14.7,"Not Enrolled":85.3},"Northampton County, Pennsylvania":{"Enrolled in College / Grad. School":53.6,"Not Enrolled":46.4},"Northumberland County, Pennsylvania":{"Enrolled in College / Grad. School":22.7,"Not Enrolled":77.3},"Perry County, Pennsylvania":{"Enrolled in College / Grad. School":19.2,"Not Enrolled":80.8},"Philadelphia County, Pennsylvania":{"Enrolled in College / Grad. School":45.8,"Not Enrolled":54.2},"Pike County, Pennsylvania":{"Enrolled in College / Grad. School":32.3,"Not Enrolled":67.7},"Potter County, Pennsylvania":{"Enrolled in College / Grad. School":21,"Not Enrolled":79},"Schuylkill County, Pennsylvania":{"Enrolled in College / Grad. School":26.5,"Not Enrolled":73.5},"Snyder County, Pennsylvania":{"Enrolled in College / Grad. School":60.7,"Not Enrolled":39.3},"Somerset County, Pennsylvania":{"Enrolled in College / Grad. School":20.9,"Not Enrolled":79.1},"Sullivan County, Pennsylvania":{"Enrolled in College / Grad. School":21.2,"Not Enrolled":78.8},"Susquehanna County, Pennsylvania":{"Enrolled in College / Grad. School":23.2,"Not Enrolled":76.8},"Tioga County, Pennsylvania":{"Enrolled in College / Grad. School":27.6,"Not Enrolled":72.4},"Union County, Pennsylvania":{"Enrolled in College / Grad. School":70.5,"Not Enrolled":29.5},"Venango County, Pennsylvania":{"Enrolled in College / Grad. School":20.7,"Not Enrolled":79.3},"Warren County, Pennsylvania":{"Enrolled in College / Grad. School":18.2,"Not Enrolled":81.8},"Washington County, Pennsylvania":{"Enrolled in College / Grad. School":41.8,"Not Enrolled":58.2},"Wayne County, Pennsylvania":{"Enrolled in College / Grad. School":19.7,"Not Enrolled":80.3},"Westmoreland County, Pennsylvania":{"Enrolled in College / Grad. School":40.4,"Not Enrolled":59.6},"Wyoming County, Pennsylvania":{"Enrolled in College / Grad. School":36.8,"Not Enrolled":63.2},"York County, Pennsylvania":{"Enrolled in College / Grad. School":32.2,"Not Enrolled":67.8}};
+  const categories = ["Enrolled in College / Grad. School","Not Enrolled"];
+  const ctx = document.getElementById("barChart").getContext("2d");
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: categories,
+        datasets: [
+          {
+            label: "County/State",
+            data: values,
+            backgroundColor: ["#66c2a5", "#fc8d62"]
+          }
+        ]
+      },
+      options: {
+        indexAxis: "y",
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            ticks: {
+              callback: v => v + "%"
+            }
+          }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.dataset.label + ": " + ctx.raw + "%"
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById("countySelect").addEventListener("change", function() {
+    renderChart(Object.values(data[this.value]));
+  });
+
+  renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

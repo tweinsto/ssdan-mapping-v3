@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Veteran Labor Force Status – New Jersey</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Labor Force Status of Veterans (Age 18–64) in New Jersey</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Atlantic County, New Jersey">Atlantic County, New Jersey</option>
+      <option value="Bergen County, New Jersey">Bergen County, New Jersey</option>
+      <option value="Burlington County, New Jersey">Burlington County, New Jersey</option>
+      <option value="Camden County, New Jersey">Camden County, New Jersey</option>
+      <option value="Cape May County, New Jersey">Cape May County, New Jersey</option>
+      <option value="Cumberland County, New Jersey">Cumberland County, New Jersey</option>
+      <option value="Essex County, New Jersey">Essex County, New Jersey</option>
+      <option value="Gloucester County, New Jersey">Gloucester County, New Jersey</option>
+      <option value="Hudson County, New Jersey">Hudson County, New Jersey</option>
+      <option value="Hunterdon County, New Jersey">Hunterdon County, New Jersey</option>
+      <option value="Mercer County, New Jersey">Mercer County, New Jersey</option>
+      <option value="Middlesex County, New Jersey">Middlesex County, New Jersey</option>
+      <option value="Monmouth County, New Jersey">Monmouth County, New Jersey</option>
+      <option value="Morris County, New Jersey">Morris County, New Jersey</option>
+      <option value="Ocean County, New Jersey">Ocean County, New Jersey</option>
+      <option value="Passaic County, New Jersey">Passaic County, New Jersey</option>
+      <option value="Salem County, New Jersey">Salem County, New Jersey</option>
+      <option value="Somerset County, New Jersey">Somerset County, New Jersey</option>
+      <option value="Sussex County, New Jersey">Sussex County, New Jersey</option>
+      <option value="Union County, New Jersey">Union County, New Jersey</option>
+      <option value="Warren County, New Jersey">Warren County, New Jersey</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>        const data = {"Statewide":[77.5,3.9,18.6],"Atlantic County, New Jersey":[74.5,3.2,22.3],"Bergen County, New Jersey":[78.9,3,18.2],"Burlington County, New Jersey":[78.7,3.6,17.7],"Camden County, New Jersey":[74.6,3.7,21.7],"Cape May County, New Jersey":[70.7,4.9,24.3],"Cumberland County, New Jersey":[71.4,1.9,26.7],"Essex County, New Jersey":[77.1,5.7,17.1],"Gloucester County, New Jersey":[80.9,3.2,15.9],"Hudson County, New Jersey":[78.4,3.6,18],"Hunterdon County, New Jersey":[72.3,5.3,22.5],"Mercer County, New Jersey":[65.7,7.1,27.2],"Middlesex County, New Jersey":[80.8,4.8,14.4],"Monmouth County, New Jersey":[78.8,4.1,17.1],"Morris County, New Jersey":[84.3,3.4,12.3],"Ocean County, New Jersey":[74.7,3.6,21.7],"Passaic County, New Jersey":[78.9,3.5,17.6],"Salem County, New Jersey":[62.5,7.2,30.4],"Somerset County, New Jersey":[82,2.8,15.2],"Sussex County, New Jersey":[86.2,3.3,10.5],"Union County, New Jersey":[82.1,2,15.9],"Warren County, New Jersey":[77.9,2.7,19.4]};
+        const nationalAvg = [73.9,23,3.2];
+        const categories = ["Employed","Unemployed","Not in Labor Force"];
+        const ctx = document.getElementById("barChart").getContext("2d");
+        let chart;
+
+        function renderChart(values) {
+          if (chart) chart.destroy();
+          chart = new Chart(ctx, {
+            type: "bar",
+            data: {
+              labels: categories,
+              datasets: [
+                {
+                  label: "County/State",
+                  data: values,
+                  backgroundColor: ["#66c2a5", "#fc8d62", "#8da0cb"]
+                },
+                {
+                  label: null,
+                  data: categories.map(c => nationalAvg[c]),
+                  type: "line",
+                  borderColor: "black",
+                  borderWidth: 2,
+                  pointRadius: 0,
+                  fill: false
+                }
+              ]
+            },
+            options: {
+              indexAxis: "y",
+              scales: {
+                x: {
+                  min: 0,
+                  max: 100,
+                  ticks: {
+                    callback: v => v + "%"
+                  }
+                }
+              },
+              plugins: {
+                legend: {
+  display: false
+},
+                tooltip: {
+                  callbacks: {
+                    label: ctx => ctx.dataset.label ? ctx.dataset.label + ": " + ctx.raw + "%" : null
+                  }
+                }
+              }
+            }
+          });
+        }
+
+        document.getElementById("countySelect").addEventListener("change", function() {
+          renderChart(Object.values(data[this.value]));
+        });
+
+        renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

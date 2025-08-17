@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+
+</head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Median Earnings by Industry – 01</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background: white;
+    }
+    .layout {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1.5rem;
+    }
+    label {
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+    #countySelect {
+      font-size: 1rem;
+      padding: 0.4rem 0.8rem;
+      margin-bottom: 1rem;
+    }
+    canvas {
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <label for="countySelect">Median Earnings by Industry:</label>
+    <select id="countySelect"></select>
+    <canvas id="barChart"></canvas>
+  </div>
+
+  <script>
+    const data = {"Statewide":{"Agriculture & mining":52000,"Arts & food services":30624,"Construction":50999,"Education & health":51737,"Finance & real estate":59177,"Information":59699,"Manufacturing":53652,"Other services":42448,"Prof. & waste services":63228,"Public administration":63583,"Retail trade":36989,"Transport & utilities":61994,"Wholesale trade":58298},"Autauga County":{"Agriculture & mining":54184,"Arts & food services":36681,"Construction":51170,"Education & health":49283,"Finance & real estate":54519,"Information":55016,"Manufacturing":57125,"Other services":48352,"Prof. & waste services":50923,"Public administration":60491,"Retail trade":32411,"Transport & utilities":60263,"Wholesale trade":47551},"Baldwin County":{"Agriculture & mining":65746,"Arts & food services":33586,"Construction":58774,"Education & health":57761,"Finance & real estate":50625,"Information":51733,"Manufacturing":72482,"Other services":43995,"Prof. & waste services":64807,"Public administration":66414,"Retail trade":39460,"Transport & utilities":75515,"Wholesale trade":80833},"Barbour County":{"Agriculture & mining":43063,"Arts & food services":38839,"Construction":56759,"Education & health":43750,"Finance & real estate":33571,"Information":92679,"Manufacturing":44083,"Other services":28795,"Prof. & waste services":43026,"Public administration":43452,"Retail trade":30804,"Transport & utilities":59123,"Wholesale trade":54531},"Bibb County":{"Agriculture & mining":63099,"Arts & food services":19318,"Construction":47419,"Education & health":41350,"Finance & real estate":27188,"Information":70217,"Manufacturing":42037,"Other services":29063,"Prof. & waste services":48831,"Public administration":57955,"Retail trade":31002,"Transport & utilities":59813,"Wholesale trade":110069},"Blount County":{"Agriculture & mining":31705,"Arts & food services":27941,"Construction":47318,"Education & health":57111,"Finance & real estate":48425,"Information":47679,"Manufacturing":48758,"Other services":42083,"Prof. & waste services":49752,"Public administration":57955,"Retail trade":35426,"Transport & utilities":51765,"Wholesale trade":75221},"Bullock County":{"Agriculture & mining":51528,"Arts & food services":52604,"Construction":33700,"Education & health":38627,"Finance & real estate":31442,"Information":0,"Manufacturing":33289,"Other services":0,"Prof. & waste services":87689,"Public administration":42284,"Retail trade":21042,"Transport & utilities":64661,"Wholesale trade":44360},"Butler County":{"Agriculture & mining":47857,"Arts & food services":22588,"Construction":29803,"Education & health":42000,"Finance & real estate":63167,"Information":67857,"Manufacturing":42083,"Other services":54621,"Prof. & waste services":35924,"Public administration":61406,"Retail trade":33642,"Transport & utilities":47875,"Wholesale trade":93259},"Calhoun County":{"Agriculture & mining":44722,"Arts & food services":25923,"Construction":47075,"Education & health":51865,"Finance & real estate":49938,"Information":43707,"Manufacturing":53258,"Other services":34500,"Prof. & waste services":43571,"Public administration":62716,"Retail trade":31950,"Transport & utilities":52097,"Wholesale trade":42820},"Chambers County":{"Agriculture & mining":48483,"Arts & food services":21416,"Construction":46589,"Education & health":38605,"Finance & real estate":47212,"Information":29286,"Manufacturing":48789,"Other services":52297,"Prof. & waste services":40192,"Public administration":54345,"Retail trade":39458,"Transport & utilities":60313,"Wholesale trade":37768},"Cherokee County":{"Agriculture & mining":93654,"Arts & food services":27703,"Construction":46250,"Education & health":58299,"Finance & real estate":34342,"Information":40625,"Manufacturing":50395,"Other services":48864,"Prof. & waste services":100518,"Public administration":52896,"Retail trade":33133,"Transport & utilities":39950,"Wholesale trade":62372},"Chilton County":{"Agriculture & mining":63964,"Arts & food services":25441,"Construction":59178,"Education & health":47053,"Finance & real estate":50327,"Information":45938,"Manufacturing":56855,"Other services":33913,"Prof. & waste services":45824,"Public administration":55583,"Retail trade":30863,"Transport & utilities":68646,"Wholesale trade":42083},"Choctaw County":{"Agriculture & mining":28056,"Arts & food services":12254,"Construction":54896,"Education & health":40774,"Finance & real estate":37837,"Information":0,"Manufacturing":60549,"Other services":35592,"Prof. & waste services":39453,"Public administration":65703,"Retail trade":36458,"Transport & utilities":53036,"Wholesale trade":0},"Clarke County":{"Agriculture & mining":57067,"Arts & food services":35262,"Construction":33611,"Education & health":42146,"Finance & real estate":30000,"Information":61510,"Manufacturing":71792,"Other services":45758,"Prof. & waste services":38454,"Public administration":44121,"Retail trade":29457,"Transport & utilities":54348,"Wholesale trade":0},"Clay County":{"Agriculture & mining":54875,"Arts & food services":24375,"Construction":43214,"Education & health":55739,"Finance & real estate":73850,"Information":29063,"Manufacturing":39367,"Other services":55212,"Prof. & waste services":47313,"Public administration":58073,"Retail trade":60313,"Transport & utilities":46667,"Wholesale trade":78989},"Cleburne County":{"Agriculture & mining":41625,"Arts & food services":43211,"Construction":53583,"Education & health":47800,"Finance & real estate":50313,"Information":240250,"Manufacturing":56667,"Other services":48475,"Prof. & waste services":42143,"Public administration":68295,"Retail trade":35286,"Transport & utilities":85156,"Wholesale trade":54240},"Coffee County":{"Agriculture & mining":30962,"Arts & food services":23803,"Construction":45857,"Education & health":52972,"Finance & real estate":49122,"Information":48333,"Manufacturing":44943,"Other services":28909,"Prof. & waste services":46445,"Public administration":74250,"Retail trade":36434,"Transport & utilities":74327,"Wholesale trade":55000},"Colbert County":{"Agriculture & mining":80578,"Arts & food services":30369,"Construction":48939,"Education & health":44974,"Finance & real estate":53409,"Information":48542,"Manufacturing":60033,"Other services":47679,"Prof. & waste services":52326,"Public administration":50457,"Retail trade":37095,"Transport & utilities":70156,"Wholesale trade":47358},"Conecuh County":{"Agriculture & mining":72500,"Arts & food services":25833,"Construction":53750,"Education & health":40375,"Finance & real estate":11636,"Information":0,"Manufacturing":44503,"Other services":51513,"Prof. & waste services":57424,"Public administration":48125,"Retail trade":33036,"Transport & utilities":58438,"Wholesale trade":46167},"Coosa County":{"Agriculture & mining":37195,"Arts & food services":23183,"Construction":58750,"Education & health":28173,"Finance & real estate":30676,"Information":0,"Manufacturing":47969,"Other services":26875,"Prof. & waste services":68125,"Public administration":50602,"Retail trade":28869,"Transport & utilities":70673,"Wholesale trade":110625},"Covington County":{"Agriculture & mining":64712,"Arts & food services":34153,"Construction":44625,"Education & health":47500,"Finance & real estate":46343,"Information":40250,"Manufacturing":38408,"Other services":46985,"Prof. & waste services":34071,"Public administration":42483,"Retail trade":39250,"Transport & utilities":60423,"Wholesale trade":43232},"Crenshaw County":{"Agriculture & mining":47847,"Arts & food services":35758,"Construction":56250,"Education & health":39219,"Finance & real estate":45694,"Information":45921,"Manufacturing":48690,"Other services":50431,"Prof. & waste services":23056,"Public administration":58299,"Retail trade":46042,"Transport & utilities":63203,"Wholesale trade":49318},"Cullman County":{"Agriculture & mining":46418,"Arts & food services":28421,"Construction":48919,"Education & health":42132,"Finance & real estate":52047,"Information":62930,"Manufacturing":54411,"Other services":50971,"Prof. & waste services":50279,"Public administration":58457,"Retail trade":37487,"Transport & utilities":53889,"Wholesale trade":52702},"Dale County":{"Agriculture & mining":53498,"Arts & food services":23364,"Construction":39375,"Education & health":46172,"Finance & real estate":41489,"Information":39250,"Manufacturing":50478,"Other services":36477,"Prof. & waste services":56300,"Public administration":55975,"Retail trade":31667,"Transport & utilities":70720,"Wholesale trade":36917},"Dallas County":{"Agriculture & mining":59342,"Arts & food services":32821,"Construction":53378,"Education & health":37248,"Finance & real estate":38905,"Information":28707,"Manufacturing":33728,"Other services":28625,"Prof. & waste services":34250,"Public administration":43796,"Retail trade":31512,"Transport & utilities":54632,"Wholesale trade":68510},"DeKalb County":{"Agriculture & mining":38973,"Arts & food services":25250,"Construction":39802,"Education & health":48052,"Finance & real estate":39875,"Information":55305,"Manufacturing":41789,"Other services":34519,"Prof. & waste services":41318,"Public administration":47900,"Retail trade":33670,"Transport & utilities":42207,"Wholesale trade":48750},"Elmore County":{"Agriculture & mining":66518,"Arts & food services":30694,"Construction":51208,"Education & health":50140,"Finance & real estate":59194,"Information":68594,"Manufacturing":50869,"Other services":42152,"Prof. & waste services":58949,"Public administration":60546,"Retail trade":41651,"Transport & utilities":74461,"Wholesale trade":56705},"Escambia County":{"Agriculture & mining":42442,"Arts & food services":27500,"Construction":39438,"Education & health":42066,"Finance & real estate":38681,"Information":73290,"Manufacturing":43493,"Other services":29559,"Prof. & waste services":39152,"Public administration":49886,"Retail trade":31961,"Transport & utilities":56875,"Wholesale trade":47115},"Etowah County":{"Agriculture & mining":48313,"Arts & food services":30168,"Construction":47028,"Education & health":49460,"Finance & real estate":47896,"Information":39353,"Manufacturing":44903,"Other services":37636,"Prof. & waste services":42937,"Public administration":51525,"Retail trade":36238,"Transport & utilities":62279,"Wholesale trade":53248},"Fayette County":{"Agriculture & mining":55714,"Arts & food services":35977,"Construction":45455,"Education & health":50278,"Finance & real estate":65250,"Information":0,"Manufacturing":51576,"Other services":33750,"Prof. & waste services":37468,"Public administration":46484,"Retail trade":41016,"Transport & utilities":83441,"Wholesale trade":60179},"Franklin County":{"Agriculture & mining":56105,"Arts & food services":23740,"Construction":36187,"Education & health":39226,"Finance & real estate":51375,"Information":48438,"Manufacturing":37735,"Other services":19262,"Prof. & waste services":41154,"Public administration":52216,"Retail trade":39010,"Transport & utilities":61478,"Wholesale trade":62250},"Geneva County":{"Agriculture & mining":31806,"Arts & food services":28158,"Construction":41628,"Education & health":46012,"Finance & real estate":44405,"Information":58825,"Manufacturing":51167,"Other services":42250,"Prof. & waste services":34322,"Public administration":52813,"Retail trade":39173,"Transport & utilities":75145,"Wholesale trade":45000},"Greene County":{"Agriculture & mining":28600,"Arts & food services":16869,"Construction":30093,"Education & health":30000,"Finance & real estate":61607,"Information":0,"Manufacturing":31165,"Other services":26071,"Prof. & waste services":61180,"Public administration":31016,"Retail trade":13207,"Transport & utilities":48194,"Wholesale trade":45052},"Hale County":{"Agriculture & mining":36801,"Arts & food services":26174,"Construction":50063,"Education & health":42922,"Finance & real estate":39211,"Information":0,"Manufacturing":52727,"Other services":30694,"Prof. & waste services":98571,"Public administration":64000,"Retail trade":41769,"Transport & utilities":37644,"Wholesale trade":0},"Henry County":{"Agriculture & mining":34529,"Arts & food services":31354,"Construction":45433,"Education & health":43833,"Finance & real estate":44792,"Information":51250,"Manufacturing":54643,"Other services":42827,"Prof. & waste services":43177,"Public administration":58646,"Retail trade":39375,"Transport & utilities":54181,"Wholesale trade":65066},"Houston County":{"Agriculture & mining":53217,"Arts & food services":27255,"Construction":43412,"Education & health":47399,"Finance & real estate":55162,"Information":39500,"Manufacturing":46280,"Other services":45114,"Prof. & waste services":50497,"Public administration":53682,"Retail trade":39259,"Transport & utilities":68630,"Wholesale trade":50417},"Jackson County":{"Agriculture & mining":53472,"Arts & food services":21019,"Construction":47428,"Education & health":56595,"Finance & real estate":47222,"Information":41786,"Manufacturing":47174,"Other services":37944,"Prof. & waste services":48862,"Public administration":50792,"Retail trade":30858,"Transport & utilities":51976,"Wholesale trade":40903},"Jefferson County":{"Agriculture & mining":58684,"Arts & food services":32333,"Construction":51427,"Education & health":56900,"Finance & real estate":70417,"Information":70128,"Manufacturing":56888,"Other services":51319,"Prof. & waste services":71020,"Public administration":60687,"Retail trade":38873,"Transport & utilities":63334,"Wholesale trade":59949},"Lamar County":{"Agriculture & mining":68036,"Arts & food services":19750,"Construction":44271,"Education & health":41324,"Finance & real estate":47679,"Information":67619,"Manufacturing":43049,"Other services":40893,"Prof. & waste services":28640,"Public administration":51538,"Retail trade":34762,"Transport & utilities":41659,"Wholesale trade":26139},"Lauderdale County":{"Agriculture & mining":29605,"Arts & food services":29222,"Construction":57202,"Education & health":49589,"Finance & real estate":48272,"Information":52568,"Manufacturing":51469,"Other services":42644,"Prof. & waste services":44375,"Public administration":65867,"Retail trade":37037,"Transport & utilities":81406,"Wholesale trade":60291},"Lawrence County":{"Agriculture & mining":67059,"Arts & food services":32083,"Construction":54898,"Education & health":42069,"Finance & real estate":45595,"Information":49028,"Manufacturing":61214,"Other services":28684,"Prof. & waste services":64050,"Public administration":58438,"Retail trade":33918,"Transport & utilities":70636,"Wholesale trade":49603},"Lee County":{"Agriculture & mining":55455,"Arts & food services":34775,"Construction":45603,"Education & health":56782,"Finance & real estate":62557,"Information":79696,"Manufacturing":59677,"Other services":44115,"Prof. & waste services":50195,"Public administration":61724,"Retail trade":38506,"Transport & utilities":66275,"Wholesale trade":51309},"Limestone County":{"Agriculture & mining":85543,"Arts & food services":33868,"Construction":58552,"Education & health":55573,"Finance & real estate":58520,"Information":97448,"Manufacturing":57238,"Other services":43889,"Prof. & waste services":79443,"Public administration":89685,"Retail trade":48519,"Transport & utilities":85667,"Wholesale trade":88276},"Lowndes County":{"Agriculture & mining":52108,"Arts & food services":23750,"Construction":44773,"Education & health":35048,"Finance & real estate":73897,"Information":75926,"Manufacturing":37885,"Other services":18561,"Prof. & waste services":59375,"Public administration":48036,"Retail trade":40857,"Transport & utilities":51528,"Wholesale trade":43333},"Macon County":{"Agriculture & mining":55847,"Arts & food services":21148,"Construction":43636,"Education & health":40813,"Finance & real estate":48385,"Information":62578,"Manufacturing":40916,"Other services":40938,"Prof. & waste services":49444,"Public administration":65688,"Retail trade":34688,"Transport & utilities":41958,"Wholesale trade":79250},"Madison County":{"Agriculture & mining":46951,"Arts & food services":31319,"Construction":50435,"Education & health":54376,"Finance & real estate":60369,"Information":58422,"Manufacturing":74640,"Other services":46102,"Prof. & waste services":94079,"Public administration":111887,"Retail trade":40632,"Transport & utilities":60995,"Wholesale trade":58013},"Marengo County":{"Agriculture & mining":51795,"Arts & food services":40882,"Construction":69271,"Education & health":48609,"Finance & real estate":36500,"Information":75000,"Manufacturing":61548,"Other services":29453,"Prof. & waste services":49083,"Public administration":39266,"Retail trade":33585,"Transport & utilities":62607,"Wholesale trade":42386},"Marion County":{"Agriculture & mining":37548,"Arts & food services":22917,"Construction":38830,"Education & health":46909,"Finance & real estate":45429,"Information":35179,"Manufacturing":41395,"Other services":28819,"Prof. & waste services":54386,"Public administration":48665,"Retail trade":31532,"Transport & utilities":57465,"Wholesale trade":58009},"Marshall County":{"Agriculture & mining":48650,"Arts & food services":28140,"Construction":48810,"Education & health":49648,"Finance & real estate":62667,"Information":58646,"Manufacturing":47984,"Other services":38750,"Prof. & waste services":54760,"Public administration":59986,"Retail trade":42001,"Transport & utilities":67935,"Wholesale trade":45074},"Mobile County":{"Agriculture & mining":42289,"Arts & food services":30935,"Construction":53493,"Education & health":47802,"Finance & real estate":58603,"Information":70202,"Manufacturing":64863,"Other services":39810,"Prof. & waste services":46762,"Public administration":60236,"Retail trade":34488,"Transport & utilities":58183,"Wholesale trade":56617},"Monroe County":{"Agriculture & mining":46167,"Arts & food services":51000,"Construction":37340,"Education & health":38773,"Finance & real estate":70000,"Information":37237,"Manufacturing":50823,"Other services":31974,"Prof. & waste services":34485,"Public administration":45153,"Retail trade":37592,"Transport & utilities":51762,"Wholesale trade":64839},"Montgomery County":{"Agriculture & mining":51646,"Arts & food services":32180,"Construction":51443,"Education & health":50582,"Finance & real estate":52275,"Information":50000,"Manufacturing":48134,"Other services":42033,"Prof. & waste services":50016,"Public administration":58377,"Retail trade":36696,"Transport & utilities":51338,"Wholesale trade":59926},"Morgan County":{"Agriculture & mining":47968,"Arts & food services":29080,"Construction":48845,"Education & health":49828,"Finance & real estate":44949,"Information":82054,"Manufacturing":53620,"Other services":40683,"Prof. & waste services":72431,"Public administration":73750,"Retail trade":36116,"Transport & utilities":67086,"Wholesale trade":61141},"Perry County":{"Agriculture & mining":45951,"Arts & food services":24830,"Construction":47554,"Education & health":29880,"Finance & real estate":0,"Information":0,"Manufacturing":24353,"Other services":0,"Prof. & waste services":35296,"Public administration":0,"Retail trade":19871,"Transport & utilities":34784,"Wholesale trade":0},"Pickens County":{"Agriculture & mining":34706,"Arts & food services":17447,"Construction":47820,"Education & health":45323,"Finance & real estate":43052,"Information":0,"Manufacturing":46722,"Other services":34792,"Prof. & waste services":78159,"Public administration":62371,"Retail trade":30909,"Transport & utilities":70321,"Wholesale trade":90174},"Pike County":{"Agriculture & mining":68542,"Arts & food services":25463,"Construction":41268,"Education & health":36500,"Finance & real estate":40268,"Information":60929,"Manufacturing":41856,"Other services":50515,"Prof. & waste services":46518,"Public administration":41325,"Retail trade":35759,"Transport & utilities":41960,"Wholesale trade":40947},"Randolph County":{"Agriculture & mining":60379,"Arts & food services":22784,"Construction":49947,"Education & health":49039,"Finance & real estate":91500,"Information":0,"Manufacturing":41899,"Other services":29265,"Prof. & waste services":41125,"Public administration":46579,"Retail trade":42731,"Transport & utilities":58103,"Wholesale trade":48864},"Russell County":{"Agriculture & mining":51690,"Arts & food services":23659,"Construction":56380,"Education & health":38889,"Finance & real estate":54365,"Information":25000,"Manufacturing":51683,"Other services":28733,"Prof. & waste services":45703,"Public administration":51862,"Retail trade":27017,"Transport & utilities":45417,"Wholesale trade":63083},"St. Clair County":{"Agriculture & mining":47009,"Arts & food services":36991,"Construction":57274,"Education & health":51333,"Finance & real estate":62991,"Information":79167,"Manufacturing":65069,"Other services":49375,"Prof. & waste services":60971,"Public administration":61222,"Retail trade":40531,"Transport & utilities":73944,"Wholesale trade":69105},"Shelby County":{"Agriculture & mining":76648,"Arts & food services":46396,"Construction":56280,"Education & health":63908,"Finance & real estate":78096,"Information":72129,"Manufacturing":63378,"Other services":46587,"Prof. & waste services":78082,"Public administration":65684,"Retail trade":47133,"Transport & utilities":87868,"Wholesale trade":80618},"Sumter County":{"Agriculture & mining":43000,"Arts & food services":31884,"Construction":55250,"Education & health":39519,"Finance & real estate":24333,"Information":51500,"Manufacturing":41076,"Other services":8924,"Prof. & waste services":43875,"Public administration":34688,"Retail trade":25651,"Transport & utilities":49500,"Wholesale trade":0},"Talladega County":{"Agriculture & mining":82125,"Arts & food services":28553,"Construction":58481,"Education & health":46667,"Finance & real estate":53772,"Information":46818,"Manufacturing":46807,"Other services":45572,"Prof. & waste services":50493,"Public administration":61120,"Retail trade":31071,"Transport & utilities":57863,"Wholesale trade":56531},"Tallapoosa County":{"Agriculture & mining":50149,"Arts & food services":29689,"Construction":50972,"Education & health":48382,"Finance & real estate":55897,"Information":69048,"Manufacturing":42305,"Other services":42395,"Prof. & waste services":40740,"Public administration":51174,"Retail trade":35949,"Transport & utilities":56765,"Wholesale trade":46161},"Tuscaloosa County":{"Agriculture & mining":52433,"Arts & food services":34529,"Construction":50176,"Education & health":53910,"Finance & real estate":60789,"Information":64400,"Manufacturing":53920,"Other services":39220,"Prof. & waste services":53392,"Public administration":65493,"Retail trade":36679,"Transport & utilities":59499,"Wholesale trade":60646},"Walker County":{"Agriculture & mining":69864,"Arts & food services":23384,"Construction":49475,"Education & health":49057,"Finance & real estate":59144,"Information":61122,"Manufacturing":58737,"Other services":46792,"Prof. & waste services":42500,"Public administration":55809,"Retail trade":36671,"Transport & utilities":60000,"Wholesale trade":69871},"Washington County":{"Agriculture & mining":64922,"Arts & food services":47788,"Construction":59934,"Education & health":41070,"Finance & real estate":37500,"Information":0,"Manufacturing":93346,"Other services":41642,"Prof. & waste services":85926,"Public administration":44141,"Retail trade":35843,"Transport & utilities":65444,"Wholesale trade":61181},"Wilcox County":{"Agriculture & mining":45707,"Arts & food services":0,"Construction":37000,"Education & health":37000,"Finance & real estate":41667,"Information":107875,"Manufacturing":48488,"Other services":51310,"Prof. & waste services":34375,"Public administration":36176,"Retail trade":41161,"Transport & utilities":48250,"Wholesale trade":170855},"Winston County":{"Agriculture & mining":52391,"Arts & food services":19238,"Construction":45490,"Education & health":45723,"Finance & real estate":58027,"Information":0,"Manufacturing":39232,"Other services":24310,"Prof. & waste services":41111,"Public administration":39651,"Retail trade":33229,"Transport & utilities":71238,"Wholesale trade":52984}};
+    const colors = {
+  'Agriculture & mining': '#FFFF01',
+  'Arts & food services': '#00008B',
+  'Construction': '#7570B1',
+  'Education & health': '#66A61E',
+  'Finance & real estate': '#E6AB01',
+  'Information': '#379',
+  'Manufacturing': '#E41A1C',
+  'Other services': '#377EF1',
+  'Prof. & waste services': '#FF7F00',
+  'Public administration': '#1B9E77',
+  'Retail trade': '#A65011',
+  'Transport & utilities': '#F781BF',
+  'Wholesale trade': '#919'
+};
+
+    const ctx = document.getElementById("barChart").getContext("2d");
+    let chart;
+
+    function renderChart(county) {
+      const values = data[county];
+      const labels = Object.keys(values);
+      const earnings = Object.values(values);
+
+      if (chart) chart.destroy();
+
+      chart = new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels: labels,
+          datasets: [{
+            label: "Median Earnings ($)",
+            data: earnings,
+            backgroundColor: labels.map(label => colors[label] || "#ccc")
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: true,
+  aspectRatio: 1.5, 
+          indexAxis: "x",
+          scales: {
+            y: {
+              beginAtZero: true,
+              title: {
+                display: true,
+                text: "Median Earnings ($)"
+              },
+              ticks: {
+                callback: function(value) {
+                  return "$" + value.toLocaleString();
+                }
+              }
+            },
+            x: {
+              ticks: {
+                maxRotation: 45,
+                minRotation: 20,
+                autoSkip: false,
+                callback: function(value, index, ticks) {
+                  let label = this.getLabelForValue(value);
+                  return label.length > 25 ? label.slice(0, 25) + "…" : label;
+                }
+              }
+            }
+          },
+          plugins: {
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  return "$" + context.parsed.y.toLocaleString();
+                }
+              }
+            },
+            legend: {
+              display: false
+            }
+          }
+        }
+      });
+    }
+
+    const select = document.getElementById("countySelect");
+    Object.keys(data).forEach(county => {
+      const option = document.createElement("option");
+      option.value = county;
+      option.text = county;
+      select.appendChild(option);
+    });
+    select.value = "Statewide";
+    select.addEventListener("change", () => renderChart(select.value));
+    renderChart("Statewide");
+  </script>
+</body>
+</html>
+</html>

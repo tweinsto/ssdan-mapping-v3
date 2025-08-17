@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+
+</head>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Owners: Year Moved In (%) – 25</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #fff;
+    }
+    .container {
+      width: 95%;
+      max-width: 1200px;
+      margin: auto;
+      text-align: center;
+    }
+    #countySelect {
+      font-size: 1rem;
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    canvas {
+      max-width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Owners: Year Moved In (%)</h2>
+    <select id="countySelect"></select>
+    <canvas id="pieChart"></canvas>
+  </div>
+
+  <script>
+    const data = {"Statewide":{"Moved in 2021 or later":4.8,"Moved in 2018–2020":13.3,"Moved in 2010–2017":25.8,"Moved in 2000–2009":21.2,"Moved in 1990–1999":16,"1989 or earlier":19},"Barnstable County":{"Moved in 2021 or later":4.4989,"Moved in 2018–2020":14.197,"Moved in 2010–2017":26.5352,"Moved in 2000–2009":21.964,"Moved in 1990–1999":17.1903,"1989 or earlier":15.6147},"Berkshire County":{"Moved in 2021 or later":4.5041,"Moved in 2018–2020":12.0884,"Moved in 2010–2017":20.5984,"Moved in 2000–2009":22.8845,"Moved in 1990–1999":15.8009,"1989 or earlier":24.1237},"Bristol County":{"Moved in 2021 or later":4.169,"Moved in 2018–2020":12.1715,"Moved in 2010–2017":24.4253,"Moved in 2000–2009":20.4707,"Moved in 1990–1999":17.0475,"1989 or earlier":21.716},"Dukes County":{"Moved in 2021 or later":1.8016,"Moved in 2018–2020":11.4104,"Moved in 2010–2017":19.8726,"Moved in 2000–2009":23.9854,"Moved in 1990–1999":16.9245,"1989 or earlier":26.0055},"Essex County":{"Moved in 2021 or later":5.0414,"Moved in 2018–2020":13.7346,"Moved in 2010–2017":25.7948,"Moved in 2000–2009":22.2062,"Moved in 1990–1999":15.9779,"1989 or earlier":17.245},"Franklin County":{"Moved in 2021 or later":3.1363,"Moved in 2018–2020":10.4942,"Moved in 2010–2017":20.5266,"Moved in 2000–2009":23.0577,"Moved in 1990–1999":16.7945,"1989 or earlier":25.9908},"Hampden County":{"Moved in 2021 or later":4.4337,"Moved in 2018–2020":12.8537,"Moved in 2010–2017":23.323,"Moved in 2000–2009":22.6791,"Moved in 1990–1999":14.8865,"1989 or earlier":21.8241},"Hampshire County":{"Moved in 2021 or later":4.5447,"Moved in 2018–2020":13.1752,"Moved in 2010–2017":24.9429,"Moved in 2000–2009":19.1414,"Moved in 1990–1999":17.0091,"1989 or earlier":21.1867},"Middlesex County":{"Moved in 2021 or later":4.8071,"Moved in 2018–2020":12.7852,"Moved in 2010–2017":26.3398,"Moved in 2000–2009":20.6141,"Moved in 1990–1999":16.4212,"1989 or earlier":19.0326},"Nantucket County":{"Moved in 2021 or later":5.957,"Moved in 2018–2020":7.3815,"Moved in 2010–2017":39.9119,"Moved in 2000–2009":23.9057,"Moved in 1990–1999":11.7586,"1989 or earlier":11.0852},"Norfolk County":{"Moved in 2021 or later":4.634,"Moved in 2018–2020":12.8968,"Moved in 2010–2017":27.083,"Moved in 2000–2009":20.7541,"Moved in 1990–1999":15.935,"1989 or earlier":18.6972},"Plymouth County":{"Moved in 2021 or later":4.638,"Moved in 2018–2020":15.2274,"Moved in 2010–2017":25.8366,"Moved in 2000–2009":19.9077,"Moved in 1990–1999":15.653,"1989 or earlier":18.7373},"Suffolk County":{"Moved in 2021 or later":6.9689,"Moved in 2018–2020":15.2199,"Moved in 2010–2017":26.7539,"Moved in 2000–2009":20.7287,"Moved in 1990–1999":14.0769,"1989 or earlier":16.2518},"Worcester County":{"Moved in 2021 or later":4.5666,"Moved in 2018–2020":13.3553,"Moved in 2010–2017":26.6083,"Moved in 2000–2009":21.7259,"Moved in 1990–1999":15.5925,"1989 or earlier":18.1513}};
+    const colors = {
+  'Moved in 2021 or later': '#377EF1',
+  'Moved in 2018–2020': '#FF7F00',
+  'Moved in 2010–2017': '#66A61E',
+  'Moved in 2000–2009': '#E6AB01',
+  'Moved in 1990–1999': '#7570B1',
+  '1989 or earlier': '#E41A1C'
+};
+
+    const ctx = document.getElementById("pieChart").getContext("2d");
+    let chart;
+
+    function renderChart(key) {
+      const values = data[key];
+      const labels = Object.keys(values);
+      const percentages = Object.values(values);
+
+      if (chart) chart.destroy();
+
+      chart = new Chart(ctx, {
+        type: "pie",
+        data: {
+          labels: labels,
+          datasets: [{
+            data: percentages,
+            backgroundColor: labels.map(label => colors[label] || "#cccccc")
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: true,
+          aspectRatio: 1.5,
+          plugins: {
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  return context.label + ": " + context.formattedValue + "%";
+                }
+              }
+            },
+            legend: {
+              position: "right",
+              labels: {
+                usePointStyle: true,
+                pointStyle: "rect"
+              }
+            }
+          }
+        }
+      });
+    }
+
+    // Populate dropdown (Statewide first, then counties A->Z)
+    const select = document.getElementById("countySelect");
+    const keys = ["Statewide", ...Object.keys(data).filter(k => k !== "Statewide").sort()];
+    keys.forEach(k => {
+      const opt = document.createElement("option");
+      opt.value = k;
+      opt.text  = k;
+      select.appendChild(opt);
+    });
+    select.value = "Statewide";
+    select.addEventListener("change", () => renderChart(select.value));
+
+    renderChart("Statewide");
+  </script>
+</body>
+</html>
+</html>

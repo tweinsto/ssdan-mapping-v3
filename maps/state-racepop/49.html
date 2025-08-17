@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Race by Year – Utah</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      margin: 1em;
+    }
+    #buttons button {
+      margin: 0 5px;
+    }
+    #chart-container {
+      width: 90%;
+      max-width: 800px;
+      margin: auto;
+    }
+    
+    #buttons button.active {
+  background-color: dodgerblue;
+  color: white;
+  border: none;
+  border-radius: 4px;
+}
+
+  </style>
+</head>
+<body>
+  <h2>Race/Ethnicity Population – Utah</h2>
+
+  <label for="countySelect">County:</label>
+  <select id="countySelect">
+    <option value="Statewide" selected>Statewide</option>
+<option value="Beaver County">Beaver County</option>
+<option value="Box Elder County">Box Elder County</option>
+<option value="Cache County">Cache County</option>
+<option value="Carbon County">Carbon County</option>
+<option value="Daggett County">Daggett County</option>
+<option value="Davis County">Davis County</option>
+<option value="Duchesne County">Duchesne County</option>
+<option value="Emery County">Emery County</option>
+<option value="Garfield County">Garfield County</option>
+<option value="Grand County">Grand County</option>
+<option value="Iron County">Iron County</option>
+<option value="Juab County">Juab County</option>
+<option value="Kane County">Kane County</option>
+<option value="Millard County">Millard County</option>
+<option value="Morgan County">Morgan County</option>
+<option value="Piute County">Piute County</option>
+<option value="Rich County">Rich County</option>
+<option value="Salt Lake County">Salt Lake County</option>
+<option value="San Juan County">San Juan County</option>
+<option value="Sanpete County">Sanpete County</option>
+<option value="Sevier County">Sevier County</option>
+<option value="Summit County">Summit County</option>
+<option value="Tooele County">Tooele County</option>
+<option value="Uintah County">Uintah County</option>
+<option value="Utah County">Utah County</option>
+<option value="Wasatch County">Wasatch County</option>
+<option value="Washington County">Washington County</option>
+<option value="Wayne County">Wayne County</option>
+<option value="Weber County">Weber County</option>
+  </select>
+
+  <div id="buttons">
+  <button id="btn2010" onclick="updateChart(2010)">2010</button>
+  <button id="btn2020" onclick="updateChart(2020)">2020</button>
+</div>
+
+  <div id="chart-container">
+    <canvas id="raceChart"></canvas>
+  </div>
+
+   <script>
+    let data = null;
+    let chart = null;
+    let currentYear = 2010;
+
+    fetch("49.json")
+      .then(res => res.json())
+      .then(json => {
+        data = json;
+        document.getElementById("countySelect").addEventListener("change", () => updateChart(currentYear));
+        updateChart(currentYear);
+      });
+
+    function updateChart(year) {
+      currentYear = year;
+
+      // Highlight selected button
+      document.querySelectorAll("#buttons button").forEach(btn => btn.classList.remove("active"));
+      const activeBtn = document.getElementById(`btn${year}`);
+      if (activeBtn) activeBtn.classList.add("active");
+
+      const county = document.getElementById("countySelect").value;
+      const entry = data[county] && data[county][year];
+      if (!entry) return;
+
+      const races = Object.keys(entry[0]).filter(k => !["state_fips", "county", "year", "total"].includes(k));
+      const values = races.map(r => entry[0][r]);
+
+      const config = {
+        type: "bar",
+        data: {
+          labels: races,
+          datasets: [{
+            label: "Population",
+            data: values,
+            backgroundColor: "dodgerblue"
+          }]
+        },
+        options: {
+          plugins: {
+            legend: { display: false }
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              ticks: {
+                callback: function(value) {
+                  return value.toLocaleString();
+                }
+              }
+            }
+          }
+        }
+      };
+
+      if (chart) {
+        chart.destroy();
+      }
+      chart = new Chart(document.getElementById("raceChart"), config);
+    }
+  </script>
+</body>
+</html>

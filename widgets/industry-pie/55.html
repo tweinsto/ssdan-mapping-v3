@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <title>Industry Distribution – Wisconsin</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+        canvas { max-width: 600px; height: 500px; }
+        select { padding: 0.5rem; font-size: 1rem; margin: 1rem; }
+        .legend { max-width: 600px; margin: 1rem auto; display: flex; flex-wrap: wrap; justify-content: center; font-size: 0.9rem; }
+        .legend-item { display: flex; align-items: center; margin: 0.3rem 1rem; }
+        .legend-color { width: 12px; height: 12px; margin-right: 6px; border: 1px solid #444; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Industry Distribution in Wisconsin</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Adams County, Wisconsin">Adams County, Wisconsin</option>
+      <option value="Ashland County, Wisconsin">Ashland County, Wisconsin</option>
+      <option value="Barron County, Wisconsin">Barron County, Wisconsin</option>
+      <option value="Bayfield County, Wisconsin">Bayfield County, Wisconsin</option>
+      <option value="Brown County, Wisconsin">Brown County, Wisconsin</option>
+      <option value="Buffalo County, Wisconsin">Buffalo County, Wisconsin</option>
+      <option value="Burnett County, Wisconsin">Burnett County, Wisconsin</option>
+      <option value="Calumet County, Wisconsin">Calumet County, Wisconsin</option>
+      <option value="Chippewa County, Wisconsin">Chippewa County, Wisconsin</option>
+      <option value="Clark County, Wisconsin">Clark County, Wisconsin</option>
+      <option value="Columbia County, Wisconsin">Columbia County, Wisconsin</option>
+      <option value="Crawford County, Wisconsin">Crawford County, Wisconsin</option>
+      <option value="Dane County, Wisconsin">Dane County, Wisconsin</option>
+      <option value="Dodge County, Wisconsin">Dodge County, Wisconsin</option>
+      <option value="Door County, Wisconsin">Door County, Wisconsin</option>
+      <option value="Douglas County, Wisconsin">Douglas County, Wisconsin</option>
+      <option value="Dunn County, Wisconsin">Dunn County, Wisconsin</option>
+      <option value="Eau Claire County, Wisconsin">Eau Claire County, Wisconsin</option>
+      <option value="Florence County, Wisconsin">Florence County, Wisconsin</option>
+      <option value="Fond du Lac County, Wisconsin">Fond du Lac County, Wisconsin</option>
+      <option value="Forest County, Wisconsin">Forest County, Wisconsin</option>
+      <option value="Grant County, Wisconsin">Grant County, Wisconsin</option>
+      <option value="Green County, Wisconsin">Green County, Wisconsin</option>
+      <option value="Green Lake County, Wisconsin">Green Lake County, Wisconsin</option>
+      <option value="Iowa County, Wisconsin">Iowa County, Wisconsin</option>
+      <option value="Iron County, Wisconsin">Iron County, Wisconsin</option>
+      <option value="Jackson County, Wisconsin">Jackson County, Wisconsin</option>
+      <option value="Jefferson County, Wisconsin">Jefferson County, Wisconsin</option>
+      <option value="Juneau County, Wisconsin">Juneau County, Wisconsin</option>
+      <option value="Kenosha County, Wisconsin">Kenosha County, Wisconsin</option>
+      <option value="Kewaunee County, Wisconsin">Kewaunee County, Wisconsin</option>
+      <option value="La Crosse County, Wisconsin">La Crosse County, Wisconsin</option>
+      <option value="Lafayette County, Wisconsin">Lafayette County, Wisconsin</option>
+      <option value="Langlade County, Wisconsin">Langlade County, Wisconsin</option>
+      <option value="Lincoln County, Wisconsin">Lincoln County, Wisconsin</option>
+      <option value="Manitowoc County, Wisconsin">Manitowoc County, Wisconsin</option>
+      <option value="Marathon County, Wisconsin">Marathon County, Wisconsin</option>
+      <option value="Marinette County, Wisconsin">Marinette County, Wisconsin</option>
+      <option value="Marquette County, Wisconsin">Marquette County, Wisconsin</option>
+      <option value="Menominee County, Wisconsin">Menominee County, Wisconsin</option>
+      <option value="Milwaukee County, Wisconsin">Milwaukee County, Wisconsin</option>
+      <option value="Monroe County, Wisconsin">Monroe County, Wisconsin</option>
+      <option value="Oconto County, Wisconsin">Oconto County, Wisconsin</option>
+      <option value="Oneida County, Wisconsin">Oneida County, Wisconsin</option>
+      <option value="Outagamie County, Wisconsin">Outagamie County, Wisconsin</option>
+      <option value="Ozaukee County, Wisconsin">Ozaukee County, Wisconsin</option>
+      <option value="Pepin County, Wisconsin">Pepin County, Wisconsin</option>
+      <option value="Pierce County, Wisconsin">Pierce County, Wisconsin</option>
+      <option value="Polk County, Wisconsin">Polk County, Wisconsin</option>
+      <option value="Portage County, Wisconsin">Portage County, Wisconsin</option>
+      <option value="Price County, Wisconsin">Price County, Wisconsin</option>
+      <option value="Racine County, Wisconsin">Racine County, Wisconsin</option>
+      <option value="Richland County, Wisconsin">Richland County, Wisconsin</option>
+      <option value="Rock County, Wisconsin">Rock County, Wisconsin</option>
+      <option value="Rusk County, Wisconsin">Rusk County, Wisconsin</option>
+      <option value="Sauk County, Wisconsin">Sauk County, Wisconsin</option>
+      <option value="Sawyer County, Wisconsin">Sawyer County, Wisconsin</option>
+      <option value="Shawano County, Wisconsin">Shawano County, Wisconsin</option>
+      <option value="Sheboygan County, Wisconsin">Sheboygan County, Wisconsin</option>
+      <option value="St. Croix County, Wisconsin">St. Croix County, Wisconsin</option>
+      <option value="Taylor County, Wisconsin">Taylor County, Wisconsin</option>
+      <option value="Trempealeau County, Wisconsin">Trempealeau County, Wisconsin</option>
+      <option value="Vernon County, Wisconsin">Vernon County, Wisconsin</option>
+      <option value="Vilas County, Wisconsin">Vilas County, Wisconsin</option>
+      <option value="Walworth County, Wisconsin">Walworth County, Wisconsin</option>
+      <option value="Washburn County, Wisconsin">Washburn County, Wisconsin</option>
+      <option value="Washington County, Wisconsin">Washington County, Wisconsin</option>
+      <option value="Waukesha County, Wisconsin">Waukesha County, Wisconsin</option>
+      <option value="Waupaca County, Wisconsin">Waupaca County, Wisconsin</option>
+      <option value="Waushara County, Wisconsin">Waushara County, Wisconsin</option>
+      <option value="Winnebago County, Wisconsin">Winnebago County, Wisconsin</option>
+      <option value="Wood County, Wisconsin">Wood County, Wisconsin</option>
+    </select>
+    <canvas id="pieChart"></canvas>
+    <div class="legend">
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#66CC66;"></div>
+        <span>Agriculture, forestry, fishing, and hunting</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#996600;"></div>
+        <span>Mining</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FF6600;"></div>
+        <span>Utilities</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FFCC33;"></div>
+        <span>Construction</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FF0000;"></div>
+        <span>Manufacturing</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FF66FF;"></div>
+        <span>Wholesale trade</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#3399FF;"></div>
+        <span>Retail trade</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#00CC99;"></div>
+        <span>Transportation and warehousing</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#999966;"></div>
+        <span>Information</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#6666FF;"></div>
+        <span>Finance and insurance</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FF99CC;"></div>
+        <span>Professional, scientific, and technical services</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#66CCCC;"></div>
+        <span>Educational services</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FF9933;"></div>
+        <span>Healthcare and social assistance</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#CC99FF;"></div>
+        <span>Arts, entertainment, and recreation</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FF9999;"></div>
+        <span>Accommodation and food services</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#CCCC00;"></div>
+        <span>Other services</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#663300;"></div>
+        <span>Public administration</span>
+      </div>
+    </div>
+    <script>const data = [];
+const colors = ["#66CC66","#996600","#FF6600","#FFCC33","#FF0000","#FF66FF","#3399FF","#00CC99","#999966","#6666FF","#FF99CC","#66CCCC","#FF9933","#CC99FF","#FF9999","#CCCC00","#663300"];
+let chart;
+function renderChart(region) {
+  const ctx = document.getElementById("pieChart").getContext("2d");
+  const labels = Object.keys(data[region]);
+  const values = Object.values(data[region]);
+  const backgroundColors = labels.map(l => colors[l] || "#999");
+  if (chart) chart.destroy();
+  chart = new Chart(ctx, {
+    type: "pie",
+    data: {
+      labels: labels,
+      datasets: [{
+        data: values,
+        backgroundColor: backgroundColors
+      }]
+    },
+    options: {
+      plugins: {
+        tooltip: {
+          callbacks: {
+            label: ctx => ctx.label + ": " + ctx.raw + "%"
+          }
+        }
+      }
+    }
+  });
+}
+document.getElementById("countySelect").addEventListener("change", function() {
+  renderChart(this.value);
+});
+renderChart("Statewide");</script>
+  </body>
+</html>
+</html>

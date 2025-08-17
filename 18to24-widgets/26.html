@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Educational Enrollment – Michigan</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Educational Enrollment (Age 18–24) in Michigan</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Alcona County, Michigan">Alcona County, Michigan</option>
+      <option value="Alger County, Michigan">Alger County, Michigan</option>
+      <option value="Allegan County, Michigan">Allegan County, Michigan</option>
+      <option value="Alpena County, Michigan">Alpena County, Michigan</option>
+      <option value="Antrim County, Michigan">Antrim County, Michigan</option>
+      <option value="Arenac County, Michigan">Arenac County, Michigan</option>
+      <option value="Baraga County, Michigan">Baraga County, Michigan</option>
+      <option value="Barry County, Michigan">Barry County, Michigan</option>
+      <option value="Bay County, Michigan">Bay County, Michigan</option>
+      <option value="Benzie County, Michigan">Benzie County, Michigan</option>
+      <option value="Berrien County, Michigan">Berrien County, Michigan</option>
+      <option value="Branch County, Michigan">Branch County, Michigan</option>
+      <option value="Calhoun County, Michigan">Calhoun County, Michigan</option>
+      <option value="Cass County, Michigan">Cass County, Michigan</option>
+      <option value="Charlevoix County, Michigan">Charlevoix County, Michigan</option>
+      <option value="Cheboygan County, Michigan">Cheboygan County, Michigan</option>
+      <option value="Chippewa County, Michigan">Chippewa County, Michigan</option>
+      <option value="Clare County, Michigan">Clare County, Michigan</option>
+      <option value="Clinton County, Michigan">Clinton County, Michigan</option>
+      <option value="Crawford County, Michigan">Crawford County, Michigan</option>
+      <option value="Delta County, Michigan">Delta County, Michigan</option>
+      <option value="Dickinson County, Michigan">Dickinson County, Michigan</option>
+      <option value="Eaton County, Michigan">Eaton County, Michigan</option>
+      <option value="Emmet County, Michigan">Emmet County, Michigan</option>
+      <option value="Genesee County, Michigan">Genesee County, Michigan</option>
+      <option value="Gladwin County, Michigan">Gladwin County, Michigan</option>
+      <option value="Gogebic County, Michigan">Gogebic County, Michigan</option>
+      <option value="Grand Traverse County, Michigan">Grand Traverse County, Michigan</option>
+      <option value="Gratiot County, Michigan">Gratiot County, Michigan</option>
+      <option value="Hillsdale County, Michigan">Hillsdale County, Michigan</option>
+      <option value="Houghton County, Michigan">Houghton County, Michigan</option>
+      <option value="Huron County, Michigan">Huron County, Michigan</option>
+      <option value="Ingham County, Michigan">Ingham County, Michigan</option>
+      <option value="Ionia County, Michigan">Ionia County, Michigan</option>
+      <option value="Iosco County, Michigan">Iosco County, Michigan</option>
+      <option value="Iron County, Michigan">Iron County, Michigan</option>
+      <option value="Isabella County, Michigan">Isabella County, Michigan</option>
+      <option value="Jackson County, Michigan">Jackson County, Michigan</option>
+      <option value="Kalamazoo County, Michigan">Kalamazoo County, Michigan</option>
+      <option value="Kalkaska County, Michigan">Kalkaska County, Michigan</option>
+      <option value="Kent County, Michigan">Kent County, Michigan</option>
+      <option value="Keweenaw County, Michigan">Keweenaw County, Michigan</option>
+      <option value="Lake County, Michigan">Lake County, Michigan</option>
+      <option value="Lapeer County, Michigan">Lapeer County, Michigan</option>
+      <option value="Leelanau County, Michigan">Leelanau County, Michigan</option>
+      <option value="Lenawee County, Michigan">Lenawee County, Michigan</option>
+      <option value="Livingston County, Michigan">Livingston County, Michigan</option>
+      <option value="Luce County, Michigan">Luce County, Michigan</option>
+      <option value="Mackinac County, Michigan">Mackinac County, Michigan</option>
+      <option value="Macomb County, Michigan">Macomb County, Michigan</option>
+      <option value="Manistee County, Michigan">Manistee County, Michigan</option>
+      <option value="Marquette County, Michigan">Marquette County, Michigan</option>
+      <option value="Mason County, Michigan">Mason County, Michigan</option>
+      <option value="Mecosta County, Michigan">Mecosta County, Michigan</option>
+      <option value="Menominee County, Michigan">Menominee County, Michigan</option>
+      <option value="Midland County, Michigan">Midland County, Michigan</option>
+      <option value="Missaukee County, Michigan">Missaukee County, Michigan</option>
+      <option value="Monroe County, Michigan">Monroe County, Michigan</option>
+      <option value="Montcalm County, Michigan">Montcalm County, Michigan</option>
+      <option value="Montmorency County, Michigan">Montmorency County, Michigan</option>
+      <option value="Muskegon County, Michigan">Muskegon County, Michigan</option>
+      <option value="Newaygo County, Michigan">Newaygo County, Michigan</option>
+      <option value="Oakland County, Michigan">Oakland County, Michigan</option>
+      <option value="Oceana County, Michigan">Oceana County, Michigan</option>
+      <option value="Ogemaw County, Michigan">Ogemaw County, Michigan</option>
+      <option value="Ontonagon County, Michigan">Ontonagon County, Michigan</option>
+      <option value="Osceola County, Michigan">Osceola County, Michigan</option>
+      <option value="Oscoda County, Michigan">Oscoda County, Michigan</option>
+      <option value="Otsego County, Michigan">Otsego County, Michigan</option>
+      <option value="Ottawa County, Michigan">Ottawa County, Michigan</option>
+      <option value="Presque Isle County, Michigan">Presque Isle County, Michigan</option>
+      <option value="Roscommon County, Michigan">Roscommon County, Michigan</option>
+      <option value="Saginaw County, Michigan">Saginaw County, Michigan</option>
+      <option value="Sanilac County, Michigan">Sanilac County, Michigan</option>
+      <option value="Schoolcraft County, Michigan">Schoolcraft County, Michigan</option>
+      <option value="Shiawassee County, Michigan">Shiawassee County, Michigan</option>
+      <option value="St. Clair County, Michigan">St. Clair County, Michigan</option>
+      <option value="St. Joseph County, Michigan">St. Joseph County, Michigan</option>
+      <option value="Tuscola County, Michigan">Tuscola County, Michigan</option>
+      <option value="Van Buren County, Michigan">Van Buren County, Michigan</option>
+      <option value="Washtenaw County, Michigan">Washtenaw County, Michigan</option>
+      <option value="Wayne County, Michigan">Wayne County, Michigan</option>
+      <option value="Wexford County, Michigan">Wexford County, Michigan</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>  const data = {"Statewide":{"Enrolled in College / Grad. School":41.7,"Not Enrolled":58.3},"Alcona County, Michigan":{"Enrolled in College / Grad. School":20.7,"Not Enrolled":79.3},"Alger County, Michigan":{"Enrolled in College / Grad. School":17.2,"Not Enrolled":82.8},"Allegan County, Michigan":{"Enrolled in College / Grad. School":20.1,"Not Enrolled":79.9},"Alpena County, Michigan":{"Enrolled in College / Grad. School":17,"Not Enrolled":83},"Antrim County, Michigan":{"Enrolled in College / Grad. School":25.9,"Not Enrolled":74.1},"Arenac County, Michigan":{"Enrolled in College / Grad. School":18.9,"Not Enrolled":81.1},"Baraga County, Michigan":{"Enrolled in College / Grad. School":15.7,"Not Enrolled":84.3},"Barry County, Michigan":{"Enrolled in College / Grad. School":37.3,"Not Enrolled":62.7},"Bay County, Michigan":{"Enrolled in College / Grad. School":27.8,"Not Enrolled":72.2},"Benzie County, Michigan":{"Enrolled in College / Grad. School":30.7,"Not Enrolled":69.3},"Berrien County, Michigan":{"Enrolled in College / Grad. School":30.7,"Not Enrolled":69.3},"Branch County, Michigan":{"Enrolled in College / Grad. School":18,"Not Enrolled":82},"Calhoun County, Michigan":{"Enrolled in College / Grad. School":33.1,"Not Enrolled":66.9},"Cass County, Michigan":{"Enrolled in College / Grad. School":26.2,"Not Enrolled":73.8},"Charlevoix County, Michigan":{"Enrolled in College / Grad. School":20.5,"Not Enrolled":79.5},"Cheboygan County, Michigan":{"Enrolled in College / Grad. School":24.2,"Not Enrolled":75.8},"Chippewa County, Michigan":{"Enrolled in College / Grad. School":40,"Not Enrolled":60},"Clare County, Michigan":{"Enrolled in College / Grad. School":29.6,"Not Enrolled":70.4},"Clinton County, Michigan":{"Enrolled in College / Grad. School":51.5,"Not Enrolled":48.5},"Crawford County, Michigan":{"Enrolled in College / Grad. School":15.3,"Not Enrolled":84.7},"Delta County, Michigan":{"Enrolled in College / Grad. School":31.2,"Not Enrolled":68.8},"Dickinson County, Michigan":{"Enrolled in College / Grad. School":24.1,"Not Enrolled":75.9},"Eaton County, Michigan":{"Enrolled in College / Grad. School":33.7,"Not Enrolled":66.3},"Emmet County, Michigan":{"Enrolled in College / Grad. School":32.2,"Not Enrolled":67.8},"Genesee County, Michigan":{"Enrolled in College / Grad. School":27.2,"Not Enrolled":72.8},"Gladwin County, Michigan":{"Enrolled in College / Grad. School":25.6,"Not Enrolled":74.4},"Gogebic County, Michigan":{"Enrolled in College / Grad. School":35.4,"Not Enrolled":64.6},"Grand Traverse County, Michigan":{"Enrolled in College / Grad. School":35.8,"Not Enrolled":64.2},"Gratiot County, Michigan":{"Enrolled in College / Grad. School":45.2,"Not Enrolled":54.8},"Hillsdale County, Michigan":{"Enrolled in College / Grad. School":43.5,"Not Enrolled":56.5},"Houghton County, Michigan":{"Enrolled in College / Grad. School":69.6,"Not Enrolled":30.4},"Huron County, Michigan":{"Enrolled in College / Grad. School":22.9,"Not Enrolled":77.1},"Ingham County, Michigan":{"Enrolled in College / Grad. School":68.9,"Not Enrolled":31.1},"Ionia County, Michigan":{"Enrolled in College / Grad. School":27.2,"Not Enrolled":72.8},"Iosco County, Michigan":{"Enrolled in College / Grad. School":16.5,"Not Enrolled":83.5},"Iron County, Michigan":{"Enrolled in College / Grad. School":16.6,"Not Enrolled":83.4},"Isabella County, Michigan":{"Enrolled in College / Grad. School":66.9,"Not Enrolled":33.1},"Jackson County, Michigan":{"Enrolled in College / Grad. School":32.2,"Not Enrolled":67.8},"Kalamazoo County, Michigan":{"Enrolled in College / Grad. School":51.7,"Not Enrolled":48.3},"Kalkaska County, Michigan":{"Enrolled in College / Grad. School":35.8,"Not Enrolled":64.2},"Kent County, Michigan":{"Enrolled in College / Grad. School":33.9,"Not Enrolled":66.1},"Keweenaw County, Michigan":{"Enrolled in College / Grad. School":23.5,"Not Enrolled":76.5},"Lake County, Michigan":{"Enrolled in College / Grad. School":10.5,"Not Enrolled":89.5},"Lapeer County, Michigan":{"Enrolled in College / Grad. School":23.8,"Not Enrolled":76.2},"Leelanau County, Michigan":{"Enrolled in College / Grad. School":30.4,"Not Enrolled":69.6},"Lenawee County, Michigan":{"Enrolled in College / Grad. School":40.3,"Not Enrolled":59.7},"Livingston County, Michigan":{"Enrolled in College / Grad. School":38,"Not Enrolled":62},"Luce County, Michigan":{"Enrolled in College / Grad. School":13.6,"Not Enrolled":86.4},"Mackinac County, Michigan":{"Enrolled in College / Grad. School":22.7,"Not Enrolled":77.3},"Macomb County, Michigan":{"Enrolled in College / Grad. School":38.1,"Not Enrolled":61.9},"Manistee County, Michigan":{"Enrolled in College / Grad. School":19.2,"Not Enrolled":80.8},"Marquette County, Michigan":{"Enrolled in College / Grad. School":53.9,"Not Enrolled":46.1},"Mason County, Michigan":{"Enrolled in College / Grad. School":23.4,"Not Enrolled":76.6},"Mecosta County, Michigan":{"Enrolled in College / Grad. School":73.2,"Not Enrolled":26.8},"Menominee County, Michigan":{"Enrolled in College / Grad. School":21.4,"Not Enrolled":78.6},"Midland County, Michigan":{"Enrolled in College / Grad. School":38.2,"Not Enrolled":61.8},"Missaukee County, Michigan":{"Enrolled in College / Grad. School":21.7,"Not Enrolled":78.3},"Monroe County, Michigan":{"Enrolled in College / Grad. School":35.9,"Not Enrolled":64.1},"Montcalm County, Michigan":{"Enrolled in College / Grad. School":23.8,"Not Enrolled":76.2},"Montmorency County, Michigan":{"Enrolled in College / Grad. School":13.6,"Not Enrolled":86.4},"Muskegon County, Michigan":{"Enrolled in College / Grad. School":26.9,"Not Enrolled":73.1},"Newaygo County, Michigan":{"Enrolled in College / Grad. School":20.7,"Not Enrolled":79.3},"Oakland County, Michigan":{"Enrolled in College / Grad. School":41.4,"Not Enrolled":58.6},"Oceana County, Michigan":{"Enrolled in College / Grad. School":17.8,"Not Enrolled":82.2},"Ogemaw County, Michigan":{"Enrolled in College / Grad. School":24.9,"Not Enrolled":75.1},"Ontonagon County, Michigan":{"Enrolled in College / Grad. School":13.8,"Not Enrolled":86.2},"Osceola County, Michigan":{"Enrolled in College / Grad. School":13.9,"Not Enrolled":86.1},"Oscoda County, Michigan":{"Enrolled in College / Grad. School":10.6,"Not Enrolled":89.4},"Otsego County, Michigan":{"Enrolled in College / Grad. School":30.1,"Not Enrolled":69.9},"Ottawa County, Michigan":{"Enrolled in College / Grad. School":56.4,"Not Enrolled":43.6},"Presque Isle County, Michigan":{"Enrolled in College / Grad. School":24.2,"Not Enrolled":75.8},"Roscommon County, Michigan":{"Enrolled in College / Grad. School":15.8,"Not Enrolled":84.2},"Saginaw County, Michigan":{"Enrolled in College / Grad. School":43.8,"Not Enrolled":56.2},"St. Clair County, Michigan":{"Enrolled in College / Grad. School":26.3,"Not Enrolled":73.7},"St. Joseph County, Michigan":{"Enrolled in College / Grad. School":18.3,"Not Enrolled":81.7},"Sanilac County, Michigan":{"Enrolled in College / Grad. School":13.2,"Not Enrolled":86.8},"Schoolcraft County, Michigan":{"Enrolled in College / Grad. School":11.5,"Not Enrolled":88.5},"Shiawassee County, Michigan":{"Enrolled in College / Grad. School":26.8,"Not Enrolled":73.2},"Tuscola County, Michigan":{"Enrolled in College / Grad. School":26.1,"Not Enrolled":73.9},"Van Buren County, Michigan":{"Enrolled in College / Grad. School":21.1,"Not Enrolled":78.9},"Washtenaw County, Michigan":{"Enrolled in College / Grad. School":72.2,"Not Enrolled":27.8},"Wayne County, Michigan":{"Enrolled in College / Grad. School":35.3,"Not Enrolled":64.7},"Wexford County, Michigan":{"Enrolled in College / Grad. School":15.9,"Not Enrolled":84.1}};
+  const categories = ["Enrolled in College / Grad. School","Not Enrolled"];
+  const ctx = document.getElementById("barChart").getContext("2d");
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: categories,
+        datasets: [
+          {
+            label: "County/State",
+            data: values,
+            backgroundColor: ["#66c2a5", "#fc8d62"]
+          }
+        ]
+      },
+      options: {
+        indexAxis: "y",
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            ticks: {
+              callback: v => v + "%"
+            }
+          }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.dataset.label + ": " + ctx.raw + "%"
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById("countySelect").addEventListener("change", function() {
+    renderChart(Object.values(data[this.value]));
+  });
+
+  renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

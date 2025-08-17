@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Age Pyramid –  Illinois</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+      body {
+        font-family: sans-serif;
+        margin: 1rem 2rem;
+        text-align: center;
+      }
+      h2 {
+        margin-bottom: 0.25rem;
+        font-size: 1.6rem;
+      }
+      select {
+        padding: 0.4rem;
+        font-size: 1rem;
+        margin: 1rem 0;
+        border-radius: 5px;
+        border: 1px solid #999;
+      }
+      canvas {
+        width: 100%;
+        max-width: 850px;
+        height: 500px;
+        margin-top: 1rem;
+      }
+    </style>
+</head>
+<html>
+  <body>
+    <h2>Age Distribution in  Illinois (2023)</h2>
+    <label>Select County:</label>
+          <select id="countySelect">
+        <option value='Statewide'>Statewide</option>
+<option value='Adams County, Illinois'>Adams County, Illinois</option>
+<option value='Alexander County, Illinois'>Alexander County, Illinois</option>
+<option value='Bond County, Illinois'>Bond County, Illinois</option>
+<option value='Boone County, Illinois'>Boone County, Illinois</option>
+<option value='Brown County, Illinois'>Brown County, Illinois</option>
+<option value='Bureau County, Illinois'>Bureau County, Illinois</option>
+<option value='Calhoun County, Illinois'>Calhoun County, Illinois</option>
+<option value='Carroll County, Illinois'>Carroll County, Illinois</option>
+<option value='Cass County, Illinois'>Cass County, Illinois</option>
+<option value='Champaign County, Illinois'>Champaign County, Illinois</option>
+<option value='Christian County, Illinois'>Christian County, Illinois</option>
+<option value='Clark County, Illinois'>Clark County, Illinois</option>
+<option value='Clay County, Illinois'>Clay County, Illinois</option>
+<option value='Clinton County, Illinois'>Clinton County, Illinois</option>
+<option value='Coles County, Illinois'>Coles County, Illinois</option>
+<option value='Cook County, Illinois'>Cook County, Illinois</option>
+<option value='Crawford County, Illinois'>Crawford County, Illinois</option>
+<option value='Cumberland County, Illinois'>Cumberland County, Illinois</option>
+<option value='De Witt County, Illinois'>De Witt County, Illinois</option>
+<option value='DeKalb County, Illinois'>DeKalb County, Illinois</option>
+<option value='Douglas County, Illinois'>Douglas County, Illinois</option>
+<option value='DuPage County, Illinois'>DuPage County, Illinois</option>
+<option value='Edgar County, Illinois'>Edgar County, Illinois</option>
+<option value='Edwards County, Illinois'>Edwards County, Illinois</option>
+<option value='Effingham County, Illinois'>Effingham County, Illinois</option>
+<option value='Fayette County, Illinois'>Fayette County, Illinois</option>
+<option value='Ford County, Illinois'>Ford County, Illinois</option>
+<option value='Franklin County, Illinois'>Franklin County, Illinois</option>
+<option value='Fulton County, Illinois'>Fulton County, Illinois</option>
+<option value='Gallatin County, Illinois'>Gallatin County, Illinois</option>
+<option value='Greene County, Illinois'>Greene County, Illinois</option>
+<option value='Grundy County, Illinois'>Grundy County, Illinois</option>
+<option value='Hamilton County, Illinois'>Hamilton County, Illinois</option>
+<option value='Hancock County, Illinois'>Hancock County, Illinois</option>
+<option value='Hardin County, Illinois'>Hardin County, Illinois</option>
+<option value='Henderson County, Illinois'>Henderson County, Illinois</option>
+<option value='Henry County, Illinois'>Henry County, Illinois</option>
+<option value='Iroquois County, Illinois'>Iroquois County, Illinois</option>
+<option value='Jackson County, Illinois'>Jackson County, Illinois</option>
+<option value='Jasper County, Illinois'>Jasper County, Illinois</option>
+<option value='Jefferson County, Illinois'>Jefferson County, Illinois</option>
+<option value='Jersey County, Illinois'>Jersey County, Illinois</option>
+<option value='Jo Daviess County, Illinois'>Jo Daviess County, Illinois</option>
+<option value='Johnson County, Illinois'>Johnson County, Illinois</option>
+<option value='Kane County, Illinois'>Kane County, Illinois</option>
+<option value='Kankakee County, Illinois'>Kankakee County, Illinois</option>
+<option value='Kendall County, Illinois'>Kendall County, Illinois</option>
+<option value='Knox County, Illinois'>Knox County, Illinois</option>
+<option value='Lake County, Illinois'>Lake County, Illinois</option>
+<option value='LaSalle County, Illinois'>LaSalle County, Illinois</option>
+<option value='Lawrence County, Illinois'>Lawrence County, Illinois</option>
+<option value='Lee County, Illinois'>Lee County, Illinois</option>
+<option value='Livingston County, Illinois'>Livingston County, Illinois</option>
+<option value='Logan County, Illinois'>Logan County, Illinois</option>
+<option value='Macon County, Illinois'>Macon County, Illinois</option>
+<option value='Macoupin County, Illinois'>Macoupin County, Illinois</option>
+<option value='Madison County, Illinois'>Madison County, Illinois</option>
+<option value='Marion County, Illinois'>Marion County, Illinois</option>
+<option value='Marshall County, Illinois'>Marshall County, Illinois</option>
+<option value='Mason County, Illinois'>Mason County, Illinois</option>
+<option value='Massac County, Illinois'>Massac County, Illinois</option>
+<option value='McDonough County, Illinois'>McDonough County, Illinois</option>
+<option value='McHenry County, Illinois'>McHenry County, Illinois</option>
+<option value='McLean County, Illinois'>McLean County, Illinois</option>
+<option value='Menard County, Illinois'>Menard County, Illinois</option>
+<option value='Mercer County, Illinois'>Mercer County, Illinois</option>
+<option value='Monroe County, Illinois'>Monroe County, Illinois</option>
+<option value='Montgomery County, Illinois'>Montgomery County, Illinois</option>
+<option value='Morgan County, Illinois'>Morgan County, Illinois</option>
+<option value='Moultrie County, Illinois'>Moultrie County, Illinois</option>
+<option value='Ogle County, Illinois'>Ogle County, Illinois</option>
+<option value='Peoria County, Illinois'>Peoria County, Illinois</option>
+<option value='Perry County, Illinois'>Perry County, Illinois</option>
+<option value='Piatt County, Illinois'>Piatt County, Illinois</option>
+<option value='Pike County, Illinois'>Pike County, Illinois</option>
+<option value='Pope County, Illinois'>Pope County, Illinois</option>
+<option value='Pulaski County, Illinois'>Pulaski County, Illinois</option>
+<option value='Putnam County, Illinois'>Putnam County, Illinois</option>
+<option value='Randolph County, Illinois'>Randolph County, Illinois</option>
+<option value='Richland County, Illinois'>Richland County, Illinois</option>
+<option value='Rock Island County, Illinois'>Rock Island County, Illinois</option>
+<option value='Saline County, Illinois'>Saline County, Illinois</option>
+<option value='Sangamon County, Illinois'>Sangamon County, Illinois</option>
+<option value='Schuyler County, Illinois'>Schuyler County, Illinois</option>
+<option value='Scott County, Illinois'>Scott County, Illinois</option>
+<option value='Shelby County, Illinois'>Shelby County, Illinois</option>
+<option value='St. Clair County, Illinois'>St. Clair County, Illinois</option>
+<option value='Stark County, Illinois'>Stark County, Illinois</option>
+<option value='Stephenson County, Illinois'>Stephenson County, Illinois</option>
+<option value='Tazewell County, Illinois'>Tazewell County, Illinois</option>
+<option value='Union County, Illinois'>Union County, Illinois</option>
+<option value='Vermilion County, Illinois'>Vermilion County, Illinois</option>
+<option value='Wabash County, Illinois'>Wabash County, Illinois</option>
+<option value='Warren County, Illinois'>Warren County, Illinois</option>
+<option value='Washington County, Illinois'>Washington County, Illinois</option>
+<option value='Wayne County, Illinois'>Wayne County, Illinois</option>
+<option value='White County, Illinois'>White County, Illinois</option>
+<option value='Whiteside County, Illinois'>Whiteside County, Illinois</option>
+<option value='Will County, Illinois'>Will County, Illinois</option>
+<option value='Williamson County, Illinois'>Williamson County, Illinois</option>
+<option value='Winnebago County, Illinois'>Winnebago County, Illinois</option>
+<option value='Woodford County, Illinois'>Woodford County, Illinois</option>
+      </select>
+    <canvas id="barChart" width="850" height="500"></canvas>
+    <script>  const ageData = {"Statewide":[-2.9,2.7,-3.3,3.2,-2.1,2,-3.1,3],"Adams County, Illinois":[-2.9,3.1,-3.2,3.3,-3.3,3.2,-1.8,1.9],"Alexander County, Illinois":[-3.3,1.4,-5.3,3.7,-1.2,3.6,-1.2,1.9],"Bond County, Illinois":[-2,1.9,-2.4,2.1,-3.8,2.4,-1.9,1.6],"Boone County, Illinois":[-2.7,2.6,-3.4,3.1,-3.8,3.6,-2.4,2.4],"Brown County, Illinois":[-2.4,2.2,-2.8,2.3,-2.1,2.9,-0.8,2],"Bureau County, Illinois":[-2.6,2.6,-2.7,2.9,-3.6,2.7,-1.9,2.1],"Calhoun County, Illinois":[-2.2,2,-2.9,2.8,-3.5,3.1,-2.1,1.7],"Carroll County, Illinois":[-2.4,2,-2.9,2.4,-2.3,2.8,-1.9,1.5],"Cass County, Illinois":[-2.1,4.6,-2.9,3.1,-4.5,3.2,-1.8,2.3],"Champaign County, Illinois":[-2.7,2.6,-2.6,2.4,-2.8,2.9,-1.7,1.6],"Christian County, Illinois":[-2.6,2.4,-2.9,3.1,-2.7,2.5,-1.8,2],"Clark County, Illinois":[-2.8,2.7,-3,3.2,-3.6,3,-1.9,2],"Clay County, Illinois":[-2.9,2.7,-3.7,2.5,-2.8,4,-2.3,2.1],"Clinton County, Illinois":[-3.1,2.6,-3.4,3.2,-2.7,2.8,-2,1.9],"Coles County, Illinois":[-2.7,2.4,-2.3,2.6,-2.8,2.5,-1.6,1.4],"Cook County, Illinois":[-2.9,2.7,-3,2.9,-3.2,3,-1.9,1.9],"Crawford County, Illinois":[-2.7,2.6,-2.5,3.3,-3.2,2.2,-2,1.7],"Cumberland County, Illinois":[-4.1,2.7,-3.5,4.1,-3.5,1.9,-2.1,2],"DeKalb County, Illinois":[-2.8,2.7,-3.2,3.1,-3.1,3,-2,1.8],"De Witt County, Illinois":[-2.9,3,-3.1,2.3,-2.8,3.5,-2.1,1.9],"Douglas County, Illinois":[-3,3.6,-2.8,3.4,-4,3.1,-2.2,2.3],"DuPage County, Illinois":[-2.9,2.8,-3.2,3,-3.2,3.1,-2.1,2],"Edgar County, Illinois":[-2.4,2.3,-2.7,1.9,-3.2,3.3,-1.9,1.9],"Edwards County, Illinois":[-3,2.8,-3.8,3.8,-1.9,2.8,-2.3,2.1],"Effingham County, Illinois":[-3.2,3.3,-3.5,3.3,-3.6,3.1,-2.3,1.9],"Fayette County, Illinois":[-2.9,2.7,-2.8,2.7,-3,2.8,-1.8,1.7],"Ford County, Illinois":[-2.9,2.8,-4,3.4,-3.2,2.6,-2.2,2.2],"Franklin County, Illinois":[-2.9,2.8,-3,2.4,-3.7,3.4,-2.1,2],"Fulton County, Illinois":[-2.5,2.4,-2.9,2.7,-2.8,2.9,-1.9,1.8],"Gallatin County, Illinois":[-2.2,2,-2.1,2.2,-4.3,3.5,-1.8,1.8],"Greene County, Illinois":[-2.7,2.4,-2.9,2.8,-3.2,3.3,-2.1,2],"Grundy County, Illinois":[-3,2.8,-3.3,3.8,-4,3.1,-2.4,2.2],"Hamilton County, Illinois":[-3,2.6,-3.2,2.8,-2.8,3.2,-2.9,2.3],"Hancock County, Illinois":[-2.5,2.4,-3.1,2.4,-3.5,3.3,-2.1,1.8],"Hardin County, Illinois":[-1.1,1,-1.7,0.6,-3.1,3.2,-1.4,1.5],"Henderson County, Illinois":[-2.7,2.1,-1.9,2.7,-3.9,2.3,-1.8,1.6],"Henry County, Illinois":[-2.6,2.5,-3.3,3.1,-3,3.1,-2.1,2.2],"Iroquois County, Illinois":[-3,2.7,-3.1,2.9,-2.8,3,-2.3,2],"Jackson County, Illinois":[-2.7,2.6,-2.5,2.5,-2.7,2.7,-1.5,1.8],"Jasper County, Illinois":[-3.1,2.9,-3.7,3,-2.8,3.1,-2.1,1.8],"Jefferson County, Illinois":[-3.1,2.8,-3.3,3.2,-3.2,3.1,-2,1.8],"Jersey County, Illinois":[-2.3,2.3,-2.9,1.9,-2.6,3.7,-1.9,2.2],"Jo Daviess County, Illinois":[-2,2,-2.2,2.4,-3.4,2.9,-1.9,1.6],"Johnson County, Illinois":[-2.1,2.2,-1.6,2.7,-3.5,2.7,-1.6,1.5],"Kane County, Illinois":[-3,2.8,-3.3,3.1,-3.8,3.6,-2.4,2.3],"Kankakee County, Illinois":[-2.9,2.8,-3.1,3.1,-3.5,3.2,-2.2,2.2],"Kendall County, Illinois":[-3.1,3.1,-4.4,4.2,-3.8,3.6,-2.7,2.5],"Knox County, Illinois":[-3.1,2.4,-2.7,3.2,-3,2.3,-1.8,1.7],"Lake County, Illinois":[-2.7,2.7,-3.4,3.2,-3.5,3.4,-2.4,2.3],"LaSalle County, Illinois":[-2.8,2.5,-3,3,-3.2,2.8,-2.1,2],"Lawrence County, Illinois":[-2.1,2.5,-1.8,2.6,-3.9,2.8,-1.7,1.5],"Lee County, Illinois":[-2.4,2.6,-2.6,2.3,-3.2,3.3,-1.7,1.8],"Livingston County, Illinois":[-3.2,2.5,-2.9,2.9,-3.5,2.9,-2.2,2],"Logan County, Illinois":[-2.5,2.3,-2.9,2.9,-2.8,2.4,-1.8,2],"McDonough County, Illinois":[-2.5,2.1,-2.7,2.1,-2.8,2.7,-1.5,1.5],"McHenry County, Illinois":[-2.7,2.6,-3.1,3.1,-3.6,3.3,-2.3,2.2],"McLean County, Illinois":[-2.7,2.7,-2.8,2.8,-3.4,3.2,-1.9,1.9],"Macon County, Illinois":[-3.1,3,-3.2,3.4,-3.3,2.8,-1.9,1.9],"Macoupin County, Illinois":[-2.6,2.3,-2.8,3.1,-3.4,2.6,-2.1,1.9],"Madison County, Illinois":[-2.7,2.6,-3.2,2.8,-3.1,3.2,-2,1.9],"Marion County, Illinois":[-3.3,3,-3.1,2.9,-3.5,3.7,-2,2.1],"Marshall County, Illinois":[-2.8,2.8,-3,2.8,-3.3,3,-1.8,1.7],"Mason County, Illinois":[-2.2,2.4,-2.6,2.8,-3.5,3.1,-1.8,2.1],"Massac County, Illinois":[-2.5,2.1,-2.3,3.2,-4,3,-2,2.1],"Menard County, Illinois":[-2.7,2.6,-3.4,3.7,-3,2.6,-2,2],"Mercer County, Illinois":[-2.6,2.3,-2,2.9,-3.9,3.3,-2,2.2],"Monroe County, Illinois":[-2.9,2.4,-3.2,2.8,-3.5,3.4,-2,2],"Montgomery County, Illinois":[-2.6,2.4,-2.8,3.1,-3.2,2.5,-1.8,1.7],"Morgan County, Illinois":[-2.3,2.7,-2.4,2.7,-3,3.1,-1.6,1.5],"Moultrie County, Illinois":[-3,2.9,-3.2,4.3,-4.5,2.8,-2.5,2.4],"Ogle County, Illinois":[-2.8,2.5,-3.2,2.8,-3.3,3.5,-2.2,2.1],"Peoria County, Illinois":[-3.4,3.2,-3.7,3.5,-3.2,3,-2,1.9],"Perry County, Illinois":[-2.4,2.5,-3,3,-2.6,2.3,-1.9,1.8],"Piatt County, Illinois":[-2.6,2.6,-4,3.2,-2.5,3.1,-2.1,1.9],"Pike County, Illinois":[-3.1,3,-4,2.7,-2.9,3.4,-2.1,1.9],"Pope County, Illinois":[-2.4,2.9,-1.9,1.4,-1.4,2.6,-0.6,2.4],"Pulaski County, Illinois":[-2.7,2.2,-3.3,2.6,-2.5,3,-2,2.1],"Putnam County, Illinois":[-2.2,2.4,-2.8,2.4,-3.4,2.6,-2.1,1.7],"Randolph County, Illinois":[-2.5,2.6,-2.6,2.5,-3.2,3,-2.3,1.7],"Richland County, Illinois":[-2.9,2.9,-3.3,3.1,-3.3,3.2,-2.2,2.1],"Rock Island County, Illinois":[-3,2.8,-3.3,3,-3.3,3.2,-2,1.9],"St. Clair County, Illinois":[-3,2.9,-3.3,3,-3.6,3.5,-2.1,2],"Saline County, Illinois":[-3.1,2.9,-2.8,3.2,-3.1,2.4,-1.7,1.7],"Sangamon County, Illinois":[-2.9,2.7,-3.3,2.9,-3.1,3.1,-2.1,1.9],"Schuyler County, Illinois":[-2.4,1.7,-1.3,1.6,-3.5,3.8,-2.2,0.9],"Scott County, Illinois":[-2.2,2.2,-3.6,3.4,-2.8,2.5,-2.8,1.9],"Shelby County, Illinois":[-2.7,2.7,-3.3,2.7,-2.9,3.2,-2.1,1.8],"Stark County, Illinois":[-2.6,2.6,-3.2,3.9,-2.9,2.7,-2,1.7],"Stephenson County, Illinois":[-2.7,2.5,-2.3,2.5,-3.7,3.4,-2.2,1.9],"Tazewell County, Illinois":[-2.8,2.5,-3.3,3.1,-3.3,3.2,-2.2,2.1],"Union County, Illinois":[-2.8,2.6,-3,2.4,-3,3.3,-2.2,2.1],"Vermilion County, Illinois":[-3,3,-3.2,3,-3.7,3.5,-2,2],"Wabash County, Illinois":[-2.8,2.5,-2.8,2.9,-3.6,3.5,-2,1.7],"Warren County, Illinois":[-2.8,2.6,-4.2,2.8,-3,3.2,-1.7,1.9],"Washington County, Illinois":[-2.6,2.4,-3.1,3.2,-2.3,2.5,-2.9,2],"Wayne County, Illinois":[-2.9,2.9,-2.9,3.3,-3.9,2.9,-2,1.9],"White County, Illinois":[-2.8,2.1,-3.3,3.9,-3.4,2.5,-1.9,1.9],"Whiteside County, Illinois":[-2.9,2.4,-3.4,2.8,-3.2,3.2,-2,2],"Will County, Illinois":[-2.8,2.7,-3.2,3,-3.8,3.7,-2.4,2.3],"Williamson County, Illinois":[-2.9,2.6,-3,2.9,-3.4,3.1,-2,1.8],"Winnebago County, Illinois":[-3.2,3,-3.3,3.2,-3.5,3.2,-2.1,2.1],"Woodford County, Illinois":[-3,2.6,-3.4,3.4,-3.8,3.3,-2.3,2.2]};
+  const ageBins = ["0–4","5–9","10–14","15–17"];
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(data) {
+    const maleData = data.filter((_, i) => i % 2 === 0);
+    const femaleData = data.filter((_, i) => i % 2 === 1);
+
+    const maxValue = Math.max(
+      ...maleData.map(Math.abs),
+      ...femaleData.map(Math.abs)
+    );
+    const padding = 1.0;
+    const xMax = +(maxValue + padding).toFixed(1);
+
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ageBins,
+        datasets: [
+          {
+            label: 'Male',
+            data: maleData,
+            backgroundColor: 'darkslategray'
+          },
+          {
+            label: 'Female',
+            data: femaleData,
+            backgroundColor: 'darkorange'
+          }
+        ]
+      },
+      options: {
+        indexAxis: 'y',
+        responsive: true,
+        scales: {
+          x: {
+            min: -xMax,
+            max: xMax,
+            ticks: {
+              callback: value => Math.abs(value).toFixed(1) + '%'
+            }
+          },
+          y: {
+            stacked: false
+          }
+        },
+        plugins: {
+          legend: {
+            position: 'top',
+            align: 'start',
+            labels: {
+              usePointStyle: true
+            }
+          },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.dataset.label + ': ' + Math.abs(ctx.parsed.x).toFixed(1) + '%'
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(Object.values(ageData[this.value]));
+  });
+
+  renderChart(Object.values(ageData['Statewide']));</script>
+  </body>
+</html>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Living Arrangements of Children – New Hampshire</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Children’s Living Arrangements (Under 18) – New Hampshire</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Belknap County, New Hampshire">Belknap County, New Hampshire</option>
+      <option value="Carroll County, New Hampshire">Carroll County, New Hampshire</option>
+      <option value="Cheshire County, New Hampshire">Cheshire County, New Hampshire</option>
+      <option value="Coos County, New Hampshire">Coos County, New Hampshire</option>
+      <option value="Grafton County, New Hampshire">Grafton County, New Hampshire</option>
+      <option value="Hillsborough County, New Hampshire">Hillsborough County, New Hampshire</option>
+      <option value="Merrimack County, New Hampshire">Merrimack County, New Hampshire</option>
+      <option value="Rockingham County, New Hampshire">Rockingham County, New Hampshire</option>
+      <option value="Strafford County, New Hampshire">Strafford County, New Hampshire</option>
+      <option value="Sullivan County, New Hampshire">Sullivan County, New Hampshire</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>  const data = {"Statewide":{"Married Couple (%)":72.2,"Cohabiting Couple (%)":9.4,"Male Householder (%)":4.2,"Female Householder (%)":14.1},"Belknap County, New Hampshire":{"Married Couple (%)":65.6,"Cohabiting Couple (%)":9.4,"Male Householder (%)":4.8,"Female Householder (%)":20.3},"Carroll County, New Hampshire":{"Married Couple (%)":66.8,"Cohabiting Couple (%)":14.7,"Male Householder (%)":2.8,"Female Householder (%)":15.8},"Cheshire County, New Hampshire":{"Married Couple (%)":73.5,"Cohabiting Couple (%)":11.7,"Male Householder (%)":3.5,"Female Householder (%)":11.3},"Coos County, New Hampshire":{"Married Couple (%)":63.5,"Cohabiting Couple (%)":16.8,"Male Householder (%)":3.6,"Female Householder (%)":16.1},"Grafton County, New Hampshire":{"Married Couple (%)":70.2,"Cohabiting Couple (%)":10,"Male Householder (%)":4,"Female Householder (%)":15.8},"Hillsborough County, New Hampshire":{"Married Couple (%)":71.4,"Cohabiting Couple (%)":9.2,"Male Householder (%)":4.1,"Female Householder (%)":15.3},"Merrimack County, New Hampshire":{"Married Couple (%)":74.2,"Cohabiting Couple (%)":10,"Male Householder (%)":5.7,"Female Householder (%)":10.1},"Rockingham County, New Hampshire":{"Married Couple (%)":76.5,"Cohabiting Couple (%)":6.7,"Male Householder (%)":3.9,"Female Householder (%)":12.9},"Strafford County, New Hampshire":{"Married Couple (%)":73,"Cohabiting Couple (%)":9.3,"Male Householder (%)":4.2,"Female Householder (%)":13.5},"Sullivan County, New Hampshire":{"Married Couple (%)":61.1,"Cohabiting Couple (%)":16,"Male Householder (%)":6,"Female Householder (%)":16.9}};
+  const categories = ["Married Couple (%)","Cohabiting Couple (%)","Male Householder (%)","Female Householder (%)"];
+  const ctx = document.getElementById("barChart").getContext("2d");
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: categories,
+        datasets: [{
+          label: "Share of Children (%)",
+          data: values,
+          backgroundColor: ["#5DA5DA","#FAA43A","#60BD68","#F17CB0"]
+        }]
+      },
+      options: {
+        indexAxis: "y",
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            ticks: { callback: v => v + "%" },
+            title: { display: true, text: "Percent of Children" }
+          }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.raw + "%"
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById("countySelect").addEventListener("change", function() {
+    renderChart(Object.values(data[this.value]));
+  });
+
+  renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

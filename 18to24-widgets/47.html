@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Educational Enrollment – Tennessee</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Educational Enrollment (Age 18–24) in Tennessee</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Anderson County, Tennessee">Anderson County, Tennessee</option>
+      <option value="Bedford County, Tennessee">Bedford County, Tennessee</option>
+      <option value="Benton County, Tennessee">Benton County, Tennessee</option>
+      <option value="Bledsoe County, Tennessee">Bledsoe County, Tennessee</option>
+      <option value="Blount County, Tennessee">Blount County, Tennessee</option>
+      <option value="Bradley County, Tennessee">Bradley County, Tennessee</option>
+      <option value="Campbell County, Tennessee">Campbell County, Tennessee</option>
+      <option value="Cannon County, Tennessee">Cannon County, Tennessee</option>
+      <option value="Carroll County, Tennessee">Carroll County, Tennessee</option>
+      <option value="Carter County, Tennessee">Carter County, Tennessee</option>
+      <option value="Cheatham County, Tennessee">Cheatham County, Tennessee</option>
+      <option value="Chester County, Tennessee">Chester County, Tennessee</option>
+      <option value="Claiborne County, Tennessee">Claiborne County, Tennessee</option>
+      <option value="Clay County, Tennessee">Clay County, Tennessee</option>
+      <option value="Cocke County, Tennessee">Cocke County, Tennessee</option>
+      <option value="Coffee County, Tennessee">Coffee County, Tennessee</option>
+      <option value="Crockett County, Tennessee">Crockett County, Tennessee</option>
+      <option value="Cumberland County, Tennessee">Cumberland County, Tennessee</option>
+      <option value="Davidson County, Tennessee">Davidson County, Tennessee</option>
+      <option value="Decatur County, Tennessee">Decatur County, Tennessee</option>
+      <option value="DeKalb County, Tennessee">DeKalb County, Tennessee</option>
+      <option value="Dickson County, Tennessee">Dickson County, Tennessee</option>
+      <option value="Dyer County, Tennessee">Dyer County, Tennessee</option>
+      <option value="Fayette County, Tennessee">Fayette County, Tennessee</option>
+      <option value="Fentress County, Tennessee">Fentress County, Tennessee</option>
+      <option value="Franklin County, Tennessee">Franklin County, Tennessee</option>
+      <option value="Gibson County, Tennessee">Gibson County, Tennessee</option>
+      <option value="Giles County, Tennessee">Giles County, Tennessee</option>
+      <option value="Grainger County, Tennessee">Grainger County, Tennessee</option>
+      <option value="Greene County, Tennessee">Greene County, Tennessee</option>
+      <option value="Grundy County, Tennessee">Grundy County, Tennessee</option>
+      <option value="Hamblen County, Tennessee">Hamblen County, Tennessee</option>
+      <option value="Hamilton County, Tennessee">Hamilton County, Tennessee</option>
+      <option value="Hancock County, Tennessee">Hancock County, Tennessee</option>
+      <option value="Hardeman County, Tennessee">Hardeman County, Tennessee</option>
+      <option value="Hardin County, Tennessee">Hardin County, Tennessee</option>
+      <option value="Hawkins County, Tennessee">Hawkins County, Tennessee</option>
+      <option value="Haywood County, Tennessee">Haywood County, Tennessee</option>
+      <option value="Henderson County, Tennessee">Henderson County, Tennessee</option>
+      <option value="Henry County, Tennessee">Henry County, Tennessee</option>
+      <option value="Hickman County, Tennessee">Hickman County, Tennessee</option>
+      <option value="Houston County, Tennessee">Houston County, Tennessee</option>
+      <option value="Humphreys County, Tennessee">Humphreys County, Tennessee</option>
+      <option value="Jackson County, Tennessee">Jackson County, Tennessee</option>
+      <option value="Jefferson County, Tennessee">Jefferson County, Tennessee</option>
+      <option value="Johnson County, Tennessee">Johnson County, Tennessee</option>
+      <option value="Knox County, Tennessee">Knox County, Tennessee</option>
+      <option value="Lake County, Tennessee">Lake County, Tennessee</option>
+      <option value="Lauderdale County, Tennessee">Lauderdale County, Tennessee</option>
+      <option value="Lawrence County, Tennessee">Lawrence County, Tennessee</option>
+      <option value="Lewis County, Tennessee">Lewis County, Tennessee</option>
+      <option value="Lincoln County, Tennessee">Lincoln County, Tennessee</option>
+      <option value="Loudon County, Tennessee">Loudon County, Tennessee</option>
+      <option value="Macon County, Tennessee">Macon County, Tennessee</option>
+      <option value="Madison County, Tennessee">Madison County, Tennessee</option>
+      <option value="Marion County, Tennessee">Marion County, Tennessee</option>
+      <option value="Marshall County, Tennessee">Marshall County, Tennessee</option>
+      <option value="Maury County, Tennessee">Maury County, Tennessee</option>
+      <option value="McMinn County, Tennessee">McMinn County, Tennessee</option>
+      <option value="McNairy County, Tennessee">McNairy County, Tennessee</option>
+      <option value="Meigs County, Tennessee">Meigs County, Tennessee</option>
+      <option value="Monroe County, Tennessee">Monroe County, Tennessee</option>
+      <option value="Montgomery County, Tennessee">Montgomery County, Tennessee</option>
+      <option value="Moore County, Tennessee">Moore County, Tennessee</option>
+      <option value="Morgan County, Tennessee">Morgan County, Tennessee</option>
+      <option value="Obion County, Tennessee">Obion County, Tennessee</option>
+      <option value="Overton County, Tennessee">Overton County, Tennessee</option>
+      <option value="Perry County, Tennessee">Perry County, Tennessee</option>
+      <option value="Pickett County, Tennessee">Pickett County, Tennessee</option>
+      <option value="Polk County, Tennessee">Polk County, Tennessee</option>
+      <option value="Putnam County, Tennessee">Putnam County, Tennessee</option>
+      <option value="Rhea County, Tennessee">Rhea County, Tennessee</option>
+      <option value="Roane County, Tennessee">Roane County, Tennessee</option>
+      <option value="Robertson County, Tennessee">Robertson County, Tennessee</option>
+      <option value="Rutherford County, Tennessee">Rutherford County, Tennessee</option>
+      <option value="Scott County, Tennessee">Scott County, Tennessee</option>
+      <option value="Sequatchie County, Tennessee">Sequatchie County, Tennessee</option>
+      <option value="Sevier County, Tennessee">Sevier County, Tennessee</option>
+      <option value="Shelby County, Tennessee">Shelby County, Tennessee</option>
+      <option value="Smith County, Tennessee">Smith County, Tennessee</option>
+      <option value="Stewart County, Tennessee">Stewart County, Tennessee</option>
+      <option value="Sullivan County, Tennessee">Sullivan County, Tennessee</option>
+      <option value="Sumner County, Tennessee">Sumner County, Tennessee</option>
+      <option value="Tipton County, Tennessee">Tipton County, Tennessee</option>
+      <option value="Trousdale County, Tennessee">Trousdale County, Tennessee</option>
+      <option value="Unicoi County, Tennessee">Unicoi County, Tennessee</option>
+      <option value="Union County, Tennessee">Union County, Tennessee</option>
+      <option value="Van Buren County, Tennessee">Van Buren County, Tennessee</option>
+      <option value="Warren County, Tennessee">Warren County, Tennessee</option>
+      <option value="Washington County, Tennessee">Washington County, Tennessee</option>
+      <option value="Wayne County, Tennessee">Wayne County, Tennessee</option>
+      <option value="Weakley County, Tennessee">Weakley County, Tennessee</option>
+      <option value="White County, Tennessee">White County, Tennessee</option>
+      <option value="Williamson County, Tennessee">Williamson County, Tennessee</option>
+      <option value="Wilson County, Tennessee">Wilson County, Tennessee</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>  const data = {"Statewide":{"Enrolled in College / Grad. School":36.7,"Not Enrolled":63.3},"Anderson County, Tennessee":{"Enrolled in College / Grad. School":24.6,"Not Enrolled":75.4},"Bedford County, Tennessee":{"Enrolled in College / Grad. School":24,"Not Enrolled":76},"Benton County, Tennessee":{"Enrolled in College / Grad. School":14.8,"Not Enrolled":85.2},"Bledsoe County, Tennessee":{"Enrolled in College / Grad. School":15.7,"Not Enrolled":84.3},"Blount County, Tennessee":{"Enrolled in College / Grad. School":30.4,"Not Enrolled":69.6},"Bradley County, Tennessee":{"Enrolled in College / Grad. School":44.8,"Not Enrolled":55.2},"Campbell County, Tennessee":{"Enrolled in College / Grad. School":19.1,"Not Enrolled":80.9},"Cannon County, Tennessee":{"Enrolled in College / Grad. School":32.2,"Not Enrolled":67.8},"Carroll County, Tennessee":{"Enrolled in College / Grad. School":42.2,"Not Enrolled":57.8},"Carter County, Tennessee":{"Enrolled in College / Grad. School":42,"Not Enrolled":58},"Cheatham County, Tennessee":{"Enrolled in College / Grad. School":21.6,"Not Enrolled":78.4},"Chester County, Tennessee":{"Enrolled in College / Grad. School":61.4,"Not Enrolled":38.6},"Claiborne County, Tennessee":{"Enrolled in College / Grad. School":50.1,"Not Enrolled":49.9},"Clay County, Tennessee":{"Enrolled in College / Grad. School":31.9,"Not Enrolled":68.1},"Cocke County, Tennessee":{"Enrolled in College / Grad. School":21.3,"Not Enrolled":78.7},"Coffee County, Tennessee":{"Enrolled in College / Grad. School":19.4,"Not Enrolled":80.6},"Crockett County, Tennessee":{"Enrolled in College / Grad. School":17.3,"Not Enrolled":82.7},"Cumberland County, Tennessee":{"Enrolled in College / Grad. School":15.3,"Not Enrolled":84.7},"Davidson County, Tennessee":{"Enrolled in College / Grad. School":43.5,"Not Enrolled":56.5},"Decatur County, Tennessee":{"Enrolled in College / Grad. School":25.2,"Not Enrolled":74.8},"DeKalb County, Tennessee":{"Enrolled in College / Grad. School":17.4,"Not Enrolled":82.6},"Dickson County, Tennessee":{"Enrolled in College / Grad. School":24.6,"Not Enrolled":75.4},"Dyer County, Tennessee":{"Enrolled in College / Grad. School":20.4,"Not Enrolled":79.6},"Fayette County, Tennessee":{"Enrolled in College / Grad. School":33.3,"Not Enrolled":66.7},"Fentress County, Tennessee":{"Enrolled in College / Grad. School":16.2,"Not Enrolled":83.8},"Franklin County, Tennessee":{"Enrolled in College / Grad. School":46,"Not Enrolled":54},"Gibson County, Tennessee":{"Enrolled in College / Grad. School":21.1,"Not Enrolled":78.9},"Giles County, Tennessee":{"Enrolled in College / Grad. School":44.2,"Not Enrolled":55.8},"Grainger County, Tennessee":{"Enrolled in College / Grad. School":23,"Not Enrolled":77},"Greene County, Tennessee":{"Enrolled in College / Grad. School":34.4,"Not Enrolled":65.6},"Grundy County, Tennessee":{"Enrolled in College / Grad. School":29.8,"Not Enrolled":70.2},"Hamblen County, Tennessee":{"Enrolled in College / Grad. School":18.3,"Not Enrolled":81.7},"Hamilton County, Tennessee":{"Enrolled in College / Grad. School":42,"Not Enrolled":58},"Hancock County, Tennessee":{"Enrolled in College / Grad. School":27.5,"Not Enrolled":72.5},"Hardeman County, Tennessee":{"Enrolled in College / Grad. School":26.7,"Not Enrolled":73.3},"Hardin County, Tennessee":{"Enrolled in College / Grad. School":26.8,"Not Enrolled":73.2},"Hawkins County, Tennessee":{"Enrolled in College / Grad. School":22.9,"Not Enrolled":77.1},"Haywood County, Tennessee":{"Enrolled in College / Grad. School":18.4,"Not Enrolled":81.6},"Henderson County, Tennessee":{"Enrolled in College / Grad. School":24,"Not Enrolled":76},"Henry County, Tennessee":{"Enrolled in College / Grad. School":24.3,"Not Enrolled":75.7},"Hickman County, Tennessee":{"Enrolled in College / Grad. School":25.9,"Not Enrolled":74.1},"Houston County, Tennessee":{"Enrolled in College / Grad. School":25.3,"Not Enrolled":74.7},"Humphreys County, Tennessee":{"Enrolled in College / Grad. School":31.4,"Not Enrolled":68.6},"Jackson County, Tennessee":{"Enrolled in College / Grad. School":27.4,"Not Enrolled":72.6},"Jefferson County, Tennessee":{"Enrolled in College / Grad. School":43.6,"Not Enrolled":56.4},"Johnson County, Tennessee":{"Enrolled in College / Grad. School":16.7,"Not Enrolled":83.3},"Knox County, Tennessee":{"Enrolled in College / Grad. School":53,"Not Enrolled":47},"Lake County, Tennessee":{"Enrolled in College / Grad. School":4.6,"Not Enrolled":95.4},"Lauderdale County, Tennessee":{"Enrolled in College / Grad. School":17.6,"Not Enrolled":82.4},"Lawrence County, Tennessee":{"Enrolled in College / Grad. School":26.9,"Not Enrolled":73.1},"Lewis County, Tennessee":{"Enrolled in College / Grad. School":23.4,"Not Enrolled":76.6},"Lincoln County, Tennessee":{"Enrolled in College / Grad. School":33.2,"Not Enrolled":66.8},"Loudon County, Tennessee":{"Enrolled in College / Grad. School":34.5,"Not Enrolled":65.5},"McMinn County, Tennessee":{"Enrolled in College / Grad. School":30.4,"Not Enrolled":69.6},"McNairy County, Tennessee":{"Enrolled in College / Grad. School":28.8,"Not Enrolled":71.2},"Macon County, Tennessee":{"Enrolled in College / Grad. School":28.8,"Not Enrolled":71.2},"Madison County, Tennessee":{"Enrolled in College / Grad. School":47.7,"Not Enrolled":52.3},"Marion County, Tennessee":{"Enrolled in College / Grad. School":20.5,"Not Enrolled":79.5},"Marshall County, Tennessee":{"Enrolled in College / Grad. School":21.1,"Not Enrolled":78.9},"Maury County, Tennessee":{"Enrolled in College / Grad. School":16.8,"Not Enrolled":83.2},"Meigs County, Tennessee":{"Enrolled in College / Grad. School":10.2,"Not Enrolled":89.8},"Monroe County, Tennessee":{"Enrolled in College / Grad. School":20.8,"Not Enrolled":79.2},"Montgomery County, Tennessee":{"Enrolled in College / Grad. School":33,"Not Enrolled":67},"Moore County, Tennessee":{"Enrolled in College / Grad. School":13.2,"Not Enrolled":86.8},"Morgan County, Tennessee":{"Enrolled in College / Grad. School":12.5,"Not Enrolled":87.5},"Obion County, Tennessee":{"Enrolled in College / Grad. School":25.7,"Not Enrolled":74.3},"Overton County, Tennessee":{"Enrolled in College / Grad. School":19.9,"Not Enrolled":80.1},"Perry County, Tennessee":{"Enrolled in College / Grad. School":27.9,"Not Enrolled":72.1},"Pickett County, Tennessee":{"Enrolled in College / Grad. School":13.3,"Not Enrolled":86.7},"Polk County, Tennessee":{"Enrolled in College / Grad. School":18.1,"Not Enrolled":81.9},"Putnam County, Tennessee":{"Enrolled in College / Grad. School":61,"Not Enrolled":39},"Rhea County, Tennessee":{"Enrolled in College / Grad. School":31.4,"Not Enrolled":68.6},"Roane County, Tennessee":{"Enrolled in College / Grad. School":27.1,"Not Enrolled":72.9},"Robertson County, Tennessee":{"Enrolled in College / Grad. School":18.6,"Not Enrolled":81.4},"Rutherford County, Tennessee":{"Enrolled in College / Grad. School":41,"Not Enrolled":59},"Scott County, Tennessee":{"Enrolled in College / Grad. School":30.2,"Not Enrolled":69.8},"Sequatchie County, Tennessee":{"Enrolled in College / Grad. School":24.5,"Not Enrolled":75.5},"Sevier County, Tennessee":{"Enrolled in College / Grad. School":30.7,"Not Enrolled":69.3},"Shelby County, Tennessee":{"Enrolled in College / Grad. School":30.8,"Not Enrolled":69.2},"Smith County, Tennessee":{"Enrolled in College / Grad. School":29.2,"Not Enrolled":70.8},"Stewart County, Tennessee":{"Enrolled in College / Grad. School":25.2,"Not Enrolled":74.8},"Sullivan County, Tennessee":{"Enrolled in College / Grad. School":34.3,"Not Enrolled":65.7},"Sumner County, Tennessee":{"Enrolled in College / Grad. School":30.3,"Not Enrolled":69.7},"Tipton County, Tennessee":{"Enrolled in College / Grad. School":32.6,"Not Enrolled":67.4},"Trousdale County, Tennessee":{"Enrolled in College / Grad. School":21.5,"Not Enrolled":78.5},"Unicoi County, Tennessee":{"Enrolled in College / Grad. School":34.4,"Not Enrolled":65.6},"Union County, Tennessee":{"Enrolled in College / Grad. School":26.1,"Not Enrolled":73.9},"Van Buren County, Tennessee":{"Enrolled in College / Grad. School":20.6,"Not Enrolled":79.4},"Warren County, Tennessee":{"Enrolled in College / Grad. School":20.7,"Not Enrolled":79.3},"Washington County, Tennessee":{"Enrolled in College / Grad. School":56.2,"Not Enrolled":43.8},"Wayne County, Tennessee":{"Enrolled in College / Grad. School":17.6,"Not Enrolled":82.4},"Weakley County, Tennessee":{"Enrolled in College / Grad. School":56.9,"Not Enrolled":43.1},"White County, Tennessee":{"Enrolled in College / Grad. School":19.8,"Not Enrolled":80.2},"Williamson County, Tennessee":{"Enrolled in College / Grad. School":38.8,"Not Enrolled":61.2},"Wilson County, Tennessee":{"Enrolled in College / Grad. School":33.1,"Not Enrolled":66.9}};
+  const categories = ["Enrolled in College / Grad. School","Not Enrolled"];
+  const ctx = document.getElementById("barChart").getContext("2d");
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: categories,
+        datasets: [
+          {
+            label: "County/State",
+            data: values,
+            backgroundColor: ["#66c2a5", "#fc8d62"]
+          }
+        ]
+      },
+      options: {
+        indexAxis: "y",
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            ticks: {
+              callback: v => v + "%"
+            }
+          }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.dataset.label + ": " + ctx.raw + "%"
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById("countySelect").addEventListener("change", function() {
+    renderChart(Object.values(data[this.value]));
+  });
+
+  renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

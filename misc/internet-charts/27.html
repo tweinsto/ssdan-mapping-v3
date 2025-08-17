@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Internet Access Over Time –  Minnesota</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+                      h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+                      select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; border-radius: 5px; border: 1px solid #999; }
+                      canvas { width: 100%; max-width: 850px; height: 450px; margin-top: 1rem; }</style>
+</head>
+<html>
+  <body>
+    <h2>Internet Access in  Minnesota (2013–2023)</h2>
+    <label>Select County: </label>
+    <select id="countySelect"><option value='Statewide'>Statewide</option>
+<option value='Aitkin County, Minnesota'>Aitkin County, Minnesota</option>
+<option value='Anoka County, Minnesota'>Anoka County, Minnesota</option>
+<option value='Becker County, Minnesota'>Becker County, Minnesota</option>
+<option value='Beltrami County, Minnesota'>Beltrami County, Minnesota</option>
+<option value='Benton County, Minnesota'>Benton County, Minnesota</option>
+<option value='Big Stone County, Minnesota'>Big Stone County, Minnesota</option>
+<option value='Blue Earth County, Minnesota'>Blue Earth County, Minnesota</option>
+<option value='Brown County, Minnesota'>Brown County, Minnesota</option>
+<option value='Carlton County, Minnesota'>Carlton County, Minnesota</option>
+<option value='Carver County, Minnesota'>Carver County, Minnesota</option>
+<option value='Cass County, Minnesota'>Cass County, Minnesota</option>
+<option value='Chippewa County, Minnesota'>Chippewa County, Minnesota</option>
+<option value='Chisago County, Minnesota'>Chisago County, Minnesota</option>
+<option value='Clay County, Minnesota'>Clay County, Minnesota</option>
+<option value='Clearwater County, Minnesota'>Clearwater County, Minnesota</option>
+<option value='Cook County, Minnesota'>Cook County, Minnesota</option>
+<option value='Cottonwood County, Minnesota'>Cottonwood County, Minnesota</option>
+<option value='Crow Wing County, Minnesota'>Crow Wing County, Minnesota</option>
+<option value='Dakota County, Minnesota'>Dakota County, Minnesota</option>
+<option value='Dodge County, Minnesota'>Dodge County, Minnesota</option>
+<option value='Douglas County, Minnesota'>Douglas County, Minnesota</option>
+<option value='Faribault County, Minnesota'>Faribault County, Minnesota</option>
+<option value='Fillmore County, Minnesota'>Fillmore County, Minnesota</option>
+<option value='Freeborn County, Minnesota'>Freeborn County, Minnesota</option>
+<option value='Goodhue County, Minnesota'>Goodhue County, Minnesota</option>
+<option value='Grant County, Minnesota'>Grant County, Minnesota</option>
+<option value='Hennepin County, Minnesota'>Hennepin County, Minnesota</option>
+<option value='Houston County, Minnesota'>Houston County, Minnesota</option>
+<option value='Hubbard County, Minnesota'>Hubbard County, Minnesota</option>
+<option value='Isanti County, Minnesota'>Isanti County, Minnesota</option>
+<option value='Itasca County, Minnesota'>Itasca County, Minnesota</option>
+<option value='Jackson County, Minnesota'>Jackson County, Minnesota</option>
+<option value='Kanabec County, Minnesota'>Kanabec County, Minnesota</option>
+<option value='Kandiyohi County, Minnesota'>Kandiyohi County, Minnesota</option>
+<option value='Kittson County, Minnesota'>Kittson County, Minnesota</option>
+<option value='Koochiching County, Minnesota'>Koochiching County, Minnesota</option>
+<option value='Lac qui Parle County, Minnesota'>Lac qui Parle County, Minnesota</option>
+<option value='Lake County, Minnesota'>Lake County, Minnesota</option>
+<option value='Lake of the Woods County, Minnesota'>Lake of the Woods County, Minnesota</option>
+<option value='Le Sueur County, Minnesota'>Le Sueur County, Minnesota</option>
+<option value='Lincoln County, Minnesota'>Lincoln County, Minnesota</option>
+<option value='Lyon County, Minnesota'>Lyon County, Minnesota</option>
+<option value='Mahnomen County, Minnesota'>Mahnomen County, Minnesota</option>
+<option value='Marshall County, Minnesota'>Marshall County, Minnesota</option>
+<option value='Martin County, Minnesota'>Martin County, Minnesota</option>
+<option value='McLeod County, Minnesota'>McLeod County, Minnesota</option>
+<option value='Meeker County, Minnesota'>Meeker County, Minnesota</option>
+<option value='Mille Lacs County, Minnesota'>Mille Lacs County, Minnesota</option>
+<option value='Morrison County, Minnesota'>Morrison County, Minnesota</option>
+<option value='Mower County, Minnesota'>Mower County, Minnesota</option>
+<option value='Murray County, Minnesota'>Murray County, Minnesota</option>
+<option value='Nicollet County, Minnesota'>Nicollet County, Minnesota</option>
+<option value='Nobles County, Minnesota'>Nobles County, Minnesota</option>
+<option value='Norman County, Minnesota'>Norman County, Minnesota</option>
+<option value='Olmsted County, Minnesota'>Olmsted County, Minnesota</option>
+<option value='Otter Tail County, Minnesota'>Otter Tail County, Minnesota</option>
+<option value='Pennington County, Minnesota'>Pennington County, Minnesota</option>
+<option value='Pine County, Minnesota'>Pine County, Minnesota</option>
+<option value='Pipestone County, Minnesota'>Pipestone County, Minnesota</option>
+<option value='Polk County, Minnesota'>Polk County, Minnesota</option>
+<option value='Pope County, Minnesota'>Pope County, Minnesota</option>
+<option value='Ramsey County, Minnesota'>Ramsey County, Minnesota</option>
+<option value='Red Lake County, Minnesota'>Red Lake County, Minnesota</option>
+<option value='Redwood County, Minnesota'>Redwood County, Minnesota</option>
+<option value='Renville County, Minnesota'>Renville County, Minnesota</option>
+<option value='Rice County, Minnesota'>Rice County, Minnesota</option>
+<option value='Rock County, Minnesota'>Rock County, Minnesota</option>
+<option value='Roseau County, Minnesota'>Roseau County, Minnesota</option>
+<option value='Scott County, Minnesota'>Scott County, Minnesota</option>
+<option value='Sherburne County, Minnesota'>Sherburne County, Minnesota</option>
+<option value='Sibley County, Minnesota'>Sibley County, Minnesota</option>
+<option value='St. Louis County, Minnesota'>St. Louis County, Minnesota</option>
+<option value='Stearns County, Minnesota'>Stearns County, Minnesota</option>
+<option value='Steele County, Minnesota'>Steele County, Minnesota</option>
+<option value='Stevens County, Minnesota'>Stevens County, Minnesota</option>
+<option value='Swift County, Minnesota'>Swift County, Minnesota</option>
+<option value='Todd County, Minnesota'>Todd County, Minnesota</option>
+<option value='Traverse County, Minnesota'>Traverse County, Minnesota</option>
+<option value='Wabasha County, Minnesota'>Wabasha County, Minnesota</option>
+<option value='Wadena County, Minnesota'>Wadena County, Minnesota</option>
+<option value='Waseca County, Minnesota'>Waseca County, Minnesota</option>
+<option value='Washington County, Minnesota'>Washington County, Minnesota</option>
+<option value='Watonwan County, Minnesota'>Watonwan County, Minnesota</option>
+<option value='Wilkin County, Minnesota'>Wilkin County, Minnesota</option>
+<option value='Winona County, Minnesota'>Winona County, Minnesota</option>
+<option value='Wright County, Minnesota'>Wright County, Minnesota</option>
+<option value='Yellow Medicine County, Minnesota'>Yellow Medicine County, Minnesota</option></select>
+    <canvas id="lineChart" width="850" height="450"></canvas>
+    <script>const internetData = {"Statewide":{"2017":85.3,"2018":86.9,"2019":88.4,"2020":90.1,"2021":91.5,"2022":92.6,"2023":93.6},"Aitkin County, Minnesota":{"2017":73.4,"2018":76.3,"2019":78.2,"2020":80.2,"2021":81.6,"2022":84,"2023":86.2},"Anoka County, Minnesota":{"2017":89,"2018":90.3,"2019":91.4,"2020":92.9,"2021":93.9,"2022":94.7,"2023":95.5},"Becker County, Minnesota":{"2017":79,"2018":82.3,"2019":85,"2020":87.6,"2021":87.8,"2022":88.7,"2023":90.3},"Beltrami County, Minnesota":{"2017":81,"2018":82.3,"2019":83.7,"2020":85.8,"2021":88.3,"2022":90.3,"2023":93.3},"Benton County, Minnesota":{"2017":83.4,"2018":84.6,"2019":87.7,"2020":90.3,"2021":91.9,"2022":93.5,"2023":94.4},"Big Stone County, Minnesota":{"2017":73.1,"2018":74.9,"2019":79.8,"2020":83.7,"2021":85.5,"2022":88.3,"2023":90.8},"Blue Earth County, Minnesota":{"2017":86.8,"2018":88.6,"2019":89.5,"2020":91.1,"2021":92.1,"2022":93.2,"2023":93.3},"Brown County, Minnesota":{"2017":79.3,"2018":81.3,"2019":84,"2020":85.5,"2021":86.4,"2022":87.2,"2023":88.5},"Carlton County, Minnesota":{"2017":75.4,"2018":78.4,"2019":81.2,"2020":82.1,"2021":83.6,"2022":86.4,"2023":88.7},"Carver County, Minnesota":{"2017":90.5,"2018":92.3,"2019":93.3,"2020":94.6,"2021":95.2,"2022":95.5,"2023":96.3},"Cass County, Minnesota":{"2017":77.8,"2018":80.7,"2019":81.6,"2020":84.6,"2021":86.1,"2022":87.4,"2023":88.3},"Chippewa County, Minnesota":{"2017":79.2,"2018":79.4,"2019":80.2,"2020":85.9,"2021":86.5,"2022":87.4,"2023":90.3},"Chisago County, Minnesota":{"2017":86.8,"2018":87.8,"2019":89.1,"2020":91,"2021":92.6,"2022":93.4,"2023":94},"Clay County, Minnesota":{"2017":80.5,"2018":83.3,"2019":85.4,"2020":87.8,"2021":89.8,"2022":90.8,"2023":91.9},"Clearwater County, Minnesota":{"2017":74.2,"2018":76.5,"2019":80.1,"2020":82.1,"2021":84.5,"2022":86.1,"2023":87.8},"Cook County, Minnesota":{"2017":79.1,"2018":84.6,"2019":85.7,"2020":90.5,"2021":92.1,"2022":94.2,"2023":95.4},"Cottonwood County, Minnesota":{"2017":78,"2018":78.1,"2019":80.8,"2020":82.1,"2021":84.7,"2022":86.3,"2023":86.7},"Crow Wing County, Minnesota":{"2017":83.5,"2018":84.8,"2019":86.1,"2020":86.9,"2021":88.4,"2022":89.4,"2023":91.3},"Dakota County, Minnesota":{"2017":89.9,"2018":91.1,"2019":91.9,"2020":93.5,"2021":94.3,"2022":95.1,"2023":95.7},"Dodge County, Minnesota":{"2017":87.4,"2018":89,"2019":90,"2020":91.2,"2021":91.8,"2022":92.1,"2023":93.2},"Douglas County, Minnesota":{"2017":81.4,"2018":82.6,"2019":84,"2020":83.2,"2021":88.3,"2022":89.3,"2023":90.9},"Faribault County, Minnesota":{"2017":75.6,"2018":77.7,"2019":80.2,"2020":82.8,"2021":84.4,"2022":87.5,"2023":87.4},"Fillmore County, Minnesota":{"2017":76.4,"2018":78.9,"2019":81,"2020":84.2,"2021":85.1,"2022":86.8,"2023":88},"Freeborn County, Minnesota":{"2017":77.2,"2018":78.9,"2019":80.8,"2020":82.9,"2021":85.1,"2022":85.7,"2023":87.8},"Goodhue County, Minnesota":{"2017":83.1,"2018":85.1,"2019":86.7,"2020":89.3,"2021":90.1,"2022":91.5,"2023":92.6},"Grant County, Minnesota":{"2017":78.9,"2018":81.6,"2019":82.7,"2020":83.5,"2021":86.1,"2022":88.1,"2023":90.1},"Hennepin County, Minnesota":{"2017":87.9,"2018":89.4,"2019":90.8,"2020":92.4,"2021":93.6,"2022":94.5,"2023":95.2},"Houston County, Minnesota":{"2017":82,"2018":83.8,"2019":86.1,"2020":86.3,"2021":87.2,"2022":89.8,"2023":89.8},"Hubbard County, Minnesota":{"2017":81.8,"2018":83.2,"2019":84.8,"2020":86.9,"2021":87.7,"2022":88.5,"2023":90.4},"Isanti County, Minnesota":{"2017":81.4,"2018":83.8,"2019":86.1,"2020":88.3,"2021":90.2,"2022":91.3,"2023":92.3},"Itasca County, Minnesota":{"2017":78.8,"2018":79.8,"2019":81.9,"2020":84.1,"2021":86.3,"2022":87.9,"2023":90.1},"Jackson County, Minnesota":{"2017":78.5,"2018":81.8,"2019":84.2,"2020":85.8,"2021":88.2,"2022":89.2,"2023":91.4},"Kanabec County, Minnesota":{"2017":76.1,"2018":78.8,"2019":80.9,"2020":81.5,"2021":84.5,"2022":84.6,"2023":85.8},"Kandiyohi County, Minnesota":{"2017":81.8,"2018":82.9,"2019":84.7,"2020":87.2,"2021":88.3,"2022":90.1,"2023":91.5},"Kittson County, Minnesota":{"2017":74.6,"2018":79.1,"2019":82,"2020":84.6,"2021":87.2,"2022":87.6,"2023":89.8},"Koochiching County, Minnesota":{"2017":73.1,"2018":76.1,"2019":80.2,"2020":83.5,"2021":86.4,"2022":88.3,"2023":90},"Lac qui Parle County, Minnesota":{"2017":76,"2018":80,"2019":82.5,"2020":84.3,"2021":83.5,"2022":85.9,"2023":87.3},"Lake County, Minnesota":{"2017":80.5,"2018":83.7,"2019":84.4,"2020":85,"2021":86.5,"2022":88.7,"2023":88.6},"Lake of the Woods County, Minnesota":{"2017":69.3,"2018":72.2,"2019":75.1,"2020":78.8,"2021":81.5,"2022":88,"2023":91.4},"Le Sueur County, Minnesota":{"2017":81.8,"2018":82.7,"2019":85.3,"2020":88.7,"2021":90.8,"2022":91.2,"2023":92},"Lincoln County, Minnesota":{"2017":72.7,"2018":74.3,"2019":78.8,"2020":83.4,"2021":85.5,"2022":87,"2023":90.1},"Lyon County, Minnesota":{"2017":84.9,"2018":86.6,"2019":87.9,"2020":90.1,"2021":90.7,"2022":90.8,"2023":91.2},"Mahnomen County, Minnesota":{"2017":68.9,"2018":73,"2019":75.2,"2020":78.9,"2021":80.4,"2022":84,"2023":86.4},"Marshall County, Minnesota":{"2017":77.5,"2018":80.6,"2019":83.9,"2020":85.5,"2021":86.1,"2022":87.2,"2023":88.6},"Martin County, Minnesota":{"2017":78.6,"2018":80.1,"2019":82.2,"2020":84.8,"2021":86.7,"2022":88.3,"2023":88.6},"McLeod County, Minnesota":{"2017":83.2,"2018":85,"2019":86,"2020":86.8,"2021":88.3,"2022":89.2,"2023":90.3},"Meeker County, Minnesota":{"2017":77.7,"2018":80,"2019":82.6,"2020":85.5,"2021":86.9,"2022":88.5,"2023":89.9},"Mille Lacs County, Minnesota":{"2017":77,"2018":79.1,"2019":81.2,"2020":84.3,"2021":86.4,"2022":88.4,"2023":89.9},"Morrison County, Minnesota":{"2017":75.7,"2018":77.7,"2019":79.2,"2020":81.7,"2021":84.6,"2022":86.3,"2023":88.2},"Mower County, Minnesota":{"2017":79.5,"2018":81.6,"2019":83.2,"2020":85.8,"2021":87.8,"2022":90.5,"2023":92},"Murray County, Minnesota":{"2017":77.9,"2018":79.9,"2019":80.1,"2020":81.8,"2021":84.2,"2022":84.6,"2023":85.8},"Nicollet County, Minnesota":{"2017":84.6,"2018":86.6,"2019":87.7,"2020":89.4,"2021":89.3,"2022":90.4,"2023":90.1},"Nobles County, Minnesota":{"2017":77.9,"2018":79.4,"2019":82.3,"2020":86.4,"2021":88.8,"2022":89.8,"2023":91.2},"Norman County, Minnesota":{"2017":65.9,"2018":70.6,"2019":74.9,"2020":80.3,"2021":81.7,"2022":87.5,"2023":89.4},"Olmsted County, Minnesota":{"2017":89.6,"2018":90,"2019":91.2,"2020":92.5,"2021":93.7,"2022":94.4,"2023":95.4},"Otter Tail County, Minnesota":{"2017":77.3,"2018":79.6,"2019":80.7,"2020":83.7,"2021":85.8,"2022":87.2,"2023":88.9},"Pennington County, Minnesota":{"2017":80.2,"2018":82.7,"2019":85.4,"2020":88,"2021":90.2,"2022":91.6,"2023":92.1},"Pine County, Minnesota":{"2017":71.6,"2018":75.1,"2019":78.9,"2020":81,"2021":84.3,"2022":86.3,"2023":88.2},"Pipestone County, Minnesota":{"2017":75.1,"2018":79.8,"2019":83.5,"2020":84.7,"2021":85.4,"2022":89.4,"2023":88.7},"Polk County, Minnesota":{"2017":79.9,"2018":82.5,"2019":84.7,"2020":86.3,"2021":88.5,"2022":90.6,"2023":91.8},"Pope County, Minnesota":{"2017":78.8,"2018":79.1,"2019":80.7,"2020":83.9,"2021":85.8,"2022":87.1,"2023":89},"Ramsey County, Minnesota":{"2017":86.1,"2018":88.1,"2019":89.5,"2020":91.5,"2021":92.9,"2022":93.8,"2023":94.7},"Red Lake County, Minnesota":{"2017":75.7,"2018":79.5,"2019":81.4,"2020":83.2,"2021":82.1,"2022":83,"2023":85},"Redwood County, Minnesota":{"2017":74.2,"2018":75.8,"2019":76.3,"2020":78.8,"2021":81.6,"2022":85.1,"2023":85.9},"Renville County, Minnesota":{"2017":72.2,"2018":73.4,"2019":75.7,"2020":77.8,"2021":80.5,"2022":83.2,"2023":85.7},"Rice County, Minnesota":{"2017":83.7,"2018":85.3,"2019":87.4,"2020":89,"2021":91.5,"2022":92.5,"2023":93.8},"Rock County, Minnesota":{"2017":80.7,"2018":81.6,"2019":83.4,"2020":85.9,"2021":88.3,"2022":90.2,"2023":92.1},"Roseau County, Minnesota":{"2017":78.7,"2018":82.1,"2019":84.8,"2020":87.5,"2021":88.8,"2022":90.4,"2023":92.2},"Scott County, Minnesota":{"2017":91,"2018":92.1,"2019":93.3,"2020":94.2,"2021":95,"2022":95.4,"2023":96.2},"Sherburne County, Minnesota":{"2017":89.5,"2018":90.6,"2019":92.5,"2020":93.1,"2021":93.8,"2022":94.8,"2023":95.2},"Sibley County, Minnesota":{"2017":75.8,"2018":78,"2019":80.2,"2020":82.8,"2021":84.4,"2022":86.1,"2023":89.6},"St. Louis County, Minnesota":{"2017":79.6,"2018":81.5,"2019":83.6,"2020":86.1,"2021":88,"2022":89.3,"2023":90.7},"Stearns County, Minnesota":{"2017":85.1,"2018":86.4,"2019":87.3,"2020":89.4,"2021":90.4,"2022":91.6,"2023":92.7},"Steele County, Minnesota":{"2017":82.4,"2018":84.2,"2019":86.8,"2020":88.4,"2021":88.6,"2022":89.4,"2023":90.8},"Stevens County, Minnesota":{"2017":82,"2018":83.7,"2019":85.8,"2020":88.4,"2021":90.3,"2022":91.5,"2023":92.4},"Swift County, Minnesota":{"2017":75,"2018":77.4,"2019":79.3,"2020":79.4,"2021":81.6,"2022":84.6,"2023":87.5},"Todd County, Minnesota":{"2017":73.1,"2018":74.7,"2019":76,"2020":76.8,"2021":76.5,"2022":79,"2023":81.5},"Traverse County, Minnesota":{"2017":75.1,"2018":78.9,"2019":79.8,"2020":80.1,"2021":80.5,"2022":82.6,"2023":84.1},"Wabasha County, Minnesota":{"2017":79.7,"2018":83.6,"2019":84.6,"2020":85.1,"2021":86.9,"2022":87.8,"2023":87.8},"Wadena County, Minnesota":{"2017":75.3,"2018":76.6,"2019":79.8,"2020":83.4,"2021":84.3,"2022":85.1,"2023":87.6},"Waseca County, Minnesota":{"2017":83.2,"2018":84.1,"2019":84.6,"2020":83.8,"2021":85.4,"2022":88,"2023":90.8},"Washington County, Minnesota":{"2017":91.9,"2018":92.8,"2019":93.3,"2020":94.2,"2021":95.1,"2022":95.4,"2023":96},"Watonwan County, Minnesota":{"2017":69.3,"2018":72.8,"2019":75.5,"2020":76.7,"2021":79.3,"2022":82.7,"2023":85.1},"Wilkin County, Minnesota":{"2017":75.9,"2018":78.5,"2019":82.2,"2020":81.6,"2021":81,"2022":84.3,"2023":86.7},"Winona County, Minnesota":{"2017":83.1,"2018":85.1,"2019":87.1,"2020":90.5,"2021":92.6,"2022":93.3,"2023":93.9},"Wright County, Minnesota":{"2017":87.6,"2018":88.9,"2019":90.3,"2020":90.9,"2021":92.4,"2022":93.5,"2023":94.6},"Yellow Medicine County, Minnesota":{"2017":77.5,"2018":79.2,"2019":82.5,"2020":83.7,"2021":85.4,"2022":85.4,"2023":87.6}};
+const ctx = document.getElementById('lineChart').getContext('2d');
+let chart;
+
+function renderChart(data) {
+  const labels = Object.keys(data);
+  const values = Object.values(data);
+
+  if (chart) chart.destroy();
+  chart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: labels,
+      datasets: [{
+        label: '% With Internet',
+        data: values,
+        fill: false,
+        borderColor: 'teal',
+        backgroundColor: 'teal',
+        tension: 0.3,
+        pointRadius: 4
+      }]
+    },
+    options: {
+      responsive: true,
+      scales: {
+        y: {
+          beginAtZero: true,
+          max: 100,
+          title: { display: true, text: '% With Internet' }
+        },
+        x: {
+          title: { display: true, text: 'Year' }
+        }
+      },
+      plugins: {
+        tooltip: {
+          callbacks: {
+            label: function(ctx) {
+              return ctx.parsed.y.toFixed(1) + '%';
+            }
+          }
+        }
+      }
+    }
+  });
+}
+
+document.getElementById('countySelect').addEventListener('change', function() {
+  renderChart(internetData[this.value]);
+});
+renderChart(internetData['Statewide']);</script>
+  </body>
+</html>
+</html>

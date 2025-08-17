@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Living Arrangements of Children – Texas</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Children’s Living Arrangements (Under 18) – Texas</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Anderson County, Texas">Anderson County, Texas</option>
+      <option value="Andrews County, Texas">Andrews County, Texas</option>
+      <option value="Angelina County, Texas">Angelina County, Texas</option>
+      <option value="Aransas County, Texas">Aransas County, Texas</option>
+      <option value="Archer County, Texas">Archer County, Texas</option>
+      <option value="Armstrong County, Texas">Armstrong County, Texas</option>
+      <option value="Atascosa County, Texas">Atascosa County, Texas</option>
+      <option value="Austin County, Texas">Austin County, Texas</option>
+      <option value="Bailey County, Texas">Bailey County, Texas</option>
+      <option value="Bandera County, Texas">Bandera County, Texas</option>
+      <option value="Bastrop County, Texas">Bastrop County, Texas</option>
+      <option value="Baylor County, Texas">Baylor County, Texas</option>
+      <option value="Bee County, Texas">Bee County, Texas</option>
+      <option value="Bell County, Texas">Bell County, Texas</option>
+      <option value="Bexar County, Texas">Bexar County, Texas</option>
+      <option value="Blanco County, Texas">Blanco County, Texas</option>
+      <option value="Borden County, Texas">Borden County, Texas</option>
+      <option value="Bosque County, Texas">Bosque County, Texas</option>
+      <option value="Bowie County, Texas">Bowie County, Texas</option>
+      <option value="Brazoria County, Texas">Brazoria County, Texas</option>
+      <option value="Brazos County, Texas">Brazos County, Texas</option>
+      <option value="Brewster County, Texas">Brewster County, Texas</option>
+      <option value="Briscoe County, Texas">Briscoe County, Texas</option>
+      <option value="Brooks County, Texas">Brooks County, Texas</option>
+      <option value="Brown County, Texas">Brown County, Texas</option>
+      <option value="Burleson County, Texas">Burleson County, Texas</option>
+      <option value="Burnet County, Texas">Burnet County, Texas</option>
+      <option value="Caldwell County, Texas">Caldwell County, Texas</option>
+      <option value="Calhoun County, Texas">Calhoun County, Texas</option>
+      <option value="Callahan County, Texas">Callahan County, Texas</option>
+      <option value="Cameron County, Texas">Cameron County, Texas</option>
+      <option value="Camp County, Texas">Camp County, Texas</option>
+      <option value="Carson County, Texas">Carson County, Texas</option>
+      <option value="Cass County, Texas">Cass County, Texas</option>
+      <option value="Castro County, Texas">Castro County, Texas</option>
+      <option value="Chambers County, Texas">Chambers County, Texas</option>
+      <option value="Cherokee County, Texas">Cherokee County, Texas</option>
+      <option value="Childress County, Texas">Childress County, Texas</option>
+      <option value="Clay County, Texas">Clay County, Texas</option>
+      <option value="Cochran County, Texas">Cochran County, Texas</option>
+      <option value="Coke County, Texas">Coke County, Texas</option>
+      <option value="Coleman County, Texas">Coleman County, Texas</option>
+      <option value="Collin County, Texas">Collin County, Texas</option>
+      <option value="Collingsworth County, Texas">Collingsworth County, Texas</option>
+      <option value="Colorado County, Texas">Colorado County, Texas</option>
+      <option value="Comal County, Texas">Comal County, Texas</option>
+      <option value="Comanche County, Texas">Comanche County, Texas</option>
+      <option value="Concho County, Texas">Concho County, Texas</option>
+      <option value="Cooke County, Texas">Cooke County, Texas</option>
+      <option value="Coryell County, Texas">Coryell County, Texas</option>
+      <option value="Cottle County, Texas">Cottle County, Texas</option>
+      <option value="Crane County, Texas">Crane County, Texas</option>
+      <option value="Crockett County, Texas">Crockett County, Texas</option>
+      <option value="Crosby County, Texas">Crosby County, Texas</option>
+      <option value="Culberson County, Texas">Culberson County, Texas</option>
+      <option value="Dallam County, Texas">Dallam County, Texas</option>
+      <option value="Dallas County, Texas">Dallas County, Texas</option>
+      <option value="Dawson County, Texas">Dawson County, Texas</option>
+      <option value="Deaf Smith County, Texas">Deaf Smith County, Texas</option>
+      <option value="Delta County, Texas">Delta County, Texas</option>
+      <option value="Denton County, Texas">Denton County, Texas</option>
+      <option value="DeWitt County, Texas">DeWitt County, Texas</option>
+      <option value="Dickens County, Texas">Dickens County, Texas</option>
+      <option value="Dimmit County, Texas">Dimmit County, Texas</option>
+      <option value="Donley County, Texas">Donley County, Texas</option>
+      <option value="Duval County, Texas">Duval County, Texas</option>
+      <option value="Eastland County, Texas">Eastland County, Texas</option>
+      <option value="Ector County, Texas">Ector County, Texas</option>
+      <option value="Edwards County, Texas">Edwards County, Texas</option>
+      <option value="El Paso County, Texas">El Paso County, Texas</option>
+      <option value="Ellis County, Texas">Ellis County, Texas</option>
+      <option value="Erath County, Texas">Erath County, Texas</option>
+      <option value="Falls County, Texas">Falls County, Texas</option>
+      <option value="Fannin County, Texas">Fannin County, Texas</option>
+      <option value="Fayette County, Texas">Fayette County, Texas</option>
+      <option value="Fisher County, Texas">Fisher County, Texas</option>
+      <option value="Floyd County, Texas">Floyd County, Texas</option>
+      <option value="Foard County, Texas">Foard County, Texas</option>
+      <option value="Fort Bend County, Texas">Fort Bend County, Texas</option>
+      <option value="Franklin County, Texas">Franklin County, Texas</option>
+      <option value="Freestone County, Texas">Freestone County, Texas</option>
+      <option value="Frio County, Texas">Frio County, Texas</option>
+      <option value="Gaines County, Texas">Gaines County, Texas</option>
+      <option value="Galveston County, Texas">Galveston County, Texas</option>
+      <option value="Garza County, Texas">Garza County, Texas</option>
+      <option value="Gillespie County, Texas">Gillespie County, Texas</option>
+      <option value="Glasscock County, Texas">Glasscock County, Texas</option>
+      <option value="Goliad County, Texas">Goliad County, Texas</option>
+      <option value="Gonzales County, Texas">Gonzales County, Texas</option>
+      <option value="Gray County, Texas">Gray County, Texas</option>
+      <option value="Grayson County, Texas">Grayson County, Texas</option>
+      <option value="Gregg County, Texas">Gregg County, Texas</option>
+      <option value="Grimes County, Texas">Grimes County, Texas</option>
+      <option value="Guadalupe County, Texas">Guadalupe County, Texas</option>
+      <option value="Hale County, Texas">Hale County, Texas</option>
+      <option value="Hall County, Texas">Hall County, Texas</option>
+      <option value="Hamilton County, Texas">Hamilton County, Texas</option>
+      <option value="Hansford County, Texas">Hansford County, Texas</option>
+      <option value="Hardeman County, Texas">Hardeman County, Texas</option>
+      <option value="Hardin County, Texas">Hardin County, Texas</option>
+      <option value="Harris County, Texas">Harris County, Texas</option>
+      <option value="Harrison County, Texas">Harrison County, Texas</option>
+      <option value="Hartley County, Texas">Hartley County, Texas</option>
+      <option value="Haskell County, Texas">Haskell County, Texas</option>
+      <option value="Hays County, Texas">Hays County, Texas</option>
+      <option value="Hemphill County, Texas">Hemphill County, Texas</option>
+      <option value="Henderson County, Texas">Henderson County, Texas</option>
+      <option value="Hidalgo County, Texas">Hidalgo County, Texas</option>
+      <option value="Hill County, Texas">Hill County, Texas</option>
+      <option value="Hockley County, Texas">Hockley County, Texas</option>
+      <option value="Hood County, Texas">Hood County, Texas</option>
+      <option value="Hopkins County, Texas">Hopkins County, Texas</option>
+      <option value="Houston County, Texas">Houston County, Texas</option>
+      <option value="Howard County, Texas">Howard County, Texas</option>
+      <option value="Hudspeth County, Texas">Hudspeth County, Texas</option>
+      <option value="Hunt County, Texas">Hunt County, Texas</option>
+      <option value="Hutchinson County, Texas">Hutchinson County, Texas</option>
+      <option value="Irion County, Texas">Irion County, Texas</option>
+      <option value="Jack County, Texas">Jack County, Texas</option>
+      <option value="Jackson County, Texas">Jackson County, Texas</option>
+      <option value="Jasper County, Texas">Jasper County, Texas</option>
+      <option value="Jeff Davis County, Texas">Jeff Davis County, Texas</option>
+      <option value="Jefferson County, Texas">Jefferson County, Texas</option>
+      <option value="Jim Hogg County, Texas">Jim Hogg County, Texas</option>
+      <option value="Jim Wells County, Texas">Jim Wells County, Texas</option>
+      <option value="Johnson County, Texas">Johnson County, Texas</option>
+      <option value="Jones County, Texas">Jones County, Texas</option>
+      <option value="Karnes County, Texas">Karnes County, Texas</option>
+      <option value="Kaufman County, Texas">Kaufman County, Texas</option>
+      <option value="Kendall County, Texas">Kendall County, Texas</option>
+      <option value="Kenedy County, Texas">Kenedy County, Texas</option>
+      <option value="Kent County, Texas">Kent County, Texas</option>
+      <option value="Kerr County, Texas">Kerr County, Texas</option>
+      <option value="Kimble County, Texas">Kimble County, Texas</option>
+      <option value="King County, Texas">King County, Texas</option>
+      <option value="Kinney County, Texas">Kinney County, Texas</option>
+      <option value="Kleberg County, Texas">Kleberg County, Texas</option>
+      <option value="Knox County, Texas">Knox County, Texas</option>
+      <option value="La Salle County, Texas">La Salle County, Texas</option>
+      <option value="Lamar County, Texas">Lamar County, Texas</option>
+      <option value="Lamb County, Texas">Lamb County, Texas</option>
+      <option value="Lampasas County, Texas">Lampasas County, Texas</option>
+      <option value="Lavaca County, Texas">Lavaca County, Texas</option>
+      <option value="Lee County, Texas">Lee County, Texas</option>
+      <option value="Leon County, Texas">Leon County, Texas</option>
+      <option value="Liberty County, Texas">Liberty County, Texas</option>
+      <option value="Limestone County, Texas">Limestone County, Texas</option>
+      <option value="Lipscomb County, Texas">Lipscomb County, Texas</option>
+      <option value="Live Oak County, Texas">Live Oak County, Texas</option>
+      <option value="Llano County, Texas">Llano County, Texas</option>
+      <option value="Loving County, Texas">Loving County, Texas</option>
+      <option value="Lubbock County, Texas">Lubbock County, Texas</option>
+      <option value="Lynn County, Texas">Lynn County, Texas</option>
+      <option value="Madison County, Texas">Madison County, Texas</option>
+      <option value="Marion County, Texas">Marion County, Texas</option>
+      <option value="Martin County, Texas">Martin County, Texas</option>
+      <option value="Mason County, Texas">Mason County, Texas</option>
+      <option value="Matagorda County, Texas">Matagorda County, Texas</option>
+      <option value="Maverick County, Texas">Maverick County, Texas</option>
+      <option value="McCulloch County, Texas">McCulloch County, Texas</option>
+      <option value="McLennan County, Texas">McLennan County, Texas</option>
+      <option value="McMullen County, Texas">McMullen County, Texas</option>
+      <option value="Medina County, Texas">Medina County, Texas</option>
+      <option value="Menard County, Texas">Menard County, Texas</option>
+      <option value="Midland County, Texas">Midland County, Texas</option>
+      <option value="Milam County, Texas">Milam County, Texas</option>
+      <option value="Mills County, Texas">Mills County, Texas</option>
+      <option value="Mitchell County, Texas">Mitchell County, Texas</option>
+      <option value="Montague County, Texas">Montague County, Texas</option>
+      <option value="Montgomery County, Texas">Montgomery County, Texas</option>
+      <option value="Moore County, Texas">Moore County, Texas</option>
+      <option value="Morris County, Texas">Morris County, Texas</option>
+      <option value="Motley County, Texas">Motley County, Texas</option>
+      <option value="Nacogdoches County, Texas">Nacogdoches County, Texas</option>
+      <option value="Navarro County, Texas">Navarro County, Texas</option>
+      <option value="Newton County, Texas">Newton County, Texas</option>
+      <option value="Nolan County, Texas">Nolan County, Texas</option>
+      <option value="Nueces County, Texas">Nueces County, Texas</option>
+      <option value="Ochiltree County, Texas">Ochiltree County, Texas</option>
+      <option value="Oldham County, Texas">Oldham County, Texas</option>
+      <option value="Orange County, Texas">Orange County, Texas</option>
+      <option value="Palo Pinto County, Texas">Palo Pinto County, Texas</option>
+      <option value="Panola County, Texas">Panola County, Texas</option>
+      <option value="Parker County, Texas">Parker County, Texas</option>
+      <option value="Parmer County, Texas">Parmer County, Texas</option>
+      <option value="Pecos County, Texas">Pecos County, Texas</option>
+      <option value="Polk County, Texas">Polk County, Texas</option>
+      <option value="Potter County, Texas">Potter County, Texas</option>
+      <option value="Presidio County, Texas">Presidio County, Texas</option>
+      <option value="Rains County, Texas">Rains County, Texas</option>
+      <option value="Randall County, Texas">Randall County, Texas</option>
+      <option value="Reagan County, Texas">Reagan County, Texas</option>
+      <option value="Real County, Texas">Real County, Texas</option>
+      <option value="Red River County, Texas">Red River County, Texas</option>
+      <option value="Reeves County, Texas">Reeves County, Texas</option>
+      <option value="Refugio County, Texas">Refugio County, Texas</option>
+      <option value="Roberts County, Texas">Roberts County, Texas</option>
+      <option value="Robertson County, Texas">Robertson County, Texas</option>
+      <option value="Rockwall County, Texas">Rockwall County, Texas</option>
+      <option value="Runnels County, Texas">Runnels County, Texas</option>
+      <option value="Rusk County, Texas">Rusk County, Texas</option>
+      <option value="Sabine County, Texas">Sabine County, Texas</option>
+      <option value="San Augustine County, Texas">San Augustine County, Texas</option>
+      <option value="San Jacinto County, Texas">San Jacinto County, Texas</option>
+      <option value="San Patricio County, Texas">San Patricio County, Texas</option>
+      <option value="San Saba County, Texas">San Saba County, Texas</option>
+      <option value="Schleicher County, Texas">Schleicher County, Texas</option>
+      <option value="Scurry County, Texas">Scurry County, Texas</option>
+      <option value="Shackelford County, Texas">Shackelford County, Texas</option>
+      <option value="Shelby County, Texas">Shelby County, Texas</option>
+      <option value="Sherman County, Texas">Sherman County, Texas</option>
+      <option value="Smith County, Texas">Smith County, Texas</option>
+      <option value="Somervell County, Texas">Somervell County, Texas</option>
+      <option value="Starr County, Texas">Starr County, Texas</option>
+      <option value="Stephens County, Texas">Stephens County, Texas</option>
+      <option value="Sterling County, Texas">Sterling County, Texas</option>
+      <option value="Stonewall County, Texas">Stonewall County, Texas</option>
+      <option value="Sutton County, Texas">Sutton County, Texas</option>
+      <option value="Swisher County, Texas">Swisher County, Texas</option>
+      <option value="Tarrant County, Texas">Tarrant County, Texas</option>
+      <option value="Taylor County, Texas">Taylor County, Texas</option>
+      <option value="Terrell County, Texas">Terrell County, Texas</option>
+      <option value="Terry County, Texas">Terry County, Texas</option>
+      <option value="Throckmorton County, Texas">Throckmorton County, Texas</option>
+      <option value="Titus County, Texas">Titus County, Texas</option>
+      <option value="Tom Green County, Texas">Tom Green County, Texas</option>
+      <option value="Travis County, Texas">Travis County, Texas</option>
+      <option value="Trinity County, Texas">Trinity County, Texas</option>
+      <option value="Tyler County, Texas">Tyler County, Texas</option>
+      <option value="Upshur County, Texas">Upshur County, Texas</option>
+      <option value="Upton County, Texas">Upton County, Texas</option>
+      <option value="Uvalde County, Texas">Uvalde County, Texas</option>
+      <option value="Val Verde County, Texas">Val Verde County, Texas</option>
+      <option value="Van Zandt County, Texas">Van Zandt County, Texas</option>
+      <option value="Victoria County, Texas">Victoria County, Texas</option>
+      <option value="Walker County, Texas">Walker County, Texas</option>
+      <option value="Waller County, Texas">Waller County, Texas</option>
+      <option value="Ward County, Texas">Ward County, Texas</option>
+      <option value="Washington County, Texas">Washington County, Texas</option>
+      <option value="Webb County, Texas">Webb County, Texas</option>
+      <option value="Wharton County, Texas">Wharton County, Texas</option>
+      <option value="Wheeler County, Texas">Wheeler County, Texas</option>
+      <option value="Wichita County, Texas">Wichita County, Texas</option>
+      <option value="Wilbarger County, Texas">Wilbarger County, Texas</option>
+      <option value="Willacy County, Texas">Willacy County, Texas</option>
+      <option value="Williamson County, Texas">Williamson County, Texas</option>
+      <option value="Wilson County, Texas">Wilson County, Texas</option>
+      <option value="Winkler County, Texas">Winkler County, Texas</option>
+      <option value="Wise County, Texas">Wise County, Texas</option>
+      <option value="Wood County, Texas">Wood County, Texas</option>
+      <option value="Yoakum County, Texas">Yoakum County, Texas</option>
+      <option value="Young County, Texas">Young County, Texas</option>
+      <option value="Zapata County, Texas">Zapata County, Texas</option>
+      <option value="Zavala County, Texas">Zavala County, Texas</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>  const data = {"Statewide":{"Married Couple (%)":67.3,"Cohabiting Couple (%)":7.3,"Male Householder (%)":4.5,"Female Householder (%)":20.9},"Anderson County, Texas":{"Married Couple (%)":64.7,"Cohabiting Couple (%)":9.7,"Male Householder (%)":3.9,"Female Householder (%)":21.6},"Andrews County, Texas":{"Married Couple (%)":74.5,"Cohabiting Couple (%)":4.3,"Male Householder (%)":1.7,"Female Householder (%)":19.5},"Angelina County, Texas":{"Married Couple (%)":60.6,"Cohabiting Couple (%)":9.2,"Male Householder (%)":3.7,"Female Householder (%)":26.5},"Aransas County, Texas":{"Married Couple (%)":56.9,"Cohabiting Couple (%)":21.5,"Male Householder (%)":8.8,"Female Householder (%)":12.8},"Archer County, Texas":{"Married Couple (%)":76.6,"Cohabiting Couple (%)":6.6,"Male Householder (%)":2.7,"Female Householder (%)":14.2},"Armstrong County, Texas":{"Married Couple (%)":77.8,"Cohabiting Couple (%)":8.6,"Male Householder (%)":2,"Female Householder (%)":11.7},"Atascosa County, Texas":{"Married Couple (%)":67.1,"Cohabiting Couple (%)":9,"Male Householder (%)":9.3,"Female Householder (%)":14.6},"Austin County, Texas":{"Married Couple (%)":73.6,"Cohabiting Couple (%)":8.7,"Male Householder (%)":5.9,"Female Householder (%)":11.8},"Bailey County, Texas":{"Married Couple (%)":57.9,"Cohabiting Couple (%)":14.9,"Male Householder (%)":3,"Female Householder (%)":24.3},"Bandera County, Texas":{"Married Couple (%)":70.8,"Cohabiting Couple (%)":3.3,"Male Householder (%)":7.7,"Female Householder (%)":18.3},"Bastrop County, Texas":{"Married Couple (%)":75.4,"Cohabiting Couple (%)":7.1,"Male Householder (%)":3.2,"Female Householder (%)":14.3},"Baylor County, Texas":{"Married Couple (%)":59.1,"Cohabiting Couple (%)":26.7,"Male Householder (%)":3.3,"Female Householder (%)":10.9},"Bee County, Texas":{"Married Couple (%)":59.4,"Cohabiting Couple (%)":9.5,"Male Householder (%)":4.3,"Female Householder (%)":26.7},"Bell County, Texas":{"Married Couple (%)":60.9,"Cohabiting Couple (%)":7.6,"Male Householder (%)":4.2,"Female Householder (%)":27.4},"Bexar County, Texas":{"Married Couple (%)":62.3,"Cohabiting Couple (%)":8.8,"Male Householder (%)":5,"Female Householder (%)":24},"Blanco County, Texas":{"Married Couple (%)":82.5,"Cohabiting Couple (%)":6.1,"Male Householder (%)":0.2,"Female Householder (%)":11.2},"Borden County, Texas":{"Married Couple (%)":93.3,"Cohabiting Couple (%)":0,"Male Householder (%)":0,"Female Householder (%)":6.7},"Bosque County, Texas":{"Married Couple (%)":73.4,"Cohabiting Couple (%)":6.3,"Male Householder (%)":2,"Female Householder (%)":18.2},"Bowie County, Texas":{"Married Couple (%)":63.8,"Cohabiting Couple (%)":4.1,"Male Householder (%)":3.6,"Female Householder (%)":28.4},"Brazoria County, Texas":{"Married Couple (%)":72.9,"Cohabiting Couple (%)":5.6,"Male Householder (%)":4.5,"Female Householder (%)":17},"Brazos County, Texas":{"Married Couple (%)":66.5,"Cohabiting Couple (%)":6.8,"Male Householder (%)":3.6,"Female Householder (%)":23.1},"Brewster County, Texas":{"Married Couple (%)":64.4,"Cohabiting Couple (%)":2.5,"Male Householder (%)":0,"Female Householder (%)":33.1},"Briscoe County, Texas":{"Married Couple (%)":95.9,"Cohabiting Couple (%)":0,"Male Householder (%)":0,"Female Householder (%)":4.1},"Brooks County, Texas":{"Married Couple (%)":76.8,"Cohabiting Couple (%)":3,"Male Householder (%)":1.2,"Female Householder (%)":19.1},"Brown County, Texas":{"Married Couple (%)":60.3,"Cohabiting Couple (%)":9.6,"Male Householder (%)":2.3,"Female Householder (%)":27.7},"Burleson County, Texas":{"Married Couple (%)":82.9,"Cohabiting Couple (%)":8.8,"Male Householder (%)":0.5,"Female Householder (%)":7.8},"Burnet County, Texas":{"Married Couple (%)":78.8,"Cohabiting Couple (%)":6.2,"Male Householder (%)":3.6,"Female Householder (%)":11.4},"Caldwell County, Texas":{"Married Couple (%)":72.5,"Cohabiting Couple (%)":11.1,"Male Householder (%)":3.1,"Female Householder (%)":13.2},"Calhoun County, Texas":{"Married Couple (%)":60.7,"Cohabiting Couple (%)":8.3,"Male Householder (%)":3.8,"Female Householder (%)":27.2},"Callahan County, Texas":{"Married Couple (%)":73.8,"Cohabiting Couple (%)":3.1,"Male Householder (%)":1,"Female Householder (%)":22.1},"Cameron County, Texas":{"Married Couple (%)":58,"Cohabiting Couple (%)":6,"Male Householder (%)":6,"Female Householder (%)":30},"Camp County, Texas":{"Married Couple (%)":68.1,"Cohabiting Couple (%)":2.8,"Male Householder (%)":3.1,"Female Householder (%)":25.9},"Carson County, Texas":{"Married Couple (%)":72.4,"Cohabiting Couple (%)":11.3,"Male Householder (%)":2.7,"Female Householder (%)":13.7},"Cass County, Texas":{"Married Couple (%)":60.4,"Cohabiting Couple (%)":3.9,"Male Householder (%)":5,"Female Householder (%)":30.7},"Castro County, Texas":{"Married Couple (%)":79.5,"Cohabiting Couple (%)":1.6,"Male Householder (%)":1.3,"Female Householder (%)":17.7},"Chambers County, Texas":{"Married Couple (%)":73.8,"Cohabiting Couple (%)":14.1,"Male Householder (%)":2.4,"Female Householder (%)":9.7},"Cherokee County, Texas":{"Married Couple (%)":62.4,"Cohabiting Couple (%)":10.1,"Male Householder (%)":3.3,"Female Householder (%)":24.3},"Childress County, Texas":{"Married Couple (%)":54.7,"Cohabiting Couple (%)":10.6,"Male Householder (%)":21.1,"Female Householder (%)":13.6},"Clay County, Texas":{"Married Couple (%)":69.3,"Cohabiting Couple (%)":1.5,"Male Householder (%)":2.7,"Female Householder (%)":26.5},"Cochran County, Texas":{"Married Couple (%)":79.5,"Cohabiting Couple (%)":4.1,"Male Householder (%)":4,"Female Householder (%)":12.4},"Coke County, Texas":{"Married Couple (%)":75.8,"Cohabiting Couple (%)":5.6,"Male Householder (%)":2.6,"Female Householder (%)":16},"Coleman County, Texas":{"Married Couple (%)":68.6,"Cohabiting Couple (%)":9,"Male Householder (%)":0,"Female Householder (%)":22.4},"Collin County, Texas":{"Married Couple (%)":81,"Cohabiting Couple (%)":4.1,"Male Householder (%)":3,"Female Householder (%)":11.9},"Collingsworth County, Texas":{"Married Couple (%)":57.7,"Cohabiting Couple (%)":10.8,"Male Householder (%)":5.2,"Female Householder (%)":26.4},"Colorado County, Texas":{"Married Couple (%)":68.2,"Cohabiting Couple (%)":9.7,"Male Householder (%)":15.3,"Female Householder (%)":6.7},"Comal County, Texas":{"Married Couple (%)":78.8,"Cohabiting Couple (%)":5.7,"Male Householder (%)":2.8,"Female Householder (%)":12.7},"Comanche County, Texas":{"Married Couple (%)":72.8,"Cohabiting Couple (%)":12.9,"Male Householder (%)":1.6,"Female Householder (%)":12.7},"Concho County, Texas":{"Married Couple (%)":69.4,"Cohabiting Couple (%)":5.5,"Male Householder (%)":4.8,"Female Householder (%)":20.4},"Cooke County, Texas":{"Married Couple (%)":72.7,"Cohabiting Couple (%)":4.2,"Male Householder (%)":5.6,"Female Householder (%)":17.6},"Coryell County, Texas":{"Married Couple (%)":72.5,"Cohabiting Couple (%)":7.6,"Male Householder (%)":3.6,"Female Householder (%)":16.3},"Cottle County, Texas":{"Married Couple (%)":48.4,"Cohabiting Couple (%)":9.8,"Male Householder (%)":3.5,"Female Householder (%)":38.3},"Crane County, Texas":{"Married Couple (%)":70.2,"Cohabiting Couple (%)":0,"Male Householder (%)":3,"Female Householder (%)":26.8},"Crockett County, Texas":{"Married Couple (%)":90.9,"Cohabiting Couple (%)":0,"Male Householder (%)":0,"Female Householder (%)":9.1},"Crosby County, Texas":{"Married Couple (%)":61.8,"Cohabiting Couple (%)":8.5,"Male Householder (%)":2.4,"Female Householder (%)":27.3},"Culberson County, Texas":{"Married Couple (%)":27.4,"Cohabiting Couple (%)":0,"Male Householder (%)":0,"Female Householder (%)":72.6},"Dallam County, Texas":{"Married Couple (%)":64.6,"Cohabiting Couple (%)":28.6,"Male Householder (%)":0.4,"Female Householder (%)":6.4},"Dallas County, Texas":{"Married Couple (%)":62.6,"Cohabiting Couple (%)":7.5,"Male Householder (%)":5.2,"Female Householder (%)":24.7},"Dawson County, Texas":{"Married Couple (%)":59.6,"Cohabiting Couple (%)":17.7,"Male Householder (%)":2.6,"Female Householder (%)":20.1},"Deaf Smith County, Texas":{"Married Couple (%)":68.1,"Cohabiting Couple (%)":9.2,"Male Householder (%)":2.7,"Female Householder (%)":20.1},"Delta County, Texas":{"Married Couple (%)":72.3,"Cohabiting Couple (%)":13.6,"Male Householder (%)":2.4,"Female Householder (%)":11.7},"Denton County, Texas":{"Married Couple (%)":78.2,"Cohabiting Couple (%)":4.6,"Male Householder (%)":3.8,"Female Householder (%)":13.4},"DeWitt County, Texas":{"Married Couple (%)":72.6,"Cohabiting Couple (%)":11.8,"Male Householder (%)":3.3,"Female Householder (%)":12.4},"Dickens County, Texas":{"Married Couple (%)":74.4,"Cohabiting Couple (%)":0.3,"Male Householder (%)":6.8,"Female Householder (%)":18.6},"Dimmit County, Texas":{"Married Couple (%)":37,"Cohabiting Couple (%)":18.9,"Male Householder (%)":3.5,"Female Householder (%)":40.5},"Donley County, Texas":{"Married Couple (%)":74.9,"Cohabiting Couple (%)":0.3,"Male Householder (%)":2.1,"Female Householder (%)":22.7},"Duval County, Texas":{"Married Couple (%)":37.7,"Cohabiting Couple (%)":12.5,"Male Householder (%)":0.5,"Female Householder (%)":49.3},"Eastland County, Texas":{"Married Couple (%)":67.6,"Cohabiting Couple (%)":2.9,"Male Householder (%)":3,"Female Householder (%)":26.5},"Ector County, Texas":{"Married Couple (%)":67.2,"Cohabiting Couple (%)":6.3,"Male Householder (%)":5,"Female Householder (%)":21.5},"Edwards County, Texas":{"Married Couple (%)":81.2,"Cohabiting Couple (%)":0,"Male Householder (%)":6.2,"Female Householder (%)":12.5},"El Paso County, Texas":{"Married Couple (%)":62.7,"Cohabiting Couple (%)":7,"Male Householder (%)":5,"Female Householder (%)":25.3},"Ellis County, Texas":{"Married Couple (%)":71.1,"Cohabiting Couple (%)":5.6,"Male Householder (%)":4.7,"Female Householder (%)":18.6},"Erath County, Texas":{"Married Couple (%)":68,"Cohabiting Couple (%)":11,"Male Householder (%)":5.8,"Female Householder (%)":15.2},"Falls County, Texas":{"Married Couple (%)":58.3,"Cohabiting Couple (%)":10.3,"Male Householder (%)":7.7,"Female Householder (%)":23.7},"Fannin County, Texas":{"Married Couple (%)":69.3,"Cohabiting Couple (%)":9.1,"Male Householder (%)":5.1,"Female Householder (%)":16.4},"Fayette County, Texas":{"Married Couple (%)":76.1,"Cohabiting Couple (%)":4.6,"Male Householder (%)":2.2,"Female Householder (%)":17.1},"Fisher County, Texas":{"Married Couple (%)":77,"Cohabiting Couple (%)":3.9,"Male Householder (%)":7.6,"Female Householder (%)":11.4},"Floyd County, Texas":{"Married Couple (%)":71.6,"Cohabiting Couple (%)":7.9,"Male Householder (%)":4.2,"Female Householder (%)":16.3},"Foard County, Texas":{"Married Couple (%)":27.6,"Cohabiting Couple (%)":9.8,"Male Householder (%)":3.1,"Female Householder (%)":59.4},"Fort Bend County, Texas":{"Married Couple (%)":79.5,"Cohabiting Couple (%)":4.3,"Male Householder (%)":3.5,"Female Householder (%)":12.7},"Franklin County, Texas":{"Married Couple (%)":80.7,"Cohabiting Couple (%)":5.9,"Male Householder (%)":0.9,"Female Householder (%)":12.5},"Freestone County, Texas":{"Married Couple (%)":72.6,"Cohabiting Couple (%)":2.7,"Male Householder (%)":2.6,"Female Householder (%)":22.1},"Frio County, Texas":{"Married Couple (%)":48,"Cohabiting Couple (%)":16.1,"Male Householder (%)":5.1,"Female Householder (%)":30.7},"Gaines County, Texas":{"Married Couple (%)":87.6,"Cohabiting Couple (%)":1.3,"Male Householder (%)":1.6,"Female Householder (%)":9.5},"Galveston County, Texas":{"Married Couple (%)":70.4,"Cohabiting Couple (%)":6.2,"Male Householder (%)":4.1,"Female Householder (%)":19.4},"Garza County, Texas":{"Married Couple (%)":84.5,"Cohabiting Couple (%)":6.5,"Male Householder (%)":0.8,"Female Householder (%)":8.2},"Gillespie County, Texas":{"Married Couple (%)":73.1,"Cohabiting Couple (%)":5,"Male Householder (%)":5.6,"Female Householder (%)":16.2},"Glasscock County, Texas":{"Married Couple (%)":85,"Cohabiting Couple (%)":9.1,"Male Householder (%)":5.8,"Female Householder (%)":0},"Goliad County, Texas":{"Married Couple (%)":84.6,"Cohabiting Couple (%)":9.2,"Male Householder (%)":1.1,"Female Householder (%)":5.1},"Gonzales County, Texas":{"Married Couple (%)":58.6,"Cohabiting Couple (%)":12,"Male Householder (%)":5,"Female Householder (%)":24.4},"Gray County, Texas":{"Married Couple (%)":68.1,"Cohabiting Couple (%)":4.6,"Male Householder (%)":2.5,"Female Householder (%)":24.7},"Grayson County, Texas":{"Married Couple (%)":71.2,"Cohabiting Couple (%)":8,"Male Householder (%)":4.5,"Female Householder (%)":16.3},"Gregg County, Texas":{"Married Couple (%)":59.8,"Cohabiting Couple (%)":11.9,"Male Householder (%)":3.8,"Female Householder (%)":24.5},"Grimes County, Texas":{"Married Couple (%)":68.9,"Cohabiting Couple (%)":2,"Male Householder (%)":6.7,"Female Householder (%)":22.4},"Guadalupe County, Texas":{"Married Couple (%)":71.6,"Cohabiting Couple (%)":8.8,"Male Householder (%)":3.5,"Female Householder (%)":16},"Hale County, Texas":{"Married Couple (%)":58.5,"Cohabiting Couple (%)":5.2,"Male Householder (%)":9.6,"Female Householder (%)":26.7},"Hall County, Texas":{"Married Couple (%)":56.5,"Cohabiting Couple (%)":7.8,"Male Householder (%)":3.2,"Female Householder (%)":32.5},"Hamilton County, Texas":{"Married Couple (%)":84.4,"Cohabiting Couple (%)":2.9,"Male Householder (%)":4,"Female Householder (%)":8.6},"Hansford County, Texas":{"Married Couple (%)":79.8,"Cohabiting Couple (%)":2.3,"Male Householder (%)":1.9,"Female Householder (%)":15.9},"Hardeman County, Texas":{"Married Couple (%)":53.3,"Cohabiting Couple (%)":10.6,"Male Householder (%)":5.6,"Female Householder (%)":30.5},"Hardin County, Texas":{"Married Couple (%)":66.3,"Cohabiting Couple (%)":9.1,"Male Householder (%)":5.2,"Female Householder (%)":19.4},"Harris County, Texas":{"Married Couple (%)":63.1,"Cohabiting Couple (%)":9.1,"Male Householder (%)":4.9,"Female Householder (%)":22.9},"Harrison County, Texas":{"Married Couple (%)":61.2,"Cohabiting Couple (%)":5.1,"Male Householder (%)":5.6,"Female Householder (%)":28},"Hartley County, Texas":{"Married Couple (%)":91.1,"Cohabiting Couple (%)":1.9,"Male Householder (%)":1.8,"Female Householder (%)":5.3},"Haskell County, Texas":{"Married Couple (%)":78.7,"Cohabiting Couple (%)":6.1,"Male Householder (%)":0.2,"Female Householder (%)":15},"Hays County, Texas":{"Married Couple (%)":74.1,"Cohabiting Couple (%)":8.5,"Male Householder (%)":4.7,"Female Householder (%)":12.8},"Hemphill County, Texas":{"Married Couple (%)":86.5,"Cohabiting Couple (%)":4.8,"Male Householder (%)":5.3,"Female Householder (%)":3.5},"Henderson County, Texas":{"Married Couple (%)":69.2,"Cohabiting Couple (%)":7.7,"Male Householder (%)":2.7,"Female Householder (%)":20.4},"Hidalgo County, Texas":{"Married Couple (%)":62.7,"Cohabiting Couple (%)":7.2,"Male Householder (%)":3.7,"Female Householder (%)":26.5},"Hill County, Texas":{"Married Couple (%)":73.5,"Cohabiting Couple (%)":3.7,"Male Householder (%)":3.2,"Female Householder (%)":19.5},"Hockley County, Texas":{"Married Couple (%)":68.6,"Cohabiting Couple (%)":6.1,"Male Householder (%)":4,"Female Householder (%)":21.3},"Hood County, Texas":{"Married Couple (%)":82.5,"Cohabiting Couple (%)":7.8,"Male Householder (%)":2.4,"Female Householder (%)":7.3},"Hopkins County, Texas":{"Married Couple (%)":74.2,"Cohabiting Couple (%)":4.6,"Male Householder (%)":7.2,"Female Householder (%)":14},"Houston County, Texas":{"Married Couple (%)":60.5,"Cohabiting Couple (%)":8.7,"Male Householder (%)":4.6,"Female Householder (%)":26.3},"Howard County, Texas":{"Married Couple (%)":63,"Cohabiting Couple (%)":9.6,"Male Householder (%)":6.3,"Female Householder (%)":21},"Hudspeth County, Texas":{"Married Couple (%)":51.7,"Cohabiting Couple (%)":12.5,"Male Householder (%)":4.5,"Female Householder (%)":31.3},"Hunt County, Texas":{"Married Couple (%)":70.4,"Cohabiting Couple (%)":7.4,"Male Householder (%)":4.3,"Female Householder (%)":17.9},"Hutchinson County, Texas":{"Married Couple (%)":68.2,"Cohabiting Couple (%)":13.6,"Male Householder (%)":6.9,"Female Householder (%)":11.3},"Irion County, Texas":{"Married Couple (%)":95,"Cohabiting Couple (%)":0,"Male Householder (%)":5,"Female Householder (%)":0},"Jack County, Texas":{"Married Couple (%)":66.8,"Cohabiting Couple (%)":6.2,"Male Householder (%)":1.6,"Female Householder (%)":25.4},"Jackson County, Texas":{"Married Couple (%)":65.7,"Cohabiting Couple (%)":12.8,"Male Householder (%)":6.4,"Female Householder (%)":15},"Jasper County, Texas":{"Married Couple (%)":62.3,"Cohabiting Couple (%)":9.3,"Male Householder (%)":6.3,"Female Householder (%)":22},"Jeff Davis County, Texas":{"Married Couple (%)":69,"Cohabiting Couple (%)":31,"Male Householder (%)":0,"Female Householder (%)":0},"Jefferson County, Texas":{"Married Couple (%)":55.4,"Cohabiting Couple (%)":7.6,"Male Householder (%)":4.4,"Female Householder (%)":32.6},"Jim Hogg County, Texas":{"Married Couple (%)":44.8,"Cohabiting Couple (%)":33.3,"Male Householder (%)":3.1,"Female Householder (%)":18.8},"Jim Wells County, Texas":{"Married Couple (%)":55.6,"Cohabiting Couple (%)":4.2,"Male Householder (%)":2.9,"Female Householder (%)":37.2},"Johnson County, Texas":{"Married Couple (%)":75.4,"Cohabiting Couple (%)":6,"Male Householder (%)":3.4,"Female Householder (%)":15.2},"Jones County, Texas":{"Married Couple (%)":73.3,"Cohabiting Couple (%)":6.5,"Male Householder (%)":3.4,"Female Householder (%)":16.8},"Karnes County, Texas":{"Married Couple (%)":51.9,"Cohabiting Couple (%)":20,"Male Householder (%)":2.2,"Female Householder (%)":25.9},"Kaufman County, Texas":{"Married Couple (%)":72.5,"Cohabiting Couple (%)":6.7,"Male Householder (%)":4.3,"Female Householder (%)":16.5},"Kendall County, Texas":{"Married Couple (%)":76.9,"Cohabiting Couple (%)":4.9,"Male Householder (%)":4.6,"Female Householder (%)":13.6},"Kenedy County, Texas":{"Married Couple (%)":100,"Cohabiting Couple (%)":0,"Male Householder (%)":0,"Female Householder (%)":0},"Kent County, Texas":{"Married Couple (%)":96.7,"Cohabiting Couple (%)":0,"Male Householder (%)":0,"Female Householder (%)":3.3},"Kerr County, Texas":{"Married Couple (%)":66.6,"Cohabiting Couple (%)":13.2,"Male Householder (%)":4.2,"Female Householder (%)":15.9},"Kimble County, Texas":{"Married Couple (%)":79.6,"Cohabiting Couple (%)":12.2,"Male Householder (%)":0,"Female Householder (%)":8.3},"King County, Texas":{"Married Couple (%)":71.4,"Cohabiting Couple (%)":0,"Male Householder (%)":0,"Female Householder (%)":28.6},"Kinney County, Texas":{"Married Couple (%)":66.1,"Cohabiting Couple (%)":0,"Male Householder (%)":24.5,"Female Householder (%)":9.5},"Kleberg County, Texas":{"Married Couple (%)":52.7,"Cohabiting Couple (%)":7.7,"Male Householder (%)":4.8,"Female Householder (%)":34.8},"Knox County, Texas":{"Married Couple (%)":66.5,"Cohabiting Couple (%)":8.1,"Male Householder (%)":5.3,"Female Householder (%)":20},"La Salle County, Texas":{"Married Couple (%)":57.2,"Cohabiting Couple (%)":2,"Male Householder (%)":0.5,"Female Householder (%)":40.3},"Lamar County, Texas":{"Married Couple (%)":53.7,"Cohabiting Couple (%)":7.8,"Male Householder (%)":4.3,"Female Householder (%)":34.1},"Lamb County, Texas":{"Married Couple (%)":55.7,"Cohabiting Couple (%)":13.6,"Male Householder (%)":11.8,"Female Householder (%)":18.9},"Lampasas County, Texas":{"Married Couple (%)":71.5,"Cohabiting Couple (%)":5.7,"Male Householder (%)":3.2,"Female Householder (%)":19.6},"Lavaca County, Texas":{"Married Couple (%)":77,"Cohabiting Couple (%)":9.1,"Male Householder (%)":2.5,"Female Householder (%)":11.4},"Lee County, Texas":{"Married Couple (%)":71.4,"Cohabiting Couple (%)":7.6,"Male Householder (%)":6.2,"Female Householder (%)":14.9},"Leon County, Texas":{"Married Couple (%)":72.9,"Cohabiting Couple (%)":4.1,"Male Householder (%)":4.8,"Female Householder (%)":18.3},"Liberty County, Texas":{"Married Couple (%)":73.7,"Cohabiting Couple (%)":9.6,"Male Householder (%)":2.9,"Female Householder (%)":13.8},"Limestone County, Texas":{"Married Couple (%)":57.5,"Cohabiting Couple (%)":5.8,"Male Householder (%)":3.2,"Female Householder (%)":33.5},"Lipscomb County, Texas":{"Married Couple (%)":64.5,"Cohabiting Couple (%)":11.1,"Male Householder (%)":5.3,"Female Householder (%)":19.1},"Live Oak County, Texas":{"Married Couple (%)":76.1,"Cohabiting Couple (%)":5,"Male Householder (%)":4.6,"Female Householder (%)":14.3},"Llano County, Texas":{"Married Couple (%)":58.4,"Cohabiting Couple (%)":15.4,"Male Householder (%)":4.7,"Female Householder (%)":21.6},"Loving County, Texas":{"Married Couple (%)":"NA","Cohabiting Couple (%)":"NA","Male Householder (%)":"NA","Female Householder (%)":"NA"},"Lubbock County, Texas":{"Married Couple (%)":64.2,"Cohabiting Couple (%)":6,"Male Householder (%)":4.1,"Female Householder (%)":25.7},"Lynn County, Texas":{"Married Couple (%)":76.1,"Cohabiting Couple (%)":4.7,"Male Householder (%)":1,"Female Householder (%)":18.2},"Madison County, Texas":{"Married Couple (%)":66.7,"Cohabiting Couple (%)":7.1,"Male Householder (%)":1.2,"Female Householder (%)":25},"Marion County, Texas":{"Married Couple (%)":55,"Cohabiting Couple (%)":3.1,"Male Householder (%)":7.8,"Female Householder (%)":34.2},"Martin County, Texas":{"Married Couple (%)":72.7,"Cohabiting Couple (%)":4,"Male Householder (%)":12.7,"Female Householder (%)":10.5},"Mason County, Texas":{"Married Couple (%)":93.9,"Cohabiting Couple (%)":0,"Male Householder (%)":0,"Female Householder (%)":6.1},"Matagorda County, Texas":{"Married Couple (%)":57.6,"Cohabiting Couple (%)":9.2,"Male Householder (%)":5.4,"Female Householder (%)":27.8},"Maverick County, Texas":{"Married Couple (%)":55.6,"Cohabiting Couple (%)":8.5,"Male Householder (%)":6.9,"Female Householder (%)":29.1},"McCulloch County, Texas":{"Married Couple (%)":73.1,"Cohabiting Couple (%)":8.7,"Male Householder (%)":0,"Female Householder (%)":18.2},"McLennan County, Texas":{"Married Couple (%)":64.2,"Cohabiting Couple (%)":6.6,"Male Householder (%)":4.4,"Female Householder (%)":24.8},"McMullen County, Texas":{"Married Couple (%)":39.7,"Cohabiting Couple (%)":0,"Male Householder (%)":19.8,"Female Householder (%)":40.5},"Medina County, Texas":{"Married Couple (%)":75.4,"Cohabiting Couple (%)":5.7,"Male Householder (%)":5.8,"Female Householder (%)":13.2},"Menard County, Texas":{"Married Couple (%)":83.5,"Cohabiting Couple (%)":5.8,"Male Householder (%)":1.5,"Female Householder (%)":9.2},"Midland County, Texas":{"Married Couple (%)":74.6,"Cohabiting Couple (%)":6.3,"Male Householder (%)":3.9,"Female Householder (%)":15.3},"Milam County, Texas":{"Married Couple (%)":75.3,"Cohabiting Couple (%)":4.9,"Male Householder (%)":5.2,"Female Householder (%)":14.6},"Mills County, Texas":{"Married Couple (%)":72.3,"Cohabiting Couple (%)":5.6,"Male Householder (%)":8.9,"Female Householder (%)":13.2},"Mitchell County, Texas":{"Married Couple (%)":60.4,"Cohabiting Couple (%)":0.4,"Male Householder (%)":1.9,"Female Householder (%)":37.3},"Montague County, Texas":{"Married Couple (%)":71.8,"Cohabiting Couple (%)":5.6,"Male Householder (%)":4.3,"Female Householder (%)":18.2},"Montgomery County, Texas":{"Married Couple (%)":78.8,"Cohabiting Couple (%)":5.7,"Male Householder (%)":3.4,"Female Householder (%)":12.1},"Moore County, Texas":{"Married Couple (%)":58.3,"Cohabiting Couple (%)":13.3,"Male Householder (%)":4.5,"Female Householder (%)":23.9},"Morris County, Texas":{"Married Couple (%)":69.9,"Cohabiting Couple (%)":9.7,"Male Householder (%)":3.7,"Female Householder (%)":16.6},"Motley County, Texas":{"Married Couple (%)":66.1,"Cohabiting Couple (%)":6.3,"Male Householder (%)":13.6,"Female Householder (%)":14},"Nacogdoches County, Texas":{"Married Couple (%)":59.5,"Cohabiting Couple (%)":7.4,"Male Householder (%)":4.9,"Female Householder (%)":28.2},"Navarro County, Texas":{"Married Couple (%)":64.6,"Cohabiting Couple (%)":8.4,"Male Householder (%)":3.5,"Female Householder (%)":23.6},"Newton County, Texas":{"Married Couple (%)":59.7,"Cohabiting Couple (%)":6.5,"Male Householder (%)":10.3,"Female Householder (%)":23.5},"Nolan County, Texas":{"Married Couple (%)":56.6,"Cohabiting Couple (%)":9.4,"Male Householder (%)":3.8,"Female Householder (%)":30.2},"Nueces County, Texas":{"Married Couple (%)":59,"Cohabiting Couple (%)":6.7,"Male Householder (%)":5.2,"Female Householder (%)":29.2},"Ochiltree County, Texas":{"Married Couple (%)":54.5,"Cohabiting Couple (%)":8.8,"Male Householder (%)":5.8,"Female Householder (%)":30.9},"Oldham County, Texas":{"Married Couple (%)":79.1,"Cohabiting Couple (%)":12.3,"Male Householder (%)":1,"Female Householder (%)":7.6},"Orange County, Texas":{"Married Couple (%)":65.6,"Cohabiting Couple (%)":8.5,"Male Householder (%)":3.4,"Female Householder (%)":22.4},"Palo Pinto County, Texas":{"Married Couple (%)":57.7,"Cohabiting Couple (%)":13.2,"Male Householder (%)":8.6,"Female Householder (%)":20.5},"Panola County, Texas":{"Married Couple (%)":71.5,"Cohabiting Couple (%)":10.2,"Male Householder (%)":2.8,"Female Householder (%)":15.4},"Parker County, Texas":{"Married Couple (%)":81.9,"Cohabiting Couple (%)":4.6,"Male Householder (%)":2.1,"Female Householder (%)":11.5},"Parmer County, Texas":{"Married Couple (%)":72.1,"Cohabiting Couple (%)":2.2,"Male Householder (%)":7,"Female Householder (%)":18.7},"Pecos County, Texas":{"Married Couple (%)":55.1,"Cohabiting Couple (%)":10.3,"Male Householder (%)":6.1,"Female Householder (%)":28.5},"Polk County, Texas":{"Married Couple (%)":59.8,"Cohabiting Couple (%)":8.4,"Male Householder (%)":7.1,"Female Householder (%)":24.7},"Potter County, Texas":{"Married Couple (%)":60.5,"Cohabiting Couple (%)":9.5,"Male Householder (%)":5.8,"Female Householder (%)":24.2},"Presidio County, Texas":{"Married Couple (%)":92.7,"Cohabiting Couple (%)":0,"Male Householder (%)":0,"Female Householder (%)":7.3},"Rains County, Texas":{"Married Couple (%)":47.1,"Cohabiting Couple (%)":16.9,"Male Householder (%)":13.2,"Female Householder (%)":22.8},"Randall County, Texas":{"Married Couple (%)":72.7,"Cohabiting Couple (%)":5.8,"Male Householder (%)":7.3,"Female Householder (%)":14.3},"Reagan County, Texas":{"Married Couple (%)":92,"Cohabiting Couple (%)":4.7,"Male Householder (%)":1,"Female Householder (%)":2.3},"Real County, Texas":{"Married Couple (%)":57.2,"Cohabiting Couple (%)":0.5,"Male Householder (%)":26.6,"Female Householder (%)":15.6},"Red River County, Texas":{"Married Couple (%)":67.2,"Cohabiting Couple (%)":0.8,"Male Householder (%)":6.4,"Female Householder (%)":25.6},"Reeves County, Texas":{"Married Couple (%)":46.6,"Cohabiting Couple (%)":14.2,"Male Householder (%)":5,"Female Householder (%)":34.1},"Refugio County, Texas":{"Married Couple (%)":51.8,"Cohabiting Couple (%)":6.4,"Male Householder (%)":7.8,"Female Householder (%)":34},"Roberts County, Texas":{"Married Couple (%)":81.4,"Cohabiting Couple (%)":17.3,"Male Householder (%)":0,"Female Householder (%)":1.4},"Robertson County, Texas":{"Married Couple (%)":60.9,"Cohabiting Couple (%)":1.6,"Male Householder (%)":6.2,"Female Householder (%)":31.4},"Rockwall County, Texas":{"Married Couple (%)":83.7,"Cohabiting Couple (%)":2.9,"Male Householder (%)":3.2,"Female Householder (%)":10.2},"Runnels County, Texas":{"Married Couple (%)":65.3,"Cohabiting Couple (%)":10.3,"Male Householder (%)":3.7,"Female Householder (%)":20.7},"Rusk County, Texas":{"Married Couple (%)":70.8,"Cohabiting Couple (%)":5.5,"Male Householder (%)":2.2,"Female Householder (%)":21.5},"Sabine County, Texas":{"Married Couple (%)":60.4,"Cohabiting Couple (%)":10.8,"Male Householder (%)":4.1,"Female Householder (%)":24.8},"San Augustine County, Texas":{"Married Couple (%)":58.1,"Cohabiting Couple (%)":8.1,"Male Householder (%)":2.5,"Female Householder (%)":31.4},"San Jacinto County, Texas":{"Married Couple (%)":71.3,"Cohabiting Couple (%)":7.4,"Male Householder (%)":4.4,"Female Householder (%)":16.9},"San Patricio County, Texas":{"Married Couple (%)":60,"Cohabiting Couple (%)":7.9,"Male Householder (%)":5.7,"Female Householder (%)":26.5},"San Saba County, Texas":{"Married Couple (%)":63.5,"Cohabiting Couple (%)":6.4,"Male Householder (%)":0.3,"Female Householder (%)":29.8},"Schleicher County, Texas":{"Married Couple (%)":73.8,"Cohabiting Couple (%)":8.3,"Male Householder (%)":0,"Female Householder (%)":17.9},"Scurry County, Texas":{"Married Couple (%)":70.2,"Cohabiting Couple (%)":15.8,"Male Householder (%)":3.8,"Female Householder (%)":10.2},"Shackelford County, Texas":{"Married Couple (%)":81.1,"Cohabiting Couple (%)":4.1,"Male Householder (%)":3.5,"Female Householder (%)":11.4},"Shelby County, Texas":{"Married Couple (%)":55.8,"Cohabiting Couple (%)":17.1,"Male Householder (%)":4.5,"Female Householder (%)":22.6},"Sherman County, Texas":{"Married Couple (%)":87.8,"Cohabiting Couple (%)":6.8,"Male Householder (%)":0.6,"Female Householder (%)":4.9},"Smith County, Texas":{"Married Couple (%)":72.9,"Cohabiting Couple (%)":4.4,"Male Householder (%)":4.1,"Female Householder (%)":18.6},"Somervell County, Texas":{"Married Couple (%)":79.5,"Cohabiting Couple (%)":0.9,"Male Householder (%)":10.3,"Female Householder (%)":9.3},"Starr County, Texas":{"Married Couple (%)":54,"Cohabiting Couple (%)":5.6,"Male Householder (%)":3.8,"Female Householder (%)":36.6},"Stephens County, Texas":{"Married Couple (%)":59.8,"Cohabiting Couple (%)":13,"Male Householder (%)":5.8,"Female Householder (%)":21.5},"Sterling County, Texas":{"Married Couple (%)":78,"Cohabiting Couple (%)":8.4,"Male Householder (%)":6.4,"Female Householder (%)":7.2},"Stonewall County, Texas":{"Married Couple (%)":78.4,"Cohabiting Couple (%)":10.2,"Male Householder (%)":1.2,"Female Householder (%)":10.2},"Sutton County, Texas":{"Married Couple (%)":56,"Cohabiting Couple (%)":1.6,"Male Householder (%)":4.7,"Female Householder (%)":37.7},"Swisher County, Texas":{"Married Couple (%)":71.4,"Cohabiting Couple (%)":12.4,"Male Householder (%)":0.7,"Female Householder (%)":15.6},"Tarrant County, Texas":{"Married Couple (%)":67.7,"Cohabiting Couple (%)":7.1,"Male Householder (%)":4.2,"Female Householder (%)":21},"Taylor County, Texas":{"Married Couple (%)":65.7,"Cohabiting Couple (%)":9.1,"Male Householder (%)":5,"Female Householder (%)":20.1},"Terrell County, Texas":{"Married Couple (%)":53.3,"Cohabiting Couple (%)":0,"Male Householder (%)":9.2,"Female Householder (%)":37.5},"Terry County, Texas":{"Married Couple (%)":54.4,"Cohabiting Couple (%)":9.8,"Male Householder (%)":6.1,"Female Householder (%)":29.7},"Throckmorton County, Texas":{"Married Couple (%)":67.8,"Cohabiting Couple (%)":0,"Male Householder (%)":0,"Female Householder (%)":32.2},"Titus County, Texas":{"Married Couple (%)":66.5,"Cohabiting Couple (%)":3.5,"Male Householder (%)":6.3,"Female Householder (%)":23.7},"Tom Green County, Texas":{"Married Couple (%)":66.7,"Cohabiting Couple (%)":7.5,"Male Householder (%)":4.3,"Female Householder (%)":21.5},"Travis County, Texas":{"Married Couple (%)":72.1,"Cohabiting Couple (%)":6.5,"Male Householder (%)":4.6,"Female Householder (%)":16.8},"Trinity County, Texas":{"Married Couple (%)":59.1,"Cohabiting Couple (%)":8.7,"Male Householder (%)":18.1,"Female Householder (%)":14.1},"Tyler County, Texas":{"Married Couple (%)":57.9,"Cohabiting Couple (%)":4.3,"Male Householder (%)":14.5,"Female Householder (%)":23.3},"Upshur County, Texas":{"Married Couple (%)":73.7,"Cohabiting Couple (%)":4.6,"Male Householder (%)":2.9,"Female Householder (%)":18.8},"Upton County, Texas":{"Married Couple (%)":64,"Cohabiting Couple (%)":16.6,"Male Householder (%)":6.2,"Female Householder (%)":13.2},"Uvalde County, Texas":{"Married Couple (%)":60.7,"Cohabiting Couple (%)":11.3,"Male Householder (%)":0.8,"Female Householder (%)":27.2},"Val Verde County, Texas":{"Married Couple (%)":62.2,"Cohabiting Couple (%)":3.7,"Male Householder (%)":5.9,"Female Householder (%)":28.2},"Van Zandt County, Texas":{"Married Couple (%)":68.1,"Cohabiting Couple (%)":8.6,"Male Householder (%)":7.4,"Female Householder (%)":15.9},"Victoria County, Texas":{"Married Couple (%)":63.5,"Cohabiting Couple (%)":10.7,"Male Householder (%)":7,"Female Householder (%)":18.9},"Walker County, Texas":{"Married Couple (%)":67,"Cohabiting Couple (%)":6.3,"Male Householder (%)":5.7,"Female Householder (%)":20.9},"Waller County, Texas":{"Married Couple (%)":63.2,"Cohabiting Couple (%)":9.1,"Male Householder (%)":8.4,"Female Householder (%)":19.3},"Ward County, Texas":{"Married Couple (%)":70.6,"Cohabiting Couple (%)":7.6,"Male Householder (%)":4.6,"Female Householder (%)":17.2},"Washington County, Texas":{"Married Couple (%)":74.4,"Cohabiting Couple (%)":5.4,"Male Householder (%)":2.1,"Female Householder (%)":18.1},"Webb County, Texas":{"Married Couple (%)":61.3,"Cohabiting Couple (%)":9.6,"Male Householder (%)":3.6,"Female Householder (%)":25.5},"Wharton County, Texas":{"Married Couple (%)":71.1,"Cohabiting Couple (%)":7,"Male Householder (%)":4.1,"Female Householder (%)":17.7},"Wheeler County, Texas":{"Married Couple (%)":71.8,"Cohabiting Couple (%)":3.2,"Male Householder (%)":5,"Female Householder (%)":20},"Wichita County, Texas":{"Married Couple (%)":60.6,"Cohabiting Couple (%)":7.7,"Male Householder (%)":4,"Female Householder (%)":27.6},"Wilbarger County, Texas":{"Married Couple (%)":60.2,"Cohabiting Couple (%)":23.4,"Male Householder (%)":0.5,"Female Householder (%)":15.9},"Willacy County, Texas":{"Married Couple (%)":59.8,"Cohabiting Couple (%)":3.5,"Male Householder (%)":2.2,"Female Householder (%)":34.5},"Williamson County, Texas":{"Married Couple (%)":78.5,"Cohabiting Couple (%)":4.9,"Male Householder (%)":3.8,"Female Householder (%)":12.8},"Wilson County, Texas":{"Married Couple (%)":83.4,"Cohabiting Couple (%)":3.7,"Male Householder (%)":1.7,"Female Householder (%)":11.3},"Winkler County, Texas":{"Married Couple (%)":61.3,"Cohabiting Couple (%)":18.7,"Male Householder (%)":1.6,"Female Householder (%)":18.4},"Wise County, Texas":{"Married Couple (%)":73.9,"Cohabiting Couple (%)":6.2,"Male Householder (%)":6.3,"Female Householder (%)":13.6},"Wood County, Texas":{"Married Couple (%)":69.7,"Cohabiting Couple (%)":5,"Male Householder (%)":6.3,"Female Householder (%)":19},"Yoakum County, Texas":{"Married Couple (%)":78.4,"Cohabiting Couple (%)":2.6,"Male Householder (%)":4.7,"Female Householder (%)":14.2},"Young County, Texas":{"Married Couple (%)":70.1,"Cohabiting Couple (%)":13.7,"Male Householder (%)":1.8,"Female Householder (%)":14.4},"Zapata County, Texas":{"Married Couple (%)":44.7,"Cohabiting Couple (%)":23.4,"Male Householder (%)":3.9,"Female Householder (%)":28},"Zavala County, Texas":{"Married Couple (%)":29.2,"Cohabiting Couple (%)":22.4,"Male Householder (%)":12.8,"Female Householder (%)":35.6}};
+  const categories = ["Married Couple (%)","Cohabiting Couple (%)","Male Householder (%)","Female Householder (%)"];
+  const ctx = document.getElementById("barChart").getContext("2d");
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: categories,
+        datasets: [{
+          label: "Share of Children (%)",
+          data: values,
+          backgroundColor: ["#5DA5DA","#FAA43A","#60BD68","#F17CB0"]
+        }]
+      },
+      options: {
+        indexAxis: "y",
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            ticks: { callback: v => v + "%" },
+            title: { display: true, text: "Percent of Children" }
+          }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.raw + "%"
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById("countySelect").addEventListener("change", function() {
+    renderChart(Object.values(data[this.value]));
+  });
+
+  renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

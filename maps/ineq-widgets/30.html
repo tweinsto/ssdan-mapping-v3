@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Income Distribution – Montana</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          text-align: center;
+          margin: 2rem;
+        }
+        select {
+          font-size: 1rem;
+          padding: 0.4rem;
+          margin-bottom: 1rem;
+        }
+        canvas {
+          width: 100%;
+          max-width: 700px;
+          height: 400px;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Income Share by Quintile – Montana</h2>
+    <label>Select County, State:</label>
+    <select id="countySelect"><option value='Statewide'>Statewide</option>
+<option value='Beaverhead, Montana'>Beaverhead, Montana</option>
+<option value='Big Horn, Montana'>Big Horn, Montana</option>
+<option value='Blaine, Montana'>Blaine, Montana</option>
+<option value='Broadwater, Montana'>Broadwater, Montana</option>
+<option value='Carbon, Montana'>Carbon, Montana</option>
+<option value='Carter, Montana'>Carter, Montana</option>
+<option value='Cascade, Montana'>Cascade, Montana</option>
+<option value='Chouteau, Montana'>Chouteau, Montana</option>
+<option value='Custer, Montana'>Custer, Montana</option>
+<option value='Daniels, Montana'>Daniels, Montana</option>
+<option value='Dawson, Montana'>Dawson, Montana</option>
+<option value='Deer Lodge, Montana'>Deer Lodge, Montana</option>
+<option value='Fallon, Montana'>Fallon, Montana</option>
+<option value='Fergus, Montana'>Fergus, Montana</option>
+<option value='Flathead, Montana'>Flathead, Montana</option>
+<option value='Gallatin, Montana'>Gallatin, Montana</option>
+<option value='Garfield, Montana'>Garfield, Montana</option>
+<option value='Glacier, Montana'>Glacier, Montana</option>
+<option value='Golden Valley, Montana'>Golden Valley, Montana</option>
+<option value='Granite, Montana'>Granite, Montana</option>
+<option value='Hill, Montana'>Hill, Montana</option>
+<option value='Jefferson, Montana'>Jefferson, Montana</option>
+<option value='Judith Basin, Montana'>Judith Basin, Montana</option>
+<option value='Lake, Montana'>Lake, Montana</option>
+<option value='Lewis and Clark, Montana'>Lewis and Clark, Montana</option>
+<option value='Liberty, Montana'>Liberty, Montana</option>
+<option value='Lincoln, Montana'>Lincoln, Montana</option>
+<option value='Madison, Montana'>Madison, Montana</option>
+<option value='McCone, Montana'>McCone, Montana</option>
+<option value='Meagher, Montana'>Meagher, Montana</option>
+<option value='Mineral, Montana'>Mineral, Montana</option>
+<option value='Missoula, Montana'>Missoula, Montana</option>
+<option value='Musselshell, Montana'>Musselshell, Montana</option>
+<option value='Park, Montana'>Park, Montana</option>
+<option value='Petroleum, Montana'>Petroleum, Montana</option>
+<option value='Phillips, Montana'>Phillips, Montana</option>
+<option value='Pondera, Montana'>Pondera, Montana</option>
+<option value='Powder River, Montana'>Powder River, Montana</option>
+<option value='Powell, Montana'>Powell, Montana</option>
+<option value='Prairie, Montana'>Prairie, Montana</option>
+<option value='Ravalli, Montana'>Ravalli, Montana</option>
+<option value='Richland, Montana'>Richland, Montana</option>
+<option value='Roosevelt, Montana'>Roosevelt, Montana</option>
+<option value='Rosebud, Montana'>Rosebud, Montana</option>
+<option value='Sanders, Montana'>Sanders, Montana</option>
+<option value='Sheridan, Montana'>Sheridan, Montana</option>
+<option value='Silver Bow, Montana'>Silver Bow, Montana</option>
+<option value='Stillwater, Montana'>Stillwater, Montana</option>
+<option value='Sweet Grass, Montana'>Sweet Grass, Montana</option>
+<option value='Teton, Montana'>Teton, Montana</option>
+<option value='Toole, Montana'>Toole, Montana</option>
+<option value='Treasure, Montana'>Treasure, Montana</option>
+<option value='Valley, Montana'>Valley, Montana</option>
+<option value='Wheatland, Montana'>Wheatland, Montana</option>
+<option value='Wibaux, Montana'>Wibaux, Montana</option>
+<option value='Yellowstone, Montana'>Yellowstone, Montana</option></select>
+    <canvas id="barChart" width="700" height="400"></canvas>
+    <script>  const incomeData = {"Statewide":[5.1,8.5,12.9,27.1,46.4],"Beaverhead, Montana":[5.7,8.9,13.5,27.2,44.7],"Big Horn, Montana":[5.5,9.3,13.9,27.1,44.2],"Blaine, Montana":[4.5,9.2,13.1,27.2,46],"Broadwater, Montana":[6.2,9.5,15.1,29.1,40.1],"Carbon, Montana":[4.7,8.2,11.9,27.3,47.9],"Carter, Montana":[6.3,10.1,14.9,26.2,42.5],"Cascade, Montana":[5.3,8.6,12.8,26.8,46.4],"Chouteau, Montana":[5.6,8.2,12.9,27.1,46.2],"Custer, Montana":[5.3,8.8,13.6,26.8,45.5],"Daniels, Montana":[6.8,10.3,15.8,27.1,39.9],"Dawson, Montana":[6.8,10.1,14,27.1,42.1],"Deer Lodge, Montana":[6,9.6,14.6,27.7,42.1],"Fallon, Montana":[4.4,7.5,11.9,25.9,50.3],"Fergus, Montana":[5.5,9,13.4,26.5,45.6],"Flathead, Montana":[5.2,8.3,12.6,27.3,46.6],"Gallatin, Montana":[4.7,7.3,11,26.4,50.6],"Garfield, Montana":[4.7,8.4,12.8,28.1,46],"Glacier, Montana":[4.4,8.4,14.3,29.3,43.5],"Golden Valley, Montana":[5.3,8.8,11.6,26.4,48],"Granite, Montana":[4.6,7.1,10.4,26.2,51.7],"Hill, Montana":[5.2,8.5,13.4,27,45.9],"Jefferson, Montana":[5.7,8.4,13.8,27.2,45],"Judith Basin, Montana":[4.4,7.2,12.5,29.8,46.2],"Lake, Montana":[4.3,7.6,11.7,26.8,49.6],"Lewis and Clark, Montana":[5.2,8.3,12.7,26.7,47.1],"Liberty, Montana":[4.2,6.8,11,26.9,51.1],"Lincoln, Montana":[5.2,8.4,14.4,27.7,44.3],"Madison, Montana":[5.9,9.1,13.4,26.8,44.8],"McCone, Montana":[6.1,11,16.3,27.6,39],"Meagher, Montana":[5.6,8.7,13.7,27.9,44.1],"Mineral, Montana":[5.3,8.1,12.5,26.8,47.3],"Missoula, Montana":[4.6,7.6,11.7,26.8,49.3],"Musselshell, Montana":[4.5,7.5,11.3,27.1,49.6],"Park, Montana":[4.5,7.3,11.4,26.7,50],"Petroleum, Montana":[5.5,8.7,14.4,27.4,44.1],"Phillips, Montana":[5.2,7.9,12.7,26.5,47.7],"Pondera, Montana":[5.4,8.7,14,27.9,44.1],"Powder River, Montana":[4.2,7.7,12.5,27.3,48.2],"Powell, Montana":[4.8,8.3,12.1,26.2,48.6],"Prairie, Montana":[3.4,6.6,11.3,27.4,51.3],"Ravalli, Montana":[5.4,8.5,12.5,26.6,47],"Richland, Montana":[4.9,8.2,13,26.7,47.1],"Roosevelt, Montana":[5,9.6,14.3,28.8,42.2],"Rosebud, Montana":[5.3,9.1,14.1,28.2,43.3],"Sanders, Montana":[5,8.2,12.1,26.1,48.6],"Sheridan, Montana":[3.7,6.6,10.3,26,53.4],"Silver Bow, Montana":[4.4,7.5,11.4,26,50.7],"Stillwater, Montana":[4.7,8.1,12.5,27,47.7],"Sweet Grass, Montana":[4.9,7.5,10.4,24.9,52.3],"Teton, Montana":[6,9.4,12.4,25.7,46.6],"Toole, Montana":[5.5,7.9,13,28.7,45],"Treasure, Montana":[4.2,7.1,9,25,54.6],"Valley, Montana":[6.7,11,15.9,27.6,38.8],"Wheatland, Montana":[4.7,9.1,14.6,30.7,40.8],"Wibaux, Montana":[5.9,9.6,14.8,27.7,42],"Yellowstone, Montana":[4.9,7.9,12,26.6,48.7]};
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Bottom 20%', 'Second 20%', 'Middle 20%', 'Fourth 20%', 'Top 20%'],
+        datasets: [{
+          label: 'Share (%)',
+          data: values,
+          backgroundColor: '#4576a7'
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.parsed.y + '%'
+            }
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 100,
+            title: {
+              display: true,
+              text: 'Income Share (%)'
+            }
+          },
+          x: {
+            title: {
+              display: true,
+              text: 'Quintile'
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(Object.values(incomeData[this.value]));
+  });
+
+  renderChart(Object.values(incomeData['Statewide']));</script>
+  </body>
+</html>
+</html>

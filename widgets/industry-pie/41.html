@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <title>Industry Distribution – Oregon</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+        canvas { max-width: 600px; height: 500px; }
+        select { padding: 0.5rem; font-size: 1rem; margin: 1rem; }
+        .legend { max-width: 600px; margin: 1rem auto; display: flex; flex-wrap: wrap; justify-content: center; font-size: 0.9rem; }
+        .legend-item { display: flex; align-items: center; margin: 0.3rem 1rem; }
+        .legend-color { width: 12px; height: 12px; margin-right: 6px; border: 1px solid #444; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Industry Distribution in Oregon</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Baker County, Oregon">Baker County, Oregon</option>
+      <option value="Benton County, Oregon">Benton County, Oregon</option>
+      <option value="Clackamas County, Oregon">Clackamas County, Oregon</option>
+      <option value="Clatsop County, Oregon">Clatsop County, Oregon</option>
+      <option value="Columbia County, Oregon">Columbia County, Oregon</option>
+      <option value="Coos County, Oregon">Coos County, Oregon</option>
+      <option value="Crook County, Oregon">Crook County, Oregon</option>
+      <option value="Curry County, Oregon">Curry County, Oregon</option>
+      <option value="Deschutes County, Oregon">Deschutes County, Oregon</option>
+      <option value="Douglas County, Oregon">Douglas County, Oregon</option>
+      <option value="Gilliam County, Oregon">Gilliam County, Oregon</option>
+      <option value="Grant County, Oregon">Grant County, Oregon</option>
+      <option value="Harney County, Oregon">Harney County, Oregon</option>
+      <option value="Hood River County, Oregon">Hood River County, Oregon</option>
+      <option value="Jackson County, Oregon">Jackson County, Oregon</option>
+      <option value="Jefferson County, Oregon">Jefferson County, Oregon</option>
+      <option value="Josephine County, Oregon">Josephine County, Oregon</option>
+      <option value="Klamath County, Oregon">Klamath County, Oregon</option>
+      <option value="Lake County, Oregon">Lake County, Oregon</option>
+      <option value="Lane County, Oregon">Lane County, Oregon</option>
+      <option value="Lincoln County, Oregon">Lincoln County, Oregon</option>
+      <option value="Linn County, Oregon">Linn County, Oregon</option>
+      <option value="Malheur County, Oregon">Malheur County, Oregon</option>
+      <option value="Marion County, Oregon">Marion County, Oregon</option>
+      <option value="Morrow County, Oregon">Morrow County, Oregon</option>
+      <option value="Multnomah County, Oregon">Multnomah County, Oregon</option>
+      <option value="Polk County, Oregon">Polk County, Oregon</option>
+      <option value="Sherman County, Oregon">Sherman County, Oregon</option>
+      <option value="Tillamook County, Oregon">Tillamook County, Oregon</option>
+      <option value="Umatilla County, Oregon">Umatilla County, Oregon</option>
+      <option value="Union County, Oregon">Union County, Oregon</option>
+      <option value="Wallowa County, Oregon">Wallowa County, Oregon</option>
+      <option value="Wasco County, Oregon">Wasco County, Oregon</option>
+      <option value="Washington County, Oregon">Washington County, Oregon</option>
+      <option value="Wheeler County, Oregon">Wheeler County, Oregon</option>
+      <option value="Yamhill County, Oregon">Yamhill County, Oregon</option>
+    </select>
+    <canvas id="pieChart"></canvas>
+    <div class="legend">
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#66CC66;"></div>
+        <span>Agriculture, forestry, fishing, and hunting</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#996600;"></div>
+        <span>Mining</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FF6600;"></div>
+        <span>Utilities</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FFCC33;"></div>
+        <span>Construction</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FF0000;"></div>
+        <span>Manufacturing</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FF66FF;"></div>
+        <span>Wholesale trade</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#3399FF;"></div>
+        <span>Retail trade</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#00CC99;"></div>
+        <span>Transportation and warehousing</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#999966;"></div>
+        <span>Information</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#6666FF;"></div>
+        <span>Finance and insurance</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FF99CC;"></div>
+        <span>Professional, scientific, and technical services</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#66CCCC;"></div>
+        <span>Educational services</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FF9933;"></div>
+        <span>Healthcare and social assistance</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#CC99FF;"></div>
+        <span>Arts, entertainment, and recreation</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FF9999;"></div>
+        <span>Accommodation and food services</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#CCCC00;"></div>
+        <span>Other services</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#663300;"></div>
+        <span>Public administration</span>
+      </div>
+    </div>
+    <script>const data = [];
+const colors = ["#66CC66","#996600","#FF6600","#FFCC33","#FF0000","#FF66FF","#3399FF","#00CC99","#999966","#6666FF","#FF99CC","#66CCCC","#FF9933","#CC99FF","#FF9999","#CCCC00","#663300"];
+let chart;
+function renderChart(region) {
+  const ctx = document.getElementById("pieChart").getContext("2d");
+  const labels = Object.keys(data[region]);
+  const values = Object.values(data[region]);
+  const backgroundColors = labels.map(l => colors[l] || "#999");
+  if (chart) chart.destroy();
+  chart = new Chart(ctx, {
+    type: "pie",
+    data: {
+      labels: labels,
+      datasets: [{
+        data: values,
+        backgroundColor: backgroundColors
+      }]
+    },
+    options: {
+      plugins: {
+        tooltip: {
+          callbacks: {
+            label: ctx => ctx.label + ": " + ctx.raw + "%"
+          }
+        }
+      }
+    }
+  });
+}
+document.getElementById("countySelect").addEventListener("change", function() {
+  renderChart(this.value);
+});
+renderChart("Statewide");</script>
+  </body>
+</html>
+</html>

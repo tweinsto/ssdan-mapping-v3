@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+
+</head>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Owners: Year Moved In (%) – 02</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #fff;
+    }
+    .container {
+      width: 95%;
+      max-width: 1200px;
+      margin: auto;
+      text-align: center;
+    }
+    #countySelect {
+      font-size: 1rem;
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    canvas {
+      max-width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Owners: Year Moved In (%)</h2>
+    <select id="countySelect"></select>
+    <canvas id="pieChart"></canvas>
+  </div>
+
+  <script>
+    const data = {"Statewide":{"Moved in 2021 or later":6.4,"Moved in 2018–2020":15.9,"Moved in 2010–2017":29.1,"Moved in 2000–2009":22.9,"Moved in 1990–1999":13.4,"1989 or earlier":12.3},"Aleutians East Borough":{"Moved in 2021 or later":0,"Moved in 2018–2020":3.3392,"Moved in 2010–2017":20.7381,"Moved in 2000–2009":17.3989,"Moved in 1990–1999":14.7627,"1989 or earlier":43.761},"Aleutians West Census Area":{"Moved in 2021 or later":2.4306,"Moved in 2018–2020":7.2917,"Moved in 2010–2017":19.4444,"Moved in 2000–2009":20.1389,"Moved in 1990–1999":36.4583,"1989 or earlier":14.2361},"Anchorage Municipality":{"Moved in 2021 or later":7.2435,"Moved in 2018–2020":17.207,"Moved in 2010–2017":29.5952,"Moved in 2000–2009":22.4884,"Moved in 1990–1999":13.2653,"1989 or earlier":10.2006},"Bethel Census Area":{"Moved in 2021 or later":2.3404,"Moved in 2018–2020":10.7801,"Moved in 2010–2017":21.4184,"Moved in 2000–2009":23.8652,"Moved in 1990–1999":13.5461,"1989 or earlier":28.0496},"Bristol Bay Borough":{"Moved in 2021 or later":0.6803,"Moved in 2018–2020":8.8435,"Moved in 2010–2017":12.9252,"Moved in 2000–2009":23.8095,"Moved in 1990–1999":23.8095,"1989 or earlier":29.932},"Chugach Census Area":{"Moved in 2021 or later":2.0238,"Moved in 2018–2020":11.8452,"Moved in 2010–2017":32.3214,"Moved in 2000–2009":21.6667,"Moved in 1990–1999":12.9167,"1989 or earlier":19.2262},"Copper River Census Area":{"Moved in 2021 or later":2.7062,"Moved in 2018–2020":15.2062,"Moved in 2010–2017":23.4536,"Moved in 2000–2009":28.2216,"Moved in 1990–1999":12.7577,"1989 or earlier":17.6546},"Denali Borough":{"Moved in 2021 or later":2.6379,"Moved in 2018–2020":8.1535,"Moved in 2010–2017":37.6499,"Moved in 2000–2009":20.6235,"Moved in 1990–1999":18.705,"1989 or earlier":12.2302},"Dillingham Census Area":{"Moved in 2021 or later":2.0619,"Moved in 2018–2020":7.1019,"Moved in 2010–2017":26.2314,"Moved in 2000–2009":16.7239,"Moved in 1990–1999":21.8786,"1989 or earlier":26.0023},"Fairbanks North Star Borough":{"Moved in 2021 or later":8.2355,"Moved in 2018–2020":15.6466,"Moved in 2010–2017":28.3986,"Moved in 2000–2009":23.2324,"Moved in 1990–1999":11.7752,"1989 or earlier":12.7117},"Haines Borough":{"Moved in 2021 or later":4.8035,"Moved in 2018–2020":20.0873,"Moved in 2010–2017":33.3333,"Moved in 2000–2009":21.8341,"Moved in 1990–1999":11.7904,"1989 or earlier":8.1514},"Hoonah-Angoon Census Area":{"Moved in 2021 or later":1.2012,"Moved in 2018–2020":4.8048,"Moved in 2010–2017":22.973,"Moved in 2000–2009":26.5766,"Moved in 1990–1999":17.5676,"1989 or earlier":26.8769},"Juneau City and Borough":{"Moved in 2021 or later":4.4552,"Moved in 2018–2020":16.2846,"Moved in 2010–2017":27.8776,"Moved in 2000–2009":23.3042,"Moved in 1990–1999":15.6464,"1989 or earlier":12.432},"Kenai Peninsula Borough":{"Moved in 2021 or later":5.422,"Moved in 2018–2020":15.4651,"Moved in 2010–2017":29.9384,"Moved in 2000–2009":23.748,"Moved in 1990–1999":12.4952,"1989 or earlier":12.9312},"Ketchikan Gateway Borough":{"Moved in 2021 or later":3.5931,"Moved in 2018–2020":12.2325,"Moved in 2010–2017":26.4729,"Moved in 2000–2009":22.0343,"Moved in 1990–1999":19.4716,"1989 or earlier":16.1955},"Kodiak Island Borough":{"Moved in 2021 or later":12.7279,"Moved in 2018–2020":22.2381,"Moved in 2010–2017":20.7723,"Moved in 2000–2009":16.3389,"Moved in 1990–1999":15.5524,"1989 or earlier":12.3704},"Kusilvak Census Area":{"Moved in 2021 or later":1.5994,"Moved in 2018–2020":5.4836,"Moved in 2010–2017":21.3252,"Moved in 2000–2009":26.6565,"Moved in 1990–1999":18.4311,"1989 or earlier":26.5042},"Lake and Peninsula Borough":{"Moved in 2021 or later":0.5128,"Moved in 2018–2020":4.1026,"Moved in 2010–2017":22.5641,"Moved in 2000–2009":24.1026,"Moved in 1990–1999":18.4615,"1989 or earlier":30.2564},"Matanuska-Susitna Borough":{"Moved in 2021 or later":7.152,"Moved in 2018–2020":18.1283,"Moved in 2010–2017":33.3859,"Moved in 2000–2009":23.5145,"Moved in 1990–1999":10.4666,"1989 or earlier":7.3526},"Nome Census Area":{"Moved in 2021 or later":4.5326,"Moved in 2018–2020":9.4051,"Moved in 2010–2017":18.9802,"Moved in 2000–2009":20.1133,"Moved in 1990–1999":24.6459,"1989 or earlier":22.3229},"North Slope Borough":{"Moved in 2021 or later":2.9304,"Moved in 2018–2020":4.7619,"Moved in 2010–2017":17.3993,"Moved in 2000–2009":20.6044,"Moved in 1990–1999":27.5641,"1989 or earlier":26.7399},"Northwest Arctic Borough":{"Moved in 2021 or later":1.5469,"Moved in 2018–2020":5.9145,"Moved in 2010–2017":16.5605,"Moved in 2000–2009":22.475,"Moved in 1990–1999":23.0209,"1989 or earlier":30.4823},"Petersburg Borough":{"Moved in 2021 or later":1.6026,"Moved in 2018–2020":9.8291,"Moved in 2010–2017":22.9701,"Moved in 2000–2009":29.0598,"Moved in 1990–1999":14.9573,"1989 or earlier":21.5812},"Prince of Wales-Hyder Census Area":{"Moved in 2021 or later":2.7365,"Moved in 2018–2020":6.7222,"Moved in 2010–2017":25.58,"Moved in 2000–2009":23.6764,"Moved in 1990–1999":25.1636,"1989 or earlier":16.1214},"Sitka City and Borough":{"Moved in 2021 or later":3.5185,"Moved in 2018–2020":13.75,"Moved in 2010–2017":28.7963,"Moved in 2000–2009":21.1574,"Moved in 1990–1999":13.9815,"1989 or earlier":18.7963},"Skagway Municipality":{"Moved in 2021 or later":3.0405,"Moved in 2018–2020":11.1486,"Moved in 2010–2017":18.5811,"Moved in 2000–2009":16.2162,"Moved in 1990–1999":11.4865,"1989 or earlier":39.527},"Southeast Fairbanks Census Area":{"Moved in 2021 or later":3.4208,"Moved in 2018–2020":13.626,"Moved in 2010–2017":27.7081,"Moved in 2000–2009":28.3922,"Moved in 1990–1999":13.2839,"1989 or earlier":13.569},"Wrangell City and Borough":{"Moved in 2021 or later":1.938,"Moved in 2018–2020":9.8837,"Moved in 2010–2017":22.4806,"Moved in 2000–2009":21.8992,"Moved in 1990–1999":18.0233,"1989 or earlier":25.7752},"Yakutat City and Borough":{"Moved in 2021 or later":1.5873,"Moved in 2018–2020":11.1111,"Moved in 2010–2017":20.6349,"Moved in 2000–2009":16.6667,"Moved in 1990–1999":23.8095,"1989 or earlier":26.1905},"Yukon-Koyukuk Census Area":{"Moved in 2021 or later":2.2589,"Moved in 2018–2020":9.2796,"Moved in 2010–2017":20.3297,"Moved in 2000–2009":22.6496,"Moved in 1990–1999":16.0562,"1989 or earlier":29.4261}};
+    const colors = {
+  'Moved in 2021 or later': '#377EF1',
+  'Moved in 2018–2020': '#FF7F00',
+  'Moved in 2010–2017': '#66A61E',
+  'Moved in 2000–2009': '#E6AB01',
+  'Moved in 1990–1999': '#7570B1',
+  '1989 or earlier': '#E41A1C'
+};
+
+    const ctx = document.getElementById("pieChart").getContext("2d");
+    let chart;
+
+    function renderChart(key) {
+      const values = data[key];
+      const labels = Object.keys(values);
+      const percentages = Object.values(values);
+
+      if (chart) chart.destroy();
+
+      chart = new Chart(ctx, {
+        type: "pie",
+        data: {
+          labels: labels,
+          datasets: [{
+            data: percentages,
+            backgroundColor: labels.map(label => colors[label] || "#cccccc")
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: true,
+          aspectRatio: 1.5,
+          plugins: {
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  return context.label + ": " + context.formattedValue + "%";
+                }
+              }
+            },
+            legend: {
+              position: "right",
+              labels: {
+                usePointStyle: true,
+                pointStyle: "rect"
+              }
+            }
+          }
+        }
+      });
+    }
+
+    // Populate dropdown (Statewide first, then counties A->Z)
+    const select = document.getElementById("countySelect");
+    const keys = ["Statewide", ...Object.keys(data).filter(k => k !== "Statewide").sort()];
+    keys.forEach(k => {
+      const opt = document.createElement("option");
+      opt.value = k;
+      opt.text  = k;
+      select.appendChild(opt);
+    });
+    select.value = "Statewide";
+    select.addEventListener("change", () => renderChart(select.value));
+
+    renderChart("Statewide");
+  </script>
+</body>
+</html>
+</html>

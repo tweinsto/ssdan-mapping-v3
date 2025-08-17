@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Educational Enrollment – Nebraska</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Educational Enrollment (Age 18–24) in Nebraska</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Adams County, Nebraska">Adams County, Nebraska</option>
+      <option value="Antelope County, Nebraska">Antelope County, Nebraska</option>
+      <option value="Arthur County, Nebraska">Arthur County, Nebraska</option>
+      <option value="Banner County, Nebraska">Banner County, Nebraska</option>
+      <option value="Blaine County, Nebraska">Blaine County, Nebraska</option>
+      <option value="Boone County, Nebraska">Boone County, Nebraska</option>
+      <option value="Box Butte County, Nebraska">Box Butte County, Nebraska</option>
+      <option value="Boyd County, Nebraska">Boyd County, Nebraska</option>
+      <option value="Brown County, Nebraska">Brown County, Nebraska</option>
+      <option value="Buffalo County, Nebraska">Buffalo County, Nebraska</option>
+      <option value="Burt County, Nebraska">Burt County, Nebraska</option>
+      <option value="Butler County, Nebraska">Butler County, Nebraska</option>
+      <option value="Cass County, Nebraska">Cass County, Nebraska</option>
+      <option value="Cedar County, Nebraska">Cedar County, Nebraska</option>
+      <option value="Chase County, Nebraska">Chase County, Nebraska</option>
+      <option value="Cherry County, Nebraska">Cherry County, Nebraska</option>
+      <option value="Cheyenne County, Nebraska">Cheyenne County, Nebraska</option>
+      <option value="Clay County, Nebraska">Clay County, Nebraska</option>
+      <option value="Colfax County, Nebraska">Colfax County, Nebraska</option>
+      <option value="Cuming County, Nebraska">Cuming County, Nebraska</option>
+      <option value="Custer County, Nebraska">Custer County, Nebraska</option>
+      <option value="Dakota County, Nebraska">Dakota County, Nebraska</option>
+      <option value="Dawes County, Nebraska">Dawes County, Nebraska</option>
+      <option value="Dawson County, Nebraska">Dawson County, Nebraska</option>
+      <option value="Deuel County, Nebraska">Deuel County, Nebraska</option>
+      <option value="Dixon County, Nebraska">Dixon County, Nebraska</option>
+      <option value="Dodge County, Nebraska">Dodge County, Nebraska</option>
+      <option value="Douglas County, Nebraska">Douglas County, Nebraska</option>
+      <option value="Dundy County, Nebraska">Dundy County, Nebraska</option>
+      <option value="Fillmore County, Nebraska">Fillmore County, Nebraska</option>
+      <option value="Franklin County, Nebraska">Franklin County, Nebraska</option>
+      <option value="Frontier County, Nebraska">Frontier County, Nebraska</option>
+      <option value="Furnas County, Nebraska">Furnas County, Nebraska</option>
+      <option value="Gage County, Nebraska">Gage County, Nebraska</option>
+      <option value="Garden County, Nebraska">Garden County, Nebraska</option>
+      <option value="Garfield County, Nebraska">Garfield County, Nebraska</option>
+      <option value="Gosper County, Nebraska">Gosper County, Nebraska</option>
+      <option value="Grant County, Nebraska">Grant County, Nebraska</option>
+      <option value="Greeley County, Nebraska">Greeley County, Nebraska</option>
+      <option value="Hall County, Nebraska">Hall County, Nebraska</option>
+      <option value="Hamilton County, Nebraska">Hamilton County, Nebraska</option>
+      <option value="Harlan County, Nebraska">Harlan County, Nebraska</option>
+      <option value="Hayes County, Nebraska">Hayes County, Nebraska</option>
+      <option value="Hitchcock County, Nebraska">Hitchcock County, Nebraska</option>
+      <option value="Holt County, Nebraska">Holt County, Nebraska</option>
+      <option value="Hooker County, Nebraska">Hooker County, Nebraska</option>
+      <option value="Howard County, Nebraska">Howard County, Nebraska</option>
+      <option value="Jefferson County, Nebraska">Jefferson County, Nebraska</option>
+      <option value="Johnson County, Nebraska">Johnson County, Nebraska</option>
+      <option value="Kearney County, Nebraska">Kearney County, Nebraska</option>
+      <option value="Keith County, Nebraska">Keith County, Nebraska</option>
+      <option value="Keya Paha County, Nebraska">Keya Paha County, Nebraska</option>
+      <option value="Kimball County, Nebraska">Kimball County, Nebraska</option>
+      <option value="Knox County, Nebraska">Knox County, Nebraska</option>
+      <option value="Lancaster County, Nebraska">Lancaster County, Nebraska</option>
+      <option value="Lincoln County, Nebraska">Lincoln County, Nebraska</option>
+      <option value="Logan County, Nebraska">Logan County, Nebraska</option>
+      <option value="Loup County, Nebraska">Loup County, Nebraska</option>
+      <option value="Madison County, Nebraska">Madison County, Nebraska</option>
+      <option value="McPherson County, Nebraska">McPherson County, Nebraska</option>
+      <option value="Merrick County, Nebraska">Merrick County, Nebraska</option>
+      <option value="Morrill County, Nebraska">Morrill County, Nebraska</option>
+      <option value="Nance County, Nebraska">Nance County, Nebraska</option>
+      <option value="Nemaha County, Nebraska">Nemaha County, Nebraska</option>
+      <option value="Nuckolls County, Nebraska">Nuckolls County, Nebraska</option>
+      <option value="Otoe County, Nebraska">Otoe County, Nebraska</option>
+      <option value="Pawnee County, Nebraska">Pawnee County, Nebraska</option>
+      <option value="Perkins County, Nebraska">Perkins County, Nebraska</option>
+      <option value="Phelps County, Nebraska">Phelps County, Nebraska</option>
+      <option value="Pierce County, Nebraska">Pierce County, Nebraska</option>
+      <option value="Platte County, Nebraska">Platte County, Nebraska</option>
+      <option value="Polk County, Nebraska">Polk County, Nebraska</option>
+      <option value="Red Willow County, Nebraska">Red Willow County, Nebraska</option>
+      <option value="Richardson County, Nebraska">Richardson County, Nebraska</option>
+      <option value="Rock County, Nebraska">Rock County, Nebraska</option>
+      <option value="Saline County, Nebraska">Saline County, Nebraska</option>
+      <option value="Sarpy County, Nebraska">Sarpy County, Nebraska</option>
+      <option value="Saunders County, Nebraska">Saunders County, Nebraska</option>
+      <option value="Scotts Bluff County, Nebraska">Scotts Bluff County, Nebraska</option>
+      <option value="Seward County, Nebraska">Seward County, Nebraska</option>
+      <option value="Sheridan County, Nebraska">Sheridan County, Nebraska</option>
+      <option value="Sherman County, Nebraska">Sherman County, Nebraska</option>
+      <option value="Sioux County, Nebraska">Sioux County, Nebraska</option>
+      <option value="Stanton County, Nebraska">Stanton County, Nebraska</option>
+      <option value="Thayer County, Nebraska">Thayer County, Nebraska</option>
+      <option value="Thomas County, Nebraska">Thomas County, Nebraska</option>
+      <option value="Thurston County, Nebraska">Thurston County, Nebraska</option>
+      <option value="Valley County, Nebraska">Valley County, Nebraska</option>
+      <option value="Washington County, Nebraska">Washington County, Nebraska</option>
+      <option value="Wayne County, Nebraska">Wayne County, Nebraska</option>
+      <option value="Webster County, Nebraska">Webster County, Nebraska</option>
+      <option value="Wheeler County, Nebraska">Wheeler County, Nebraska</option>
+      <option value="York County, Nebraska">York County, Nebraska</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>  const data = {"Statewide":{"Enrolled in College / Grad. School":42.9,"Not Enrolled":57.1},"Adams County, Nebraska":{"Enrolled in College / Grad. School":51.1,"Not Enrolled":48.9},"Antelope County, Nebraska":{"Enrolled in College / Grad. School":25.3,"Not Enrolled":74.7},"Arthur County, Nebraska":{"Enrolled in College / Grad. School":25,"Not Enrolled":75},"Banner County, Nebraska":{"Enrolled in College / Grad. School":41.7,"Not Enrolled":58.3},"Blaine County, Nebraska":{"Enrolled in College / Grad. School":0,"Not Enrolled":100},"Boone County, Nebraska":{"Enrolled in College / Grad. School":10.4,"Not Enrolled":89.6},"Box Butte County, Nebraska":{"Enrolled in College / Grad. School":14.4,"Not Enrolled":85.6},"Boyd County, Nebraska":{"Enrolled in College / Grad. School":4.8,"Not Enrolled":95.2},"Brown County, Nebraska":{"Enrolled in College / Grad. School":11.8,"Not Enrolled":88.2},"Buffalo County, Nebraska":{"Enrolled in College / Grad. School":57.4,"Not Enrolled":42.6},"Burt County, Nebraska":{"Enrolled in College / Grad. School":30.7,"Not Enrolled":69.3},"Butler County, Nebraska":{"Enrolled in College / Grad. School":23,"Not Enrolled":77},"Cass County, Nebraska":{"Enrolled in College / Grad. School":30.1,"Not Enrolled":69.9},"Cedar County, Nebraska":{"Enrolled in College / Grad. School":20.1,"Not Enrolled":79.9},"Chase County, Nebraska":{"Enrolled in College / Grad. School":40.5,"Not Enrolled":59.5},"Cherry County, Nebraska":{"Enrolled in College / Grad. School":16,"Not Enrolled":84},"Cheyenne County, Nebraska":{"Enrolled in College / Grad. School":20.3,"Not Enrolled":79.7},"Clay County, Nebraska":{"Enrolled in College / Grad. School":21.7,"Not Enrolled":78.3},"Colfax County, Nebraska":{"Enrolled in College / Grad. School":13.4,"Not Enrolled":86.6},"Cuming County, Nebraska":{"Enrolled in College / Grad. School":30.4,"Not Enrolled":69.6},"Custer County, Nebraska":{"Enrolled in College / Grad. School":15.6,"Not Enrolled":84.4},"Dakota County, Nebraska":{"Enrolled in College / Grad. School":22.7,"Not Enrolled":77.3},"Dawes County, Nebraska":{"Enrolled in College / Grad. School":78.9,"Not Enrolled":21.1},"Dawson County, Nebraska":{"Enrolled in College / Grad. School":21.3,"Not Enrolled":78.7},"Deuel County, Nebraska":{"Enrolled in College / Grad. School":35.2,"Not Enrolled":64.8},"Dixon County, Nebraska":{"Enrolled in College / Grad. School":16.6,"Not Enrolled":83.4},"Dodge County, Nebraska":{"Enrolled in College / Grad. School":40.8,"Not Enrolled":59.2},"Douglas County, Nebraska":{"Enrolled in College / Grad. School":42.5,"Not Enrolled":57.5},"Dundy County, Nebraska":{"Enrolled in College / Grad. School":25.2,"Not Enrolled":74.8},"Fillmore County, Nebraska":{"Enrolled in College / Grad. School":12.8,"Not Enrolled":87.2},"Franklin County, Nebraska":{"Enrolled in College / Grad. School":32.1,"Not Enrolled":67.9},"Frontier County, Nebraska":{"Enrolled in College / Grad. School":58.1,"Not Enrolled":41.9},"Furnas County, Nebraska":{"Enrolled in College / Grad. School":16.9,"Not Enrolled":83.1},"Gage County, Nebraska":{"Enrolled in College / Grad. School":15,"Not Enrolled":85},"Garden County, Nebraska":{"Enrolled in College / Grad. School":8.3,"Not Enrolled":91.7},"Garfield County, Nebraska":{"Enrolled in College / Grad. School":39.7,"Not Enrolled":60.3},"Gosper County, Nebraska":{"Enrolled in College / Grad. School":31.8,"Not Enrolled":68.2},"Grant County, Nebraska":{"Enrolled in College / Grad. School":42.9,"Not Enrolled":57.1},"Greeley County, Nebraska":{"Enrolled in College / Grad. School":31.6,"Not Enrolled":68.4},"Hall County, Nebraska":{"Enrolled in College / Grad. School":15.9,"Not Enrolled":84.1},"Hamilton County, Nebraska":{"Enrolled in College / Grad. School":40.8,"Not Enrolled":59.2},"Harlan County, Nebraska":{"Enrolled in College / Grad. School":2.2,"Not Enrolled":97.8},"Hayes County, Nebraska":{"Enrolled in College / Grad. School":50,"Not Enrolled":50},"Hitchcock County, Nebraska":{"Enrolled in College / Grad. School":25,"Not Enrolled":75},"Holt County, Nebraska":{"Enrolled in College / Grad. School":16.9,"Not Enrolled":83.1},"Hooker County, Nebraska":{"Enrolled in College / Grad. School":34.9,"Not Enrolled":65.1},"Howard County, Nebraska":{"Enrolled in College / Grad. School":26.4,"Not Enrolled":73.6},"Jefferson County, Nebraska":{"Enrolled in College / Grad. School":30.3,"Not Enrolled":69.7},"Johnson County, Nebraska":{"Enrolled in College / Grad. School":18.5,"Not Enrolled":81.5},"Kearney County, Nebraska":{"Enrolled in College / Grad. School":22.8,"Not Enrolled":77.2},"Keith County, Nebraska":{"Enrolled in College / Grad. School":20,"Not Enrolled":80},"Keya Paha County, Nebraska":{"Enrolled in College / Grad. School":20.3,"Not Enrolled":79.7},"Kimball County, Nebraska":{"Enrolled in College / Grad. School":13,"Not Enrolled":87},"Knox County, Nebraska":{"Enrolled in College / Grad. School":30,"Not Enrolled":70},"Lancaster County, Nebraska":{"Enrolled in College / Grad. School":57.6,"Not Enrolled":42.4},"Lincoln County, Nebraska":{"Enrolled in College / Grad. School":23.5,"Not Enrolled":76.5},"Logan County, Nebraska":{"Enrolled in College / Grad. School":29.7,"Not Enrolled":70.3},"Loup County, Nebraska":{"Enrolled in College / Grad. School":36,"Not Enrolled":64},"McPherson County, Nebraska":{"Enrolled in College / Grad. School":22.2,"Not Enrolled":77.8},"Madison County, Nebraska":{"Enrolled in College / Grad. School":40.7,"Not Enrolled":59.3},"Merrick County, Nebraska":{"Enrolled in College / Grad. School":19.8,"Not Enrolled":80.2},"Morrill County, Nebraska":{"Enrolled in College / Grad. School":9.5,"Not Enrolled":90.5},"Nance County, Nebraska":{"Enrolled in College / Grad. School":17.5,"Not Enrolled":82.5},"Nemaha County, Nebraska":{"Enrolled in College / Grad. School":60.6,"Not Enrolled":39.4},"Nuckolls County, Nebraska":{"Enrolled in College / Grad. School":4.7,"Not Enrolled":95.3},"Otoe County, Nebraska":{"Enrolled in College / Grad. School":30.9,"Not Enrolled":69.1},"Pawnee County, Nebraska":{"Enrolled in College / Grad. School":10,"Not Enrolled":90},"Perkins County, Nebraska":{"Enrolled in College / Grad. School":35.9,"Not Enrolled":64.1},"Phelps County, Nebraska":{"Enrolled in College / Grad. School":19.6,"Not Enrolled":80.4},"Pierce County, Nebraska":{"Enrolled in College / Grad. School":17.9,"Not Enrolled":82.1},"Platte County, Nebraska":{"Enrolled in College / Grad. School":21.8,"Not Enrolled":78.2},"Polk County, Nebraska":{"Enrolled in College / Grad. School":28.4,"Not Enrolled":71.6},"Red Willow County, Nebraska":{"Enrolled in College / Grad. School":26.2,"Not Enrolled":73.8},"Richardson County, Nebraska":{"Enrolled in College / Grad. School":12.1,"Not Enrolled":87.9},"Rock County, Nebraska":{"Enrolled in College / Grad. School":36.8,"Not Enrolled":63.2},"Saline County, Nebraska":{"Enrolled in College / Grad. School":67.4,"Not Enrolled":32.6},"Sarpy County, Nebraska":{"Enrolled in College / Grad. School":36.2,"Not Enrolled":63.8},"Saunders County, Nebraska":{"Enrolled in College / Grad. School":30.8,"Not Enrolled":69.2},"Scotts Bluff County, Nebraska":{"Enrolled in College / Grad. School":32.2,"Not Enrolled":67.8},"Seward County, Nebraska":{"Enrolled in College / Grad. School":65.4,"Not Enrolled":34.6},"Sheridan County, Nebraska":{"Enrolled in College / Grad. School":6.3,"Not Enrolled":93.7},"Sherman County, Nebraska":{"Enrolled in College / Grad. School":6.5,"Not Enrolled":93.5},"Sioux County, Nebraska":{"Enrolled in College / Grad. School":4.5,"Not Enrolled":95.5},"Stanton County, Nebraska":{"Enrolled in College / Grad. School":25.9,"Not Enrolled":74.1},"Thayer County, Nebraska":{"Enrolled in College / Grad. School":28.7,"Not Enrolled":71.3},"Thomas County, Nebraska":{"Enrolled in College / Grad. School":11.8,"Not Enrolled":88.2},"Thurston County, Nebraska":{"Enrolled in College / Grad. School":26.5,"Not Enrolled":73.5},"Valley County, Nebraska":{"Enrolled in College / Grad. School":35.4,"Not Enrolled":64.6},"Washington County, Nebraska":{"Enrolled in College / Grad. School":44.2,"Not Enrolled":55.8},"Wayne County, Nebraska":{"Enrolled in College / Grad. School":78.7,"Not Enrolled":21.3},"Webster County, Nebraska":{"Enrolled in College / Grad. School":10.2,"Not Enrolled":89.8},"Wheeler County, Nebraska":{"Enrolled in College / Grad. School":0,"Not Enrolled":100},"York County, Nebraska":{"Enrolled in College / Grad. School":34.5,"Not Enrolled":65.5}};
+  const categories = ["Enrolled in College / Grad. School","Not Enrolled"];
+  const ctx = document.getElementById("barChart").getContext("2d");
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: categories,
+        datasets: [
+          {
+            label: "County/State",
+            data: values,
+            backgroundColor: ["#66c2a5", "#fc8d62"]
+          }
+        ]
+      },
+      options: {
+        indexAxis: "y",
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            ticks: {
+              callback: v => v + "%"
+            }
+          }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.dataset.label + ": " + ctx.raw + "%"
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById("countySelect").addEventListener("change", function() {
+    renderChart(Object.values(data[this.value]));
+  });
+
+  renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

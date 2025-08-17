@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Living Arrangements of Children – Pennsylvania</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Children’s Living Arrangements (Under 18) – Pennsylvania</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Adams County, Pennsylvania">Adams County, Pennsylvania</option>
+      <option value="Allegheny County, Pennsylvania">Allegheny County, Pennsylvania</option>
+      <option value="Armstrong County, Pennsylvania">Armstrong County, Pennsylvania</option>
+      <option value="Beaver County, Pennsylvania">Beaver County, Pennsylvania</option>
+      <option value="Bedford County, Pennsylvania">Bedford County, Pennsylvania</option>
+      <option value="Berks County, Pennsylvania">Berks County, Pennsylvania</option>
+      <option value="Blair County, Pennsylvania">Blair County, Pennsylvania</option>
+      <option value="Bradford County, Pennsylvania">Bradford County, Pennsylvania</option>
+      <option value="Bucks County, Pennsylvania">Bucks County, Pennsylvania</option>
+      <option value="Butler County, Pennsylvania">Butler County, Pennsylvania</option>
+      <option value="Cambria County, Pennsylvania">Cambria County, Pennsylvania</option>
+      <option value="Cameron County, Pennsylvania">Cameron County, Pennsylvania</option>
+      <option value="Carbon County, Pennsylvania">Carbon County, Pennsylvania</option>
+      <option value="Centre County, Pennsylvania">Centre County, Pennsylvania</option>
+      <option value="Chester County, Pennsylvania">Chester County, Pennsylvania</option>
+      <option value="Clarion County, Pennsylvania">Clarion County, Pennsylvania</option>
+      <option value="Clearfield County, Pennsylvania">Clearfield County, Pennsylvania</option>
+      <option value="Clinton County, Pennsylvania">Clinton County, Pennsylvania</option>
+      <option value="Columbia County, Pennsylvania">Columbia County, Pennsylvania</option>
+      <option value="Crawford County, Pennsylvania">Crawford County, Pennsylvania</option>
+      <option value="Cumberland County, Pennsylvania">Cumberland County, Pennsylvania</option>
+      <option value="Dauphin County, Pennsylvania">Dauphin County, Pennsylvania</option>
+      <option value="Delaware County, Pennsylvania">Delaware County, Pennsylvania</option>
+      <option value="Elk County, Pennsylvania">Elk County, Pennsylvania</option>
+      <option value="Erie County, Pennsylvania">Erie County, Pennsylvania</option>
+      <option value="Fayette County, Pennsylvania">Fayette County, Pennsylvania</option>
+      <option value="Forest County, Pennsylvania">Forest County, Pennsylvania</option>
+      <option value="Franklin County, Pennsylvania">Franklin County, Pennsylvania</option>
+      <option value="Fulton County, Pennsylvania">Fulton County, Pennsylvania</option>
+      <option value="Greene County, Pennsylvania">Greene County, Pennsylvania</option>
+      <option value="Huntingdon County, Pennsylvania">Huntingdon County, Pennsylvania</option>
+      <option value="Indiana County, Pennsylvania">Indiana County, Pennsylvania</option>
+      <option value="Jefferson County, Pennsylvania">Jefferson County, Pennsylvania</option>
+      <option value="Juniata County, Pennsylvania">Juniata County, Pennsylvania</option>
+      <option value="Lackawanna County, Pennsylvania">Lackawanna County, Pennsylvania</option>
+      <option value="Lancaster County, Pennsylvania">Lancaster County, Pennsylvania</option>
+      <option value="Lawrence County, Pennsylvania">Lawrence County, Pennsylvania</option>
+      <option value="Lebanon County, Pennsylvania">Lebanon County, Pennsylvania</option>
+      <option value="Lehigh County, Pennsylvania">Lehigh County, Pennsylvania</option>
+      <option value="Luzerne County, Pennsylvania">Luzerne County, Pennsylvania</option>
+      <option value="Lycoming County, Pennsylvania">Lycoming County, Pennsylvania</option>
+      <option value="McKean County, Pennsylvania">McKean County, Pennsylvania</option>
+      <option value="Mercer County, Pennsylvania">Mercer County, Pennsylvania</option>
+      <option value="Mifflin County, Pennsylvania">Mifflin County, Pennsylvania</option>
+      <option value="Monroe County, Pennsylvania">Monroe County, Pennsylvania</option>
+      <option value="Montgomery County, Pennsylvania">Montgomery County, Pennsylvania</option>
+      <option value="Montour County, Pennsylvania">Montour County, Pennsylvania</option>
+      <option value="Northampton County, Pennsylvania">Northampton County, Pennsylvania</option>
+      <option value="Northumberland County, Pennsylvania">Northumberland County, Pennsylvania</option>
+      <option value="Perry County, Pennsylvania">Perry County, Pennsylvania</option>
+      <option value="Philadelphia County, Pennsylvania">Philadelphia County, Pennsylvania</option>
+      <option value="Pike County, Pennsylvania">Pike County, Pennsylvania</option>
+      <option value="Potter County, Pennsylvania">Potter County, Pennsylvania</option>
+      <option value="Schuylkill County, Pennsylvania">Schuylkill County, Pennsylvania</option>
+      <option value="Snyder County, Pennsylvania">Snyder County, Pennsylvania</option>
+      <option value="Somerset County, Pennsylvania">Somerset County, Pennsylvania</option>
+      <option value="Sullivan County, Pennsylvania">Sullivan County, Pennsylvania</option>
+      <option value="Susquehanna County, Pennsylvania">Susquehanna County, Pennsylvania</option>
+      <option value="Tioga County, Pennsylvania">Tioga County, Pennsylvania</option>
+      <option value="Union County, Pennsylvania">Union County, Pennsylvania</option>
+      <option value="Venango County, Pennsylvania">Venango County, Pennsylvania</option>
+      <option value="Warren County, Pennsylvania">Warren County, Pennsylvania</option>
+      <option value="Washington County, Pennsylvania">Washington County, Pennsylvania</option>
+      <option value="Wayne County, Pennsylvania">Wayne County, Pennsylvania</option>
+      <option value="Westmoreland County, Pennsylvania">Westmoreland County, Pennsylvania</option>
+      <option value="Wyoming County, Pennsylvania">Wyoming County, Pennsylvania</option>
+      <option value="York County, Pennsylvania">York County, Pennsylvania</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>  const data = {"Statewide":{"Married Couple (%)":65.7,"Cohabiting Couple (%)":9,"Male Householder (%)":4.7,"Female Householder (%)":20.6},"Adams County, Pennsylvania":{"Married Couple (%)":71.4,"Cohabiting Couple (%)":11.6,"Male Householder (%)":6.7,"Female Householder (%)":10.3},"Allegheny County, Pennsylvania":{"Married Couple (%)":66.9,"Cohabiting Couple (%)":7,"Male Householder (%)":4.6,"Female Householder (%)":21.6},"Armstrong County, Pennsylvania":{"Married Couple (%)":72.7,"Cohabiting Couple (%)":10.5,"Male Householder (%)":4.5,"Female Householder (%)":12.4},"Beaver County, Pennsylvania":{"Married Couple (%)":66.2,"Cohabiting Couple (%)":9,"Male Householder (%)":4.4,"Female Householder (%)":20.3},"Bedford County, Pennsylvania":{"Married Couple (%)":76.8,"Cohabiting Couple (%)":8.5,"Male Householder (%)":5.1,"Female Householder (%)":9.5},"Berks County, Pennsylvania":{"Married Couple (%)":60.6,"Cohabiting Couple (%)":13.2,"Male Householder (%)":4.6,"Female Householder (%)":21.7},"Blair County, Pennsylvania":{"Married Couple (%)":63.6,"Cohabiting Couple (%)":12.4,"Male Householder (%)":4.5,"Female Householder (%)":19.6},"Bradford County, Pennsylvania":{"Married Couple (%)":63.8,"Cohabiting Couple (%)":13,"Male Householder (%)":6.1,"Female Householder (%)":17.1},"Bucks County, Pennsylvania":{"Married Couple (%)":77.3,"Cohabiting Couple (%)":5,"Male Householder (%)":4.4,"Female Householder (%)":13.4},"Butler County, Pennsylvania":{"Married Couple (%)":79.9,"Cohabiting Couple (%)":5.9,"Male Householder (%)":2.9,"Female Householder (%)":11.2},"Cambria County, Pennsylvania":{"Married Couple (%)":60.6,"Cohabiting Couple (%)":11.2,"Male Householder (%)":7.4,"Female Householder (%)":20.8},"Cameron County, Pennsylvania":{"Married Couple (%)":45.7,"Cohabiting Couple (%)":18.4,"Male Householder (%)":14.8,"Female Householder (%)":21},"Carbon County, Pennsylvania":{"Married Couple (%)":56.2,"Cohabiting Couple (%)":20.7,"Male Householder (%)":4,"Female Householder (%)":19.1},"Centre County, Pennsylvania":{"Married Couple (%)":82,"Cohabiting Couple (%)":4.2,"Male Householder (%)":3.5,"Female Householder (%)":10.2},"Chester County, Pennsylvania":{"Married Couple (%)":80,"Cohabiting Couple (%)":5.4,"Male Householder (%)":3.2,"Female Householder (%)":11.4},"Clarion County, Pennsylvania":{"Married Couple (%)":71.8,"Cohabiting Couple (%)":11.1,"Male Householder (%)":5.3,"Female Householder (%)":11.9},"Clearfield County, Pennsylvania":{"Married Couple (%)":68.2,"Cohabiting Couple (%)":10.8,"Male Householder (%)":5.9,"Female Householder (%)":15.1},"Clinton County, Pennsylvania":{"Married Couple (%)":68.7,"Cohabiting Couple (%)":11.7,"Male Householder (%)":6.1,"Female Householder (%)":13.6},"Columbia County, Pennsylvania":{"Married Couple (%)":64,"Cohabiting Couple (%)":14.8,"Male Householder (%)":4.6,"Female Householder (%)":16.6},"Crawford County, Pennsylvania":{"Married Couple (%)":68.9,"Cohabiting Couple (%)":9.8,"Male Householder (%)":6.3,"Female Householder (%)":15},"Cumberland County, Pennsylvania":{"Married Couple (%)":74.3,"Cohabiting Couple (%)":7.6,"Male Householder (%)":3.7,"Female Householder (%)":14.5},"Dauphin County, Pennsylvania":{"Married Couple (%)":60.7,"Cohabiting Couple (%)":11.3,"Male Householder (%)":4.6,"Female Householder (%)":23.4},"Delaware County, Pennsylvania":{"Married Couple (%)":65.2,"Cohabiting Couple (%)":6.4,"Male Householder (%)":5.3,"Female Householder (%)":23.1},"Elk County, Pennsylvania":{"Married Couple (%)":60,"Cohabiting Couple (%)":19,"Male Householder (%)":5.3,"Female Householder (%)":15.7},"Erie County, Pennsylvania":{"Married Couple (%)":58.6,"Cohabiting Couple (%)":11.7,"Male Householder (%)":4.7,"Female Householder (%)":25},"Fayette County, Pennsylvania":{"Married Couple (%)":62.6,"Cohabiting Couple (%)":9.4,"Male Householder (%)":6.5,"Female Householder (%)":21.6},"Forest County, Pennsylvania":{"Married Couple (%)":73.7,"Cohabiting Couple (%)":12,"Male Householder (%)":3.4,"Female Householder (%)":10.9},"Franklin County, Pennsylvania":{"Married Couple (%)":71.7,"Cohabiting Couple (%)":9.1,"Male Householder (%)":3.4,"Female Householder (%)":15.8},"Fulton County, Pennsylvania":{"Married Couple (%)":72.3,"Cohabiting Couple (%)":10.4,"Male Householder (%)":3.5,"Female Householder (%)":13.8},"Greene County, Pennsylvania":{"Married Couple (%)":65.5,"Cohabiting Couple (%)":10.4,"Male Householder (%)":8.9,"Female Householder (%)":15.2},"Huntingdon County, Pennsylvania":{"Married Couple (%)":71.1,"Cohabiting Couple (%)":8.6,"Male Householder (%)":4.5,"Female Householder (%)":15.7},"Indiana County, Pennsylvania":{"Married Couple (%)":77.4,"Cohabiting Couple (%)":7.7,"Male Householder (%)":4.5,"Female Householder (%)":10.3},"Jefferson County, Pennsylvania":{"Married Couple (%)":69.2,"Cohabiting Couple (%)":9.4,"Male Householder (%)":6.6,"Female Householder (%)":14.8},"Juniata County, Pennsylvania":{"Married Couple (%)":77.5,"Cohabiting Couple (%)":11.3,"Male Householder (%)":4,"Female Householder (%)":7.2},"Lackawanna County, Pennsylvania":{"Married Couple (%)":58.9,"Cohabiting Couple (%)":12.9,"Male Householder (%)":6.2,"Female Householder (%)":22.1},"Lancaster County, Pennsylvania":{"Married Couple (%)":78.3,"Cohabiting Couple (%)":7.2,"Male Householder (%)":2.6,"Female Householder (%)":11.9},"Lawrence County, Pennsylvania":{"Married Couple (%)":61.8,"Cohabiting Couple (%)":11.6,"Male Householder (%)":7,"Female Householder (%)":19.7},"Lebanon County, Pennsylvania":{"Married Couple (%)":67.6,"Cohabiting Couple (%)":10.4,"Male Householder (%)":3.6,"Female Householder (%)":18.3},"Lehigh County, Pennsylvania":{"Married Couple (%)":60.1,"Cohabiting Couple (%)":9.5,"Male Householder (%)":5.1,"Female Householder (%)":25.3},"Luzerne County, Pennsylvania":{"Married Couple (%)":54.5,"Cohabiting Couple (%)":11.4,"Male Householder (%)":5.1,"Female Householder (%)":29},"Lycoming County, Pennsylvania":{"Married Couple (%)":64.4,"Cohabiting Couple (%)":12.4,"Male Householder (%)":5.8,"Female Householder (%)":17.4},"McKean County, Pennsylvania":{"Married Couple (%)":66.5,"Cohabiting Couple (%)":14.5,"Male Householder (%)":4.3,"Female Householder (%)":14.8},"Mercer County, Pennsylvania":{"Married Couple (%)":67.3,"Cohabiting Couple (%)":10.2,"Male Householder (%)":5.8,"Female Householder (%)":16.7},"Mifflin County, Pennsylvania":{"Married Couple (%)":69.2,"Cohabiting Couple (%)":13.9,"Male Householder (%)":2.3,"Female Householder (%)":14.6},"Monroe County, Pennsylvania":{"Married Couple (%)":68.1,"Cohabiting Couple (%)":6.6,"Male Householder (%)":5.7,"Female Householder (%)":19.6},"Montgomery County, Pennsylvania":{"Married Couple (%)":77.3,"Cohabiting Couple (%)":5.9,"Male Householder (%)":3.6,"Female Householder (%)":13.2},"Montour County, Pennsylvania":{"Married Couple (%)":69.8,"Cohabiting Couple (%)":6.6,"Male Householder (%)":8,"Female Householder (%)":15.7},"Northampton County, Pennsylvania":{"Married Couple (%)":69,"Cohabiting Couple (%)":9.4,"Male Householder (%)":4,"Female Householder (%)":17.5},"Northumberland County, Pennsylvania":{"Married Couple (%)":64.5,"Cohabiting Couple (%)":13.9,"Male Householder (%)":6.3,"Female Householder (%)":15.3},"Perry County, Pennsylvania":{"Married Couple (%)":72.7,"Cohabiting Couple (%)":10.9,"Male Householder (%)":5.4,"Female Householder (%)":11},"Philadelphia County, Pennsylvania":{"Married Couple (%)":42.5,"Cohabiting Couple (%)":10,"Male Householder (%)":5.9,"Female Householder (%)":41.6},"Pike County, Pennsylvania":{"Married Couple (%)":72.7,"Cohabiting Couple (%)":9.4,"Male Householder (%)":6.5,"Female Householder (%)":11.4},"Potter County, Pennsylvania":{"Married Couple (%)":73.3,"Cohabiting Couple (%)":8.5,"Male Householder (%)":5.9,"Female Householder (%)":12.3},"Schuylkill County, Pennsylvania":{"Married Couple (%)":56.5,"Cohabiting Couple (%)":15.4,"Male Householder (%)":6.3,"Female Householder (%)":21.8},"Snyder County, Pennsylvania":{"Married Couple (%)":77.3,"Cohabiting Couple (%)":13.2,"Male Householder (%)":3.1,"Female Householder (%)":6.5},"Somerset County, Pennsylvania":{"Married Couple (%)":73.7,"Cohabiting Couple (%)":8.1,"Male Householder (%)":5.3,"Female Householder (%)":13},"Sullivan County, Pennsylvania":{"Married Couple (%)":72.4,"Cohabiting Couple (%)":13.1,"Male Householder (%)":5.6,"Female Householder (%)":8.8},"Susquehanna County, Pennsylvania":{"Married Couple (%)":61.6,"Cohabiting Couple (%)":17.5,"Male Householder (%)":5.4,"Female Householder (%)":15.4},"Tioga County, Pennsylvania":{"Married Couple (%)":69.3,"Cohabiting Couple (%)":11.7,"Male Householder (%)":4.4,"Female Householder (%)":14.6},"Union County, Pennsylvania":{"Married Couple (%)":82.1,"Cohabiting Couple (%)":6.3,"Male Householder (%)":3,"Female Householder (%)":8.6},"Venango County, Pennsylvania":{"Married Couple (%)":68.1,"Cohabiting Couple (%)":12.4,"Male Householder (%)":5.2,"Female Householder (%)":14.3},"Warren County, Pennsylvania":{"Married Couple (%)":67.9,"Cohabiting Couple (%)":10.3,"Male Householder (%)":5.4,"Female Householder (%)":16.4},"Washington County, Pennsylvania":{"Married Couple (%)":70.9,"Cohabiting Couple (%)":8.4,"Male Householder (%)":4.6,"Female Householder (%)":16.1},"Wayne County, Pennsylvania":{"Married Couple (%)":66.2,"Cohabiting Couple (%)":11.7,"Male Householder (%)":4.7,"Female Householder (%)":17.4},"Westmoreland County, Pennsylvania":{"Married Couple (%)":73.3,"Cohabiting Couple (%)":7.9,"Male Householder (%)":4,"Female Householder (%)":14.7},"Wyoming County, Pennsylvania":{"Married Couple (%)":66.9,"Cohabiting Couple (%)":15.9,"Male Householder (%)":3.4,"Female Householder (%)":13.8},"York County, Pennsylvania":{"Married Couple (%)":66,"Cohabiting Couple (%)":11.7,"Male Householder (%)":5,"Female Householder (%)":17.4}};
+  const categories = ["Married Couple (%)","Cohabiting Couple (%)","Male Householder (%)","Female Householder (%)"];
+  const ctx = document.getElementById("barChart").getContext("2d");
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: categories,
+        datasets: [{
+          label: "Share of Children (%)",
+          data: values,
+          backgroundColor: ["#5DA5DA","#FAA43A","#60BD68","#F17CB0"]
+        }]
+      },
+      options: {
+        indexAxis: "y",
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            ticks: { callback: v => v + "%" },
+            title: { display: true, text: "Percent of Children" }
+          }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.raw + "%"
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById("countySelect").addEventListener("change", function() {
+    renderChart(Object.values(data[this.value]));
+  });
+
+  renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

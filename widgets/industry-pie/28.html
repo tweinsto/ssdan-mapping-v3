@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <title>Industry Distribution – Mississippi</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+        canvas { max-width: 600px; height: 500px; }
+        select { padding: 0.5rem; font-size: 1rem; margin: 1rem; }
+        .legend { max-width: 600px; margin: 1rem auto; display: flex; flex-wrap: wrap; justify-content: center; font-size: 0.9rem; }
+        .legend-item { display: flex; align-items: center; margin: 0.3rem 1rem; }
+        .legend-color { width: 12px; height: 12px; margin-right: 6px; border: 1px solid #444; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Industry Distribution in Mississippi</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Adams County, Mississippi">Adams County, Mississippi</option>
+      <option value="Alcorn County, Mississippi">Alcorn County, Mississippi</option>
+      <option value="Amite County, Mississippi">Amite County, Mississippi</option>
+      <option value="Attala County, Mississippi">Attala County, Mississippi</option>
+      <option value="Benton County, Mississippi">Benton County, Mississippi</option>
+      <option value="Bolivar County, Mississippi">Bolivar County, Mississippi</option>
+      <option value="Calhoun County, Mississippi">Calhoun County, Mississippi</option>
+      <option value="Carroll County, Mississippi">Carroll County, Mississippi</option>
+      <option value="Chickasaw County, Mississippi">Chickasaw County, Mississippi</option>
+      <option value="Choctaw County, Mississippi">Choctaw County, Mississippi</option>
+      <option value="Claiborne County, Mississippi">Claiborne County, Mississippi</option>
+      <option value="Clarke County, Mississippi">Clarke County, Mississippi</option>
+      <option value="Clay County, Mississippi">Clay County, Mississippi</option>
+      <option value="Coahoma County, Mississippi">Coahoma County, Mississippi</option>
+      <option value="Copiah County, Mississippi">Copiah County, Mississippi</option>
+      <option value="Covington County, Mississippi">Covington County, Mississippi</option>
+      <option value="DeSoto County, Mississippi">DeSoto County, Mississippi</option>
+      <option value="Forrest County, Mississippi">Forrest County, Mississippi</option>
+      <option value="Franklin County, Mississippi">Franklin County, Mississippi</option>
+      <option value="George County, Mississippi">George County, Mississippi</option>
+      <option value="Greene County, Mississippi">Greene County, Mississippi</option>
+      <option value="Grenada County, Mississippi">Grenada County, Mississippi</option>
+      <option value="Hancock County, Mississippi">Hancock County, Mississippi</option>
+      <option value="Harrison County, Mississippi">Harrison County, Mississippi</option>
+      <option value="Hinds County, Mississippi">Hinds County, Mississippi</option>
+      <option value="Holmes County, Mississippi">Holmes County, Mississippi</option>
+      <option value="Humphreys County, Mississippi">Humphreys County, Mississippi</option>
+      <option value="Issaquena County, Mississippi">Issaquena County, Mississippi</option>
+      <option value="Itawamba County, Mississippi">Itawamba County, Mississippi</option>
+      <option value="Jackson County, Mississippi">Jackson County, Mississippi</option>
+      <option value="Jasper County, Mississippi">Jasper County, Mississippi</option>
+      <option value="Jefferson County, Mississippi">Jefferson County, Mississippi</option>
+      <option value="Jefferson Davis County, Mississippi">Jefferson Davis County, Mississippi</option>
+      <option value="Jones County, Mississippi">Jones County, Mississippi</option>
+      <option value="Kemper County, Mississippi">Kemper County, Mississippi</option>
+      <option value="Lafayette County, Mississippi">Lafayette County, Mississippi</option>
+      <option value="Lamar County, Mississippi">Lamar County, Mississippi</option>
+      <option value="Lauderdale County, Mississippi">Lauderdale County, Mississippi</option>
+      <option value="Lawrence County, Mississippi">Lawrence County, Mississippi</option>
+      <option value="Leake County, Mississippi">Leake County, Mississippi</option>
+      <option value="Lee County, Mississippi">Lee County, Mississippi</option>
+      <option value="Leflore County, Mississippi">Leflore County, Mississippi</option>
+      <option value="Lincoln County, Mississippi">Lincoln County, Mississippi</option>
+      <option value="Lowndes County, Mississippi">Lowndes County, Mississippi</option>
+      <option value="Madison County, Mississippi">Madison County, Mississippi</option>
+      <option value="Marion County, Mississippi">Marion County, Mississippi</option>
+      <option value="Marshall County, Mississippi">Marshall County, Mississippi</option>
+      <option value="Monroe County, Mississippi">Monroe County, Mississippi</option>
+      <option value="Montgomery County, Mississippi">Montgomery County, Mississippi</option>
+      <option value="Neshoba County, Mississippi">Neshoba County, Mississippi</option>
+      <option value="Newton County, Mississippi">Newton County, Mississippi</option>
+      <option value="Noxubee County, Mississippi">Noxubee County, Mississippi</option>
+      <option value="Oktibbeha County, Mississippi">Oktibbeha County, Mississippi</option>
+      <option value="Panola County, Mississippi">Panola County, Mississippi</option>
+      <option value="Pearl River County, Mississippi">Pearl River County, Mississippi</option>
+      <option value="Perry County, Mississippi">Perry County, Mississippi</option>
+      <option value="Pike County, Mississippi">Pike County, Mississippi</option>
+      <option value="Pontotoc County, Mississippi">Pontotoc County, Mississippi</option>
+      <option value="Prentiss County, Mississippi">Prentiss County, Mississippi</option>
+      <option value="Quitman County, Mississippi">Quitman County, Mississippi</option>
+      <option value="Rankin County, Mississippi">Rankin County, Mississippi</option>
+      <option value="Scott County, Mississippi">Scott County, Mississippi</option>
+      <option value="Sharkey County, Mississippi">Sharkey County, Mississippi</option>
+      <option value="Simpson County, Mississippi">Simpson County, Mississippi</option>
+      <option value="Smith County, Mississippi">Smith County, Mississippi</option>
+      <option value="Stone County, Mississippi">Stone County, Mississippi</option>
+      <option value="Sunflower County, Mississippi">Sunflower County, Mississippi</option>
+      <option value="Tallahatchie County, Mississippi">Tallahatchie County, Mississippi</option>
+      <option value="Tate County, Mississippi">Tate County, Mississippi</option>
+      <option value="Tippah County, Mississippi">Tippah County, Mississippi</option>
+      <option value="Tishomingo County, Mississippi">Tishomingo County, Mississippi</option>
+      <option value="Tunica County, Mississippi">Tunica County, Mississippi</option>
+      <option value="Union County, Mississippi">Union County, Mississippi</option>
+      <option value="Walthall County, Mississippi">Walthall County, Mississippi</option>
+      <option value="Warren County, Mississippi">Warren County, Mississippi</option>
+      <option value="Washington County, Mississippi">Washington County, Mississippi</option>
+      <option value="Wayne County, Mississippi">Wayne County, Mississippi</option>
+      <option value="Webster County, Mississippi">Webster County, Mississippi</option>
+      <option value="Wilkinson County, Mississippi">Wilkinson County, Mississippi</option>
+      <option value="Winston County, Mississippi">Winston County, Mississippi</option>
+      <option value="Yalobusha County, Mississippi">Yalobusha County, Mississippi</option>
+      <option value="Yazoo County, Mississippi">Yazoo County, Mississippi</option>
+    </select>
+    <canvas id="pieChart"></canvas>
+    <div class="legend">
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#66CC66;"></div>
+        <span>Agriculture, forestry, fishing, and hunting</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#996600;"></div>
+        <span>Mining</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FF6600;"></div>
+        <span>Utilities</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FFCC33;"></div>
+        <span>Construction</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FF0000;"></div>
+        <span>Manufacturing</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FF66FF;"></div>
+        <span>Wholesale trade</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#3399FF;"></div>
+        <span>Retail trade</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#00CC99;"></div>
+        <span>Transportation and warehousing</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#999966;"></div>
+        <span>Information</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#6666FF;"></div>
+        <span>Finance and insurance</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FF99CC;"></div>
+        <span>Professional, scientific, and technical services</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#66CCCC;"></div>
+        <span>Educational services</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FF9933;"></div>
+        <span>Healthcare and social assistance</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#CC99FF;"></div>
+        <span>Arts, entertainment, and recreation</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FF9999;"></div>
+        <span>Accommodation and food services</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#CCCC00;"></div>
+        <span>Other services</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#663300;"></div>
+        <span>Public administration</span>
+      </div>
+    </div>
+    <script>const data = [];
+const colors = ["#66CC66","#996600","#FF6600","#FFCC33","#FF0000","#FF66FF","#3399FF","#00CC99","#999966","#6666FF","#FF99CC","#66CCCC","#FF9933","#CC99FF","#FF9999","#CCCC00","#663300"];
+let chart;
+function renderChart(region) {
+  const ctx = document.getElementById("pieChart").getContext("2d");
+  const labels = Object.keys(data[region]);
+  const values = Object.values(data[region]);
+  const backgroundColors = labels.map(l => colors[l] || "#999");
+  if (chart) chart.destroy();
+  chart = new Chart(ctx, {
+    type: "pie",
+    data: {
+      labels: labels,
+      datasets: [{
+        data: values,
+        backgroundColor: backgroundColors
+      }]
+    },
+    options: {
+      plugins: {
+        tooltip: {
+          callbacks: {
+            label: ctx => ctx.label + ": " + ctx.raw + "%"
+          }
+        }
+      }
+    }
+  });
+}
+document.getElementById("countySelect").addEventListener("change", function() {
+  renderChart(this.value);
+});
+renderChart("Statewide");</script>
+  </body>
+</html>
+</html>

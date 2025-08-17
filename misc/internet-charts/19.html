@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Internet Access Over Time –  Iowa</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+                      h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+                      select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; border-radius: 5px; border: 1px solid #999; }
+                      canvas { width: 100%; max-width: 850px; height: 450px; margin-top: 1rem; }</style>
+</head>
+<html>
+  <body>
+    <h2>Internet Access in  Iowa (2013–2023)</h2>
+    <label>Select County: </label>
+    <select id="countySelect"><option value='Statewide'>Statewide</option>
+<option value='Adair County, Iowa'>Adair County, Iowa</option>
+<option value='Adams County, Iowa'>Adams County, Iowa</option>
+<option value='Allamakee County, Iowa'>Allamakee County, Iowa</option>
+<option value='Appanoose County, Iowa'>Appanoose County, Iowa</option>
+<option value='Audubon County, Iowa'>Audubon County, Iowa</option>
+<option value='Benton County, Iowa'>Benton County, Iowa</option>
+<option value='Black Hawk County, Iowa'>Black Hawk County, Iowa</option>
+<option value='Boone County, Iowa'>Boone County, Iowa</option>
+<option value='Bremer County, Iowa'>Bremer County, Iowa</option>
+<option value='Buchanan County, Iowa'>Buchanan County, Iowa</option>
+<option value='Buena Vista County, Iowa'>Buena Vista County, Iowa</option>
+<option value='Butler County, Iowa'>Butler County, Iowa</option>
+<option value='Calhoun County, Iowa'>Calhoun County, Iowa</option>
+<option value='Carroll County, Iowa'>Carroll County, Iowa</option>
+<option value='Cass County, Iowa'>Cass County, Iowa</option>
+<option value='Cedar County, Iowa'>Cedar County, Iowa</option>
+<option value='Cerro Gordo County, Iowa'>Cerro Gordo County, Iowa</option>
+<option value='Cherokee County, Iowa'>Cherokee County, Iowa</option>
+<option value='Chickasaw County, Iowa'>Chickasaw County, Iowa</option>
+<option value='Clarke County, Iowa'>Clarke County, Iowa</option>
+<option value='Clay County, Iowa'>Clay County, Iowa</option>
+<option value='Clayton County, Iowa'>Clayton County, Iowa</option>
+<option value='Clinton County, Iowa'>Clinton County, Iowa</option>
+<option value='Crawford County, Iowa'>Crawford County, Iowa</option>
+<option value='Dallas County, Iowa'>Dallas County, Iowa</option>
+<option value='Davis County, Iowa'>Davis County, Iowa</option>
+<option value='Decatur County, Iowa'>Decatur County, Iowa</option>
+<option value='Delaware County, Iowa'>Delaware County, Iowa</option>
+<option value='Des Moines County, Iowa'>Des Moines County, Iowa</option>
+<option value='Dickinson County, Iowa'>Dickinson County, Iowa</option>
+<option value='Dubuque County, Iowa'>Dubuque County, Iowa</option>
+<option value='Emmet County, Iowa'>Emmet County, Iowa</option>
+<option value='Fayette County, Iowa'>Fayette County, Iowa</option>
+<option value='Floyd County, Iowa'>Floyd County, Iowa</option>
+<option value='Franklin County, Iowa'>Franklin County, Iowa</option>
+<option value='Fremont County, Iowa'>Fremont County, Iowa</option>
+<option value='Greene County, Iowa'>Greene County, Iowa</option>
+<option value='Grundy County, Iowa'>Grundy County, Iowa</option>
+<option value='Guthrie County, Iowa'>Guthrie County, Iowa</option>
+<option value='Hamilton County, Iowa'>Hamilton County, Iowa</option>
+<option value='Hancock County, Iowa'>Hancock County, Iowa</option>
+<option value='Hardin County, Iowa'>Hardin County, Iowa</option>
+<option value='Harrison County, Iowa'>Harrison County, Iowa</option>
+<option value='Henry County, Iowa'>Henry County, Iowa</option>
+<option value='Howard County, Iowa'>Howard County, Iowa</option>
+<option value='Humboldt County, Iowa'>Humboldt County, Iowa</option>
+<option value='Ida County, Iowa'>Ida County, Iowa</option>
+<option value='Iowa County, Iowa'>Iowa County, Iowa</option>
+<option value='Jackson County, Iowa'>Jackson County, Iowa</option>
+<option value='Jasper County, Iowa'>Jasper County, Iowa</option>
+<option value='Jefferson County, Iowa'>Jefferson County, Iowa</option>
+<option value='Johnson County, Iowa'>Johnson County, Iowa</option>
+<option value='Jones County, Iowa'>Jones County, Iowa</option>
+<option value='Keokuk County, Iowa'>Keokuk County, Iowa</option>
+<option value='Kossuth County, Iowa'>Kossuth County, Iowa</option>
+<option value='Lee County, Iowa'>Lee County, Iowa</option>
+<option value='Linn County, Iowa'>Linn County, Iowa</option>
+<option value='Louisa County, Iowa'>Louisa County, Iowa</option>
+<option value='Lucas County, Iowa'>Lucas County, Iowa</option>
+<option value='Lyon County, Iowa'>Lyon County, Iowa</option>
+<option value='Madison County, Iowa'>Madison County, Iowa</option>
+<option value='Mahaska County, Iowa'>Mahaska County, Iowa</option>
+<option value='Marion County, Iowa'>Marion County, Iowa</option>
+<option value='Marshall County, Iowa'>Marshall County, Iowa</option>
+<option value='Mills County, Iowa'>Mills County, Iowa</option>
+<option value='Mitchell County, Iowa'>Mitchell County, Iowa</option>
+<option value='Monona County, Iowa'>Monona County, Iowa</option>
+<option value='Monroe County, Iowa'>Monroe County, Iowa</option>
+<option value='Montgomery County, Iowa'>Montgomery County, Iowa</option>
+<option value='Muscatine County, Iowa'>Muscatine County, Iowa</option>
+<option value='O'Brien County, Iowa'>O'Brien County, Iowa</option>
+<option value='Osceola County, Iowa'>Osceola County, Iowa</option>
+<option value='Page County, Iowa'>Page County, Iowa</option>
+<option value='Palo Alto County, Iowa'>Palo Alto County, Iowa</option>
+<option value='Plymouth County, Iowa'>Plymouth County, Iowa</option>
+<option value='Pocahontas County, Iowa'>Pocahontas County, Iowa</option>
+<option value='Polk County, Iowa'>Polk County, Iowa</option>
+<option value='Pottawattamie County, Iowa'>Pottawattamie County, Iowa</option>
+<option value='Poweshiek County, Iowa'>Poweshiek County, Iowa</option>
+<option value='Ringgold County, Iowa'>Ringgold County, Iowa</option>
+<option value='Sac County, Iowa'>Sac County, Iowa</option>
+<option value='Scott County, Iowa'>Scott County, Iowa</option>
+<option value='Shelby County, Iowa'>Shelby County, Iowa</option>
+<option value='Sioux County, Iowa'>Sioux County, Iowa</option>
+<option value='Story County, Iowa'>Story County, Iowa</option>
+<option value='Tama County, Iowa'>Tama County, Iowa</option>
+<option value='Taylor County, Iowa'>Taylor County, Iowa</option>
+<option value='Union County, Iowa'>Union County, Iowa</option>
+<option value='Van Buren County, Iowa'>Van Buren County, Iowa</option>
+<option value='Wapello County, Iowa'>Wapello County, Iowa</option>
+<option value='Warren County, Iowa'>Warren County, Iowa</option>
+<option value='Washington County, Iowa'>Washington County, Iowa</option>
+<option value='Wayne County, Iowa'>Wayne County, Iowa</option>
+<option value='Webster County, Iowa'>Webster County, Iowa</option>
+<option value='Winnebago County, Iowa'>Winnebago County, Iowa</option>
+<option value='Winneshiek County, Iowa'>Winneshiek County, Iowa</option>
+<option value='Woodbury County, Iowa'>Woodbury County, Iowa</option>
+<option value='Worth County, Iowa'>Worth County, Iowa</option>
+<option value='Wright County, Iowa'>Wright County, Iowa</option></select>
+    <canvas id="lineChart" width="850" height="450"></canvas>
+    <script>const internetData = {"Statewide":{"2017":81.5,"2018":83.3,"2019":85,"2020":87,"2021":88.6,"2022":90,"2023":91.3},"Adair County, Iowa":{"2017":77.6,"2018":77.6,"2019":77.1,"2020":79.3,"2021":80,"2022":81.5,"2023":85.8},"Adams County, Iowa":{"2017":75,"2018":78.1,"2019":80.4,"2020":82.7,"2021":85,"2022":85.6,"2023":84.8},"Allamakee County, Iowa":{"2017":71.5,"2018":74.9,"2019":76.3,"2020":77,"2021":81.8,"2022":85.9,"2023":87.5},"Appanoose County, Iowa":{"2017":70.9,"2018":72.1,"2019":74.1,"2020":79.1,"2021":82.9,"2022":86,"2023":87.7},"Audubon County, Iowa":{"2017":75.4,"2018":78.3,"2019":80.8,"2020":81.6,"2021":83.8,"2022":84.5,"2023":85.3},"Benton County, Iowa":{"2017":78.4,"2018":81.4,"2019":83.3,"2020":85.8,"2021":89,"2022":89.1,"2023":90},"Black Hawk County, Iowa":{"2017":81.5,"2018":83,"2019":85.2,"2020":86.9,"2021":88.5,"2022":90.2,"2023":91.5},"Boone County, Iowa":{"2017":83,"2018":84.6,"2019":86.3,"2020":87.9,"2021":88.1,"2022":90.8,"2023":92.2},"Bremer County, Iowa":{"2017":81.7,"2018":83.6,"2019":86.7,"2020":88.9,"2021":90.1,"2022":92.4,"2023":93},"Buchanan County, Iowa":{"2017":77.6,"2018":80.2,"2019":81.9,"2020":83.5,"2021":86.8,"2022":87.6,"2023":88.1},"Buena Vista County, Iowa":{"2017":80.1,"2018":81.2,"2019":86.7,"2020":87.9,"2021":87.7,"2022":90.8,"2023":94.3},"Butler County, Iowa":{"2017":75.8,"2018":77.9,"2019":79.3,"2020":81.2,"2021":84.8,"2022":85.9,"2023":87.7},"Calhoun County, Iowa":{"2017":75.5,"2018":79.8,"2019":83.5,"2020":86.8,"2021":88,"2022":89.8,"2023":90.6},"Carroll County, Iowa":{"2017":78.1,"2018":81.2,"2019":83.5,"2020":84.4,"2021":85,"2022":86.8,"2023":87.5},"Cass County, Iowa":{"2017":77.4,"2018":78.7,"2019":79.4,"2020":82.5,"2021":85.2,"2022":86.3,"2023":87.2},"Cedar County, Iowa":{"2017":81.5,"2018":82.7,"2019":83.6,"2020":84.5,"2021":85.6,"2022":86.3,"2023":88.7},"Cerro Gordo County, Iowa":{"2017":77.9,"2018":81.1,"2019":82.4,"2020":84.5,"2021":86.4,"2022":89,"2023":89.8},"Cherokee County, Iowa":{"2017":80.8,"2018":82.7,"2019":81.6,"2020":83.6,"2021":83.7,"2022":85.2,"2023":87.6},"Chickasaw County, Iowa":{"2017":76.9,"2018":78.6,"2019":79.7,"2020":83.5,"2021":86.4,"2022":87.1,"2023":88.6},"Clarke County, Iowa":{"2017":79.9,"2018":82.1,"2019":81.6,"2020":80.8,"2021":82,"2022":85,"2023":87},"Clay County, Iowa":{"2017":80.9,"2018":82.1,"2019":84.7,"2020":87.1,"2021":89.4,"2022":90.8,"2023":93.3},"Clayton County, Iowa":{"2017":73.4,"2018":76.5,"2019":78.7,"2020":82.8,"2021":83.9,"2022":85.1,"2023":86.2},"Clinton County, Iowa":{"2017":76.6,"2018":79.5,"2019":80.4,"2020":81.3,"2021":85.1,"2022":86.4,"2023":88.5},"Crawford County, Iowa":{"2017":71.5,"2018":77.3,"2019":78.3,"2020":82.2,"2021":84.3,"2022":86.7,"2023":89},"Dallas County, Iowa":{"2017":90.4,"2018":91.1,"2019":91.9,"2020":93.7,"2021":94.3,"2022":94.6,"2023":95.6},"Davis County, Iowa":{"2017":64.8,"2018":65.5,"2019":67.3,"2020":67.4,"2021":69.7,"2022":71.2,"2023":74.2},"Decatur County, Iowa":{"2017":68.6,"2018":74.2,"2019":78,"2020":83,"2021":84.7,"2022":86.4,"2023":86.6},"Delaware County, Iowa":{"2017":79.8,"2018":81.9,"2019":83.9,"2020":84.8,"2021":86.6,"2022":87.8,"2023":88.5},"Des Moines County, Iowa":{"2017":77.3,"2018":78,"2019":80.7,"2020":82.3,"2021":84.1,"2022":86.5,"2023":90.4},"Dickinson County, Iowa":{"2017":83.7,"2018":85.1,"2019":86.1,"2020":88.1,"2021":89.9,"2022":91,"2023":92.2},"Dubuque County, Iowa":{"2017":84,"2018":85.5,"2019":86.9,"2020":89.1,"2021":90.4,"2022":91.6,"2023":92.5},"Emmet County, Iowa":{"2017":76.5,"2018":76.8,"2019":80.9,"2020":84.7,"2021":84.1,"2022":87,"2023":88.8},"Fayette County, Iowa":{"2017":76.1,"2018":78.8,"2019":80.6,"2020":81.4,"2021":84.1,"2022":85.9,"2023":86.4},"Floyd County, Iowa":{"2017":76.7,"2018":76.9,"2019":79.5,"2020":81.9,"2021":83.3,"2022":83.7,"2023":83.8},"Franklin County, Iowa":{"2017":72.6,"2018":72.7,"2019":76.9,"2020":79,"2021":82.1,"2022":82.8,"2023":83.9},"Fremont County, Iowa":{"2017":78.6,"2018":80.3,"2019":83.8,"2020":85.3,"2021":85.6,"2022":87.9,"2023":89.1},"Greene County, Iowa":{"2017":79.6,"2018":81.8,"2019":85.4,"2020":88,"2021":89.7,"2022":90,"2023":92},"Grundy County, Iowa":{"2017":81.4,"2018":83.3,"2019":85.3,"2020":86.8,"2021":87.9,"2022":89.2,"2023":90.7},"Guthrie County, Iowa":{"2017":79.6,"2018":81,"2019":83.4,"2020":85.8,"2021":87.8,"2022":89,"2023":90.5},"Hamilton County, Iowa":{"2017":76.5,"2018":78.9,"2019":80.2,"2020":84.7,"2021":84.7,"2022":84.9,"2023":85.5},"Hancock County, Iowa":{"2017":76.7,"2018":79.9,"2019":81,"2020":84.3,"2021":86.4,"2022":88.3,"2023":90},"Hardin County, Iowa":{"2017":74.7,"2018":76.7,"2019":77.8,"2020":77.9,"2021":80,"2022":83.5,"2023":85.6},"Harrison County, Iowa":{"2017":77.5,"2018":77.9,"2019":79.8,"2020":83.1,"2021":85,"2022":87.6,"2023":88.5},"Henry County, Iowa":{"2017":77.9,"2018":79.3,"2019":80.8,"2020":82.5,"2021":84.3,"2022":86.3,"2023":87.8},"Howard County, Iowa":{"2017":73.7,"2018":77.1,"2019":79.1,"2020":83.5,"2021":86.2,"2022":86.3,"2023":87.9},"Humboldt County, Iowa":{"2017":77.6,"2018":79.7,"2019":81.6,"2020":82.3,"2021":83.1,"2022":86.4,"2023":90},"Ida County, Iowa":{"2017":75.8,"2018":77.6,"2019":81.4,"2020":83.9,"2021":84.8,"2022":87.3,"2023":88.5},"Iowa County, Iowa":{"2017":76.5,"2018":78.8,"2019":82,"2020":85.3,"2021":87.4,"2022":89.8,"2023":92.3},"Jackson County, Iowa":{"2017":75.4,"2018":78.4,"2019":81.2,"2020":82.6,"2021":84.2,"2022":85.2,"2023":86.1},"Jasper County, Iowa":{"2017":77.8,"2018":80.1,"2019":82.9,"2020":84.5,"2021":86.7,"2022":89.4,"2023":92},"Jefferson County, Iowa":{"2017":83,"2018":81.1,"2019":83.5,"2020":86.3,"2021":88.1,"2022":89,"2023":91.6},"Johnson County, Iowa":{"2017":90.4,"2018":91.4,"2019":91.9,"2020":93.3,"2021":94.1,"2022":94.4,"2023":95.2},"Jones County, Iowa":{"2017":77.2,"2018":79,"2019":82.6,"2020":81.9,"2021":85.4,"2022":87.2,"2023":88},"Keokuk County, Iowa":{"2017":73.2,"2018":76.4,"2019":78.4,"2020":81.3,"2021":82.5,"2022":84.8,"2023":86.5},"Kossuth County, Iowa":{"2017":78,"2018":79.1,"2019":81.3,"2020":84.6,"2021":85.5,"2022":86.2,"2023":89.8},"Lee County, Iowa":{"2017":75.2,"2018":77.2,"2019":79.5,"2020":83.8,"2021":86.4,"2022":86.2,"2023":88.6},"Linn County, Iowa":{"2017":85.2,"2018":86.8,"2019":88.5,"2020":90.8,"2021":92.2,"2022":93.5,"2023":94.4},"Louisa County, Iowa":{"2017":78.1,"2018":78.7,"2019":80.8,"2020":83,"2021":85.9,"2022":88.4,"2023":91.2},"Lucas County, Iowa":{"2017":74.9,"2018":77.7,"2019":79.4,"2020":81.8,"2021":80,"2022":81.2,"2023":80.4},"Lyon County, Iowa":{"2017":82.9,"2018":83.6,"2019":87.6,"2020":88.1,"2021":90.1,"2022":90.2,"2023":92.4},"Madison County, Iowa":{"2017":79.7,"2018":82.4,"2019":83.2,"2020":85.3,"2021":87.5,"2022":87.4,"2023":87},"Mahaska County, Iowa":{"2017":81.1,"2018":82.2,"2019":83.5,"2020":84.9,"2021":86.8,"2022":89.3,"2023":90.9},"Marion County, Iowa":{"2017":79.9,"2018":80.7,"2019":83.4,"2020":86.3,"2021":88.1,"2022":89.4,"2023":91.5},"Marshall County, Iowa":{"2017":75.6,"2018":77.7,"2019":80.5,"2020":82.9,"2021":83.5,"2022":86.6,"2023":89.1},"Mills County, Iowa":{"2017":82.4,"2018":84.8,"2019":87.8,"2020":90.3,"2021":90.4,"2022":90.3,"2023":91.8},"Mitchell County, Iowa":{"2017":76.5,"2018":79.3,"2019":83.2,"2020":86.1,"2021":88.4,"2022":89.9,"2023":91.8},"Monona County, Iowa":{"2017":75.7,"2018":78.4,"2019":79.1,"2020":80.4,"2021":82.4,"2022":84.5,"2023":85.8},"Monroe County, Iowa":{"2017":74.3,"2018":76.7,"2019":80.4,"2020":81,"2021":83.3,"2022":86.1,"2023":87.7},"Montgomery County, Iowa":{"2017":77.9,"2018":81.4,"2019":82.7,"2020":81.6,"2021":83.7,"2022":83.6,"2023":85.8},"Muscatine County, Iowa":{"2017":79.9,"2018":80.4,"2019":83.7,"2020":86.7,"2021":88.5,"2022":90.1,"2023":92.6},"O'Brien County, Iowa":{"2017":78.6,"2018":81.5,"2019":83,"2020":85.7,"2021":89.2,"2022":91.8,"2023":91.2},"Osceola County, Iowa":{"2017":79.4,"2018":83.6,"2019":86.7,"2020":88.2,"2021":88.1,"2022":89.5,"2023":88.9},"Page County, Iowa":{"2017":78,"2018":79.9,"2019":83.3,"2020":84.7,"2021":86.8,"2022":88.6,"2023":89.6},"Palo Alto County, Iowa":{"2017":78.8,"2018":80.1,"2019":79.7,"2020":82.5,"2021":83.1,"2022":85.7,"2023":89.1},"Plymouth County, Iowa":{"2017":82.2,"2018":85.1,"2019":87.2,"2020":88.2,"2021":89.5,"2022":90.1,"2023":91.6},"Pocahontas County, Iowa":{"2017":77.7,"2018":79.7,"2019":82.3,"2020":84.3,"2021":86.4,"2022":87.7,"2023":89.1},"Polk County, Iowa":{"2017":86.2,"2018":87.7,"2019":88.6,"2020":90.5,"2021":91.5,"2022":92.9,"2023":93.9},"Pottawattamie County, Iowa":{"2017":79.6,"2018":81.2,"2019":83.3,"2020":85,"2021":85.8,"2022":87.3,"2023":88.1},"Poweshiek County, Iowa":{"2017":79.3,"2018":81.8,"2019":82.5,"2020":85.1,"2021":85.5,"2022":87.3,"2023":88.7},"Ringgold County, Iowa":{"2017":71.5,"2018":75.7,"2019":78.4,"2020":81.4,"2021":82.8,"2022":85.6,"2023":84.8},"Sac County, Iowa":{"2017":76.5,"2018":79.2,"2019":81.9,"2020":82.3,"2021":84.4,"2022":85.6,"2023":86},"Scott County, Iowa":{"2017":80.1,"2018":82.1,"2019":84.2,"2020":86.3,"2021":89.1,"2022":90.4,"2023":91.8},"Shelby County, Iowa":{"2017":79.4,"2018":80.4,"2019":81.2,"2020":82,"2021":82.6,"2022":84.8,"2023":87.8},"Sioux County, Iowa":{"2017":85.6,"2018":88.5,"2019":89.9,"2020":91.6,"2021":92.7,"2022":92.6,"2023":93.1},"Story County, Iowa":{"2017":91.9,"2018":92.8,"2019":93,"2020":93.4,"2021":93.9,"2022":94.7,"2023":95.1},"Tama County, Iowa":{"2017":76.8,"2018":79.5,"2019":80.3,"2020":82.9,"2021":85.7,"2022":86.9,"2023":87.6},"Taylor County, Iowa":{"2017":76.1,"2018":76.5,"2019":80.4,"2020":81.6,"2021":82.9,"2022":84,"2023":86.5},"Union County, Iowa":{"2017":76,"2018":78.2,"2019":81.9,"2020":85.8,"2021":85.5,"2022":88,"2023":88.8},"Van Buren County, Iowa":{"2017":68,"2018":67.9,"2019":71.1,"2020":75.2,"2021":72.8,"2022":74.6,"2023":78.6},"Wapello County, Iowa":{"2017":75.1,"2018":77.1,"2019":78.6,"2020":81.2,"2021":83.1,"2022":84.2,"2023":86.8},"Warren County, Iowa":{"2017":85.6,"2018":86.3,"2019":88,"2020":89.1,"2021":91.4,"2022":92.2,"2023":93.6},"Washington County, Iowa":{"2017":79.4,"2018":81.2,"2019":84.4,"2020":87.2,"2021":88.5,"2022":88.5,"2023":90.1},"Wayne County, Iowa":{"2017":69.2,"2018":72,"2019":73.9,"2020":75.5,"2021":76.4,"2022":78.5,"2023":81.6},"Webster County, Iowa":{"2017":76.7,"2018":79.3,"2019":80.3,"2020":83.6,"2021":85.2,"2022":87.4,"2023":88.8},"Winnebago County, Iowa":{"2017":78.8,"2018":81,"2019":81.8,"2020":84.9,"2021":86.7,"2022":88.3,"2023":90.7},"Winneshiek County, Iowa":{"2017":79.6,"2018":82.4,"2019":84.9,"2020":84.8,"2021":85.9,"2022":88.1,"2023":89.3},"Woodbury County, Iowa":{"2017":78,"2018":81.1,"2019":83.5,"2020":86.3,"2021":87.2,"2022":88.6,"2023":90.2},"Worth County, Iowa":{"2017":74.1,"2018":78.7,"2019":82,"2020":81.7,"2021":84.2,"2022":86.4,"2023":86.2},"Wright County, Iowa":{"2017":75,"2018":74.6,"2019":76.9,"2020":79.3,"2021":80.7,"2022":83.8,"2023":85.7}};
+const ctx = document.getElementById('lineChart').getContext('2d');
+let chart;
+
+function renderChart(data) {
+  const labels = Object.keys(data);
+  const values = Object.values(data);
+
+  if (chart) chart.destroy();
+  chart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: labels,
+      datasets: [{
+        label: '% With Internet',
+        data: values,
+        fill: false,
+        borderColor: 'teal',
+        backgroundColor: 'teal',
+        tension: 0.3,
+        pointRadius: 4
+      }]
+    },
+    options: {
+      responsive: true,
+      scales: {
+        y: {
+          beginAtZero: true,
+          max: 100,
+          title: { display: true, text: '% With Internet' }
+        },
+        x: {
+          title: { display: true, text: 'Year' }
+        }
+      },
+      plugins: {
+        tooltip: {
+          callbacks: {
+            label: function(ctx) {
+              return ctx.parsed.y.toFixed(1) + '%';
+            }
+          }
+        }
+      }
+    }
+  });
+}
+
+document.getElementById('countySelect').addEventListener('change', function() {
+  renderChart(internetData[this.value]);
+});
+renderChart(internetData['Statewide']);</script>
+  </body>
+</html>
+</html>

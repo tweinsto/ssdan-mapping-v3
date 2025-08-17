@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Income Distribution – Alabama</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          text-align: center;
+          margin: 2rem;
+        }
+        select {
+          font-size: 1rem;
+          padding: 0.4rem;
+          margin-bottom: 1rem;
+        }
+        canvas {
+          width: 100%;
+          max-width: 700px;
+          height: 400px;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Income Share by Quintile – Alabama</h2>
+    <label>Select County, State:</label>
+    <select id="countySelect"><option value='Statewide'>Statewide</option>
+<option value='Autauga, Alabama'>Autauga, Alabama</option>
+<option value='Baldwin, Alabama'>Baldwin, Alabama</option>
+<option value='Barbour, Alabama'>Barbour, Alabama</option>
+<option value='Bibb, Alabama'>Bibb, Alabama</option>
+<option value='Blount, Alabama'>Blount, Alabama</option>
+<option value='Bullock, Alabama'>Bullock, Alabama</option>
+<option value='Butler, Alabama'>Butler, Alabama</option>
+<option value='Calhoun, Alabama'>Calhoun, Alabama</option>
+<option value='Chambers, Alabama'>Chambers, Alabama</option>
+<option value='Cherokee, Alabama'>Cherokee, Alabama</option>
+<option value='Chilton, Alabama'>Chilton, Alabama</option>
+<option value='Choctaw, Alabama'>Choctaw, Alabama</option>
+<option value='Clarke, Alabama'>Clarke, Alabama</option>
+<option value='Clay, Alabama'>Clay, Alabama</option>
+<option value='Cleburne, Alabama'>Cleburne, Alabama</option>
+<option value='Coffee, Alabama'>Coffee, Alabama</option>
+<option value='Colbert, Alabama'>Colbert, Alabama</option>
+<option value='Conecuh, Alabama'>Conecuh, Alabama</option>
+<option value='Coosa, Alabama'>Coosa, Alabama</option>
+<option value='Covington, Alabama'>Covington, Alabama</option>
+<option value='Crenshaw, Alabama'>Crenshaw, Alabama</option>
+<option value='Cullman, Alabama'>Cullman, Alabama</option>
+<option value='Dale, Alabama'>Dale, Alabama</option>
+<option value='Dallas, Alabama'>Dallas, Alabama</option>
+<option value='DeKalb, Alabama'>DeKalb, Alabama</option>
+<option value='Elmore, Alabama'>Elmore, Alabama</option>
+<option value='Escambia, Alabama'>Escambia, Alabama</option>
+<option value='Etowah, Alabama'>Etowah, Alabama</option>
+<option value='Fayette, Alabama'>Fayette, Alabama</option>
+<option value='Franklin, Alabama'>Franklin, Alabama</option>
+<option value='Geneva, Alabama'>Geneva, Alabama</option>
+<option value='Greene, Alabama'>Greene, Alabama</option>
+<option value='Hale, Alabama'>Hale, Alabama</option>
+<option value='Henry, Alabama'>Henry, Alabama</option>
+<option value='Houston, Alabama'>Houston, Alabama</option>
+<option value='Jackson, Alabama'>Jackson, Alabama</option>
+<option value='Jefferson, Alabama'>Jefferson, Alabama</option>
+<option value='Lamar, Alabama'>Lamar, Alabama</option>
+<option value='Lauderdale, Alabama'>Lauderdale, Alabama</option>
+<option value='Lawrence, Alabama'>Lawrence, Alabama</option>
+<option value='Lee, Alabama'>Lee, Alabama</option>
+<option value='Limestone, Alabama'>Limestone, Alabama</option>
+<option value='Lowndes, Alabama'>Lowndes, Alabama</option>
+<option value='Macon, Alabama'>Macon, Alabama</option>
+<option value='Madison, Alabama'>Madison, Alabama</option>
+<option value='Marengo, Alabama'>Marengo, Alabama</option>
+<option value='Marion, Alabama'>Marion, Alabama</option>
+<option value='Marshall, Alabama'>Marshall, Alabama</option>
+<option value='Mobile, Alabama'>Mobile, Alabama</option>
+<option value='Monroe, Alabama'>Monroe, Alabama</option>
+<option value='Montgomery, Alabama'>Montgomery, Alabama</option>
+<option value='Morgan, Alabama'>Morgan, Alabama</option>
+<option value='Perry, Alabama'>Perry, Alabama</option>
+<option value='Pickens, Alabama'>Pickens, Alabama</option>
+<option value='Pike, Alabama'>Pike, Alabama</option>
+<option value='Randolph, Alabama'>Randolph, Alabama</option>
+<option value='Russell, Alabama'>Russell, Alabama</option>
+<option value='Shelby, Alabama'>Shelby, Alabama</option>
+<option value='St. Clair, Alabama'>St. Clair, Alabama</option>
+<option value='Sumter, Alabama'>Sumter, Alabama</option>
+<option value='Talladega, Alabama'>Talladega, Alabama</option>
+<option value='Tallapoosa, Alabama'>Tallapoosa, Alabama</option>
+<option value='Tuscaloosa, Alabama'>Tuscaloosa, Alabama</option>
+<option value='Walker, Alabama'>Walker, Alabama</option>
+<option value='Washington, Alabama'>Washington, Alabama</option>
+<option value='Wilcox, Alabama'>Wilcox, Alabama</option>
+<option value='Winston, Alabama'>Winston, Alabama</option></select>
+    <canvas id="barChart" width="700" height="400"></canvas>
+    <script>  const incomeData = {"Statewide":[4.8,8.3,13.2,27.6,46],"Autauga, Alabama":[5.1,8.3,12.5,27.1,47],"Baldwin, Alabama":[5,8.1,12.4,27.1,47.5],"Barbour, Alabama":[3.9,7.1,12,27.8,49.3],"Bibb, Alabama":[5,8.7,14.3,27.6,44.4],"Blount, Alabama":[5.3,8.9,14,27.5,44.3],"Bullock, Alabama":[4.1,7.8,12.8,28.8,46.5],"Butler, Alabama":[4,7,11.9,27.7,49.4],"Calhoun, Alabama":[4.9,8.5,13.4,26.9,46.3],"Chambers, Alabama":[5.3,9.1,14.7,27.8,43],"Cherokee, Alabama":[5.1,8.2,12.7,27.6,46.4],"Chilton, Alabama":[5.6,9.4,13.8,26.7,44.4],"Choctaw, Alabama":[5,8.7,15.2,29.2,41.8],"Clarke, Alabama":[3.7,6.6,11,26.8,52],"Clay, Alabama":[4.9,8,12.5,27,47.6],"Cleburne, Alabama":[5.1,8.3,13.6,26.7,46.4],"Coffee, Alabama":[5.4,9.4,14.9,27.9,42.4],"Colbert, Alabama":[5.3,8.6,13.5,27.3,45.3],"Conecuh, Alabama":[4.5,7.6,12,27.6,48.3],"Coosa, Alabama":[6.6,10.1,14.9,27.5,41],"Covington, Alabama":[4.2,7.4,12.1,27.7,48.7],"Crenshaw, Alabama":[3.8,6.8,11.3,26.8,51.3],"Cullman, Alabama":[5.5,9.1,14,27.6,43.8],"Dale, Alabama":[5.1,8.8,13.7,27.2,45.2],"Dallas, Alabama":[3.9,7,12.1,28.2,48.8],"DeKalb, Alabama":[5.2,8.9,13.8,27.4,44.6],"Elmore, Alabama":[5.4,8.7,12.9,26.3,46.7],"Escambia, Alabama":[4.9,8.6,13.7,28.4,44.4],"Etowah, Alabama":[4.5,7.7,11.9,26.9,49],"Fayette, Alabama":[4.6,8.2,14.1,27.1,45.9],"Franklin, Alabama":[5.3,9.3,14.5,28.1,42.9],"Geneva, Alabama":[5.7,9.5,14.4,27.7,42.7],"Greene, Alabama":[4.2,7,11.6,28.1,49],"Hale, Alabama":[3.8,7.2,13.2,28.1,47.7],"Henry, Alabama":[4.2,8.2,13.1,27,47.6],"Houston, Alabama":[4.5,7.7,12.4,27.4,48],"Jackson, Alabama":[5.3,8.6,13.8,28,44.3],"Jefferson, Alabama":[3.9,6.8,11.1,27.3,51],"Lamar, Alabama":[5.6,9.7,15.3,28.5,40.8],"Lauderdale, Alabama":[5,8.5,13,27.4,46.1],"Lawrence, Alabama":[5.5,9.1,13.5,27.2,44.8],"Lee, Alabama":[4,7.5,12.3,27.5,48.6],"Limestone, Alabama":[5.7,9.4,14.5,27.4,43],"Lowndes, Alabama":[3.2,6,11.2,27.8,51.8],"Macon, Alabama":[4.4,8.2,13.2,28.4,45.8],"Madison, Alabama":[4.7,8.2,12.9,27.2,47],"Marengo, Alabama":[3.5,7.2,12.8,28.5,48],"Marion, Alabama":[4.6,8.4,13.3,26.9,46.8],"Marshall, Alabama":[5,8.4,13,27.5,46.1],"Mobile, Alabama":[4.9,8.2,13.1,27.7,46.1],"Monroe, Alabama":[4.9,8.4,14.2,28.7,43.8],"Montgomery, Alabama":[4.5,7.6,11.9,26.9,49.2],"Morgan, Alabama":[5.1,8.7,13.9,27.8,44.5],"Perry, Alabama":[7,10.5,14.8,27.4,40.3],"Pickens, Alabama":[4.9,8.2,14,28.9,43.9],"Pike, Alabama":[4.2,7.4,12.3,27.8,48.2],"Randolph, Alabama":[4.5,8.2,13.8,27.9,45.7],"Russell, Alabama":[4.7,8.4,13,28,45.9],"Shelby, Alabama":[5.3,8.5,12.6,26.9,46.7],"St. Clair, Alabama":[6.4,10.2,14.6,26.1,42.6],"Sumter, Alabama":[5.2,8.5,13.2,28.1,45.1],"Talladega, Alabama":[4.7,8.5,13.3,27.5,46],"Tallapoosa, Alabama":[4.5,7.9,12.1,27,48.4],"Tuscaloosa, Alabama":[4.8,8.4,13.5,27.5,45.9],"Walker, Alabama":[5,9.3,15,28.4,42.4],"Washington, Alabama":[4.5,9.4,16.1,28.9,41.1],"Wilcox, Alabama":[3.9,7.9,12.7,28.2,47.3],"Winston, Alabama":[4.9,8.2,12.9,27.5,46.6]};
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Bottom 20%', 'Second 20%', 'Middle 20%', 'Fourth 20%', 'Top 20%'],
+        datasets: [{
+          label: 'Share (%)',
+          data: values,
+          backgroundColor: '#4576a7'
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.parsed.y + '%'
+            }
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 100,
+            title: {
+              display: true,
+              text: 'Income Share (%)'
+            }
+          },
+          x: {
+            title: {
+              display: true,
+              text: 'Quintile'
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(Object.values(incomeData[this.value]));
+  });
+
+  renderChart(Object.values(incomeData['Statewide']));</script>
+  </body>
+</html>
+</html>

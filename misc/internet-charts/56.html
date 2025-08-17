@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Internet Access Over Time –  Wyoming</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+                      h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+                      select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; border-radius: 5px; border: 1px solid #999; }
+                      canvas { width: 100%; max-width: 850px; height: 450px; margin-top: 1rem; }</style>
+</head>
+<html>
+  <body>
+    <h2>Internet Access in  Wyoming (2013–2023)</h2>
+    <label>Select County: </label>
+    <select id="countySelect"><option value='Statewide'>Statewide</option>
+<option value='Albany County, Wyoming'>Albany County, Wyoming</option>
+<option value='Big Horn County, Wyoming'>Big Horn County, Wyoming</option>
+<option value='Campbell County, Wyoming'>Campbell County, Wyoming</option>
+<option value='Carbon County, Wyoming'>Carbon County, Wyoming</option>
+<option value='Converse County, Wyoming'>Converse County, Wyoming</option>
+<option value='Crook County, Wyoming'>Crook County, Wyoming</option>
+<option value='Fremont County, Wyoming'>Fremont County, Wyoming</option>
+<option value='Goshen County, Wyoming'>Goshen County, Wyoming</option>
+<option value='Hot Springs County, Wyoming'>Hot Springs County, Wyoming</option>
+<option value='Johnson County, Wyoming'>Johnson County, Wyoming</option>
+<option value='Laramie County, Wyoming'>Laramie County, Wyoming</option>
+<option value='Lincoln County, Wyoming'>Lincoln County, Wyoming</option>
+<option value='Natrona County, Wyoming'>Natrona County, Wyoming</option>
+<option value='Niobrara County, Wyoming'>Niobrara County, Wyoming</option>
+<option value='Park County, Wyoming'>Park County, Wyoming</option>
+<option value='Platte County, Wyoming'>Platte County, Wyoming</option>
+<option value='Sheridan County, Wyoming'>Sheridan County, Wyoming</option>
+<option value='Sublette County, Wyoming'>Sublette County, Wyoming</option>
+<option value='Sweetwater County, Wyoming'>Sweetwater County, Wyoming</option>
+<option value='Teton County, Wyoming'>Teton County, Wyoming</option>
+<option value='Uinta County, Wyoming'>Uinta County, Wyoming</option>
+<option value='Washakie County, Wyoming'>Washakie County, Wyoming</option>
+<option value='Weston County, Wyoming'>Weston County, Wyoming</option></select>
+    <canvas id="lineChart" width="850" height="450"></canvas>
+    <script>const internetData = {"Statewide":{"2017":84.4,"2018":85.8,"2019":87.4,"2020":89.5,"2021":90.6,"2022":91.4,"2023":92.4},"Albany County, Wyoming":{"2017":89.8,"2018":90,"2019":92,"2020":94.3,"2021":95.4,"2022":95.6,"2023":95.4},"Big Horn County, Wyoming":{"2017":78.3,"2018":79.8,"2019":82.9,"2020":82.5,"2021":85.4,"2022":88.1,"2023":89.8},"Campbell County, Wyoming":{"2017":88.9,"2018":90.9,"2019":92.5,"2020":93.3,"2021":93.7,"2022":93.9,"2023":94},"Carbon County, Wyoming":{"2017":77.8,"2018":78.8,"2019":82.5,"2020":85.4,"2021":88,"2022":91.2,"2023":93.1},"Converse County, Wyoming":{"2017":84.6,"2018":85.7,"2019":87.1,"2020":88.6,"2021":90.7,"2022":89.8,"2023":88.2},"Crook County, Wyoming":{"2017":81.2,"2018":82,"2019":83.2,"2020":87.7,"2021":88.9,"2022":89,"2023":89.1},"Fremont County, Wyoming":{"2017":77.9,"2018":80,"2019":82.1,"2020":82.5,"2021":85.2,"2022":87.5,"2023":88.8},"Goshen County, Wyoming":{"2017":76.2,"2018":78.5,"2019":80.3,"2020":82.2,"2021":83.4,"2022":83.9,"2023":84.5},"Hot Springs County, Wyoming":{"2017":82.5,"2018":83.9,"2019":82.1,"2020":85.6,"2021":88.4,"2022":89.9,"2023":91.7},"Johnson County, Wyoming":{"2017":73.7,"2018":77,"2019":83.2,"2020":88.4,"2021":88.4,"2022":87.4,"2023":90.8},"Laramie County, Wyoming":{"2017":85.3,"2018":86.9,"2019":88.5,"2020":91.6,"2021":92.2,"2022":92.7,"2023":93.7},"Lincoln County, Wyoming":{"2017":83.2,"2018":87.1,"2019":89.4,"2020":91.4,"2021":92.9,"2022":94.3,"2023":93.4},"Natrona County, Wyoming":{"2017":84.1,"2018":85.4,"2019":86.8,"2020":89.4,"2021":90.5,"2022":92,"2023":93.1},"Niobrara County, Wyoming":{"2017":71.7,"2018":77.1,"2019":75.8,"2020":79.7,"2021":76.4,"2022":78.5,"2023":85.6},"Park County, Wyoming":{"2017":86.5,"2018":87.1,"2019":89.4,"2020":90.4,"2021":90.8,"2022":91.1,"2023":91.9},"Platte County, Wyoming":{"2017":73.1,"2018":73.6,"2019":72.9,"2020":75.9,"2021":77.4,"2022":76.5,"2023":82.1},"Sheridan County, Wyoming":{"2017":83.5,"2018":83.6,"2019":84.7,"2020":85.5,"2021":86.8,"2022":88.2,"2023":92.4},"Sublette County, Wyoming":{"2017":87.3,"2018":87.1,"2019":89.3,"2020":90.7,"2021":92.3,"2022":94.4,"2023":96.2},"Sweetwater County, Wyoming":{"2017":87.4,"2018":88,"2019":89,"2020":90.5,"2021":92.2,"2022":92.4,"2023":92.7},"Teton County, Wyoming":{"2017":92.8,"2018":92.7,"2019":92,"2020":94.6,"2021":95.1,"2022":95.1,"2023":96.5},"Uinta County, Wyoming":{"2017":86.6,"2018":90.6,"2019":91.7,"2020":93.2,"2021":92.7,"2022":94.1,"2023":93.4},"Washakie County, Wyoming":{"2017":82.9,"2018":84.1,"2019":84,"2020":87.5,"2021":89.6,"2022":88.8,"2023":87.8},"Weston County, Wyoming":{"2017":77.4,"2018":79.8,"2019":83.2,"2020":87.3,"2021":86.6,"2022":86.5,"2023":87.6}};
+const ctx = document.getElementById('lineChart').getContext('2d');
+let chart;
+
+function renderChart(data) {
+  const labels = Object.keys(data);
+  const values = Object.values(data);
+
+  if (chart) chart.destroy();
+  chart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: labels,
+      datasets: [{
+        label: '% With Internet',
+        data: values,
+        fill: false,
+        borderColor: 'teal',
+        backgroundColor: 'teal',
+        tension: 0.3,
+        pointRadius: 4
+      }]
+    },
+    options: {
+      responsive: true,
+      scales: {
+        y: {
+          beginAtZero: true,
+          max: 100,
+          title: { display: true, text: '% With Internet' }
+        },
+        x: {
+          title: { display: true, text: 'Year' }
+        }
+      },
+      plugins: {
+        tooltip: {
+          callbacks: {
+            label: function(ctx) {
+              return ctx.parsed.y.toFixed(1) + '%';
+            }
+          }
+        }
+      }
+    }
+  });
+}
+
+document.getElementById('countySelect').addEventListener('change', function() {
+  renderChart(internetData[this.value]);
+});
+renderChart(internetData['Statewide']);</script>
+  </body>
+</html>
+</html>

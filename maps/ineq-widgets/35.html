@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Income Distribution – New Mexico</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          text-align: center;
+          margin: 2rem;
+        }
+        select {
+          font-size: 1rem;
+          padding: 0.4rem;
+          margin-bottom: 1rem;
+        }
+        canvas {
+          width: 100%;
+          max-width: 700px;
+          height: 400px;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Income Share by Quintile – New Mexico</h2>
+    <label>Select County, State:</label>
+    <select id="countySelect"><option value='Statewide'>Statewide</option>
+<option value='Bernalillo, New Mexico'>Bernalillo, New Mexico</option>
+<option value='Catron, New Mexico'>Catron, New Mexico</option>
+<option value='Chaves, New Mexico'>Chaves, New Mexico</option>
+<option value='Cibola, New Mexico'>Cibola, New Mexico</option>
+<option value='Colfax, New Mexico'>Colfax, New Mexico</option>
+<option value='Curry, New Mexico'>Curry, New Mexico</option>
+<option value='De Baca, New Mexico'>De Baca, New Mexico</option>
+<option value='Doña Ana, New Mexico'>Doña Ana, New Mexico</option>
+<option value='Eddy, New Mexico'>Eddy, New Mexico</option>
+<option value='Grant, New Mexico'>Grant, New Mexico</option>
+<option value='Guadalupe, New Mexico'>Guadalupe, New Mexico</option>
+<option value='Harding, New Mexico'>Harding, New Mexico</option>
+<option value='Hidalgo, New Mexico'>Hidalgo, New Mexico</option>
+<option value='Lea, New Mexico'>Lea, New Mexico</option>
+<option value='Lincoln, New Mexico'>Lincoln, New Mexico</option>
+<option value='Los Alamos, New Mexico'>Los Alamos, New Mexico</option>
+<option value='Luna, New Mexico'>Luna, New Mexico</option>
+<option value='McKinley, New Mexico'>McKinley, New Mexico</option>
+<option value='Mora, New Mexico'>Mora, New Mexico</option>
+<option value='Otero, New Mexico'>Otero, New Mexico</option>
+<option value='Quay, New Mexico'>Quay, New Mexico</option>
+<option value='Rio Arriba, New Mexico'>Rio Arriba, New Mexico</option>
+<option value='Roosevelt, New Mexico'>Roosevelt, New Mexico</option>
+<option value='San Juan, New Mexico'>San Juan, New Mexico</option>
+<option value='San Miguel, New Mexico'>San Miguel, New Mexico</option>
+<option value='Sandoval, New Mexico'>Sandoval, New Mexico</option>
+<option value='Santa Fe, New Mexico'>Santa Fe, New Mexico</option>
+<option value='Sierra, New Mexico'>Sierra, New Mexico</option>
+<option value='Socorro, New Mexico'>Socorro, New Mexico</option>
+<option value='Taos, New Mexico'>Taos, New Mexico</option>
+<option value='Torrance, New Mexico'>Torrance, New Mexico</option>
+<option value='Union, New Mexico'>Union, New Mexico</option>
+<option value='Valencia, New Mexico'>Valencia, New Mexico</option></select>
+    <canvas id="barChart" width="700" height="400"></canvas>
+    <script>  const incomeData = {"Statewide":[4.7,8.2,13.2,27.6,46.2],"Bernalillo, New Mexico":[4.7,8.1,12.8,27.5,47],"Catron, New Mexico":[5.5,9.6,15.4,29,40.5],"Chaves, New Mexico":[4.3,7.8,12.5,27.9,47.4],"Cibola, New Mexico":[4.9,9.1,15.1,28.4,42.4],"Colfax, New Mexico":[5.5,9,12.9,27.1,45.5],"Curry, New Mexico":[4.9,8.5,12.9,27,46.7],"De Baca, New Mexico":[5.5,10.2,19.2,28.5,36.6],"Doña Ana, New Mexico":[4.5,8.2,12.8,27.9,46.6],"Eddy, New Mexico":[5.3,9.6,15.2,27.5,42.4],"Grant, New Mexico":[4.7,7.6,13.8,28.1,45.8],"Guadalupe, New Mexico":[2.3,3.6,6.7,27.4,60],"Harding, New Mexico":[4.7,8.2,13.2,27.6,46.2],"Hidalgo, New Mexico":[5.7,9.7,15.1,28.6,40.8],"Lea, New Mexico":[4.3,7.9,12.4,27.1,48.3],"Lincoln, New Mexico":[4.1,7.4,12.2,27.7,48.5],"Los Alamos, New Mexico":[7.6,10.7,14.8,27.3,39.6],"Luna, New Mexico":[5.2,8.2,13.1,27.6,45.9],"McKinley, New Mexico":[3.9,8.1,13.5,28,46.6],"Mora, New Mexico":[3.3,6.3,8.9,24.5,57],"Otero, New Mexico":[5.8,8.8,14.3,27.8,43.3],"Quay, New Mexico":[4.7,9.1,14.7,28.9,42.6],"Rio Arriba, New Mexico":[4.7,8.4,14,29.4,43.6],"Roosevelt, New Mexico":[5.9,9.6,14.4,28.3,41.8],"San Juan, New Mexico":[4.7,7.9,12.7,27.8,46.8],"San Miguel, New Mexico":[4.6,8.7,15.1,29.2,42.5],"Sandoval, New Mexico":[5.9,9.1,13.5,26.5,45],"Santa Fe, New Mexico":[4.3,7.5,11.8,27.5,48.9],"Sierra, New Mexico":[5.3,9.4,16.1,29.6,39.6],"Socorro, New Mexico":[3.5,7.1,12.1,26.7,50.7],"Taos, New Mexico":[3.7,7,11.7,27.2,50.3],"Torrance, New Mexico":[5.5,9.2,14.3,27.4,43.5],"Union, New Mexico":[2,3.4,5.6,23.5,65.5],"Valencia, New Mexico":[5.1,8.5,13.2,27.1,46.1]};
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Bottom 20%', 'Second 20%', 'Middle 20%', 'Fourth 20%', 'Top 20%'],
+        datasets: [{
+          label: 'Share (%)',
+          data: values,
+          backgroundColor: '#4576a7'
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.parsed.y + '%'
+            }
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 100,
+            title: {
+              display: true,
+              text: 'Income Share (%)'
+            }
+          },
+          x: {
+            title: {
+              display: true,
+              text: 'Quintile'
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(Object.values(incomeData[this.value]));
+  });
+
+  renderChart(Object.values(incomeData['Statewide']));</script>
+  </body>
+</html>
+</html>

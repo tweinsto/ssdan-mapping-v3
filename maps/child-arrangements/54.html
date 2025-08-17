@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Living Arrangements of Children – West Virginia</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Children’s Living Arrangements (Under 18) – West Virginia</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Barbour County, West Virginia">Barbour County, West Virginia</option>
+      <option value="Berkeley County, West Virginia">Berkeley County, West Virginia</option>
+      <option value="Boone County, West Virginia">Boone County, West Virginia</option>
+      <option value="Braxton County, West Virginia">Braxton County, West Virginia</option>
+      <option value="Brooke County, West Virginia">Brooke County, West Virginia</option>
+      <option value="Cabell County, West Virginia">Cabell County, West Virginia</option>
+      <option value="Calhoun County, West Virginia">Calhoun County, West Virginia</option>
+      <option value="Clay County, West Virginia">Clay County, West Virginia</option>
+      <option value="Doddridge County, West Virginia">Doddridge County, West Virginia</option>
+      <option value="Fayette County, West Virginia">Fayette County, West Virginia</option>
+      <option value="Gilmer County, West Virginia">Gilmer County, West Virginia</option>
+      <option value="Grant County, West Virginia">Grant County, West Virginia</option>
+      <option value="Greenbrier County, West Virginia">Greenbrier County, West Virginia</option>
+      <option value="Hampshire County, West Virginia">Hampshire County, West Virginia</option>
+      <option value="Hancock County, West Virginia">Hancock County, West Virginia</option>
+      <option value="Hardy County, West Virginia">Hardy County, West Virginia</option>
+      <option value="Harrison County, West Virginia">Harrison County, West Virginia</option>
+      <option value="Jackson County, West Virginia">Jackson County, West Virginia</option>
+      <option value="Jefferson County, West Virginia">Jefferson County, West Virginia</option>
+      <option value="Kanawha County, West Virginia">Kanawha County, West Virginia</option>
+      <option value="Lewis County, West Virginia">Lewis County, West Virginia</option>
+      <option value="Lincoln County, West Virginia">Lincoln County, West Virginia</option>
+      <option value="Logan County, West Virginia">Logan County, West Virginia</option>
+      <option value="Marion County, West Virginia">Marion County, West Virginia</option>
+      <option value="Marshall County, West Virginia">Marshall County, West Virginia</option>
+      <option value="Mason County, West Virginia">Mason County, West Virginia</option>
+      <option value="McDowell County, West Virginia">McDowell County, West Virginia</option>
+      <option value="Mercer County, West Virginia">Mercer County, West Virginia</option>
+      <option value="Mineral County, West Virginia">Mineral County, West Virginia</option>
+      <option value="Mingo County, West Virginia">Mingo County, West Virginia</option>
+      <option value="Monongalia County, West Virginia">Monongalia County, West Virginia</option>
+      <option value="Monroe County, West Virginia">Monroe County, West Virginia</option>
+      <option value="Morgan County, West Virginia">Morgan County, West Virginia</option>
+      <option value="Nicholas County, West Virginia">Nicholas County, West Virginia</option>
+      <option value="Ohio County, West Virginia">Ohio County, West Virginia</option>
+      <option value="Pendleton County, West Virginia">Pendleton County, West Virginia</option>
+      <option value="Pleasants County, West Virginia">Pleasants County, West Virginia</option>
+      <option value="Pocahontas County, West Virginia">Pocahontas County, West Virginia</option>
+      <option value="Preston County, West Virginia">Preston County, West Virginia</option>
+      <option value="Putnam County, West Virginia">Putnam County, West Virginia</option>
+      <option value="Raleigh County, West Virginia">Raleigh County, West Virginia</option>
+      <option value="Randolph County, West Virginia">Randolph County, West Virginia</option>
+      <option value="Ritchie County, West Virginia">Ritchie County, West Virginia</option>
+      <option value="Roane County, West Virginia">Roane County, West Virginia</option>
+      <option value="Summers County, West Virginia">Summers County, West Virginia</option>
+      <option value="Taylor County, West Virginia">Taylor County, West Virginia</option>
+      <option value="Tucker County, West Virginia">Tucker County, West Virginia</option>
+      <option value="Tyler County, West Virginia">Tyler County, West Virginia</option>
+      <option value="Upshur County, West Virginia">Upshur County, West Virginia</option>
+      <option value="Wayne County, West Virginia">Wayne County, West Virginia</option>
+      <option value="Webster County, West Virginia">Webster County, West Virginia</option>
+      <option value="Wetzel County, West Virginia">Wetzel County, West Virginia</option>
+      <option value="Wirt County, West Virginia">Wirt County, West Virginia</option>
+      <option value="Wood County, West Virginia">Wood County, West Virginia</option>
+      <option value="Wyoming County, West Virginia">Wyoming County, West Virginia</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>  const data = {"Statewide":{"Married Couple (%)":66,"Cohabiting Couple (%)":9.8,"Male Householder (%)":5.3,"Female Householder (%)":18.9},"Barbour County, West Virginia":{"Married Couple (%)":64.3,"Cohabiting Couple (%)":15.9,"Male Householder (%)":2.5,"Female Householder (%)":17.2},"Berkeley County, West Virginia":{"Married Couple (%)":65,"Cohabiting Couple (%)":13.6,"Male Householder (%)":3.1,"Female Householder (%)":18.3},"Boone County, West Virginia":{"Married Couple (%)":67.7,"Cohabiting Couple (%)":4.5,"Male Householder (%)":8.1,"Female Householder (%)":19.7},"Braxton County, West Virginia":{"Married Couple (%)":79.7,"Cohabiting Couple (%)":5.5,"Male Householder (%)":3.1,"Female Householder (%)":11.7},"Brooke County, West Virginia":{"Married Couple (%)":63,"Cohabiting Couple (%)":6.9,"Male Householder (%)":7.8,"Female Householder (%)":22.3},"Cabell County, West Virginia":{"Married Couple (%)":63.2,"Cohabiting Couple (%)":9.1,"Male Householder (%)":5.7,"Female Householder (%)":22.1},"Calhoun County, West Virginia":{"Married Couple (%)":63.4,"Cohabiting Couple (%)":21.8,"Male Householder (%)":0,"Female Householder (%)":14.7},"Clay County, West Virginia":{"Married Couple (%)":58.6,"Cohabiting Couple (%)":19.5,"Male Householder (%)":1.5,"Female Householder (%)":20.4},"Doddridge County, West Virginia":{"Married Couple (%)":73.1,"Cohabiting Couple (%)":2.1,"Male Householder (%)":0.9,"Female Householder (%)":23.9},"Fayette County, West Virginia":{"Married Couple (%)":62.3,"Cohabiting Couple (%)":9,"Male Householder (%)":10.1,"Female Householder (%)":18.6},"Gilmer County, West Virginia":{"Married Couple (%)":44.9,"Cohabiting Couple (%)":14.2,"Male Householder (%)":4.5,"Female Householder (%)":36.4},"Grant County, West Virginia":{"Married Couple (%)":71.3,"Cohabiting Couple (%)":5.4,"Male Householder (%)":3.8,"Female Householder (%)":19.4},"Greenbrier County, West Virginia":{"Married Couple (%)":61.1,"Cohabiting Couple (%)":15.9,"Male Householder (%)":6.3,"Female Householder (%)":16.8},"Hampshire County, West Virginia":{"Married Couple (%)":66.1,"Cohabiting Couple (%)":11.5,"Male Householder (%)":4.7,"Female Householder (%)":17.6},"Hancock County, West Virginia":{"Married Couple (%)":61.2,"Cohabiting Couple (%)":15.7,"Male Householder (%)":2.3,"Female Householder (%)":20.8},"Hardy County, West Virginia":{"Married Couple (%)":62.3,"Cohabiting Couple (%)":18.3,"Male Householder (%)":7.9,"Female Householder (%)":11.5},"Harrison County, West Virginia":{"Married Couple (%)":69.7,"Cohabiting Couple (%)":8.3,"Male Householder (%)":3.5,"Female Householder (%)":18.4},"Jackson County, West Virginia":{"Married Couple (%)":77.4,"Cohabiting Couple (%)":8.5,"Male Householder (%)":4.3,"Female Householder (%)":9.8},"Jefferson County, West Virginia":{"Married Couple (%)":73.3,"Cohabiting Couple (%)":8.3,"Male Householder (%)":4.7,"Female Householder (%)":13.7},"Kanawha County, West Virginia":{"Married Couple (%)":60.7,"Cohabiting Couple (%)":10.3,"Male Householder (%)":6.6,"Female Householder (%)":22.3},"Lewis County, West Virginia":{"Married Couple (%)":67.1,"Cohabiting Couple (%)":9.4,"Male Householder (%)":4.4,"Female Householder (%)":19.1},"Lincoln County, West Virginia":{"Married Couple (%)":68.9,"Cohabiting Couple (%)":4.9,"Male Householder (%)":3.6,"Female Householder (%)":22.6},"Logan County, West Virginia":{"Married Couple (%)":58,"Cohabiting Couple (%)":12.1,"Male Householder (%)":3.2,"Female Householder (%)":26.7},"Marion County, West Virginia":{"Married Couple (%)":69,"Cohabiting Couple (%)":6.9,"Male Householder (%)":7.8,"Female Householder (%)":16.3},"Marshall County, West Virginia":{"Married Couple (%)":54.3,"Cohabiting Couple (%)":13.3,"Male Householder (%)":4.9,"Female Householder (%)":27.4},"Mason County, West Virginia":{"Married Couple (%)":70,"Cohabiting Couple (%)":6.5,"Male Householder (%)":3.3,"Female Householder (%)":20.1},"McDowell County, West Virginia":{"Married Couple (%)":54.9,"Cohabiting Couple (%)":19.1,"Male Householder (%)":5.3,"Female Householder (%)":20.7},"Mercer County, West Virginia":{"Married Couple (%)":65.2,"Cohabiting Couple (%)":10.6,"Male Householder (%)":3.4,"Female Householder (%)":20.8},"Mineral County, West Virginia":{"Married Couple (%)":67.7,"Cohabiting Couple (%)":11.2,"Male Householder (%)":3.5,"Female Householder (%)":17.5},"Mingo County, West Virginia":{"Married Couple (%)":59,"Cohabiting Couple (%)":14.6,"Male Householder (%)":7.2,"Female Householder (%)":19.1},"Monongalia County, West Virginia":{"Married Couple (%)":71.6,"Cohabiting Couple (%)":4.7,"Male Householder (%)":6.4,"Female Householder (%)":17.4},"Monroe County, West Virginia":{"Married Couple (%)":54.2,"Cohabiting Couple (%)":28.3,"Male Householder (%)":2.8,"Female Householder (%)":14.8},"Morgan County, West Virginia":{"Married Couple (%)":63.7,"Cohabiting Couple (%)":20.1,"Male Householder (%)":5.9,"Female Householder (%)":10.4},"Nicholas County, West Virginia":{"Married Couple (%)":69.2,"Cohabiting Couple (%)":12.2,"Male Householder (%)":8,"Female Householder (%)":10.6},"Ohio County, West Virginia":{"Married Couple (%)":68.3,"Cohabiting Couple (%)":8.7,"Male Householder (%)":5.7,"Female Householder (%)":17.2},"Pendleton County, West Virginia":{"Married Couple (%)":70.7,"Cohabiting Couple (%)":3.2,"Male Householder (%)":0.9,"Female Householder (%)":25.2},"Pleasants County, West Virginia":{"Married Couple (%)":59,"Cohabiting Couple (%)":7,"Male Householder (%)":7.9,"Female Householder (%)":26.1},"Pocahontas County, West Virginia":{"Married Couple (%)":78.3,"Cohabiting Couple (%)":12.3,"Male Householder (%)":2.4,"Female Householder (%)":7.1},"Preston County, West Virginia":{"Married Couple (%)":71.8,"Cohabiting Couple (%)":6.4,"Male Householder (%)":5.9,"Female Householder (%)":15.9},"Putnam County, West Virginia":{"Married Couple (%)":71,"Cohabiting Couple (%)":5.2,"Male Householder (%)":4,"Female Householder (%)":19.7},"Raleigh County, West Virginia":{"Married Couple (%)":62.5,"Cohabiting Couple (%)":5.7,"Male Householder (%)":6.9,"Female Householder (%)":24.9},"Randolph County, West Virginia":{"Married Couple (%)":66.9,"Cohabiting Couple (%)":11.1,"Male Householder (%)":2.2,"Female Householder (%)":19.9},"Ritchie County, West Virginia":{"Married Couple (%)":80.7,"Cohabiting Couple (%)":7.2,"Male Householder (%)":4.3,"Female Householder (%)":7.9},"Roane County, West Virginia":{"Married Couple (%)":69.9,"Cohabiting Couple (%)":7.2,"Male Householder (%)":4.7,"Female Householder (%)":18.3},"Summers County, West Virginia":{"Married Couple (%)":66.5,"Cohabiting Couple (%)":8.4,"Male Householder (%)":9.4,"Female Householder (%)":15.7},"Taylor County, West Virginia":{"Married Couple (%)":66.1,"Cohabiting Couple (%)":12.5,"Male Householder (%)":4.9,"Female Householder (%)":16.5},"Tucker County, West Virginia":{"Married Couple (%)":62.1,"Cohabiting Couple (%)":14.4,"Male Householder (%)":7.8,"Female Householder (%)":15.8},"Tyler County, West Virginia":{"Married Couple (%)":75.1,"Cohabiting Couple (%)":10.7,"Male Householder (%)":2.6,"Female Householder (%)":11.6},"Upshur County, West Virginia":{"Married Couple (%)":54.1,"Cohabiting Couple (%)":12.4,"Male Householder (%)":6.8,"Female Householder (%)":26.7},"Wayne County, West Virginia":{"Married Couple (%)":77.9,"Cohabiting Couple (%)":8.8,"Male Householder (%)":2.3,"Female Householder (%)":11},"Webster County, West Virginia":{"Married Couple (%)":71.5,"Cohabiting Couple (%)":5.9,"Male Householder (%)":4.9,"Female Householder (%)":17.8},"Wetzel County, West Virginia":{"Married Couple (%)":61.2,"Cohabiting Couple (%)":8.9,"Male Householder (%)":14.3,"Female Householder (%)":15.6},"Wirt County, West Virginia":{"Married Couple (%)":69.4,"Cohabiting Couple (%)":10.2,"Male Householder (%)":9.4,"Female Householder (%)":10.9},"Wood County, West Virginia":{"Married Couple (%)":66.5,"Cohabiting Couple (%)":8.5,"Male Householder (%)":4.3,"Female Householder (%)":20.7},"Wyoming County, West Virginia":{"Married Couple (%)":72.3,"Cohabiting Couple (%)":8.4,"Male Householder (%)":11.4,"Female Householder (%)":8}};
+  const categories = ["Married Couple (%)","Cohabiting Couple (%)","Male Householder (%)","Female Householder (%)"];
+  const ctx = document.getElementById("barChart").getContext("2d");
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: categories,
+        datasets: [{
+          label: "Share of Children (%)",
+          data: values,
+          backgroundColor: ["#5DA5DA","#FAA43A","#60BD68","#F17CB0"]
+        }]
+      },
+      options: {
+        indexAxis: "y",
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            ticks: { callback: v => v + "%" },
+            title: { display: true, text: "Percent of Children" }
+          }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.raw + "%"
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById("countySelect").addEventListener("change", function() {
+    renderChart(Object.values(data[this.value]));
+  });
+
+  renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

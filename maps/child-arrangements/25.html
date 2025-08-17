@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Living Arrangements of Children – Massachusetts</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Children’s Living Arrangements (Under 18) – Massachusetts</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Barnstable County, Massachusetts">Barnstable County, Massachusetts</option>
+      <option value="Berkshire County, Massachusetts">Berkshire County, Massachusetts</option>
+      <option value="Bristol County, Massachusetts">Bristol County, Massachusetts</option>
+      <option value="Dukes County, Massachusetts">Dukes County, Massachusetts</option>
+      <option value="Essex County, Massachusetts">Essex County, Massachusetts</option>
+      <option value="Franklin County, Massachusetts">Franklin County, Massachusetts</option>
+      <option value="Hampden County, Massachusetts">Hampden County, Massachusetts</option>
+      <option value="Hampshire County, Massachusetts">Hampshire County, Massachusetts</option>
+      <option value="Middlesex County, Massachusetts">Middlesex County, Massachusetts</option>
+      <option value="Nantucket County, Massachusetts">Nantucket County, Massachusetts</option>
+      <option value="Norfolk County, Massachusetts">Norfolk County, Massachusetts</option>
+      <option value="Plymouth County, Massachusetts">Plymouth County, Massachusetts</option>
+      <option value="Suffolk County, Massachusetts">Suffolk County, Massachusetts</option>
+      <option value="Worcester County, Massachusetts">Worcester County, Massachusetts</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>  const data = {"Statewide":{"Married Couple (%)":69,"Cohabiting Couple (%)":7.7,"Male Householder (%)":3.9,"Female Householder (%)":19.4},"Barnstable County, Massachusetts":{"Married Couple (%)":71.5,"Cohabiting Couple (%)":6.3,"Male Householder (%)":5.7,"Female Householder (%)":16.5},"Berkshire County, Massachusetts":{"Married Couple (%)":60.1,"Cohabiting Couple (%)":14.2,"Male Householder (%)":4.1,"Female Householder (%)":21.7},"Bristol County, Massachusetts":{"Married Couple (%)":60.6,"Cohabiting Couple (%)":12.6,"Male Householder (%)":4.8,"Female Householder (%)":22},"Dukes County, Massachusetts":{"Married Couple (%)":70.1,"Cohabiting Couple (%)":7.3,"Male Householder (%)":11.2,"Female Householder (%)":11.3},"Essex County, Massachusetts":{"Married Couple (%)":66.3,"Cohabiting Couple (%)":7.3,"Male Householder (%)":4,"Female Householder (%)":22.5},"Franklin County, Massachusetts":{"Married Couple (%)":60.7,"Cohabiting Couple (%)":13.3,"Male Householder (%)":6.4,"Female Householder (%)":19.6},"Hampden County, Massachusetts":{"Married Couple (%)":53.4,"Cohabiting Couple (%)":11.1,"Male Householder (%)":4.3,"Female Householder (%)":31.2},"Hampshire County, Massachusetts":{"Married Couple (%)":69.1,"Cohabiting Couple (%)":8.7,"Male Householder (%)":3.5,"Female Householder (%)":18.7},"Middlesex County, Massachusetts":{"Married Couple (%)":78.6,"Cohabiting Couple (%)":5.2,"Male Householder (%)":3.2,"Female Householder (%)":13},"Nantucket County, Massachusetts":{"Married Couple (%)":77.5,"Cohabiting Couple (%)":4.3,"Male Householder (%)":1.1,"Female Householder (%)":17.1},"Norfolk County, Massachusetts":{"Married Couple (%)":79.8,"Cohabiting Couple (%)":4.2,"Male Householder (%)":3.2,"Female Householder (%)":12.8},"Plymouth County, Massachusetts":{"Married Couple (%)":73.8,"Cohabiting Couple (%)":6.8,"Male Householder (%)":3.2,"Female Householder (%)":16.3},"Suffolk County, Massachusetts":{"Married Couple (%)":54.6,"Cohabiting Couple (%)":8.3,"Male Householder (%)":4.4,"Female Householder (%)":32.8},"Worcester County, Massachusetts":{"Married Couple (%)":67.2,"Cohabiting Couple (%)":9.8,"Male Householder (%)":4.6,"Female Householder (%)":18.4}};
+  const categories = ["Married Couple (%)","Cohabiting Couple (%)","Male Householder (%)","Female Householder (%)"];
+  const ctx = document.getElementById("barChart").getContext("2d");
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: categories,
+        datasets: [{
+          label: "Share of Children (%)",
+          data: values,
+          backgroundColor: ["#5DA5DA","#FAA43A","#60BD68","#F17CB0"]
+        }]
+      },
+      options: {
+        indexAxis: "y",
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            ticks: { callback: v => v + "%" },
+            title: { display: true, text: "Percent of Children" }
+          }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.raw + "%"
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById("countySelect").addEventListener("change", function() {
+    renderChart(Object.values(data[this.value]));
+  });
+
+  renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

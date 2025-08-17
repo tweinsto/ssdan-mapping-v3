@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Income Distribution – Arkansas</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          text-align: center;
+          margin: 2rem;
+        }
+        select {
+          font-size: 1rem;
+          padding: 0.4rem;
+          margin-bottom: 1rem;
+        }
+        canvas {
+          width: 100%;
+          max-width: 700px;
+          height: 400px;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Income Share by Quintile – Arkansas</h2>
+    <label>Select County, State:</label>
+    <select id="countySelect"><option value='Statewide'>Statewide</option>
+<option value='Arkansas, Arkansas'>Arkansas, Arkansas</option>
+<option value='Ashley, Arkansas'>Ashley, Arkansas</option>
+<option value='Baxter, Arkansas'>Baxter, Arkansas</option>
+<option value='Benton, Arkansas'>Benton, Arkansas</option>
+<option value='Boone, Arkansas'>Boone, Arkansas</option>
+<option value='Bradley, Arkansas'>Bradley, Arkansas</option>
+<option value='Calhoun, Arkansas'>Calhoun, Arkansas</option>
+<option value='Carroll, Arkansas'>Carroll, Arkansas</option>
+<option value='Chicot, Arkansas'>Chicot, Arkansas</option>
+<option value='Clark, Arkansas'>Clark, Arkansas</option>
+<option value='Clay, Arkansas'>Clay, Arkansas</option>
+<option value='Cleburne, Arkansas'>Cleburne, Arkansas</option>
+<option value='Cleveland, Arkansas'>Cleveland, Arkansas</option>
+<option value='Columbia, Arkansas'>Columbia, Arkansas</option>
+<option value='Conway, Arkansas'>Conway, Arkansas</option>
+<option value='Craighead, Arkansas'>Craighead, Arkansas</option>
+<option value='Crawford, Arkansas'>Crawford, Arkansas</option>
+<option value='Crittenden, Arkansas'>Crittenden, Arkansas</option>
+<option value='Cross, Arkansas'>Cross, Arkansas</option>
+<option value='Dallas, Arkansas'>Dallas, Arkansas</option>
+<option value='Desha, Arkansas'>Desha, Arkansas</option>
+<option value='Drew, Arkansas'>Drew, Arkansas</option>
+<option value='Faulkner, Arkansas'>Faulkner, Arkansas</option>
+<option value='Franklin, Arkansas'>Franklin, Arkansas</option>
+<option value='Fulton, Arkansas'>Fulton, Arkansas</option>
+<option value='Garland, Arkansas'>Garland, Arkansas</option>
+<option value='Grant, Arkansas'>Grant, Arkansas</option>
+<option value='Greene, Arkansas'>Greene, Arkansas</option>
+<option value='Hempstead, Arkansas'>Hempstead, Arkansas</option>
+<option value='Hot Spring, Arkansas'>Hot Spring, Arkansas</option>
+<option value='Howard, Arkansas'>Howard, Arkansas</option>
+<option value='Independence, Arkansas'>Independence, Arkansas</option>
+<option value='Izard, Arkansas'>Izard, Arkansas</option>
+<option value='Jackson, Arkansas'>Jackson, Arkansas</option>
+<option value='Jefferson, Arkansas'>Jefferson, Arkansas</option>
+<option value='Johnson, Arkansas'>Johnson, Arkansas</option>
+<option value='Lafayette, Arkansas'>Lafayette, Arkansas</option>
+<option value='Lawrence, Arkansas'>Lawrence, Arkansas</option>
+<option value='Lee, Arkansas'>Lee, Arkansas</option>
+<option value='Lincoln, Arkansas'>Lincoln, Arkansas</option>
+<option value='Little River, Arkansas'>Little River, Arkansas</option>
+<option value='Logan, Arkansas'>Logan, Arkansas</option>
+<option value='Lonoke, Arkansas'>Lonoke, Arkansas</option>
+<option value='Madison, Arkansas'>Madison, Arkansas</option>
+<option value='Marion, Arkansas'>Marion, Arkansas</option>
+<option value='Miller, Arkansas'>Miller, Arkansas</option>
+<option value='Mississippi, Arkansas'>Mississippi, Arkansas</option>
+<option value='Monroe, Arkansas'>Monroe, Arkansas</option>
+<option value='Montgomery, Arkansas'>Montgomery, Arkansas</option>
+<option value='Nevada, Arkansas'>Nevada, Arkansas</option>
+<option value='Newton, Arkansas'>Newton, Arkansas</option>
+<option value='Ouachita, Arkansas'>Ouachita, Arkansas</option>
+<option value='Perry, Arkansas'>Perry, Arkansas</option>
+<option value='Phillips, Arkansas'>Phillips, Arkansas</option>
+<option value='Pike, Arkansas'>Pike, Arkansas</option>
+<option value='Poinsett, Arkansas'>Poinsett, Arkansas</option>
+<option value='Polk, Arkansas'>Polk, Arkansas</option>
+<option value='Pope, Arkansas'>Pope, Arkansas</option>
+<option value='Prairie, Arkansas'>Prairie, Arkansas</option>
+<option value='Pulaski, Arkansas'>Pulaski, Arkansas</option>
+<option value='Randolph, Arkansas'>Randolph, Arkansas</option>
+<option value='Saline, Arkansas'>Saline, Arkansas</option>
+<option value='Scott, Arkansas'>Scott, Arkansas</option>
+<option value='Searcy, Arkansas'>Searcy, Arkansas</option>
+<option value='Sebastian, Arkansas'>Sebastian, Arkansas</option>
+<option value='Sevier, Arkansas'>Sevier, Arkansas</option>
+<option value='Sharp, Arkansas'>Sharp, Arkansas</option>
+<option value='St. Francis, Arkansas'>St. Francis, Arkansas</option>
+<option value='Stone, Arkansas'>Stone, Arkansas</option>
+<option value='Union, Arkansas'>Union, Arkansas</option>
+<option value='Van Buren, Arkansas'>Van Buren, Arkansas</option>
+<option value='Washington, Arkansas'>Washington, Arkansas</option>
+<option value='White, Arkansas'>White, Arkansas</option>
+<option value='Woodruff, Arkansas'>Woodruff, Arkansas</option>
+<option value='Yell, Arkansas'>Yell, Arkansas</option></select>
+    <canvas id="barChart" width="700" height="400"></canvas>
+    <script>  const incomeData = {"Statewide":[4.9,8.3,13.2,27.4,46.3],"Arkansas, Arkansas":[5.7,9.8,14.1,27.4,43],"Ashley, Arkansas":[4.1,7.8,12.8,26.8,48.6],"Baxter, Arkansas":[4.8,7.5,11.4,26.8,49.4],"Benton, Arkansas":[5.1,7.9,11.7,26.8,48.5],"Boone, Arkansas":[5.5,8.7,13.1,27,45.8],"Bradley, Arkansas":[3.7,7.4,13.2,28.9,46.8],"Calhoun, Arkansas":[6.9,11.2,16,27.5,38.5],"Carroll, Arkansas":[5,8.8,14.1,27.5,44.6],"Chicot, Arkansas":[3.7,7.1,11.9,27.5,49.8],"Clark, Arkansas":[4.9,8.7,14.1,27.4,44.9],"Clay, Arkansas":[5.2,8.9,14.2,26.9,44.8],"Cleburne, Arkansas":[5,8,11.9,26.6,48.5],"Cleveland, Arkansas":[4.7,8.3,14.4,28.2,44.4],"Columbia, Arkansas":[4.4,8,13.7,28.6,45.3],"Conway, Arkansas":[4.5,8.2,13.2,27.7,46.4],"Craighead, Arkansas":[4.4,7.4,12.3,27.5,48.5],"Crawford, Arkansas":[5.8,9.4,13.7,27,44.1],"Crittenden, Arkansas":[4.5,7.9,12.6,27,48],"Cross, Arkansas":[4.2,7.4,12.8,27.2,48.5],"Dallas, Arkansas":[5.3,9.4,16.2,29.1,40],"Desha, Arkansas":[4.5,7.7,12.8,28.9,46.1],"Drew, Arkansas":[3.7,6.8,11.8,28.2,49.4],"Faulkner, Arkansas":[5,8.2,12.4,27,47.4],"Franklin, Arkansas":[5.2,8.8,13.6,26.8,45.7],"Fulton, Arkansas":[6.2,9,14.3,28.7,41.8],"Garland, Arkansas":[4.9,8.2,12.5,27.1,47.3],"Grant, Arkansas":[5.1,8.9,13.1,26.6,46.3],"Greene, Arkansas":[6,10,14.7,28,41.3],"Hempstead, Arkansas":[4.6,7.7,12.4,27.1,48.2],"Hot Spring, Arkansas":[5.7,9.5,14.8,27.6,42.4],"Howard, Arkansas":[5.1,8.2,13.8,27.9,45],"Independence, Arkansas":[4.3,7.2,11.2,25.9,51.3],"Izard, Arkansas":[4.8,8.4,12.6,27.6,46.6],"Jackson, Arkansas":[4.1,7.1,11.6,27.3,50],"Jefferson, Arkansas":[4.7,8.2,13,27.8,46.3],"Johnson, Arkansas":[5.2,8.3,13.5,27.1,45.9],"Lafayette, Arkansas":[4.9,8.9,15.9,29.4,40.9],"Lawrence, Arkansas":[5,7.9,13.5,27.4,46.2],"Lee, Arkansas":[2.6,5.6,9.7,27.2,54.9],"Lincoln, Arkansas":[5.1,8.7,12.6,27.3,46.3],"Little River, Arkansas":[5.7,9.5,16.2,28.7,39.9],"Logan, Arkansas":[5.3,8.4,12.6,26.2,47.5],"Lonoke, Arkansas":[6.1,9.6,14.3,27.1,43],"Madison, Arkansas":[5.3,8.5,13.4,26.5,46.4],"Marion, Arkansas":[5.8,8.8,13.7,27.6,44.2],"Miller, Arkansas":[4.5,7.8,12.4,27.8,47.6],"Mississippi, Arkansas":[4.1,7.5,12.5,28.6,47.3],"Monroe, Arkansas":[4.8,8.9,14.5,28.3,43.5],"Montgomery, Arkansas":[4.8,8.5,14.2,28.2,44.2],"Nevada, Arkansas":[4.8,8.3,12,25.6,49.3],"Newton, Arkansas":[5.9,9.1,14.7,26.1,44.2],"Ouachita, Arkansas":[5.5,9.7,15.2,28.3,41.3],"Perry, Arkansas":[5.6,9.9,16.3,28.1,40.1],"Phillips, Arkansas":[3.9,7.7,12.9,28.2,47.3],"Pike, Arkansas":[4.2,7.5,12.1,26.9,49.5],"Poinsett, Arkansas":[4.6,8.3,12.7,26.7,47.8],"Polk, Arkansas":[3.8,6.4,10.2,26.4,53.2],"Pope, Arkansas":[4.7,7.7,12.2,27.4,48],"Prairie, Arkansas":[4.6,7.6,12.2,26.2,49.5],"Pulaski, Arkansas":[3.9,6.6,10.7,27.1,51.8],"Randolph, Arkansas":[4.7,8.5,13.4,27,46.4],"Saline, Arkansas":[6.1,9.7,14.4,26.9,42.9],"Scott, Arkansas":[6.4,10.1,15.1,28.6,39.8],"Searcy, Arkansas":[5.2,9.3,14.7,28,42.8],"Sebastian, Arkansas":[3.9,6.3,10,26,53.8],"Sevier, Arkansas":[4.3,8.1,12.7,27.2,47.7],"Sharp, Arkansas":[3.9,6.3,10.2,25.7,53.9],"St. Francis, Arkansas":[3.9,7,11.3,26.8,51],"Stone, Arkansas":[4.9,7.9,12.9,27.2,47],"Union, Arkansas":[4.2,7.1,12.4,28.2,48.1],"Van Buren, Arkansas":[5.5,9,14.6,27.7,43.2],"Washington, Arkansas":[4.5,7.4,11.6,27.3,49.2],"White, Arkansas":[4.8,8.1,12.8,27,47.3],"Woodruff, Arkansas":[4.1,8.1,12.2,28.1,47.5],"Yell, Arkansas":[6.4,11,16.1,27.1,39.5]};
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Bottom 20%', 'Second 20%', 'Middle 20%', 'Fourth 20%', 'Top 20%'],
+        datasets: [{
+          label: 'Share (%)',
+          data: values,
+          backgroundColor: '#4576a7'
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.parsed.y + '%'
+            }
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 100,
+            title: {
+              display: true,
+              text: 'Income Share (%)'
+            }
+          },
+          x: {
+            title: {
+              display: true,
+              text: 'Quintile'
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(Object.values(incomeData[this.value]));
+  });
+
+  renderChart(Object.values(incomeData['Statewide']));</script>
+  </body>
+</html>
+</html>

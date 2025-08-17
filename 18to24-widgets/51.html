@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Educational Enrollment – Virginia</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Educational Enrollment (Age 18–24) in Virginia</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Accomack County, Virginia">Accomack County, Virginia</option>
+      <option value="Albemarle County, Virginia">Albemarle County, Virginia</option>
+      <option value="Alexandria city, Virginia">Alexandria city, Virginia</option>
+      <option value="Alleghany County, Virginia">Alleghany County, Virginia</option>
+      <option value="Amelia County, Virginia">Amelia County, Virginia</option>
+      <option value="Amherst County, Virginia">Amherst County, Virginia</option>
+      <option value="Appomattox County, Virginia">Appomattox County, Virginia</option>
+      <option value="Arlington County, Virginia">Arlington County, Virginia</option>
+      <option value="Augusta County, Virginia">Augusta County, Virginia</option>
+      <option value="Bath County, Virginia">Bath County, Virginia</option>
+      <option value="Bedford County, Virginia">Bedford County, Virginia</option>
+      <option value="Bland County, Virginia">Bland County, Virginia</option>
+      <option value="Botetourt County, Virginia">Botetourt County, Virginia</option>
+      <option value="Bristol city, Virginia">Bristol city, Virginia</option>
+      <option value="Brunswick County, Virginia">Brunswick County, Virginia</option>
+      <option value="Buchanan County, Virginia">Buchanan County, Virginia</option>
+      <option value="Buckingham County, Virginia">Buckingham County, Virginia</option>
+      <option value="Buena Vista city, Virginia">Buena Vista city, Virginia</option>
+      <option value="Campbell County, Virginia">Campbell County, Virginia</option>
+      <option value="Caroline County, Virginia">Caroline County, Virginia</option>
+      <option value="Carroll County, Virginia">Carroll County, Virginia</option>
+      <option value="Charles City County, Virginia">Charles City County, Virginia</option>
+      <option value="Charlotte County, Virginia">Charlotte County, Virginia</option>
+      <option value="Charlottesville city, Virginia">Charlottesville city, Virginia</option>
+      <option value="Chesapeake city, Virginia">Chesapeake city, Virginia</option>
+      <option value="Chesterfield County, Virginia">Chesterfield County, Virginia</option>
+      <option value="Clarke County, Virginia">Clarke County, Virginia</option>
+      <option value="Colonial Heights city, Virginia">Colonial Heights city, Virginia</option>
+      <option value="Covington city, Virginia">Covington city, Virginia</option>
+      <option value="Craig County, Virginia">Craig County, Virginia</option>
+      <option value="Culpeper County, Virginia">Culpeper County, Virginia</option>
+      <option value="Cumberland County, Virginia">Cumberland County, Virginia</option>
+      <option value="Danville city, Virginia">Danville city, Virginia</option>
+      <option value="Dickenson County, Virginia">Dickenson County, Virginia</option>
+      <option value="Dinwiddie County, Virginia">Dinwiddie County, Virginia</option>
+      <option value="Emporia city, Virginia">Emporia city, Virginia</option>
+      <option value="Essex County, Virginia">Essex County, Virginia</option>
+      <option value="Fairfax city, Virginia">Fairfax city, Virginia</option>
+      <option value="Fairfax County, Virginia">Fairfax County, Virginia</option>
+      <option value="Falls Church city, Virginia">Falls Church city, Virginia</option>
+      <option value="Fauquier County, Virginia">Fauquier County, Virginia</option>
+      <option value="Floyd County, Virginia">Floyd County, Virginia</option>
+      <option value="Fluvanna County, Virginia">Fluvanna County, Virginia</option>
+      <option value="Franklin city, Virginia">Franklin city, Virginia</option>
+      <option value="Franklin County, Virginia">Franklin County, Virginia</option>
+      <option value="Frederick County, Virginia">Frederick County, Virginia</option>
+      <option value="Fredericksburg city, Virginia">Fredericksburg city, Virginia</option>
+      <option value="Galax city, Virginia">Galax city, Virginia</option>
+      <option value="Giles County, Virginia">Giles County, Virginia</option>
+      <option value="Gloucester County, Virginia">Gloucester County, Virginia</option>
+      <option value="Goochland County, Virginia">Goochland County, Virginia</option>
+      <option value="Grayson County, Virginia">Grayson County, Virginia</option>
+      <option value="Greene County, Virginia">Greene County, Virginia</option>
+      <option value="Greensville County, Virginia">Greensville County, Virginia</option>
+      <option value="Halifax County, Virginia">Halifax County, Virginia</option>
+      <option value="Hampton city, Virginia">Hampton city, Virginia</option>
+      <option value="Hanover County, Virginia">Hanover County, Virginia</option>
+      <option value="Harrisonburg city, Virginia">Harrisonburg city, Virginia</option>
+      <option value="Henrico County, Virginia">Henrico County, Virginia</option>
+      <option value="Henry County, Virginia">Henry County, Virginia</option>
+      <option value="Highland County, Virginia">Highland County, Virginia</option>
+      <option value="Hopewell city, Virginia">Hopewell city, Virginia</option>
+      <option value="Isle of Wight County, Virginia">Isle of Wight County, Virginia</option>
+      <option value="James City County, Virginia">James City County, Virginia</option>
+      <option value="King and Queen County, Virginia">King and Queen County, Virginia</option>
+      <option value="King George County, Virginia">King George County, Virginia</option>
+      <option value="King William County, Virginia">King William County, Virginia</option>
+      <option value="Lancaster County, Virginia">Lancaster County, Virginia</option>
+      <option value="Lee County, Virginia">Lee County, Virginia</option>
+      <option value="Lexington city, Virginia">Lexington city, Virginia</option>
+      <option value="Loudoun County, Virginia">Loudoun County, Virginia</option>
+      <option value="Louisa County, Virginia">Louisa County, Virginia</option>
+      <option value="Lunenburg County, Virginia">Lunenburg County, Virginia</option>
+      <option value="Lynchburg city, Virginia">Lynchburg city, Virginia</option>
+      <option value="Madison County, Virginia">Madison County, Virginia</option>
+      <option value="Manassas city, Virginia">Manassas city, Virginia</option>
+      <option value="Manassas Park city, Virginia">Manassas Park city, Virginia</option>
+      <option value="Martinsville city, Virginia">Martinsville city, Virginia</option>
+      <option value="Mathews County, Virginia">Mathews County, Virginia</option>
+      <option value="Mecklenburg County, Virginia">Mecklenburg County, Virginia</option>
+      <option value="Middlesex County, Virginia">Middlesex County, Virginia</option>
+      <option value="Montgomery County, Virginia">Montgomery County, Virginia</option>
+      <option value="Nelson County, Virginia">Nelson County, Virginia</option>
+      <option value="New Kent County, Virginia">New Kent County, Virginia</option>
+      <option value="Newport News city, Virginia">Newport News city, Virginia</option>
+      <option value="Norfolk city, Virginia">Norfolk city, Virginia</option>
+      <option value="Northampton County, Virginia">Northampton County, Virginia</option>
+      <option value="Northumberland County, Virginia">Northumberland County, Virginia</option>
+      <option value="Norton city, Virginia">Norton city, Virginia</option>
+      <option value="Nottoway County, Virginia">Nottoway County, Virginia</option>
+      <option value="Orange County, Virginia">Orange County, Virginia</option>
+      <option value="Page County, Virginia">Page County, Virginia</option>
+      <option value="Patrick County, Virginia">Patrick County, Virginia</option>
+      <option value="Petersburg city, Virginia">Petersburg city, Virginia</option>
+      <option value="Pittsylvania County, Virginia">Pittsylvania County, Virginia</option>
+      <option value="Poquoson city, Virginia">Poquoson city, Virginia</option>
+      <option value="Portsmouth city, Virginia">Portsmouth city, Virginia</option>
+      <option value="Powhatan County, Virginia">Powhatan County, Virginia</option>
+      <option value="Prince Edward County, Virginia">Prince Edward County, Virginia</option>
+      <option value="Prince George County, Virginia">Prince George County, Virginia</option>
+      <option value="Prince William County, Virginia">Prince William County, Virginia</option>
+      <option value="Pulaski County, Virginia">Pulaski County, Virginia</option>
+      <option value="Radford city, Virginia">Radford city, Virginia</option>
+      <option value="Rappahannock County, Virginia">Rappahannock County, Virginia</option>
+      <option value="Richmond city, Virginia">Richmond city, Virginia</option>
+      <option value="Richmond County, Virginia">Richmond County, Virginia</option>
+      <option value="Roanoke city, Virginia">Roanoke city, Virginia</option>
+      <option value="Roanoke County, Virginia">Roanoke County, Virginia</option>
+      <option value="Rockbridge County, Virginia">Rockbridge County, Virginia</option>
+      <option value="Rockingham County, Virginia">Rockingham County, Virginia</option>
+      <option value="Russell County, Virginia">Russell County, Virginia</option>
+      <option value="Salem city, Virginia">Salem city, Virginia</option>
+      <option value="Scott County, Virginia">Scott County, Virginia</option>
+      <option value="Shenandoah County, Virginia">Shenandoah County, Virginia</option>
+      <option value="Smyth County, Virginia">Smyth County, Virginia</option>
+      <option value="Southampton County, Virginia">Southampton County, Virginia</option>
+      <option value="Spotsylvania County, Virginia">Spotsylvania County, Virginia</option>
+      <option value="Stafford County, Virginia">Stafford County, Virginia</option>
+      <option value="Staunton city, Virginia">Staunton city, Virginia</option>
+      <option value="Suffolk city, Virginia">Suffolk city, Virginia</option>
+      <option value="Surry County, Virginia">Surry County, Virginia</option>
+      <option value="Sussex County, Virginia">Sussex County, Virginia</option>
+      <option value="Tazewell County, Virginia">Tazewell County, Virginia</option>
+      <option value="Virginia Beach city, Virginia">Virginia Beach city, Virginia</option>
+      <option value="Warren County, Virginia">Warren County, Virginia</option>
+      <option value="Washington County, Virginia">Washington County, Virginia</option>
+      <option value="Waynesboro city, Virginia">Waynesboro city, Virginia</option>
+      <option value="Westmoreland County, Virginia">Westmoreland County, Virginia</option>
+      <option value="Williamsburg city, Virginia">Williamsburg city, Virginia</option>
+      <option value="Winchester city, Virginia">Winchester city, Virginia</option>
+      <option value="Wise County, Virginia">Wise County, Virginia</option>
+      <option value="Wythe County, Virginia">Wythe County, Virginia</option>
+      <option value="York County, Virginia">York County, Virginia</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>  const data = {"Statewide":{"Enrolled in College / Grad. School":42.9,"Not Enrolled":57.1},"Accomack County, Virginia":{"Enrolled in College / Grad. School":26.3,"Not Enrolled":73.7},"Albemarle County, Virginia":{"Enrolled in College / Grad. School":68.9,"Not Enrolled":31.1},"Alleghany County, Virginia":{"Enrolled in College / Grad. School":34.2,"Not Enrolled":65.8},"Amelia County, Virginia":{"Enrolled in College / Grad. School":26.7,"Not Enrolled":73.3},"Amherst County, Virginia":{"Enrolled in College / Grad. School":42.6,"Not Enrolled":57.4},"Appomattox County, Virginia":{"Enrolled in College / Grad. School":31.9,"Not Enrolled":68.1},"Arlington County, Virginia":{"Enrolled in College / Grad. School":32.4,"Not Enrolled":67.6},"Augusta County, Virginia":{"Enrolled in College / Grad. School":24.4,"Not Enrolled":75.6},"Bath County, Virginia":{"Enrolled in College / Grad. School":48.9,"Not Enrolled":51.1},"Bedford County, Virginia":{"Enrolled in College / Grad. School":32.7,"Not Enrolled":67.3},"Bland County, Virginia":{"Enrolled in College / Grad. School":20.4,"Not Enrolled":79.6},"Botetourt County, Virginia":{"Enrolled in College / Grad. School":30.7,"Not Enrolled":69.3},"Brunswick County, Virginia":{"Enrolled in College / Grad. School":27.9,"Not Enrolled":72.1},"Buchanan County, Virginia":{"Enrolled in College / Grad. School":28.5,"Not Enrolled":71.5},"Buckingham County, Virginia":{"Enrolled in College / Grad. School":24.7,"Not Enrolled":75.3},"Campbell County, Virginia":{"Enrolled in College / Grad. School":36,"Not Enrolled":64},"Caroline County, Virginia":{"Enrolled in College / Grad. School":10.9,"Not Enrolled":89.1},"Carroll County, Virginia":{"Enrolled in College / Grad. School":20.1,"Not Enrolled":79.9},"Charles City County, Virginia":{"Enrolled in College / Grad. School":20.3,"Not Enrolled":79.7},"Charlotte County, Virginia":{"Enrolled in College / Grad. School":22.8,"Not Enrolled":77.2},"Chesterfield County, Virginia":{"Enrolled in College / Grad. School":37.5,"Not Enrolled":62.5},"Clarke County, Virginia":{"Enrolled in College / Grad. School":39.4,"Not Enrolled":60.6},"Craig County, Virginia":{"Enrolled in College / Grad. School":55,"Not Enrolled":45},"Culpeper County, Virginia":{"Enrolled in College / Grad. School":29.5,"Not Enrolled":70.5},"Cumberland County, Virginia":{"Enrolled in College / Grad. School":11.2,"Not Enrolled":88.8},"Dickenson County, Virginia":{"Enrolled in College / Grad. School":14.1,"Not Enrolled":85.9},"Dinwiddie County, Virginia":{"Enrolled in College / Grad. School":37.8,"Not Enrolled":62.2},"Essex County, Virginia":{"Enrolled in College / Grad. School":24.9,"Not Enrolled":75.1},"Fairfax County, Virginia":{"Enrolled in College / Grad. School":45.1,"Not Enrolled":54.9},"Fauquier County, Virginia":{"Enrolled in College / Grad. School":38.6,"Not Enrolled":61.4},"Floyd County, Virginia":{"Enrolled in College / Grad. School":29.8,"Not Enrolled":70.2},"Fluvanna County, Virginia":{"Enrolled in College / Grad. School":22.2,"Not Enrolled":77.8},"Franklin County, Virginia":{"Enrolled in College / Grad. School":48.8,"Not Enrolled":51.2},"Frederick County, Virginia":{"Enrolled in College / Grad. School":27.2,"Not Enrolled":72.8},"Giles County, Virginia":{"Enrolled in College / Grad. School":26.1,"Not Enrolled":73.9},"Gloucester County, Virginia":{"Enrolled in College / Grad. School":23.2,"Not Enrolled":76.8},"Goochland County, Virginia":{"Enrolled in College / Grad. School":27.4,"Not Enrolled":72.6},"Grayson County, Virginia":{"Enrolled in College / Grad. School":27.6,"Not Enrolled":72.4},"Greene County, Virginia":{"Enrolled in College / Grad. School":20.8,"Not Enrolled":79.2},"Greensville County, Virginia":{"Enrolled in College / Grad. School":31.2,"Not Enrolled":68.8},"Halifax County, Virginia":{"Enrolled in College / Grad. School":16.3,"Not Enrolled":83.7},"Hanover County, Virginia":{"Enrolled in College / Grad. School":41.4,"Not Enrolled":58.6},"Henrico County, Virginia":{"Enrolled in College / Grad. School":34.2,"Not Enrolled":65.8},"Henry County, Virginia":{"Enrolled in College / Grad. School":20.9,"Not Enrolled":79.1},"Highland County, Virginia":{"Enrolled in College / Grad. School":2.1,"Not Enrolled":97.9},"Isle of Wight County, Virginia":{"Enrolled in College / Grad. School":31.9,"Not Enrolled":68.1},"James City County, Virginia":{"Enrolled in College / Grad. School":39.2,"Not Enrolled":60.8},"King and Queen County, Virginia":{"Enrolled in College / Grad. School":10.5,"Not Enrolled":89.5},"King George County, Virginia":{"Enrolled in College / Grad. School":17.6,"Not Enrolled":82.4},"King William County, Virginia":{"Enrolled in College / Grad. School":23.8,"Not Enrolled":76.2},"Lancaster County, Virginia":{"Enrolled in College / Grad. School":16.8,"Not Enrolled":83.2},"Lee County, Virginia":{"Enrolled in College / Grad. School":24.6,"Not Enrolled":75.4},"Loudoun County, Virginia":{"Enrolled in College / Grad. School":48.6,"Not Enrolled":51.4},"Louisa County, Virginia":{"Enrolled in College / Grad. School":24.9,"Not Enrolled":75.1},"Lunenburg County, Virginia":{"Enrolled in College / Grad. School":20.8,"Not Enrolled":79.2},"Madison County, Virginia":{"Enrolled in College / Grad. School":26.4,"Not Enrolled":73.6},"Mathews County, Virginia":{"Enrolled in College / Grad. School":8.4,"Not Enrolled":91.6},"Mecklenburg County, Virginia":{"Enrolled in College / Grad. School":17.6,"Not Enrolled":82.4},"Middlesex County, Virginia":{"Enrolled in College / Grad. School":33.9,"Not Enrolled":66.1},"Montgomery County, Virginia":{"Enrolled in College / Grad. School":87.5,"Not Enrolled":12.5},"Nelson County, Virginia":{"Enrolled in College / Grad. School":28.3,"Not Enrolled":71.7},"New Kent County, Virginia":{"Enrolled in College / Grad. School":26.1,"Not Enrolled":73.9},"Northampton County, Virginia":{"Enrolled in College / Grad. School":31.9,"Not Enrolled":68.1},"Northumberland County, Virginia":{"Enrolled in College / Grad. School":35.6,"Not Enrolled":64.4},"Nottoway County, Virginia":{"Enrolled in College / Grad. School":24.3,"Not Enrolled":75.7},"Orange County, Virginia":{"Enrolled in College / Grad. School":26.2,"Not Enrolled":73.8},"Page County, Virginia":{"Enrolled in College / Grad. School":21,"Not Enrolled":79},"Patrick County, Virginia":{"Enrolled in College / Grad. School":22.4,"Not Enrolled":77.6},"Pittsylvania County, Virginia":{"Enrolled in College / Grad. School":34.4,"Not Enrolled":65.6},"Powhatan County, Virginia":{"Enrolled in College / Grad. School":24,"Not Enrolled":76},"Prince Edward County, Virginia":{"Enrolled in College / Grad. School":77.4,"Not Enrolled":22.6},"Prince George County, Virginia":{"Enrolled in College / Grad. School":26.4,"Not Enrolled":73.6},"Prince William County, Virginia":{"Enrolled in College / Grad. School":37.2,"Not Enrolled":62.8},"Pulaski County, Virginia":{"Enrolled in College / Grad. School":31.4,"Not Enrolled":68.6},"Rappahannock County, Virginia":{"Enrolled in College / Grad. School":6.4,"Not Enrolled":93.6},"Richmond County, Virginia":{"Enrolled in College / Grad. School":23.5,"Not Enrolled":76.5},"Roanoke County, Virginia":{"Enrolled in College / Grad. School":41.4,"Not Enrolled":58.6},"Rockbridge County, Virginia":{"Enrolled in College / Grad. School":48.4,"Not Enrolled":51.6},"Rockingham County, Virginia":{"Enrolled in College / Grad. School":46.2,"Not Enrolled":53.8},"Russell County, Virginia":{"Enrolled in College / Grad. School":17.3,"Not Enrolled":82.7},"Scott County, Virginia":{"Enrolled in College / Grad. School":19,"Not Enrolled":81},"Shenandoah County, Virginia":{"Enrolled in College / Grad. School":21.2,"Not Enrolled":78.8},"Smyth County, Virginia":{"Enrolled in College / Grad. School":21.5,"Not Enrolled":78.5},"Southampton County, Virginia":{"Enrolled in College / Grad. School":28.8,"Not Enrolled":71.2},"Spotsylvania County, Virginia":{"Enrolled in College / Grad. School":32.4,"Not Enrolled":67.6},"Stafford County, Virginia":{"Enrolled in College / Grad. School":35.1,"Not Enrolled":64.9},"Surry County, Virginia":{"Enrolled in College / Grad. School":34.4,"Not Enrolled":65.6},"Sussex County, Virginia":{"Enrolled in College / Grad. School":15.9,"Not Enrolled":84.1},"Tazewell County, Virginia":{"Enrolled in College / Grad. School":32.8,"Not Enrolled":67.2},"Warren County, Virginia":{"Enrolled in College / Grad. School":29.1,"Not Enrolled":70.9},"Washington County, Virginia":{"Enrolled in College / Grad. School":38.1,"Not Enrolled":61.9},"Westmoreland County, Virginia":{"Enrolled in College / Grad. School":12.9,"Not Enrolled":87.1},"Wise County, Virginia":{"Enrolled in College / Grad. School":40.4,"Not Enrolled":59.6},"Wythe County, Virginia":{"Enrolled in College / Grad. School":36,"Not Enrolled":64},"York County, Virginia":{"Enrolled in College / Grad. School":27.4,"Not Enrolled":72.6},"Alexandria city, Virginia":{"Enrolled in College / Grad. School":32.7,"Not Enrolled":67.3},"Bristol city, Virginia":{"Enrolled in College / Grad. School":23.5,"Not Enrolled":76.5},"Buena Vista city, Virginia":{"Enrolled in College / Grad. School":72.8,"Not Enrolled":27.2},"Charlottesville city, Virginia":{"Enrolled in College / Grad. School":81.7,"Not Enrolled":18.3},"Chesapeake city, Virginia":{"Enrolled in College / Grad. School":31.7,"Not Enrolled":68.3},"Colonial Heights city, Virginia":{"Enrolled in College / Grad. School":34.3,"Not Enrolled":65.7},"Covington city, Virginia":{"Enrolled in College / Grad. School":42.7,"Not Enrolled":57.3},"Danville city, Virginia":{"Enrolled in College / Grad. School":32,"Not Enrolled":68},"Emporia city, Virginia":{"Enrolled in College / Grad. School":34.4,"Not Enrolled":65.6},"Fairfax city, Virginia":{"Enrolled in College / Grad. School":53.8,"Not Enrolled":46.2},"Falls Church city, Virginia":{"Enrolled in College / Grad. School":49,"Not Enrolled":51},"Franklin city, Virginia":{"Enrolled in College / Grad. School":18.1,"Not Enrolled":81.9},"Fredericksburg city, Virginia":{"Enrolled in College / Grad. School":63,"Not Enrolled":37},"Galax city, Virginia":{"Enrolled in College / Grad. School":5.5,"Not Enrolled":94.5},"Hampton city, Virginia":{"Enrolled in College / Grad. School":36.6,"Not Enrolled":63.4},"Harrisonburg city, Virginia":{"Enrolled in College / Grad. School":82.7,"Not Enrolled":17.3},"Hopewell city, Virginia":{"Enrolled in College / Grad. School":14.9,"Not Enrolled":85.1},"Lexington city, Virginia":{"Enrolled in College / Grad. School":92.8,"Not Enrolled":7.2},"Lynchburg city, Virginia":{"Enrolled in College / Grad. School":70.9,"Not Enrolled":29.1},"Manassas city, Virginia":{"Enrolled in College / Grad. School":32.9,"Not Enrolled":67.1},"Manassas Park city, Virginia":{"Enrolled in College / Grad. School":15.6,"Not Enrolled":84.4},"Martinsville city, Virginia":{"Enrolled in College / Grad. School":27.8,"Not Enrolled":72.2},"Newport News city, Virginia":{"Enrolled in College / Grad. School":32.7,"Not Enrolled":67.3},"Norfolk city, Virginia":{"Enrolled in College / Grad. School":39,"Not Enrolled":61},"Norton city, Virginia":{"Enrolled in College / Grad. School":37.1,"Not Enrolled":62.9},"Petersburg city, Virginia":{"Enrolled in College / Grad. School":30.2,"Not Enrolled":69.8},"Poquoson city, Virginia":{"Enrolled in College / Grad. School":32.5,"Not Enrolled":67.5},"Portsmouth city, Virginia":{"Enrolled in College / Grad. School":26,"Not Enrolled":74},"Radford city, Virginia":{"Enrolled in College / Grad. School":82.1,"Not Enrolled":17.9},"Richmond city, Virginia":{"Enrolled in College / Grad. School":60.3,"Not Enrolled":39.7},"Roanoke city, Virginia":{"Enrolled in College / Grad. School":24.8,"Not Enrolled":75.2},"Salem city, Virginia":{"Enrolled in College / Grad. School":65.9,"Not Enrolled":34.1},"Staunton city, Virginia":{"Enrolled in College / Grad. School":54.7,"Not Enrolled":45.3},"Suffolk city, Virginia":{"Enrolled in College / Grad. School":28,"Not Enrolled":72},"Virginia Beach city, Virginia":{"Enrolled in College / Grad. School":32.9,"Not Enrolled":67.1},"Waynesboro city, Virginia":{"Enrolled in College / Grad. School":31.9,"Not Enrolled":68.1},"Williamsburg city, Virginia":{"Enrolled in College / Grad. School":91.1,"Not Enrolled":8.9},"Winchester city, Virginia":{"Enrolled in College / Grad. School":53.2,"Not Enrolled":46.8}};
+  const categories = ["Enrolled in College / Grad. School","Not Enrolled"];
+  const ctx = document.getElementById("barChart").getContext("2d");
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: categories,
+        datasets: [
+          {
+            label: "County/State",
+            data: values,
+            backgroundColor: ["#66c2a5", "#fc8d62"]
+          }
+        ]
+      },
+      options: {
+        indexAxis: "y",
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            ticks: {
+              callback: v => v + "%"
+            }
+          }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.dataset.label + ": " + ctx.raw + "%"
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById("countySelect").addEventListener("change", function() {
+    renderChart(Object.values(data[this.value]));
+  });
+
+  renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

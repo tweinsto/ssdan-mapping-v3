@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+
+</head>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Industry Composition – 30</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #fff;
+    }
+    .container {
+      width: 95%;
+      max-width: 1200px;
+      margin: auto;
+      text-align: center;
+    }
+    canvas {
+  max-width: 100%;
+}
+    #countySelect {
+      font-size: 1rem;
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Industry Composition (Percent)</h2>
+    <select id="countySelect"></select>
+    <canvas id="pieChart"></canvas>
+  </div>
+
+  <script>
+    const data = {"Statewide":{"Agriculture & mining":6.1,"Arts & food services":10.3,"Construction":9,"Education & health":23.3,"Finance & real estate":5.5,"Information":1.5,"Manufacturing":4.8,"Other services":5.1,"Prof. & waste services":9.6,"Public administration":5.6,"Retail trade":11.9,"Transport & utilities":5,"Wholesale trade":2.2},"Beaverhead County":{"Agriculture & mining":14.9,"Arts & food services":11.5,"Construction":8.2,"Education & health":25.9,"Finance & real estate":6.5,"Information":0.9,"Manufacturing":5.4,"Other services":5.1,"Prof. & waste services":4.9,"Public administration":3.1,"Retail trade":9.2,"Transport & utilities":2.2,"Wholesale trade":2.3},"Big Horn County":{"Agriculture & mining":13.4,"Arts & food services":11.2,"Construction":3,"Education & health":29.7,"Finance & real estate":2.4,"Information":0.5,"Manufacturing":0.4,"Other services":2.5,"Prof. & waste services":6,"Public administration":11.6,"Retail trade":8.8,"Transport & utilities":7,"Wholesale trade":3.6},"Blaine County":{"Agriculture & mining":18.7,"Arts & food services":5.6,"Construction":7.9,"Education & health":24.8,"Finance & real estate":6.8,"Information":1.6,"Manufacturing":1.1,"Other services":6.3,"Prof. & waste services":3.5,"Public administration":11.6,"Retail trade":8.2,"Transport & utilities":3.3,"Wholesale trade":0.5},"Broadwater County":{"Agriculture & mining":5.1,"Arts & food services":4.8,"Construction":13.9,"Education & health":19.8,"Finance & real estate":9,"Information":0.9,"Manufacturing":8.4,"Other services":4.6,"Prof. & waste services":5.8,"Public administration":6.8,"Retail trade":10.9,"Transport & utilities":7.3,"Wholesale trade":2.7},"Carbon County":{"Agriculture & mining":11.9,"Arts & food services":9.2,"Construction":8.7,"Education & health":18.2,"Finance & real estate":4.4,"Information":0.7,"Manufacturing":8.8,"Other services":5,"Prof. & waste services":8.8,"Public administration":4.4,"Retail trade":11.7,"Transport & utilities":6.2,"Wholesale trade":2.1},"Carter County":{"Agriculture & mining":45.8,"Arts & food services":1.6,"Construction":12.1,"Education & health":12.7,"Finance & real estate":1.9,"Information":0.6,"Manufacturing":0.6,"Other services":4.2,"Prof. & waste services":3.1,"Public administration":5.2,"Retail trade":6.3,"Transport & utilities":4.4,"Wholesale trade":1.4},"Cascade County":{"Agriculture & mining":3.7,"Arts & food services":10,"Construction":8,"Education & health":26.4,"Finance & real estate":5.9,"Information":0.7,"Manufacturing":5.2,"Other services":5.8,"Prof. & waste services":7.5,"Public administration":5.6,"Retail trade":13.6,"Transport & utilities":4.7,"Wholesale trade":3},"Chouteau County":{"Agriculture & mining":28.9,"Arts & food services":5.9,"Construction":6,"Education & health":20.8,"Finance & real estate":3.8,"Information":1.3,"Manufacturing":2.6,"Other services":1.4,"Prof. & waste services":5.9,"Public administration":11.4,"Retail trade":6.9,"Transport & utilities":3,"Wholesale trade":2},"Custer County":{"Agriculture & mining":7.9,"Arts & food services":7.6,"Construction":6.3,"Education & health":25.4,"Finance & real estate":5.3,"Information":1.4,"Manufacturing":2,"Other services":5.2,"Prof. & waste services":6,"Public administration":7.7,"Retail trade":18.8,"Transport & utilities":5.4,"Wholesale trade":1.1},"Daniels County":{"Agriculture & mining":20.7,"Arts & food services":6.4,"Construction":6.9,"Education & health":16.6,"Finance & real estate":4.7,"Information":7,"Manufacturing":4.5,"Other services":7.4,"Prof. & waste services":2.7,"Public administration":10.3,"Retail trade":11,"Transport & utilities":0.5,"Wholesale trade":1.3},"Dawson County":{"Agriculture & mining":10.2,"Arts & food services":6.9,"Construction":8.2,"Education & health":28.3,"Finance & real estate":2.8,"Information":0.5,"Manufacturing":4.6,"Other services":5.9,"Prof. & waste services":2.1,"Public administration":3.8,"Retail trade":11.6,"Transport & utilities":13,"Wholesale trade":2.2},"Deer Lodge County":{"Agriculture & mining":4.9,"Arts & food services":11.3,"Construction":10.7,"Education & health":25.8,"Finance & real estate":4.1,"Information":2,"Manufacturing":3.8,"Other services":4,"Prof. & waste services":8.6,"Public administration":7.1,"Retail trade":9.9,"Transport & utilities":2.9,"Wholesale trade":4.8},"Fallon County":{"Agriculture & mining":31.8,"Arts & food services":5.7,"Construction":9.9,"Education & health":15.4,"Finance & real estate":2.3,"Information":0.3,"Manufacturing":0.3,"Other services":2.8,"Prof. & waste services":6.3,"Public administration":7.7,"Retail trade":10.2,"Transport & utilities":7.3,"Wholesale trade":0},"Fergus County":{"Agriculture & mining":16.6,"Arts & food services":7.1,"Construction":9.7,"Education & health":20.7,"Finance & real estate":3.1,"Information":1,"Manufacturing":4.8,"Other services":5.9,"Prof. & waste services":7,"Public administration":2.8,"Retail trade":11.7,"Transport & utilities":6.9,"Wholesale trade":2.8},"Flathead County":{"Agriculture & mining":4.1,"Arts & food services":11.4,"Construction":11.3,"Education & health":21.2,"Finance & real estate":7.1,"Information":1.9,"Manufacturing":6.7,"Other services":4.5,"Prof. & waste services":10.1,"Public administration":3.7,"Retail trade":13.2,"Transport & utilities":3.5,"Wholesale trade":1.4},"Gallatin County":{"Agriculture & mining":3.3,"Arts & food services":11.5,"Construction":11.7,"Education & health":21.9,"Finance & real estate":5.6,"Information":1.2,"Manufacturing":6.2,"Other services":5.2,"Prof. & waste services":13.1,"Public administration":2.8,"Retail trade":12.7,"Transport & utilities":2.7,"Wholesale trade":2.3},"Garfield County":{"Agriculture & mining":48,"Arts & food services":2.5,"Construction":4.9,"Education & health":19.6,"Finance & real estate":2.5,"Information":0,"Manufacturing":2.5,"Other services":1.6,"Prof. & waste services":2.5,"Public administration":3.6,"Retail trade":8.3,"Transport & utilities":2.9,"Wholesale trade":1.3},"Glacier County":{"Agriculture & mining":9.6,"Arts & food services":11.7,"Construction":4.5,"Education & health":30.3,"Finance & real estate":3.3,"Information":1.5,"Manufacturing":2.2,"Other services":2.7,"Prof. & waste services":4.9,"Public administration":15.3,"Retail trade":9,"Transport & utilities":4.9,"Wholesale trade":0},"Golden Valley County":{"Agriculture & mining":40.2,"Arts & food services":7.2,"Construction":6.1,"Education & health":21.5,"Finance & real estate":0.5,"Information":0.5,"Manufacturing":2.8,"Other services":3.1,"Prof. & waste services":3.1,"Public administration":3.3,"Retail trade":3.3,"Transport & utilities":6.1,"Wholesale trade":2.3},"Granite County":{"Agriculture & mining":18.5,"Arts & food services":12,"Construction":6.9,"Education & health":13.2,"Finance & real estate":1,"Information":2.8,"Manufacturing":6.4,"Other services":5.3,"Prof. & waste services":11,"Public administration":4.6,"Retail trade":13.4,"Transport & utilities":2.4,"Wholesale trade":2.5},"Hill County":{"Agriculture & mining":7.6,"Arts & food services":11.3,"Construction":5.7,"Education & health":24.9,"Finance & real estate":4.5,"Information":3.5,"Manufacturing":0.7,"Other services":5.6,"Prof. & waste services":5.6,"Public administration":7.1,"Retail trade":11.6,"Transport & utilities":9,"Wholesale trade":2.9},"Jefferson County":{"Agriculture & mining":6.1,"Arts & food services":5.6,"Construction":12.2,"Education & health":19.8,"Finance & real estate":3,"Information":1.9,"Manufacturing":3.1,"Other services":6.4,"Prof. & waste services":11.4,"Public administration":13.5,"Retail trade":12.4,"Transport & utilities":4.3,"Wholesale trade":0.4},"Judith Basin County":{"Agriculture & mining":35.5,"Arts & food services":8.4,"Construction":4.9,"Education & health":17.7,"Finance & real estate":5.7,"Information":2.3,"Manufacturing":1.2,"Other services":0.8,"Prof. & waste services":4.4,"Public administration":3.8,"Retail trade":8.5,"Transport & utilities":4.6,"Wholesale trade":2.2},"Lake County":{"Agriculture & mining":4.9,"Arts & food services":9.7,"Construction":8.2,"Education & health":25.3,"Finance & real estate":5.3,"Information":2.2,"Manufacturing":5.9,"Other services":4.8,"Prof. & waste services":9.8,"Public administration":7.2,"Retail trade":12.1,"Transport & utilities":3.7,"Wholesale trade":0.9},"Lewis and Clark County":{"Agriculture & mining":3,"Arts & food services":9.1,"Construction":8.2,"Education & health":25.4,"Finance & real estate":6.6,"Information":1.7,"Manufacturing":2.4,"Other services":4.5,"Prof. & waste services":9,"Public administration":15.9,"Retail trade":10.4,"Transport & utilities":2.3,"Wholesale trade":1.4},"Liberty County":{"Agriculture & mining":31.1,"Arts & food services":2.6,"Construction":10,"Education & health":23.5,"Finance & real estate":1.4,"Information":1.9,"Manufacturing":0,"Other services":0.2,"Prof. & waste services":4,"Public administration":11.6,"Retail trade":7.6,"Transport & utilities":1.4,"Wholesale trade":4.7},"Lincoln County":{"Agriculture & mining":8.8,"Arts & food services":12.1,"Construction":10,"Education & health":16.4,"Finance & real estate":3.9,"Information":2.6,"Manufacturing":5.6,"Other services":4,"Prof. & waste services":8.8,"Public administration":4.3,"Retail trade":15.7,"Transport & utilities":6.7,"Wholesale trade":1.1},"McCone County":{"Agriculture & mining":34.9,"Arts & food services":3.2,"Construction":4.5,"Education & health":14.3,"Finance & real estate":6,"Information":2,"Manufacturing":1.2,"Other services":5.5,"Prof. & waste services":1.8,"Public administration":8.2,"Retail trade":7,"Transport & utilities":9.1,"Wholesale trade":2.4},"Madison County":{"Agriculture & mining":13.5,"Arts & food services":17.6,"Construction":11.4,"Education & health":13.7,"Finance & real estate":4.8,"Information":0.8,"Manufacturing":8.2,"Other services":4.5,"Prof. & waste services":7.9,"Public administration":4,"Retail trade":9.3,"Transport & utilities":3.2,"Wholesale trade":1.2},"Meagher County":{"Agriculture & mining":22.4,"Arts & food services":7.8,"Construction":6.2,"Education & health":19,"Finance & real estate":1.5,"Information":0,"Manufacturing":2.3,"Other services":3.7,"Prof. & waste services":5.2,"Public administration":14.3,"Retail trade":14.2,"Transport & utilities":3.1,"Wholesale trade":0.3},"Mineral County":{"Agriculture & mining":8.1,"Arts & food services":8,"Construction":12.3,"Education & health":19.4,"Finance & real estate":6.6,"Information":3.2,"Manufacturing":6,"Other services":4.7,"Prof. & waste services":6.5,"Public administration":3.6,"Retail trade":9.5,"Transport & utilities":8.6,"Wholesale trade":3.5},"Missoula County":{"Agriculture & mining":2.9,"Arts & food services":12.1,"Construction":6.1,"Education & health":25.7,"Finance & real estate":5.2,"Information":1.8,"Manufacturing":4,"Other services":5.5,"Prof. & waste services":12.7,"Public administration":3.8,"Retail trade":12.2,"Transport & utilities":5.9,"Wholesale trade":2.1},"Musselshell County":{"Agriculture & mining":16.3,"Arts & food services":3.3,"Construction":8.3,"Education & health":21.4,"Finance & real estate":3.5,"Information":0.6,"Manufacturing":2.9,"Other services":5.1,"Prof. & waste services":12,"Public administration":6.4,"Retail trade":12.3,"Transport & utilities":5.3,"Wholesale trade":2.7},"Park County":{"Agriculture & mining":3.9,"Arts & food services":15.1,"Construction":12.6,"Education & health":16.7,"Finance & real estate":2.9,"Information":1,"Manufacturing":8,"Other services":6.7,"Prof. & waste services":14.8,"Public administration":5.8,"Retail trade":8.6,"Transport & utilities":3.1,"Wholesale trade":0.8},"Petroleum County":{"Agriculture & mining":38,"Arts & food services":0.9,"Construction":12.7,"Education & health":14.5,"Finance & real estate":0,"Information":0,"Manufacturing":1.8,"Other services":0,"Prof. & waste services":3.2,"Public administration":8.1,"Retail trade":14.5,"Transport & utilities":6.3,"Wholesale trade":0},"Phillips County":{"Agriculture & mining":30.4,"Arts & food services":11,"Construction":3.7,"Education & health":19,"Finance & real estate":4.8,"Information":0.1,"Manufacturing":0,"Other services":5.6,"Prof. & waste services":5.6,"Public administration":6.6,"Retail trade":8.5,"Transport & utilities":3.7,"Wholesale trade":1},"Pondera County":{"Agriculture & mining":20.1,"Arts & food services":8.8,"Construction":5.6,"Education & health":20.9,"Finance & real estate":4,"Information":1.1,"Manufacturing":3,"Other services":3.4,"Prof. & waste services":4.4,"Public administration":6,"Retail trade":11.7,"Transport & utilities":4.9,"Wholesale trade":6.1},"Powder River County":{"Agriculture & mining":28,"Arts & food services":4.5,"Construction":9.2,"Education & health":21.1,"Finance & real estate":1.2,"Information":2.8,"Manufacturing":0.9,"Other services":5.6,"Prof. & waste services":5.6,"Public administration":7.6,"Retail trade":7.1,"Transport & utilities":4.9,"Wholesale trade":1.5},"Powell County":{"Agriculture & mining":10.3,"Arts & food services":16.5,"Construction":5.9,"Education & health":23.9,"Finance & real estate":1.6,"Information":0.3,"Manufacturing":4.4,"Other services":1.8,"Prof. & waste services":7.1,"Public administration":14,"Retail trade":8.8,"Transport & utilities":5.3,"Wholesale trade":0},"Prairie County":{"Agriculture & mining":36.7,"Arts & food services":9.7,"Construction":6.8,"Education & health":14.6,"Finance & real estate":1.6,"Information":1.9,"Manufacturing":3.1,"Other services":6.2,"Prof. & waste services":8.5,"Public administration":2.3,"Retail trade":2.3,"Transport & utilities":6.2,"Wholesale trade":0},"Ravalli County":{"Agriculture & mining":4,"Arts & food services":9.6,"Construction":11.4,"Education & health":20.9,"Finance & real estate":6.1,"Information":2.4,"Manufacturing":6,"Other services":6,"Prof. & waste services":9.7,"Public administration":3.3,"Retail trade":11.6,"Transport & utilities":6.1,"Wholesale trade":2.8},"Richland County":{"Agriculture & mining":16.2,"Arts & food services":8.3,"Construction":10.5,"Education & health":16.8,"Finance & real estate":6.6,"Information":0.5,"Manufacturing":5.4,"Other services":4.6,"Prof. & waste services":6.8,"Public administration":2.6,"Retail trade":10.6,"Transport & utilities":8.1,"Wholesale trade":3},"Roosevelt County":{"Agriculture & mining":10.3,"Arts & food services":6.2,"Construction":4.7,"Education & health":27.8,"Finance & real estate":2.2,"Information":1.4,"Manufacturing":0.5,"Other services":3,"Prof. & waste services":4.5,"Public administration":17.9,"Retail trade":13.3,"Transport & utilities":6.7,"Wholesale trade":1.3},"Rosebud County":{"Agriculture & mining":13.4,"Arts & food services":7.6,"Construction":7.8,"Education & health":27.3,"Finance & real estate":4.7,"Information":2,"Manufacturing":1.5,"Other services":4,"Prof. & waste services":6.1,"Public administration":6.4,"Retail trade":6.1,"Transport & utilities":13.2,"Wholesale trade":0.1},"Sanders County":{"Agriculture & mining":8.9,"Arts & food services":6.8,"Construction":10.1,"Education & health":24.7,"Finance & real estate":3.7,"Information":1.1,"Manufacturing":7.4,"Other services":5,"Prof. & waste services":5.6,"Public administration":5.8,"Retail trade":7.9,"Transport & utilities":10.2,"Wholesale trade":2.8},"Sheridan County":{"Agriculture & mining":23.5,"Arts & food services":9.5,"Construction":9.7,"Education & health":20.8,"Finance & real estate":5.6,"Information":1.5,"Manufacturing":1.3,"Other services":2.9,"Prof. & waste services":6.4,"Public administration":4.3,"Retail trade":8.3,"Transport & utilities":5.2,"Wholesale trade":1.1},"Silver Bow County":{"Agriculture & mining":4.4,"Arts & food services":10.2,"Construction":8.1,"Education & health":23.5,"Finance & real estate":5.7,"Information":1.2,"Manufacturing":4.6,"Other services":5.5,"Prof. & waste services":7.8,"Public administration":6.5,"Retail trade":11.5,"Transport & utilities":8,"Wholesale trade":3.1},"Stillwater County":{"Agriculture & mining":20.5,"Arts & food services":8.6,"Construction":8.7,"Education & health":19.1,"Finance & real estate":6.3,"Information":0.6,"Manufacturing":6.8,"Other services":2.4,"Prof. & waste services":8.2,"Public administration":3.1,"Retail trade":8.7,"Transport & utilities":5.4,"Wholesale trade":1.4},"Sweet Grass County":{"Agriculture & mining":20.6,"Arts & food services":4.9,"Construction":14.2,"Education & health":18.7,"Finance & real estate":4.2,"Information":1.5,"Manufacturing":6.5,"Other services":4.2,"Prof. & waste services":5.4,"Public administration":2.6,"Retail trade":9.1,"Transport & utilities":6.3,"Wholesale trade":1.9},"Teton County":{"Agriculture & mining":19.6,"Arts & food services":8.2,"Construction":11.6,"Education & health":21.2,"Finance & real estate":3.3,"Information":3.2,"Manufacturing":3.1,"Other services":5.5,"Prof. & waste services":5.2,"Public administration":5,"Retail trade":6.9,"Transport & utilities":4.4,"Wholesale trade":2.8},"Toole County":{"Agriculture & mining":13.2,"Arts & food services":12.1,"Construction":4.3,"Education & health":19.4,"Finance & real estate":6.4,"Information":1.7,"Manufacturing":1.7,"Other services":3.6,"Prof. & waste services":7.4,"Public administration":11,"Retail trade":11.3,"Transport & utilities":7.8,"Wholesale trade":0.1},"Treasure County":{"Agriculture & mining":40.6,"Arts & food services":0.9,"Construction":2.3,"Education & health":20.4,"Finance & real estate":0.9,"Information":0.5,"Manufacturing":0,"Other services":2,"Prof. & waste services":4.1,"Public administration":7.3,"Retail trade":4.8,"Transport & utilities":14.1,"Wholesale trade":2.3},"Valley County":{"Agriculture & mining":16.7,"Arts & food services":5.6,"Construction":7.3,"Education & health":22.6,"Finance & real estate":5.8,"Information":2.8,"Manufacturing":1,"Other services":2.9,"Prof. & waste services":5.5,"Public administration":6.7,"Retail trade":11.5,"Transport & utilities":9.2,"Wholesale trade":2.4},"Wheatland County":{"Agriculture & mining":24.1,"Arts & food services":2.6,"Construction":15.4,"Education & health":17.7,"Finance & real estate":1.3,"Information":0.7,"Manufacturing":5.3,"Other services":3.9,"Prof. & waste services":4.6,"Public administration":8.3,"Retail trade":9.8,"Transport & utilities":4.5,"Wholesale trade":1.8},"Wibaux County":{"Agriculture & mining":21.6,"Arts & food services":3.9,"Construction":10.6,"Education & health":26.1,"Finance & real estate":5.9,"Information":1.2,"Manufacturing":2.4,"Other services":1,"Prof. & waste services":3.9,"Public administration":7.5,"Retail trade":7.7,"Transport & utilities":7.3,"Wholesale trade":0.8},"Yellowstone County":{"Agriculture & mining":2.8,"Arts & food services":10.3,"Construction":8.5,"Education & health":24.7,"Finance & real estate":6.2,"Information":1.4,"Manufacturing":4.7,"Other services":5.7,"Prof. & waste services":9.9,"Public administration":4.2,"Retail trade":12.4,"Transport & utilities":6.2,"Wholesale trade":2.8}};
+    const colors = {
+  'Agriculture & mining': '#FFFF01',
+  'Arts & food services': '#00008B',
+  'Construction': '#7570B1',
+  'Education & health': '#66A61E',
+  'Finance & real estate': '#E6AB01',
+  'Information': '#379',
+  'Manufacturing': '#E41A1C',
+  'Other services': '#377EF1',
+  'Prof. & waste services': '#FF7F00',
+  'Public administration': '#1B9E77',
+  'Retail trade': '#A65011',
+  'Transport & utilities': '#F781BF',
+  'Wholesale trade': '#919'
+};
+
+    const ctx = document.getElementById("pieChart").getContext("2d");
+    let chart;
+
+    function renderChart(county) {
+      const values = data[county];
+      const labels = Object.keys(values);
+      const percentages = Object.values(values);
+
+      if (chart) chart.destroy();
+
+      chart = new Chart(ctx, {
+        type: "pie",
+        data: {
+          labels: labels,
+          datasets: [{
+            data: percentages,
+            backgroundColor: labels.map(label => colors[label] || "#cccccc")
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: true,
+  aspectRatio: 1.5, // You can tweak this (e.g., 1.3, 1.5, 2)
+          plugins: {
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  return context.label + ": " + context.formattedValue + "%";
+                }
+              }
+            },
+            legend: {
+              position: "right",
+              labels: {
+                usePointStyle: true,
+                pointStyle: "rect"
+              }
+            }
+          }
+        }
+      });
+    }
+
+    const select = document.getElementById("countySelect");
+    Object.keys(data).forEach(county => {
+      const opt = document.createElement("option");
+      opt.value = county;
+      opt.text = county;
+      select.appendChild(opt);
+    });
+    select.value = "Statewide";
+    select.addEventListener("change", () => renderChart(select.value));
+    renderChart("Statewide");
+  </script>
+</body>
+</html>
+</html>

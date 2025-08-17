@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Educational Enrollment – Utah</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Educational Enrollment (Age 18–24) in Utah</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Beaver County, Utah">Beaver County, Utah</option>
+      <option value="Box Elder County, Utah">Box Elder County, Utah</option>
+      <option value="Cache County, Utah">Cache County, Utah</option>
+      <option value="Carbon County, Utah">Carbon County, Utah</option>
+      <option value="Daggett County, Utah">Daggett County, Utah</option>
+      <option value="Davis County, Utah">Davis County, Utah</option>
+      <option value="Duchesne County, Utah">Duchesne County, Utah</option>
+      <option value="Emery County, Utah">Emery County, Utah</option>
+      <option value="Garfield County, Utah">Garfield County, Utah</option>
+      <option value="Grand County, Utah">Grand County, Utah</option>
+      <option value="Iron County, Utah">Iron County, Utah</option>
+      <option value="Juab County, Utah">Juab County, Utah</option>
+      <option value="Kane County, Utah">Kane County, Utah</option>
+      <option value="Millard County, Utah">Millard County, Utah</option>
+      <option value="Morgan County, Utah">Morgan County, Utah</option>
+      <option value="Piute County, Utah">Piute County, Utah</option>
+      <option value="Rich County, Utah">Rich County, Utah</option>
+      <option value="Salt Lake County, Utah">Salt Lake County, Utah</option>
+      <option value="San Juan County, Utah">San Juan County, Utah</option>
+      <option value="Sanpete County, Utah">Sanpete County, Utah</option>
+      <option value="Sevier County, Utah">Sevier County, Utah</option>
+      <option value="Summit County, Utah">Summit County, Utah</option>
+      <option value="Tooele County, Utah">Tooele County, Utah</option>
+      <option value="Uintah County, Utah">Uintah County, Utah</option>
+      <option value="Utah County, Utah">Utah County, Utah</option>
+      <option value="Wasatch County, Utah">Wasatch County, Utah</option>
+      <option value="Washington County, Utah">Washington County, Utah</option>
+      <option value="Wayne County, Utah">Wayne County, Utah</option>
+      <option value="Weber County, Utah">Weber County, Utah</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>  const data = {"Statewide":{"Enrolled in College / Grad. School":40.3,"Not Enrolled":59.7},"Beaver County, Utah":{"Enrolled in College / Grad. School":22.8,"Not Enrolled":77.2},"Box Elder County, Utah":{"Enrolled in College / Grad. School":24.5,"Not Enrolled":75.5},"Cache County, Utah":{"Enrolled in College / Grad. School":58.2,"Not Enrolled":41.8},"Carbon County, Utah":{"Enrolled in College / Grad. School":28.3,"Not Enrolled":71.7},"Daggett County, Utah":{"Enrolled in College / Grad. School":23.2,"Not Enrolled":76.8},"Davis County, Utah":{"Enrolled in College / Grad. School":28.8,"Not Enrolled":71.2},"Duchesne County, Utah":{"Enrolled in College / Grad. School":16.7,"Not Enrolled":83.3},"Emery County, Utah":{"Enrolled in College / Grad. School":17.3,"Not Enrolled":82.7},"Garfield County, Utah":{"Enrolled in College / Grad. School":8.3,"Not Enrolled":91.7},"Grand County, Utah":{"Enrolled in College / Grad. School":11.5,"Not Enrolled":88.5},"Iron County, Utah":{"Enrolled in College / Grad. School":50.7,"Not Enrolled":49.3},"Juab County, Utah":{"Enrolled in College / Grad. School":22.3,"Not Enrolled":77.7},"Kane County, Utah":{"Enrolled in College / Grad. School":6.2,"Not Enrolled":93.8},"Millard County, Utah":{"Enrolled in College / Grad. School":16,"Not Enrolled":84},"Morgan County, Utah":{"Enrolled in College / Grad. School":49.6,"Not Enrolled":50.4},"Piute County, Utah":{"Enrolled in College / Grad. School":25.9,"Not Enrolled":74.1},"Rich County, Utah":{"Enrolled in College / Grad. School":12,"Not Enrolled":88},"Salt Lake County, Utah":{"Enrolled in College / Grad. School":35.7,"Not Enrolled":64.3},"San Juan County, Utah":{"Enrolled in College / Grad. School":34.5,"Not Enrolled":65.5},"Sanpete County, Utah":{"Enrolled in College / Grad. School":47.3,"Not Enrolled":52.7},"Sevier County, Utah":{"Enrolled in College / Grad. School":15.7,"Not Enrolled":84.3},"Summit County, Utah":{"Enrolled in College / Grad. School":42.4,"Not Enrolled":57.6},"Tooele County, Utah":{"Enrolled in College / Grad. School":21.4,"Not Enrolled":78.6},"Uintah County, Utah":{"Enrolled in College / Grad. School":12.3,"Not Enrolled":87.7},"Utah County, Utah":{"Enrolled in College / Grad. School":51.8,"Not Enrolled":48.2},"Wasatch County, Utah":{"Enrolled in College / Grad. School":31.4,"Not Enrolled":68.6},"Washington County, Utah":{"Enrolled in College / Grad. School":34.3,"Not Enrolled":65.7},"Wayne County, Utah":{"Enrolled in College / Grad. School":4.1,"Not Enrolled":95.9},"Weber County, Utah":{"Enrolled in College / Grad. School":28,"Not Enrolled":72}};
+  const categories = ["Enrolled in College / Grad. School","Not Enrolled"];
+  const ctx = document.getElementById("barChart").getContext("2d");
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: categories,
+        datasets: [
+          {
+            label: "County/State",
+            data: values,
+            backgroundColor: ["#66c2a5", "#fc8d62"]
+          }
+        ]
+      },
+      options: {
+        indexAxis: "y",
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            ticks: {
+              callback: v => v + "%"
+            }
+          }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.dataset.label + ": " + ctx.raw + "%"
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById("countySelect").addEventListener("change", function() {
+    renderChart(Object.values(data[this.value]));
+  });
+
+  renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

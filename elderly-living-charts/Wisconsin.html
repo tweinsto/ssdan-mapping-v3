@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Living Arrangements – Wisconsin</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          margin: 1rem 2rem;
+          text-align: center;
+        }
+        h2 {
+          font-size: 1.5rem;
+          margin-bottom: 0.5rem;
+        }
+        select {
+          font-size: 1rem;
+          padding: 0.4rem;
+          margin: 1rem 0;
+          border: 1px solid #999;
+          border-radius: 5px;
+        }
+        canvas {
+          width: 100%;
+          max-width: 850px;
+          height: 600px;
+          margin-top: 1rem;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Living Arrangements of Adults 65+ in Wisconsin</h2>
+    <label>Select County:</label>
+            <select id="countySelect">
+          <option value='Statewide'>Default</option>
+<option value='Adams County, Wisconsin'>Adams County, Wisconsin</option>
+<option value='Ashland County, Wisconsin'>Ashland County, Wisconsin</option>
+<option value='Barron County, Wisconsin'>Barron County, Wisconsin</option>
+<option value='Bayfield County, Wisconsin'>Bayfield County, Wisconsin</option>
+<option value='Brown County, Wisconsin'>Brown County, Wisconsin</option>
+<option value='Buffalo County, Wisconsin'>Buffalo County, Wisconsin</option>
+<option value='Burnett County, Wisconsin'>Burnett County, Wisconsin</option>
+<option value='Calumet County, Wisconsin'>Calumet County, Wisconsin</option>
+<option value='Chippewa County, Wisconsin'>Chippewa County, Wisconsin</option>
+<option value='Clark County, Wisconsin'>Clark County, Wisconsin</option>
+<option value='Columbia County, Wisconsin'>Columbia County, Wisconsin</option>
+<option value='Crawford County, Wisconsin'>Crawford County, Wisconsin</option>
+<option value='Dane County, Wisconsin'>Dane County, Wisconsin</option>
+<option value='Dodge County, Wisconsin'>Dodge County, Wisconsin</option>
+<option value='Door County, Wisconsin'>Door County, Wisconsin</option>
+<option value='Douglas County, Wisconsin'>Douglas County, Wisconsin</option>
+<option value='Dunn County, Wisconsin'>Dunn County, Wisconsin</option>
+<option value='Eau Claire County, Wisconsin'>Eau Claire County, Wisconsin</option>
+<option value='Florence County, Wisconsin'>Florence County, Wisconsin</option>
+<option value='Fond du Lac County, Wisconsin'>Fond du Lac County, Wisconsin</option>
+<option value='Forest County, Wisconsin'>Forest County, Wisconsin</option>
+<option value='Grant County, Wisconsin'>Grant County, Wisconsin</option>
+<option value='Green County, Wisconsin'>Green County, Wisconsin</option>
+<option value='Green Lake County, Wisconsin'>Green Lake County, Wisconsin</option>
+<option value='Iowa County, Wisconsin'>Iowa County, Wisconsin</option>
+<option value='Iron County, Wisconsin'>Iron County, Wisconsin</option>
+<option value='Jackson County, Wisconsin'>Jackson County, Wisconsin</option>
+<option value='Jefferson County, Wisconsin'>Jefferson County, Wisconsin</option>
+<option value='Juneau County, Wisconsin'>Juneau County, Wisconsin</option>
+<option value='Kenosha County, Wisconsin'>Kenosha County, Wisconsin</option>
+<option value='Kewaunee County, Wisconsin'>Kewaunee County, Wisconsin</option>
+<option value='La Crosse County, Wisconsin'>La Crosse County, Wisconsin</option>
+<option value='Lafayette County, Wisconsin'>Lafayette County, Wisconsin</option>
+<option value='Langlade County, Wisconsin'>Langlade County, Wisconsin</option>
+<option value='Lincoln County, Wisconsin'>Lincoln County, Wisconsin</option>
+<option value='Manitowoc County, Wisconsin'>Manitowoc County, Wisconsin</option>
+<option value='Marathon County, Wisconsin'>Marathon County, Wisconsin</option>
+<option value='Marinette County, Wisconsin'>Marinette County, Wisconsin</option>
+<option value='Marquette County, Wisconsin'>Marquette County, Wisconsin</option>
+<option value='Menominee County, Wisconsin'>Menominee County, Wisconsin</option>
+<option value='Milwaukee County, Wisconsin'>Milwaukee County, Wisconsin</option>
+<option value='Monroe County, Wisconsin'>Monroe County, Wisconsin</option>
+<option value='Oconto County, Wisconsin'>Oconto County, Wisconsin</option>
+<option value='Oneida County, Wisconsin'>Oneida County, Wisconsin</option>
+<option value='Outagamie County, Wisconsin'>Outagamie County, Wisconsin</option>
+<option value='Ozaukee County, Wisconsin'>Ozaukee County, Wisconsin</option>
+<option value='Pepin County, Wisconsin'>Pepin County, Wisconsin</option>
+<option value='Pierce County, Wisconsin'>Pierce County, Wisconsin</option>
+<option value='Polk County, Wisconsin'>Polk County, Wisconsin</option>
+<option value='Portage County, Wisconsin'>Portage County, Wisconsin</option>
+<option value='Price County, Wisconsin'>Price County, Wisconsin</option>
+<option value='Racine County, Wisconsin'>Racine County, Wisconsin</option>
+<option value='Richland County, Wisconsin'>Richland County, Wisconsin</option>
+<option value='Rock County, Wisconsin'>Rock County, Wisconsin</option>
+<option value='Rusk County, Wisconsin'>Rusk County, Wisconsin</option>
+<option value='Sauk County, Wisconsin'>Sauk County, Wisconsin</option>
+<option value='Sawyer County, Wisconsin'>Sawyer County, Wisconsin</option>
+<option value='Shawano County, Wisconsin'>Shawano County, Wisconsin</option>
+<option value='Sheboygan County, Wisconsin'>Sheboygan County, Wisconsin</option>
+<option value='St. Croix County, Wisconsin'>St. Croix County, Wisconsin</option>
+<option value='Taylor County, Wisconsin'>Taylor County, Wisconsin</option>
+<option value='Trempealeau County, Wisconsin'>Trempealeau County, Wisconsin</option>
+<option value='Vernon County, Wisconsin'>Vernon County, Wisconsin</option>
+<option value='Vilas County, Wisconsin'>Vilas County, Wisconsin</option>
+<option value='Walworth County, Wisconsin'>Walworth County, Wisconsin</option>
+<option value='Washburn County, Wisconsin'>Washburn County, Wisconsin</option>
+<option value='Washington County, Wisconsin'>Washington County, Wisconsin</option>
+<option value='Waukesha County, Wisconsin'>Waukesha County, Wisconsin</option>
+<option value='Waupaca County, Wisconsin'>Waupaca County, Wisconsin</option>
+<option value='Waushara County, Wisconsin'>Waushara County, Wisconsin</option>
+<option value='Winnebago County, Wisconsin'>Winnebago County, Wisconsin</option>
+<option value='Wood County, Wisconsin'>Wood County, Wisconsin</option>
+        </select>
+    <canvas id="barChart"></canvas>
+    <script>  const chartData = {"Statewide":[0,0,0,0,0,0],"Adams County, Wisconsin":[0,0,0,0,0,0],"Ashland County, Wisconsin":[0,0,0,0,0,0],"Barron County, Wisconsin":[0,0,0,0,0,0],"Bayfield County, Wisconsin":[0,0,0,0,0,0],"Brown County, Wisconsin":[0,0,0,0,0,0],"Buffalo County, Wisconsin":[0,0,0,0,0,0],"Burnett County, Wisconsin":[0,0,0,0,0,0],"Calumet County, Wisconsin":[0,0,0,0,0,0],"Chippewa County, Wisconsin":[0,0,0,0,0,0],"Clark County, Wisconsin":[0,0,0,0,0,0],"Columbia County, Wisconsin":[0,0,0,0,0,0],"Crawford County, Wisconsin":[0,0,0,0,0,0],"Dane County, Wisconsin":[0,0,0,0,0,0],"Dodge County, Wisconsin":[0,0,0,0,0,0],"Door County, Wisconsin":[0,0,0,0,0,0],"Douglas County, Wisconsin":[0,0,0,0,0,0],"Dunn County, Wisconsin":[0,0,0,0,0,0],"Eau Claire County, Wisconsin":[0,0,0,0,0,0],"Florence County, Wisconsin":[0,0,0,0,0,0],"Fond du Lac County, Wisconsin":[0,0,0,0,0,0],"Forest County, Wisconsin":[0,0,0,0,0,0],"Grant County, Wisconsin":[0,0,0,0,0,0],"Green County, Wisconsin":[0,0,0,0,0,0],"Green Lake County, Wisconsin":[0,0,0,0,0,0],"Iowa County, Wisconsin":[0,0,0,0,0,0],"Iron County, Wisconsin":[0,0,0,0,0,0],"Jackson County, Wisconsin":[0,0,0,0,0,0],"Jefferson County, Wisconsin":[0,0,0,0,0,0],"Juneau County, Wisconsin":[0,0,0,0,0,0],"Kenosha County, Wisconsin":[0,0,0,0,0,0],"Kewaunee County, Wisconsin":[0,0,0,0,0,0],"La Crosse County, Wisconsin":[0,0,0,0,0,0],"Lafayette County, Wisconsin":[0,0,0,0,0,0],"Langlade County, Wisconsin":[0,0,0,0,0,0],"Lincoln County, Wisconsin":[0,0,0,0,0,0],"Manitowoc County, Wisconsin":[0,0,0,0,0,0],"Marathon County, Wisconsin":[0,0,0,0,0,0],"Marinette County, Wisconsin":[0,0,0,0,0,0],"Marquette County, Wisconsin":[0,0,0,0,0,0],"Menominee County, Wisconsin":[0,0,0,0,0,0],"Milwaukee County, Wisconsin":[0,0,0,0,0,0],"Monroe County, Wisconsin":[0,0,0,0,0,0],"Oconto County, Wisconsin":[0,0,0,0,0,0],"Oneida County, Wisconsin":[0,0,0,0,0,0],"Outagamie County, Wisconsin":[0,0,0,0,0,0],"Ozaukee County, Wisconsin":[0,0,0,0,0,0],"Pepin County, Wisconsin":[0,0,0,0,0,0],"Pierce County, Wisconsin":[0,0,0,0,0,0],"Polk County, Wisconsin":[0,0,0,0,0,0],"Portage County, Wisconsin":[0,0,0,0,0,0],"Price County, Wisconsin":[0,0,0,0,0,0],"Racine County, Wisconsin":[0,0,0,0,0,0],"Richland County, Wisconsin":[0,0,0,0,0,0],"Rock County, Wisconsin":[0,0,0,0,0,0],"Rusk County, Wisconsin":[0,0,0,0,0,0],"Sauk County, Wisconsin":[0,0,0,0,0,0],"Sawyer County, Wisconsin":[0,0,0,0,0,0],"Shawano County, Wisconsin":[0,0,0,0,0,0],"Sheboygan County, Wisconsin":[0,0,0,0,0,0],"St. Croix County, Wisconsin":[0,0,0,0,0,0],"Taylor County, Wisconsin":[0,0,0,0,0,0],"Trempealeau County, Wisconsin":[0,0,0,0,0,0],"Vernon County, Wisconsin":[0,0,0,0,0,0],"Vilas County, Wisconsin":[0,0,0,0,0,0],"Walworth County, Wisconsin":[0,0,0,0,0,0],"Washburn County, Wisconsin":[0,0,0,0,0,0],"Washington County, Wisconsin":[0,0,0,0,0,0],"Waukesha County, Wisconsin":[0,0,0,0,0,0],"Waupaca County, Wisconsin":[0,0,0,0,0,0],"Waushara County, Wisconsin":[0,0,0,0,0,0],"Winnebago County, Wisconsin":[0,0,0,0,0,0],"Wood County, Wisconsin":[0,0,0,0,0,0]};
+  const categories = ["With unmarried partner","With spouse only","With other relatives","With nonrelatives","With child","Lives alone"];
+  const usAverages = [27.3,0.3,2.3,14.5,53.2,2.4];
+
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(data) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: categories,
+        datasets: [
+          {
+            label: 'Percent (County/State)',
+            data: data,
+            backgroundColor: '#4576a7'
+          },
+          {
+            label: 'National Average',
+            data: categories.map(c => usAverages[c] || 0),
+            type: 'line',
+            borderColor: '#000',
+            borderWidth: 1,
+            pointRadius: 0,
+            fill: false
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        indexAxis: 'y',
+        scales: {
+          x: {
+            title: {
+              display: true,
+              text: 'Percent of 65+ Population'
+            },
+            min: 0,
+            max: 100,
+            ticks: {
+              callback: value => value + '%'
+            }
+          }
+        },
+        plugins: {
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.dataset.label + ': ' + ctx.parsed.x + '%'
+            }
+          },
+          legend: {
+            position: 'top',
+            align: 'start'
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(Object.values(chartData[this.value]));
+  });
+
+  renderChart(Object.values(chartData['Statewide']));</script>
+  </body>
+</html>
+</html>

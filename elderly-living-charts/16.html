@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Living Arrangements – Idaho</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Living Arrangements of Adults 65+ in Idaho</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Ada County, Idaho">Ada County, Idaho</option>
+      <option value="Adams County, Idaho">Adams County, Idaho</option>
+      <option value="Bannock County, Idaho">Bannock County, Idaho</option>
+      <option value="Bear Lake County, Idaho">Bear Lake County, Idaho</option>
+      <option value="Benewah County, Idaho">Benewah County, Idaho</option>
+      <option value="Bingham County, Idaho">Bingham County, Idaho</option>
+      <option value="Blaine County, Idaho">Blaine County, Idaho</option>
+      <option value="Boise County, Idaho">Boise County, Idaho</option>
+      <option value="Bonner County, Idaho">Bonner County, Idaho</option>
+      <option value="Bonneville County, Idaho">Bonneville County, Idaho</option>
+      <option value="Boundary County, Idaho">Boundary County, Idaho</option>
+      <option value="Butte County, Idaho">Butte County, Idaho</option>
+      <option value="Camas County, Idaho">Camas County, Idaho</option>
+      <option value="Canyon County, Idaho">Canyon County, Idaho</option>
+      <option value="Caribou County, Idaho">Caribou County, Idaho</option>
+      <option value="Cassia County, Idaho">Cassia County, Idaho</option>
+      <option value="Clark County, Idaho">Clark County, Idaho</option>
+      <option value="Clearwater County, Idaho">Clearwater County, Idaho</option>
+      <option value="Custer County, Idaho">Custer County, Idaho</option>
+      <option value="Elmore County, Idaho">Elmore County, Idaho</option>
+      <option value="Franklin County, Idaho">Franklin County, Idaho</option>
+      <option value="Fremont County, Idaho">Fremont County, Idaho</option>
+      <option value="Gem County, Idaho">Gem County, Idaho</option>
+      <option value="Gooding County, Idaho">Gooding County, Idaho</option>
+      <option value="Idaho County, Idaho">Idaho County, Idaho</option>
+      <option value="Jefferson County, Idaho">Jefferson County, Idaho</option>
+      <option value="Jerome County, Idaho">Jerome County, Idaho</option>
+      <option value="Kootenai County, Idaho">Kootenai County, Idaho</option>
+      <option value="Latah County, Idaho">Latah County, Idaho</option>
+      <option value="Lemhi County, Idaho">Lemhi County, Idaho</option>
+      <option value="Lewis County, Idaho">Lewis County, Idaho</option>
+      <option value="Lincoln County, Idaho">Lincoln County, Idaho</option>
+      <option value="Madison County, Idaho">Madison County, Idaho</option>
+      <option value="Minidoka County, Idaho">Minidoka County, Idaho</option>
+      <option value="Nez Perce County, Idaho">Nez Perce County, Idaho</option>
+      <option value="Oneida County, Idaho">Oneida County, Idaho</option>
+      <option value="Owyhee County, Idaho">Owyhee County, Idaho</option>
+      <option value="Payette County, Idaho">Payette County, Idaho</option>
+      <option value="Power County, Idaho">Power County, Idaho</option>
+      <option value="Shoshone County, Idaho">Shoshone County, Idaho</option>
+      <option value="Teton County, Idaho">Teton County, Idaho</option>
+      <option value="Twin Falls County, Idaho">Twin Falls County, Idaho</option>
+      <option value="Valley County, Idaho">Valley County, Idaho</option>
+      <option value="Washington County, Idaho">Washington County, Idaho</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>  const data = {"Statewide":[24.2,0.3,2,10.2,60.8,2.4],"Ada County, Idaho":[24.8,0.2,1.9,9.9,61,2.2],"Adams County, Idaho":[17.7,0.6,2.7,13.7,62.7,2.6],"Bannock County, Idaho":[27.3,0.2,2.3,9.6,58.3,2.3],"Bear Lake County, Idaho":[24,0.2,0,6.4,68.9,0.4],"Benewah County, Idaho":[19.5,0,1.6,9.8,67.3,1.8],"Bingham County, Idaho":[22.8,0,0.6,14.4,61.5,0.7],"Blaine County, Idaho":[25.3,0,1.6,4.2,60.5,8.3],"Boise County, Idaho":[24.6,0,1,5.4,62.3,6.6],"Bonner County, Idaho":[23.1,0.3,2.5,12.3,59.3,2.4],"Bonneville County, Idaho":[24.9,0.2,1.8,11.3,60.4,1.5],"Boundary County, Idaho":[31.8,0.1,2.1,6.7,58.6,0.7],"Butte County, Idaho":[33.7,1,1,11.4,51.4,1.6],"Camas County, Idaho":[33.7,0,0,7,59.3,0],"Canyon County, Idaho":[20.8,1,2.1,12,61.6,2.5],"Caribou County, Idaho":[28.2,0,5.6,7.7,57.7,0.8],"Cassia County, Idaho":[20.3,0.2,1.1,6.2,70.8,1.5],"Clark County, Idaho":[42.2,0,2,2,53.9,0],"Clearwater County, Idaho":[23.6,0,3.5,7.8,61.1,4],"Custer County, Idaho":[19.3,0,2.3,6.2,70.8,1.4],"Elmore County, Idaho":[28.3,0.2,2,15.1,50.1,4.4],"Franklin County, Idaho":[17.1,1.6,0,7.8,72,1.5],"Fremont County, Idaho":[18.5,0,0.4,11.3,68.2,1.6],"Gem County, Idaho":[25.8,0,1.2,8.9,62.2,1.8],"Gooding County, Idaho":[26,0,5.5,7.2,58.1,3.2],"Idaho County, Idaho":[22,0.5,2,9.2,61.1,5.2],"Jefferson County, Idaho":[23.8,0.4,1.8,9.4,63.1,1.5],"Jerome County, Idaho":[20.9,0.3,1,11.6,63.3,2.9],"Kootenai County, Idaho":[22.5,0.3,1.4,9.4,63.6,2.8],"Latah County, Idaho":[27,0.6,2.7,5.2,62.7,1.8],"Lemhi County, Idaho":[31.2,0,0.3,19.9,43.6,5],"Lewis County, Idaho":[27.8,0,4.9,6.9,58,2.4],"Lincoln County, Idaho":[26.2,0,0.3,3.9,65.7,4],"Madison County, Idaho":[15.5,0,0,8.7,74.6,1.3],"Minidoka County, Idaho":[25.8,0.1,0,8,63.1,3],"Nez Perce County, Idaho":[30.1,0.6,4.1,10.7,52.1,2.4],"Oneida County, Idaho":[33.9,0,0,8,58.2,0],"Owyhee County, Idaho":[23.8,0,2.7,18.5,54.3,0.7],"Payette County, Idaho":[23.2,0,3.8,9.9,56.8,6.2],"Power County, Idaho":[23.6,0,0.1,3,73,0.3],"Shoshone County, Idaho":[33.8,0,2.9,9.4,50.9,3],"Teton County, Idaho":[33.7,0.9,0.3,10.7,52.8,1.7],"Twin Falls County, Idaho":[26.8,0.2,3.2,12.3,56.1,1.3],"Valley County, Idaho":[19.6,0.7,1.5,5.4,72.1,0.7],"Washington County, Idaho":[23.9,0,2.7,8.1,61.7,3.6]};
+  const nationalAvg = [27.3,0.3,2.3,14.5,53.2,2.4];
+  const categories = ["Lives alone","With child","With nonrelatives","With other relatives","With spouse only","With unmarried partner"];
+  const ctx = document.getElementById("barChart").getContext("2d");
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: categories,
+        datasets: [
+          {
+            label: "County/State",
+            data: values,
+            backgroundColor: [
+              "#e41a1c", "#ff7f00", "#4daf4a",
+              "#984ea3", "#377eb8", "#a65628"
+            ]
+          },
+          {
+            label: "",
+            data: categories.map(c => nationalAvg[c]),
+            type: "line",
+            borderColor: "gray",
+            borderWidth: 1,
+            borderDash: [4, 4],
+            pointRadius: 0,
+            fill: false
+          }
+        ]
+      },
+      options: {
+        indexAxis: "y",
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            ticks: {
+              callback: function(v) { return v + "%"; }
+            }
+          }
+        },
+        plugins: {
+          legend: {
+            labels: {
+              filter: function(item) { return item.text !== ""; }
+            }
+          },
+          tooltip: {
+            callbacks: {
+              label: function(ctx) {
+                return ctx.dataset.label !== "" ? ctx.dataset.label + ": " + ctx.raw + "%" : null;
+              }
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById("countySelect").addEventListener("change", function() {
+    renderChart(Object.values(data[this.value]));
+  });
+
+  renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

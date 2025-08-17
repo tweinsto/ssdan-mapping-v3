@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Veteran Labor Force Status – Nevada</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Labor Force Status of Veterans (Age 18–64) in Nevada</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Carson City, Nevada">Carson City, Nevada</option>
+      <option value="Churchill County, Nevada">Churchill County, Nevada</option>
+      <option value="Clark County, Nevada">Clark County, Nevada</option>
+      <option value="Douglas County, Nevada">Douglas County, Nevada</option>
+      <option value="Elko County, Nevada">Elko County, Nevada</option>
+      <option value="Esmeralda County, Nevada">Esmeralda County, Nevada</option>
+      <option value="Eureka County, Nevada">Eureka County, Nevada</option>
+      <option value="Humboldt County, Nevada">Humboldt County, Nevada</option>
+      <option value="Lander County, Nevada">Lander County, Nevada</option>
+      <option value="Lincoln County, Nevada">Lincoln County, Nevada</option>
+      <option value="Lyon County, Nevada">Lyon County, Nevada</option>
+      <option value="Mineral County, Nevada">Mineral County, Nevada</option>
+      <option value="Nye County, Nevada">Nye County, Nevada</option>
+      <option value="Pershing County, Nevada">Pershing County, Nevada</option>
+      <option value="Storey County, Nevada">Storey County, Nevada</option>
+      <option value="Washoe County, Nevada">Washoe County, Nevada</option>
+      <option value="White Pine County, Nevada">White Pine County, Nevada</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>        const data = {"Statewide":[70.9,3.9,25.2],"Carson City, Nevada":[60.4,3.8,35.8],"Churchill County, Nevada":[76.3,4.1,19.5],"Clark County, Nevada":[71.7,4,24.3],"Douglas County, Nevada":[59.3,5.6,35.1],"Elko County, Nevada":[86.1,1.9,12],"Esmeralda County, Nevada":[13.3,0,86.7],"Eureka County, Nevada":[100,0,0],"Humboldt County, Nevada":[79.2,0.2,20.6],"Lander County, Nevada":[87.5,0,12.5],"Lincoln County, Nevada":[69.8,0,30.2],"Lyon County, Nevada":[69.1,3.2,27.7],"Mineral County, Nevada":[58,5.1,36.9],"Nye County, Nevada":[47.5,1.5,51],"Pershing County, Nevada":[24.1,0,75.9],"Storey County, Nevada":[40.6,0,59.4],"Washoe County, Nevada":[72,4,24],"White Pine County, Nevada":[92.4,0,7.6]};
+        const nationalAvg = [73.9,23,3.2];
+        const categories = ["Employed","Unemployed","Not in Labor Force"];
+        const ctx = document.getElementById("barChart").getContext("2d");
+        let chart;
+
+        function renderChart(values) {
+          if (chart) chart.destroy();
+          chart = new Chart(ctx, {
+            type: "bar",
+            data: {
+              labels: categories,
+              datasets: [
+                {
+                  label: "County/State",
+                  data: values,
+                  backgroundColor: ["#66c2a5", "#fc8d62", "#8da0cb"]
+                },
+                {
+                  label: null,
+                  data: categories.map(c => nationalAvg[c]),
+                  type: "line",
+                  borderColor: "black",
+                  borderWidth: 2,
+                  pointRadius: 0,
+                  fill: false
+                }
+              ]
+            },
+            options: {
+              indexAxis: "y",
+              scales: {
+                x: {
+                  min: 0,
+                  max: 100,
+                  ticks: {
+                    callback: v => v + "%"
+                  }
+                }
+              },
+              plugins: {
+                legend: {
+  display: false
+},
+                tooltip: {
+                  callbacks: {
+                    label: ctx => ctx.dataset.label ? ctx.dataset.label + ": " + ctx.raw + "%" : null
+                  }
+                }
+              }
+            }
+          });
+        }
+
+        document.getElementById("countySelect").addEventListener("change", function() {
+          renderChart(Object.values(data[this.value]));
+        });
+
+        renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

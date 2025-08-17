@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <title>Industry Distribution – Arkansas</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+        canvas { max-width: 600px; height: 500px; }
+        select { padding: 0.5rem; font-size: 1rem; margin: 1rem; }
+        .legend { max-width: 600px; margin: 1rem auto; display: flex; flex-wrap: wrap; justify-content: center; font-size: 0.9rem; }
+        .legend-item { display: flex; align-items: center; margin: 0.3rem 1rem; }
+        .legend-color { width: 12px; height: 12px; margin-right: 6px; border: 1px solid #444; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Industry Distribution in Arkansas</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Arkansas County, Arkansas">Arkansas County, Arkansas</option>
+      <option value="Ashley County, Arkansas">Ashley County, Arkansas</option>
+      <option value="Baxter County, Arkansas">Baxter County, Arkansas</option>
+      <option value="Benton County, Arkansas">Benton County, Arkansas</option>
+      <option value="Boone County, Arkansas">Boone County, Arkansas</option>
+      <option value="Bradley County, Arkansas">Bradley County, Arkansas</option>
+      <option value="Calhoun County, Arkansas">Calhoun County, Arkansas</option>
+      <option value="Carroll County, Arkansas">Carroll County, Arkansas</option>
+      <option value="Chicot County, Arkansas">Chicot County, Arkansas</option>
+      <option value="Clark County, Arkansas">Clark County, Arkansas</option>
+      <option value="Clay County, Arkansas">Clay County, Arkansas</option>
+      <option value="Cleburne County, Arkansas">Cleburne County, Arkansas</option>
+      <option value="Cleveland County, Arkansas">Cleveland County, Arkansas</option>
+      <option value="Columbia County, Arkansas">Columbia County, Arkansas</option>
+      <option value="Conway County, Arkansas">Conway County, Arkansas</option>
+      <option value="Craighead County, Arkansas">Craighead County, Arkansas</option>
+      <option value="Crawford County, Arkansas">Crawford County, Arkansas</option>
+      <option value="Crittenden County, Arkansas">Crittenden County, Arkansas</option>
+      <option value="Cross County, Arkansas">Cross County, Arkansas</option>
+      <option value="Dallas County, Arkansas">Dallas County, Arkansas</option>
+      <option value="Desha County, Arkansas">Desha County, Arkansas</option>
+      <option value="Drew County, Arkansas">Drew County, Arkansas</option>
+      <option value="Faulkner County, Arkansas">Faulkner County, Arkansas</option>
+      <option value="Franklin County, Arkansas">Franklin County, Arkansas</option>
+      <option value="Fulton County, Arkansas">Fulton County, Arkansas</option>
+      <option value="Garland County, Arkansas">Garland County, Arkansas</option>
+      <option value="Grant County, Arkansas">Grant County, Arkansas</option>
+      <option value="Greene County, Arkansas">Greene County, Arkansas</option>
+      <option value="Hempstead County, Arkansas">Hempstead County, Arkansas</option>
+      <option value="Hot Spring County, Arkansas">Hot Spring County, Arkansas</option>
+      <option value="Howard County, Arkansas">Howard County, Arkansas</option>
+      <option value="Independence County, Arkansas">Independence County, Arkansas</option>
+      <option value="Izard County, Arkansas">Izard County, Arkansas</option>
+      <option value="Jackson County, Arkansas">Jackson County, Arkansas</option>
+      <option value="Jefferson County, Arkansas">Jefferson County, Arkansas</option>
+      <option value="Johnson County, Arkansas">Johnson County, Arkansas</option>
+      <option value="Lafayette County, Arkansas">Lafayette County, Arkansas</option>
+      <option value="Lawrence County, Arkansas">Lawrence County, Arkansas</option>
+      <option value="Lee County, Arkansas">Lee County, Arkansas</option>
+      <option value="Lincoln County, Arkansas">Lincoln County, Arkansas</option>
+      <option value="Little River County, Arkansas">Little River County, Arkansas</option>
+      <option value="Logan County, Arkansas">Logan County, Arkansas</option>
+      <option value="Lonoke County, Arkansas">Lonoke County, Arkansas</option>
+      <option value="Madison County, Arkansas">Madison County, Arkansas</option>
+      <option value="Marion County, Arkansas">Marion County, Arkansas</option>
+      <option value="Miller County, Arkansas">Miller County, Arkansas</option>
+      <option value="Mississippi County, Arkansas">Mississippi County, Arkansas</option>
+      <option value="Monroe County, Arkansas">Monroe County, Arkansas</option>
+      <option value="Montgomery County, Arkansas">Montgomery County, Arkansas</option>
+      <option value="Nevada County, Arkansas">Nevada County, Arkansas</option>
+      <option value="Newton County, Arkansas">Newton County, Arkansas</option>
+      <option value="Ouachita County, Arkansas">Ouachita County, Arkansas</option>
+      <option value="Perry County, Arkansas">Perry County, Arkansas</option>
+      <option value="Phillips County, Arkansas">Phillips County, Arkansas</option>
+      <option value="Pike County, Arkansas">Pike County, Arkansas</option>
+      <option value="Poinsett County, Arkansas">Poinsett County, Arkansas</option>
+      <option value="Polk County, Arkansas">Polk County, Arkansas</option>
+      <option value="Pope County, Arkansas">Pope County, Arkansas</option>
+      <option value="Prairie County, Arkansas">Prairie County, Arkansas</option>
+      <option value="Pulaski County, Arkansas">Pulaski County, Arkansas</option>
+      <option value="Randolph County, Arkansas">Randolph County, Arkansas</option>
+      <option value="Saline County, Arkansas">Saline County, Arkansas</option>
+      <option value="Scott County, Arkansas">Scott County, Arkansas</option>
+      <option value="Searcy County, Arkansas">Searcy County, Arkansas</option>
+      <option value="Sebastian County, Arkansas">Sebastian County, Arkansas</option>
+      <option value="Sevier County, Arkansas">Sevier County, Arkansas</option>
+      <option value="Sharp County, Arkansas">Sharp County, Arkansas</option>
+      <option value="St. Francis County, Arkansas">St. Francis County, Arkansas</option>
+      <option value="Stone County, Arkansas">Stone County, Arkansas</option>
+      <option value="Union County, Arkansas">Union County, Arkansas</option>
+      <option value="Van Buren County, Arkansas">Van Buren County, Arkansas</option>
+      <option value="Washington County, Arkansas">Washington County, Arkansas</option>
+      <option value="White County, Arkansas">White County, Arkansas</option>
+      <option value="Woodruff County, Arkansas">Woodruff County, Arkansas</option>
+      <option value="Yell County, Arkansas">Yell County, Arkansas</option>
+    </select>
+    <canvas id="pieChart"></canvas>
+    <div class="legend">
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#66CC66;"></div>
+        <span>Agriculture, forestry, fishing, and hunting</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#996600;"></div>
+        <span>Mining</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FF6600;"></div>
+        <span>Utilities</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FFCC33;"></div>
+        <span>Construction</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FF0000;"></div>
+        <span>Manufacturing</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FF66FF;"></div>
+        <span>Wholesale trade</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#3399FF;"></div>
+        <span>Retail trade</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#00CC99;"></div>
+        <span>Transportation and warehousing</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#999966;"></div>
+        <span>Information</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#6666FF;"></div>
+        <span>Finance and insurance</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FF99CC;"></div>
+        <span>Professional, scientific, and technical services</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#66CCCC;"></div>
+        <span>Educational services</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FF9933;"></div>
+        <span>Healthcare and social assistance</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#CC99FF;"></div>
+        <span>Arts, entertainment, and recreation</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FF9999;"></div>
+        <span>Accommodation and food services</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#CCCC00;"></div>
+        <span>Other services</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#663300;"></div>
+        <span>Public administration</span>
+      </div>
+    </div>
+    <script>const data = [];
+const colors = ["#66CC66","#996600","#FF6600","#FFCC33","#FF0000","#FF66FF","#3399FF","#00CC99","#999966","#6666FF","#FF99CC","#66CCCC","#FF9933","#CC99FF","#FF9999","#CCCC00","#663300"];
+let chart;
+function renderChart(region) {
+  const ctx = document.getElementById("pieChart").getContext("2d");
+  const labels = Object.keys(data[region]);
+  const values = Object.values(data[region]);
+  const backgroundColors = labels.map(l => colors[l] || "#999");
+  if (chart) chart.destroy();
+  chart = new Chart(ctx, {
+    type: "pie",
+    data: {
+      labels: labels,
+      datasets: [{
+        data: values,
+        backgroundColor: backgroundColors
+      }]
+    },
+    options: {
+      plugins: {
+        tooltip: {
+          callbacks: {
+            label: ctx => ctx.label + ": " + ctx.raw + "%"
+          }
+        }
+      }
+    }
+  });
+}
+document.getElementById("countySelect").addEventListener("change", function() {
+  renderChart(this.value);
+});
+renderChart("Statewide");</script>
+  </body>
+</html>
+</html>

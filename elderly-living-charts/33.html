@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Living Arrangements – New Hampshire</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Living Arrangements of Adults 65+ in New Hampshire</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Belknap County, New Hampshire">Belknap County, New Hampshire</option>
+      <option value="Carroll County, New Hampshire">Carroll County, New Hampshire</option>
+      <option value="Cheshire County, New Hampshire">Cheshire County, New Hampshire</option>
+      <option value="Coos County, New Hampshire">Coos County, New Hampshire</option>
+      <option value="Grafton County, New Hampshire">Grafton County, New Hampshire</option>
+      <option value="Hillsborough County, New Hampshire">Hillsborough County, New Hampshire</option>
+      <option value="Merrimack County, New Hampshire">Merrimack County, New Hampshire</option>
+      <option value="Rockingham County, New Hampshire">Rockingham County, New Hampshire</option>
+      <option value="Strafford County, New Hampshire">Strafford County, New Hampshire</option>
+      <option value="Sullivan County, New Hampshire">Sullivan County, New Hampshire</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>  const data = {"Statewide":[26.3,0.2,1.9,10.2,58.1,3.4],"Belknap County, New Hampshire":[27.3,0.2,0.7,7.3,60.3,4.3],"Carroll County, New Hampshire":[28.4,0,1.6,8.2,59.1,2.7],"Cheshire County, New Hampshire":[24.6,0.1,1.7,11.2,58.6,3.8],"Coos County, New Hampshire":[33,0.1,1.3,5.2,57.3,3],"Grafton County, New Hampshire":[27.2,0.8,2.2,8.3,58.4,3.1],"Hillsborough County, New Hampshire":[26.8,0.1,2,12.3,56.1,2.8],"Merrimack County, New Hampshire":[24.8,0.1,2.9,8,60.5,3.7],"Rockingham County, New Hampshire":[24.2,0.3,1.4,10.2,60.3,3.6],"Strafford County, New Hampshire":[29.6,0.3,2.2,9.1,55,3.8],"Sullivan County, New Hampshire":[23.5,0,3.2,17,51.9,4.4]};
+  const nationalAvg = [27.3,0.3,2.3,14.5,53.2,2.4];
+  const categories = ["Lives alone","With child","With nonrelatives","With other relatives","With spouse only","With unmarried partner"];
+  const ctx = document.getElementById("barChart").getContext("2d");
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: categories,
+        datasets: [
+          {
+            label: "County/State",
+            data: values,
+            backgroundColor: [
+              "#e41a1c", "#ff7f00", "#4daf4a",
+              "#984ea3", "#377eb8", "#a65628"
+            ]
+          },
+          {
+            label: "",
+            data: categories.map(c => nationalAvg[c]),
+            type: "line",
+            borderColor: "gray",
+            borderWidth: 1,
+            borderDash: [4, 4],
+            pointRadius: 0,
+            fill: false
+          }
+        ]
+      },
+      options: {
+        indexAxis: "y",
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            ticks: {
+              callback: function(v) { return v + "%"; }
+            }
+          }
+        },
+        plugins: {
+          legend: {
+            labels: {
+              filter: function(item) { return item.text !== ""; }
+            }
+          },
+          tooltip: {
+            callbacks: {
+              label: function(ctx) {
+                return ctx.dataset.label !== "" ? ctx.dataset.label + ": " + ctx.raw + "%" : null;
+              }
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById("countySelect").addEventListener("change", function() {
+    renderChart(Object.values(data[this.value]));
+  });
+
+  renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Income Distribution – North Dakota</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          text-align: center;
+          margin: 2rem;
+        }
+        select {
+          font-size: 1rem;
+          padding: 0.4rem;
+          margin-bottom: 1rem;
+        }
+        canvas {
+          width: 100%;
+          max-width: 700px;
+          height: 400px;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Income Share by Quintile – North Dakota</h2>
+    <label>Select County, State:</label>
+    <select id="countySelect"><option value='Statewide'>Statewide</option>
+<option value='Adams, North Dakota'>Adams, North Dakota</option>
+<option value='Barnes, North Dakota'>Barnes, North Dakota</option>
+<option value='Benson, North Dakota'>Benson, North Dakota</option>
+<option value='Billings, North Dakota'>Billings, North Dakota</option>
+<option value='Bottineau, North Dakota'>Bottineau, North Dakota</option>
+<option value='Bowman, North Dakota'>Bowman, North Dakota</option>
+<option value='Burke, North Dakota'>Burke, North Dakota</option>
+<option value='Burleigh, North Dakota'>Burleigh, North Dakota</option>
+<option value='Cass, North Dakota'>Cass, North Dakota</option>
+<option value='Cavalier, North Dakota'>Cavalier, North Dakota</option>
+<option value='Dickey, North Dakota'>Dickey, North Dakota</option>
+<option value='Divide, North Dakota'>Divide, North Dakota</option>
+<option value='Dunn, North Dakota'>Dunn, North Dakota</option>
+<option value='Eddy, North Dakota'>Eddy, North Dakota</option>
+<option value='Emmons, North Dakota'>Emmons, North Dakota</option>
+<option value='Foster, North Dakota'>Foster, North Dakota</option>
+<option value='Golden Valley, North Dakota'>Golden Valley, North Dakota</option>
+<option value='Grand Forks, North Dakota'>Grand Forks, North Dakota</option>
+<option value='Grant, North Dakota'>Grant, North Dakota</option>
+<option value='Griggs, North Dakota'>Griggs, North Dakota</option>
+<option value='Hettinger, North Dakota'>Hettinger, North Dakota</option>
+<option value='Kidder, North Dakota'>Kidder, North Dakota</option>
+<option value='LaMoure, North Dakota'>LaMoure, North Dakota</option>
+<option value='Logan, North Dakota'>Logan, North Dakota</option>
+<option value='McHenry, North Dakota'>McHenry, North Dakota</option>
+<option value='McIntosh, North Dakota'>McIntosh, North Dakota</option>
+<option value='McKenzie, North Dakota'>McKenzie, North Dakota</option>
+<option value='McLean, North Dakota'>McLean, North Dakota</option>
+<option value='Mercer, North Dakota'>Mercer, North Dakota</option>
+<option value='Morton, North Dakota'>Morton, North Dakota</option>
+<option value='Mountrail, North Dakota'>Mountrail, North Dakota</option>
+<option value='Nelson, North Dakota'>Nelson, North Dakota</option>
+<option value='Oliver, North Dakota'>Oliver, North Dakota</option>
+<option value='Pembina, North Dakota'>Pembina, North Dakota</option>
+<option value='Pierce, North Dakota'>Pierce, North Dakota</option>
+<option value='Ramsey, North Dakota'>Ramsey, North Dakota</option>
+<option value='Ransom, North Dakota'>Ransom, North Dakota</option>
+<option value='Renville, North Dakota'>Renville, North Dakota</option>
+<option value='Richland, North Dakota'>Richland, North Dakota</option>
+<option value='Rolette, North Dakota'>Rolette, North Dakota</option>
+<option value='Sargent, North Dakota'>Sargent, North Dakota</option>
+<option value='Sheridan, North Dakota'>Sheridan, North Dakota</option>
+<option value='Sioux, North Dakota'>Sioux, North Dakota</option>
+<option value='Slope, North Dakota'>Slope, North Dakota</option>
+<option value='Stark, North Dakota'>Stark, North Dakota</option>
+<option value='Steele, North Dakota'>Steele, North Dakota</option>
+<option value='Stutsman, North Dakota'>Stutsman, North Dakota</option>
+<option value='Towner, North Dakota'>Towner, North Dakota</option>
+<option value='Traill, North Dakota'>Traill, North Dakota</option>
+<option value='Walsh, North Dakota'>Walsh, North Dakota</option>
+<option value='Ward, North Dakota'>Ward, North Dakota</option>
+<option value='Wells, North Dakota'>Wells, North Dakota</option>
+<option value='Williams, North Dakota'>Williams, North Dakota</option></select>
+    <canvas id="barChart" width="700" height="400"></canvas>
+    <script>  const incomeData = {"Statewide":[5.2,8.8,13.4,27,45.7],"Adams, North Dakota":[4.5,8.5,15,27.8,44.2],"Barnes, North Dakota":[4.3,7.4,11.6,25.5,51.2],"Benson, North Dakota":[4.2,8.5,11.8,26.9,48.5],"Billings, North Dakota":[6,10,15.7,27,41.3],"Bottineau, North Dakota":[4.7,7.5,11,25.7,51.1],"Bowman, North Dakota":[7.3,11.5,16.5,26.9,37.9],"Burke, North Dakota":[5.9,8.5,12.9,27,45.8],"Burleigh, North Dakota":[5.5,8.9,13.4,26.5,45.8],"Cass, North Dakota":[4.9,8,12.3,27.1,47.7],"Cavalier, North Dakota":[4.8,7.2,11.7,26.8,49.5],"Dickey, North Dakota":[4.1,6.7,10.9,26.8,51.5],"Divide, North Dakota":[5.9,9.8,13.9,27.1,43.2],"Dunn, North Dakota":[4.8,7.6,11.1,26.8,49.7],"Eddy, North Dakota":[5,8.3,13.2,27.6,45.9],"Emmons, North Dakota":[4.7,8.8,13.2,26.7,46.6],"Foster, North Dakota":[6.3,11,15.9,28.3,38.5],"Golden Valley, North Dakota":[6.6,10.9,16.3,28.8,37.4],"Grand Forks, North Dakota":[4.9,8.1,12.4,26.7,47.9],"Grant, North Dakota":[3.7,7.1,11.6,27.2,50.5],"Griggs, North Dakota":[3.8,6.4,10,28,51.9],"Hettinger, North Dakota":[4.4,8,12.3,26.1,49.2],"Kidder, North Dakota":[6.2,10.6,14.9,27.7,40.7],"LaMoure, North Dakota":[4.7,8,12,25.7,49.5],"Logan, North Dakota":[5.5,9.6,13.4,27.3,44.2],"McHenry, North Dakota":[5.6,9.8,14.3,27.1,43.2],"McIntosh, North Dakota":[5.1,9.7,14.5,26.5,44.1],"McKenzie, North Dakota":[5,7.3,11.6,27.4,48.6],"McLean, North Dakota":[6.8,10.4,15.4,26.7,40.8],"Mercer, North Dakota":[6.6,11,17.1,27.6,37.8],"Morton, North Dakota":[4.7,7.4,11.2,25.2,51.5],"Mountrail, North Dakota":[4.8,8.6,12.7,26.1,47.8],"Nelson, North Dakota":[4.8,8.4,12.8,25.6,48.4],"Oliver, North Dakota":[7.3,10.6,17.4,28.1,36.6],"Pembina, North Dakota":[5,8.3,12.8,27,46.9],"Pierce, North Dakota":[5.2,8.4,13,26.6,46.9],"Ramsey, North Dakota":[4.8,8.5,13.8,27.6,45.2],"Ransom, North Dakota":[5.9,9.6,14.3,25.9,44.2],"Renville, North Dakota":[8,11,16.2,27,37.8],"Richland, North Dakota":[4.7,8,12.5,27.1,47.7],"Rolette, North Dakota":[4.9,9.4,15.3,27.7,42.7],"Sargent, North Dakota":[6,8.9,12.8,25.6,46.7],"Sheridan, North Dakota":[6.5,9.6,13.8,26.3,43.8],"Sioux, North Dakota":[3.3,6.3,10.9,27.5,51.9],"Slope, North Dakota":[4.6,8.3,12.5,28.5,46.1],"Stark, North Dakota":[5.7,9.2,13.3,26.6,45.3],"Steele, North Dakota":[5.6,10.4,16.8,28.4,38.8],"Stutsman, North Dakota":[3.6,6.7,11.2,26.1,52.4],"Towner, North Dakota":[4.6,8.9,14.9,28.1,43.5],"Traill, North Dakota":[5.9,9.7,13.8,26.4,44.2],"Walsh, North Dakota":[5.9,9.3,13.7,26.4,44.7],"Ward, North Dakota":[5.8,8.8,13.2,26.9,45.4],"Wells, North Dakota":[3.7,6.6,10.3,26.9,52.6],"Williams, North Dakota":[4.9,8.1,12.8,27.8,46.3]};
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Bottom 20%', 'Second 20%', 'Middle 20%', 'Fourth 20%', 'Top 20%'],
+        datasets: [{
+          label: 'Share (%)',
+          data: values,
+          backgroundColor: '#4576a7'
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.parsed.y + '%'
+            }
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 100,
+            title: {
+              display: true,
+              text: 'Income Share (%)'
+            }
+          },
+          x: {
+            title: {
+              display: true,
+              text: 'Quintile'
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(Object.values(incomeData[this.value]));
+  });
+
+  renderChart(Object.values(incomeData['Statewide']));</script>
+  </body>
+</html>
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Age Pyramid –  South Carolina</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+      body {
+        font-family: sans-serif;
+        margin: 1rem 2rem;
+        text-align: center;
+      }
+      h2 {
+        margin-bottom: 0.25rem;
+        font-size: 1.6rem;
+      }
+      select {
+        padding: 0.4rem;
+        font-size: 1rem;
+        margin: 1rem 0;
+        border-radius: 5px;
+        border: 1px solid #999;
+      }
+      canvas {
+        width: 100%;
+        max-width: 850px;
+        height: 500px;
+        margin-top: 1rem;
+      }
+    </style>
+</head>
+<html>
+  <body>
+    <h2>Age Distribution in  South Carolina (2023)</h2>
+    <label>Select County:</label>
+          <select id="countySelect">
+        <option value='Statewide'>Statewide</option>
+<option value='Abbeville County, South Carolina'>Abbeville County, South Carolina</option>
+<option value='Aiken County, South Carolina'>Aiken County, South Carolina</option>
+<option value='Allendale County, South Carolina'>Allendale County, South Carolina</option>
+<option value='Anderson County, South Carolina'>Anderson County, South Carolina</option>
+<option value='Bamberg County, South Carolina'>Bamberg County, South Carolina</option>
+<option value='Barnwell County, South Carolina'>Barnwell County, South Carolina</option>
+<option value='Beaufort County, South Carolina'>Beaufort County, South Carolina</option>
+<option value='Berkeley County, South Carolina'>Berkeley County, South Carolina</option>
+<option value='Calhoun County, South Carolina'>Calhoun County, South Carolina</option>
+<option value='Charleston County, South Carolina'>Charleston County, South Carolina</option>
+<option value='Cherokee County, South Carolina'>Cherokee County, South Carolina</option>
+<option value='Chester County, South Carolina'>Chester County, South Carolina</option>
+<option value='Chesterfield County, South Carolina'>Chesterfield County, South Carolina</option>
+<option value='Clarendon County, South Carolina'>Clarendon County, South Carolina</option>
+<option value='Colleton County, South Carolina'>Colleton County, South Carolina</option>
+<option value='Darlington County, South Carolina'>Darlington County, South Carolina</option>
+<option value='Dillon County, South Carolina'>Dillon County, South Carolina</option>
+<option value='Dorchester County, South Carolina'>Dorchester County, South Carolina</option>
+<option value='Edgefield County, South Carolina'>Edgefield County, South Carolina</option>
+<option value='Fairfield County, South Carolina'>Fairfield County, South Carolina</option>
+<option value='Florence County, South Carolina'>Florence County, South Carolina</option>
+<option value='Georgetown County, South Carolina'>Georgetown County, South Carolina</option>
+<option value='Greenville County, South Carolina'>Greenville County, South Carolina</option>
+<option value='Greenwood County, South Carolina'>Greenwood County, South Carolina</option>
+<option value='Hampton County, South Carolina'>Hampton County, South Carolina</option>
+<option value='Horry County, South Carolina'>Horry County, South Carolina</option>
+<option value='Jasper County, South Carolina'>Jasper County, South Carolina</option>
+<option value='Kershaw County, South Carolina'>Kershaw County, South Carolina</option>
+<option value='Lancaster County, South Carolina'>Lancaster County, South Carolina</option>
+<option value='Laurens County, South Carolina'>Laurens County, South Carolina</option>
+<option value='Lee County, South Carolina'>Lee County, South Carolina</option>
+<option value='Lexington County, South Carolina'>Lexington County, South Carolina</option>
+<option value='Marion County, South Carolina'>Marion County, South Carolina</option>
+<option value='Marlboro County, South Carolina'>Marlboro County, South Carolina</option>
+<option value='McCormick County, South Carolina'>McCormick County, South Carolina</option>
+<option value='Newberry County, South Carolina'>Newberry County, South Carolina</option>
+<option value='Oconee County, South Carolina'>Oconee County, South Carolina</option>
+<option value='Orangeburg County, South Carolina'>Orangeburg County, South Carolina</option>
+<option value='Pickens County, South Carolina'>Pickens County, South Carolina</option>
+<option value='Richland County, South Carolina'>Richland County, South Carolina</option>
+<option value='Saluda County, South Carolina'>Saluda County, South Carolina</option>
+<option value='Spartanburg County, South Carolina'>Spartanburg County, South Carolina</option>
+<option value='Sumter County, South Carolina'>Sumter County, South Carolina</option>
+<option value='Union County, South Carolina'>Union County, South Carolina</option>
+<option value='Williamsburg County, South Carolina'>Williamsburg County, South Carolina</option>
+<option value='York County, South Carolina'>York County, South Carolina</option>
+      </select>
+    <canvas id="barChart" width="850" height="500"></canvas>
+    <script>  const ageData = {"Statewide":[-5.8,5.6,-5.2,4.9,-4.7,4.4,-3.1,3.2,-6.2,6.6,-5.9,6.2,-6.1,6.6,-6,6.9,-4,4.7,-0.9,1.1,-0.6,1.1],"Abbeville County, South Carolina":[-5.4,4.3,-5.1,4.9,-5,4.6,-2.5,2.7,-5.9,5.8,-4.8,5.2,-6.6,7.5,-6.9,6.9,-5.1,5.8,-1.1,1.3,-1,1.6],"Aiken County, South Carolina":[-5.5,5.9,-5.4,4.7,-3.8,3.9,-3.1,3,-6.2,6.7,-5.5,5.7,-6.4,6.6,-6.6,7.5,-4,5,-1,1.2,-0.9,1.5],"Allendale County, South Carolina":[-4.8,4.9,-5.9,3.1,-5.6,3.4,-3.3,2,-7.2,5.9,-8.2,5,-6.5,6.8,-5.7,8.5,-3.8,4.6,-1.2,1.2,-1.3,1.1],"Anderson County, South Carolina":[-6.3,6,-5.3,5.2,-4.1,4.2,-3,3.1,-5.9,6.2,-5.8,6.5,-6.3,6.6,-6.1,6.8,-3.8,4.7,-1,1.5,-0.7,0.9],"Bamberg County, South Carolina":[-4,5.7,-4.8,4,-7.6,5.9,-1.5,2.3,-5.7,5.1,-4.6,5.5,-6,7.4,-6,7,-4.6,6.6,-1.1,1.8,-1.2,1.3],"Barnwell County, South Carolina":[-7.6,5.5,-5.2,5.4,-4,4.6,-3.2,3.2,-4.5,5.3,-6.3,6.4,-6,6.3,-6.5,7.8,-3.4,5,-1.2,0.8,-0.5,1.3],"Beaufort County, South Carolina":[-4.7,4.4,-4.5,4.2,-6,4.1,-2.8,2.2,-5,4.8,-4.7,5.5,-5.4,6.3,-7.2,8.3,-6.3,7.6,-1.8,1.7,-1.2,1.3],"Berkeley County, South Carolina":[-6.9,6.2,-5.3,5.4,-5.3,3.9,-3.5,3.4,-7.3,7.5,-6.1,6.4,-5.8,5.9,-5.4,6.6,-3.2,3.4,-0.7,0.7,-0.4,0.6],"Calhoun County, South Carolina":[-4.8,5,-5.8,3.1,-3.6,2.8,-2.4,3.1,-4,4.8,-6.4,7.7,-7.2,5.9,-8.5,10.4,-4.5,5.2,-0.9,1.3,-0.8,1.6],"Charleston County, South Carolina":[-5.7,5.3,-4.3,4.4,-4.2,4.1,-3.7,3.9,-7.9,8,-6,6.2,-5.8,6.4,-5.8,6.5,-3.6,4.3,-0.8,1.2,-0.8,1.2],"Cherokee County, South Carolina":[-6.5,6.1,-5.3,5.1,-4.5,4.2,-3.2,3.4,-5.2,6.2,-6.6,6.4,-6.3,6.8,-6.6,6.2,-3.6,4.9,-0.8,0.7,-0.4,1],"Chester County, South Carolina":[-6,4.9,-5.6,5.9,-3.8,3.8,-2.8,3.2,-5.5,5.9,-5.6,6.5,-6.7,7.5,-7.3,7,-4.1,4,-0.8,1.6,-0.3,1.2],"Chesterfield County, South Carolina":[-6.4,6,-4.9,4.9,-3.9,3.8,-3.1,3.1,-5.1,6.1,-6.3,5.7,-7.7,7.1,-5.9,6.8,-4.2,5.6,-0.9,0.8,-0.4,1.2],"Clarendon County, South Carolina":[-4.3,4.7,-5.4,4.1,-5.2,3.4,-3,2.7,-4.4,5.6,-6.1,5.2,-6.2,7,-7.1,8.3,-5.5,7,-1.1,1.3,-1.1,1.4],"Colleton County, South Carolina":[-6.1,6.9,-4.9,4.8,-3.8,3.6,-3.1,3.1,-6.1,5.4,-4.5,6.5,-5.9,6.8,-7.2,7.7,-3.6,5.2,-1.4,1.2,-1,0.9],"Darlington County, South Carolina":[-6.3,5.4,-5.1,5.5,-4.3,4.5,-3,3.3,-5.1,5.9,-5.7,6.3,-6.4,7.4,-5.7,7.1,-4.6,4.4,-0.7,1.4,-0.6,1.3],"Dillon County, South Carolina":[-7.3,6.1,-5.8,6.2,-4.1,4.4,-3.1,3.2,-5.7,6.2,-5.2,6.5,-5.7,7.8,-5,5.3,-4.5,5.1,-0.5,0.8,-0.3,1.1],"Dorchester County, South Carolina":[-6,6.1,-6.3,5.8,-4,3.8,-3.2,3.3,-7,7.4,-6.5,6.7,-6,6.3,-5.6,6.3,-3.2,3.9,-0.5,0.7,-0.5,0.9],"Edgefield County, South Carolina":[-3.8,4.8,-4.4,4.2,-5.4,3.2,-2.9,2.8,-10,5.4,-6.4,5.2,-7.5,7,-7.1,6.8,-3.9,5,-1.4,1,-0.6,1.1],"Fairfield County, South Carolina":[-4.3,4,-5.5,4.6,-4.3,3.2,-2.2,3.2,-5,4.7,-5.2,6.5,-6.3,8.1,-9,8.7,-4.9,4.8,-0.4,1.5,-1.5,1.9],"Florence County, South Carolina":[-6.1,6.1,-6,5.4,-4.1,4.5,-2.9,3.2,-5.7,6.8,-5.8,6.4,-5.8,6.9,-5.7,6.6,-3.6,4.6,-0.7,1.3,-0.5,1],"Georgetown County, South Carolina":[-4.7,4.2,-4.5,3.9,-3.6,3.2,-2.4,2.3,-4,4.9,-4.9,5.6,-6,6.8,-8.5,10.4,-7.1,7.6,-1.5,1.9,-0.9,1.3],"Greenville County, South Carolina":[-6.4,6.2,-5.4,5,-4.2,4.3,-3.4,3.5,-6.7,7,-6.3,6.5,-6.1,6.3,-5.4,6.3,-3.5,4.2,-0.8,1.1,-0.6,1],"Greenwood County, South Carolina":[-6.3,6.8,-4.7,4.7,-4.7,5.5,-2.7,3.1,-5.6,6.3,-5.1,6.1,-5.9,6.6,-5.8,6.5,-4,4.2,-0.9,1.6,-0.8,1.8],"Hampton County, South Carolina":[-6.2,5.2,-5.2,4,-4.5,3.9,-3.5,2.6,-8.3,4.9,-7,6.2,-6.3,6.5,-6.3,6.4,-4.2,5,-0.7,0.8,-0.8,1.4],"Horry County, South Carolina":[-4.6,4.3,-4.2,4.2,-3.8,3.9,-2.6,2.6,-5.2,5.5,-5.5,5.7,-6.4,7.2,-7.9,9.4,-6.4,6.7,-1.2,1.1,-0.7,1],"Jasper County, South Carolina":[-4.8,5.8,-4.4,3.9,-4.7,3.2,-3.6,3.6,-6,5.6,-5.5,4.9,-6.6,7.1,-7.7,8.4,-4.8,5.7,-1.1,0.8,-0.6,0.9],"Kershaw County, South Carolina":[-6.8,5.4,-5.5,5.5,-3.8,3.6,-2.7,2.6,-6.3,7.4,-5.7,5.5,-6.3,6.9,-6.4,7.2,-4.5,4.7,-0.6,1,-0.4,1.1],"Lancaster County, South Carolina":[-5.2,6.3,-5.8,4.3,-3.2,3,-2.9,2.5,-6.8,6.6,-6.4,6.6,-6.1,6.3,-5.8,6.8,-5,5.6,-0.8,1.3,-0.9,1.6],"Laurens County, South Carolina":[-6.5,6.4,-4.9,4.3,-4.1,4.3,-3,3,-6,6.2,-5.8,6.1,-7,7.2,-5.8,6.7,-4.1,4.8,-0.9,1.2,-0.6,1.2],"Lee County, South Carolina":[-4.6,4.3,-5.7,4.3,-5.2,4,-4.2,3,-6.8,5.2,-6.5,5.5,-5.7,6.6,-7.6,8.9,-3.3,4.9,-0.9,1.6,-0.5,0.8],"Lexington County, South Carolina":[-6.1,6,-5.7,5.4,-3.8,3.7,-3.1,3.2,-6.5,7.1,-6.4,6.5,-6.6,6.6,-5.7,6.6,-3.5,4,-0.8,1.1,-0.7,1.1],"McCormick County, South Carolina":[-2.2,1.6,-2.6,4,-4.3,2.3,-1.6,1.5,-6.6,2.6,-5.2,4,-7.2,6.6,-12.5,11.4,-7.9,8.7,-1.8,1.8,-1.1,2.4],"Marion County, South Carolina":[-5.4,5.7,-5.5,5.9,-3.8,3.9,-2.7,2.7,-6.1,5.6,-5.1,6.5,-6.2,6.4,-6.8,9.1,-3.8,4.7,-0.8,1.7,-0.4,1.3],"Marlboro County, South Carolina":[-5,4.8,-5.2,5.1,-4.4,3.6,-4.2,2.5,-8,5.5,-7.4,5,-7.3,6.4,-6,7.5,-3.6,4.7,-1,1,-0.5,1.5],"Newberry County, South Carolina":[-5,5.8,-5.6,5.3,-5.5,4.5,-2.9,2.9,-4.8,4.7,-6.2,6.4,-5.5,6.8,-7,7.6,-5,4.6,-0.9,1.5,-0.4,1.1],"Oconee County, South Carolina":[-4.3,5.2,-5.2,4.6,-3.8,3.3,-2.8,2.7,-5.5,6,-5.2,5.1,-7.1,7.1,-7.4,8.2,-5.4,6,-1.4,1.1,-1,1.5],"Orangeburg County, South Carolina":[-5.4,5.7,-5.5,4.9,-5.1,5.6,-2.9,2.9,-5,5.7,-4.7,5.9,-5.3,6.6,-7.3,8.1,-3.7,5.1,-1.2,1.2,-0.8,1.3],"Pickens County, South Carolina":[-5.3,4.5,-4.3,4.6,-9.5,8.4,-3.3,3.1,-5.7,5.7,-5.3,5.1,-6,6.1,-5.4,5.9,-3.6,4.2,-0.9,1.1,-0.7,1.3],"Richland County, South Carolina":[-5.8,5.6,-5.3,5.1,-7.6,7.2,-3.6,3.8,-6.2,7.3,-5.8,6,-5.2,6.1,-5,5.7,-2.8,3.5,-0.6,0.8,-0.4,0.8],"Saluda County, South Carolina":[-5.8,5.7,-5.3,5.1,-4.3,3.5,-2.6,2.4,-5.9,5.6,-6.4,5.6,-7.4,5.9,-6.6,8,-4.1,4.9,-1.2,1.4,-0.9,1.4],"Spartanburg County, South Carolina":[-6.4,6.1,-5.5,5.4,-4.4,4.5,-3.4,3.5,-6.5,6.9,-6,6.1,-6.5,6.5,-5.3,6.1,-3.4,3.9,-0.7,1.1,-0.7,1.2],"Sumter County, South Carolina":[-6.7,6.5,-5.5,5.1,-5.1,4.7,-3.6,3.3,-6.4,6.8,-5,5.4,-5.6,6.6,-5.7,6.2,-3.3,4.4,-0.7,1.2,-0.7,1.5],"Union County, South Carolina":[-6.1,5.9,-4.5,4.5,-3.5,3.6,-2.9,3.1,-5.3,6.2,-5.5,6,-6.9,8,-6.3,7.9,-4.4,5.1,-1,1.1,-0.8,1.5],"Williamsburg County, South Carolina":[-5,4.5,-4.7,5.4,-3.9,3.6,-3.3,2.8,-7.1,5.4,-5.8,5.6,-6.6,6.3,-6.2,9.6,-4.8,5.6,-0.7,1.1,-0.5,1.4],"York County, South Carolina":[-6.3,6.2,-5.9,5.5,-3.9,4.2,-2.7,2.8,-6.2,7,-7.3,7.4,-6.5,6.8,-5.4,5.9,-3.4,3.9,-0.7,0.9,-0.4,0.8]};
+  const ageBins = ["0–9","10–17","18–24","25–29","30–39","40–49","50–59","60–69","70–79","80–84","85+"];
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(data) {
+    const maleData = data.filter((_, i) => i % 2 === 0);
+    const femaleData = data.filter((_, i) => i % 2 === 1);
+
+    const maxValue = Math.max(
+      ...maleData.map(Math.abs),
+      ...femaleData.map(Math.abs)
+    );
+    const padding = 1.0;
+    const xMax = +(maxValue + padding).toFixed(1);
+
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ageBins,
+        datasets: [
+          {
+            label: 'Male',
+            data: maleData,
+            backgroundColor: 'darkslategray'
+          },
+          {
+            label: 'Female',
+            data: femaleData,
+            backgroundColor: 'darkorange'
+          }
+        ]
+      },
+      options: {
+        indexAxis: 'y',
+        responsive: true,
+        scales: {
+          x: {
+            min: -xMax,
+            max: xMax,
+            ticks: {
+              callback: value => Math.abs(value).toFixed(1) + '%'
+            }
+          },
+          y: {
+            stacked: false
+          }
+        },
+        plugins: {
+          legend: {
+            position: 'top',
+            align: 'start',
+            labels: {
+              usePointStyle: true
+            }
+          },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.dataset.label + ': ' + Math.abs(ctx.parsed.x).toFixed(1) + '%'
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(Object.values(ageData[this.value]));
+  });
+
+  renderChart(Object.values(ageData['Statewide']));</script>
+  </body>
+</html>
+</html>

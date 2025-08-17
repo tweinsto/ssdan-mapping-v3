@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Veteran Labor Force Status – Arizona</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Labor Force Status of Veterans (Age 18–64) in Arizona</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Apache County, Arizona">Apache County, Arizona</option>
+      <option value="Cochise County, Arizona">Cochise County, Arizona</option>
+      <option value="Coconino County, Arizona">Coconino County, Arizona</option>
+      <option value="Gila County, Arizona">Gila County, Arizona</option>
+      <option value="Graham County, Arizona">Graham County, Arizona</option>
+      <option value="Greenlee County, Arizona">Greenlee County, Arizona</option>
+      <option value="La Paz County, Arizona">La Paz County, Arizona</option>
+      <option value="Maricopa County, Arizona">Maricopa County, Arizona</option>
+      <option value="Mohave County, Arizona">Mohave County, Arizona</option>
+      <option value="Navajo County, Arizona">Navajo County, Arizona</option>
+      <option value="Pima County, Arizona">Pima County, Arizona</option>
+      <option value="Pinal County, Arizona">Pinal County, Arizona</option>
+      <option value="Santa Cruz County, Arizona">Santa Cruz County, Arizona</option>
+      <option value="Yavapai County, Arizona">Yavapai County, Arizona</option>
+      <option value="Yuma County, Arizona">Yuma County, Arizona</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>        const data = {"Statewide":[72.6,3,24.3],"Apache County, Arizona":[47.6,1.7,50.7],"Cochise County, Arizona":[69.7,2.4,27.8],"Coconino County, Arizona":[64,3.8,32.2],"Gila County, Arizona":[66.8,1.4,31.8],"Graham County, Arizona":[73.1,0,26.9],"Greenlee County, Arizona":[93.9,1.1,5],"La Paz County, Arizona":[59.4,0,40.6],"Maricopa County, Arizona":[76.7,3.3,20],"Mohave County, Arizona":[54.4,2.2,43.4],"Navajo County, Arizona":[55.2,5.3,39.5],"Pima County, Arizona":[71.2,2.5,26.3],"Pinal County, Arizona":[70.4,2.6,27],"Santa Cruz County, Arizona":[64.1,4.4,31.5],"Yavapai County, Arizona":[59.3,2.3,38.5],"Yuma County, Arizona":[75.2,3.6,21.2]};
+        const nationalAvg = [73.9,23,3.2];
+        const categories = ["Employed","Unemployed","Not in Labor Force"];
+        const ctx = document.getElementById("barChart").getContext("2d");
+        let chart;
+
+        function renderChart(values) {
+          if (chart) chart.destroy();
+          chart = new Chart(ctx, {
+            type: "bar",
+            data: {
+              labels: categories,
+              datasets: [
+                {
+                  label: "County/State",
+                  data: values,
+                  backgroundColor: ["#66c2a5", "#fc8d62", "#8da0cb"]
+                },
+                {
+                  label: null,
+                  data: categories.map(c => nationalAvg[c]),
+                  type: "line",
+                  borderColor: "black",
+                  borderWidth: 2,
+                  pointRadius: 0,
+                  fill: false
+                }
+              ]
+            },
+            options: {
+              indexAxis: "y",
+              scales: {
+                x: {
+                  min: 0,
+                  max: 100,
+                  ticks: {
+                    callback: v => v + "%"
+                  }
+                }
+              },
+              plugins: {
+                legend: {
+  display: false
+},
+                tooltip: {
+                  callbacks: {
+                    label: ctx => ctx.dataset.label ? ctx.dataset.label + ": " + ctx.raw + "%" : null
+                  }
+                }
+              }
+            }
+          });
+        }
+
+        document.getElementById("countySelect").addEventListener("change", function() {
+          renderChart(Object.values(data[this.value]));
+        });
+
+        renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

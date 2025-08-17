@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Educational Enrollment – South Dakota</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Educational Enrollment (Age 18–24) in South Dakota</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Aurora County, South Dakota">Aurora County, South Dakota</option>
+      <option value="Beadle County, South Dakota">Beadle County, South Dakota</option>
+      <option value="Bennett County, South Dakota">Bennett County, South Dakota</option>
+      <option value="Bon Homme County, South Dakota">Bon Homme County, South Dakota</option>
+      <option value="Brookings County, South Dakota">Brookings County, South Dakota</option>
+      <option value="Brown County, South Dakota">Brown County, South Dakota</option>
+      <option value="Brule County, South Dakota">Brule County, South Dakota</option>
+      <option value="Buffalo County, South Dakota">Buffalo County, South Dakota</option>
+      <option value="Butte County, South Dakota">Butte County, South Dakota</option>
+      <option value="Campbell County, South Dakota">Campbell County, South Dakota</option>
+      <option value="Charles Mix County, South Dakota">Charles Mix County, South Dakota</option>
+      <option value="Clark County, South Dakota">Clark County, South Dakota</option>
+      <option value="Clay County, South Dakota">Clay County, South Dakota</option>
+      <option value="Codington County, South Dakota">Codington County, South Dakota</option>
+      <option value="Corson County, South Dakota">Corson County, South Dakota</option>
+      <option value="Custer County, South Dakota">Custer County, South Dakota</option>
+      <option value="Davison County, South Dakota">Davison County, South Dakota</option>
+      <option value="Day County, South Dakota">Day County, South Dakota</option>
+      <option value="Deuel County, South Dakota">Deuel County, South Dakota</option>
+      <option value="Dewey County, South Dakota">Dewey County, South Dakota</option>
+      <option value="Douglas County, South Dakota">Douglas County, South Dakota</option>
+      <option value="Edmunds County, South Dakota">Edmunds County, South Dakota</option>
+      <option value="Fall River County, South Dakota">Fall River County, South Dakota</option>
+      <option value="Faulk County, South Dakota">Faulk County, South Dakota</option>
+      <option value="Grant County, South Dakota">Grant County, South Dakota</option>
+      <option value="Gregory County, South Dakota">Gregory County, South Dakota</option>
+      <option value="Haakon County, South Dakota">Haakon County, South Dakota</option>
+      <option value="Hamlin County, South Dakota">Hamlin County, South Dakota</option>
+      <option value="Hand County, South Dakota">Hand County, South Dakota</option>
+      <option value="Hanson County, South Dakota">Hanson County, South Dakota</option>
+      <option value="Harding County, South Dakota">Harding County, South Dakota</option>
+      <option value="Hughes County, South Dakota">Hughes County, South Dakota</option>
+      <option value="Hutchinson County, South Dakota">Hutchinson County, South Dakota</option>
+      <option value="Hyde County, South Dakota">Hyde County, South Dakota</option>
+      <option value="Jackson County, South Dakota">Jackson County, South Dakota</option>
+      <option value="Jerauld County, South Dakota">Jerauld County, South Dakota</option>
+      <option value="Jones County, South Dakota">Jones County, South Dakota</option>
+      <option value="Kingsbury County, South Dakota">Kingsbury County, South Dakota</option>
+      <option value="Lake County, South Dakota">Lake County, South Dakota</option>
+      <option value="Lawrence County, South Dakota">Lawrence County, South Dakota</option>
+      <option value="Lincoln County, South Dakota">Lincoln County, South Dakota</option>
+      <option value="Lyman County, South Dakota">Lyman County, South Dakota</option>
+      <option value="Marshall County, South Dakota">Marshall County, South Dakota</option>
+      <option value="McCook County, South Dakota">McCook County, South Dakota</option>
+      <option value="McPherson County, South Dakota">McPherson County, South Dakota</option>
+      <option value="Meade County, South Dakota">Meade County, South Dakota</option>
+      <option value="Mellette County, South Dakota">Mellette County, South Dakota</option>
+      <option value="Miner County, South Dakota">Miner County, South Dakota</option>
+      <option value="Minnehaha County, South Dakota">Minnehaha County, South Dakota</option>
+      <option value="Moody County, South Dakota">Moody County, South Dakota</option>
+      <option value="Oglala Lakota County, South Dakota">Oglala Lakota County, South Dakota</option>
+      <option value="Pennington County, South Dakota">Pennington County, South Dakota</option>
+      <option value="Perkins County, South Dakota">Perkins County, South Dakota</option>
+      <option value="Potter County, South Dakota">Potter County, South Dakota</option>
+      <option value="Roberts County, South Dakota">Roberts County, South Dakota</option>
+      <option value="Sanborn County, South Dakota">Sanborn County, South Dakota</option>
+      <option value="Spink County, South Dakota">Spink County, South Dakota</option>
+      <option value="Stanley County, South Dakota">Stanley County, South Dakota</option>
+      <option value="Sully County, South Dakota">Sully County, South Dakota</option>
+      <option value="Todd County, South Dakota">Todd County, South Dakota</option>
+      <option value="Tripp County, South Dakota">Tripp County, South Dakota</option>
+      <option value="Turner County, South Dakota">Turner County, South Dakota</option>
+      <option value="Union County, South Dakota">Union County, South Dakota</option>
+      <option value="Walworth County, South Dakota">Walworth County, South Dakota</option>
+      <option value="Yankton County, South Dakota">Yankton County, South Dakota</option>
+      <option value="Ziebach County, South Dakota">Ziebach County, South Dakota</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>  const data = {"Statewide":{"Enrolled in College / Grad. School":36.8,"Not Enrolled":63.2},"Aurora County, South Dakota":{"Enrolled in College / Grad. School":19.6,"Not Enrolled":80.4},"Beadle County, South Dakota":{"Enrolled in College / Grad. School":14.3,"Not Enrolled":85.7},"Bennett County, South Dakota":{"Enrolled in College / Grad. School":20.1,"Not Enrolled":79.9},"Bon Homme County, South Dakota":{"Enrolled in College / Grad. School":4.1,"Not Enrolled":95.9},"Brookings County, South Dakota":{"Enrolled in College / Grad. School":74,"Not Enrolled":26},"Brown County, South Dakota":{"Enrolled in College / Grad. School":37.8,"Not Enrolled":62.2},"Brule County, South Dakota":{"Enrolled in College / Grad. School":15.4,"Not Enrolled":84.6},"Buffalo County, South Dakota":{"Enrolled in College / Grad. School":6.4,"Not Enrolled":93.6},"Butte County, South Dakota":{"Enrolled in College / Grad. School":36.8,"Not Enrolled":63.2},"Campbell County, South Dakota":{"Enrolled in College / Grad. School":22.7,"Not Enrolled":77.3},"Charles Mix County, South Dakota":{"Enrolled in College / Grad. School":17.1,"Not Enrolled":82.9},"Clark County, South Dakota":{"Enrolled in College / Grad. School":4.2,"Not Enrolled":95.8},"Clay County, South Dakota":{"Enrolled in College / Grad. School":78.8,"Not Enrolled":21.2},"Codington County, South Dakota":{"Enrolled in College / Grad. School":44.5,"Not Enrolled":55.5},"Corson County, South Dakota":{"Enrolled in College / Grad. School":11.5,"Not Enrolled":88.5},"Custer County, South Dakota":{"Enrolled in College / Grad. School":6,"Not Enrolled":94},"Davison County, South Dakota":{"Enrolled in College / Grad. School":35.8,"Not Enrolled":64.2},"Day County, South Dakota":{"Enrolled in College / Grad. School":33.8,"Not Enrolled":66.2},"Deuel County, South Dakota":{"Enrolled in College / Grad. School":44.7,"Not Enrolled":55.3},"Dewey County, South Dakota":{"Enrolled in College / Grad. School":9.2,"Not Enrolled":90.8},"Douglas County, South Dakota":{"Enrolled in College / Grad. School":12.1,"Not Enrolled":87.9},"Edmunds County, South Dakota":{"Enrolled in College / Grad. School":19.7,"Not Enrolled":80.3},"Fall River County, South Dakota":{"Enrolled in College / Grad. School":24,"Not Enrolled":76},"Faulk County, South Dakota":{"Enrolled in College / Grad. School":11.1,"Not Enrolled":88.9},"Grant County, South Dakota":{"Enrolled in College / Grad. School":9,"Not Enrolled":91},"Gregory County, South Dakota":{"Enrolled in College / Grad. School":26.8,"Not Enrolled":73.2},"Haakon County, South Dakota":{"Enrolled in College / Grad. School":19.8,"Not Enrolled":80.2},"Hamlin County, South Dakota":{"Enrolled in College / Grad. School":15,"Not Enrolled":85},"Hand County, South Dakota":{"Enrolled in College / Grad. School":51.3,"Not Enrolled":48.7},"Hanson County, South Dakota":{"Enrolled in College / Grad. School":12.1,"Not Enrolled":87.9},"Harding County, South Dakota":{"Enrolled in College / Grad. School":13.2,"Not Enrolled":86.8},"Hughes County, South Dakota":{"Enrolled in College / Grad. School":11.1,"Not Enrolled":88.9},"Hutchinson County, South Dakota":{"Enrolled in College / Grad. School":30.8,"Not Enrolled":69.2},"Hyde County, South Dakota":{"Enrolled in College / Grad. School":0,"Not Enrolled":100},"Jackson County, South Dakota":{"Enrolled in College / Grad. School":26.5,"Not Enrolled":73.5},"Jerauld County, South Dakota":{"Enrolled in College / Grad. School":18.5,"Not Enrolled":81.5},"Jones County, South Dakota":{"Enrolled in College / Grad. School":1.8,"Not Enrolled":98.2},"Kingsbury County, South Dakota":{"Enrolled in College / Grad. School":17.5,"Not Enrolled":82.5},"Lake County, South Dakota":{"Enrolled in College / Grad. School":61.8,"Not Enrolled":38.2},"Lawrence County, South Dakota":{"Enrolled in College / Grad. School":51,"Not Enrolled":49},"Lincoln County, South Dakota":{"Enrolled in College / Grad. School":24.4,"Not Enrolled":75.6},"Lyman County, South Dakota":{"Enrolled in College / Grad. School":6.1,"Not Enrolled":93.9},"McCook County, South Dakota":{"Enrolled in College / Grad. School":18.8,"Not Enrolled":81.2},"McPherson County, South Dakota":{"Enrolled in College / Grad. School":10.3,"Not Enrolled":89.7},"Marshall County, South Dakota":{"Enrolled in College / Grad. School":30.9,"Not Enrolled":69.1},"Meade County, South Dakota":{"Enrolled in College / Grad. School":14.6,"Not Enrolled":85.4},"Mellette County, South Dakota":{"Enrolled in College / Grad. School":13.8,"Not Enrolled":86.2},"Miner County, South Dakota":{"Enrolled in College / Grad. School":16.1,"Not Enrolled":83.9},"Minnehaha County, South Dakota":{"Enrolled in College / Grad. School":33.4,"Not Enrolled":66.6},"Moody County, South Dakota":{"Enrolled in College / Grad. School":33.7,"Not Enrolled":66.3},"Oglala Lakota County, South Dakota":{"Enrolled in College / Grad. School":22.1,"Not Enrolled":77.9},"Pennington County, South Dakota":{"Enrolled in College / Grad. School":32.5,"Not Enrolled":67.5},"Perkins County, South Dakota":{"Enrolled in College / Grad. School":19.7,"Not Enrolled":80.3},"Potter County, South Dakota":{"Enrolled in College / Grad. School":17.9,"Not Enrolled":82.1},"Roberts County, South Dakota":{"Enrolled in College / Grad. School":16.2,"Not Enrolled":83.8},"Sanborn County, South Dakota":{"Enrolled in College / Grad. School":34.6,"Not Enrolled":65.4},"Spink County, South Dakota":{"Enrolled in College / Grad. School":40.5,"Not Enrolled":59.5},"Stanley County, South Dakota":{"Enrolled in College / Grad. School":0,"Not Enrolled":100},"Sully County, South Dakota":{"Enrolled in College / Grad. School":3.3,"Not Enrolled":96.7},"Todd County, South Dakota":{"Enrolled in College / Grad. School":6.7,"Not Enrolled":93.3},"Tripp County, South Dakota":{"Enrolled in College / Grad. School":21.4,"Not Enrolled":78.6},"Turner County, South Dakota":{"Enrolled in College / Grad. School":23.6,"Not Enrolled":76.4},"Union County, South Dakota":{"Enrolled in College / Grad. School":18.2,"Not Enrolled":81.8},"Walworth County, South Dakota":{"Enrolled in College / Grad. School":31.2,"Not Enrolled":68.8},"Yankton County, South Dakota":{"Enrolled in College / Grad. School":32.6,"Not Enrolled":67.4},"Ziebach County, South Dakota":{"Enrolled in College / Grad. School":2.9,"Not Enrolled":97.1}};
+  const categories = ["Enrolled in College / Grad. School","Not Enrolled"];
+  const ctx = document.getElementById("barChart").getContext("2d");
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: categories,
+        datasets: [
+          {
+            label: "County/State",
+            data: values,
+            backgroundColor: ["#66c2a5", "#fc8d62"]
+          }
+        ]
+      },
+      options: {
+        indexAxis: "y",
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            ticks: {
+              callback: v => v + "%"
+            }
+          }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.dataset.label + ": " + ctx.raw + "%"
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById("countySelect").addEventListener("change", function() {
+    renderChart(Object.values(data[this.value]));
+  });
+
+  renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Living Arrangements of Children – Ohio</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Children’s Living Arrangements (Under 18) – Ohio</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Adams County, Ohio">Adams County, Ohio</option>
+      <option value="Allen County, Ohio">Allen County, Ohio</option>
+      <option value="Ashland County, Ohio">Ashland County, Ohio</option>
+      <option value="Ashtabula County, Ohio">Ashtabula County, Ohio</option>
+      <option value="Athens County, Ohio">Athens County, Ohio</option>
+      <option value="Auglaize County, Ohio">Auglaize County, Ohio</option>
+      <option value="Belmont County, Ohio">Belmont County, Ohio</option>
+      <option value="Brown County, Ohio">Brown County, Ohio</option>
+      <option value="Butler County, Ohio">Butler County, Ohio</option>
+      <option value="Carroll County, Ohio">Carroll County, Ohio</option>
+      <option value="Champaign County, Ohio">Champaign County, Ohio</option>
+      <option value="Clark County, Ohio">Clark County, Ohio</option>
+      <option value="Clermont County, Ohio">Clermont County, Ohio</option>
+      <option value="Clinton County, Ohio">Clinton County, Ohio</option>
+      <option value="Columbiana County, Ohio">Columbiana County, Ohio</option>
+      <option value="Coshocton County, Ohio">Coshocton County, Ohio</option>
+      <option value="Crawford County, Ohio">Crawford County, Ohio</option>
+      <option value="Cuyahoga County, Ohio">Cuyahoga County, Ohio</option>
+      <option value="Darke County, Ohio">Darke County, Ohio</option>
+      <option value="Defiance County, Ohio">Defiance County, Ohio</option>
+      <option value="Delaware County, Ohio">Delaware County, Ohio</option>
+      <option value="Erie County, Ohio">Erie County, Ohio</option>
+      <option value="Fairfield County, Ohio">Fairfield County, Ohio</option>
+      <option value="Fayette County, Ohio">Fayette County, Ohio</option>
+      <option value="Franklin County, Ohio">Franklin County, Ohio</option>
+      <option value="Fulton County, Ohio">Fulton County, Ohio</option>
+      <option value="Gallia County, Ohio">Gallia County, Ohio</option>
+      <option value="Geauga County, Ohio">Geauga County, Ohio</option>
+      <option value="Greene County, Ohio">Greene County, Ohio</option>
+      <option value="Guernsey County, Ohio">Guernsey County, Ohio</option>
+      <option value="Hamilton County, Ohio">Hamilton County, Ohio</option>
+      <option value="Hancock County, Ohio">Hancock County, Ohio</option>
+      <option value="Hardin County, Ohio">Hardin County, Ohio</option>
+      <option value="Harrison County, Ohio">Harrison County, Ohio</option>
+      <option value="Henry County, Ohio">Henry County, Ohio</option>
+      <option value="Highland County, Ohio">Highland County, Ohio</option>
+      <option value="Hocking County, Ohio">Hocking County, Ohio</option>
+      <option value="Holmes County, Ohio">Holmes County, Ohio</option>
+      <option value="Huron County, Ohio">Huron County, Ohio</option>
+      <option value="Jackson County, Ohio">Jackson County, Ohio</option>
+      <option value="Jefferson County, Ohio">Jefferson County, Ohio</option>
+      <option value="Knox County, Ohio">Knox County, Ohio</option>
+      <option value="Lake County, Ohio">Lake County, Ohio</option>
+      <option value="Lawrence County, Ohio">Lawrence County, Ohio</option>
+      <option value="Licking County, Ohio">Licking County, Ohio</option>
+      <option value="Logan County, Ohio">Logan County, Ohio</option>
+      <option value="Lorain County, Ohio">Lorain County, Ohio</option>
+      <option value="Lucas County, Ohio">Lucas County, Ohio</option>
+      <option value="Madison County, Ohio">Madison County, Ohio</option>
+      <option value="Mahoning County, Ohio">Mahoning County, Ohio</option>
+      <option value="Marion County, Ohio">Marion County, Ohio</option>
+      <option value="Medina County, Ohio">Medina County, Ohio</option>
+      <option value="Meigs County, Ohio">Meigs County, Ohio</option>
+      <option value="Mercer County, Ohio">Mercer County, Ohio</option>
+      <option value="Miami County, Ohio">Miami County, Ohio</option>
+      <option value="Monroe County, Ohio">Monroe County, Ohio</option>
+      <option value="Montgomery County, Ohio">Montgomery County, Ohio</option>
+      <option value="Morgan County, Ohio">Morgan County, Ohio</option>
+      <option value="Morrow County, Ohio">Morrow County, Ohio</option>
+      <option value="Muskingum County, Ohio">Muskingum County, Ohio</option>
+      <option value="Noble County, Ohio">Noble County, Ohio</option>
+      <option value="Ottawa County, Ohio">Ottawa County, Ohio</option>
+      <option value="Paulding County, Ohio">Paulding County, Ohio</option>
+      <option value="Perry County, Ohio">Perry County, Ohio</option>
+      <option value="Pickaway County, Ohio">Pickaway County, Ohio</option>
+      <option value="Pike County, Ohio">Pike County, Ohio</option>
+      <option value="Portage County, Ohio">Portage County, Ohio</option>
+      <option value="Preble County, Ohio">Preble County, Ohio</option>
+      <option value="Putnam County, Ohio">Putnam County, Ohio</option>
+      <option value="Richland County, Ohio">Richland County, Ohio</option>
+      <option value="Ross County, Ohio">Ross County, Ohio</option>
+      <option value="Sandusky County, Ohio">Sandusky County, Ohio</option>
+      <option value="Scioto County, Ohio">Scioto County, Ohio</option>
+      <option value="Seneca County, Ohio">Seneca County, Ohio</option>
+      <option value="Shelby County, Ohio">Shelby County, Ohio</option>
+      <option value="Stark County, Ohio">Stark County, Ohio</option>
+      <option value="Summit County, Ohio">Summit County, Ohio</option>
+      <option value="Trumbull County, Ohio">Trumbull County, Ohio</option>
+      <option value="Tuscarawas County, Ohio">Tuscarawas County, Ohio</option>
+      <option value="Union County, Ohio">Union County, Ohio</option>
+      <option value="Van Wert County, Ohio">Van Wert County, Ohio</option>
+      <option value="Vinton County, Ohio">Vinton County, Ohio</option>
+      <option value="Warren County, Ohio">Warren County, Ohio</option>
+      <option value="Washington County, Ohio">Washington County, Ohio</option>
+      <option value="Wayne County, Ohio">Wayne County, Ohio</option>
+      <option value="Williams County, Ohio">Williams County, Ohio</option>
+      <option value="Wood County, Ohio">Wood County, Ohio</option>
+      <option value="Wyandot County, Ohio">Wyandot County, Ohio</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>  const data = {"Statewide":{"Married Couple (%)":64.1,"Cohabiting Couple (%)":9.8,"Male Householder (%)":4.8,"Female Householder (%)":21.2},"Adams County, Ohio":{"Married Couple (%)":69.2,"Cohabiting Couple (%)":8.4,"Male Householder (%)":3.5,"Female Householder (%)":19},"Allen County, Ohio":{"Married Couple (%)":57.5,"Cohabiting Couple (%)":13.9,"Male Householder (%)":6.2,"Female Householder (%)":22.4},"Ashland County, Ohio":{"Married Couple (%)":78.2,"Cohabiting Couple (%)":8.3,"Male Householder (%)":3.3,"Female Householder (%)":10.2},"Ashtabula County, Ohio":{"Married Couple (%)":60.1,"Cohabiting Couple (%)":14.1,"Male Householder (%)":4.6,"Female Householder (%)":21.2},"Athens County, Ohio":{"Married Couple (%)":75.3,"Cohabiting Couple (%)":9.4,"Male Householder (%)":5.5,"Female Householder (%)":9.8},"Auglaize County, Ohio":{"Married Couple (%)":73.4,"Cohabiting Couple (%)":9.1,"Male Householder (%)":7.8,"Female Householder (%)":9.7},"Belmont County, Ohio":{"Married Couple (%)":64.5,"Cohabiting Couple (%)":10.8,"Male Householder (%)":5.5,"Female Householder (%)":19.2},"Brown County, Ohio":{"Married Couple (%)":69.1,"Cohabiting Couple (%)":10,"Male Householder (%)":4,"Female Householder (%)":17},"Butler County, Ohio":{"Married Couple (%)":70.5,"Cohabiting Couple (%)":8.3,"Male Householder (%)":4.8,"Female Householder (%)":16.4},"Carroll County, Ohio":{"Married Couple (%)":61.7,"Cohabiting Couple (%)":11.4,"Male Householder (%)":8.1,"Female Householder (%)":18.9},"Champaign County, Ohio":{"Married Couple (%)":70.4,"Cohabiting Couple (%)":7.8,"Male Householder (%)":3.8,"Female Householder (%)":18},"Clark County, Ohio":{"Married Couple (%)":53.9,"Cohabiting Couple (%)":15.9,"Male Householder (%)":6.4,"Female Householder (%)":23.8},"Clermont County, Ohio":{"Married Couple (%)":71.1,"Cohabiting Couple (%)":9.3,"Male Householder (%)":4.8,"Female Householder (%)":14.8},"Clinton County, Ohio":{"Married Couple (%)":68.7,"Cohabiting Couple (%)":9.1,"Male Householder (%)":4,"Female Householder (%)":18.2},"Columbiana County, Ohio":{"Married Couple (%)":61.3,"Cohabiting Couple (%)":10,"Male Householder (%)":7.5,"Female Householder (%)":21.2},"Coshocton County, Ohio":{"Married Couple (%)":58.7,"Cohabiting Couple (%)":12.1,"Male Householder (%)":5,"Female Householder (%)":24.2},"Crawford County, Ohio":{"Married Couple (%)":62.5,"Cohabiting Couple (%)":9.9,"Male Householder (%)":7.4,"Female Householder (%)":20.2},"Cuyahoga County, Ohio":{"Married Couple (%)":53.7,"Cohabiting Couple (%)":9,"Male Householder (%)":5.6,"Female Householder (%)":31.7},"Darke County, Ohio":{"Married Couple (%)":75,"Cohabiting Couple (%)":8.1,"Male Householder (%)":5.3,"Female Householder (%)":11.6},"Defiance County, Ohio":{"Married Couple (%)":67.2,"Cohabiting Couple (%)":10.7,"Male Householder (%)":8,"Female Householder (%)":14.1},"Delaware County, Ohio":{"Married Couple (%)":81.6,"Cohabiting Couple (%)":6,"Male Householder (%)":3.1,"Female Householder (%)":9.2},"Erie County, Ohio":{"Married Couple (%)":59.6,"Cohabiting Couple (%)":10.2,"Male Householder (%)":5.8,"Female Householder (%)":24.4},"Fairfield County, Ohio":{"Married Couple (%)":71.4,"Cohabiting Couple (%)":9.3,"Male Householder (%)":4.8,"Female Householder (%)":14.5},"Fayette County, Ohio":{"Married Couple (%)":62.2,"Cohabiting Couple (%)":18,"Male Householder (%)":2.7,"Female Householder (%)":17.1},"Franklin County, Ohio":{"Married Couple (%)":59.9,"Cohabiting Couple (%)":10.2,"Male Householder (%)":5.2,"Female Householder (%)":24.7},"Fulton County, Ohio":{"Married Couple (%)":78.8,"Cohabiting Couple (%)":5.6,"Male Householder (%)":3.7,"Female Householder (%)":11.9},"Gallia County, Ohio":{"Married Couple (%)":73.2,"Cohabiting Couple (%)":3.7,"Male Householder (%)":8.1,"Female Householder (%)":14.9},"Geauga County, Ohio":{"Married Couple (%)":88.1,"Cohabiting Couple (%)":3.6,"Male Householder (%)":2.4,"Female Householder (%)":5.9},"Greene County, Ohio":{"Married Couple (%)":72.1,"Cohabiting Couple (%)":8.1,"Male Householder (%)":3.7,"Female Householder (%)":16},"Guernsey County, Ohio":{"Married Couple (%)":57.7,"Cohabiting Couple (%)":12.6,"Male Householder (%)":8.1,"Female Householder (%)":21.7},"Hamilton County, Ohio":{"Married Couple (%)":58.8,"Cohabiting Couple (%)":8.1,"Male Householder (%)":5,"Female Householder (%)":28.1},"Hancock County, Ohio":{"Married Couple (%)":72.7,"Cohabiting Couple (%)":12.1,"Male Householder (%)":4.8,"Female Householder (%)":10.3},"Hardin County, Ohio":{"Married Couple (%)":78.4,"Cohabiting Couple (%)":6,"Male Householder (%)":5,"Female Householder (%)":10.7},"Harrison County, Ohio":{"Married Couple (%)":69.2,"Cohabiting Couple (%)":6.1,"Male Householder (%)":2.1,"Female Householder (%)":22.6},"Henry County, Ohio":{"Married Couple (%)":73.7,"Cohabiting Couple (%)":13,"Male Householder (%)":3.9,"Female Householder (%)":9.4},"Highland County, Ohio":{"Married Couple (%)":71,"Cohabiting Couple (%)":14,"Male Householder (%)":2.4,"Female Householder (%)":12.7},"Hocking County, Ohio":{"Married Couple (%)":56.9,"Cohabiting Couple (%)":14.8,"Male Householder (%)":9.9,"Female Householder (%)":18.4},"Holmes County, Ohio":{"Married Couple (%)":93.2,"Cohabiting Couple (%)":1.4,"Male Householder (%)":1.4,"Female Householder (%)":4.1},"Huron County, Ohio":{"Married Couple (%)":64.5,"Cohabiting Couple (%)":8.3,"Male Householder (%)":7.4,"Female Householder (%)":19.8},"Jackson County, Ohio":{"Married Couple (%)":73.2,"Cohabiting Couple (%)":9.8,"Male Householder (%)":5.4,"Female Householder (%)":11.6},"Jefferson County, Ohio":{"Married Couple (%)":59.4,"Cohabiting Couple (%)":9.7,"Male Householder (%)":6.4,"Female Householder (%)":24.4},"Knox County, Ohio":{"Married Couple (%)":76.2,"Cohabiting Couple (%)":7.6,"Male Householder (%)":4.2,"Female Householder (%)":12},"Lake County, Ohio":{"Married Couple (%)":66.2,"Cohabiting Couple (%)":9.1,"Male Householder (%)":5.9,"Female Householder (%)":18.8},"Lawrence County, Ohio":{"Married Couple (%)":66.3,"Cohabiting Couple (%)":10.5,"Male Householder (%)":3.5,"Female Householder (%)":19.6},"Licking County, Ohio":{"Married Couple (%)":72.8,"Cohabiting Couple (%)":7.5,"Male Householder (%)":4.1,"Female Householder (%)":15.5},"Logan County, Ohio":{"Married Couple (%)":67.3,"Cohabiting Couple (%)":9.8,"Male Householder (%)":3,"Female Householder (%)":19.9},"Lorain County, Ohio":{"Married Couple (%)":61.6,"Cohabiting Couple (%)":9.2,"Male Householder (%)":5.4,"Female Householder (%)":23.8},"Lucas County, Ohio":{"Married Couple (%)":52.1,"Cohabiting Couple (%)":13.3,"Male Householder (%)":4.6,"Female Householder (%)":30},"Madison County, Ohio":{"Married Couple (%)":69.8,"Cohabiting Couple (%)":9.8,"Male Householder (%)":3,"Female Householder (%)":17.4},"Mahoning County, Ohio":{"Married Couple (%)":54,"Cohabiting Couple (%)":11.2,"Male Householder (%)":3.7,"Female Householder (%)":31.1},"Marion County, Ohio":{"Married Couple (%)":60.6,"Cohabiting Couple (%)":13.9,"Male Householder (%)":6.7,"Female Householder (%)":18.8},"Medina County, Ohio":{"Married Couple (%)":78,"Cohabiting Couple (%)":6.9,"Male Householder (%)":4,"Female Householder (%)":11.1},"Meigs County, Ohio":{"Married Couple (%)":53.8,"Cohabiting Couple (%)":20,"Male Householder (%)":3.6,"Female Householder (%)":22.6},"Mercer County, Ohio":{"Married Couple (%)":81.1,"Cohabiting Couple (%)":8.2,"Male Householder (%)":3.4,"Female Householder (%)":7.3},"Miami County, Ohio":{"Married Couple (%)":74.9,"Cohabiting Couple (%)":6.4,"Male Householder (%)":4.2,"Female Householder (%)":14.5},"Monroe County, Ohio":{"Married Couple (%)":68.8,"Cohabiting Couple (%)":6.8,"Male Householder (%)":7.1,"Female Householder (%)":17.3},"Montgomery County, Ohio":{"Married Couple (%)":57.7,"Cohabiting Couple (%)":11.6,"Male Householder (%)":4,"Female Householder (%)":26.7},"Morgan County, Ohio":{"Married Couple (%)":63.4,"Cohabiting Couple (%)":11.5,"Male Householder (%)":6.6,"Female Householder (%)":18.6},"Morrow County, Ohio":{"Married Couple (%)":68.9,"Cohabiting Couple (%)":11,"Male Householder (%)":4.3,"Female Householder (%)":15.7},"Muskingum County, Ohio":{"Married Couple (%)":58.5,"Cohabiting Couple (%)":15.6,"Male Householder (%)":5.7,"Female Householder (%)":20.1},"Noble County, Ohio":{"Married Couple (%)":74.9,"Cohabiting Couple (%)":5.4,"Male Householder (%)":5.2,"Female Householder (%)":14.5},"Ottawa County, Ohio":{"Married Couple (%)":66.5,"Cohabiting Couple (%)":10.4,"Male Householder (%)":5.3,"Female Householder (%)":17.8},"Paulding County, Ohio":{"Married Couple (%)":65.1,"Cohabiting Couple (%)":8.9,"Male Householder (%)":8.5,"Female Householder (%)":17.6},"Perry County, Ohio":{"Married Couple (%)":65.3,"Cohabiting Couple (%)":15.1,"Male Householder (%)":5.2,"Female Householder (%)":14.3},"Pickaway County, Ohio":{"Married Couple (%)":68.1,"Cohabiting Couple (%)":11,"Male Householder (%)":4,"Female Householder (%)":16.9},"Pike County, Ohio":{"Married Couple (%)":63.6,"Cohabiting Couple (%)":13.4,"Male Householder (%)":6.4,"Female Householder (%)":16.5},"Portage County, Ohio":{"Married Couple (%)":67.3,"Cohabiting Couple (%)":10.7,"Male Householder (%)":4.7,"Female Householder (%)":17.4},"Preble County, Ohio":{"Married Couple (%)":70.4,"Cohabiting Couple (%)":12.2,"Male Householder (%)":4,"Female Householder (%)":13.4},"Putnam County, Ohio":{"Married Couple (%)":85.6,"Cohabiting Couple (%)":4.3,"Male Householder (%)":4.5,"Female Householder (%)":5.7},"Richland County, Ohio":{"Married Couple (%)":64.7,"Cohabiting Couple (%)":10.7,"Male Householder (%)":3.8,"Female Householder (%)":20.8},"Ross County, Ohio":{"Married Couple (%)":62.4,"Cohabiting Couple (%)":13.4,"Male Householder (%)":4.7,"Female Householder (%)":19.6},"Sandusky County, Ohio":{"Married Couple (%)":62.3,"Cohabiting Couple (%)":11.2,"Male Householder (%)":6,"Female Householder (%)":20.4},"Scioto County, Ohio":{"Married Couple (%)":64.5,"Cohabiting Couple (%)":11.2,"Male Householder (%)":3,"Female Householder (%)":21.3},"Seneca County, Ohio":{"Married Couple (%)":64.9,"Cohabiting Couple (%)":13.6,"Male Householder (%)":4.9,"Female Householder (%)":16.5},"Shelby County, Ohio":{"Married Couple (%)":70.9,"Cohabiting Couple (%)":10,"Male Householder (%)":3.3,"Female Householder (%)":15.9},"Stark County, Ohio":{"Married Couple (%)":60.5,"Cohabiting Couple (%)":13,"Male Householder (%)":5.2,"Female Householder (%)":21.2},"Summit County, Ohio":{"Married Couple (%)":62,"Cohabiting Couple (%)":8.9,"Male Householder (%)":5.1,"Female Householder (%)":24},"Trumbull County, Ohio":{"Married Couple (%)":60.8,"Cohabiting Couple (%)":11.2,"Male Householder (%)":5.6,"Female Householder (%)":22.4},"Tuscarawas County, Ohio":{"Married Couple (%)":68.1,"Cohabiting Couple (%)":15.6,"Male Householder (%)":5.4,"Female Householder (%)":10.8},"Union County, Ohio":{"Married Couple (%)":79.4,"Cohabiting Couple (%)":9.7,"Male Householder (%)":2.7,"Female Householder (%)":8.2},"Van Wert County, Ohio":{"Married Couple (%)":67.8,"Cohabiting Couple (%)":11.4,"Male Householder (%)":4.9,"Female Householder (%)":16},"Vinton County, Ohio":{"Married Couple (%)":70.8,"Cohabiting Couple (%)":7.8,"Male Householder (%)":8.8,"Female Householder (%)":12.6},"Warren County, Ohio":{"Married Couple (%)":83.1,"Cohabiting Couple (%)":4.8,"Male Householder (%)":2.7,"Female Householder (%)":9.4},"Washington County, Ohio":{"Married Couple (%)":65.8,"Cohabiting Couple (%)":13.9,"Male Householder (%)":5.2,"Female Householder (%)":15.1},"Wayne County, Ohio":{"Married Couple (%)":83.6,"Cohabiting Couple (%)":5.9,"Male Householder (%)":1.7,"Female Householder (%)":8.8},"Williams County, Ohio":{"Married Couple (%)":66,"Cohabiting Couple (%)":14.1,"Male Householder (%)":3.5,"Female Householder (%)":16.3},"Wood County, Ohio":{"Married Couple (%)":71.1,"Cohabiting Couple (%)":10.4,"Male Householder (%)":4.4,"Female Householder (%)":14.1},"Wyandot County, Ohio":{"Married Couple (%)":70.9,"Cohabiting Couple (%)":9,"Male Householder (%)":4.9,"Female Householder (%)":15.1}};
+  const categories = ["Married Couple (%)","Cohabiting Couple (%)","Male Householder (%)","Female Householder (%)"];
+  const ctx = document.getElementById("barChart").getContext("2d");
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: categories,
+        datasets: [{
+          label: "Share of Children (%)",
+          data: values,
+          backgroundColor: ["#5DA5DA","#FAA43A","#60BD68","#F17CB0"]
+        }]
+      },
+      options: {
+        indexAxis: "y",
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            ticks: { callback: v => v + "%" },
+            title: { display: true, text: "Percent of Children" }
+          }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.raw + "%"
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById("countySelect").addEventListener("change", function() {
+    renderChart(Object.values(data[this.value]));
+  });
+
+  renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

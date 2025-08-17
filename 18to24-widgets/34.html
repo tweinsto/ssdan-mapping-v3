@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Educational Enrollment – New Jersey</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Educational Enrollment (Age 18–24) in New Jersey</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Atlantic County, New Jersey">Atlantic County, New Jersey</option>
+      <option value="Bergen County, New Jersey">Bergen County, New Jersey</option>
+      <option value="Burlington County, New Jersey">Burlington County, New Jersey</option>
+      <option value="Camden County, New Jersey">Camden County, New Jersey</option>
+      <option value="Cape May County, New Jersey">Cape May County, New Jersey</option>
+      <option value="Cumberland County, New Jersey">Cumberland County, New Jersey</option>
+      <option value="Essex County, New Jersey">Essex County, New Jersey</option>
+      <option value="Gloucester County, New Jersey">Gloucester County, New Jersey</option>
+      <option value="Hudson County, New Jersey">Hudson County, New Jersey</option>
+      <option value="Hunterdon County, New Jersey">Hunterdon County, New Jersey</option>
+      <option value="Mercer County, New Jersey">Mercer County, New Jersey</option>
+      <option value="Middlesex County, New Jersey">Middlesex County, New Jersey</option>
+      <option value="Monmouth County, New Jersey">Monmouth County, New Jersey</option>
+      <option value="Morris County, New Jersey">Morris County, New Jersey</option>
+      <option value="Ocean County, New Jersey">Ocean County, New Jersey</option>
+      <option value="Passaic County, New Jersey">Passaic County, New Jersey</option>
+      <option value="Salem County, New Jersey">Salem County, New Jersey</option>
+      <option value="Somerset County, New Jersey">Somerset County, New Jersey</option>
+      <option value="Sussex County, New Jersey">Sussex County, New Jersey</option>
+      <option value="Union County, New Jersey">Union County, New Jersey</option>
+      <option value="Warren County, New Jersey">Warren County, New Jersey</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>  const data = {"Statewide":{"Enrolled in College / Grad. School":46.8,"Not Enrolled":53.2},"Atlantic County, New Jersey":{"Enrolled in College / Grad. School":45.9,"Not Enrolled":54.1},"Bergen County, New Jersey":{"Enrolled in College / Grad. School":48.8,"Not Enrolled":51.2},"Burlington County, New Jersey":{"Enrolled in College / Grad. School":39.1,"Not Enrolled":60.9},"Camden County, New Jersey":{"Enrolled in College / Grad. School":36.9,"Not Enrolled":63.1},"Cape May County, New Jersey":{"Enrolled in College / Grad. School":31.1,"Not Enrolled":68.9},"Cumberland County, New Jersey":{"Enrolled in College / Grad. School":25.3,"Not Enrolled":74.7},"Essex County, New Jersey":{"Enrolled in College / Grad. School":42.6,"Not Enrolled":57.4},"Gloucester County, New Jersey":{"Enrolled in College / Grad. School":51.3,"Not Enrolled":48.7},"Hudson County, New Jersey":{"Enrolled in College / Grad. School":45.8,"Not Enrolled":54.2},"Hunterdon County, New Jersey":{"Enrolled in College / Grad. School":41.1,"Not Enrolled":58.9},"Mercer County, New Jersey":{"Enrolled in College / Grad. School":59.8,"Not Enrolled":40.2},"Middlesex County, New Jersey":{"Enrolled in College / Grad. School":61.5,"Not Enrolled":38.5},"Monmouth County, New Jersey":{"Enrolled in College / Grad. School":47.6,"Not Enrolled":52.4},"Morris County, New Jersey":{"Enrolled in College / Grad. School":50.5,"Not Enrolled":49.5},"Ocean County, New Jersey":{"Enrolled in College / Grad. School":42.1,"Not Enrolled":57.9},"Passaic County, New Jersey":{"Enrolled in College / Grad. School":45.7,"Not Enrolled":54.3},"Salem County, New Jersey":{"Enrolled in College / Grad. School":39,"Not Enrolled":61},"Somerset County, New Jersey":{"Enrolled in College / Grad. School":43.9,"Not Enrolled":56.1},"Sussex County, New Jersey":{"Enrolled in College / Grad. School":38.1,"Not Enrolled":61.9},"Union County, New Jersey":{"Enrolled in College / Grad. School":43.2,"Not Enrolled":56.8},"Warren County, New Jersey":{"Enrolled in College / Grad. School":47.7,"Not Enrolled":52.3}};
+  const categories = ["Enrolled in College / Grad. School","Not Enrolled"];
+  const ctx = document.getElementById("barChart").getContext("2d");
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: categories,
+        datasets: [
+          {
+            label: "County/State",
+            data: values,
+            backgroundColor: ["#66c2a5", "#fc8d62"]
+          }
+        ]
+      },
+      options: {
+        indexAxis: "y",
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            ticks: {
+              callback: v => v + "%"
+            }
+          }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.dataset.label + ": " + ctx.raw + "%"
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById("countySelect").addEventListener("change", function() {
+    renderChart(Object.values(data[this.value]));
+  });
+
+  renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

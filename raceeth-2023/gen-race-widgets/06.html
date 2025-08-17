@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="utf-8"/>
+  <title>Race/Ethnicity in State 06</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          text-align: center;
+          margin: 2rem;
+          background-color: white;
+        }
+        canvas {
+          max-width: 500px;
+          margin: 1rem auto;
+        }
+        select {
+          font-size: 1rem;
+          padding: 0.4rem;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Race &amp; Ethnicity Distribution</h2>
+    <label>Select County:</label>
+    <select id="countySelect"><option value="Statewide">Statewide</option>
+<option value="Alameda County, California">Alameda County, California</option>
+<option value="Alpine County, California">Alpine County, California</option>
+<option value="Amador County, California">Amador County, California</option>
+<option value="Butte County, California">Butte County, California</option>
+<option value="Calaveras County, California">Calaveras County, California</option>
+<option value="Colusa County, California">Colusa County, California</option>
+<option value="Contra Costa County, California">Contra Costa County, California</option>
+<option value="Del Norte County, California">Del Norte County, California</option>
+<option value="El Dorado County, California">El Dorado County, California</option>
+<option value="Fresno County, California">Fresno County, California</option>
+<option value="Glenn County, California">Glenn County, California</option>
+<option value="Humboldt County, California">Humboldt County, California</option>
+<option value="Imperial County, California">Imperial County, California</option>
+<option value="Inyo County, California">Inyo County, California</option>
+<option value="Kern County, California">Kern County, California</option>
+<option value="Kings County, California">Kings County, California</option>
+<option value="Lake County, California">Lake County, California</option>
+<option value="Lassen County, California">Lassen County, California</option>
+<option value="Los Angeles County, California">Los Angeles County, California</option>
+<option value="Madera County, California">Madera County, California</option>
+<option value="Marin County, California">Marin County, California</option>
+<option value="Mariposa County, California">Mariposa County, California</option>
+<option value="Mendocino County, California">Mendocino County, California</option>
+<option value="Merced County, California">Merced County, California</option>
+<option value="Modoc County, California">Modoc County, California</option>
+<option value="Mono County, California">Mono County, California</option>
+<option value="Monterey County, California">Monterey County, California</option>
+<option value="Napa County, California">Napa County, California</option>
+<option value="Nevada County, California">Nevada County, California</option>
+<option value="Orange County, California">Orange County, California</option>
+<option value="Placer County, California">Placer County, California</option>
+<option value="Plumas County, California">Plumas County, California</option>
+<option value="Riverside County, California">Riverside County, California</option>
+<option value="Sacramento County, California">Sacramento County, California</option>
+<option value="San Benito County, California">San Benito County, California</option>
+<option value="San Bernardino County, California">San Bernardino County, California</option>
+<option value="San Diego County, California">San Diego County, California</option>
+<option value="San Francisco County, California">San Francisco County, California</option>
+<option value="San Joaquin County, California">San Joaquin County, California</option>
+<option value="San Luis Obispo County, California">San Luis Obispo County, California</option>
+<option value="San Mateo County, California">San Mateo County, California</option>
+<option value="Santa Barbara County, California">Santa Barbara County, California</option>
+<option value="Santa Clara County, California">Santa Clara County, California</option>
+<option value="Santa Cruz County, California">Santa Cruz County, California</option>
+<option value="Shasta County, California">Shasta County, California</option>
+<option value="Sierra County, California">Sierra County, California</option>
+<option value="Siskiyou County, California">Siskiyou County, California</option>
+<option value="Solano County, California">Solano County, California</option>
+<option value="Sonoma County, California">Sonoma County, California</option>
+<option value="Stanislaus County, California">Stanislaus County, California</option>
+<option value="Sutter County, California">Sutter County, California</option>
+<option value="Tehama County, California">Tehama County, California</option>
+<option value="Trinity County, California">Trinity County, California</option>
+<option value="Tulare County, California">Tulare County, California</option>
+<option value="Tuolumne County, California">Tuolumne County, California</option>
+<option value="Ventura County, California">Ventura County, California</option>
+<option value="Yolo County, California">Yolo County, California</option>
+<option value="Yuba County, California">Yuba County, California</option></select>
+    <canvas id="pieChart" width="400" height="400"></canvas>
+    <script>  let raceData = {};
+  fetch("06.json")
+    .then(resp => resp.json())
+    .then(data => {
+      raceData = data;
+      const raceLabels = ["American Indian / Alaska Native","Asian","Black","Hispanic","NHMulti","NHOther","NHWhite","Pacific Islander"];
+      const ctx = document.getElementById("pieChart").getContext("2d");
+      let chart;
+
+      function renderChart(values) {
+        if (chart) chart.destroy();
+        chart = new Chart(ctx, {
+          type: "pie",
+          data: {
+            labels: raceLabels,
+            datasets: [{
+              data: values,
+              backgroundColor: [
+                "#f94144", "#f3722c", "#f9c74f", "#90be6d",
+                "#9d4edd", "#577590", "#d0cde1", "#43aa8b"
+              ]
+            }]
+          },
+          options: {
+            responsive: true,
+            plugins: {
+              legend: {
+                position: "bottom",
+                labels: {
+                  font: { size: 14 },
+                  boxWidth: 20,
+                  padding: 15,
+                  usePointStyle: true,
+                  pointStyle: "rectRounded"
+                }
+              },
+              tooltip: {
+                callbacks: {
+                  label: function(context) {
+                    return context.label + ": " + context.parsed + "%";
+                  }
+                }
+              }
+            }
+          }
+        });
+      }
+
+      document.getElementById("countySelect").addEventListener("change", function() {
+        const selected = this.value;
+        const values = Object.values(raceData[selected]);
+        renderChart(values);
+      });
+
+      renderChart(Object.values(raceData["Statewide"]));
+      document.getElementById("countySelect").value = "Statewide";
+    });</script>
+  </body>
+</html>
+</html>

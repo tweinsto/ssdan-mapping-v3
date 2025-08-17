@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Internet Access Over Time –  Virginia</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+                      h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+                      select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; border-radius: 5px; border: 1px solid #999; }
+                      canvas { width: 100%; max-width: 850px; height: 450px; margin-top: 1rem; }</style>
+</head>
+<html>
+  <body>
+    <h2>Internet Access in  Virginia (2013–2023)</h2>
+    <label>Select County: </label>
+    <select id="countySelect"><option value='Statewide'>Statewide</option>
+<option value='Accomack County, Virginia'>Accomack County, Virginia</option>
+<option value='Albemarle County, Virginia'>Albemarle County, Virginia</option>
+<option value='Alexandria city, Virginia'>Alexandria city, Virginia</option>
+<option value='Alleghany County, Virginia'>Alleghany County, Virginia</option>
+<option value='Amelia County, Virginia'>Amelia County, Virginia</option>
+<option value='Amherst County, Virginia'>Amherst County, Virginia</option>
+<option value='Appomattox County, Virginia'>Appomattox County, Virginia</option>
+<option value='Arlington County, Virginia'>Arlington County, Virginia</option>
+<option value='Augusta County, Virginia'>Augusta County, Virginia</option>
+<option value='Bath County, Virginia'>Bath County, Virginia</option>
+<option value='Bedford County, Virginia'>Bedford County, Virginia</option>
+<option value='Bland County, Virginia'>Bland County, Virginia</option>
+<option value='Botetourt County, Virginia'>Botetourt County, Virginia</option>
+<option value='Bristol city, Virginia'>Bristol city, Virginia</option>
+<option value='Brunswick County, Virginia'>Brunswick County, Virginia</option>
+<option value='Buchanan County, Virginia'>Buchanan County, Virginia</option>
+<option value='Buckingham County, Virginia'>Buckingham County, Virginia</option>
+<option value='Buena Vista city, Virginia'>Buena Vista city, Virginia</option>
+<option value='Campbell County, Virginia'>Campbell County, Virginia</option>
+<option value='Caroline County, Virginia'>Caroline County, Virginia</option>
+<option value='Carroll County, Virginia'>Carroll County, Virginia</option>
+<option value='Charles City County, Virginia'>Charles City County, Virginia</option>
+<option value='Charlotte County, Virginia'>Charlotte County, Virginia</option>
+<option value='Charlottesville city, Virginia'>Charlottesville city, Virginia</option>
+<option value='Chesapeake city, Virginia'>Chesapeake city, Virginia</option>
+<option value='Chesterfield County, Virginia'>Chesterfield County, Virginia</option>
+<option value='Clarke County, Virginia'>Clarke County, Virginia</option>
+<option value='Colonial Heights city, Virginia'>Colonial Heights city, Virginia</option>
+<option value='Covington city, Virginia'>Covington city, Virginia</option>
+<option value='Craig County, Virginia'>Craig County, Virginia</option>
+<option value='Culpeper County, Virginia'>Culpeper County, Virginia</option>
+<option value='Cumberland County, Virginia'>Cumberland County, Virginia</option>
+<option value='Danville city, Virginia'>Danville city, Virginia</option>
+<option value='Dickenson County, Virginia'>Dickenson County, Virginia</option>
+<option value='Dinwiddie County, Virginia'>Dinwiddie County, Virginia</option>
+<option value='Emporia city, Virginia'>Emporia city, Virginia</option>
+<option value='Essex County, Virginia'>Essex County, Virginia</option>
+<option value='Fairfax city, Virginia'>Fairfax city, Virginia</option>
+<option value='Fairfax County, Virginia'>Fairfax County, Virginia</option>
+<option value='Falls Church city, Virginia'>Falls Church city, Virginia</option>
+<option value='Fauquier County, Virginia'>Fauquier County, Virginia</option>
+<option value='Floyd County, Virginia'>Floyd County, Virginia</option>
+<option value='Fluvanna County, Virginia'>Fluvanna County, Virginia</option>
+<option value='Franklin city, Virginia'>Franklin city, Virginia</option>
+<option value='Franklin County, Virginia'>Franklin County, Virginia</option>
+<option value='Frederick County, Virginia'>Frederick County, Virginia</option>
+<option value='Fredericksburg city, Virginia'>Fredericksburg city, Virginia</option>
+<option value='Galax city, Virginia'>Galax city, Virginia</option>
+<option value='Giles County, Virginia'>Giles County, Virginia</option>
+<option value='Gloucester County, Virginia'>Gloucester County, Virginia</option>
+<option value='Goochland County, Virginia'>Goochland County, Virginia</option>
+<option value='Grayson County, Virginia'>Grayson County, Virginia</option>
+<option value='Greene County, Virginia'>Greene County, Virginia</option>
+<option value='Greensville County, Virginia'>Greensville County, Virginia</option>
+<option value='Halifax County, Virginia'>Halifax County, Virginia</option>
+<option value='Hampton city, Virginia'>Hampton city, Virginia</option>
+<option value='Hanover County, Virginia'>Hanover County, Virginia</option>
+<option value='Harrisonburg city, Virginia'>Harrisonburg city, Virginia</option>
+<option value='Henrico County, Virginia'>Henrico County, Virginia</option>
+<option value='Henry County, Virginia'>Henry County, Virginia</option>
+<option value='Highland County, Virginia'>Highland County, Virginia</option>
+<option value='Hopewell city, Virginia'>Hopewell city, Virginia</option>
+<option value='Isle of Wight County, Virginia'>Isle of Wight County, Virginia</option>
+<option value='James City County, Virginia'>James City County, Virginia</option>
+<option value='King and Queen County, Virginia'>King and Queen County, Virginia</option>
+<option value='King George County, Virginia'>King George County, Virginia</option>
+<option value='King William County, Virginia'>King William County, Virginia</option>
+<option value='Lancaster County, Virginia'>Lancaster County, Virginia</option>
+<option value='Lee County, Virginia'>Lee County, Virginia</option>
+<option value='Lexington city, Virginia'>Lexington city, Virginia</option>
+<option value='Loudoun County, Virginia'>Loudoun County, Virginia</option>
+<option value='Louisa County, Virginia'>Louisa County, Virginia</option>
+<option value='Lunenburg County, Virginia'>Lunenburg County, Virginia</option>
+<option value='Lynchburg city, Virginia'>Lynchburg city, Virginia</option>
+<option value='Madison County, Virginia'>Madison County, Virginia</option>
+<option value='Manassas city, Virginia'>Manassas city, Virginia</option>
+<option value='Manassas Park city, Virginia'>Manassas Park city, Virginia</option>
+<option value='Martinsville city, Virginia'>Martinsville city, Virginia</option>
+<option value='Mathews County, Virginia'>Mathews County, Virginia</option>
+<option value='Mecklenburg County, Virginia'>Mecklenburg County, Virginia</option>
+<option value='Middlesex County, Virginia'>Middlesex County, Virginia</option>
+<option value='Montgomery County, Virginia'>Montgomery County, Virginia</option>
+<option value='Nelson County, Virginia'>Nelson County, Virginia</option>
+<option value='New Kent County, Virginia'>New Kent County, Virginia</option>
+<option value='Newport News city, Virginia'>Newport News city, Virginia</option>
+<option value='Norfolk city, Virginia'>Norfolk city, Virginia</option>
+<option value='Northampton County, Virginia'>Northampton County, Virginia</option>
+<option value='Northumberland County, Virginia'>Northumberland County, Virginia</option>
+<option value='Norton city, Virginia'>Norton city, Virginia</option>
+<option value='Nottoway County, Virginia'>Nottoway County, Virginia</option>
+<option value='Orange County, Virginia'>Orange County, Virginia</option>
+<option value='Page County, Virginia'>Page County, Virginia</option>
+<option value='Patrick County, Virginia'>Patrick County, Virginia</option>
+<option value='Petersburg city, Virginia'>Petersburg city, Virginia</option>
+<option value='Pittsylvania County, Virginia'>Pittsylvania County, Virginia</option>
+<option value='Poquoson city, Virginia'>Poquoson city, Virginia</option>
+<option value='Portsmouth city, Virginia'>Portsmouth city, Virginia</option>
+<option value='Powhatan County, Virginia'>Powhatan County, Virginia</option>
+<option value='Prince Edward County, Virginia'>Prince Edward County, Virginia</option>
+<option value='Prince George County, Virginia'>Prince George County, Virginia</option>
+<option value='Prince William County, Virginia'>Prince William County, Virginia</option>
+<option value='Pulaski County, Virginia'>Pulaski County, Virginia</option>
+<option value='Radford city, Virginia'>Radford city, Virginia</option>
+<option value='Rappahannock County, Virginia'>Rappahannock County, Virginia</option>
+<option value='Richmond city, Virginia'>Richmond city, Virginia</option>
+<option value='Richmond County, Virginia'>Richmond County, Virginia</option>
+<option value='Roanoke city, Virginia'>Roanoke city, Virginia</option>
+<option value='Roanoke County, Virginia'>Roanoke County, Virginia</option>
+<option value='Rockbridge County, Virginia'>Rockbridge County, Virginia</option>
+<option value='Rockingham County, Virginia'>Rockingham County, Virginia</option>
+<option value='Russell County, Virginia'>Russell County, Virginia</option>
+<option value='Salem city, Virginia'>Salem city, Virginia</option>
+<option value='Scott County, Virginia'>Scott County, Virginia</option>
+<option value='Shenandoah County, Virginia'>Shenandoah County, Virginia</option>
+<option value='Smyth County, Virginia'>Smyth County, Virginia</option>
+<option value='Southampton County, Virginia'>Southampton County, Virginia</option>
+<option value='Spotsylvania County, Virginia'>Spotsylvania County, Virginia</option>
+<option value='Stafford County, Virginia'>Stafford County, Virginia</option>
+<option value='Staunton city, Virginia'>Staunton city, Virginia</option>
+<option value='Suffolk city, Virginia'>Suffolk city, Virginia</option>
+<option value='Surry County, Virginia'>Surry County, Virginia</option>
+<option value='Sussex County, Virginia'>Sussex County, Virginia</option>
+<option value='Tazewell County, Virginia'>Tazewell County, Virginia</option>
+<option value='Virginia Beach city, Virginia'>Virginia Beach city, Virginia</option>
+<option value='Warren County, Virginia'>Warren County, Virginia</option>
+<option value='Washington County, Virginia'>Washington County, Virginia</option>
+<option value='Waynesboro city, Virginia'>Waynesboro city, Virginia</option>
+<option value='Westmoreland County, Virginia'>Westmoreland County, Virginia</option>
+<option value='Williamsburg city, Virginia'>Williamsburg city, Virginia</option>
+<option value='Winchester city, Virginia'>Winchester city, Virginia</option>
+<option value='Wise County, Virginia'>Wise County, Virginia</option>
+<option value='Wythe County, Virginia'>Wythe County, Virginia</option>
+<option value='York County, Virginia'>York County, Virginia</option></select>
+    <canvas id="lineChart" width="850" height="450"></canvas>
+    <script>const internetData = {"Statewide":{"2017":84.2,"2018":85.8,"2019":87.2,"2020":88.8,"2021":90.2,"2022":91.1,"2023":92.2},"Accomack County, Virginia":{"2017":70,"2018":70.7,"2019":73.9,"2020":76.4,"2021":80.6,"2022":83.9,"2023":86.3},"Albemarle County, Virginia":{"2017":86.9,"2018":88.6,"2019":88.7,"2020":90.6,"2021":91.4,"2022":92.3,"2023":93.8},"Alexandria city, Virginia":{"2017":91.5,"2018":92.3,"2019":93.6,"2020":94.4,"2021":94.7,"2022":95,"2023":95.3},"Alleghany County, Virginia":{"2017":69.9,"2018":72.2,"2019":74.3,"2020":75.2,"2021":78.7,"2022":80.1,"2023":84.1},"Amelia County, Virginia":{"2017":74,"2018":76.8,"2019":74.5,"2020":78.2,"2021":79.6,"2022":82.9,"2023":83.8},"Amherst County, Virginia":{"2017":66.1,"2018":70,"2019":73.5,"2020":78.3,"2021":80.3,"2022":81,"2023":82.9},"Appomattox County, Virginia":{"2017":69.4,"2018":71.3,"2019":73.9,"2020":77.2,"2021":80.1,"2022":81.9,"2023":83.4},"Arlington County, Virginia":{"2017":92.2,"2018":92.5,"2019":93.3,"2020":94.3,"2021":95.1,"2022":95.8,"2023":96.6},"Augusta County, Virginia":{"2017":74.3,"2018":76.8,"2019":79.7,"2020":82.6,"2021":84.3,"2022":86.9,"2023":88.3},"Bath County, Virginia":{"2017":68.7,"2018":66.1,"2019":70.2,"2020":76.5,"2021":75.8,"2022":73.3,"2023":80.2},"Bedford County, Virginia":{"2017":76,"2018":78.2,"2019":79.5,"2020":83.2,"2021":86.2,"2022":88,"2023":89.1},"Bland County, Virginia":{"2017":72.2,"2018":75,"2019":71.6,"2020":65.5,"2021":64.4,"2022":65.9,"2023":70.9},"Botetourt County, Virginia":{"2017":80.2,"2018":81.3,"2019":83.4,"2020":85.5,"2021":86.9,"2022":89.1,"2023":90.1},"Bristol city, Virginia":{"2017":75,"2018":79.1,"2019":81.4,"2020":78.7,"2021":79.7,"2022":80,"2023":80.7},"Brunswick County, Virginia":{"2017":61.8,"2018":66.2,"2019":70,"2020":73.9,"2021":79,"2022":79.2,"2023":78.2},"Buchanan County, Virginia":{"2017":62.1,"2018":63.5,"2019":67.8,"2020":70.1,"2021":73.6,"2022":73.4,"2023":75.7},"Buckingham County, Virginia":{"2017":65.6,"2018":66.1,"2019":69.9,"2020":71.9,"2021":68.6,"2022":72.5,"2023":75.4},"Buena Vista city, Virginia":{"2017":69.9,"2018":70.2,"2019":77.8,"2020":79.1,"2021":85.8,"2022":85.2,"2023":91.3},"Campbell County, Virginia":{"2017":74.8,"2018":76.5,"2019":78.3,"2020":81.3,"2021":82.4,"2022":86.1,"2023":87.4},"Caroline County, Virginia":{"2017":72.2,"2018":74,"2019":77.3,"2020":81.1,"2021":84.4,"2022":86.1,"2023":86.7},"Carroll County, Virginia":{"2017":67,"2018":69.4,"2019":71.6,"2020":74.6,"2021":78.5,"2022":80.7,"2023":84.6},"Charles City County, Virginia":{"2017":63.4,"2018":67.8,"2019":69.2,"2020":72,"2021":71.9,"2022":73.4,"2023":74.7},"Charlotte County, Virginia":{"2017":59.5,"2018":62.7,"2019":65.8,"2020":70.2,"2021":71.5,"2022":72.3,"2023":74.1},"Charlottesville city, Virginia":{"2017":85.3,"2018":87.4,"2019":89.2,"2020":91.5,"2021":92.9,"2022":93.6,"2023":94.4},"Chesapeake city, Virginia":{"2017":89.3,"2018":91.1,"2019":92,"2020":93.7,"2021":94.4,"2022":94.3,"2023":94.2},"Chesterfield County, Virginia":{"2017":90.2,"2018":91.7,"2019":92.3,"2020":93.1,"2021":93.8,"2022":94.2,"2023":95.3},"Clarke County, Virginia":{"2017":79,"2018":79.4,"2019":83,"2020":85.1,"2021":87.9,"2022":89.8,"2023":92.4},"Colonial Heights city, Virginia":{"2017":77.2,"2018":81.5,"2019":82.7,"2020":84.2,"2021":86.2,"2022":86.3,"2023":88.8},"Covington city, Virginia":{"2017":65.9,"2018":72.5,"2019":80.9,"2020":83.5,"2021":85.1,"2022":84.8,"2023":85.4},"Craig County, Virginia":{"2017":68.7,"2018":74,"2019":80.8,"2020":82.2,"2021":90.9,"2022":92.2,"2023":93.8},"Culpeper County, Virginia":{"2017":82.6,"2018":83.5,"2019":86.4,"2020":87.5,"2021":90.5,"2022":90.8,"2023":92.2},"Cumberland County, Virginia":{"2017":64.1,"2018":66.1,"2019":67.5,"2020":73.7,"2021":78.2,"2022":80,"2023":82.2},"Danville city, Virginia":{"2017":67.3,"2018":71,"2019":74.9,"2020":75.5,"2021":76.3,"2022":78.5,"2023":80.1},"Dickenson County, Virginia":{"2017":63.4,"2018":65.6,"2019":67.9,"2020":72.4,"2021":76.2,"2022":78,"2023":78.6},"Dinwiddie County, Virginia":{"2017":72.7,"2018":73.3,"2019":76.4,"2020":79.6,"2021":79.7,"2022":82.8,"2023":85.9},"Emporia city, Virginia":{"2017":65,"2018":69.2,"2019":72.2,"2020":76.1,"2021":80.4,"2022":81.9,"2023":84.1},"Essex County, Virginia":{"2017":62.8,"2018":65.2,"2019":66.9,"2020":70,"2021":73.1,"2022":74.7,"2023":80.3},"Fairfax city, Virginia":{"2017":94.4,"2018":95.9,"2019":97.3,"2020":96.1,"2021":96.7,"2022":97.3,"2023":97.2},"Fairfax County, Virginia":{"2017":94.3,"2018":95.1,"2019":95.8,"2020":96.5,"2021":96.9,"2022":97.3,"2023":97.6},"Falls Church city, Virginia":{"2017":95.8,"2018":96.9,"2019":96.5,"2020":96.3,"2021":98.2,"2022":98.4,"2023":98.6},"Fauquier County, Virginia":{"2017":87.4,"2018":89.7,"2019":90.8,"2020":91.3,"2021":92.9,"2022":93,"2023":93.3},"Floyd County, Virginia":{"2017":70.8,"2018":73.5,"2019":76.4,"2020":76.6,"2021":78.8,"2022":80.2,"2023":82.9},"Fluvanna County, Virginia":{"2017":85.9,"2018":88.9,"2019":87.9,"2020":90,"2021":90.5,"2022":91.1,"2023":92.8},"Franklin city, Virginia":{"2017":71.9,"2018":72.9,"2019":77.2,"2020":81.3,"2021":81.1,"2022":86.8,"2023":90.1},"Franklin County, Virginia":{"2017":72.2,"2018":74.1,"2019":77.3,"2020":80,"2021":81.1,"2022":81.7,"2023":83},"Frederick County, Virginia":{"2017":83.1,"2018":85,"2019":86.3,"2020":87.9,"2021":87.8,"2022":89.4,"2023":90.8},"Fredericksburg city, Virginia":{"2017":84.7,"2018":88.4,"2019":89.9,"2020":90,"2021":90.6,"2022":92,"2023":93},"Galax city, Virginia":{"2017":66.1,"2018":73.9,"2019":75.4,"2020":84.5,"2021":85.3,"2022":86.4,"2023":87.9},"Giles County, Virginia":{"2017":74.8,"2018":76.5,"2019":77.5,"2020":80,"2021":82.8,"2022":83.7,"2023":84},"Gloucester County, Virginia":{"2017":83.1,"2018":84.5,"2019":88.3,"2020":88.4,"2021":88.4,"2022":90.4,"2023":91.6},"Goochland County, Virginia":{"2017":84.6,"2018":85.6,"2019":86.2,"2020":86.2,"2021":88.7,"2022":89.3,"2023":93},"Grayson County, Virginia":{"2017":64.8,"2018":67.9,"2019":72.2,"2020":76.9,"2021":78.4,"2022":80.1,"2023":81.5},"Greene County, Virginia":{"2017":84.8,"2018":85.5,"2019":88.2,"2020":89.6,"2021":90.5,"2022":92.7,"2023":93},"Greensville County, Virginia":{"2017":64.8,"2018":69.4,"2019":68.7,"2020":72.2,"2021":79.3,"2022":82.6,"2023":84.4},"Halifax County, Virginia":{"2017":59.8,"2018":61.8,"2019":62.5,"2020":63.9,"2021":66.7,"2022":68.4,"2023":69.3},"Hampton city, Virginia":{"2017":84,"2018":85.9,"2019":87.2,"2020":89.7,"2021":90.6,"2022":92.1,"2023":93.4},"Hanover County, Virginia":{"2017":86.5,"2018":88.2,"2019":88.6,"2020":90.8,"2021":92.1,"2022":92.6,"2023":93.5},"Harrisonburg city, Virginia":{"2017":84,"2018":85.1,"2019":87.6,"2020":89.3,"2021":90.9,"2022":91.7,"2023":93.1},"Henrico County, Virginia":{"2017":86.1,"2018":87.8,"2019":88.1,"2020":89.9,"2021":91.2,"2022":92,"2023":93.3},"Henry County, Virginia":{"2017":70.5,"2018":71.2,"2019":73.4,"2020":73.3,"2021":75.7,"2022":75,"2023":78.3},"Highland County, Virginia":{"2017":71.6,"2018":77.4,"2019":79.4,"2020":76.3,"2021":79.6,"2022":79.8,"2023":78},"Hopewell city, Virginia":{"2017":68.3,"2018":73.9,"2019":78.6,"2020":84,"2021":87.9,"2022":88.4,"2023":87.4},"Isle of Wight County, Virginia":{"2017":76.5,"2018":79,"2019":81,"2020":82,"2021":83.8,"2022":85.6,"2023":86.5},"James City County, Virginia":{"2017":88.4,"2018":91.1,"2019":91.9,"2020":93.2,"2021":94.3,"2022":94.9,"2023":95.7},"King and Queen County, Virginia":{"2017":56.6,"2018":61.7,"2019":66.5,"2020":71.2,"2021":71.9,"2022":73.4,"2023":76.3},"King George County, Virginia":{"2017":87.6,"2018":89.2,"2019":92.5,"2020":90.8,"2021":92.2,"2022":92,"2023":93.4},"King William County, Virginia":{"2017":72.9,"2018":76.1,"2019":78.2,"2020":81.9,"2021":81.9,"2022":81.9,"2023":83.9},"Lancaster County, Virginia":{"2017":73,"2018":74.5,"2019":75.9,"2020":73.6,"2021":75.4,"2022":74.9,"2023":76},"Lee County, Virginia":{"2017":60.9,"2018":61.2,"2019":64,"2020":66.9,"2021":71.9,"2022":74.5,"2023":78.4},"Lexington city, Virginia":{"2017":70,"2018":73.6,"2019":76.5,"2020":84.3,"2021":87.3,"2022":89.5,"2023":92.6},"Loudoun County, Virginia":{"2017":95.5,"2018":95.8,"2019":96.5,"2020":97.1,"2021":97.7,"2022":98,"2023":98.2},"Louisa County, Virginia":{"2017":79.2,"2018":80.3,"2019":81.8,"2020":83.3,"2021":84.6,"2022":84.1,"2023":85.9},"Lunenburg County, Virginia":{"2017":60.4,"2018":62.3,"2019":61.2,"2020":62.2,"2021":61,"2022":64,"2023":61.6},"Lynchburg city, Virginia":{"2017":77.8,"2018":79.5,"2019":83.3,"2020":87.8,"2021":90.9,"2022":91.9,"2023":93.7},"Madison County, Virginia":{"2017":75.1,"2018":76.7,"2019":75.7,"2020":80.7,"2021":84.9,"2022":84.9,"2023":87.1},"Manassas city, Virginia":{"2017":90.3,"2018":90.4,"2019":91.3,"2020":94.8,"2021":97.1,"2022":97,"2023":97.5},"Manassas Park city, Virginia":{"2017":93.4,"2018":93.8,"2019":94.2,"2020":94.2,"2021":95.3,"2022":95.1,"2023":95.1},"Martinsville city, Virginia":{"2017":67.4,"2018":76,"2019":77.6,"2020":79.5,"2021":83.9,"2022":83.9,"2023":86.5},"Mathews County, Virginia":{"2017":77.4,"2018":74,"2019":74.1,"2020":70.9,"2021":73.7,"2022":76.7,"2023":78},"Mecklenburg County, Virginia":{"2017":63.2,"2018":63.9,"2019":66.1,"2020":70,"2021":71.4,"2022":73,"2023":74},"Middlesex County, Virginia":{"2017":69.5,"2018":70,"2019":71.6,"2020":72.9,"2021":74.9,"2022":81,"2023":85},"Montgomery County, Virginia":{"2017":88,"2018":89.9,"2019":91.2,"2020":91.4,"2021":92,"2022":92.1,"2023":93.2},"Nelson County, Virginia":{"2017":67.7,"2018":72.1,"2019":73.3,"2020":73.4,"2021":78.6,"2022":83.2,"2023":84.4},"New Kent County, Virginia":{"2017":82.8,"2018":84.5,"2019":84.2,"2020":87.1,"2021":88.7,"2022":90.9,"2023":90.8},"Newport News city, Virginia":{"2017":83.3,"2018":84.1,"2019":86.2,"2020":88.1,"2021":89.5,"2022":91.6,"2023":93.6},"Norfolk city, Virginia":{"2017":83.9,"2018":85.9,"2019":87.2,"2020":87.8,"2021":89.1,"2022":89.4,"2023":90.7},"Northampton County, Virginia":{"2017":70.7,"2018":73.5,"2019":77,"2020":80.3,"2021":82.9,"2022":83.6,"2023":85.3},"Northumberland County, Virginia":{"2017":74.3,"2018":77.3,"2019":80.5,"2020":79.2,"2021":81.1,"2022":81.9,"2023":82.9},"Norton city, Virginia":{"2017":77.9,"2018":79.7,"2019":80.6,"2020":80,"2021":85.7,"2022":85.9,"2023":89},"Nottoway County, Virginia":{"2017":63.1,"2018":68.9,"2019":70,"2020":71,"2021":69.7,"2022":74,"2023":74.4},"Orange County, Virginia":{"2017":80.1,"2018":81.8,"2019":83.4,"2020":88.7,"2021":89.5,"2022":91.5,"2023":93.2},"Page County, Virginia":{"2017":66.1,"2018":68.4,"2019":70.7,"2020":74.6,"2021":76.8,"2022":79,"2023":80.9},"Patrick County, Virginia":{"2017":67.4,"2018":69.7,"2019":72.9,"2020":73.6,"2021":76.2,"2022":77.2,"2023":81.3},"Petersburg city, Virginia":{"2017":68.7,"2018":70.5,"2019":73.6,"2020":78.6,"2021":82.9,"2022":85.1,"2023":88.4},"Pittsylvania County, Virginia":{"2017":68,"2018":71.5,"2019":76,"2020":76.5,"2021":76,"2022":77.5,"2023":78.9},"Poquoson city, Virginia":{"2017":88.5,"2018":88.6,"2019":89.2,"2020":91.6,"2021":93.6,"2022":94.1,"2023":94.2},"Portsmouth city, Virginia":{"2017":77.8,"2018":79.8,"2019":82.7,"2020":85.9,"2021":86.5,"2022":88.3,"2023":89.8},"Powhatan County, Virginia":{"2017":88.2,"2018":90.3,"2019":91.7,"2020":92,"2021":92.6,"2022":93.4,"2023":92.9},"Prince Edward County, Virginia":{"2017":70.7,"2018":72,"2019":71.7,"2020":73.1,"2021":76.3,"2022":77.6,"2023":77.9},"Prince George County, Virginia":{"2017":85.5,"2018":85.9,"2019":87.8,"2020":90.4,"2021":90.2,"2022":90.1,"2023":93.4},"Prince William County, Virginia":{"2017":94,"2018":95.2,"2019":96,"2020":96.9,"2021":97.4,"2022":97.7,"2023":98},"Pulaski County, Virginia":{"2017":70.9,"2018":73.7,"2019":76.7,"2020":77,"2021":79.5,"2022":82.1,"2023":83.9},"Radford city, Virginia":{"2017":81.7,"2018":83.4,"2019":85.5,"2020":86.3,"2021":87.8,"2022":91.7,"2023":91.4},"Rappahannock County, Virginia":{"2017":77.2,"2018":77.8,"2019":79.2,"2020":84.8,"2021":88.3,"2022":89.9,"2023":92.9},"Richmond city, Virginia":{"2017":76.4,"2018":78.4,"2019":80.7,"2020":83.6,"2021":86.3,"2022":88.8,"2023":90.8},"Richmond County, Virginia":{"2017":64.9,"2018":70.6,"2019":69,"2020":72.8,"2021":75.6,"2022":80.2,"2023":81.1},"Roanoke city, Virginia":{"2017":75.4,"2018":76.6,"2019":78.7,"2020":81.3,"2021":83.7,"2022":85.3,"2023":87.8},"Roanoke County, Virginia":{"2017":83.9,"2018":84.6,"2019":86.2,"2020":86.2,"2021":88.2,"2022":89.4,"2023":90.5},"Rockbridge County, Virginia":{"2017":69.1,"2018":72.6,"2019":77.8,"2020":79.9,"2021":83.3,"2022":85,"2023":85.8},"Rockingham County, Virginia":{"2017":77,"2018":79.1,"2019":80.7,"2020":82.2,"2021":83.7,"2022":85.9,"2023":87.3},"Russell County, Virginia":{"2017":61.2,"2018":61.9,"2019":62.4,"2020":63.5,"2021":65.9,"2022":67.2,"2023":70.2},"Salem city, Virginia":{"2017":80.1,"2018":81.3,"2019":83.1,"2020":84.9,"2021":87.3,"2022":88.1,"2023":90.2},"Scott County, Virginia":{"2017":65.5,"2018":69.2,"2019":70.3,"2020":72.3,"2021":73.2,"2022":74.8,"2023":76.5},"Shenandoah County, Virginia":{"2017":74.9,"2018":75.9,"2019":78.3,"2020":80.6,"2021":82.9,"2022":84.3,"2023":86.9},"Smyth County, Virginia":{"2017":69.3,"2018":72.9,"2019":74.9,"2020":78.4,"2021":80.7,"2022":82.2,"2023":83.8},"Southampton County, Virginia":{"2017":71.6,"2018":77.4,"2019":78.4,"2020":79.6,"2021":82.9,"2022":82.9,"2023":84.1},"Spotsylvania County, Virginia":{"2017":88.9,"2018":90.5,"2019":91.8,"2020":93.1,"2021":94.8,"2022":95.3,"2023":96.2},"Stafford County, Virginia":{"2017":93.9,"2018":94.9,"2019":95.6,"2020":95.9,"2021":96.7,"2022":96.7,"2023":97},"Staunton city, Virginia":{"2017":76.5,"2018":79,"2019":80.4,"2020":82.4,"2021":82.5,"2022":85.8,"2023":89},"Suffolk city, Virginia":{"2017":81.2,"2018":82.2,"2019":84.5,"2020":86.9,"2021":88.3,"2022":89.9,"2023":91.8},"Surry County, Virginia":{"2017":69.6,"2018":73,"2019":70.7,"2020":75.5,"2021":76.8,"2022":77,"2023":77.6},"Sussex County, Virginia":{"2017":65.4,"2018":70.4,"2019":70.8,"2020":73,"2021":76.2,"2022":80.6,"2023":83.3},"Tazewell County, Virginia":{"2017":70.3,"2018":73.1,"2019":76.2,"2020":80.3,"2021":83.5,"2022":86.4,"2023":87.5},"Virginia Beach city, Virginia":{"2017":90.4,"2018":91.1,"2019":92.1,"2020":93.3,"2021":94.3,"2022":95.2,"2023":95.9},"Warren County, Virginia":{"2017":83.9,"2018":84.6,"2019":86.6,"2020":88,"2021":89.9,"2022":92.5,"2023":94.3},"Washington County, Virginia":{"2017":75.2,"2018":77.9,"2019":78.7,"2020":79.3,"2021":82.5,"2022":83.1,"2023":84.9},"Waynesboro city, Virginia":{"2017":70.8,"2018":75.2,"2019":76.4,"2020":82.6,"2021":86.2,"2022":87.7,"2023":89.6},"Westmoreland County, Virginia":{"2017":73.8,"2018":76.6,"2019":76.7,"2020":76.3,"2021":78.3,"2022":80.7,"2023":81.2},"Williamsburg city, Virginia":{"2017":86.3,"2018":89.5,"2019":92.1,"2020":89,"2021":91.5,"2022":93.1,"2023":93.4},"Winchester city, Virginia":{"2017":78,"2018":79.7,"2019":81.3,"2020":83.3,"2021":86,"2022":86.8,"2023":89.3},"Wise County, Virginia":{"2017":75,"2018":75.6,"2019":76.9,"2020":79.7,"2021":81.4,"2022":84.6,"2023":87.7},"Wythe County, Virginia":{"2017":69.8,"2018":72.9,"2019":74.8,"2020":78.1,"2021":80.9,"2022":83.1,"2023":85.1},"York County, Virginia":{"2017":91.8,"2018":92.8,"2019":93.1,"2020":94,"2021":94.4,"2022":94.9,"2023":95.4}};
+const ctx = document.getElementById('lineChart').getContext('2d');
+let chart;
+
+function renderChart(data) {
+  const labels = Object.keys(data);
+  const values = Object.values(data);
+
+  if (chart) chart.destroy();
+  chart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: labels,
+      datasets: [{
+        label: '% With Internet',
+        data: values,
+        fill: false,
+        borderColor: 'teal',
+        backgroundColor: 'teal',
+        tension: 0.3,
+        pointRadius: 4
+      }]
+    },
+    options: {
+      responsive: true,
+      scales: {
+        y: {
+          beginAtZero: true,
+          max: 100,
+          title: { display: true, text: '% With Internet' }
+        },
+        x: {
+          title: { display: true, text: 'Year' }
+        }
+      },
+      plugins: {
+        tooltip: {
+          callbacks: {
+            label: function(ctx) {
+              return ctx.parsed.y.toFixed(1) + '%';
+            }
+          }
+        }
+      }
+    }
+  });
+}
+
+document.getElementById('countySelect').addEventListener('change', function() {
+  renderChart(internetData[this.value]);
+});
+renderChart(internetData['Statewide']);</script>
+  </body>
+</html>
+</html>

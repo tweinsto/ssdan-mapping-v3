@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+
+</head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Median Earnings by Industry – 08</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background: white;
+    }
+    .layout {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1.5rem;
+    }
+    label {
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+    #countySelect {
+      font-size: 1rem;
+      padding: 0.4rem 0.8rem;
+      margin-bottom: 1rem;
+    }
+    canvas {
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <label for="countySelect">Median Earnings by Industry:</label>
+    <select id="countySelect"></select>
+    <canvas id="barChart"></canvas>
+  </div>
+
+  <script>
+    const data = {"Statewide":{"Agriculture & mining":68594,"Arts & food services":43861,"Construction":63795,"Education & health":60621,"Finance & real estate":84050,"Information":93823,"Manufacturing":78310,"Other services":53565,"Prof. & waste services":90123,"Public administration":80142,"Retail trade":46736,"Transport & utilities":70292,"Wholesale trade":72043},"Adams County":{"Agriculture & mining":63946,"Arts & food services":41526,"Construction":60650,"Education & health":53925,"Finance & real estate":69974,"Information":85378,"Manufacturing":67081,"Other services":50208,"Prof. & waste services":72195,"Public administration":79256,"Retail trade":46389,"Transport & utilities":66417,"Wholesale trade":59612},"Alamosa County":{"Agriculture & mining":31657,"Arts & food services":29180,"Construction":29552,"Education & health":46719,"Finance & real estate":45707,"Information":0,"Manufacturing":34833,"Other services":33820,"Prof. & waste services":57128,"Public administration":58413,"Retail trade":56875,"Transport & utilities":98470,"Wholesale trade":44224},"Arapahoe County":{"Agriculture & mining":84559,"Arts & food services":41723,"Construction":64852,"Education & health":63561,"Finance & real estate":83774,"Information":96932,"Manufacturing":75886,"Other services":53388,"Prof. & waste services":83818,"Public administration":80486,"Retail trade":46502,"Transport & utilities":64554,"Wholesale trade":72918},"Archuleta County":{"Agriculture & mining":74889,"Arts & food services":57579,"Construction":69000,"Education & health":60571,"Finance & real estate":53438,"Information":71691,"Manufacturing":54844,"Other services":58172,"Prof. & waste services":73750,"Public administration":60893,"Retail trade":41039,"Transport & utilities":50278,"Wholesale trade":0},"Baca County":{"Agriculture & mining":41618,"Arts & food services":0,"Construction":52692,"Education & health":40450,"Finance & real estate":54792,"Information":0,"Manufacturing":33929,"Other services":20625,"Prof. & waste services":42768,"Public administration":58833,"Retail trade":29375,"Transport & utilities":61094,"Wholesale trade":61250},"Bent County":{"Agriculture & mining":36364,"Arts & food services":38629,"Construction":32434,"Education & health":32452,"Finance & real estate":47031,"Information":118618,"Manufacturing":53393,"Other services":40000,"Prof. & waste services":48750,"Public administration":31638,"Retail trade":38000,"Transport & utilities":70913,"Wholesale trade":0},"Boulder County":{"Agriculture & mining":50083,"Arts & food services":38783,"Construction":65393,"Education & health":70978,"Finance & real estate":91705,"Information":133074,"Manufacturing":101971,"Other services":60168,"Prof. & waste services":114307,"Public administration":83032,"Retail trade":48562,"Transport & utilities":71637,"Wholesale trade":90221},"Broomfield County":{"Agriculture & mining":83327,"Arts & food services":47479,"Construction":66081,"Education & health":72007,"Finance & real estate":99189,"Information":116509,"Manufacturing":109837,"Other services":54188,"Prof. & waste services":101670,"Public administration":92241,"Retail trade":64500,"Transport & utilities":82644,"Wholesale trade":117109},"Chaffee County":{"Agriculture & mining":32870,"Arts & food services":42295,"Construction":65556,"Education & health":51147,"Finance & real estate":70652,"Information":80500,"Manufacturing":56250,"Other services":57887,"Prof. & waste services":73006,"Public administration":64447,"Retail trade":39484,"Transport & utilities":73166,"Wholesale trade":51971},"Cheyenne County":{"Agriculture & mining":58942,"Arts & food services":0,"Construction":45565,"Education & health":57083,"Finance & real estate":54886,"Information":0,"Manufacturing":0,"Other services":0,"Prof. & waste services":38056,"Public administration":46625,"Retail trade":36500,"Transport & utilities":68403,"Wholesale trade":53929},"Clear Creek County":{"Agriculture & mining":76791,"Arts & food services":38114,"Construction":70819,"Education & health":76034,"Finance & real estate":69333,"Information":108167,"Manufacturing":91429,"Other services":46806,"Prof. & waste services":102019,"Public administration":114178,"Retail trade":46736,"Transport & utilities":71250,"Wholesale trade":130750},"Conejos County":{"Agriculture & mining":33981,"Arts & food services":29318,"Construction":55375,"Education & health":39032,"Finance & real estate":29355,"Information":0,"Manufacturing":71042,"Other services":22344,"Prof. & waste services":39375,"Public administration":38750,"Retail trade":32292,"Transport & utilities":49667,"Wholesale trade":43077},"Costilla County":{"Agriculture & mining":31917,"Arts & food services":48083,"Construction":45000,"Education & health":61075,"Finance & real estate":43500,"Information":0,"Manufacturing":22500,"Other services":0,"Prof. & waste services":43750,"Public administration":32097,"Retail trade":61618,"Transport & utilities":100074,"Wholesale trade":24583},"Crowley County":{"Agriculture & mining":45987,"Arts & food services":65149,"Construction":46576,"Education & health":46875,"Finance & real estate":27750,"Information":0,"Manufacturing":53906,"Other services":58864,"Prof. & waste services":46667,"Public administration":53672,"Retail trade":51000,"Transport & utilities":115610,"Wholesale trade":0},"Custer County":{"Agriculture & mining":57976,"Arts & food services":31250,"Construction":87813,"Education & health":75694,"Finance & real estate":50160,"Information":0,"Manufacturing":84044,"Other services":70739,"Prof. & waste services":132155,"Public administration":62551,"Retail trade":48994,"Transport & utilities":27250,"Wholesale trade":0},"Delta County":{"Agriculture & mining":74286,"Arts & food services":50502,"Construction":52763,"Education & health":58239,"Finance & real estate":51750,"Information":109667,"Manufacturing":54250,"Other services":36860,"Prof. & waste services":62390,"Public administration":51657,"Retail trade":36583,"Transport & utilities":59453,"Wholesale trade":48630},"Denver County":{"Agriculture & mining":89174,"Arts & food services":47826,"Construction":59002,"Education & health":67344,"Finance & real estate":94027,"Information":94494,"Manufacturing":84330,"Other services":56075,"Prof. & waste services":93573,"Public administration":86141,"Retail trade":47747,"Transport & utilities":67842,"Wholesale trade":70254},"Dolores County":{"Agriculture & mining":7212,"Arts & food services":26563,"Construction":165089,"Education & health":48092,"Finance & real estate":0,"Information":0,"Manufacturing":86786,"Other services":0,"Prof. & waste services":198602,"Public administration":60976,"Retail trade":49773,"Transport & utilities":0,"Wholesale trade":0},"Douglas County":{"Agriculture & mining":101607,"Arts & food services":56439,"Construction":89623,"Education & health":68197,"Finance & real estate":113684,"Information":123888,"Manufacturing":114179,"Other services":57942,"Prof. & waste services":122347,"Public administration":101444,"Retail trade":57327,"Transport & utilities":87287,"Wholesale trade":104694},"Eagle County":{"Agriculture & mining":74028,"Arts & food services":46892,"Construction":62391,"Education & health":70330,"Finance & real estate":101413,"Information":71176,"Manufacturing":92328,"Other services":38661,"Prof. & waste services":76125,"Public administration":90650,"Retail trade":49260,"Transport & utilities":70489,"Wholesale trade":84349},"Elbert County":{"Agriculture & mining":52604,"Arts & food services":47455,"Construction":76667,"Education & health":73707,"Finance & real estate":104306,"Information":91875,"Manufacturing":90903,"Other services":56042,"Prof. & waste services":139545,"Public administration":105938,"Retail trade":58701,"Transport & utilities":92636,"Wholesale trade":119866},"El Paso County":{"Agriculture & mining":60495,"Arts & food services":37321,"Construction":61255,"Education & health":54435,"Finance & real estate":67520,"Information":77694,"Manufacturing":73591,"Other services":54019,"Prof. & waste services":83525,"Public administration":81250,"Retail trade":43108,"Transport & utilities":69876,"Wholesale trade":64404},"Fremont County":{"Agriculture & mining":71724,"Arts & food services":40934,"Construction":63413,"Education & health":49196,"Finance & real estate":55036,"Information":97578,"Manufacturing":47891,"Other services":52583,"Prof. & waste services":66932,"Public administration":62779,"Retail trade":36288,"Transport & utilities":76328,"Wholesale trade":55375},"Garfield County":{"Agriculture & mining":70375,"Arts & food services":52781,"Construction":73790,"Education & health":59299,"Finance & real estate":65633,"Information":46713,"Manufacturing":61219,"Other services":43355,"Prof. & waste services":54763,"Public administration":70388,"Retail trade":50232,"Transport & utilities":67060,"Wholesale trade":61622},"Gilpin County":{"Agriculture & mining":0,"Arts & food services":55841,"Construction":67108,"Education & health":146691,"Finance & real estate":115938,"Information":100625,"Manufacturing":82969,"Other services":45357,"Prof. & waste services":165476,"Public administration":96458,"Retail trade":39089,"Transport & utilities":107692,"Wholesale trade":0},"Grand County":{"Agriculture & mining":58362,"Arts & food services":54612,"Construction":50570,"Education & health":44707,"Finance & real estate":58163,"Information":185368,"Manufacturing":83891,"Other services":63405,"Prof. & waste services":63849,"Public administration":85156,"Retail trade":53264,"Transport & utilities":49141,"Wholesale trade":43661},"Gunnison County":{"Agriculture & mining":42635,"Arts & food services":44187,"Construction":76278,"Education & health":60530,"Finance & real estate":106583,"Information":82969,"Manufacturing":75114,"Other services":59375,"Prof. & waste services":93611,"Public administration":71436,"Retail trade":35408,"Transport & utilities":59595,"Wholesale trade":41500},"Hinsdale County":{"Agriculture & mining":5625,"Arts & food services":42188,"Construction":52083,"Education & health":44688,"Finance & real estate":46447,"Information":0,"Manufacturing":121667,"Other services":0,"Prof. & waste services":79286,"Public administration":50417,"Retail trade":25750,"Transport & utilities":0,"Wholesale trade":0},"Huerfano County":{"Agriculture & mining":60625,"Arts & food services":52679,"Construction":80446,"Education & health":46136,"Finance & real estate":150000,"Information":32196,"Manufacturing":65357,"Other services":32868,"Prof. & waste services":73333,"Public administration":63393,"Retail trade":40625,"Transport & utilities":46667,"Wholesale trade":0},"Jackson County":{"Agriculture & mining":47813,"Arts & food services":29792,"Construction":53571,"Education & health":45956,"Finance & real estate":0,"Information":0,"Manufacturing":0,"Other services":0,"Prof. & waste services":54091,"Public administration":34931,"Retail trade":57875,"Transport & utilities":0,"Wholesale trade":0},"Jefferson County":{"Agriculture & mining":93000,"Arts & food services":49851,"Construction":72820,"Education & health":68278,"Finance & real estate":89302,"Information":100684,"Manufacturing":89037,"Other services":60080,"Prof. & waste services":97914,"Public administration":96232,"Retail trade":48450,"Transport & utilities":76642,"Wholesale trade":81304},"Kiowa County":{"Agriculture & mining":46429,"Arts & food services":0,"Construction":45804,"Education & health":48720,"Finance & real estate":77917,"Information":0,"Manufacturing":56786,"Other services":36042,"Prof. & waste services":71719,"Public administration":80625,"Retail trade":21125,"Transport & utilities":101250,"Wholesale trade":0},"Kit Carson County":{"Agriculture & mining":51696,"Arts & food services":48646,"Construction":47986,"Education & health":55962,"Finance & real estate":71607,"Information":56250,"Manufacturing":63654,"Other services":53750,"Prof. & waste services":37955,"Public administration":63423,"Retail trade":49107,"Transport & utilities":51786,"Wholesale trade":59813},"Lake County":{"Agriculture & mining":87500,"Arts & food services":34569,"Construction":67330,"Education & health":56272,"Finance & real estate":0,"Information":81977,"Manufacturing":29429,"Other services":45278,"Prof. & waste services":76738,"Public administration":75833,"Retail trade":38469,"Transport & utilities":60250,"Wholesale trade":73603},"La Plata County":{"Agriculture & mining":65233,"Arts & food services":41761,"Construction":58647,"Education & health":60045,"Finance & real estate":80729,"Information":75962,"Manufacturing":58327,"Other services":54464,"Prof. & waste services":75977,"Public administration":69512,"Retail trade":36448,"Transport & utilities":71694,"Wholesale trade":65250},"Larimer County":{"Agriculture & mining":82631,"Arts & food services":41503,"Construction":65608,"Education & health":61290,"Finance & real estate":82274,"Information":88036,"Manufacturing":78627,"Other services":53885,"Prof. & waste services":80429,"Public administration":86410,"Retail trade":47490,"Transport & utilities":75565,"Wholesale trade":75857},"Las Animas County":{"Agriculture & mining":58750,"Arts & food services":25179,"Construction":45469,"Education & health":49583,"Finance & real estate":51847,"Information":85152,"Manufacturing":31630,"Other services":41035,"Prof. & waste services":48750,"Public administration":47875,"Retail trade":34933,"Transport & utilities":58438,"Wholesale trade":53889},"Lincoln County":{"Agriculture & mining":40982,"Arts & food services":34853,"Construction":69359,"Education & health":43214,"Finance & real estate":41875,"Information":70741,"Manufacturing":61875,"Other services":50066,"Prof. & waste services":45391,"Public administration":64750,"Retail trade":36518,"Transport & utilities":76667,"Wholesale trade":55855},"Logan County":{"Agriculture & mining":47303,"Arts & food services":23535,"Construction":51417,"Education & health":43934,"Finance & real estate":36587,"Information":37460,"Manufacturing":50545,"Other services":47778,"Prof. & waste services":47500,"Public administration":58849,"Retail trade":33750,"Transport & utilities":74271,"Wholesale trade":47330},"Mesa County":{"Agriculture & mining":95891,"Arts & food services":36227,"Construction":58366,"Education & health":53487,"Finance & real estate":60932,"Information":61350,"Manufacturing":53598,"Other services":50607,"Prof. & waste services":59672,"Public administration":67341,"Retail trade":41359,"Transport & utilities":85372,"Wholesale trade":67228},"Mineral County":{"Agriculture & mining":0,"Arts & food services":28750,"Construction":75054,"Education & health":72000,"Finance & real estate":0,"Information":0,"Manufacturing":0,"Other services":0,"Prof. & waste services":0,"Public administration":0,"Retail trade":28750,"Transport & utilities":0,"Wholesale trade":0},"Moffat County":{"Agriculture & mining":92216,"Arts & food services":39717,"Construction":52250,"Education & health":59987,"Finance & real estate":45655,"Information":48000,"Manufacturing":62422,"Other services":46141,"Prof. & waste services":38621,"Public administration":69236,"Retail trade":37943,"Transport & utilities":97344,"Wholesale trade":89494},"Montezuma County":{"Agriculture & mining":54077,"Arts & food services":33500,"Construction":51579,"Education & health":46389,"Finance & real estate":45188,"Information":34464,"Manufacturing":70147,"Other services":48942,"Prof. & waste services":51813,"Public administration":58893,"Retail trade":27692,"Transport & utilities":66354,"Wholesale trade":76557},"Montrose County":{"Agriculture & mining":42403,"Arts & food services":48250,"Construction":70693,"Education & health":47222,"Finance & real estate":55212,"Information":56602,"Manufacturing":41314,"Other services":52257,"Prof. & waste services":55750,"Public administration":63173,"Retail trade":40254,"Transport & utilities":45241,"Wholesale trade":85321},"Morgan County":{"Agriculture & mining":49659,"Arts & food services":41632,"Construction":54517,"Education & health":45650,"Finance & real estate":53036,"Information":62500,"Manufacturing":49886,"Other services":62150,"Prof. & waste services":49522,"Public administration":64185,"Retail trade":49519,"Transport & utilities":53882,"Wholesale trade":58571},"Otero County":{"Agriculture & mining":40337,"Arts & food services":37454,"Construction":43750,"Education & health":45402,"Finance & real estate":39107,"Information":36859,"Manufacturing":55974,"Other services":35462,"Prof. & waste services":40956,"Public administration":46613,"Retail trade":47200,"Transport & utilities":75995,"Wholesale trade":66250},"Ouray County":{"Agriculture & mining":81161,"Arts & food services":63378,"Construction":65469,"Education & health":45000,"Finance & real estate":90536,"Information":0,"Manufacturing":53906,"Other services":66250,"Prof. & waste services":79038,"Public administration":73920,"Retail trade":49904,"Transport & utilities":140486,"Wholesale trade":0},"Park County":{"Agriculture & mining":89375,"Arts & food services":43048,"Construction":76222,"Education & health":61346,"Finance & real estate":82224,"Information":84107,"Manufacturing":84395,"Other services":54732,"Prof. & waste services":84103,"Public administration":58017,"Retail trade":40000,"Transport & utilities":86400,"Wholesale trade":110446},"Phillips County":{"Agriculture & mining":58667,"Arts & food services":31250,"Construction":113295,"Education & health":52800,"Finance & real estate":58125,"Information":0,"Manufacturing":41719,"Other services":43385,"Prof. & waste services":46205,"Public administration":53594,"Retail trade":47250,"Transport & utilities":96133,"Wholesale trade":34375},"Pitkin County":{"Agriculture & mining":125750,"Arts & food services":70011,"Construction":63508,"Education & health":76989,"Finance & real estate":94432,"Information":59398,"Manufacturing":95893,"Other services":44408,"Prof. & waste services":89497,"Public administration":61626,"Retail trade":49559,"Transport & utilities":61875,"Wholesale trade":98466},"Prowers County":{"Agriculture & mining":51645,"Arts & food services":31603,"Construction":36818,"Education & health":46327,"Finance & real estate":85795,"Information":0,"Manufacturing":32154,"Other services":42939,"Prof. & waste services":40938,"Public administration":41574,"Retail trade":36005,"Transport & utilities":52500,"Wholesale trade":22120},"Pueblo County":{"Agriculture & mining":47854,"Arts & food services":36324,"Construction":58813,"Education & health":49712,"Finance & real estate":62488,"Information":62738,"Manufacturing":61826,"Other services":51964,"Prof. & waste services":59375,"Public administration":67071,"Retail trade":42878,"Transport & utilities":57773,"Wholesale trade":64471},"Rio Blanco County":{"Agriculture & mining":67212,"Arts & food services":58365,"Construction":49350,"Education & health":44496,"Finance & real estate":37348,"Information":0,"Manufacturing":64063,"Other services":51711,"Prof. & waste services":75327,"Public administration":49347,"Retail trade":29219,"Transport & utilities":73194,"Wholesale trade":0},"Rio Grande County":{"Agriculture & mining":68864,"Arts & food services":36850,"Construction":44500,"Education & health":62083,"Finance & real estate":66250,"Information":0,"Manufacturing":37279,"Other services":33938,"Prof. & waste services":54167,"Public administration":61893,"Retail trade":35234,"Transport & utilities":57917,"Wholesale trade":98784},"Routt County":{"Agriculture & mining":80566,"Arts & food services":43092,"Construction":87813,"Education & health":66000,"Finance & real estate":58125,"Information":102500,"Manufacturing":101713,"Other services":58839,"Prof. & waste services":117750,"Public administration":68646,"Retail trade":56404,"Transport & utilities":89643,"Wholesale trade":52386},"Saguache County":{"Agriculture & mining":45750,"Arts & food services":36993,"Construction":51083,"Education & health":45978,"Finance & real estate":140742,"Information":0,"Manufacturing":34159,"Other services":55568,"Prof. & waste services":54024,"Public administration":60313,"Retail trade":42837,"Transport & utilities":40588,"Wholesale trade":0},"San Juan County":{"Agriculture & mining":0,"Arts & food services":46250,"Construction":143125,"Education & health":54792,"Finance & real estate":0,"Information":0,"Manufacturing":61786,"Other services":0,"Prof. & waste services":55625,"Public administration":56719,"Retail trade":21953,"Transport & utilities":0,"Wholesale trade":0},"San Miguel County":{"Agriculture & mining":48000,"Arts & food services":60441,"Construction":63359,"Education & health":63098,"Finance & real estate":68400,"Information":38500,"Manufacturing":72813,"Other services":21932,"Prof. & waste services":68523,"Public administration":59210,"Retail trade":42337,"Transport & utilities":60208,"Wholesale trade":0},"Sedgwick County":{"Agriculture & mining":52000,"Arts & food services":20625,"Construction":66629,"Education & health":39438,"Finance & real estate":46875,"Information":0,"Manufacturing":42833,"Other services":50385,"Prof. & waste services":49219,"Public administration":59844,"Retail trade":30875,"Transport & utilities":70298,"Wholesale trade":45833},"Summit County":{"Agriculture & mining":39353,"Arts & food services":53074,"Construction":84750,"Education & health":54463,"Finance & real estate":89409,"Information":80238,"Manufacturing":53636,"Other services":47906,"Prof. & waste services":65438,"Public administration":64806,"Retail trade":59842,"Transport & utilities":82708,"Wholesale trade":78796},"Teller County":{"Agriculture & mining":100156,"Arts & food services":40493,"Construction":65556,"Education & health":52230,"Finance & real estate":77321,"Information":102366,"Manufacturing":83092,"Other services":46583,"Prof. & waste services":103662,"Public administration":68641,"Retail trade":54491,"Transport & utilities":57875,"Wholesale trade":73594},"Washington County":{"Agriculture & mining":52083,"Arts & food services":32500,"Construction":32153,"Education & health":45179,"Finance & real estate":78125,"Information":70357,"Manufacturing":51630,"Other services":51250,"Prof. & waste services":50709,"Public administration":46625,"Retail trade":58500,"Transport & utilities":55000,"Wholesale trade":58214},"Weld County":{"Agriculture & mining":71554,"Arts & food services":40869,"Construction":65545,"Education & health":57643,"Finance & real estate":71158,"Information":70093,"Manufacturing":67880,"Other services":50828,"Prof. & waste services":73068,"Public administration":75667,"Retail trade":48072,"Transport & utilities":70148,"Wholesale trade":70104},"Yuma County":{"Agriculture & mining":55625,"Arts & food services":24630,"Construction":57976,"Education & health":48426,"Finance & real estate":107125,"Information":57917,"Manufacturing":48125,"Other services":44479,"Prof. & waste services":65417,"Public administration":44013,"Retail trade":43871,"Transport & utilities":58929,"Wholesale trade":47105}};
+    const colors = {
+  'Agriculture & mining': '#FFFF01',
+  'Arts & food services': '#00008B',
+  'Construction': '#7570B1',
+  'Education & health': '#66A61E',
+  'Finance & real estate': '#E6AB01',
+  'Information': '#379',
+  'Manufacturing': '#E41A1C',
+  'Other services': '#377EF1',
+  'Prof. & waste services': '#FF7F00',
+  'Public administration': '#1B9E77',
+  'Retail trade': '#A65011',
+  'Transport & utilities': '#F781BF',
+  'Wholesale trade': '#919'
+};
+
+    const ctx = document.getElementById("barChart").getContext("2d");
+    let chart;
+
+    function renderChart(county) {
+      const values = data[county];
+      const labels = Object.keys(values);
+      const earnings = Object.values(values);
+
+      if (chart) chart.destroy();
+
+      chart = new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels: labels,
+          datasets: [{
+            label: "Median Earnings ($)",
+            data: earnings,
+            backgroundColor: labels.map(label => colors[label] || "#ccc")
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: true,
+  aspectRatio: 1.5, 
+          indexAxis: "x",
+          scales: {
+            y: {
+              beginAtZero: true,
+              title: {
+                display: true,
+                text: "Median Earnings ($)"
+              },
+              ticks: {
+                callback: function(value) {
+                  return "$" + value.toLocaleString();
+                }
+              }
+            },
+            x: {
+              ticks: {
+                maxRotation: 45,
+                minRotation: 20,
+                autoSkip: false,
+                callback: function(value, index, ticks) {
+                  let label = this.getLabelForValue(value);
+                  return label.length > 25 ? label.slice(0, 25) + "…" : label;
+                }
+              }
+            }
+          },
+          plugins: {
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  return "$" + context.parsed.y.toLocaleString();
+                }
+              }
+            },
+            legend: {
+              display: false
+            }
+          }
+        }
+      });
+    }
+
+    const select = document.getElementById("countySelect");
+    Object.keys(data).forEach(county => {
+      const option = document.createElement("option");
+      option.value = county;
+      option.text = county;
+      select.appendChild(option);
+    });
+    select.value = "Statewide";
+    select.addEventListener("change", () => renderChart(select.value));
+    renderChart("Statewide");
+  </script>
+</body>
+</html>
+</html>

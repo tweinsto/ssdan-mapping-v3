@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Age Distribution Under 18 –  Utah</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          margin: 1rem 2rem;
+          text-align: center;
+        }
+        h2 {
+          margin-bottom: 0.25rem;
+          font-size: 1.6rem;
+        }
+        select {
+          padding: 0.4rem;
+          font-size: 1rem;
+          margin: 1rem 0;
+          border-radius: 5px;
+          border: 1px solid #999;
+        }
+        canvas {
+          width: 100%;
+          max-width: 850px;
+          height: 500px;
+          margin-top: 1rem;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Age Distribution Under 18 in  Utah (2023)</h2>
+    <label>Select County:</label>
+            <select id="countySelect">
+          <option value='Statewide'>Statewide</option>
+<option value='Beaver County, Utah'>Beaver County, Utah</option>
+<option value='Box Elder County, Utah'>Box Elder County, Utah</option>
+<option value='Cache County, Utah'>Cache County, Utah</option>
+<option value='Carbon County, Utah'>Carbon County, Utah</option>
+<option value='Daggett County, Utah'>Daggett County, Utah</option>
+<option value='Davis County, Utah'>Davis County, Utah</option>
+<option value='Duchesne County, Utah'>Duchesne County, Utah</option>
+<option value='Emery County, Utah'>Emery County, Utah</option>
+<option value='Garfield County, Utah'>Garfield County, Utah</option>
+<option value='Grand County, Utah'>Grand County, Utah</option>
+<option value='Iron County, Utah'>Iron County, Utah</option>
+<option value='Juab County, Utah'>Juab County, Utah</option>
+<option value='Kane County, Utah'>Kane County, Utah</option>
+<option value='Millard County, Utah'>Millard County, Utah</option>
+<option value='Morgan County, Utah'>Morgan County, Utah</option>
+<option value='Piute County, Utah'>Piute County, Utah</option>
+<option value='Rich County, Utah'>Rich County, Utah</option>
+<option value='Salt Lake County, Utah'>Salt Lake County, Utah</option>
+<option value='San Juan County, Utah'>San Juan County, Utah</option>
+<option value='Sanpete County, Utah'>Sanpete County, Utah</option>
+<option value='Sevier County, Utah'>Sevier County, Utah</option>
+<option value='Summit County, Utah'>Summit County, Utah</option>
+<option value='Tooele County, Utah'>Tooele County, Utah</option>
+<option value='Uintah County, Utah'>Uintah County, Utah</option>
+<option value='Utah County, Utah'>Utah County, Utah</option>
+<option value='Wasatch County, Utah'>Wasatch County, Utah</option>
+<option value='Washington County, Utah'>Washington County, Utah</option>
+<option value='Wayne County, Utah'>Wayne County, Utah</option>
+<option value='Weber County, Utah'>Weber County, Utah</option>
+        </select>
+    <canvas id="barChart" width="850" height="500"></canvas>
+    <script>  const ageData = {"Statewide":[-12.9,12.3,-15.1,14.1,-9.2,8.6,-14.3,13.6],"Beaver County, Utah":[-13.1,10.2,-15.2,14.8,-13,12.5,-11.3,9.9],"Box Elder County, Utah":[-12.4,11.7,-14.5,12.6,-15.6,14.9,-9.7,8.6],"Cache County, Utah":[-13.3,12.8,-15.3,14.2,-13.5,13.4,-8.8,8.7],"Carbon County, Utah":[-12,12.6,-15.3,12.2,-15.6,13.9,-9.4,8.9],"Daggett County, Utah":[-13.6,5.9,-5.3,13,-13.6,26,-17.8,4.7],"Davis County, Utah":[-12.1,11.6,-15.2,13.1,-15,14.9,-9.4,8.6],"Duchesne County, Utah":[-12.1,12.7,-15,15.4,-14.4,13.4,-8.6,8.5],"Emery County, Utah":[-10.6,11.2,-12.3,14.7,-19.6,11.9,-10.3,9.5],"Garfield County, Utah":[-15.7,9.6,-4.2,12.6,-21.9,14.5,-11.8,9.7],"Grand County, Utah":[-14.8,8.5,-17.7,12.2,-16,16.4,-8.3,6.2],"Iron County, Utah":[-12.3,11.8,-14.8,13.5,-14.9,14.7,-8.9,9],"Juab County, Utah":[-11.7,10.6,-13.6,12.1,-18.2,14.7,-10.5,8.6],"Kane County, Utah":[-11.4,12.3,-15.1,9.8,-15.5,17.9,-9.3,8.8],"Millard County, Utah":[-14.5,8.6,-12.9,13.1,-17.8,15.1,-8.9,9],"Morgan County, Utah":[-9.7,8.9,-15.5,12.3,-16.1,15.8,-12.6,9.1],"Piute County, Utah":[-5.6,11.9,-15.4,18.5,-11.9,14.1,-14.1,8.5],"Rich County, Utah":[-14.8,10.6,-22.2,11.8,-10.6,12.2,-7.1,10.5],"Salt Lake County, Utah":[-13,12.4,-14.1,13.8,-14.9,14,-9.1,8.7],"San Juan County, Utah":[-11.1,10.5,-16.7,14.1,-12.5,15.1,-10.5,9.6],"Sanpete County, Utah":[-12.7,11.8,-14.9,11.6,-13.2,14.3,-11.3,10.1],"Sevier County, Utah":[-12.9,10.1,-12.5,12.2,-16.5,15.7,-10.8,9.3],"Summit County, Utah":[-11.2,10.5,-12.2,13.3,-17,16.1,-10.4,9.4],"Tooele County, Utah":[-12.1,11.5,-13.9,13.2,-16.3,14.7,-9,9.3],"Uintah County, Utah":[-11.7,12.1,-15.3,14.5,-14.6,13.5,-9.4,8.8],"Utah County, Utah":[-13.8,13.2,-13.8,14,-15.1,13.2,-8.7,8.2],"Wasatch County, Utah":[-11.3,9.9,-14.9,12.5,-16.1,16.1,-10.4,8.7],"Washington County, Utah":[-12.1,12,-13.8,13,-15.9,14.2,-9.7,9.2],"Wayne County, Utah":[-15,12.5,-14.7,11.7,-11.7,14.8,-9.8,9.8],"Weber County, Utah":[-13.1,12.3,-14.3,13.2,-14.9,14.7,-9,8.5]};
+  const ageBins = ["0–4","5–9","10–14","15–17"];
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(data) {
+    const maleData = data.filter((_, i) => i % 2 === 0);
+    const femaleData = data.filter((_, i) => i % 2 === 1);
+
+    const maxValue = Math.max(
+      ...maleData.map(Math.abs),
+      ...femaleData.map(Math.abs)
+    );
+    const padding = 1.0;
+    const xMax = +(maxValue + padding).toFixed(1);
+
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ageBins,
+        datasets: [
+          {
+            label: 'Male',
+            data: maleData,
+            backgroundColor: 'dodgerblue'
+          },
+          {
+            label: 'Female',
+            data: femaleData,
+            backgroundColor: 'lightpink'
+          }
+        ]
+      },
+      options: {
+        indexAxis: 'y',
+        responsive: true,
+        scales: {
+          x: {
+            min: -xMax,
+            max: xMax,
+            ticks: {
+              callback: value => Math.abs(value).toFixed(1) + '%'
+            }
+          },
+          y: {
+            stacked: false
+          }
+        },
+        plugins: {
+          legend: {
+            position: 'top',
+            align: 'start',
+            labels: {
+              usePointStyle: true
+            }
+          },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.dataset.label + ': ' + Math.abs(ctx.parsed.x).toFixed(1) + '%'
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(Object.values(ageData[this.value]));
+  });
+
+  renderChart(Object.values(ageData['Statewide']));</script>
+  </body>
+</html>
+</html>

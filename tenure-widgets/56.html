@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+
+</head>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Owners: Year Moved In (%) – 56</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #fff;
+    }
+    .container {
+      width: 95%;
+      max-width: 1200px;
+      margin: auto;
+      text-align: center;
+    }
+    #countySelect {
+      font-size: 1rem;
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    canvas {
+      max-width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Owners: Year Moved In (%)</h2>
+    <select id="countySelect"></select>
+    <canvas id="pieChart"></canvas>
+  </div>
+
+  <script>
+    const data = {"Statewide":{"Moved in 2021 or later":6.2,"Moved in 2018–2020":18.1,"Moved in 2010–2017":29.4,"Moved in 2000–2009":21.3,"Moved in 1990–1999":12,"1989 or earlier":13},"Albany County":{"Moved in 2021 or later":6.3064,"Moved in 2018–2020":25.0793,"Moved in 2010–2017":29.3852,"Moved in 2000–2009":16.5284,"Moved in 1990–1999":10.2586,"1989 or earlier":12.4421},"Big Horn County":{"Moved in 2021 or later":5.7967,"Moved in 2018–2020":10.6124,"Moved in 2010–2017":27.497,"Moved in 2000–2009":21.8787,"Moved in 1990–1999":13.6445,"1989 or earlier":20.5707},"Campbell County":{"Moved in 2021 or later":7.7609,"Moved in 2018–2020":20.0157,"Moved in 2010–2017":30.6227,"Moved in 2000–2009":22.1842,"Moved in 1990–1999":8.6525,"1989 or earlier":10.764},"Carbon County":{"Moved in 2021 or later":5.6662,"Moved in 2018–2020":15.4714,"Moved in 2010–2017":21.9124,"Moved in 2000–2009":24.7897,"Moved in 1990–1999":12.8154,"1989 or earlier":19.3448},"Converse County":{"Moved in 2021 or later":8.324,"Moved in 2018–2020":17.5431,"Moved in 2010–2017":23.1372,"Moved in 2000–2009":28.0823,"Moved in 1990–1999":10.2036,"1989 or earlier":12.7098},"Crook County":{"Moved in 2021 or later":2.9144,"Moved in 2018–2020":16.439,"Moved in 2010–2017":25.6831,"Moved in 2000–2009":29.0984,"Moved in 1990–1999":13.4791,"1989 or earlier":12.3862},"Fremont County":{"Moved in 2021 or later":5.884,"Moved in 2018–2020":16.9262,"Moved in 2010–2017":25.9337,"Moved in 2000–2009":23.6794,"Moved in 1990–1999":12.5896,"1989 or earlier":14.9871},"Goshen County":{"Moved in 2021 or later":4.1956,"Moved in 2018–2020":19.054,"Moved in 2010–2017":26.8306,"Moved in 2000–2009":19.9359,"Moved in 1990–1999":13.923,"1989 or earlier":16.0609},"Hot Springs County":{"Moved in 2021 or later":6.6887,"Moved in 2018–2020":22.1192,"Moved in 2010–2017":28.543,"Moved in 2000–2009":19.4702,"Moved in 1990–1999":9.404,"1989 or earlier":13.7748},"Johnson County":{"Moved in 2021 or later":9.2979,"Moved in 2018–2020":15.5178,"Moved in 2010–2017":24.4309,"Moved in 2000–2009":26.6752,"Moved in 1990–1999":11.0612,"1989 or earlier":13.017},"Laramie County":{"Moved in 2021 or later":7.2475,"Moved in 2018–2020":19.8883,"Moved in 2010–2017":31.0006,"Moved in 2000–2009":19.6458,"Moved in 1990–1999":11.5143,"1989 or earlier":10.7035},"Lincoln County":{"Moved in 2021 or later":5.9486,"Moved in 2018–2020":14.1497,"Moved in 2010–2017":31.6942,"Moved in 2000–2009":19.1466,"Moved in 1990–1999":17.9251,"1989 or earlier":11.1358},"Natrona County":{"Moved in 2021 or later":6.3748,"Moved in 2018–2020":19.2061,"Moved in 2010–2017":29.3462,"Moved in 2000–2009":21.0152,"Moved in 1990–1999":11.0998,"1989 or earlier":12.9579},"Niobrara County":{"Moved in 2021 or later":4.0323,"Moved in 2018–2020":9.2742,"Moved in 2010–2017":38.4409,"Moved in 2000–2009":15.457,"Moved in 1990–1999":8.6022,"1989 or earlier":24.1935},"Park County":{"Moved in 2021 or later":4.623,"Moved in 2018–2020":16.4397,"Moved in 2010–2017":32.0667,"Moved in 2000–2009":22.2516,"Moved in 1990–1999":13.9606,"1989 or earlier":10.6584},"Platte County":{"Moved in 2021 or later":5.1957,"Moved in 2018–2020":11.637,"Moved in 2010–2017":30.4982,"Moved in 2000–2009":22.5267,"Moved in 1990–1999":13.452,"1989 or earlier":16.6904},"Sheridan County":{"Moved in 2021 or later":5.8356,"Moved in 2018–2020":17.6763,"Moved in 2010–2017":29.6971,"Moved in 2000–2009":20.6206,"Moved in 1990–1999":13.9589,"1989 or earlier":12.2114},"Sublette County":{"Moved in 2021 or later":3.3831,"Moved in 2018–2020":16.3516,"Moved in 2010–2017":26.4345,"Moved in 2000–2009":23.7811,"Moved in 1990–1999":7.7612,"1989 or earlier":22.2886},"Sweetwater County":{"Moved in 2021 or later":6.6047,"Moved in 2018–2020":19.6056,"Moved in 2010–2017":27.9256,"Moved in 2000–2009":18.7881,"Moved in 1990–1999":12.7605,"1989 or earlier":14.3155},"Teton County":{"Moved in 2021 or later":2.7715,"Moved in 2018–2020":18.5692,"Moved in 2010–2017":36.4975,"Moved in 2000–2009":21.3061,"Moved in 1990–1999":10.4798,"1989 or earlier":10.3759},"Uinta County":{"Moved in 2021 or later":3.4941,"Moved in 2018–2020":14.3781,"Moved in 2010–2017":31.464,"Moved in 2000–2009":21.1391,"Moved in 1990–1999":16.5793,"1989 or earlier":12.9455},"Washakie County":{"Moved in 2021 or later":7.2584,"Moved in 2018–2020":8.7179,"Moved in 2010–2017":27.929,"Moved in 2000–2009":23.787,"Moved in 1990–1999":13.2939,"1989 or earlier":19.0138},"Weston County":{"Moved in 2021 or later":6.0408,"Moved in 2018–2020":13.9184,"Moved in 2010–2017":28.8571,"Moved in 2000–2009":25.9592,"Moved in 1990–1999":12.4082,"1989 or earlier":12.8163}};
+    const colors = {
+  'Moved in 2021 or later': '#377EF1',
+  'Moved in 2018–2020': '#FF7F00',
+  'Moved in 2010–2017': '#66A61E',
+  'Moved in 2000–2009': '#E6AB01',
+  'Moved in 1990–1999': '#7570B1',
+  '1989 or earlier': '#E41A1C'
+};
+
+    const ctx = document.getElementById("pieChart").getContext("2d");
+    let chart;
+
+    function renderChart(key) {
+      const values = data[key];
+      const labels = Object.keys(values);
+      const percentages = Object.values(values);
+
+      if (chart) chart.destroy();
+
+      chart = new Chart(ctx, {
+        type: "pie",
+        data: {
+          labels: labels,
+          datasets: [{
+            data: percentages,
+            backgroundColor: labels.map(label => colors[label] || "#cccccc")
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: true,
+          aspectRatio: 1.5,
+          plugins: {
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  return context.label + ": " + context.formattedValue + "%";
+                }
+              }
+            },
+            legend: {
+              position: "right",
+              labels: {
+                usePointStyle: true,
+                pointStyle: "rect"
+              }
+            }
+          }
+        }
+      });
+    }
+
+    // Populate dropdown (Statewide first, then counties A->Z)
+    const select = document.getElementById("countySelect");
+    const keys = ["Statewide", ...Object.keys(data).filter(k => k !== "Statewide").sort()];
+    keys.forEach(k => {
+      const opt = document.createElement("option");
+      opt.value = k;
+      opt.text  = k;
+      select.appendChild(opt);
+    });
+    select.value = "Statewide";
+    select.addEventListener("change", () => renderChart(select.value));
+
+    renderChart("Statewide");
+  </script>
+</body>
+</html>
+</html>

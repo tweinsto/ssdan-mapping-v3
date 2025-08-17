@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Income Distribution – Wyoming</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          text-align: center;
+          margin: 2rem;
+        }
+        select {
+          font-size: 1rem;
+          padding: 0.4rem;
+          margin-bottom: 1rem;
+        }
+        canvas {
+          width: 100%;
+          max-width: 700px;
+          height: 400px;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Income Share by Quintile – Wyoming</h2>
+    <label>Select County, State:</label>
+    <select id="countySelect"><option value='Statewide'>Statewide</option>
+<option value='Albany, Wyoming'>Albany, Wyoming</option>
+<option value='Big Horn, Wyoming'>Big Horn, Wyoming</option>
+<option value='Campbell, Wyoming'>Campbell, Wyoming</option>
+<option value='Carbon, Wyoming'>Carbon, Wyoming</option>
+<option value='Converse, Wyoming'>Converse, Wyoming</option>
+<option value='Crook, Wyoming'>Crook, Wyoming</option>
+<option value='Fremont, Wyoming'>Fremont, Wyoming</option>
+<option value='Goshen, Wyoming'>Goshen, Wyoming</option>
+<option value='Hot Springs, Wyoming'>Hot Springs, Wyoming</option>
+<option value='Johnson, Wyoming'>Johnson, Wyoming</option>
+<option value='Laramie, Wyoming'>Laramie, Wyoming</option>
+<option value='Lincoln, Wyoming'>Lincoln, Wyoming</option>
+<option value='Natrona, Wyoming'>Natrona, Wyoming</option>
+<option value='Niobrara, Wyoming'>Niobrara, Wyoming</option>
+<option value='Park, Wyoming'>Park, Wyoming</option>
+<option value='Platte, Wyoming'>Platte, Wyoming</option>
+<option value='Sheridan, Wyoming'>Sheridan, Wyoming</option>
+<option value='Sublette, Wyoming'>Sublette, Wyoming</option>
+<option value='Sweetwater, Wyoming'>Sweetwater, Wyoming</option>
+<option value='Teton, Wyoming'>Teton, Wyoming</option>
+<option value='Uinta, Wyoming'>Uinta, Wyoming</option>
+<option value='Washakie, Wyoming'>Washakie, Wyoming</option>
+<option value='Weston, Wyoming'>Weston, Wyoming</option></select>
+    <canvas id="barChart" width="700" height="400"></canvas>
+    <script>  const incomeData = {"Statewide":[5.5,9.1,13.6,26.8,44.9],"Albany, Wyoming":[4.3,7.6,12.9,27.4,47.8],"Big Horn, Wyoming":[5.9,9.4,13.6,27,44.1],"Campbell, Wyoming":[6.8,10.9,15.1,26.6,40.6],"Carbon, Wyoming":[6.1,9.7,14.5,28.1,41.6],"Converse, Wyoming":[5.9,10.2,14.7,26.8,42.3],"Crook, Wyoming":[7.1,10.7,16.2,26.3,39.6],"Fremont, Wyoming":[5.8,9.3,13.8,26.7,44.4],"Goshen, Wyoming":[4.8,8.3,12.6,26.4,48],"Hot Springs, Wyoming":[5.9,10.9,16,27.3,39.9],"Johnson, Wyoming":[5.4,8.9,13.8,28.4,43.5],"Laramie, Wyoming":[5.5,8.8,13.2,26.4,46.1],"Lincoln, Wyoming":[7.1,11,16.5,27.5,37.8],"Natrona, Wyoming":[5.3,8.4,12.7,26.8,46.9],"Niobrara, Wyoming":[4.1,7.3,12.2,27,49.4],"Park, Wyoming":[4.8,8.2,12.4,26.5,48.1],"Platte, Wyoming":[6.3,9.9,14.7,28.7,40.5],"Sheridan, Wyoming":[5.4,8.9,13.9,26.7,45.2],"Sublette, Wyoming":[3.1,5.7,8.3,25.7,57.3],"Sweetwater, Wyoming":[5.4,8.9,13.5,26.4,45.8],"Teton, Wyoming":[3.8,5.8,9.3,26.6,54.5],"Uinta, Wyoming":[7.2,11.8,15.8,26.3,39],"Washakie, Wyoming":[5.8,9.4,14.5,27.3,42.9],"Weston, Wyoming":[5.4,9.4,12.8,24.7,47.6]};
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Bottom 20%', 'Second 20%', 'Middle 20%', 'Fourth 20%', 'Top 20%'],
+        datasets: [{
+          label: 'Share (%)',
+          data: values,
+          backgroundColor: '#4576a7'
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.parsed.y + '%'
+            }
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 100,
+            title: {
+              display: true,
+              text: 'Income Share (%)'
+            }
+          },
+          x: {
+            title: {
+              display: true,
+              text: 'Quintile'
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(Object.values(incomeData[this.value]));
+  });
+
+  renderChart(Object.values(incomeData['Statewide']));</script>
+  </body>
+</html>
+</html>

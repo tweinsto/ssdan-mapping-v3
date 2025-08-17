@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Internet Access Over Time –  Connecticut</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+                      h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+                      select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; border-radius: 5px; border: 1px solid #999; }
+                      canvas { width: 100%; max-width: 850px; height: 450px; margin-top: 1rem; }</style>
+</head>
+<html>
+  <body>
+    <h2>Internet Access in  Connecticut (2013–2023)</h2>
+    <label>Select County: </label>
+    <select id="countySelect"><option value='Statewide'>Statewide</option>
+<option value='Capitol Planning Region, Connecticut'>Capitol Planning Region, Connecticut</option>
+<option value='Fairfield County, Connecticut'>Fairfield County, Connecticut</option>
+<option value='Greater Bridgeport Planning Region, Connecticut'>Greater Bridgeport Planning Region, Connecticut</option>
+<option value='Hartford County, Connecticut'>Hartford County, Connecticut</option>
+<option value='Litchfield County, Connecticut'>Litchfield County, Connecticut</option>
+<option value='Lower Connecticut River Valley Planning Region, Connecticut'>Lower Connecticut River Valley Planning Region, Connecticut</option>
+<option value='Middlesex County, Connecticut'>Middlesex County, Connecticut</option>
+<option value='Naugatuck Valley Planning Region, Connecticut'>Naugatuck Valley Planning Region, Connecticut</option>
+<option value='New Haven County, Connecticut'>New Haven County, Connecticut</option>
+<option value='New London County, Connecticut'>New London County, Connecticut</option>
+<option value='Northeastern Connecticut Planning Region, Connecticut'>Northeastern Connecticut Planning Region, Connecticut</option>
+<option value='Northwest Hills Planning Region, Connecticut'>Northwest Hills Planning Region, Connecticut</option>
+<option value='South Central Connecticut Planning Region, Connecticut'>South Central Connecticut Planning Region, Connecticut</option>
+<option value='Southeastern Connecticut Planning Region, Connecticut'>Southeastern Connecticut Planning Region, Connecticut</option>
+<option value='Tolland County, Connecticut'>Tolland County, Connecticut</option>
+<option value='Western Connecticut Planning Region, Connecticut'>Western Connecticut Planning Region, Connecticut</option>
+<option value='Windham County, Connecticut'>Windham County, Connecticut</option></select>
+    <canvas id="lineChart" width="850" height="450"></canvas>
+    <script>const internetData = {"Statewide":{"2017":85.5,"2018":87,"2019":88.4,"2020":89.9,"2021":91.3,"2022":92.4,"2023":93.5},"Capitol Planning Region, Connecticut":{"2022":92.2,"2023":93.4},"Fairfield County, Connecticut":{"2017":88.6,"2018":89.8,"2019":91,"2020":92.1,"2021":93.2},"Greater Bridgeport Planning Region, Connecticut":{"2022":91.9,"2023":92.5},"Hartford County, Connecticut":{"2017":84.2,"2018":85.5,"2019":86.9,"2020":88.8,"2021":90.6},"Litchfield County, Connecticut":{"2017":86.8,"2018":88.1,"2019":89.4,"2020":90.9,"2021":91.8},"Lower Connecticut River Valley Planning Region, Connecticut":{"2022":93.2,"2023":93.6},"Middlesex County, Connecticut":{"2017":86.4,"2018":88.2,"2019":89.4,"2020":90,"2021":91.5},"Naugatuck Valley Planning Region, Connecticut":{"2022":90,"2023":91.8},"New Haven County, Connecticut":{"2017":82.8,"2018":84.7,"2019":86.5,"2020":88,"2021":89.6},"New London County, Connecticut":{"2017":86.1,"2018":87.6,"2019":88.9,"2020":90.7,"2021":91.8},"Northeastern Connecticut Planning Region, Connecticut":{"2022":91,"2023":92.1},"Northwest Hills Planning Region, Connecticut":{"2022":92.9,"2023":94.2},"South Central Connecticut Planning Region, Connecticut":{"2022":92.3,"2023":93.5},"Southeastern Connecticut Planning Region, Connecticut":{"2022":92,"2023":92.7},"Tolland County, Connecticut":{"2017":89.5,"2018":90.6,"2019":91.6,"2020":93.3,"2021":94.7},"Western Connecticut Planning Region, Connecticut":{"2022":95,"2023":95.8},"Windham County, Connecticut":{"2017":83,"2018":84.2,"2019":86.5,"2020":87.9,"2021":89.1}};
+const ctx = document.getElementById('lineChart').getContext('2d');
+let chart;
+
+function renderChart(data) {
+  const labels = Object.keys(data);
+  const values = Object.values(data);
+
+  if (chart) chart.destroy();
+  chart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: labels,
+      datasets: [{
+        label: '% With Internet',
+        data: values,
+        fill: false,
+        borderColor: 'teal',
+        backgroundColor: 'teal',
+        tension: 0.3,
+        pointRadius: 4
+      }]
+    },
+    options: {
+      responsive: true,
+      scales: {
+        y: {
+          beginAtZero: true,
+          max: 100,
+          title: { display: true, text: '% With Internet' }
+        },
+        x: {
+          title: { display: true, text: 'Year' }
+        }
+      },
+      plugins: {
+        tooltip: {
+          callbacks: {
+            label: function(ctx) {
+              return ctx.parsed.y.toFixed(1) + '%';
+            }
+          }
+        }
+      }
+    }
+  });
+}
+
+document.getElementById('countySelect').addEventListener('change', function() {
+  renderChart(internetData[this.value]);
+});
+renderChart(internetData['Statewide']);</script>
+  </body>
+</html>
+</html>

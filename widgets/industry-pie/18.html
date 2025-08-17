@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <title>Industry Distribution – Indiana</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+        canvas { max-width: 600px; height: 500px; }
+        select { padding: 0.5rem; font-size: 1rem; margin: 1rem; }
+        .legend { max-width: 600px; margin: 1rem auto; display: flex; flex-wrap: wrap; justify-content: center; font-size: 0.9rem; }
+        .legend-item { display: flex; align-items: center; margin: 0.3rem 1rem; }
+        .legend-color { width: 12px; height: 12px; margin-right: 6px; border: 1px solid #444; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Industry Distribution in Indiana</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Adams County, Indiana">Adams County, Indiana</option>
+      <option value="Allen County, Indiana">Allen County, Indiana</option>
+      <option value="Bartholomew County, Indiana">Bartholomew County, Indiana</option>
+      <option value="Benton County, Indiana">Benton County, Indiana</option>
+      <option value="Blackford County, Indiana">Blackford County, Indiana</option>
+      <option value="Boone County, Indiana">Boone County, Indiana</option>
+      <option value="Brown County, Indiana">Brown County, Indiana</option>
+      <option value="Carroll County, Indiana">Carroll County, Indiana</option>
+      <option value="Cass County, Indiana">Cass County, Indiana</option>
+      <option value="Clark County, Indiana">Clark County, Indiana</option>
+      <option value="Clay County, Indiana">Clay County, Indiana</option>
+      <option value="Clinton County, Indiana">Clinton County, Indiana</option>
+      <option value="Crawford County, Indiana">Crawford County, Indiana</option>
+      <option value="Daviess County, Indiana">Daviess County, Indiana</option>
+      <option value="Dearborn County, Indiana">Dearborn County, Indiana</option>
+      <option value="Decatur County, Indiana">Decatur County, Indiana</option>
+      <option value="DeKalb County, Indiana">DeKalb County, Indiana</option>
+      <option value="Delaware County, Indiana">Delaware County, Indiana</option>
+      <option value="Dubois County, Indiana">Dubois County, Indiana</option>
+      <option value="Elkhart County, Indiana">Elkhart County, Indiana</option>
+      <option value="Fayette County, Indiana">Fayette County, Indiana</option>
+      <option value="Floyd County, Indiana">Floyd County, Indiana</option>
+      <option value="Fountain County, Indiana">Fountain County, Indiana</option>
+      <option value="Franklin County, Indiana">Franklin County, Indiana</option>
+      <option value="Fulton County, Indiana">Fulton County, Indiana</option>
+      <option value="Gibson County, Indiana">Gibson County, Indiana</option>
+      <option value="Grant County, Indiana">Grant County, Indiana</option>
+      <option value="Greene County, Indiana">Greene County, Indiana</option>
+      <option value="Hamilton County, Indiana">Hamilton County, Indiana</option>
+      <option value="Hancock County, Indiana">Hancock County, Indiana</option>
+      <option value="Harrison County, Indiana">Harrison County, Indiana</option>
+      <option value="Hendricks County, Indiana">Hendricks County, Indiana</option>
+      <option value="Henry County, Indiana">Henry County, Indiana</option>
+      <option value="Howard County, Indiana">Howard County, Indiana</option>
+      <option value="Huntington County, Indiana">Huntington County, Indiana</option>
+      <option value="Jackson County, Indiana">Jackson County, Indiana</option>
+      <option value="Jasper County, Indiana">Jasper County, Indiana</option>
+      <option value="Jay County, Indiana">Jay County, Indiana</option>
+      <option value="Jefferson County, Indiana">Jefferson County, Indiana</option>
+      <option value="Jennings County, Indiana">Jennings County, Indiana</option>
+      <option value="Johnson County, Indiana">Johnson County, Indiana</option>
+      <option value="Knox County, Indiana">Knox County, Indiana</option>
+      <option value="Kosciusko County, Indiana">Kosciusko County, Indiana</option>
+      <option value="LaGrange County, Indiana">LaGrange County, Indiana</option>
+      <option value="Lake County, Indiana">Lake County, Indiana</option>
+      <option value="LaPorte County, Indiana">LaPorte County, Indiana</option>
+      <option value="Lawrence County, Indiana">Lawrence County, Indiana</option>
+      <option value="Madison County, Indiana">Madison County, Indiana</option>
+      <option value="Marion County, Indiana">Marion County, Indiana</option>
+      <option value="Marshall County, Indiana">Marshall County, Indiana</option>
+      <option value="Martin County, Indiana">Martin County, Indiana</option>
+      <option value="Miami County, Indiana">Miami County, Indiana</option>
+      <option value="Monroe County, Indiana">Monroe County, Indiana</option>
+      <option value="Montgomery County, Indiana">Montgomery County, Indiana</option>
+      <option value="Morgan County, Indiana">Morgan County, Indiana</option>
+      <option value="Newton County, Indiana">Newton County, Indiana</option>
+      <option value="Noble County, Indiana">Noble County, Indiana</option>
+      <option value="Ohio County, Indiana">Ohio County, Indiana</option>
+      <option value="Orange County, Indiana">Orange County, Indiana</option>
+      <option value="Owen County, Indiana">Owen County, Indiana</option>
+      <option value="Parke County, Indiana">Parke County, Indiana</option>
+      <option value="Perry County, Indiana">Perry County, Indiana</option>
+      <option value="Pike County, Indiana">Pike County, Indiana</option>
+      <option value="Porter County, Indiana">Porter County, Indiana</option>
+      <option value="Posey County, Indiana">Posey County, Indiana</option>
+      <option value="Pulaski County, Indiana">Pulaski County, Indiana</option>
+      <option value="Putnam County, Indiana">Putnam County, Indiana</option>
+      <option value="Randolph County, Indiana">Randolph County, Indiana</option>
+      <option value="Ripley County, Indiana">Ripley County, Indiana</option>
+      <option value="Rush County, Indiana">Rush County, Indiana</option>
+      <option value="Scott County, Indiana">Scott County, Indiana</option>
+      <option value="Shelby County, Indiana">Shelby County, Indiana</option>
+      <option value="Spencer County, Indiana">Spencer County, Indiana</option>
+      <option value="St. Joseph County, Indiana">St. Joseph County, Indiana</option>
+      <option value="Starke County, Indiana">Starke County, Indiana</option>
+      <option value="Steuben County, Indiana">Steuben County, Indiana</option>
+      <option value="Sullivan County, Indiana">Sullivan County, Indiana</option>
+      <option value="Switzerland County, Indiana">Switzerland County, Indiana</option>
+      <option value="Tippecanoe County, Indiana">Tippecanoe County, Indiana</option>
+      <option value="Tipton County, Indiana">Tipton County, Indiana</option>
+      <option value="Union County, Indiana">Union County, Indiana</option>
+      <option value="Vanderburgh County, Indiana">Vanderburgh County, Indiana</option>
+      <option value="Vermillion County, Indiana">Vermillion County, Indiana</option>
+      <option value="Vigo County, Indiana">Vigo County, Indiana</option>
+      <option value="Wabash County, Indiana">Wabash County, Indiana</option>
+      <option value="Warren County, Indiana">Warren County, Indiana</option>
+      <option value="Warrick County, Indiana">Warrick County, Indiana</option>
+      <option value="Washington County, Indiana">Washington County, Indiana</option>
+      <option value="Wayne County, Indiana">Wayne County, Indiana</option>
+      <option value="Wells County, Indiana">Wells County, Indiana</option>
+      <option value="White County, Indiana">White County, Indiana</option>
+      <option value="Whitley County, Indiana">Whitley County, Indiana</option>
+    </select>
+    <canvas id="pieChart"></canvas>
+    <div class="legend">
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#66CC66;"></div>
+        <span>Agriculture, forestry, fishing, and hunting</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#996600;"></div>
+        <span>Mining</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FF6600;"></div>
+        <span>Utilities</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FFCC33;"></div>
+        <span>Construction</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FF0000;"></div>
+        <span>Manufacturing</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FF66FF;"></div>
+        <span>Wholesale trade</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#3399FF;"></div>
+        <span>Retail trade</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#00CC99;"></div>
+        <span>Transportation and warehousing</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#999966;"></div>
+        <span>Information</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#6666FF;"></div>
+        <span>Finance and insurance</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FF99CC;"></div>
+        <span>Professional, scientific, and technical services</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#66CCCC;"></div>
+        <span>Educational services</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FF9933;"></div>
+        <span>Healthcare and social assistance</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#CC99FF;"></div>
+        <span>Arts, entertainment, and recreation</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FF9999;"></div>
+        <span>Accommodation and food services</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#CCCC00;"></div>
+        <span>Other services</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#663300;"></div>
+        <span>Public administration</span>
+      </div>
+    </div>
+    <script>const data = [];
+const colors = ["#66CC66","#996600","#FF6600","#FFCC33","#FF0000","#FF66FF","#3399FF","#00CC99","#999966","#6666FF","#FF99CC","#66CCCC","#FF9933","#CC99FF","#FF9999","#CCCC00","#663300"];
+let chart;
+function renderChart(region) {
+  const ctx = document.getElementById("pieChart").getContext("2d");
+  const labels = Object.keys(data[region]);
+  const values = Object.values(data[region]);
+  const backgroundColors = labels.map(l => colors[l] || "#999");
+  if (chart) chart.destroy();
+  chart = new Chart(ctx, {
+    type: "pie",
+    data: {
+      labels: labels,
+      datasets: [{
+        data: values,
+        backgroundColor: backgroundColors
+      }]
+    },
+    options: {
+      plugins: {
+        tooltip: {
+          callbacks: {
+            label: ctx => ctx.label + ": " + ctx.raw + "%"
+          }
+        }
+      }
+    }
+  });
+}
+document.getElementById("countySelect").addEventListener("change", function() {
+  renderChart(this.value);
+});
+renderChart("Statewide");</script>
+  </body>
+</html>
+</html>

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <title>Industry Distribution – California</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+        canvas { max-width: 600px; height: 500px; }
+        select { padding: 0.5rem; font-size: 1rem; margin: 1rem; }
+        .legend { max-width: 600px; margin: 1rem auto; display: flex; flex-wrap: wrap; justify-content: center; font-size: 0.9rem; }
+        .legend-item { display: flex; align-items: center; margin: 0.3rem 1rem; }
+        .legend-color { width: 12px; height: 12px; margin-right: 6px; border: 1px solid #444; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Industry Distribution in California</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Alameda County, California">Alameda County, California</option>
+      <option value="Alpine County, California">Alpine County, California</option>
+      <option value="Amador County, California">Amador County, California</option>
+      <option value="Butte County, California">Butte County, California</option>
+      <option value="Calaveras County, California">Calaveras County, California</option>
+      <option value="Colusa County, California">Colusa County, California</option>
+      <option value="Contra Costa County, California">Contra Costa County, California</option>
+      <option value="Del Norte County, California">Del Norte County, California</option>
+      <option value="El Dorado County, California">El Dorado County, California</option>
+      <option value="Fresno County, California">Fresno County, California</option>
+      <option value="Glenn County, California">Glenn County, California</option>
+      <option value="Humboldt County, California">Humboldt County, California</option>
+      <option value="Imperial County, California">Imperial County, California</option>
+      <option value="Inyo County, California">Inyo County, California</option>
+      <option value="Kern County, California">Kern County, California</option>
+      <option value="Kings County, California">Kings County, California</option>
+      <option value="Lake County, California">Lake County, California</option>
+      <option value="Lassen County, California">Lassen County, California</option>
+      <option value="Los Angeles County, California">Los Angeles County, California</option>
+      <option value="Madera County, California">Madera County, California</option>
+      <option value="Marin County, California">Marin County, California</option>
+      <option value="Mariposa County, California">Mariposa County, California</option>
+      <option value="Mendocino County, California">Mendocino County, California</option>
+      <option value="Merced County, California">Merced County, California</option>
+      <option value="Modoc County, California">Modoc County, California</option>
+      <option value="Mono County, California">Mono County, California</option>
+      <option value="Monterey County, California">Monterey County, California</option>
+      <option value="Napa County, California">Napa County, California</option>
+      <option value="Nevada County, California">Nevada County, California</option>
+      <option value="Orange County, California">Orange County, California</option>
+      <option value="Placer County, California">Placer County, California</option>
+      <option value="Plumas County, California">Plumas County, California</option>
+      <option value="Riverside County, California">Riverside County, California</option>
+      <option value="Sacramento County, California">Sacramento County, California</option>
+      <option value="San Benito County, California">San Benito County, California</option>
+      <option value="San Bernardino County, California">San Bernardino County, California</option>
+      <option value="San Diego County, California">San Diego County, California</option>
+      <option value="San Francisco County, California">San Francisco County, California</option>
+      <option value="San Joaquin County, California">San Joaquin County, California</option>
+      <option value="San Luis Obispo County, California">San Luis Obispo County, California</option>
+      <option value="San Mateo County, California">San Mateo County, California</option>
+      <option value="Santa Barbara County, California">Santa Barbara County, California</option>
+      <option value="Santa Clara County, California">Santa Clara County, California</option>
+      <option value="Santa Cruz County, California">Santa Cruz County, California</option>
+      <option value="Shasta County, California">Shasta County, California</option>
+      <option value="Sierra County, California">Sierra County, California</option>
+      <option value="Siskiyou County, California">Siskiyou County, California</option>
+      <option value="Solano County, California">Solano County, California</option>
+      <option value="Sonoma County, California">Sonoma County, California</option>
+      <option value="Stanislaus County, California">Stanislaus County, California</option>
+      <option value="Sutter County, California">Sutter County, California</option>
+      <option value="Tehama County, California">Tehama County, California</option>
+      <option value="Trinity County, California">Trinity County, California</option>
+      <option value="Tulare County, California">Tulare County, California</option>
+      <option value="Tuolumne County, California">Tuolumne County, California</option>
+      <option value="Ventura County, California">Ventura County, California</option>
+      <option value="Yolo County, California">Yolo County, California</option>
+      <option value="Yuba County, California">Yuba County, California</option>
+    </select>
+    <canvas id="pieChart"></canvas>
+    <div class="legend">
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#66CC66;"></div>
+        <span>Agriculture, forestry, fishing, and hunting</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#996600;"></div>
+        <span>Mining</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FF6600;"></div>
+        <span>Utilities</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FFCC33;"></div>
+        <span>Construction</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FF0000;"></div>
+        <span>Manufacturing</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FF66FF;"></div>
+        <span>Wholesale trade</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#3399FF;"></div>
+        <span>Retail trade</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#00CC99;"></div>
+        <span>Transportation and warehousing</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#999966;"></div>
+        <span>Information</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#6666FF;"></div>
+        <span>Finance and insurance</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FF99CC;"></div>
+        <span>Professional, scientific, and technical services</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#66CCCC;"></div>
+        <span>Educational services</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FF9933;"></div>
+        <span>Healthcare and social assistance</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#CC99FF;"></div>
+        <span>Arts, entertainment, and recreation</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FF9999;"></div>
+        <span>Accommodation and food services</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#CCCC00;"></div>
+        <span>Other services</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#663300;"></div>
+        <span>Public administration</span>
+      </div>
+    </div>
+    <script>const data = [];
+const colors = ["#66CC66","#996600","#FF6600","#FFCC33","#FF0000","#FF66FF","#3399FF","#00CC99","#999966","#6666FF","#FF99CC","#66CCCC","#FF9933","#CC99FF","#FF9999","#CCCC00","#663300"];
+let chart;
+function renderChart(region) {
+  const ctx = document.getElementById("pieChart").getContext("2d");
+  const labels = Object.keys(data[region]);
+  const values = Object.values(data[region]);
+  const backgroundColors = labels.map(l => colors[l] || "#999");
+  if (chart) chart.destroy();
+  chart = new Chart(ctx, {
+    type: "pie",
+    data: {
+      labels: labels,
+      datasets: [{
+        data: values,
+        backgroundColor: backgroundColors
+      }]
+    },
+    options: {
+      plugins: {
+        tooltip: {
+          callbacks: {
+            label: ctx => ctx.label + ": " + ctx.raw + "%"
+          }
+        }
+      }
+    }
+  });
+}
+document.getElementById("countySelect").addEventListener("change", function() {
+  renderChart(this.value);
+});
+renderChart("Statewide");</script>
+  </body>
+</html>
+</html>

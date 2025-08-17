@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Veteran Labor Force Status – Virginia</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Labor Force Status of Veterans (Age 18–64) in Virginia</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Accomack County, Virginia">Accomack County, Virginia</option>
+      <option value="Albemarle County, Virginia">Albemarle County, Virginia</option>
+      <option value="Alexandria city, Virginia">Alexandria city, Virginia</option>
+      <option value="Alleghany County, Virginia">Alleghany County, Virginia</option>
+      <option value="Amelia County, Virginia">Amelia County, Virginia</option>
+      <option value="Amherst County, Virginia">Amherst County, Virginia</option>
+      <option value="Appomattox County, Virginia">Appomattox County, Virginia</option>
+      <option value="Arlington County, Virginia">Arlington County, Virginia</option>
+      <option value="Augusta County, Virginia">Augusta County, Virginia</option>
+      <option value="Bath County, Virginia">Bath County, Virginia</option>
+      <option value="Bedford County, Virginia">Bedford County, Virginia</option>
+      <option value="Bland County, Virginia">Bland County, Virginia</option>
+      <option value="Botetourt County, Virginia">Botetourt County, Virginia</option>
+      <option value="Bristol city, Virginia">Bristol city, Virginia</option>
+      <option value="Brunswick County, Virginia">Brunswick County, Virginia</option>
+      <option value="Buchanan County, Virginia">Buchanan County, Virginia</option>
+      <option value="Buckingham County, Virginia">Buckingham County, Virginia</option>
+      <option value="Buena Vista city, Virginia">Buena Vista city, Virginia</option>
+      <option value="Campbell County, Virginia">Campbell County, Virginia</option>
+      <option value="Caroline County, Virginia">Caroline County, Virginia</option>
+      <option value="Carroll County, Virginia">Carroll County, Virginia</option>
+      <option value="Charles City County, Virginia">Charles City County, Virginia</option>
+      <option value="Charlotte County, Virginia">Charlotte County, Virginia</option>
+      <option value="Charlottesville city, Virginia">Charlottesville city, Virginia</option>
+      <option value="Chesapeake city, Virginia">Chesapeake city, Virginia</option>
+      <option value="Chesterfield County, Virginia">Chesterfield County, Virginia</option>
+      <option value="Clarke County, Virginia">Clarke County, Virginia</option>
+      <option value="Colonial Heights city, Virginia">Colonial Heights city, Virginia</option>
+      <option value="Covington city, Virginia">Covington city, Virginia</option>
+      <option value="Craig County, Virginia">Craig County, Virginia</option>
+      <option value="Culpeper County, Virginia">Culpeper County, Virginia</option>
+      <option value="Cumberland County, Virginia">Cumberland County, Virginia</option>
+      <option value="Danville city, Virginia">Danville city, Virginia</option>
+      <option value="Dickenson County, Virginia">Dickenson County, Virginia</option>
+      <option value="Dinwiddie County, Virginia">Dinwiddie County, Virginia</option>
+      <option value="Emporia city, Virginia">Emporia city, Virginia</option>
+      <option value="Essex County, Virginia">Essex County, Virginia</option>
+      <option value="Fairfax city, Virginia">Fairfax city, Virginia</option>
+      <option value="Fairfax County, Virginia">Fairfax County, Virginia</option>
+      <option value="Falls Church city, Virginia">Falls Church city, Virginia</option>
+      <option value="Fauquier County, Virginia">Fauquier County, Virginia</option>
+      <option value="Floyd County, Virginia">Floyd County, Virginia</option>
+      <option value="Fluvanna County, Virginia">Fluvanna County, Virginia</option>
+      <option value="Franklin city, Virginia">Franklin city, Virginia</option>
+      <option value="Franklin County, Virginia">Franklin County, Virginia</option>
+      <option value="Frederick County, Virginia">Frederick County, Virginia</option>
+      <option value="Fredericksburg city, Virginia">Fredericksburg city, Virginia</option>
+      <option value="Galax city, Virginia">Galax city, Virginia</option>
+      <option value="Giles County, Virginia">Giles County, Virginia</option>
+      <option value="Gloucester County, Virginia">Gloucester County, Virginia</option>
+      <option value="Goochland County, Virginia">Goochland County, Virginia</option>
+      <option value="Grayson County, Virginia">Grayson County, Virginia</option>
+      <option value="Greene County, Virginia">Greene County, Virginia</option>
+      <option value="Greensville County, Virginia">Greensville County, Virginia</option>
+      <option value="Halifax County, Virginia">Halifax County, Virginia</option>
+      <option value="Hampton city, Virginia">Hampton city, Virginia</option>
+      <option value="Hanover County, Virginia">Hanover County, Virginia</option>
+      <option value="Harrisonburg city, Virginia">Harrisonburg city, Virginia</option>
+      <option value="Henrico County, Virginia">Henrico County, Virginia</option>
+      <option value="Henry County, Virginia">Henry County, Virginia</option>
+      <option value="Highland County, Virginia">Highland County, Virginia</option>
+      <option value="Hopewell city, Virginia">Hopewell city, Virginia</option>
+      <option value="Isle of Wight County, Virginia">Isle of Wight County, Virginia</option>
+      <option value="James City County, Virginia">James City County, Virginia</option>
+      <option value="King and Queen County, Virginia">King and Queen County, Virginia</option>
+      <option value="King George County, Virginia">King George County, Virginia</option>
+      <option value="King William County, Virginia">King William County, Virginia</option>
+      <option value="Lancaster County, Virginia">Lancaster County, Virginia</option>
+      <option value="Lee County, Virginia">Lee County, Virginia</option>
+      <option value="Lexington city, Virginia">Lexington city, Virginia</option>
+      <option value="Loudoun County, Virginia">Loudoun County, Virginia</option>
+      <option value="Louisa County, Virginia">Louisa County, Virginia</option>
+      <option value="Lunenburg County, Virginia">Lunenburg County, Virginia</option>
+      <option value="Lynchburg city, Virginia">Lynchburg city, Virginia</option>
+      <option value="Madison County, Virginia">Madison County, Virginia</option>
+      <option value="Manassas city, Virginia">Manassas city, Virginia</option>
+      <option value="Manassas Park city, Virginia">Manassas Park city, Virginia</option>
+      <option value="Martinsville city, Virginia">Martinsville city, Virginia</option>
+      <option value="Mathews County, Virginia">Mathews County, Virginia</option>
+      <option value="Mecklenburg County, Virginia">Mecklenburg County, Virginia</option>
+      <option value="Middlesex County, Virginia">Middlesex County, Virginia</option>
+      <option value="Montgomery County, Virginia">Montgomery County, Virginia</option>
+      <option value="Nelson County, Virginia">Nelson County, Virginia</option>
+      <option value="New Kent County, Virginia">New Kent County, Virginia</option>
+      <option value="Newport News city, Virginia">Newport News city, Virginia</option>
+      <option value="Norfolk city, Virginia">Norfolk city, Virginia</option>
+      <option value="Northampton County, Virginia">Northampton County, Virginia</option>
+      <option value="Northumberland County, Virginia">Northumberland County, Virginia</option>
+      <option value="Norton city, Virginia">Norton city, Virginia</option>
+      <option value="Nottoway County, Virginia">Nottoway County, Virginia</option>
+      <option value="Orange County, Virginia">Orange County, Virginia</option>
+      <option value="Page County, Virginia">Page County, Virginia</option>
+      <option value="Patrick County, Virginia">Patrick County, Virginia</option>
+      <option value="Petersburg city, Virginia">Petersburg city, Virginia</option>
+      <option value="Pittsylvania County, Virginia">Pittsylvania County, Virginia</option>
+      <option value="Poquoson city, Virginia">Poquoson city, Virginia</option>
+      <option value="Portsmouth city, Virginia">Portsmouth city, Virginia</option>
+      <option value="Powhatan County, Virginia">Powhatan County, Virginia</option>
+      <option value="Prince Edward County, Virginia">Prince Edward County, Virginia</option>
+      <option value="Prince George County, Virginia">Prince George County, Virginia</option>
+      <option value="Prince William County, Virginia">Prince William County, Virginia</option>
+      <option value="Pulaski County, Virginia">Pulaski County, Virginia</option>
+      <option value="Radford city, Virginia">Radford city, Virginia</option>
+      <option value="Rappahannock County, Virginia">Rappahannock County, Virginia</option>
+      <option value="Richmond city, Virginia">Richmond city, Virginia</option>
+      <option value="Richmond County, Virginia">Richmond County, Virginia</option>
+      <option value="Roanoke city, Virginia">Roanoke city, Virginia</option>
+      <option value="Roanoke County, Virginia">Roanoke County, Virginia</option>
+      <option value="Rockbridge County, Virginia">Rockbridge County, Virginia</option>
+      <option value="Rockingham County, Virginia">Rockingham County, Virginia</option>
+      <option value="Russell County, Virginia">Russell County, Virginia</option>
+      <option value="Salem city, Virginia">Salem city, Virginia</option>
+      <option value="Scott County, Virginia">Scott County, Virginia</option>
+      <option value="Shenandoah County, Virginia">Shenandoah County, Virginia</option>
+      <option value="Smyth County, Virginia">Smyth County, Virginia</option>
+      <option value="Southampton County, Virginia">Southampton County, Virginia</option>
+      <option value="Spotsylvania County, Virginia">Spotsylvania County, Virginia</option>
+      <option value="Stafford County, Virginia">Stafford County, Virginia</option>
+      <option value="Staunton city, Virginia">Staunton city, Virginia</option>
+      <option value="Suffolk city, Virginia">Suffolk city, Virginia</option>
+      <option value="Surry County, Virginia">Surry County, Virginia</option>
+      <option value="Sussex County, Virginia">Sussex County, Virginia</option>
+      <option value="Tazewell County, Virginia">Tazewell County, Virginia</option>
+      <option value="Virginia Beach city, Virginia">Virginia Beach city, Virginia</option>
+      <option value="Warren County, Virginia">Warren County, Virginia</option>
+      <option value="Washington County, Virginia">Washington County, Virginia</option>
+      <option value="Waynesboro city, Virginia">Waynesboro city, Virginia</option>
+      <option value="Westmoreland County, Virginia">Westmoreland County, Virginia</option>
+      <option value="Williamsburg city, Virginia">Williamsburg city, Virginia</option>
+      <option value="Winchester city, Virginia">Winchester city, Virginia</option>
+      <option value="Wise County, Virginia">Wise County, Virginia</option>
+      <option value="Wythe County, Virginia">Wythe County, Virginia</option>
+      <option value="York County, Virginia">York County, Virginia</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>        const data = {"Statewide":[79.6,2.2,18.2],"Accomack County, Virginia":[82.1,0.5,17.4],"Albemarle County, Virginia":[84.7,0.4,14.9],"Alexandria city, Virginia":[86.7,1.7,11.6],"Alleghany County, Virginia":[73.8,0,26.2],"Amelia County, Virginia":[73,0,27],"Amherst County, Virginia":[84.7,1.7,13.6],"Appomattox County, Virginia":[66.8,0,33.2],"Arlington County, Virginia":[90,1.7,8.3],"Augusta County, Virginia":[71.2,3.7,25.1],"Bath County, Virginia":[50,0,50],"Bedford County, Virginia":[71.9,0.8,27.3],"Bland County, Virginia":[87.3,0,12.7],"Botetourt County, Virginia":[77.5,2.7,19.8],"Bristol city, Virginia":[56.4,5.7,37.8],"Brunswick County, Virginia":[71.3,5.1,23.7],"Buchanan County, Virginia":[22.1,0,77.9],"Buckingham County, Virginia":[50.7,0,49.3],"Buena Vista city, Virginia":[93.4,0,6.6],"Campbell County, Virginia":[74,0,26],"Caroline County, Virginia":[79.6,6.8,13.6],"Carroll County, Virginia":[63.1,2,34.9],"Charles City County, Virginia":[83.8,1.1,15.1],"Charlotte County, Virginia":[48.8,0,51.2],"Charlottesville city, Virginia":[76,2.1,21.9],"Chesapeake city, Virginia":[80.8,1.1,18.1],"Chesterfield County, Virginia":[80.9,2.6,16.5],"Clarke County, Virginia":[69.1,2.7,28.2],"Colonial Heights city, Virginia":[71.1,0.9,28],"Covington city, Virginia":[80.2,0,19.8],"Craig County, Virginia":[100,0,0],"Culpeper County, Virginia":[86.1,0,13.9],"Cumberland County, Virginia":[89.2,0,10.8],"Danville city, Virginia":[54.2,1.7,44.1],"Dickenson County, Virginia":[67.5,2.6,29.9],"Dinwiddie County, Virginia":[71.6,4.4,24],"Emporia city, Virginia":[98.7,1.3,0],"Essex County, Virginia":[40.2,0,59.8],"Fairfax County, Virginia":[87.4,1.8,10.9],"Fairfax city, Virginia":[86.2,0,13.8],"Falls Church city, Virginia":[100,0,0],"Fauquier County, Virginia":[83.4,1.4,15.2],"Floyd County, Virginia":[87.4,2.2,10.4],"Fluvanna County, Virginia":[73.4,1.8,24.9],"Franklin County, Virginia":[66.6,2.3,31],"Franklin city, Virginia":[81.1,0,18.9],"Frederick County, Virginia":[80.1,3.4,16.5],"Fredericksburg city, Virginia":[79.2,0.2,20.6],"Galax city, Virginia":[85.2,0,14.8],"Giles County, Virginia":[65,0,35],"Gloucester County, Virginia":[76.6,0,23.4],"Goochland County, Virginia":[77.8,0,22.2],"Grayson County, Virginia":[38.1,6.3,55.6],"Greene County, Virginia":[83.9,2.6,13.5],"Greensville County, Virginia":[11.6,8,80.5],"Halifax County, Virginia":[49.1,1.8,49.1],"Hampton city, Virginia":[76.6,2.2,21.2],"Hanover County, Virginia":[79.4,0.5,20.1],"Harrisonburg city, Virginia":[52.6,24.3,23.1],"Henrico County, Virginia":[81.6,2.6,15.8],"Henry County, Virginia":[70.1,0,29.9],"Highland County, Virginia":[56.9,0,43.1],"Hopewell city, Virginia":[73.8,0.9,25.4],"Isle of Wight County, Virginia":[81.7,3.2,15.1],"James City County, Virginia":[75.2,3.1,21.7],"King George County, Virginia":[88.7,0.4,10.9],"King William County, Virginia":[80.7,0.9,18.4],"King and Queen County, Virginia":[81.7,1.2,17.1],"Lancaster County, Virginia":[38.4,1.3,60.3],"Lee County, Virginia":[32.8,0,67.2],"Lexington city, Virginia":[31,0,69],"Loudoun County, Virginia":[90.7,1.5,7.9],"Louisa County, Virginia":[76.1,0.6,23.3],"Lunenburg County, Virginia":[43.9,1.5,54.6],"Lynchburg city, Virginia":[72.1,1.7,26.2],"Madison County, Virginia":[60.7,0,39.3],"Manassas Park city, Virginia":[86.6,7.5,5.9],"Manassas city, Virginia":[91.2,0,8.8],"Martinsville city, Virginia":[73.6,3,23.4],"Mathews County, Virginia":[90.9,0,9.1],"Mecklenburg County, Virginia":[56,11.3,32.7],"Middlesex County, Virginia":[66,4.2,29.8],"Montgomery County, Virginia":[73.8,3.6,22.6],"Nelson County, Virginia":[68.3,9.1,22.6],"New Kent County, Virginia":[80.5,0.2,19.2],"Newport News city, Virginia":[76,2.9,21],"Norfolk city, Virginia":[73.4,3.8,22.8],"Northampton County, Virginia":[86.9,0,13.1],"Northumberland County, Virginia":[80.7,0,19.3],"Norton city, Virginia":[48.4,0,51.6],"Nottoway County, Virginia":[47.5,0,52.5],"Orange County, Virginia":[82.4,0.4,17.1],"Page County, Virginia":[78.3,4.6,17.1],"Patrick County, Virginia":[61.9,0,38.1],"Petersburg city, Virginia":[76,1.8,22.2],"Pittsylvania County, Virginia":[73.6,1.4,25],"Poquoson city, Virginia":[79.7,1.4,19],"Portsmouth city, Virginia":[68.8,2.7,28.5],"Powhatan County, Virginia":[84.8,2.1,13.2],"Prince Edward County, Virginia":[81.2,0,18.8],"Prince George County, Virginia":[67,11.5,21.5],"Prince William County, Virginia":[85.1,2,12.9],"Pulaski County, Virginia":[64,6.3,29.7],"Radford city, Virginia":[92.8,2.9,4.3],"Rappahannock County, Virginia":[75.4,0,24.6],"Richmond County, Virginia":[44.9,0,55.1],"Richmond city, Virginia":[65.7,5,29.3],"Roanoke County, Virginia":[68,0.9,31.1],"Roanoke city, Virginia":[73.6,2.8,23.6],"Rockbridge County, Virginia":[40.2,1.5,58.2],"Rockingham County, Virginia":[86.2,3.2,10.6],"Russell County, Virginia":[38.5,6.2,55.2],"Salem city, Virginia":[80.6,0,19.4],"Scott County, Virginia":[53.8,2,44.2],"Shenandoah County, Virginia":[68,0,32],"Smyth County, Virginia":[60,0.7,39.3],"Southampton County, Virginia":[64,6.7,29.3],"Spotsylvania County, Virginia":[84.5,1.8,13.7],"Stafford County, Virginia":[83.7,1.5,14.8],"Staunton city, Virginia":[81.6,0,18.4],"Suffolk city, Virginia":[75.6,3.8,20.5],"Surry County, Virginia":[63.4,2.1,34.4],"Sussex County, Virginia":[74.5,0.6,24.9],"Tazewell County, Virginia":[65.7,1.2,33.1],"Virginia Beach city, Virginia":[81.1,2.5,16.4],"Warren County, Virginia":[82.6,3.3,14.2],"Washington County, Virginia":[66.6,2.6,30.8],"Waynesboro city, Virginia":[65.9,0,34.1],"Westmoreland County, Virginia":[76.9,0.1,23],"Williamsburg city, Virginia":[80.8,0,19.2],"Winchester city, Virginia":[77.5,0,22.5],"Wise County, Virginia":[41.1,6.8,52.1],"Wythe County, Virginia":[78.7,2.2,19.1],"York County, Virginia":[81.8,1.5,16.7]};
+        const nationalAvg = [73.9,23,3.2];
+        const categories = ["Employed","Unemployed","Not in Labor Force"];
+        const ctx = document.getElementById("barChart").getContext("2d");
+        let chart;
+
+        function renderChart(values) {
+          if (chart) chart.destroy();
+          chart = new Chart(ctx, {
+            type: "bar",
+            data: {
+              labels: categories,
+              datasets: [
+                {
+                  label: "County/State",
+                  data: values,
+                  backgroundColor: ["#66c2a5", "#fc8d62", "#8da0cb"]
+                },
+                {
+                  label: null,
+                  data: categories.map(c => nationalAvg[c]),
+                  type: "line",
+                  borderColor: "black",
+                  borderWidth: 2,
+                  pointRadius: 0,
+                  fill: false
+                }
+              ]
+            },
+            options: {
+              indexAxis: "y",
+              scales: {
+                x: {
+                  min: 0,
+                  max: 100,
+                  ticks: {
+                    callback: v => v + "%"
+                  }
+                }
+              },
+              plugins: {
+                legend: {
+  display: false
+},
+                tooltip: {
+                  callbacks: {
+                    label: ctx => ctx.dataset.label ? ctx.dataset.label + ": " + ctx.raw + "%" : null
+                  }
+                }
+              }
+            }
+          });
+        }
+
+        document.getElementById("countySelect").addEventListener("change", function() {
+          renderChart(Object.values(data[this.value]));
+        });
+
+        renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

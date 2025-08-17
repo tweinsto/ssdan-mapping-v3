@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+
+</head>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Owners: Year Moved In (%) – 23</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #fff;
+    }
+    .container {
+      width: 95%;
+      max-width: 1200px;
+      margin: auto;
+      text-align: center;
+    }
+    #countySelect {
+      font-size: 1rem;
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    canvas {
+      max-width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Owners: Year Moved In (%)</h2>
+    <select id="countySelect"></select>
+    <canvas id="pieChart"></canvas>
+  </div>
+
+  <script>
+    const data = {"Statewide":{"Moved in 2021 or later":5,"Moved in 2018–2020":14.4,"Moved in 2010–2017":26.3,"Moved in 2000–2009":22.8,"Moved in 1990–1999":14.1,"1989 or earlier":17.3},"Androscoggin County":{"Moved in 2021 or later":5.4091,"Moved in 2018–2020":15.4696,"Moved in 2010–2017":25.1799,"Moved in 2000–2009":23.1359,"Moved in 1990–1999":12.1936,"1989 or earlier":18.6119},"Aroostook County":{"Moved in 2021 or later":4.4701,"Moved in 2018–2020":11.4538,"Moved in 2010–2017":21.567,"Moved in 2000–2009":24.2799,"Moved in 1990–1999":14.0851,"1989 or earlier":24.144},"Cumberland County":{"Moved in 2021 or later":5.6086,"Moved in 2018–2020":15.2178,"Moved in 2010–2017":28.8277,"Moved in 2000–2009":23.0541,"Moved in 1990–1999":13.329,"1989 or earlier":13.9629},"Franklin County":{"Moved in 2021 or later":4.3578,"Moved in 2018–2020":12.99,"Moved in 2010–2017":29.5663,"Moved in 2000–2009":18.6093,"Moved in 1990–1999":15.1689,"1989 or earlier":19.3078},"Hancock County":{"Moved in 2021 or later":4.53,"Moved in 2018–2020":14.0877,"Moved in 2010–2017":25.7986,"Moved in 2000–2009":23.1476,"Moved in 1990–1999":14.885,"1989 or earlier":17.5512},"Kennebec County":{"Moved in 2021 or later":4.801,"Moved in 2018–2020":14.5737,"Moved in 2010–2017":25.0752,"Moved in 2000–2009":23.8953,"Moved in 1990–1999":14.013,"1989 or earlier":17.6418},"Knox County":{"Moved in 2021 or later":3.9164,"Moved in 2018–2020":14.7238,"Moved in 2010–2017":27.2592,"Moved in 2000–2009":22.2025,"Moved in 1990–1999":14.1501,"1989 or earlier":17.7479},"Lincoln County":{"Moved in 2021 or later":6.2509,"Moved in 2018–2020":14.21,"Moved in 2010–2017":22.1838,"Moved in 2000–2009":21.3665,"Moved in 1990–1999":16.647,"1989 or earlier":19.3418},"Oxford County":{"Moved in 2021 or later":4.6584,"Moved in 2018–2020":13.0249,"Moved in 2010–2017":23.005,"Moved in 2000–2009":22.7021,"Moved in 1990–1999":15.6935,"1989 or earlier":20.916},"Penobscot County":{"Moved in 2021 or later":4.6617,"Moved in 2018–2020":13.7434,"Moved in 2010–2017":26.1907,"Moved in 2000–2009":22.8163,"Moved in 1990–1999":14.8704,"1989 or earlier":17.7175},"Piscataquis County":{"Moved in 2021 or later":5.2573,"Moved in 2018–2020":17.8073,"Moved in 2010–2017":24.6834,"Moved in 2000–2009":19.4422,"Moved in 1990–1999":11.8448,"1989 or earlier":20.9649},"Sagadahoc County":{"Moved in 2021 or later":3.7284,"Moved in 2018–2020":14.6991,"Moved in 2010–2017":26.5363,"Moved in 2000–2009":25.312,"Moved in 1990–1999":12.3539,"1989 or earlier":17.3702},"Somerset County":{"Moved in 2021 or later":5.8063,"Moved in 2018–2020":13.9751,"Moved in 2010–2017":24.677,"Moved in 2000–2009":22.1096,"Moved in 1990–1999":14.9769,"1989 or earlier":18.4551},"Waldo County":{"Moved in 2021 or later":4.936,"Moved in 2018–2020":14.8716,"Moved in 2010–2017":25.6842,"Moved in 2000–2009":24.4749,"Moved in 1990–1999":14.7939,"1989 or earlier":15.2394},"Washington County":{"Moved in 2021 or later":5.0279,"Moved in 2018–2020":14.1588,"Moved in 2010–2017":24.1689,"Moved in 2000–2009":22.7585,"Moved in 1990–1999":13.7467,"1989 or earlier":20.1392},"York County":{"Moved in 2021 or later":4.852,"Moved in 2018–2020":14.5574,"Moved in 2010–2017":28.1253,"Moved in 2000–2009":21.6957,"Moved in 1990–1999":14.7175,"1989 or earlier":16.052}};
+    const colors = {
+  'Moved in 2021 or later': '#377EF1',
+  'Moved in 2018–2020': '#FF7F00',
+  'Moved in 2010–2017': '#66A61E',
+  'Moved in 2000–2009': '#E6AB01',
+  'Moved in 1990–1999': '#7570B1',
+  '1989 or earlier': '#E41A1C'
+};
+
+    const ctx = document.getElementById("pieChart").getContext("2d");
+    let chart;
+
+    function renderChart(key) {
+      const values = data[key];
+      const labels = Object.keys(values);
+      const percentages = Object.values(values);
+
+      if (chart) chart.destroy();
+
+      chart = new Chart(ctx, {
+        type: "pie",
+        data: {
+          labels: labels,
+          datasets: [{
+            data: percentages,
+            backgroundColor: labels.map(label => colors[label] || "#cccccc")
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: true,
+          aspectRatio: 1.5,
+          plugins: {
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  return context.label + ": " + context.formattedValue + "%";
+                }
+              }
+            },
+            legend: {
+              position: "right",
+              labels: {
+                usePointStyle: true,
+                pointStyle: "rect"
+              }
+            }
+          }
+        }
+      });
+    }
+
+    // Populate dropdown (Statewide first, then counties A->Z)
+    const select = document.getElementById("countySelect");
+    const keys = ["Statewide", ...Object.keys(data).filter(k => k !== "Statewide").sort()];
+    keys.forEach(k => {
+      const opt = document.createElement("option");
+      opt.value = k;
+      opt.text  = k;
+      select.appendChild(opt);
+    });
+    select.value = "Statewide";
+    select.addEventListener("change", () => renderChart(select.value));
+
+    renderChart("Statewide");
+  </script>
+</body>
+</html>
+</html>

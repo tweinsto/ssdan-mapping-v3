@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Educational Enrollment – Kansas</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Educational Enrollment (Age 18–24) in Kansas</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Allen County, Kansas">Allen County, Kansas</option>
+      <option value="Anderson County, Kansas">Anderson County, Kansas</option>
+      <option value="Atchison County, Kansas">Atchison County, Kansas</option>
+      <option value="Barber County, Kansas">Barber County, Kansas</option>
+      <option value="Barton County, Kansas">Barton County, Kansas</option>
+      <option value="Bourbon County, Kansas">Bourbon County, Kansas</option>
+      <option value="Brown County, Kansas">Brown County, Kansas</option>
+      <option value="Butler County, Kansas">Butler County, Kansas</option>
+      <option value="Chase County, Kansas">Chase County, Kansas</option>
+      <option value="Chautauqua County, Kansas">Chautauqua County, Kansas</option>
+      <option value="Cherokee County, Kansas">Cherokee County, Kansas</option>
+      <option value="Cheyenne County, Kansas">Cheyenne County, Kansas</option>
+      <option value="Clark County, Kansas">Clark County, Kansas</option>
+      <option value="Clay County, Kansas">Clay County, Kansas</option>
+      <option value="Cloud County, Kansas">Cloud County, Kansas</option>
+      <option value="Coffey County, Kansas">Coffey County, Kansas</option>
+      <option value="Comanche County, Kansas">Comanche County, Kansas</option>
+      <option value="Cowley County, Kansas">Cowley County, Kansas</option>
+      <option value="Crawford County, Kansas">Crawford County, Kansas</option>
+      <option value="Decatur County, Kansas">Decatur County, Kansas</option>
+      <option value="Dickinson County, Kansas">Dickinson County, Kansas</option>
+      <option value="Doniphan County, Kansas">Doniphan County, Kansas</option>
+      <option value="Douglas County, Kansas">Douglas County, Kansas</option>
+      <option value="Edwards County, Kansas">Edwards County, Kansas</option>
+      <option value="Elk County, Kansas">Elk County, Kansas</option>
+      <option value="Ellis County, Kansas">Ellis County, Kansas</option>
+      <option value="Ellsworth County, Kansas">Ellsworth County, Kansas</option>
+      <option value="Finney County, Kansas">Finney County, Kansas</option>
+      <option value="Ford County, Kansas">Ford County, Kansas</option>
+      <option value="Franklin County, Kansas">Franklin County, Kansas</option>
+      <option value="Geary County, Kansas">Geary County, Kansas</option>
+      <option value="Gove County, Kansas">Gove County, Kansas</option>
+      <option value="Graham County, Kansas">Graham County, Kansas</option>
+      <option value="Grant County, Kansas">Grant County, Kansas</option>
+      <option value="Gray County, Kansas">Gray County, Kansas</option>
+      <option value="Greeley County, Kansas">Greeley County, Kansas</option>
+      <option value="Greenwood County, Kansas">Greenwood County, Kansas</option>
+      <option value="Hamilton County, Kansas">Hamilton County, Kansas</option>
+      <option value="Harper County, Kansas">Harper County, Kansas</option>
+      <option value="Harvey County, Kansas">Harvey County, Kansas</option>
+      <option value="Haskell County, Kansas">Haskell County, Kansas</option>
+      <option value="Hodgeman County, Kansas">Hodgeman County, Kansas</option>
+      <option value="Jackson County, Kansas">Jackson County, Kansas</option>
+      <option value="Jefferson County, Kansas">Jefferson County, Kansas</option>
+      <option value="Jewell County, Kansas">Jewell County, Kansas</option>
+      <option value="Johnson County, Kansas">Johnson County, Kansas</option>
+      <option value="Kearny County, Kansas">Kearny County, Kansas</option>
+      <option value="Kingman County, Kansas">Kingman County, Kansas</option>
+      <option value="Kiowa County, Kansas">Kiowa County, Kansas</option>
+      <option value="Labette County, Kansas">Labette County, Kansas</option>
+      <option value="Lane County, Kansas">Lane County, Kansas</option>
+      <option value="Leavenworth County, Kansas">Leavenworth County, Kansas</option>
+      <option value="Lincoln County, Kansas">Lincoln County, Kansas</option>
+      <option value="Linn County, Kansas">Linn County, Kansas</option>
+      <option value="Logan County, Kansas">Logan County, Kansas</option>
+      <option value="Lyon County, Kansas">Lyon County, Kansas</option>
+      <option value="Marion County, Kansas">Marion County, Kansas</option>
+      <option value="Marshall County, Kansas">Marshall County, Kansas</option>
+      <option value="McPherson County, Kansas">McPherson County, Kansas</option>
+      <option value="Meade County, Kansas">Meade County, Kansas</option>
+      <option value="Miami County, Kansas">Miami County, Kansas</option>
+      <option value="Mitchell County, Kansas">Mitchell County, Kansas</option>
+      <option value="Montgomery County, Kansas">Montgomery County, Kansas</option>
+      <option value="Morris County, Kansas">Morris County, Kansas</option>
+      <option value="Morton County, Kansas">Morton County, Kansas</option>
+      <option value="Nemaha County, Kansas">Nemaha County, Kansas</option>
+      <option value="Neosho County, Kansas">Neosho County, Kansas</option>
+      <option value="Ness County, Kansas">Ness County, Kansas</option>
+      <option value="Norton County, Kansas">Norton County, Kansas</option>
+      <option value="Osage County, Kansas">Osage County, Kansas</option>
+      <option value="Osborne County, Kansas">Osborne County, Kansas</option>
+      <option value="Ottawa County, Kansas">Ottawa County, Kansas</option>
+      <option value="Pawnee County, Kansas">Pawnee County, Kansas</option>
+      <option value="Phillips County, Kansas">Phillips County, Kansas</option>
+      <option value="Pottawatomie County, Kansas">Pottawatomie County, Kansas</option>
+      <option value="Pratt County, Kansas">Pratt County, Kansas</option>
+      <option value="Rawlins County, Kansas">Rawlins County, Kansas</option>
+      <option value="Reno County, Kansas">Reno County, Kansas</option>
+      <option value="Republic County, Kansas">Republic County, Kansas</option>
+      <option value="Rice County, Kansas">Rice County, Kansas</option>
+      <option value="Riley County, Kansas">Riley County, Kansas</option>
+      <option value="Rooks County, Kansas">Rooks County, Kansas</option>
+      <option value="Rush County, Kansas">Rush County, Kansas</option>
+      <option value="Russell County, Kansas">Russell County, Kansas</option>
+      <option value="Saline County, Kansas">Saline County, Kansas</option>
+      <option value="Scott County, Kansas">Scott County, Kansas</option>
+      <option value="Sedgwick County, Kansas">Sedgwick County, Kansas</option>
+      <option value="Seward County, Kansas">Seward County, Kansas</option>
+      <option value="Shawnee County, Kansas">Shawnee County, Kansas</option>
+      <option value="Sheridan County, Kansas">Sheridan County, Kansas</option>
+      <option value="Sherman County, Kansas">Sherman County, Kansas</option>
+      <option value="Smith County, Kansas">Smith County, Kansas</option>
+      <option value="Stafford County, Kansas">Stafford County, Kansas</option>
+      <option value="Stanton County, Kansas">Stanton County, Kansas</option>
+      <option value="Stevens County, Kansas">Stevens County, Kansas</option>
+      <option value="Sumner County, Kansas">Sumner County, Kansas</option>
+      <option value="Thomas County, Kansas">Thomas County, Kansas</option>
+      <option value="Trego County, Kansas">Trego County, Kansas</option>
+      <option value="Wabaunsee County, Kansas">Wabaunsee County, Kansas</option>
+      <option value="Wallace County, Kansas">Wallace County, Kansas</option>
+      <option value="Washington County, Kansas">Washington County, Kansas</option>
+      <option value="Wichita County, Kansas">Wichita County, Kansas</option>
+      <option value="Wilson County, Kansas">Wilson County, Kansas</option>
+      <option value="Woodson County, Kansas">Woodson County, Kansas</option>
+      <option value="Wyandotte County, Kansas">Wyandotte County, Kansas</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>  const data = {"Statewide":{"Enrolled in College / Grad. School":40.4,"Not Enrolled":59.6},"Allen County, Kansas":{"Enrolled in College / Grad. School":32,"Not Enrolled":68},"Anderson County, Kansas":{"Enrolled in College / Grad. School":9.1,"Not Enrolled":90.9},"Atchison County, Kansas":{"Enrolled in College / Grad. School":60.8,"Not Enrolled":39.2},"Barber County, Kansas":{"Enrolled in College / Grad. School":8.2,"Not Enrolled":91.8},"Barton County, Kansas":{"Enrolled in College / Grad. School":27.3,"Not Enrolled":72.7},"Bourbon County, Kansas":{"Enrolled in College / Grad. School":46.2,"Not Enrolled":53.8},"Brown County, Kansas":{"Enrolled in College / Grad. School":28.9,"Not Enrolled":71.1},"Butler County, Kansas":{"Enrolled in College / Grad. School":40.9,"Not Enrolled":59.1},"Chase County, Kansas":{"Enrolled in College / Grad. School":42.8,"Not Enrolled":57.2},"Chautauqua County, Kansas":{"Enrolled in College / Grad. School":31.6,"Not Enrolled":68.4},"Cherokee County, Kansas":{"Enrolled in College / Grad. School":23.7,"Not Enrolled":76.3},"Cheyenne County, Kansas":{"Enrolled in College / Grad. School":27,"Not Enrolled":73},"Clark County, Kansas":{"Enrolled in College / Grad. School":22.3,"Not Enrolled":77.7},"Clay County, Kansas":{"Enrolled in College / Grad. School":9.1,"Not Enrolled":90.9},"Cloud County, Kansas":{"Enrolled in College / Grad. School":42,"Not Enrolled":58},"Coffey County, Kansas":{"Enrolled in College / Grad. School":17.3,"Not Enrolled":82.7},"Comanche County, Kansas":{"Enrolled in College / Grad. School":6.9,"Not Enrolled":93.1},"Cowley County, Kansas":{"Enrolled in College / Grad. School":43.7,"Not Enrolled":56.3},"Crawford County, Kansas":{"Enrolled in College / Grad. School":52.6,"Not Enrolled":47.4},"Decatur County, Kansas":{"Enrolled in College / Grad. School":14.8,"Not Enrolled":85.2},"Dickinson County, Kansas":{"Enrolled in College / Grad. School":19.9,"Not Enrolled":80.1},"Doniphan County, Kansas":{"Enrolled in College / Grad. School":76.2,"Not Enrolled":23.8},"Douglas County, Kansas":{"Enrolled in College / Grad. School":73.6,"Not Enrolled":26.4},"Edwards County, Kansas":{"Enrolled in College / Grad. School":14.5,"Not Enrolled":85.5},"Elk County, Kansas":{"Enrolled in College / Grad. School":44.4,"Not Enrolled":55.6},"Ellis County, Kansas":{"Enrolled in College / Grad. School":71.8,"Not Enrolled":28.2},"Ellsworth County, Kansas":{"Enrolled in College / Grad. School":13.3,"Not Enrolled":86.7},"Finney County, Kansas":{"Enrolled in College / Grad. School":25.6,"Not Enrolled":74.4},"Ford County, Kansas":{"Enrolled in College / Grad. School":30,"Not Enrolled":70},"Franklin County, Kansas":{"Enrolled in College / Grad. School":37.4,"Not Enrolled":62.6},"Geary County, Kansas":{"Enrolled in College / Grad. School":17.2,"Not Enrolled":82.8},"Gove County, Kansas":{"Enrolled in College / Grad. School":13.4,"Not Enrolled":86.6},"Graham County, Kansas":{"Enrolled in College / Grad. School":39.6,"Not Enrolled":60.4},"Grant County, Kansas":{"Enrolled in College / Grad. School":11,"Not Enrolled":89},"Gray County, Kansas":{"Enrolled in College / Grad. School":24.1,"Not Enrolled":75.9},"Greeley County, Kansas":{"Enrolled in College / Grad. School":14.7,"Not Enrolled":85.3},"Greenwood County, Kansas":{"Enrolled in College / Grad. School":16.3,"Not Enrolled":83.7},"Hamilton County, Kansas":{"Enrolled in College / Grad. School":21.3,"Not Enrolled":78.7},"Harper County, Kansas":{"Enrolled in College / Grad. School":20.3,"Not Enrolled":79.7},"Harvey County, Kansas":{"Enrolled in College / Grad. School":32.3,"Not Enrolled":67.7},"Haskell County, Kansas":{"Enrolled in College / Grad. School":8.5,"Not Enrolled":91.5},"Hodgeman County, Kansas":{"Enrolled in College / Grad. School":18.3,"Not Enrolled":81.7},"Jackson County, Kansas":{"Enrolled in College / Grad. School":15.5,"Not Enrolled":84.5},"Jefferson County, Kansas":{"Enrolled in College / Grad. School":28,"Not Enrolled":72},"Jewell County, Kansas":{"Enrolled in College / Grad. School":2.4,"Not Enrolled":97.6},"Johnson County, Kansas":{"Enrolled in College / Grad. School":36.1,"Not Enrolled":63.9},"Kearny County, Kansas":{"Enrolled in College / Grad. School":6.8,"Not Enrolled":93.2},"Kingman County, Kansas":{"Enrolled in College / Grad. School":16.5,"Not Enrolled":83.5},"Kiowa County, Kansas":{"Enrolled in College / Grad. School":73.4,"Not Enrolled":26.6},"Labette County, Kansas":{"Enrolled in College / Grad. School":18.5,"Not Enrolled":81.5},"Lane County, Kansas":{"Enrolled in College / Grad. School":3.9,"Not Enrolled":96.1},"Leavenworth County, Kansas":{"Enrolled in College / Grad. School":33.9,"Not Enrolled":66.1},"Lincoln County, Kansas":{"Enrolled in College / Grad. School":12.7,"Not Enrolled":87.3},"Linn County, Kansas":{"Enrolled in College / Grad. School":11.7,"Not Enrolled":88.3},"Logan County, Kansas":{"Enrolled in College / Grad. School":9.8,"Not Enrolled":90.2},"Lyon County, Kansas":{"Enrolled in College / Grad. School":52.4,"Not Enrolled":47.6},"McPherson County, Kansas":{"Enrolled in College / Grad. School":49,"Not Enrolled":51},"Marion County, Kansas":{"Enrolled in College / Grad. School":53.3,"Not Enrolled":46.7},"Marshall County, Kansas":{"Enrolled in College / Grad. School":8.7,"Not Enrolled":91.3},"Meade County, Kansas":{"Enrolled in College / Grad. School":17.3,"Not Enrolled":82.7},"Miami County, Kansas":{"Enrolled in College / Grad. School":28,"Not Enrolled":72},"Mitchell County, Kansas":{"Enrolled in College / Grad. School":32.5,"Not Enrolled":67.5},"Montgomery County, Kansas":{"Enrolled in College / Grad. School":46.4,"Not Enrolled":53.6},"Morris County, Kansas":{"Enrolled in College / Grad. School":15.7,"Not Enrolled":84.3},"Morton County, Kansas":{"Enrolled in College / Grad. School":8.6,"Not Enrolled":91.4},"Nemaha County, Kansas":{"Enrolled in College / Grad. School":23,"Not Enrolled":77},"Neosho County, Kansas":{"Enrolled in College / Grad. School":36.8,"Not Enrolled":63.2},"Ness County, Kansas":{"Enrolled in College / Grad. School":12.8,"Not Enrolled":87.2},"Norton County, Kansas":{"Enrolled in College / Grad. School":17.1,"Not Enrolled":82.9},"Osage County, Kansas":{"Enrolled in College / Grad. School":15,"Not Enrolled":85},"Osborne County, Kansas":{"Enrolled in College / Grad. School":16.4,"Not Enrolled":83.6},"Ottawa County, Kansas":{"Enrolled in College / Grad. School":34.5,"Not Enrolled":65.5},"Pawnee County, Kansas":{"Enrolled in College / Grad. School":21.2,"Not Enrolled":78.8},"Phillips County, Kansas":{"Enrolled in College / Grad. School":24.7,"Not Enrolled":75.3},"Pottawatomie County, Kansas":{"Enrolled in College / Grad. School":35.9,"Not Enrolled":64.1},"Pratt County, Kansas":{"Enrolled in College / Grad. School":55.2,"Not Enrolled":44.8},"Rawlins County, Kansas":{"Enrolled in College / Grad. School":20.9,"Not Enrolled":79.1},"Reno County, Kansas":{"Enrolled in College / Grad. School":33.4,"Not Enrolled":66.6},"Republic County, Kansas":{"Enrolled in College / Grad. School":38.5,"Not Enrolled":61.5},"Rice County, Kansas":{"Enrolled in College / Grad. School":53.5,"Not Enrolled":46.5},"Riley County, Kansas":{"Enrolled in College / Grad. School":62,"Not Enrolled":38},"Rooks County, Kansas":{"Enrolled in College / Grad. School":14,"Not Enrolled":86},"Rush County, Kansas":{"Enrolled in College / Grad. School":12.8,"Not Enrolled":87.2},"Russell County, Kansas":{"Enrolled in College / Grad. School":14.4,"Not Enrolled":85.6},"Saline County, Kansas":{"Enrolled in College / Grad. School":33.3,"Not Enrolled":66.7},"Scott County, Kansas":{"Enrolled in College / Grad. School":1.3,"Not Enrolled":98.7},"Sedgwick County, Kansas":{"Enrolled in College / Grad. School":32.8,"Not Enrolled":67.2},"Seward County, Kansas":{"Enrolled in College / Grad. School":28.6,"Not Enrolled":71.4},"Shawnee County, Kansas":{"Enrolled in College / Grad. School":31.9,"Not Enrolled":68.1},"Sheridan County, Kansas":{"Enrolled in College / Grad. School":22.9,"Not Enrolled":77.1},"Sherman County, Kansas":{"Enrolled in College / Grad. School":59,"Not Enrolled":41},"Smith County, Kansas":{"Enrolled in College / Grad. School":15.5,"Not Enrolled":84.5},"Stafford County, Kansas":{"Enrolled in College / Grad. School":13.6,"Not Enrolled":86.4},"Stanton County, Kansas":{"Enrolled in College / Grad. School":26.1,"Not Enrolled":73.9},"Stevens County, Kansas":{"Enrolled in College / Grad. School":18.4,"Not Enrolled":81.6},"Sumner County, Kansas":{"Enrolled in College / Grad. School":24.6,"Not Enrolled":75.4},"Thomas County, Kansas":{"Enrolled in College / Grad. School":50.2,"Not Enrolled":49.8},"Trego County, Kansas":{"Enrolled in College / Grad. School":15.1,"Not Enrolled":84.9},"Wabaunsee County, Kansas":{"Enrolled in College / Grad. School":35.3,"Not Enrolled":64.7},"Wallace County, Kansas":{"Enrolled in College / Grad. School":11.6,"Not Enrolled":88.4},"Washington County, Kansas":{"Enrolled in College / Grad. School":20.7,"Not Enrolled":79.3},"Wichita County, Kansas":{"Enrolled in College / Grad. School":1,"Not Enrolled":99},"Wilson County, Kansas":{"Enrolled in College / Grad. School":11.3,"Not Enrolled":88.7},"Woodson County, Kansas":{"Enrolled in College / Grad. School":25.6,"Not Enrolled":74.4},"Wyandotte County, Kansas":{"Enrolled in College / Grad. School":25.9,"Not Enrolled":74.1}};
+  const categories = ["Enrolled in College / Grad. School","Not Enrolled"];
+  const ctx = document.getElementById("barChart").getContext("2d");
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: categories,
+        datasets: [
+          {
+            label: "County/State",
+            data: values,
+            backgroundColor: ["#66c2a5", "#fc8d62"]
+          }
+        ]
+      },
+      options: {
+        indexAxis: "y",
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            ticks: {
+              callback: v => v + "%"
+            }
+          }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.dataset.label + ": " + ctx.raw + "%"
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById("countySelect").addEventListener("change", function() {
+    renderChart(Object.values(data[this.value]));
+  });
+
+  renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

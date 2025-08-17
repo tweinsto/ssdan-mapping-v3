@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Living Arrangements of Children – Puerto Rico</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Children’s Living Arrangements (Under 18) – Puerto Rico</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Adjuntas Municipio, Puerto Rico">Adjuntas Municipio, Puerto Rico</option>
+      <option value="Aguada Municipio, Puerto Rico">Aguada Municipio, Puerto Rico</option>
+      <option value="Aguadilla Municipio, Puerto Rico">Aguadilla Municipio, Puerto Rico</option>
+      <option value="Aguas Buenas Municipio, Puerto Rico">Aguas Buenas Municipio, Puerto Rico</option>
+      <option value="Aibonito Municipio, Puerto Rico">Aibonito Municipio, Puerto Rico</option>
+      <option value="Añasco Municipio, Puerto Rico">Añasco Municipio, Puerto Rico</option>
+      <option value="Arecibo Municipio, Puerto Rico">Arecibo Municipio, Puerto Rico</option>
+      <option value="Arroyo Municipio, Puerto Rico">Arroyo Municipio, Puerto Rico</option>
+      <option value="Barceloneta Municipio, Puerto Rico">Barceloneta Municipio, Puerto Rico</option>
+      <option value="Barranquitas Municipio, Puerto Rico">Barranquitas Municipio, Puerto Rico</option>
+      <option value="Bayamón Municipio, Puerto Rico">Bayamón Municipio, Puerto Rico</option>
+      <option value="Cabo Rojo Municipio, Puerto Rico">Cabo Rojo Municipio, Puerto Rico</option>
+      <option value="Caguas Municipio, Puerto Rico">Caguas Municipio, Puerto Rico</option>
+      <option value="Camuy Municipio, Puerto Rico">Camuy Municipio, Puerto Rico</option>
+      <option value="Canóvanas Municipio, Puerto Rico">Canóvanas Municipio, Puerto Rico</option>
+      <option value="Carolina Municipio, Puerto Rico">Carolina Municipio, Puerto Rico</option>
+      <option value="Cataño Municipio, Puerto Rico">Cataño Municipio, Puerto Rico</option>
+      <option value="Cayey Municipio, Puerto Rico">Cayey Municipio, Puerto Rico</option>
+      <option value="Ceiba Municipio, Puerto Rico">Ceiba Municipio, Puerto Rico</option>
+      <option value="Ciales Municipio, Puerto Rico">Ciales Municipio, Puerto Rico</option>
+      <option value="Cidra Municipio, Puerto Rico">Cidra Municipio, Puerto Rico</option>
+      <option value="Coamo Municipio, Puerto Rico">Coamo Municipio, Puerto Rico</option>
+      <option value="Comerío Municipio, Puerto Rico">Comerío Municipio, Puerto Rico</option>
+      <option value="Corozal Municipio, Puerto Rico">Corozal Municipio, Puerto Rico</option>
+      <option value="Culebra Municipio, Puerto Rico">Culebra Municipio, Puerto Rico</option>
+      <option value="Dorado Municipio, Puerto Rico">Dorado Municipio, Puerto Rico</option>
+      <option value="Fajardo Municipio, Puerto Rico">Fajardo Municipio, Puerto Rico</option>
+      <option value="Florida Municipio, Puerto Rico">Florida Municipio, Puerto Rico</option>
+      <option value="Guánica Municipio, Puerto Rico">Guánica Municipio, Puerto Rico</option>
+      <option value="Guayama Municipio, Puerto Rico">Guayama Municipio, Puerto Rico</option>
+      <option value="Guayanilla Municipio, Puerto Rico">Guayanilla Municipio, Puerto Rico</option>
+      <option value="Guaynabo Municipio, Puerto Rico">Guaynabo Municipio, Puerto Rico</option>
+      <option value="Gurabo Municipio, Puerto Rico">Gurabo Municipio, Puerto Rico</option>
+      <option value="Hatillo Municipio, Puerto Rico">Hatillo Municipio, Puerto Rico</option>
+      <option value="Hormigueros Municipio, Puerto Rico">Hormigueros Municipio, Puerto Rico</option>
+      <option value="Humacao Municipio, Puerto Rico">Humacao Municipio, Puerto Rico</option>
+      <option value="Isabela Municipio, Puerto Rico">Isabela Municipio, Puerto Rico</option>
+      <option value="Jayuya Municipio, Puerto Rico">Jayuya Municipio, Puerto Rico</option>
+      <option value="Juana Díaz Municipio, Puerto Rico">Juana Díaz Municipio, Puerto Rico</option>
+      <option value="Juncos Municipio, Puerto Rico">Juncos Municipio, Puerto Rico</option>
+      <option value="Lajas Municipio, Puerto Rico">Lajas Municipio, Puerto Rico</option>
+      <option value="Lares Municipio, Puerto Rico">Lares Municipio, Puerto Rico</option>
+      <option value="Las Marías Municipio, Puerto Rico">Las Marías Municipio, Puerto Rico</option>
+      <option value="Las Piedras Municipio, Puerto Rico">Las Piedras Municipio, Puerto Rico</option>
+      <option value="Loíza Municipio, Puerto Rico">Loíza Municipio, Puerto Rico</option>
+      <option value="Luquillo Municipio, Puerto Rico">Luquillo Municipio, Puerto Rico</option>
+      <option value="Manatí Municipio, Puerto Rico">Manatí Municipio, Puerto Rico</option>
+      <option value="Maricao Municipio, Puerto Rico">Maricao Municipio, Puerto Rico</option>
+      <option value="Maunabo Municipio, Puerto Rico">Maunabo Municipio, Puerto Rico</option>
+      <option value="Mayagüez Municipio, Puerto Rico">Mayagüez Municipio, Puerto Rico</option>
+      <option value="Moca Municipio, Puerto Rico">Moca Municipio, Puerto Rico</option>
+      <option value="Morovis Municipio, Puerto Rico">Morovis Municipio, Puerto Rico</option>
+      <option value="Naguabo Municipio, Puerto Rico">Naguabo Municipio, Puerto Rico</option>
+      <option value="Naranjito Municipio, Puerto Rico">Naranjito Municipio, Puerto Rico</option>
+      <option value="Orocovis Municipio, Puerto Rico">Orocovis Municipio, Puerto Rico</option>
+      <option value="Patillas Municipio, Puerto Rico">Patillas Municipio, Puerto Rico</option>
+      <option value="Peñuelas Municipio, Puerto Rico">Peñuelas Municipio, Puerto Rico</option>
+      <option value="Ponce Municipio, Puerto Rico">Ponce Municipio, Puerto Rico</option>
+      <option value="Quebradillas Municipio, Puerto Rico">Quebradillas Municipio, Puerto Rico</option>
+      <option value="Rincón Municipio, Puerto Rico">Rincón Municipio, Puerto Rico</option>
+      <option value="Río Grande Municipio, Puerto Rico">Río Grande Municipio, Puerto Rico</option>
+      <option value="Sabana Grande Municipio, Puerto Rico">Sabana Grande Municipio, Puerto Rico</option>
+      <option value="Salinas Municipio, Puerto Rico">Salinas Municipio, Puerto Rico</option>
+      <option value="San Germán Municipio, Puerto Rico">San Germán Municipio, Puerto Rico</option>
+      <option value="San Juan Municipio, Puerto Rico">San Juan Municipio, Puerto Rico</option>
+      <option value="San Lorenzo Municipio, Puerto Rico">San Lorenzo Municipio, Puerto Rico</option>
+      <option value="San Sebastián Municipio, Puerto Rico">San Sebastián Municipio, Puerto Rico</option>
+      <option value="Santa Isabel Municipio, Puerto Rico">Santa Isabel Municipio, Puerto Rico</option>
+      <option value="Toa Alta Municipio, Puerto Rico">Toa Alta Municipio, Puerto Rico</option>
+      <option value="Toa Baja Municipio, Puerto Rico">Toa Baja Municipio, Puerto Rico</option>
+      <option value="Trujillo Alto Municipio, Puerto Rico">Trujillo Alto Municipio, Puerto Rico</option>
+      <option value="Utuado Municipio, Puerto Rico">Utuado Municipio, Puerto Rico</option>
+      <option value="Vega Alta Municipio, Puerto Rico">Vega Alta Municipio, Puerto Rico</option>
+      <option value="Vega Baja Municipio, Puerto Rico">Vega Baja Municipio, Puerto Rico</option>
+      <option value="Vieques Municipio, Puerto Rico">Vieques Municipio, Puerto Rico</option>
+      <option value="Villalba Municipio, Puerto Rico">Villalba Municipio, Puerto Rico</option>
+      <option value="Yabucoa Municipio, Puerto Rico">Yabucoa Municipio, Puerto Rico</option>
+      <option value="Yauco Municipio, Puerto Rico">Yauco Municipio, Puerto Rico</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>  const data = {"Statewide":{"Married Couple (%)":39.9,"Cohabiting Couple (%)":19.8,"Male Householder (%)":3.8,"Female Householder (%)":36.5},"Adjuntas Municipio, Puerto Rico":{"Married Couple (%)":46.1,"Cohabiting Couple (%)":22.9,"Male Householder (%)":1.6,"Female Householder (%)":29.4},"Aguada Municipio, Puerto Rico":{"Married Couple (%)":44.1,"Cohabiting Couple (%)":21.1,"Male Householder (%)":1.4,"Female Householder (%)":33.4},"Aguadilla Municipio, Puerto Rico":{"Married Couple (%)":35.1,"Cohabiting Couple (%)":13.9,"Male Householder (%)":7,"Female Householder (%)":44},"Aguas Buenas Municipio, Puerto Rico":{"Married Couple (%)":44.3,"Cohabiting Couple (%)":25.9,"Male Householder (%)":1.2,"Female Householder (%)":28.6},"Aibonito Municipio, Puerto Rico":{"Married Couple (%)":32.6,"Cohabiting Couple (%)":23.6,"Male Householder (%)":6,"Female Householder (%)":37.7},"Añasco Municipio, Puerto Rico":{"Married Couple (%)":43.8,"Cohabiting Couple (%)":27.6,"Male Householder (%)":2.4,"Female Householder (%)":26.2},"Arecibo Municipio, Puerto Rico":{"Married Couple (%)":40.4,"Cohabiting Couple (%)":25.4,"Male Householder (%)":2.5,"Female Householder (%)":31.6},"Arroyo Municipio, Puerto Rico":{"Married Couple (%)":33.5,"Cohabiting Couple (%)":25.8,"Male Householder (%)":0,"Female Householder (%)":40.7},"Barceloneta Municipio, Puerto Rico":{"Married Couple (%)":46.2,"Cohabiting Couple (%)":21.8,"Male Householder (%)":0.8,"Female Householder (%)":31.2},"Barranquitas Municipio, Puerto Rico":{"Married Couple (%)":34.2,"Cohabiting Couple (%)":33.6,"Male Householder (%)":2.9,"Female Householder (%)":29.2},"Bayamón Municipio, Puerto Rico":{"Married Couple (%)":39.6,"Cohabiting Couple (%)":15.1,"Male Householder (%)":3.7,"Female Householder (%)":41.5},"Cabo Rojo Municipio, Puerto Rico":{"Married Couple (%)":48.4,"Cohabiting Couple (%)":13.7,"Male Householder (%)":3.2,"Female Householder (%)":34.7},"Caguas Municipio, Puerto Rico":{"Married Couple (%)":39.3,"Cohabiting Couple (%)":18.6,"Male Householder (%)":3.1,"Female Householder (%)":39},"Camuy Municipio, Puerto Rico":{"Married Couple (%)":58.9,"Cohabiting Couple (%)":12.8,"Male Householder (%)":1.4,"Female Householder (%)":26.9},"Canóvanas Municipio, Puerto Rico":{"Married Couple (%)":44.6,"Cohabiting Couple (%)":20.6,"Male Householder (%)":3.3,"Female Householder (%)":31.5},"Carolina Municipio, Puerto Rico":{"Married Couple (%)":36.2,"Cohabiting Couple (%)":18.2,"Male Householder (%)":2.6,"Female Householder (%)":42.9},"Cataño Municipio, Puerto Rico":{"Married Couple (%)":38.5,"Cohabiting Couple (%)":13.9,"Male Householder (%)":4.8,"Female Householder (%)":42.8},"Cayey Municipio, Puerto Rico":{"Married Couple (%)":33,"Cohabiting Couple (%)":33.4,"Male Householder (%)":4.6,"Female Householder (%)":29},"Ceiba Municipio, Puerto Rico":{"Married Couple (%)":41,"Cohabiting Couple (%)":17.4,"Male Householder (%)":2.9,"Female Householder (%)":38.7},"Ciales Municipio, Puerto Rico":{"Married Couple (%)":34.1,"Cohabiting Couple (%)":28,"Male Householder (%)":2.5,"Female Householder (%)":35.5},"Cidra Municipio, Puerto Rico":{"Married Couple (%)":44.5,"Cohabiting Couple (%)":20.7,"Male Householder (%)":6.4,"Female Householder (%)":28.4},"Coamo Municipio, Puerto Rico":{"Married Couple (%)":42.4,"Cohabiting Couple (%)":19.8,"Male Householder (%)":1,"Female Householder (%)":36.8},"Comerío Municipio, Puerto Rico":{"Married Couple (%)":19.4,"Cohabiting Couple (%)":40.9,"Male Householder (%)":3.4,"Female Householder (%)":36.3},"Corozal Municipio, Puerto Rico":{"Married Couple (%)":45.1,"Cohabiting Couple (%)":16,"Male Householder (%)":3.8,"Female Householder (%)":35.1},"Culebra Municipio, Puerto Rico":{"Married Couple (%)":25,"Cohabiting Couple (%)":31.4,"Male Householder (%)":0,"Female Householder (%)":43.6},"Dorado Municipio, Puerto Rico":{"Married Couple (%)":54.2,"Cohabiting Couple (%)":12.7,"Male Householder (%)":6,"Female Householder (%)":27.1},"Fajardo Municipio, Puerto Rico":{"Married Couple (%)":29.7,"Cohabiting Couple (%)":22.9,"Male Householder (%)":3.7,"Female Householder (%)":43.7},"Florida Municipio, Puerto Rico":{"Married Couple (%)":43.8,"Cohabiting Couple (%)":20.4,"Male Householder (%)":1.6,"Female Householder (%)":34.2},"Guánica Municipio, Puerto Rico":{"Married Couple (%)":26.3,"Cohabiting Couple (%)":37.9,"Male Householder (%)":7.1,"Female Householder (%)":28.8},"Guayama Municipio, Puerto Rico":{"Married Couple (%)":38.4,"Cohabiting Couple (%)":20,"Male Householder (%)":6.7,"Female Householder (%)":34.9},"Guayanilla Municipio, Puerto Rico":{"Married Couple (%)":35.7,"Cohabiting Couple (%)":29.4,"Male Householder (%)":3.1,"Female Householder (%)":31.8},"Guaynabo Municipio, Puerto Rico":{"Married Couple (%)":51.4,"Cohabiting Couple (%)":18.1,"Male Householder (%)":4.5,"Female Householder (%)":26.1},"Gurabo Municipio, Puerto Rico":{"Married Couple (%)":50.4,"Cohabiting Couple (%)":11.2,"Male Householder (%)":1.5,"Female Householder (%)":36.9},"Hatillo Municipio, Puerto Rico":{"Married Couple (%)":63.6,"Cohabiting Couple (%)":6.9,"Male Householder (%)":1,"Female Householder (%)":28.5},"Hormigueros Municipio, Puerto Rico":{"Married Couple (%)":59.5,"Cohabiting Couple (%)":9.8,"Male Householder (%)":6.1,"Female Householder (%)":24.6},"Humacao Municipio, Puerto Rico":{"Married Couple (%)":43.8,"Cohabiting Couple (%)":20.9,"Male Householder (%)":3.7,"Female Householder (%)":31.7},"Isabela Municipio, Puerto Rico":{"Married Couple (%)":53.5,"Cohabiting Couple (%)":7.5,"Male Householder (%)":3.5,"Female Householder (%)":35.4},"Jayuya Municipio, Puerto Rico":{"Married Couple (%)":23.9,"Cohabiting Couple (%)":29.2,"Male Householder (%)":12.9,"Female Householder (%)":34},"Juana Díaz Municipio, Puerto Rico":{"Married Couple (%)":46.2,"Cohabiting Couple (%)":16.6,"Male Householder (%)":2,"Female Householder (%)":35.2},"Juncos Municipio, Puerto Rico":{"Married Couple (%)":33.4,"Cohabiting Couple (%)":19.2,"Male Householder (%)":4.7,"Female Householder (%)":42.6},"Lajas Municipio, Puerto Rico":{"Married Couple (%)":26,"Cohabiting Couple (%)":18,"Male Householder (%)":23,"Female Householder (%)":33},"Lares Municipio, Puerto Rico":{"Married Couple (%)":42.5,"Cohabiting Couple (%)":19.8,"Male Householder (%)":5.1,"Female Householder (%)":32.5},"Las Marías Municipio, Puerto Rico":{"Married Couple (%)":48.5,"Cohabiting Couple (%)":17.1,"Male Householder (%)":1.7,"Female Householder (%)":32.8},"Las Piedras Municipio, Puerto Rico":{"Married Couple (%)":43.9,"Cohabiting Couple (%)":23.9,"Male Householder (%)":0.9,"Female Householder (%)":31.2},"Loíza Municipio, Puerto Rico":{"Married Couple (%)":30,"Cohabiting Couple (%)":22.8,"Male Householder (%)":5.5,"Female Householder (%)":41.7},"Luquillo Municipio, Puerto Rico":{"Married Couple (%)":45.7,"Cohabiting Couple (%)":16.9,"Male Householder (%)":2.8,"Female Householder (%)":34.7},"Manatí Municipio, Puerto Rico":{"Married Couple (%)":29.1,"Cohabiting Couple (%)":35.6,"Male Householder (%)":3.5,"Female Householder (%)":31.8},"Maricao Municipio, Puerto Rico":{"Married Couple (%)":30.5,"Cohabiting Couple (%)":27.6,"Male Householder (%)":2.8,"Female Householder (%)":39},"Maunabo Municipio, Puerto Rico":{"Married Couple (%)":27,"Cohabiting Couple (%)":37.5,"Male Householder (%)":3.5,"Female Householder (%)":31.9},"Mayagüez Municipio, Puerto Rico":{"Married Couple (%)":33.2,"Cohabiting Couple (%)":14.8,"Male Householder (%)":1.6,"Female Householder (%)":50.4},"Moca Municipio, Puerto Rico":{"Married Couple (%)":41,"Cohabiting Couple (%)":22.4,"Male Householder (%)":4.9,"Female Householder (%)":31.6},"Morovis Municipio, Puerto Rico":{"Married Couple (%)":33.5,"Cohabiting Couple (%)":30.1,"Male Householder (%)":1.8,"Female Householder (%)":34.6},"Naguabo Municipio, Puerto Rico":{"Married Couple (%)":33.8,"Cohabiting Couple (%)":13.9,"Male Householder (%)":6.2,"Female Householder (%)":46},"Naranjito Municipio, Puerto Rico":{"Married Couple (%)":28.8,"Cohabiting Couple (%)":40,"Male Householder (%)":2.6,"Female Householder (%)":28.5},"Orocovis Municipio, Puerto Rico":{"Married Couple (%)":39.6,"Cohabiting Couple (%)":41.1,"Male Householder (%)":2.4,"Female Householder (%)":16.9},"Patillas Municipio, Puerto Rico":{"Married Couple (%)":44,"Cohabiting Couple (%)":25.2,"Male Householder (%)":0,"Female Householder (%)":30.8},"Peñuelas Municipio, Puerto Rico":{"Married Couple (%)":37.4,"Cohabiting Couple (%)":23.9,"Male Householder (%)":2.8,"Female Householder (%)":35.9},"Ponce Municipio, Puerto Rico":{"Married Couple (%)":34.5,"Cohabiting Couple (%)":18.5,"Male Householder (%)":3.5,"Female Householder (%)":43.5},"Quebradillas Municipio, Puerto Rico":{"Married Couple (%)":47.9,"Cohabiting Couple (%)":8.3,"Male Householder (%)":4.8,"Female Householder (%)":39},"Rincón Municipio, Puerto Rico":{"Married Couple (%)":50,"Cohabiting Couple (%)":17.8,"Male Householder (%)":6.4,"Female Householder (%)":25.7},"Río Grande Municipio, Puerto Rico":{"Married Couple (%)":45.2,"Cohabiting Couple (%)":22.2,"Male Householder (%)":2.7,"Female Householder (%)":29.9},"Sabana Grande Municipio, Puerto Rico":{"Married Couple (%)":38.5,"Cohabiting Couple (%)":8.6,"Male Householder (%)":8,"Female Householder (%)":45},"Salinas Municipio, Puerto Rico":{"Married Couple (%)":33.8,"Cohabiting Couple (%)":23.6,"Male Householder (%)":3.1,"Female Householder (%)":39.5},"San Germán Municipio, Puerto Rico":{"Married Couple (%)":36.1,"Cohabiting Couple (%)":22.5,"Male Householder (%)":2.3,"Female Householder (%)":39.2},"San Juan Municipio, Puerto Rico":{"Married Couple (%)":31.5,"Cohabiting Couple (%)":16.5,"Male Householder (%)":3.3,"Female Householder (%)":48.7},"San Lorenzo Municipio, Puerto Rico":{"Married Couple (%)":37.2,"Cohabiting Couple (%)":18.8,"Male Householder (%)":6.5,"Female Householder (%)":37.5},"San Sebastián Municipio, Puerto Rico":{"Married Couple (%)":46.2,"Cohabiting Couple (%)":21.5,"Male Householder (%)":6.8,"Female Householder (%)":25.5},"Santa Isabel Municipio, Puerto Rico":{"Married Couple (%)":43.2,"Cohabiting Couple (%)":22.6,"Male Householder (%)":2,"Female Householder (%)":32.2},"Toa Alta Municipio, Puerto Rico":{"Married Couple (%)":47.3,"Cohabiting Couple (%)":15.9,"Male Householder (%)":6.4,"Female Householder (%)":30.5},"Toa Baja Municipio, Puerto Rico":{"Married Couple (%)":37.3,"Cohabiting Couple (%)":20.3,"Male Householder (%)":2.8,"Female Householder (%)":39.6},"Trujillo Alto Municipio, Puerto Rico":{"Married Couple (%)":54.9,"Cohabiting Couple (%)":13.8,"Male Householder (%)":5.7,"Female Householder (%)":25.6},"Utuado Municipio, Puerto Rico":{"Married Couple (%)":42.8,"Cohabiting Couple (%)":14.2,"Male Householder (%)":5.5,"Female Householder (%)":37.4},"Vega Alta Municipio, Puerto Rico":{"Married Couple (%)":48,"Cohabiting Couple (%)":22.1,"Male Householder (%)":2,"Female Householder (%)":28},"Vega Baja Municipio, Puerto Rico":{"Married Couple (%)":37.9,"Cohabiting Couple (%)":32.5,"Male Householder (%)":5.6,"Female Householder (%)":24},"Vieques Municipio, Puerto Rico":{"Married Couple (%)":9.2,"Cohabiting Couple (%)":33.6,"Male Householder (%)":5.5,"Female Householder (%)":51.7},"Villalba Municipio, Puerto Rico":{"Married Couple (%)":43.1,"Cohabiting Couple (%)":18.5,"Male Householder (%)":5.2,"Female Householder (%)":33.2},"Yabucoa Municipio, Puerto Rico":{"Married Couple (%)":36.5,"Cohabiting Couple (%)":23.4,"Male Householder (%)":3.2,"Female Householder (%)":36.9},"Yauco Municipio, Puerto Rico":{"Married Couple (%)":52.4,"Cohabiting Couple (%)":18.3,"Male Householder (%)":1.8,"Female Householder (%)":27.5}};
+  const categories = ["Married Couple (%)","Cohabiting Couple (%)","Male Householder (%)","Female Householder (%)"];
+  const ctx = document.getElementById("barChart").getContext("2d");
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: categories,
+        datasets: [{
+          label: "Share of Children (%)",
+          data: values,
+          backgroundColor: ["#5DA5DA","#FAA43A","#60BD68","#F17CB0"]
+        }]
+      },
+      options: {
+        indexAxis: "y",
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            ticks: { callback: v => v + "%" },
+            title: { display: true, text: "Percent of Children" }
+          }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.raw + "%"
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById("countySelect").addEventListener("change", function() {
+    renderChart(Object.values(data[this.value]));
+  });
+
+  renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

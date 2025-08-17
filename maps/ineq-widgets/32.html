@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Income Distribution – Nevada</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          text-align: center;
+          margin: 2rem;
+        }
+        select {
+          font-size: 1rem;
+          padding: 0.4rem;
+          margin-bottom: 1rem;
+        }
+        canvas {
+          width: 100%;
+          max-width: 700px;
+          height: 400px;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Income Share by Quintile – Nevada</h2>
+    <label>Select County, State:</label>
+    <select id="countySelect"><option value='Statewide'>Statewide</option>
+<option value='Carson City, Nevada, Nevada'>Carson City, Nevada, Nevada</option>
+<option value='Churchill, Nevada'>Churchill, Nevada</option>
+<option value='Clark, Nevada'>Clark, Nevada</option>
+<option value='Douglas, Nevada'>Douglas, Nevada</option>
+<option value='Elko, Nevada'>Elko, Nevada</option>
+<option value='Esmeralda, Nevada'>Esmeralda, Nevada</option>
+<option value='Eureka, Nevada'>Eureka, Nevada</option>
+<option value='Humboldt, Nevada'>Humboldt, Nevada</option>
+<option value='Lander, Nevada'>Lander, Nevada</option>
+<option value='Lincoln, Nevada'>Lincoln, Nevada</option>
+<option value='Lyon, Nevada'>Lyon, Nevada</option>
+<option value='Mineral, Nevada'>Mineral, Nevada</option>
+<option value='Nye, Nevada'>Nye, Nevada</option>
+<option value='Pershing, Nevada'>Pershing, Nevada</option>
+<option value='Storey, Nevada'>Storey, Nevada</option>
+<option value='Washoe, Nevada'>Washoe, Nevada</option>
+<option value='White Pine, Nevada'>White Pine, Nevada</option></select>
+    <canvas id="barChart" width="700" height="400"></canvas>
+    <script>  const incomeData = {"Statewide":[5.8,9.6,14.3,26.9,43.4],"Carson City, Nevada, Nevada":[5.3,8.3,12.3,26.4,47.8],"Churchill, Nevada":[5.7,9.7,14.2,27.7,42.6],"Clark, Nevada":[4.8,7.8,12,26.8,48.6],"Douglas, Nevada":[4.6,7.5,11.4,26.3,50.1],"Elko, Nevada":[5.7,9.6,14.1,26.7,43.9],"Esmeralda, Nevada":[5.8,9.6,14.3,26.9,43.4],"Eureka, Nevada":[6.5,11.8,15.5,25.6,40.6],"Humboldt, Nevada":[5.2,9.1,14.4,26.2,45],"Lander, Nevada":[5.5,10.4,16.3,27.7,40.3],"Lincoln, Nevada":[7,10.2,14,27.8,41],"Lyon, Nevada":[6.2,9.7,14.5,26.4,43.2],"Mineral, Nevada":[6.2,10.1,16,27.9,39.7],"Nye, Nevada":[5.5,8.6,13.9,28,44],"Pershing, Nevada":[6.7,10.8,15.7,27.5,39.3],"Storey, Nevada":[5.5,9.9,13.8,25.5,45.3],"Washoe, Nevada":[4.8,7.7,11.6,26.3,49.6],"White Pine, Nevada":[7.6,12.7,19.1,27.2,33.4]};
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Bottom 20%', 'Second 20%', 'Middle 20%', 'Fourth 20%', 'Top 20%'],
+        datasets: [{
+          label: 'Share (%)',
+          data: values,
+          backgroundColor: '#4576a7'
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.parsed.y + '%'
+            }
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 100,
+            title: {
+              display: true,
+              text: 'Income Share (%)'
+            }
+          },
+          x: {
+            title: {
+              display: true,
+              text: 'Quintile'
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(Object.values(incomeData[this.value]));
+  });
+
+  renderChart(Object.values(incomeData['Statewide']));</script>
+  </body>
+</html>
+</html>

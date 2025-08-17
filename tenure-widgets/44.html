@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+
+</head>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Owners: Year Moved In (%) – 44</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #fff;
+    }
+    .container {
+      width: 95%;
+      max-width: 1200px;
+      margin: auto;
+      text-align: center;
+    }
+    #countySelect {
+      font-size: 1rem;
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    canvas {
+      max-width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Owners: Year Moved In (%)</h2>
+    <select id="countySelect"></select>
+    <canvas id="pieChart"></canvas>
+  </div>
+
+  <script>
+    const data = {"Statewide":{"Moved in 2021 or later":5.3,"Moved in 2018–2020":14.3,"Moved in 2010–2017":24.8,"Moved in 2000–2009":20.9,"Moved in 1990–1999":15.3,"1989 or earlier":19.3},"Bristol County":{"Moved in 2021 or later":4.6739,"Moved in 2018–2020":15.7647,"Moved in 2010–2017":24.2128,"Moved in 2000–2009":18.2035,"Moved in 1990–1999":14.3168,"1989 or earlier":22.8282},"Kent County":{"Moved in 2021 or later":5.0531,"Moved in 2018–2020":14.3951,"Moved in 2010–2017":25.2234,"Moved in 2000–2009":20.0484,"Moved in 1990–1999":14.9096,"1989 or earlier":20.3704},"Newport County":{"Moved in 2021 or later":6.0316,"Moved in 2018–2020":13.9807,"Moved in 2010–2017":23.3723,"Moved in 2000–2009":20.2213,"Moved in 1990–1999":17.0334,"1989 or earlier":19.3608},"Providence County":{"Moved in 2021 or later":5.9626,"Moved in 2018–2020":14.0809,"Moved in 2010–2017":24.9554,"Moved in 2000–2009":21.1562,"Moved in 1990–1999":15.0221,"1989 or earlier":18.8228},"Washington County":{"Moved in 2021 or later":3.1684,"Moved in 2018–2020":14.679,"Moved in 2010–2017":24.9844,"Moved in 2000–2009":22.6387,"Moved in 1990–1999":16.372,"1989 or earlier":18.1575}};
+    const colors = {
+  'Moved in 2021 or later': '#377EF1',
+  'Moved in 2018–2020': '#FF7F00',
+  'Moved in 2010–2017': '#66A61E',
+  'Moved in 2000–2009': '#E6AB01',
+  'Moved in 1990–1999': '#7570B1',
+  '1989 or earlier': '#E41A1C'
+};
+
+    const ctx = document.getElementById("pieChart").getContext("2d");
+    let chart;
+
+    function renderChart(key) {
+      const values = data[key];
+      const labels = Object.keys(values);
+      const percentages = Object.values(values);
+
+      if (chart) chart.destroy();
+
+      chart = new Chart(ctx, {
+        type: "pie",
+        data: {
+          labels: labels,
+          datasets: [{
+            data: percentages,
+            backgroundColor: labels.map(label => colors[label] || "#cccccc")
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: true,
+          aspectRatio: 1.5,
+          plugins: {
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  return context.label + ": " + context.formattedValue + "%";
+                }
+              }
+            },
+            legend: {
+              position: "right",
+              labels: {
+                usePointStyle: true,
+                pointStyle: "rect"
+              }
+            }
+          }
+        }
+      });
+    }
+
+    // Populate dropdown (Statewide first, then counties A->Z)
+    const select = document.getElementById("countySelect");
+    const keys = ["Statewide", ...Object.keys(data).filter(k => k !== "Statewide").sort()];
+    keys.forEach(k => {
+      const opt = document.createElement("option");
+      opt.value = k;
+      opt.text  = k;
+      select.appendChild(opt);
+    });
+    select.value = "Statewide";
+    select.addEventListener("change", () => renderChart(select.value));
+
+    renderChart("Statewide");
+  </script>
+</body>
+</html>
+</html>

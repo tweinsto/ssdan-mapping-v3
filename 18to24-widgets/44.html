@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Educational Enrollment – Rhode Island</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Educational Enrollment (Age 18–24) in Rhode Island</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Bristol County, Rhode Island">Bristol County, Rhode Island</option>
+      <option value="Kent County, Rhode Island">Kent County, Rhode Island</option>
+      <option value="Newport County, Rhode Island">Newport County, Rhode Island</option>
+      <option value="Providence County, Rhode Island">Providence County, Rhode Island</option>
+      <option value="Washington County, Rhode Island">Washington County, Rhode Island</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>  const data = {"Statewide":{"Enrolled in College / Grad. School":56.5,"Not Enrolled":43.5},"Bristol County, Rhode Island":{"Enrolled in College / Grad. School":74.1,"Not Enrolled":25.9},"Kent County, Rhode Island":{"Enrolled in College / Grad. School":39.2,"Not Enrolled":60.8},"Newport County, Rhode Island":{"Enrolled in College / Grad. School":52.6,"Not Enrolled":47.4},"Providence County, Rhode Island":{"Enrolled in College / Grad. School":55,"Not Enrolled":45},"Washington County, Rhode Island":{"Enrolled in College / Grad. School":68.9,"Not Enrolled":31.1}};
+  const categories = ["Enrolled in College / Grad. School","Not Enrolled"];
+  const ctx = document.getElementById("barChart").getContext("2d");
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: categories,
+        datasets: [
+          {
+            label: "County/State",
+            data: values,
+            backgroundColor: ["#66c2a5", "#fc8d62"]
+          }
+        ]
+      },
+      options: {
+        indexAxis: "y",
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            ticks: {
+              callback: v => v + "%"
+            }
+          }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.dataset.label + ": " + ctx.raw + "%"
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById("countySelect").addEventListener("change", function() {
+    renderChart(Object.values(data[this.value]));
+  });
+
+  renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

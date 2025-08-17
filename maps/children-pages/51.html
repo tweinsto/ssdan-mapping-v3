@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="UTF-8">
+  <title>Children – State Virginia</title>
+  <style>
+  body {
+    margin: 2rem;
+    font-family: sans-serif;
+    background-color: #f8f9fa;
+  }
+  h1 {
+    font-size: 1.6rem;
+    margin-bottom: 1.5rem;
+    color: #333;
+  }
+  .grid-container {
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+  }
+  .panel {
+    flex: 1;
+    background: white;
+    padding: 1rem;
+     border: 2px solid #676da7;
+    border-radius: 10px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.08);
+  }
+  iframe {
+    width: 100%;
+    height: 600px;
+    border: none;
+    border-radius: 8px;
+  }
+</style>
+</head>
+<body>
+
+  <h1>% of Households With Children Under 18 – Virginia (2023)</h1>
+
+  <div class="grid-container">
+    <div class="panel">
+      <iframe src="../child-maps/51.html" title="Chidren Map – 51"></iframe>
+    </div>
+    <div class="panel">
+      
+    <div id="toggle-wrap">
+<style>
+  .tab-buttons { display: flex; gap: .5rem; margin: 0 0 0.75rem 0; }
+  .tab-buttons button {
+    padding: .45rem .75rem; border: 1px solid #676da7; border-radius: .5rem;
+    background: #fff; cursor: pointer; font-size: .95rem;
+  }
+  .tab-buttons button.active {
+    background: #676da7; color: #fff; font-weight: 600;
+  }
+</style>
+<div class="tab-buttons">
+<button id="btn-living" class="active" aria-pressed="true">Living Arrangements</button><button id="btn-age" aria-pressed="false">Age Distribution</button>
+</div>
+
+
+
+  <details class="collapsible-menu">
+  <summary>Note</summary>
+  <ul>
+  
+Calculations reflect the share of households with children under 18, grouped by living arrangement (Table B09005 - 	
+Household Type for Children Under 18 Years in Households (Excluding Householders, Spouses, and Unmarried Partners). “Living Arrangements” charts are based on ACS published counts, while “Age Distribution” charts use ACS age-by-sex tables (B01001) to compute the proportion of children in different age groups.
+
+  </ul>
+</details>
+<iframe id="children-iframe" src="../child-arrangements/51.html" title="Children Chart" style="width: 100%; height: 900px; border: none; border-radius: 8px;"></iframe><script>
+  (function(){
+    const livingURL = "../child-arrangements/51.html";
+    const ageURL    = "../age-children/51.html";
+    const frame     = document.getElementById("children-iframe");
+    const btnLiving = document.getElementById("btn-living");
+    const btnAge    = document.getElementById("btn-age");
+
+    function setActive(which){
+      if(which === "living"){
+        frame.src = livingURL;
+        btnLiving.classList.add("active");
+        btnLiving.setAttribute("aria-pressed", "true");
+        btnAge.classList.remove("active");
+        btnAge.setAttribute("aria-pressed", "false");
+      } else {
+        frame.src = ageURL;
+        btnAge.classList.add("active");
+        btnAge.setAttribute("aria-pressed", "true");
+        btnLiving.classList.remove("active");
+        btnLiving.setAttribute("aria-pressed", "false");
+      }
+    }
+
+    btnLiving.addEventListener("click", function(){ setActive("living"); });
+    btnAge.addEventListener("click", function(){ setActive("age"); });
+    // default view: Living Arrangements already set via initial src
+  })();
+</script>
+</div>
+</div>
+  </div>
+
+</body>
+</html>

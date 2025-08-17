@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Educational Enrollment – Montana</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Educational Enrollment (Age 18–24) in Montana</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Beaverhead County, Montana">Beaverhead County, Montana</option>
+      <option value="Big Horn County, Montana">Big Horn County, Montana</option>
+      <option value="Blaine County, Montana">Blaine County, Montana</option>
+      <option value="Broadwater County, Montana">Broadwater County, Montana</option>
+      <option value="Carbon County, Montana">Carbon County, Montana</option>
+      <option value="Carter County, Montana">Carter County, Montana</option>
+      <option value="Cascade County, Montana">Cascade County, Montana</option>
+      <option value="Chouteau County, Montana">Chouteau County, Montana</option>
+      <option value="Custer County, Montana">Custer County, Montana</option>
+      <option value="Daniels County, Montana">Daniels County, Montana</option>
+      <option value="Dawson County, Montana">Dawson County, Montana</option>
+      <option value="Deer Lodge County, Montana">Deer Lodge County, Montana</option>
+      <option value="Fallon County, Montana">Fallon County, Montana</option>
+      <option value="Fergus County, Montana">Fergus County, Montana</option>
+      <option value="Flathead County, Montana">Flathead County, Montana</option>
+      <option value="Gallatin County, Montana">Gallatin County, Montana</option>
+      <option value="Garfield County, Montana">Garfield County, Montana</option>
+      <option value="Glacier County, Montana">Glacier County, Montana</option>
+      <option value="Golden Valley County, Montana">Golden Valley County, Montana</option>
+      <option value="Granite County, Montana">Granite County, Montana</option>
+      <option value="Hill County, Montana">Hill County, Montana</option>
+      <option value="Jefferson County, Montana">Jefferson County, Montana</option>
+      <option value="Judith Basin County, Montana">Judith Basin County, Montana</option>
+      <option value="Lake County, Montana">Lake County, Montana</option>
+      <option value="Lewis and Clark County, Montana">Lewis and Clark County, Montana</option>
+      <option value="Liberty County, Montana">Liberty County, Montana</option>
+      <option value="Lincoln County, Montana">Lincoln County, Montana</option>
+      <option value="Madison County, Montana">Madison County, Montana</option>
+      <option value="McCone County, Montana">McCone County, Montana</option>
+      <option value="Meagher County, Montana">Meagher County, Montana</option>
+      <option value="Mineral County, Montana">Mineral County, Montana</option>
+      <option value="Missoula County, Montana">Missoula County, Montana</option>
+      <option value="Musselshell County, Montana">Musselshell County, Montana</option>
+      <option value="Park County, Montana">Park County, Montana</option>
+      <option value="Petroleum County, Montana">Petroleum County, Montana</option>
+      <option value="Phillips County, Montana">Phillips County, Montana</option>
+      <option value="Pondera County, Montana">Pondera County, Montana</option>
+      <option value="Powder River County, Montana">Powder River County, Montana</option>
+      <option value="Powell County, Montana">Powell County, Montana</option>
+      <option value="Prairie County, Montana">Prairie County, Montana</option>
+      <option value="Ravalli County, Montana">Ravalli County, Montana</option>
+      <option value="Richland County, Montana">Richland County, Montana</option>
+      <option value="Roosevelt County, Montana">Roosevelt County, Montana</option>
+      <option value="Rosebud County, Montana">Rosebud County, Montana</option>
+      <option value="Sanders County, Montana">Sanders County, Montana</option>
+      <option value="Sheridan County, Montana">Sheridan County, Montana</option>
+      <option value="Silver Bow County, Montana">Silver Bow County, Montana</option>
+      <option value="Stillwater County, Montana">Stillwater County, Montana</option>
+      <option value="Sweet Grass County, Montana">Sweet Grass County, Montana</option>
+      <option value="Teton County, Montana">Teton County, Montana</option>
+      <option value="Toole County, Montana">Toole County, Montana</option>
+      <option value="Treasure County, Montana">Treasure County, Montana</option>
+      <option value="Valley County, Montana">Valley County, Montana</option>
+      <option value="Wheatland County, Montana">Wheatland County, Montana</option>
+      <option value="Wibaux County, Montana">Wibaux County, Montana</option>
+      <option value="Yellowstone County, Montana">Yellowstone County, Montana</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>  const data = {"Statewide":{"Enrolled in College / Grad. School":35.6,"Not Enrolled":64.4},"Beaverhead County, Montana":{"Enrolled in College / Grad. School":49.2,"Not Enrolled":50.8},"Big Horn County, Montana":{"Enrolled in College / Grad. School":14.8,"Not Enrolled":85.2},"Blaine County, Montana":{"Enrolled in College / Grad. School":20.5,"Not Enrolled":79.5},"Broadwater County, Montana":{"Enrolled in College / Grad. School":17.1,"Not Enrolled":82.9},"Carbon County, Montana":{"Enrolled in College / Grad. School":7.6,"Not Enrolled":92.4},"Carter County, Montana":{"Enrolled in College / Grad. School":15.7,"Not Enrolled":84.3},"Cascade County, Montana":{"Enrolled in College / Grad. School":25.2,"Not Enrolled":74.8},"Chouteau County, Montana":{"Enrolled in College / Grad. School":23.5,"Not Enrolled":76.5},"Custer County, Montana":{"Enrolled in College / Grad. School":39.1,"Not Enrolled":60.9},"Daniels County, Montana":{"Enrolled in College / Grad. School":0,"Not Enrolled":100},"Dawson County, Montana":{"Enrolled in College / Grad. School":40.3,"Not Enrolled":59.7},"Deer Lodge County, Montana":{"Enrolled in College / Grad. School":10.7,"Not Enrolled":89.3},"Fallon County, Montana":{"Enrolled in College / Grad. School":0,"Not Enrolled":100},"Fergus County, Montana":{"Enrolled in College / Grad. School":9.5,"Not Enrolled":90.5},"Flathead County, Montana":{"Enrolled in College / Grad. School":21.6,"Not Enrolled":78.4},"Gallatin County, Montana":{"Enrolled in College / Grad. School":62,"Not Enrolled":38},"Garfield County, Montana":{"Enrolled in College / Grad. School":3.9,"Not Enrolled":96.1},"Glacier County, Montana":{"Enrolled in College / Grad. School":13.4,"Not Enrolled":86.6},"Golden Valley County, Montana":{"Enrolled in College / Grad. School":33.3,"Not Enrolled":66.7},"Granite County, Montana":{"Enrolled in College / Grad. School":23.7,"Not Enrolled":76.3},"Hill County, Montana":{"Enrolled in College / Grad. School":42.2,"Not Enrolled":57.8},"Jefferson County, Montana":{"Enrolled in College / Grad. School":23.8,"Not Enrolled":76.2},"Judith Basin County, Montana":{"Enrolled in College / Grad. School":41.4,"Not Enrolled":58.6},"Lake County, Montana":{"Enrolled in College / Grad. School":24.2,"Not Enrolled":75.8},"Lewis and Clark County, Montana":{"Enrolled in College / Grad. School":41.2,"Not Enrolled":58.8},"Liberty County, Montana":{"Enrolled in College / Grad. School":0,"Not Enrolled":100},"Lincoln County, Montana":{"Enrolled in College / Grad. School":10.2,"Not Enrolled":89.8},"McCone County, Montana":{"Enrolled in College / Grad. School":0,"Not Enrolled":100},"Madison County, Montana":{"Enrolled in College / Grad. School":8,"Not Enrolled":92},"Meagher County, Montana":{"Enrolled in College / Grad. School":22.7,"Not Enrolled":77.3},"Mineral County, Montana":{"Enrolled in College / Grad. School":5.9,"Not Enrolled":94.1},"Missoula County, Montana":{"Enrolled in College / Grad. School":41.1,"Not Enrolled":58.9},"Musselshell County, Montana":{"Enrolled in College / Grad. School":3,"Not Enrolled":97},"Park County, Montana":{"Enrolled in College / Grad. School":35,"Not Enrolled":65},"Petroleum County, Montana":{"Enrolled in College / Grad. School":30,"Not Enrolled":70},"Phillips County, Montana":{"Enrolled in College / Grad. School":5,"Not Enrolled":95},"Pondera County, Montana":{"Enrolled in College / Grad. School":23,"Not Enrolled":77},"Powder River County, Montana":{"Enrolled in College / Grad. School":29,"Not Enrolled":71},"Powell County, Montana":{"Enrolled in College / Grad. School":8.5,"Not Enrolled":91.5},"Prairie County, Montana":{"Enrolled in College / Grad. School":0,"Not Enrolled":100},"Ravalli County, Montana":{"Enrolled in College / Grad. School":13,"Not Enrolled":87},"Richland County, Montana":{"Enrolled in College / Grad. School":33.7,"Not Enrolled":66.3},"Roosevelt County, Montana":{"Enrolled in College / Grad. School":21.1,"Not Enrolled":78.9},"Rosebud County, Montana":{"Enrolled in College / Grad. School":16.4,"Not Enrolled":83.6},"Sanders County, Montana":{"Enrolled in College / Grad. School":23.9,"Not Enrolled":76.1},"Sheridan County, Montana":{"Enrolled in College / Grad. School":22.9,"Not Enrolled":77.1},"Silver Bow County, Montana":{"Enrolled in College / Grad. School":46.5,"Not Enrolled":53.5},"Stillwater County, Montana":{"Enrolled in College / Grad. School":12.8,"Not Enrolled":87.2},"Sweet Grass County, Montana":{"Enrolled in College / Grad. School":14.6,"Not Enrolled":85.4},"Teton County, Montana":{"Enrolled in College / Grad. School":9.1,"Not Enrolled":90.9},"Toole County, Montana":{"Enrolled in College / Grad. School":19.3,"Not Enrolled":80.7},"Treasure County, Montana":{"Enrolled in College / Grad. School":17.6,"Not Enrolled":82.4},"Valley County, Montana":{"Enrolled in College / Grad. School":30.3,"Not Enrolled":69.7},"Wheatland County, Montana":{"Enrolled in College / Grad. School":0,"Not Enrolled":100},"Wibaux County, Montana":{"Enrolled in College / Grad. School":13.6,"Not Enrolled":86.4},"Yellowstone County, Montana":{"Enrolled in College / Grad. School":27.4,"Not Enrolled":72.6}};
+  const categories = ["Enrolled in College / Grad. School","Not Enrolled"];
+  const ctx = document.getElementById("barChart").getContext("2d");
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: categories,
+        datasets: [
+          {
+            label: "County/State",
+            data: values,
+            backgroundColor: ["#66c2a5", "#fc8d62"]
+          }
+        ]
+      },
+      options: {
+        indexAxis: "y",
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            ticks: {
+              callback: v => v + "%"
+            }
+          }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.dataset.label + ": " + ctx.raw + "%"
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById("countySelect").addEventListener("change", function() {
+    renderChart(Object.values(data[this.value]));
+  });
+
+  renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

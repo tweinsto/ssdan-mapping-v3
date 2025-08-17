@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Living Arrangements of Children – Indiana</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Children’s Living Arrangements (Under 18) – Indiana</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Adams County, Indiana">Adams County, Indiana</option>
+      <option value="Allen County, Indiana">Allen County, Indiana</option>
+      <option value="Bartholomew County, Indiana">Bartholomew County, Indiana</option>
+      <option value="Benton County, Indiana">Benton County, Indiana</option>
+      <option value="Blackford County, Indiana">Blackford County, Indiana</option>
+      <option value="Boone County, Indiana">Boone County, Indiana</option>
+      <option value="Brown County, Indiana">Brown County, Indiana</option>
+      <option value="Carroll County, Indiana">Carroll County, Indiana</option>
+      <option value="Cass County, Indiana">Cass County, Indiana</option>
+      <option value="Clark County, Indiana">Clark County, Indiana</option>
+      <option value="Clay County, Indiana">Clay County, Indiana</option>
+      <option value="Clinton County, Indiana">Clinton County, Indiana</option>
+      <option value="Crawford County, Indiana">Crawford County, Indiana</option>
+      <option value="Daviess County, Indiana">Daviess County, Indiana</option>
+      <option value="Dearborn County, Indiana">Dearborn County, Indiana</option>
+      <option value="Decatur County, Indiana">Decatur County, Indiana</option>
+      <option value="DeKalb County, Indiana">DeKalb County, Indiana</option>
+      <option value="Delaware County, Indiana">Delaware County, Indiana</option>
+      <option value="Dubois County, Indiana">Dubois County, Indiana</option>
+      <option value="Elkhart County, Indiana">Elkhart County, Indiana</option>
+      <option value="Fayette County, Indiana">Fayette County, Indiana</option>
+      <option value="Floyd County, Indiana">Floyd County, Indiana</option>
+      <option value="Fountain County, Indiana">Fountain County, Indiana</option>
+      <option value="Franklin County, Indiana">Franklin County, Indiana</option>
+      <option value="Fulton County, Indiana">Fulton County, Indiana</option>
+      <option value="Gibson County, Indiana">Gibson County, Indiana</option>
+      <option value="Grant County, Indiana">Grant County, Indiana</option>
+      <option value="Greene County, Indiana">Greene County, Indiana</option>
+      <option value="Hamilton County, Indiana">Hamilton County, Indiana</option>
+      <option value="Hancock County, Indiana">Hancock County, Indiana</option>
+      <option value="Harrison County, Indiana">Harrison County, Indiana</option>
+      <option value="Hendricks County, Indiana">Hendricks County, Indiana</option>
+      <option value="Henry County, Indiana">Henry County, Indiana</option>
+      <option value="Howard County, Indiana">Howard County, Indiana</option>
+      <option value="Huntington County, Indiana">Huntington County, Indiana</option>
+      <option value="Jackson County, Indiana">Jackson County, Indiana</option>
+      <option value="Jasper County, Indiana">Jasper County, Indiana</option>
+      <option value="Jay County, Indiana">Jay County, Indiana</option>
+      <option value="Jefferson County, Indiana">Jefferson County, Indiana</option>
+      <option value="Jennings County, Indiana">Jennings County, Indiana</option>
+      <option value="Johnson County, Indiana">Johnson County, Indiana</option>
+      <option value="Knox County, Indiana">Knox County, Indiana</option>
+      <option value="Kosciusko County, Indiana">Kosciusko County, Indiana</option>
+      <option value="LaGrange County, Indiana">LaGrange County, Indiana</option>
+      <option value="Lake County, Indiana">Lake County, Indiana</option>
+      <option value="LaPorte County, Indiana">LaPorte County, Indiana</option>
+      <option value="Lawrence County, Indiana">Lawrence County, Indiana</option>
+      <option value="Madison County, Indiana">Madison County, Indiana</option>
+      <option value="Marion County, Indiana">Marion County, Indiana</option>
+      <option value="Marshall County, Indiana">Marshall County, Indiana</option>
+      <option value="Martin County, Indiana">Martin County, Indiana</option>
+      <option value="Miami County, Indiana">Miami County, Indiana</option>
+      <option value="Monroe County, Indiana">Monroe County, Indiana</option>
+      <option value="Montgomery County, Indiana">Montgomery County, Indiana</option>
+      <option value="Morgan County, Indiana">Morgan County, Indiana</option>
+      <option value="Newton County, Indiana">Newton County, Indiana</option>
+      <option value="Noble County, Indiana">Noble County, Indiana</option>
+      <option value="Ohio County, Indiana">Ohio County, Indiana</option>
+      <option value="Orange County, Indiana">Orange County, Indiana</option>
+      <option value="Owen County, Indiana">Owen County, Indiana</option>
+      <option value="Parke County, Indiana">Parke County, Indiana</option>
+      <option value="Perry County, Indiana">Perry County, Indiana</option>
+      <option value="Pike County, Indiana">Pike County, Indiana</option>
+      <option value="Porter County, Indiana">Porter County, Indiana</option>
+      <option value="Posey County, Indiana">Posey County, Indiana</option>
+      <option value="Pulaski County, Indiana">Pulaski County, Indiana</option>
+      <option value="Putnam County, Indiana">Putnam County, Indiana</option>
+      <option value="Randolph County, Indiana">Randolph County, Indiana</option>
+      <option value="Ripley County, Indiana">Ripley County, Indiana</option>
+      <option value="Rush County, Indiana">Rush County, Indiana</option>
+      <option value="Scott County, Indiana">Scott County, Indiana</option>
+      <option value="Shelby County, Indiana">Shelby County, Indiana</option>
+      <option value="Spencer County, Indiana">Spencer County, Indiana</option>
+      <option value="St. Joseph County, Indiana">St. Joseph County, Indiana</option>
+      <option value="Starke County, Indiana">Starke County, Indiana</option>
+      <option value="Steuben County, Indiana">Steuben County, Indiana</option>
+      <option value="Sullivan County, Indiana">Sullivan County, Indiana</option>
+      <option value="Switzerland County, Indiana">Switzerland County, Indiana</option>
+      <option value="Tippecanoe County, Indiana">Tippecanoe County, Indiana</option>
+      <option value="Tipton County, Indiana">Tipton County, Indiana</option>
+      <option value="Union County, Indiana">Union County, Indiana</option>
+      <option value="Vanderburgh County, Indiana">Vanderburgh County, Indiana</option>
+      <option value="Vermillion County, Indiana">Vermillion County, Indiana</option>
+      <option value="Vigo County, Indiana">Vigo County, Indiana</option>
+      <option value="Wabash County, Indiana">Wabash County, Indiana</option>
+      <option value="Warren County, Indiana">Warren County, Indiana</option>
+      <option value="Warrick County, Indiana">Warrick County, Indiana</option>
+      <option value="Washington County, Indiana">Washington County, Indiana</option>
+      <option value="Wayne County, Indiana">Wayne County, Indiana</option>
+      <option value="Wells County, Indiana">Wells County, Indiana</option>
+      <option value="White County, Indiana">White County, Indiana</option>
+      <option value="Whitley County, Indiana">Whitley County, Indiana</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>  const data = {"Statewide":{"Married Couple (%)":67,"Cohabiting Couple (%)":9.2,"Male Householder (%)":4.8,"Female Householder (%)":19},"Adams County, Indiana":{"Married Couple (%)":85.3,"Cohabiting Couple (%)":4.5,"Male Householder (%)":4.2,"Female Householder (%)":6},"Allen County, Indiana":{"Married Couple (%)":66.9,"Cohabiting Couple (%)":8.6,"Male Householder (%)":4.1,"Female Householder (%)":20.4},"Bartholomew County, Indiana":{"Married Couple (%)":69.1,"Cohabiting Couple (%)":7.9,"Male Householder (%)":5,"Female Householder (%)":18},"Benton County, Indiana":{"Married Couple (%)":67.8,"Cohabiting Couple (%)":13.9,"Male Householder (%)":3.3,"Female Householder (%)":15},"Blackford County, Indiana":{"Married Couple (%)":69.7,"Cohabiting Couple (%)":9.1,"Male Householder (%)":2.8,"Female Householder (%)":18.4},"Boone County, Indiana":{"Married Couple (%)":79.3,"Cohabiting Couple (%)":5.1,"Male Householder (%)":4.2,"Female Householder (%)":11.4},"Brown County, Indiana":{"Married Couple (%)":72.1,"Cohabiting Couple (%)":5.8,"Male Householder (%)":7.2,"Female Householder (%)":15},"Carroll County, Indiana":{"Married Couple (%)":69.7,"Cohabiting Couple (%)":18.3,"Male Householder (%)":2.9,"Female Householder (%)":9},"Cass County, Indiana":{"Married Couple (%)":55.6,"Cohabiting Couple (%)":13.7,"Male Householder (%)":4.8,"Female Householder (%)":26},"Clark County, Indiana":{"Married Couple (%)":61.8,"Cohabiting Couple (%)":14.3,"Male Householder (%)":6,"Female Householder (%)":17.9},"Clay County, Indiana":{"Married Couple (%)":69.5,"Cohabiting Couple (%)":10.7,"Male Householder (%)":6.8,"Female Householder (%)":13},"Clinton County, Indiana":{"Married Couple (%)":73.7,"Cohabiting Couple (%)":9.4,"Male Householder (%)":1.5,"Female Householder (%)":15.5},"Crawford County, Indiana":{"Married Couple (%)":81.2,"Cohabiting Couple (%)":6.2,"Male Householder (%)":3.9,"Female Householder (%)":8.7},"Daviess County, Indiana":{"Married Couple (%)":80.6,"Cohabiting Couple (%)":10.6,"Male Householder (%)":3.7,"Female Householder (%)":5.1},"Dearborn County, Indiana":{"Married Couple (%)":75.1,"Cohabiting Couple (%)":7.6,"Male Householder (%)":4.7,"Female Householder (%)":12.7},"Decatur County, Indiana":{"Married Couple (%)":75.2,"Cohabiting Couple (%)":11,"Male Householder (%)":4.1,"Female Householder (%)":9.7},"DeKalb County, Indiana":{"Married Couple (%)":69,"Cohabiting Couple (%)":10,"Male Householder (%)":5.6,"Female Householder (%)":15.4},"Delaware County, Indiana":{"Married Couple (%)":58.4,"Cohabiting Couple (%)":14.9,"Male Householder (%)":5.8,"Female Householder (%)":20.9},"Dubois County, Indiana":{"Married Couple (%)":73,"Cohabiting Couple (%)":9.3,"Male Householder (%)":3.2,"Female Householder (%)":14.4},"Elkhart County, Indiana":{"Married Couple (%)":65.7,"Cohabiting Couple (%)":7.5,"Male Householder (%)":5.5,"Female Householder (%)":21.3},"Fayette County, Indiana":{"Married Couple (%)":57.3,"Cohabiting Couple (%)":7.2,"Male Householder (%)":7.3,"Female Householder (%)":28.2},"Floyd County, Indiana":{"Married Couple (%)":67.5,"Cohabiting Couple (%)":6.4,"Male Householder (%)":5.3,"Female Householder (%)":20.8},"Fountain County, Indiana":{"Married Couple (%)":68.4,"Cohabiting Couple (%)":11.6,"Male Householder (%)":7.8,"Female Householder (%)":12.2},"Franklin County, Indiana":{"Married Couple (%)":75.2,"Cohabiting Couple (%)":13.9,"Male Householder (%)":2.4,"Female Householder (%)":8.5},"Fulton County, Indiana":{"Married Couple (%)":72.7,"Cohabiting Couple (%)":12.6,"Male Householder (%)":1.8,"Female Householder (%)":12.9},"Gibson County, Indiana":{"Married Couple (%)":73.7,"Cohabiting Couple (%)":8.6,"Male Householder (%)":4.4,"Female Householder (%)":13.2},"Grant County, Indiana":{"Married Couple (%)":59,"Cohabiting Couple (%)":16.6,"Male Householder (%)":4.9,"Female Householder (%)":19.6},"Greene County, Indiana":{"Married Couple (%)":63.9,"Cohabiting Couple (%)":11.1,"Male Householder (%)":5.2,"Female Householder (%)":19.7},"Hamilton County, Indiana":{"Married Couple (%)":83.5,"Cohabiting Couple (%)":4,"Male Householder (%)":3.5,"Female Householder (%)":9},"Hancock County, Indiana":{"Married Couple (%)":80,"Cohabiting Couple (%)":5.3,"Male Householder (%)":5.1,"Female Householder (%)":9.6},"Harrison County, Indiana":{"Married Couple (%)":74.2,"Cohabiting Couple (%)":9.5,"Male Householder (%)":6.2,"Female Householder (%)":10.1},"Hendricks County, Indiana":{"Married Couple (%)":79.2,"Cohabiting Couple (%)":6.5,"Male Householder (%)":3.9,"Female Householder (%)":10.4},"Henry County, Indiana":{"Married Couple (%)":67.1,"Cohabiting Couple (%)":11.1,"Male Householder (%)":6.8,"Female Householder (%)":15},"Howard County, Indiana":{"Married Couple (%)":59.2,"Cohabiting Couple (%)":10.6,"Male Householder (%)":5.3,"Female Householder (%)":24.8},"Huntington County, Indiana":{"Married Couple (%)":62.3,"Cohabiting Couple (%)":15.2,"Male Householder (%)":8.3,"Female Householder (%)":14.3},"Jackson County, Indiana":{"Married Couple (%)":68.6,"Cohabiting Couple (%)":14.6,"Male Householder (%)":5.7,"Female Householder (%)":11},"Jasper County, Indiana":{"Married Couple (%)":76.6,"Cohabiting Couple (%)":11.9,"Male Householder (%)":3.9,"Female Householder (%)":7.6},"Jay County, Indiana":{"Married Couple (%)":67.6,"Cohabiting Couple (%)":16.6,"Male Householder (%)":4,"Female Householder (%)":11.7},"Jefferson County, Indiana":{"Married Couple (%)":60,"Cohabiting Couple (%)":10.8,"Male Householder (%)":5.7,"Female Householder (%)":23.5},"Jennings County, Indiana":{"Married Couple (%)":58.6,"Cohabiting Couple (%)":14.6,"Male Householder (%)":6.5,"Female Householder (%)":20.3},"Johnson County, Indiana":{"Married Couple (%)":73.6,"Cohabiting Couple (%)":10.5,"Male Householder (%)":3.9,"Female Householder (%)":12},"Knox County, Indiana":{"Married Couple (%)":68.2,"Cohabiting Couple (%)":8.7,"Male Householder (%)":4.2,"Female Householder (%)":18.9},"Kosciusko County, Indiana":{"Married Couple (%)":70.7,"Cohabiting Couple (%)":7,"Male Householder (%)":6.2,"Female Householder (%)":16.1},"LaGrange County, Indiana":{"Married Couple (%)":87.8,"Cohabiting Couple (%)":4,"Male Householder (%)":1.4,"Female Householder (%)":6.9},"Lake County, Indiana":{"Married Couple (%)":55.3,"Cohabiting Couple (%)":9.4,"Male Householder (%)":6.2,"Female Householder (%)":29.1},"LaPorte County, Indiana":{"Married Couple (%)":52.8,"Cohabiting Couple (%)":12.2,"Male Householder (%)":6.3,"Female Householder (%)":28.6},"Lawrence County, Indiana":{"Married Couple (%)":70.9,"Cohabiting Couple (%)":7.7,"Male Householder (%)":4.8,"Female Householder (%)":16.6},"Madison County, Indiana":{"Married Couple (%)":58.9,"Cohabiting Couple (%)":11.3,"Male Householder (%)":5.5,"Female Householder (%)":24.2},"Marion County, Indiana":{"Married Couple (%)":59.1,"Cohabiting Couple (%)":8.1,"Male Householder (%)":5,"Female Householder (%)":27.7},"Marshall County, Indiana":{"Married Couple (%)":76.8,"Cohabiting Couple (%)":9.9,"Male Householder (%)":2.9,"Female Householder (%)":10.5},"Martin County, Indiana":{"Married Couple (%)":76.2,"Cohabiting Couple (%)":3.9,"Male Householder (%)":7,"Female Householder (%)":12.9},"Miami County, Indiana":{"Married Couple (%)":69.3,"Cohabiting Couple (%)":10.7,"Male Householder (%)":3.3,"Female Householder (%)":16.7},"Monroe County, Indiana":{"Married Couple (%)":67.7,"Cohabiting Couple (%)":10.2,"Male Householder (%)":3.1,"Female Householder (%)":19},"Montgomery County, Indiana":{"Married Couple (%)":72.6,"Cohabiting Couple (%)":10.1,"Male Householder (%)":5.5,"Female Householder (%)":11.7},"Morgan County, Indiana":{"Married Couple (%)":69.5,"Cohabiting Couple (%)":8.5,"Male Householder (%)":4.8,"Female Householder (%)":17.2},"Newton County, Indiana":{"Married Couple (%)":66.3,"Cohabiting Couple (%)":8.5,"Male Householder (%)":8.8,"Female Householder (%)":16.4},"Noble County, Indiana":{"Married Couple (%)":76.2,"Cohabiting Couple (%)":8.7,"Male Householder (%)":3.7,"Female Householder (%)":11.3},"Ohio County, Indiana":{"Married Couple (%)":61.2,"Cohabiting Couple (%)":14.5,"Male Householder (%)":7.6,"Female Householder (%)":16.7},"Orange County, Indiana":{"Married Couple (%)":62.8,"Cohabiting Couple (%)":10.1,"Male Householder (%)":6.1,"Female Householder (%)":20.9},"Owen County, Indiana":{"Married Couple (%)":65.9,"Cohabiting Couple (%)":14,"Male Householder (%)":5.8,"Female Householder (%)":14.4},"Parke County, Indiana":{"Married Couple (%)":68,"Cohabiting Couple (%)":16.3,"Male Householder (%)":5.6,"Female Householder (%)":10.1},"Perry County, Indiana":{"Married Couple (%)":75.7,"Cohabiting Couple (%)":5.2,"Male Householder (%)":1.5,"Female Householder (%)":17.6},"Pike County, Indiana":{"Married Couple (%)":69.6,"Cohabiting Couple (%)":19.2,"Male Householder (%)":5.5,"Female Householder (%)":5.7},"Porter County, Indiana":{"Married Couple (%)":73.6,"Cohabiting Couple (%)":9.1,"Male Householder (%)":3.7,"Female Householder (%)":13.7},"Posey County, Indiana":{"Married Couple (%)":75.7,"Cohabiting Couple (%)":8,"Male Householder (%)":3.8,"Female Householder (%)":12.5},"Pulaski County, Indiana":{"Married Couple (%)":68.6,"Cohabiting Couple (%)":12.7,"Male Householder (%)":3,"Female Householder (%)":15.7},"Putnam County, Indiana":{"Married Couple (%)":67.5,"Cohabiting Couple (%)":13.8,"Male Householder (%)":6.2,"Female Householder (%)":12.5},"Randolph County, Indiana":{"Married Couple (%)":63.4,"Cohabiting Couple (%)":10.5,"Male Householder (%)":7.3,"Female Householder (%)":18.8},"Ripley County, Indiana":{"Married Couple (%)":70.8,"Cohabiting Couple (%)":11,"Male Householder (%)":5.1,"Female Householder (%)":13.2},"Rush County, Indiana":{"Married Couple (%)":67.4,"Cohabiting Couple (%)":14.8,"Male Householder (%)":5.9,"Female Householder (%)":11.9},"Scott County, Indiana":{"Married Couple (%)":65.6,"Cohabiting Couple (%)":13.1,"Male Householder (%)":9.4,"Female Householder (%)":11.9},"Shelby County, Indiana":{"Married Couple (%)":77.3,"Cohabiting Couple (%)":9.7,"Male Householder (%)":2.7,"Female Householder (%)":10.3},"Spencer County, Indiana":{"Married Couple (%)":78.1,"Cohabiting Couple (%)":7.1,"Male Householder (%)":5.4,"Female Householder (%)":9.4},"St. Joseph County, Indiana":{"Married Couple (%)":62.4,"Cohabiting Couple (%)":10.3,"Male Householder (%)":4,"Female Householder (%)":23.4},"Starke County, Indiana":{"Married Couple (%)":73.2,"Cohabiting Couple (%)":10.5,"Male Householder (%)":7,"Female Householder (%)":9.3},"Steuben County, Indiana":{"Married Couple (%)":74.4,"Cohabiting Couple (%)":13.5,"Male Householder (%)":3.1,"Female Householder (%)":9.1},"Sullivan County, Indiana":{"Married Couple (%)":60.7,"Cohabiting Couple (%)":12.1,"Male Householder (%)":4.6,"Female Householder (%)":22.6},"Switzerland County, Indiana":{"Married Couple (%)":68.3,"Cohabiting Couple (%)":6.3,"Male Householder (%)":15.4,"Female Householder (%)":9.9},"Tippecanoe County, Indiana":{"Married Couple (%)":70.5,"Cohabiting Couple (%)":9,"Male Householder (%)":4.2,"Female Householder (%)":16.3},"Tipton County, Indiana":{"Married Couple (%)":79,"Cohabiting Couple (%)":9.7,"Male Householder (%)":4.4,"Female Householder (%)":6.9},"Union County, Indiana":{"Married Couple (%)":77.6,"Cohabiting Couple (%)":5.3,"Male Householder (%)":3.7,"Female Householder (%)":13.4},"Vanderburgh County, Indiana":{"Married Couple (%)":59.6,"Cohabiting Couple (%)":9.7,"Male Householder (%)":5.6,"Female Householder (%)":25.1},"Vermillion County, Indiana":{"Married Couple (%)":67.9,"Cohabiting Couple (%)":11.7,"Male Householder (%)":3.6,"Female Householder (%)":16.7},"Vigo County, Indiana":{"Married Couple (%)":58.7,"Cohabiting Couple (%)":14.7,"Male Householder (%)":5.6,"Female Householder (%)":21},"Wabash County, Indiana":{"Married Couple (%)":67.9,"Cohabiting Couple (%)":7.7,"Male Householder (%)":5.7,"Female Householder (%)":18.7},"Warren County, Indiana":{"Married Couple (%)":69.1,"Cohabiting Couple (%)":7.6,"Male Householder (%)":11.7,"Female Householder (%)":11.6},"Warrick County, Indiana":{"Married Couple (%)":78,"Cohabiting Couple (%)":5.2,"Male Householder (%)":4.2,"Female Householder (%)":12.6},"Washington County, Indiana":{"Married Couple (%)":63.4,"Cohabiting Couple (%)":13.3,"Male Householder (%)":6.8,"Female Householder (%)":16.5},"Wayne County, Indiana":{"Married Couple (%)":67.2,"Cohabiting Couple (%)":8.8,"Male Householder (%)":3,"Female Householder (%)":20.9},"Wells County, Indiana":{"Married Couple (%)":79.4,"Cohabiting Couple (%)":8.5,"Male Householder (%)":2.5,"Female Householder (%)":9.7},"White County, Indiana":{"Married Couple (%)":70,"Cohabiting Couple (%)":12.8,"Male Householder (%)":4.8,"Female Householder (%)":12.4},"Whitley County, Indiana":{"Married Couple (%)":68.5,"Cohabiting Couple (%)":7.4,"Male Householder (%)":7.4,"Female Householder (%)":16.7}};
+  const categories = ["Married Couple (%)","Cohabiting Couple (%)","Male Householder (%)","Female Householder (%)"];
+  const ctx = document.getElementById("barChart").getContext("2d");
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: categories,
+        datasets: [{
+          label: "Share of Children (%)",
+          data: values,
+          backgroundColor: ["#5DA5DA","#FAA43A","#60BD68","#F17CB0"]
+        }]
+      },
+      options: {
+        indexAxis: "y",
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            ticks: { callback: v => v + "%" },
+            title: { display: true, text: "Percent of Children" }
+          }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.raw + "%"
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById("countySelect").addEventListener("change", function() {
+    renderChart(Object.values(data[this.value]));
+  });
+
+  renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

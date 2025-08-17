@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Educational Enrollment – Hawaii</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Educational Enrollment (Age 18–24) in Hawaii</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Hawaii County, Hawaii">Hawaii County, Hawaii</option>
+      <option value="Honolulu County, Hawaii">Honolulu County, Hawaii</option>
+      <option value="Kalawao County, Hawaii">Kalawao County, Hawaii</option>
+      <option value="Kauai County, Hawaii">Kauai County, Hawaii</option>
+      <option value="Maui County, Hawaii">Maui County, Hawaii</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>  const data = {"Statewide":{"Enrolled in College / Grad. School":34.7,"Not Enrolled":65.3},"Hawaii County, Hawaii":{"Enrolled in College / Grad. School":31.7,"Not Enrolled":68.3},"Honolulu County, Hawaii":{"Enrolled in College / Grad. School":37.2,"Not Enrolled":62.8},"Kalawao County, Hawaii":{"Enrolled in College / Grad. School":"NaN","Not Enrolled":"NaN"},"Kauai County, Hawaii":{"Enrolled in College / Grad. School":24,"Not Enrolled":76},"Maui County, Hawaii":{"Enrolled in College / Grad. School":23.3,"Not Enrolled":76.7}};
+  const categories = ["Enrolled in College / Grad. School","Not Enrolled"];
+  const ctx = document.getElementById("barChart").getContext("2d");
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: categories,
+        datasets: [
+          {
+            label: "County/State",
+            data: values,
+            backgroundColor: ["#66c2a5", "#fc8d62"]
+          }
+        ]
+      },
+      options: {
+        indexAxis: "y",
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            ticks: {
+              callback: v => v + "%"
+            }
+          }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.dataset.label + ": " + ctx.raw + "%"
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById("countySelect").addEventListener("change", function() {
+    renderChart(Object.values(data[this.value]));
+  });
+
+  renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

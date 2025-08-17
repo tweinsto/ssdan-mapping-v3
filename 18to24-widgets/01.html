@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Educational Enrollment – Alabama</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Educational Enrollment (Age 18–24) in Alabama</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Autauga County, Alabama">Autauga County, Alabama</option>
+      <option value="Baldwin County, Alabama">Baldwin County, Alabama</option>
+      <option value="Barbour County, Alabama">Barbour County, Alabama</option>
+      <option value="Bibb County, Alabama">Bibb County, Alabama</option>
+      <option value="Blount County, Alabama">Blount County, Alabama</option>
+      <option value="Bullock County, Alabama">Bullock County, Alabama</option>
+      <option value="Butler County, Alabama">Butler County, Alabama</option>
+      <option value="Calhoun County, Alabama">Calhoun County, Alabama</option>
+      <option value="Chambers County, Alabama">Chambers County, Alabama</option>
+      <option value="Cherokee County, Alabama">Cherokee County, Alabama</option>
+      <option value="Chilton County, Alabama">Chilton County, Alabama</option>
+      <option value="Choctaw County, Alabama">Choctaw County, Alabama</option>
+      <option value="Clarke County, Alabama">Clarke County, Alabama</option>
+      <option value="Clay County, Alabama">Clay County, Alabama</option>
+      <option value="Cleburne County, Alabama">Cleburne County, Alabama</option>
+      <option value="Coffee County, Alabama">Coffee County, Alabama</option>
+      <option value="Colbert County, Alabama">Colbert County, Alabama</option>
+      <option value="Conecuh County, Alabama">Conecuh County, Alabama</option>
+      <option value="Coosa County, Alabama">Coosa County, Alabama</option>
+      <option value="Covington County, Alabama">Covington County, Alabama</option>
+      <option value="Crenshaw County, Alabama">Crenshaw County, Alabama</option>
+      <option value="Cullman County, Alabama">Cullman County, Alabama</option>
+      <option value="Dale County, Alabama">Dale County, Alabama</option>
+      <option value="Dallas County, Alabama">Dallas County, Alabama</option>
+      <option value="DeKalb County, Alabama">DeKalb County, Alabama</option>
+      <option value="Elmore County, Alabama">Elmore County, Alabama</option>
+      <option value="Escambia County, Alabama">Escambia County, Alabama</option>
+      <option value="Etowah County, Alabama">Etowah County, Alabama</option>
+      <option value="Fayette County, Alabama">Fayette County, Alabama</option>
+      <option value="Franklin County, Alabama">Franklin County, Alabama</option>
+      <option value="Geneva County, Alabama">Geneva County, Alabama</option>
+      <option value="Greene County, Alabama">Greene County, Alabama</option>
+      <option value="Hale County, Alabama">Hale County, Alabama</option>
+      <option value="Henry County, Alabama">Henry County, Alabama</option>
+      <option value="Houston County, Alabama">Houston County, Alabama</option>
+      <option value="Jackson County, Alabama">Jackson County, Alabama</option>
+      <option value="Jefferson County, Alabama">Jefferson County, Alabama</option>
+      <option value="Lamar County, Alabama">Lamar County, Alabama</option>
+      <option value="Lauderdale County, Alabama">Lauderdale County, Alabama</option>
+      <option value="Lawrence County, Alabama">Lawrence County, Alabama</option>
+      <option value="Lee County, Alabama">Lee County, Alabama</option>
+      <option value="Limestone County, Alabama">Limestone County, Alabama</option>
+      <option value="Lowndes County, Alabama">Lowndes County, Alabama</option>
+      <option value="Macon County, Alabama">Macon County, Alabama</option>
+      <option value="Madison County, Alabama">Madison County, Alabama</option>
+      <option value="Marengo County, Alabama">Marengo County, Alabama</option>
+      <option value="Marion County, Alabama">Marion County, Alabama</option>
+      <option value="Marshall County, Alabama">Marshall County, Alabama</option>
+      <option value="Mobile County, Alabama">Mobile County, Alabama</option>
+      <option value="Monroe County, Alabama">Monroe County, Alabama</option>
+      <option value="Montgomery County, Alabama">Montgomery County, Alabama</option>
+      <option value="Morgan County, Alabama">Morgan County, Alabama</option>
+      <option value="Perry County, Alabama">Perry County, Alabama</option>
+      <option value="Pickens County, Alabama">Pickens County, Alabama</option>
+      <option value="Pike County, Alabama">Pike County, Alabama</option>
+      <option value="Randolph County, Alabama">Randolph County, Alabama</option>
+      <option value="Russell County, Alabama">Russell County, Alabama</option>
+      <option value="Shelby County, Alabama">Shelby County, Alabama</option>
+      <option value="St. Clair County, Alabama">St. Clair County, Alabama</option>
+      <option value="Sumter County, Alabama">Sumter County, Alabama</option>
+      <option value="Talladega County, Alabama">Talladega County, Alabama</option>
+      <option value="Tallapoosa County, Alabama">Tallapoosa County, Alabama</option>
+      <option value="Tuscaloosa County, Alabama">Tuscaloosa County, Alabama</option>
+      <option value="Walker County, Alabama">Walker County, Alabama</option>
+      <option value="Washington County, Alabama">Washington County, Alabama</option>
+      <option value="Wilcox County, Alabama">Wilcox County, Alabama</option>
+      <option value="Winston County, Alabama">Winston County, Alabama</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>  const data = {"Statewide":{"Enrolled in College / Grad. School":42.4,"Not Enrolled":57.6},"Autauga County, Alabama":{"Enrolled in College / Grad. School":29.7,"Not Enrolled":70.3},"Baldwin County, Alabama":{"Enrolled in College / Grad. School":32.2,"Not Enrolled":67.8},"Barbour County, Alabama":{"Enrolled in College / Grad. School":19.2,"Not Enrolled":80.8},"Bibb County, Alabama":{"Enrolled in College / Grad. School":27.5,"Not Enrolled":72.5},"Blount County, Alabama":{"Enrolled in College / Grad. School":24.6,"Not Enrolled":75.4},"Bullock County, Alabama":{"Enrolled in College / Grad. School":18.5,"Not Enrolled":81.5},"Butler County, Alabama":{"Enrolled in College / Grad. School":27.3,"Not Enrolled":72.7},"Calhoun County, Alabama":{"Enrolled in College / Grad. School":45.8,"Not Enrolled":54.2},"Chambers County, Alabama":{"Enrolled in College / Grad. School":25.6,"Not Enrolled":74.4},"Cherokee County, Alabama":{"Enrolled in College / Grad. School":26.9,"Not Enrolled":73.1},"Chilton County, Alabama":{"Enrolled in College / Grad. School":20,"Not Enrolled":80},"Choctaw County, Alabama":{"Enrolled in College / Grad. School":29.8,"Not Enrolled":70.2},"Clarke County, Alabama":{"Enrolled in College / Grad. School":20.8,"Not Enrolled":79.2},"Clay County, Alabama":{"Enrolled in College / Grad. School":25.2,"Not Enrolled":74.8},"Cleburne County, Alabama":{"Enrolled in College / Grad. School":27.9,"Not Enrolled":72.1},"Coffee County, Alabama":{"Enrolled in College / Grad. School":27.7,"Not Enrolled":72.3},"Colbert County, Alabama":{"Enrolled in College / Grad. School":27.4,"Not Enrolled":72.6},"Conecuh County, Alabama":{"Enrolled in College / Grad. School":12.5,"Not Enrolled":87.5},"Coosa County, Alabama":{"Enrolled in College / Grad. School":16.4,"Not Enrolled":83.6},"Covington County, Alabama":{"Enrolled in College / Grad. School":26,"Not Enrolled":74},"Crenshaw County, Alabama":{"Enrolled in College / Grad. School":18.6,"Not Enrolled":81.4},"Cullman County, Alabama":{"Enrolled in College / Grad. School":29.6,"Not Enrolled":70.4},"Dale County, Alabama":{"Enrolled in College / Grad. School":16.3,"Not Enrolled":83.7},"Dallas County, Alabama":{"Enrolled in College / Grad. School":26,"Not Enrolled":74},"DeKalb County, Alabama":{"Enrolled in College / Grad. School":26.7,"Not Enrolled":73.3},"Elmore County, Alabama":{"Enrolled in College / Grad. School":29.4,"Not Enrolled":70.6},"Escambia County, Alabama":{"Enrolled in College / Grad. School":12.5,"Not Enrolled":87.5},"Etowah County, Alabama":{"Enrolled in College / Grad. School":34.1,"Not Enrolled":65.9},"Fayette County, Alabama":{"Enrolled in College / Grad. School":21.8,"Not Enrolled":78.2},"Franklin County, Alabama":{"Enrolled in College / Grad. School":28.4,"Not Enrolled":71.6},"Geneva County, Alabama":{"Enrolled in College / Grad. School":30.5,"Not Enrolled":69.5},"Greene County, Alabama":{"Enrolled in College / Grad. School":14.1,"Not Enrolled":85.9},"Hale County, Alabama":{"Enrolled in College / Grad. School":20.5,"Not Enrolled":79.5},"Henry County, Alabama":{"Enrolled in College / Grad. School":27.3,"Not Enrolled":72.7},"Houston County, Alabama":{"Enrolled in College / Grad. School":29.1,"Not Enrolled":70.9},"Jackson County, Alabama":{"Enrolled in College / Grad. School":23.5,"Not Enrolled":76.5},"Jefferson County, Alabama":{"Enrolled in College / Grad. School":43.2,"Not Enrolled":56.8},"Lamar County, Alabama":{"Enrolled in College / Grad. School":24.9,"Not Enrolled":75.1},"Lauderdale County, Alabama":{"Enrolled in College / Grad. School":54.1,"Not Enrolled":45.9},"Lawrence County, Alabama":{"Enrolled in College / Grad. School":18.8,"Not Enrolled":81.2},"Lee County, Alabama":{"Enrolled in College / Grad. School":74.7,"Not Enrolled":25.3},"Limestone County, Alabama":{"Enrolled in College / Grad. School":30.2,"Not Enrolled":69.8},"Lowndes County, Alabama":{"Enrolled in College / Grad. School":20.4,"Not Enrolled":79.6},"Macon County, Alabama":{"Enrolled in College / Grad. School":68.2,"Not Enrolled":31.8},"Madison County, Alabama":{"Enrolled in College / Grad. School":54.4,"Not Enrolled":45.6},"Marengo County, Alabama":{"Enrolled in College / Grad. School":33.9,"Not Enrolled":66.1},"Marion County, Alabama":{"Enrolled in College / Grad. School":21.8,"Not Enrolled":78.2},"Marshall County, Alabama":{"Enrolled in College / Grad. School":28,"Not Enrolled":72},"Mobile County, Alabama":{"Enrolled in College / Grad. School":36.5,"Not Enrolled":63.5},"Monroe County, Alabama":{"Enrolled in College / Grad. School":26,"Not Enrolled":74},"Montgomery County, Alabama":{"Enrolled in College / Grad. School":38.4,"Not Enrolled":61.6},"Morgan County, Alabama":{"Enrolled in College / Grad. School":27.1,"Not Enrolled":72.9},"Perry County, Alabama":{"Enrolled in College / Grad. School":68.4,"Not Enrolled":31.6},"Pickens County, Alabama":{"Enrolled in College / Grad. School":32.6,"Not Enrolled":67.4},"Pike County, Alabama":{"Enrolled in College / Grad. School":71.3,"Not Enrolled":28.7},"Randolph County, Alabama":{"Enrolled in College / Grad. School":41.7,"Not Enrolled":58.3},"Russell County, Alabama":{"Enrolled in College / Grad. School":20.8,"Not Enrolled":79.2},"St. Clair County, Alabama":{"Enrolled in College / Grad. School":29.6,"Not Enrolled":70.4},"Shelby County, Alabama":{"Enrolled in College / Grad. School":42.2,"Not Enrolled":57.8},"Sumter County, Alabama":{"Enrolled in College / Grad. School":85.9,"Not Enrolled":14.1},"Talladega County, Alabama":{"Enrolled in College / Grad. School":29.4,"Not Enrolled":70.6},"Tallapoosa County, Alabama":{"Enrolled in College / Grad. School":28.8,"Not Enrolled":71.2},"Tuscaloosa County, Alabama":{"Enrolled in College / Grad. School":67.7,"Not Enrolled":32.3},"Walker County, Alabama":{"Enrolled in College / Grad. School":29,"Not Enrolled":71},"Washington County, Alabama":{"Enrolled in College / Grad. School":23.3,"Not Enrolled":76.7},"Wilcox County, Alabama":{"Enrolled in College / Grad. School":18.1,"Not Enrolled":81.9},"Winston County, Alabama":{"Enrolled in College / Grad. School":20.1,"Not Enrolled":79.9}};
+  const categories = ["Enrolled in College / Grad. School","Not Enrolled"];
+  const ctx = document.getElementById("barChart").getContext("2d");
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: categories,
+        datasets: [
+          {
+            label: "County/State",
+            data: values,
+            backgroundColor: ["#66c2a5", "#fc8d62"]
+          }
+        ]
+      },
+      options: {
+        indexAxis: "y",
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            ticks: {
+              callback: v => v + "%"
+            }
+          }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.dataset.label + ": " + ctx.raw + "%"
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById("countySelect").addEventListener("change", function() {
+    renderChart(Object.values(data[this.value]));
+  });
+
+  renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

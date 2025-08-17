@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Educational Enrollment – Oklahoma</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Educational Enrollment (Age 18–24) in Oklahoma</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Adair County, Oklahoma">Adair County, Oklahoma</option>
+      <option value="Alfalfa County, Oklahoma">Alfalfa County, Oklahoma</option>
+      <option value="Atoka County, Oklahoma">Atoka County, Oklahoma</option>
+      <option value="Beaver County, Oklahoma">Beaver County, Oklahoma</option>
+      <option value="Beckham County, Oklahoma">Beckham County, Oklahoma</option>
+      <option value="Blaine County, Oklahoma">Blaine County, Oklahoma</option>
+      <option value="Bryan County, Oklahoma">Bryan County, Oklahoma</option>
+      <option value="Caddo County, Oklahoma">Caddo County, Oklahoma</option>
+      <option value="Canadian County, Oklahoma">Canadian County, Oklahoma</option>
+      <option value="Carter County, Oklahoma">Carter County, Oklahoma</option>
+      <option value="Cherokee County, Oklahoma">Cherokee County, Oklahoma</option>
+      <option value="Choctaw County, Oklahoma">Choctaw County, Oklahoma</option>
+      <option value="Cimarron County, Oklahoma">Cimarron County, Oklahoma</option>
+      <option value="Cleveland County, Oklahoma">Cleveland County, Oklahoma</option>
+      <option value="Coal County, Oklahoma">Coal County, Oklahoma</option>
+      <option value="Comanche County, Oklahoma">Comanche County, Oklahoma</option>
+      <option value="Cotton County, Oklahoma">Cotton County, Oklahoma</option>
+      <option value="Craig County, Oklahoma">Craig County, Oklahoma</option>
+      <option value="Creek County, Oklahoma">Creek County, Oklahoma</option>
+      <option value="Custer County, Oklahoma">Custer County, Oklahoma</option>
+      <option value="Delaware County, Oklahoma">Delaware County, Oklahoma</option>
+      <option value="Dewey County, Oklahoma">Dewey County, Oklahoma</option>
+      <option value="Ellis County, Oklahoma">Ellis County, Oklahoma</option>
+      <option value="Garfield County, Oklahoma">Garfield County, Oklahoma</option>
+      <option value="Garvin County, Oklahoma">Garvin County, Oklahoma</option>
+      <option value="Grady County, Oklahoma">Grady County, Oklahoma</option>
+      <option value="Grant County, Oklahoma">Grant County, Oklahoma</option>
+      <option value="Greer County, Oklahoma">Greer County, Oklahoma</option>
+      <option value="Harmon County, Oklahoma">Harmon County, Oklahoma</option>
+      <option value="Harper County, Oklahoma">Harper County, Oklahoma</option>
+      <option value="Haskell County, Oklahoma">Haskell County, Oklahoma</option>
+      <option value="Hughes County, Oklahoma">Hughes County, Oklahoma</option>
+      <option value="Jackson County, Oklahoma">Jackson County, Oklahoma</option>
+      <option value="Jefferson County, Oklahoma">Jefferson County, Oklahoma</option>
+      <option value="Johnston County, Oklahoma">Johnston County, Oklahoma</option>
+      <option value="Kay County, Oklahoma">Kay County, Oklahoma</option>
+      <option value="Kingfisher County, Oklahoma">Kingfisher County, Oklahoma</option>
+      <option value="Kiowa County, Oklahoma">Kiowa County, Oklahoma</option>
+      <option value="Latimer County, Oklahoma">Latimer County, Oklahoma</option>
+      <option value="Le Flore County, Oklahoma">Le Flore County, Oklahoma</option>
+      <option value="Lincoln County, Oklahoma">Lincoln County, Oklahoma</option>
+      <option value="Logan County, Oklahoma">Logan County, Oklahoma</option>
+      <option value="Love County, Oklahoma">Love County, Oklahoma</option>
+      <option value="Major County, Oklahoma">Major County, Oklahoma</option>
+      <option value="Marshall County, Oklahoma">Marshall County, Oklahoma</option>
+      <option value="Mayes County, Oklahoma">Mayes County, Oklahoma</option>
+      <option value="McClain County, Oklahoma">McClain County, Oklahoma</option>
+      <option value="McCurtain County, Oklahoma">McCurtain County, Oklahoma</option>
+      <option value="McIntosh County, Oklahoma">McIntosh County, Oklahoma</option>
+      <option value="Murray County, Oklahoma">Murray County, Oklahoma</option>
+      <option value="Muskogee County, Oklahoma">Muskogee County, Oklahoma</option>
+      <option value="Noble County, Oklahoma">Noble County, Oklahoma</option>
+      <option value="Nowata County, Oklahoma">Nowata County, Oklahoma</option>
+      <option value="Okfuskee County, Oklahoma">Okfuskee County, Oklahoma</option>
+      <option value="Oklahoma County, Oklahoma">Oklahoma County, Oklahoma</option>
+      <option value="Okmulgee County, Oklahoma">Okmulgee County, Oklahoma</option>
+      <option value="Osage County, Oklahoma">Osage County, Oklahoma</option>
+      <option value="Ottawa County, Oklahoma">Ottawa County, Oklahoma</option>
+      <option value="Pawnee County, Oklahoma">Pawnee County, Oklahoma</option>
+      <option value="Payne County, Oklahoma">Payne County, Oklahoma</option>
+      <option value="Pittsburg County, Oklahoma">Pittsburg County, Oklahoma</option>
+      <option value="Pontotoc County, Oklahoma">Pontotoc County, Oklahoma</option>
+      <option value="Pottawatomie County, Oklahoma">Pottawatomie County, Oklahoma</option>
+      <option value="Pushmataha County, Oklahoma">Pushmataha County, Oklahoma</option>
+      <option value="Roger Mills County, Oklahoma">Roger Mills County, Oklahoma</option>
+      <option value="Rogers County, Oklahoma">Rogers County, Oklahoma</option>
+      <option value="Seminole County, Oklahoma">Seminole County, Oklahoma</option>
+      <option value="Sequoyah County, Oklahoma">Sequoyah County, Oklahoma</option>
+      <option value="Stephens County, Oklahoma">Stephens County, Oklahoma</option>
+      <option value="Texas County, Oklahoma">Texas County, Oklahoma</option>
+      <option value="Tillman County, Oklahoma">Tillman County, Oklahoma</option>
+      <option value="Tulsa County, Oklahoma">Tulsa County, Oklahoma</option>
+      <option value="Wagoner County, Oklahoma">Wagoner County, Oklahoma</option>
+      <option value="Washington County, Oklahoma">Washington County, Oklahoma</option>
+      <option value="Washita County, Oklahoma">Washita County, Oklahoma</option>
+      <option value="Woods County, Oklahoma">Woods County, Oklahoma</option>
+      <option value="Woodward County, Oklahoma">Woodward County, Oklahoma</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>  const data = {"Statewide":{"Enrolled in College / Grad. School":35.2,"Not Enrolled":64.8},"Adair County, Oklahoma":{"Enrolled in College / Grad. School":14.3,"Not Enrolled":85.7},"Alfalfa County, Oklahoma":{"Enrolled in College / Grad. School":20.7,"Not Enrolled":79.3},"Atoka County, Oklahoma":{"Enrolled in College / Grad. School":18.6,"Not Enrolled":81.4},"Beaver County, Oklahoma":{"Enrolled in College / Grad. School":19.3,"Not Enrolled":80.7},"Beckham County, Oklahoma":{"Enrolled in College / Grad. School":14.4,"Not Enrolled":85.6},"Blaine County, Oklahoma":{"Enrolled in College / Grad. School":8.9,"Not Enrolled":91.1},"Bryan County, Oklahoma":{"Enrolled in College / Grad. School":38.5,"Not Enrolled":61.5},"Caddo County, Oklahoma":{"Enrolled in College / Grad. School":16.4,"Not Enrolled":83.6},"Canadian County, Oklahoma":{"Enrolled in College / Grad. School":25.9,"Not Enrolled":74.1},"Carter County, Oklahoma":{"Enrolled in College / Grad. School":15.9,"Not Enrolled":84.1},"Cherokee County, Oklahoma":{"Enrolled in College / Grad. School":41.5,"Not Enrolled":58.5},"Choctaw County, Oklahoma":{"Enrolled in College / Grad. School":20.6,"Not Enrolled":79.4},"Cimarron County, Oklahoma":{"Enrolled in College / Grad. School":5,"Not Enrolled":95},"Cleveland County, Oklahoma":{"Enrolled in College / Grad. School":56.5,"Not Enrolled":43.5},"Coal County, Oklahoma":{"Enrolled in College / Grad. School":17.6,"Not Enrolled":82.4},"Comanche County, Oklahoma":{"Enrolled in College / Grad. School":18.8,"Not Enrolled":81.2},"Cotton County, Oklahoma":{"Enrolled in College / Grad. School":14.3,"Not Enrolled":85.7},"Craig County, Oklahoma":{"Enrolled in College / Grad. School":14.9,"Not Enrolled":85.1},"Creek County, Oklahoma":{"Enrolled in College / Grad. School":18.1,"Not Enrolled":81.9},"Custer County, Oklahoma":{"Enrolled in College / Grad. School":60.8,"Not Enrolled":39.2},"Delaware County, Oklahoma":{"Enrolled in College / Grad. School":24,"Not Enrolled":76},"Dewey County, Oklahoma":{"Enrolled in College / Grad. School":12.9,"Not Enrolled":87.1},"Ellis County, Oklahoma":{"Enrolled in College / Grad. School":23.3,"Not Enrolled":76.7},"Garfield County, Oklahoma":{"Enrolled in College / Grad. School":25.3,"Not Enrolled":74.7},"Garvin County, Oklahoma":{"Enrolled in College / Grad. School":15.1,"Not Enrolled":84.9},"Grady County, Oklahoma":{"Enrolled in College / Grad. School":29.2,"Not Enrolled":70.8},"Grant County, Oklahoma":{"Enrolled in College / Grad. School":15.7,"Not Enrolled":84.3},"Greer County, Oklahoma":{"Enrolled in College / Grad. School":14.9,"Not Enrolled":85.1},"Harmon County, Oklahoma":{"Enrolled in College / Grad. School":34.9,"Not Enrolled":65.1},"Harper County, Oklahoma":{"Enrolled in College / Grad. School":20.7,"Not Enrolled":79.3},"Haskell County, Oklahoma":{"Enrolled in College / Grad. School":25.5,"Not Enrolled":74.5},"Hughes County, Oklahoma":{"Enrolled in College / Grad. School":25.8,"Not Enrolled":74.2},"Jackson County, Oklahoma":{"Enrolled in College / Grad. School":15.4,"Not Enrolled":84.6},"Jefferson County, Oklahoma":{"Enrolled in College / Grad. School":17.8,"Not Enrolled":82.2},"Johnston County, Oklahoma":{"Enrolled in College / Grad. School":39.8,"Not Enrolled":60.2},"Kay County, Oklahoma":{"Enrolled in College / Grad. School":25.9,"Not Enrolled":74.1},"Kingfisher County, Oklahoma":{"Enrolled in College / Grad. School":28.7,"Not Enrolled":71.3},"Kiowa County, Oklahoma":{"Enrolled in College / Grad. School":19.3,"Not Enrolled":80.7},"Latimer County, Oklahoma":{"Enrolled in College / Grad. School":28.9,"Not Enrolled":71.1},"Le Flore County, Oklahoma":{"Enrolled in College / Grad. School":23.9,"Not Enrolled":76.1},"Lincoln County, Oklahoma":{"Enrolled in College / Grad. School":19.7,"Not Enrolled":80.3},"Logan County, Oklahoma":{"Enrolled in College / Grad. School":43.6,"Not Enrolled":56.4},"Love County, Oklahoma":{"Enrolled in College / Grad. School":18.7,"Not Enrolled":81.3},"McClain County, Oklahoma":{"Enrolled in College / Grad. School":25.2,"Not Enrolled":74.8},"McCurtain County, Oklahoma":{"Enrolled in College / Grad. School":16.5,"Not Enrolled":83.5},"McIntosh County, Oklahoma":{"Enrolled in College / Grad. School":21.2,"Not Enrolled":78.8},"Major County, Oklahoma":{"Enrolled in College / Grad. School":9.1,"Not Enrolled":90.9},"Marshall County, Oklahoma":{"Enrolled in College / Grad. School":21.3,"Not Enrolled":78.7},"Mayes County, Oklahoma":{"Enrolled in College / Grad. School":24.1,"Not Enrolled":75.9},"Murray County, Oklahoma":{"Enrolled in College / Grad. School":17.3,"Not Enrolled":82.7},"Muskogee County, Oklahoma":{"Enrolled in College / Grad. School":29.2,"Not Enrolled":70.8},"Noble County, Oklahoma":{"Enrolled in College / Grad. School":18.8,"Not Enrolled":81.2},"Nowata County, Oklahoma":{"Enrolled in College / Grad. School":31.7,"Not Enrolled":68.3},"Okfuskee County, Oklahoma":{"Enrolled in College / Grad. School":11.7,"Not Enrolled":88.3},"Oklahoma County, Oklahoma":{"Enrolled in College / Grad. School":33,"Not Enrolled":67},"Okmulgee County, Oklahoma":{"Enrolled in College / Grad. School":30.9,"Not Enrolled":69.1},"Osage County, Oklahoma":{"Enrolled in College / Grad. School":18.4,"Not Enrolled":81.6},"Ottawa County, Oklahoma":{"Enrolled in College / Grad. School":34.7,"Not Enrolled":65.3},"Pawnee County, Oklahoma":{"Enrolled in College / Grad. School":8.7,"Not Enrolled":91.3},"Payne County, Oklahoma":{"Enrolled in College / Grad. School":77,"Not Enrolled":23},"Pittsburg County, Oklahoma":{"Enrolled in College / Grad. School":18.6,"Not Enrolled":81.4},"Pontotoc County, Oklahoma":{"Enrolled in College / Grad. School":37.7,"Not Enrolled":62.3},"Pottawatomie County, Oklahoma":{"Enrolled in College / Grad. School":38.9,"Not Enrolled":61.1},"Pushmataha County, Oklahoma":{"Enrolled in College / Grad. School":20.8,"Not Enrolled":79.2},"Roger Mills County, Oklahoma":{"Enrolled in College / Grad. School":34.9,"Not Enrolled":65.1},"Rogers County, Oklahoma":{"Enrolled in College / Grad. School":29.1,"Not Enrolled":70.9},"Seminole County, Oklahoma":{"Enrolled in College / Grad. School":25.1,"Not Enrolled":74.9},"Sequoyah County, Oklahoma":{"Enrolled in College / Grad. School":19.2,"Not Enrolled":80.8},"Stephens County, Oklahoma":{"Enrolled in College / Grad. School":15.2,"Not Enrolled":84.8},"Texas County, Oklahoma":{"Enrolled in College / Grad. School":29.3,"Not Enrolled":70.7},"Tillman County, Oklahoma":{"Enrolled in College / Grad. School":12.6,"Not Enrolled":87.4},"Tulsa County, Oklahoma":{"Enrolled in College / Grad. School":33,"Not Enrolled":67},"Wagoner County, Oklahoma":{"Enrolled in College / Grad. School":28.6,"Not Enrolled":71.4},"Washington County, Oklahoma":{"Enrolled in College / Grad. School":34.3,"Not Enrolled":65.7},"Washita County, Oklahoma":{"Enrolled in College / Grad. School":13.6,"Not Enrolled":86.4},"Woods County, Oklahoma":{"Enrolled in College / Grad. School":68.5,"Not Enrolled":31.5},"Woodward County, Oklahoma":{"Enrolled in College / Grad. School":11.5,"Not Enrolled":88.5}};
+  const categories = ["Enrolled in College / Grad. School","Not Enrolled"];
+  const ctx = document.getElementById("barChart").getContext("2d");
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: categories,
+        datasets: [
+          {
+            label: "County/State",
+            data: values,
+            backgroundColor: ["#66c2a5", "#fc8d62"]
+          }
+        ]
+      },
+      options: {
+        indexAxis: "y",
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            ticks: {
+              callback: v => v + "%"
+            }
+          }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.dataset.label + ": " + ctx.raw + "%"
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById("countySelect").addEventListener("change", function() {
+    renderChart(Object.values(data[this.value]));
+  });
+
+  renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

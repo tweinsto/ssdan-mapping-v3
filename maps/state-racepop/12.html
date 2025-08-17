@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Race by Year – Florida</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      margin: 1em;
+    }
+    #buttons button {
+      margin: 0 5px;
+    }
+    #chart-container {
+      width: 90%;
+      max-width: 800px;
+      margin: auto;
+    }
+    
+    #buttons button.active {
+  background-color: dodgerblue;
+  color: white;
+  border: none;
+  border-radius: 4px;
+}
+
+  </style>
+</head>
+<body>
+  <h2>Race/Ethnicity Population – Florida</h2>
+
+  <label for="countySelect">County:</label>
+  <select id="countySelect">
+    <option value="Statewide" selected>Statewide</option>
+<option value="Alachua County">Alachua County</option>
+<option value="Baker County">Baker County</option>
+<option value="Bay County">Bay County</option>
+<option value="Bradford County">Bradford County</option>
+<option value="Brevard County">Brevard County</option>
+<option value="Broward County">Broward County</option>
+<option value="Calhoun County">Calhoun County</option>
+<option value="Charlotte County">Charlotte County</option>
+<option value="Citrus County">Citrus County</option>
+<option value="Clay County">Clay County</option>
+<option value="Collier County">Collier County</option>
+<option value="Columbia County">Columbia County</option>
+<option value="DeSoto County">DeSoto County</option>
+<option value="Dixie County">Dixie County</option>
+<option value="Duval County">Duval County</option>
+<option value="Escambia County">Escambia County</option>
+<option value="Flagler County">Flagler County</option>
+<option value="Franklin County">Franklin County</option>
+<option value="Gadsden County">Gadsden County</option>
+<option value="Gilchrist County">Gilchrist County</option>
+<option value="Glades County">Glades County</option>
+<option value="Gulf County">Gulf County</option>
+<option value="Hamilton County">Hamilton County</option>
+<option value="Hardee County">Hardee County</option>
+<option value="Hendry County">Hendry County</option>
+<option value="Hernando County">Hernando County</option>
+<option value="Highlands County">Highlands County</option>
+<option value="Hillsborough County">Hillsborough County</option>
+<option value="Holmes County">Holmes County</option>
+<option value="Indian River County">Indian River County</option>
+<option value="Jackson County">Jackson County</option>
+<option value="Jefferson County">Jefferson County</option>
+<option value="Lafayette County">Lafayette County</option>
+<option value="Lake County">Lake County</option>
+<option value="Lee County">Lee County</option>
+<option value="Leon County">Leon County</option>
+<option value="Levy County">Levy County</option>
+<option value="Liberty County">Liberty County</option>
+<option value="Madison County">Madison County</option>
+<option value="Manatee County">Manatee County</option>
+<option value="Marion County">Marion County</option>
+<option value="Martin County">Martin County</option>
+<option value="Miami-Dade County">Miami-Dade County</option>
+<option value="Monroe County">Monroe County</option>
+<option value="Nassau County">Nassau County</option>
+<option value="Okaloosa County">Okaloosa County</option>
+<option value="Okeechobee County">Okeechobee County</option>
+<option value="Orange County">Orange County</option>
+<option value="Osceola County">Osceola County</option>
+<option value="Palm Beach County">Palm Beach County</option>
+<option value="Pasco County">Pasco County</option>
+<option value="Pinellas County">Pinellas County</option>
+<option value="Polk County">Polk County</option>
+<option value="Putnam County">Putnam County</option>
+<option value="Santa Rosa County">Santa Rosa County</option>
+<option value="Sarasota County">Sarasota County</option>
+<option value="Seminole County">Seminole County</option>
+<option value="St. Johns County">St. Johns County</option>
+<option value="St. Lucie County">St. Lucie County</option>
+<option value="Sumter County">Sumter County</option>
+<option value="Suwannee County">Suwannee County</option>
+<option value="Taylor County">Taylor County</option>
+<option value="Union County">Union County</option>
+<option value="Volusia County">Volusia County</option>
+<option value="Wakulla County">Wakulla County</option>
+<option value="Walton County">Walton County</option>
+<option value="Washington County">Washington County</option>
+  </select>
+
+  <div id="buttons">
+  <button id="btn2010" onclick="updateChart(2010)">2010</button>
+  <button id="btn2020" onclick="updateChart(2020)">2020</button>
+</div>
+
+  <div id="chart-container">
+    <canvas id="raceChart"></canvas>
+  </div>
+
+   <script>
+    let data = null;
+    let chart = null;
+    let currentYear = 2010;
+
+    fetch("12.json")
+      .then(res => res.json())
+      .then(json => {
+        data = json;
+        document.getElementById("countySelect").addEventListener("change", () => updateChart(currentYear));
+        updateChart(currentYear);
+      });
+
+    function updateChart(year) {
+      currentYear = year;
+
+      // Highlight selected button
+      document.querySelectorAll("#buttons button").forEach(btn => btn.classList.remove("active"));
+      const activeBtn = document.getElementById(`btn${year}`);
+      if (activeBtn) activeBtn.classList.add("active");
+
+      const county = document.getElementById("countySelect").value;
+      const entry = data[county] && data[county][year];
+      if (!entry) return;
+
+      const races = Object.keys(entry[0]).filter(k => !["state_fips", "county", "year", "total"].includes(k));
+      const values = races.map(r => entry[0][r]);
+
+      const config = {
+        type: "bar",
+        data: {
+          labels: races,
+          datasets: [{
+            label: "Population",
+            data: values,
+            backgroundColor: "dodgerblue"
+          }]
+        },
+        options: {
+          plugins: {
+            legend: { display: false }
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              ticks: {
+                callback: function(value) {
+                  return value.toLocaleString();
+                }
+              }
+            }
+          }
+        }
+      };
+
+      if (chart) {
+        chart.destroy();
+      }
+      chart = new Chart(document.getElementById("raceChart"), config);
+    }
+  </script>
+</body>
+</html>

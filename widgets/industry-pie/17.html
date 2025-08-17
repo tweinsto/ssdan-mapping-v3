@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <title>Industry Distribution – Illinois</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+        canvas { max-width: 600px; height: 500px; }
+        select { padding: 0.5rem; font-size: 1rem; margin: 1rem; }
+        .legend { max-width: 600px; margin: 1rem auto; display: flex; flex-wrap: wrap; justify-content: center; font-size: 0.9rem; }
+        .legend-item { display: flex; align-items: center; margin: 0.3rem 1rem; }
+        .legend-color { width: 12px; height: 12px; margin-right: 6px; border: 1px solid #444; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Industry Distribution in Illinois</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Adams County, Illinois">Adams County, Illinois</option>
+      <option value="Alexander County, Illinois">Alexander County, Illinois</option>
+      <option value="Bond County, Illinois">Bond County, Illinois</option>
+      <option value="Boone County, Illinois">Boone County, Illinois</option>
+      <option value="Brown County, Illinois">Brown County, Illinois</option>
+      <option value="Bureau County, Illinois">Bureau County, Illinois</option>
+      <option value="Calhoun County, Illinois">Calhoun County, Illinois</option>
+      <option value="Carroll County, Illinois">Carroll County, Illinois</option>
+      <option value="Cass County, Illinois">Cass County, Illinois</option>
+      <option value="Champaign County, Illinois">Champaign County, Illinois</option>
+      <option value="Christian County, Illinois">Christian County, Illinois</option>
+      <option value="Clark County, Illinois">Clark County, Illinois</option>
+      <option value="Clay County, Illinois">Clay County, Illinois</option>
+      <option value="Clinton County, Illinois">Clinton County, Illinois</option>
+      <option value="Coles County, Illinois">Coles County, Illinois</option>
+      <option value="Cook County, Illinois">Cook County, Illinois</option>
+      <option value="Crawford County, Illinois">Crawford County, Illinois</option>
+      <option value="Cumberland County, Illinois">Cumberland County, Illinois</option>
+      <option value="De Witt County, Illinois">De Witt County, Illinois</option>
+      <option value="DeKalb County, Illinois">DeKalb County, Illinois</option>
+      <option value="Douglas County, Illinois">Douglas County, Illinois</option>
+      <option value="DuPage County, Illinois">DuPage County, Illinois</option>
+      <option value="Edgar County, Illinois">Edgar County, Illinois</option>
+      <option value="Edwards County, Illinois">Edwards County, Illinois</option>
+      <option value="Effingham County, Illinois">Effingham County, Illinois</option>
+      <option value="Fayette County, Illinois">Fayette County, Illinois</option>
+      <option value="Ford County, Illinois">Ford County, Illinois</option>
+      <option value="Franklin County, Illinois">Franklin County, Illinois</option>
+      <option value="Fulton County, Illinois">Fulton County, Illinois</option>
+      <option value="Gallatin County, Illinois">Gallatin County, Illinois</option>
+      <option value="Greene County, Illinois">Greene County, Illinois</option>
+      <option value="Grundy County, Illinois">Grundy County, Illinois</option>
+      <option value="Hamilton County, Illinois">Hamilton County, Illinois</option>
+      <option value="Hancock County, Illinois">Hancock County, Illinois</option>
+      <option value="Hardin County, Illinois">Hardin County, Illinois</option>
+      <option value="Henderson County, Illinois">Henderson County, Illinois</option>
+      <option value="Henry County, Illinois">Henry County, Illinois</option>
+      <option value="Iroquois County, Illinois">Iroquois County, Illinois</option>
+      <option value="Jackson County, Illinois">Jackson County, Illinois</option>
+      <option value="Jasper County, Illinois">Jasper County, Illinois</option>
+      <option value="Jefferson County, Illinois">Jefferson County, Illinois</option>
+      <option value="Jersey County, Illinois">Jersey County, Illinois</option>
+      <option value="Jo Daviess County, Illinois">Jo Daviess County, Illinois</option>
+      <option value="Johnson County, Illinois">Johnson County, Illinois</option>
+      <option value="Kane County, Illinois">Kane County, Illinois</option>
+      <option value="Kankakee County, Illinois">Kankakee County, Illinois</option>
+      <option value="Kendall County, Illinois">Kendall County, Illinois</option>
+      <option value="Knox County, Illinois">Knox County, Illinois</option>
+      <option value="Lake County, Illinois">Lake County, Illinois</option>
+      <option value="LaSalle County, Illinois">LaSalle County, Illinois</option>
+      <option value="Lawrence County, Illinois">Lawrence County, Illinois</option>
+      <option value="Lee County, Illinois">Lee County, Illinois</option>
+      <option value="Livingston County, Illinois">Livingston County, Illinois</option>
+      <option value="Logan County, Illinois">Logan County, Illinois</option>
+      <option value="Macon County, Illinois">Macon County, Illinois</option>
+      <option value="Macoupin County, Illinois">Macoupin County, Illinois</option>
+      <option value="Madison County, Illinois">Madison County, Illinois</option>
+      <option value="Marion County, Illinois">Marion County, Illinois</option>
+      <option value="Marshall County, Illinois">Marshall County, Illinois</option>
+      <option value="Mason County, Illinois">Mason County, Illinois</option>
+      <option value="Massac County, Illinois">Massac County, Illinois</option>
+      <option value="McDonough County, Illinois">McDonough County, Illinois</option>
+      <option value="McHenry County, Illinois">McHenry County, Illinois</option>
+      <option value="McLean County, Illinois">McLean County, Illinois</option>
+      <option value="Menard County, Illinois">Menard County, Illinois</option>
+      <option value="Mercer County, Illinois">Mercer County, Illinois</option>
+      <option value="Monroe County, Illinois">Monroe County, Illinois</option>
+      <option value="Montgomery County, Illinois">Montgomery County, Illinois</option>
+      <option value="Morgan County, Illinois">Morgan County, Illinois</option>
+      <option value="Moultrie County, Illinois">Moultrie County, Illinois</option>
+      <option value="Ogle County, Illinois">Ogle County, Illinois</option>
+      <option value="Peoria County, Illinois">Peoria County, Illinois</option>
+      <option value="Perry County, Illinois">Perry County, Illinois</option>
+      <option value="Piatt County, Illinois">Piatt County, Illinois</option>
+      <option value="Pike County, Illinois">Pike County, Illinois</option>
+      <option value="Pope County, Illinois">Pope County, Illinois</option>
+      <option value="Pulaski County, Illinois">Pulaski County, Illinois</option>
+      <option value="Putnam County, Illinois">Putnam County, Illinois</option>
+      <option value="Randolph County, Illinois">Randolph County, Illinois</option>
+      <option value="Richland County, Illinois">Richland County, Illinois</option>
+      <option value="Rock Island County, Illinois">Rock Island County, Illinois</option>
+      <option value="Saline County, Illinois">Saline County, Illinois</option>
+      <option value="Sangamon County, Illinois">Sangamon County, Illinois</option>
+      <option value="Schuyler County, Illinois">Schuyler County, Illinois</option>
+      <option value="Scott County, Illinois">Scott County, Illinois</option>
+      <option value="Shelby County, Illinois">Shelby County, Illinois</option>
+      <option value="St. Clair County, Illinois">St. Clair County, Illinois</option>
+      <option value="Stark County, Illinois">Stark County, Illinois</option>
+      <option value="Stephenson County, Illinois">Stephenson County, Illinois</option>
+      <option value="Tazewell County, Illinois">Tazewell County, Illinois</option>
+      <option value="Union County, Illinois">Union County, Illinois</option>
+      <option value="Vermilion County, Illinois">Vermilion County, Illinois</option>
+      <option value="Wabash County, Illinois">Wabash County, Illinois</option>
+      <option value="Warren County, Illinois">Warren County, Illinois</option>
+      <option value="Washington County, Illinois">Washington County, Illinois</option>
+      <option value="Wayne County, Illinois">Wayne County, Illinois</option>
+      <option value="White County, Illinois">White County, Illinois</option>
+      <option value="Whiteside County, Illinois">Whiteside County, Illinois</option>
+      <option value="Will County, Illinois">Will County, Illinois</option>
+      <option value="Williamson County, Illinois">Williamson County, Illinois</option>
+      <option value="Winnebago County, Illinois">Winnebago County, Illinois</option>
+      <option value="Woodford County, Illinois">Woodford County, Illinois</option>
+    </select>
+    <canvas id="pieChart"></canvas>
+    <div class="legend">
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#66CC66;"></div>
+        <span>Agriculture, forestry, fishing, and hunting</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#996600;"></div>
+        <span>Mining</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FF6600;"></div>
+        <span>Utilities</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FFCC33;"></div>
+        <span>Construction</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FF0000;"></div>
+        <span>Manufacturing</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FF66FF;"></div>
+        <span>Wholesale trade</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#3399FF;"></div>
+        <span>Retail trade</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#00CC99;"></div>
+        <span>Transportation and warehousing</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#999966;"></div>
+        <span>Information</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#6666FF;"></div>
+        <span>Finance and insurance</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FF99CC;"></div>
+        <span>Professional, scientific, and technical services</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#66CCCC;"></div>
+        <span>Educational services</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FF9933;"></div>
+        <span>Healthcare and social assistance</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#CC99FF;"></div>
+        <span>Arts, entertainment, and recreation</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FF9999;"></div>
+        <span>Accommodation and food services</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#CCCC00;"></div>
+        <span>Other services</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#663300;"></div>
+        <span>Public administration</span>
+      </div>
+    </div>
+    <script>const data = [];
+const colors = ["#66CC66","#996600","#FF6600","#FFCC33","#FF0000","#FF66FF","#3399FF","#00CC99","#999966","#6666FF","#FF99CC","#66CCCC","#FF9933","#CC99FF","#FF9999","#CCCC00","#663300"];
+let chart;
+function renderChart(region) {
+  const ctx = document.getElementById("pieChart").getContext("2d");
+  const labels = Object.keys(data[region]);
+  const values = Object.values(data[region]);
+  const backgroundColors = labels.map(l => colors[l] || "#999");
+  if (chart) chart.destroy();
+  chart = new Chart(ctx, {
+    type: "pie",
+    data: {
+      labels: labels,
+      datasets: [{
+        data: values,
+        backgroundColor: backgroundColors
+      }]
+    },
+    options: {
+      plugins: {
+        tooltip: {
+          callbacks: {
+            label: ctx => ctx.label + ": " + ctx.raw + "%"
+          }
+        }
+      }
+    }
+  });
+}
+document.getElementById("countySelect").addEventListener("change", function() {
+  renderChart(this.value);
+});
+renderChart("Statewide");</script>
+  </body>
+</html>
+</html>

@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Miscellaneous Indicators (2023)</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background-color: #f2f2f2;
+    }
+
+    #bottom-left-label {
+      position: absolute;
+      bottom: 10px;
+      left: 20px;
+      font-size: 15px;
+      color: #444;
+      padding: 2px 3px;
+    }
+
+    /* 1) Pull titles up & reduce spacing */
+    h1 {
+      font-size: 1.5rem;
+      margin: 0.6rem 1.5rem 0.15rem; /* tighter */
+    }
+    h2 {
+      font-size: 1rem;
+      color: #4576a7;
+      margin: 0.05rem 0 0.4rem 1.8rem; /* tighter */
+    }
+
+    .main-wrapper {
+      display: flex;
+      flex-direction: column;
+      padding-bottom: 2rem;
+    }
+
+    .map-rankings-container {
+      display: flex;
+      align-items: flex-start;
+      padding: 0 1.5rem;
+      margin-top: 0.25rem; /* bring map closer to titles */
+    }
+
+    .map-frame {
+      width: 65%;
+      height: 550px;
+      border: 2px solid #ccc;
+      border-radius: 8px;
+      box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+      margin-right: 1rem;
+      max-width: 800px;
+    }
+
+    .right-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      width: 30%;
+      margin-left: 1.5rem;
+    }
+
+    .link-list {
+      background-color: #ffffff;
+      padding: 1rem;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+      border: 2px solid #3e49a8;
+      margin-top: -8rem;
+      transition: box-shadow 0.3s ease;
+      width: 120%;
+    }
+    .link-list:hover { box-shadow: 0 0 16px rgba(62, 73, 168, 0.3); }
+    .link-list h3 {
+      color: #3e49a8;
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 0.3rem;
+    }
+    .link-list a {
+      display: block;
+      text-decoration: none;
+      font-size: 1rem;
+      color: #003366;
+      margin: 0.3rem 0;
+      padding: 0.2rem 0;
+    }
+    .link-list a:hover { text-decoration: underline; color: #1a2d7c; }
+
+    .map-toggle-button {
+      padding: 0.4rem 0.9rem;
+      margin-right: 0.5rem;
+      font-size: 0.95rem;
+      font-weight: bold;
+      background-color: #e0e0e0;
+      border: 2px solid #3e49a8;
+      border-radius: 5px;
+      color: #3e49a8;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+    .map-toggle-button.active {
+      background-color: #3e49a8;
+      color: white;
+    }
+
+    .widget-box {
+      background-color: white;
+      padding: 1rem;
+      border-radius: 10px;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+    }
+    .widget-frame {
+      width: 120%;
+      height: 400px;
+      border: none;
+      margin-top: 0.5rem;
+    }
+
+    .metric-nav { font-size: 0.8rem; }
+    .metric-title { font-size: 0.8rem; margin: 0 0 .4rem 0; }
+    .metric-grid {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: baseline;
+      row-gap: .45rem;
+      column-gap: .75rem;
+    }
+    .metric-name { font-weight: 600; }
+    .metric-views { white-space: nowrap; }
+    .metric-nav a { display: inline; text-decoration: none; color: #1f4aa3; }
+    .metric-nav a:hover { text-decoration: underline; }
+
+    /* 2) Collapsible note styles */
+    details.note {
+      margin-top: 0.4rem;
+      font-size: 0.9rem;
+      color: #555;
+    }
+    details.note > summary {
+      cursor: pointer;
+      list-style: none;     /* hide default marker */
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 600;
+      color: #3e49a8;
+      user-select: none;
+    }
+    details.note > summary::before {
+      content: "▸";
+      transition: transform 0.2s ease;
+      display: inline-block;
+    }
+    details.note[open] > summary::before {
+      content: "▾";
+    }
+    details.note > div {
+      margin-top: 0.4rem;
+      font-size: 0.85rem;
+      line-height: 1.35;
+    }
+  </style>
+</head>
+<body>
+  <h1>Living Alone in the United States by County (2023)</h1>
+  <h2>Click a State to Explore Further</h2>
+
+  <div class="main-wrapper">
+    <div style="margin-left: 1.5rem; margin-bottom: 0.6rem;">
+      <button id="btn-under65" class="map-toggle-button active">18 - 64 Living Alone</button>
+      <button id="btn-over65" class="map-toggle-button">65+ Living Alone</button>
+
+      <!-- 2) Collapsible Note -->
+      <details class="note">
+        <summary>Note</summary>
+        <div>
+          Percentages reflect individuals living alone as a share of the total population in that age range.
+        </div>
+      </details>
+    </div>
+
+    <div class="map-rankings-container">
+      <iframe id="loneliness-map" class="map-frame" src="misc/lonely-under65.html" title="Loneliness Map"></iframe>
+
+      <div class="right-panel">
+        <div class="link-list metric-nav">
+          <h3 class="metric-title">Select a different Metric:</h3>
+          <div class="metric-grid">
+            <span class="metric-name" style="font-size: 1rem;"><u>Category</u></span>
+            <span class="metric-views" style="font-size: 1rem;"><u><strong>View</strong></u></span>
+
+            <span class="metric-name">Internet Access</span>
+            <span class="metric-views">( <a href="misc/internet-map.html">County</a> | <a href="misc/internet-state.html">State</a> )</span>
+
+            <span class="metric-name">Housing</span>
+            <span class="metric-views">( <a href="misc/plumbing-map.html">County</a> | <a href="misc/plumbing-map-state.html">State</a> )</span>
+
+            <span class="metric-name">Work</span>
+            <span class="metric-views">( <a href="misc/departure-map.html">County</a> | <a href="misc/departure-map-state.html">State</a> )</span>
+
+            <span class="metric-name">Children</span>
+            <span class="metric-views">( <a href="maps/children.html">County</a> | <a href="maps/children-state.html">State</a> )</span>
+
+            <span class="metric-name">Veterans</span>
+            <span class="metric-views">( <a href="misc/veteran-map.html">County</a> | <a href="misc/veteran-map-state.html">State</a> )</span>
+          </div>
+        </div>
+  
+<h3> Other </h3>
+    <a href="tenure.html" style="
+  display: inline-block;
+  margin-top: 0rem;
+  margin-right: 0rem;
+  
+  padding: 0.8rem 1rem;
+  background-color: #3e49a8;
+  color: white;
+  text-decoration: none;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.25s ease-in-out;
+">
+Housing Tenure (Exlusively Home Owners)    ➡
+</a>
+
+<style>
+  a:hover {
+    transform: scale(1.02);
+    background-color: #c6caed;
+  }
+</style>
+
+
+
+      </div>
+    </div>
+  </div>
+
+
+
+  <div id="bottom-left-label">
+    <strong>Source:</strong>
+    <a href="https://www.census.gov/programs-surveys/acs" target="_blank" style="color: #003366; text-decoration: underline;">
+      ACS 2023
+    </a>
+  </div>
+
+  <script>
+    const btnUnder65 = document.getElementById('btn-under65');
+    const btnOver65 = document.getElementById('btn-over65');
+    const mapFrame = document.getElementById('loneliness-map');
+
+    btnUnder65.addEventListener('click', () => {
+      mapFrame.src = 'misc/lonely-under65.html';
+      btnUnder65.classList.add('active');
+      btnOver65.classList.remove('active');
+    });
+
+    btnOver65.addEventListener('click', () => {
+      mapFrame.src = 'misc/lonely-65plus.html';
+      btnOver65.classList.add('active');
+      btnUnder65.classList.remove('active');
+    });
+  </script>
+</body>
+</html>

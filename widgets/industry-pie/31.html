@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <title>Industry Distribution – Nebraska</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+        canvas { max-width: 600px; height: 500px; }
+        select { padding: 0.5rem; font-size: 1rem; margin: 1rem; }
+        .legend { max-width: 600px; margin: 1rem auto; display: flex; flex-wrap: wrap; justify-content: center; font-size: 0.9rem; }
+        .legend-item { display: flex; align-items: center; margin: 0.3rem 1rem; }
+        .legend-color { width: 12px; height: 12px; margin-right: 6px; border: 1px solid #444; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Industry Distribution in Nebraska</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Adams County, Nebraska">Adams County, Nebraska</option>
+      <option value="Antelope County, Nebraska">Antelope County, Nebraska</option>
+      <option value="Arthur County, Nebraska">Arthur County, Nebraska</option>
+      <option value="Banner County, Nebraska">Banner County, Nebraska</option>
+      <option value="Blaine County, Nebraska">Blaine County, Nebraska</option>
+      <option value="Boone County, Nebraska">Boone County, Nebraska</option>
+      <option value="Box Butte County, Nebraska">Box Butte County, Nebraska</option>
+      <option value="Boyd County, Nebraska">Boyd County, Nebraska</option>
+      <option value="Brown County, Nebraska">Brown County, Nebraska</option>
+      <option value="Buffalo County, Nebraska">Buffalo County, Nebraska</option>
+      <option value="Burt County, Nebraska">Burt County, Nebraska</option>
+      <option value="Butler County, Nebraska">Butler County, Nebraska</option>
+      <option value="Cass County, Nebraska">Cass County, Nebraska</option>
+      <option value="Cedar County, Nebraska">Cedar County, Nebraska</option>
+      <option value="Chase County, Nebraska">Chase County, Nebraska</option>
+      <option value="Cherry County, Nebraska">Cherry County, Nebraska</option>
+      <option value="Cheyenne County, Nebraska">Cheyenne County, Nebraska</option>
+      <option value="Clay County, Nebraska">Clay County, Nebraska</option>
+      <option value="Colfax County, Nebraska">Colfax County, Nebraska</option>
+      <option value="Cuming County, Nebraska">Cuming County, Nebraska</option>
+      <option value="Custer County, Nebraska">Custer County, Nebraska</option>
+      <option value="Dakota County, Nebraska">Dakota County, Nebraska</option>
+      <option value="Dawes County, Nebraska">Dawes County, Nebraska</option>
+      <option value="Dawson County, Nebraska">Dawson County, Nebraska</option>
+      <option value="Deuel County, Nebraska">Deuel County, Nebraska</option>
+      <option value="Dixon County, Nebraska">Dixon County, Nebraska</option>
+      <option value="Dodge County, Nebraska">Dodge County, Nebraska</option>
+      <option value="Douglas County, Nebraska">Douglas County, Nebraska</option>
+      <option value="Dundy County, Nebraska">Dundy County, Nebraska</option>
+      <option value="Fillmore County, Nebraska">Fillmore County, Nebraska</option>
+      <option value="Franklin County, Nebraska">Franklin County, Nebraska</option>
+      <option value="Frontier County, Nebraska">Frontier County, Nebraska</option>
+      <option value="Furnas County, Nebraska">Furnas County, Nebraska</option>
+      <option value="Gage County, Nebraska">Gage County, Nebraska</option>
+      <option value="Garden County, Nebraska">Garden County, Nebraska</option>
+      <option value="Garfield County, Nebraska">Garfield County, Nebraska</option>
+      <option value="Gosper County, Nebraska">Gosper County, Nebraska</option>
+      <option value="Grant County, Nebraska">Grant County, Nebraska</option>
+      <option value="Greeley County, Nebraska">Greeley County, Nebraska</option>
+      <option value="Hall County, Nebraska">Hall County, Nebraska</option>
+      <option value="Hamilton County, Nebraska">Hamilton County, Nebraska</option>
+      <option value="Harlan County, Nebraska">Harlan County, Nebraska</option>
+      <option value="Hayes County, Nebraska">Hayes County, Nebraska</option>
+      <option value="Hitchcock County, Nebraska">Hitchcock County, Nebraska</option>
+      <option value="Holt County, Nebraska">Holt County, Nebraska</option>
+      <option value="Hooker County, Nebraska">Hooker County, Nebraska</option>
+      <option value="Howard County, Nebraska">Howard County, Nebraska</option>
+      <option value="Jefferson County, Nebraska">Jefferson County, Nebraska</option>
+      <option value="Johnson County, Nebraska">Johnson County, Nebraska</option>
+      <option value="Kearney County, Nebraska">Kearney County, Nebraska</option>
+      <option value="Keith County, Nebraska">Keith County, Nebraska</option>
+      <option value="Keya Paha County, Nebraska">Keya Paha County, Nebraska</option>
+      <option value="Kimball County, Nebraska">Kimball County, Nebraska</option>
+      <option value="Knox County, Nebraska">Knox County, Nebraska</option>
+      <option value="Lancaster County, Nebraska">Lancaster County, Nebraska</option>
+      <option value="Lincoln County, Nebraska">Lincoln County, Nebraska</option>
+      <option value="Logan County, Nebraska">Logan County, Nebraska</option>
+      <option value="Loup County, Nebraska">Loup County, Nebraska</option>
+      <option value="Madison County, Nebraska">Madison County, Nebraska</option>
+      <option value="McPherson County, Nebraska">McPherson County, Nebraska</option>
+      <option value="Merrick County, Nebraska">Merrick County, Nebraska</option>
+      <option value="Morrill County, Nebraska">Morrill County, Nebraska</option>
+      <option value="Nance County, Nebraska">Nance County, Nebraska</option>
+      <option value="Nemaha County, Nebraska">Nemaha County, Nebraska</option>
+      <option value="Nuckolls County, Nebraska">Nuckolls County, Nebraska</option>
+      <option value="Otoe County, Nebraska">Otoe County, Nebraska</option>
+      <option value="Pawnee County, Nebraska">Pawnee County, Nebraska</option>
+      <option value="Perkins County, Nebraska">Perkins County, Nebraska</option>
+      <option value="Phelps County, Nebraska">Phelps County, Nebraska</option>
+      <option value="Pierce County, Nebraska">Pierce County, Nebraska</option>
+      <option value="Platte County, Nebraska">Platte County, Nebraska</option>
+      <option value="Polk County, Nebraska">Polk County, Nebraska</option>
+      <option value="Red Willow County, Nebraska">Red Willow County, Nebraska</option>
+      <option value="Richardson County, Nebraska">Richardson County, Nebraska</option>
+      <option value="Rock County, Nebraska">Rock County, Nebraska</option>
+      <option value="Saline County, Nebraska">Saline County, Nebraska</option>
+      <option value="Sarpy County, Nebraska">Sarpy County, Nebraska</option>
+      <option value="Saunders County, Nebraska">Saunders County, Nebraska</option>
+      <option value="Scotts Bluff County, Nebraska">Scotts Bluff County, Nebraska</option>
+      <option value="Seward County, Nebraska">Seward County, Nebraska</option>
+      <option value="Sheridan County, Nebraska">Sheridan County, Nebraska</option>
+      <option value="Sherman County, Nebraska">Sherman County, Nebraska</option>
+      <option value="Sioux County, Nebraska">Sioux County, Nebraska</option>
+      <option value="Stanton County, Nebraska">Stanton County, Nebraska</option>
+      <option value="Thayer County, Nebraska">Thayer County, Nebraska</option>
+      <option value="Thomas County, Nebraska">Thomas County, Nebraska</option>
+      <option value="Thurston County, Nebraska">Thurston County, Nebraska</option>
+      <option value="Valley County, Nebraska">Valley County, Nebraska</option>
+      <option value="Washington County, Nebraska">Washington County, Nebraska</option>
+      <option value="Wayne County, Nebraska">Wayne County, Nebraska</option>
+      <option value="Webster County, Nebraska">Webster County, Nebraska</option>
+      <option value="Wheeler County, Nebraska">Wheeler County, Nebraska</option>
+      <option value="York County, Nebraska">York County, Nebraska</option>
+    </select>
+    <canvas id="pieChart"></canvas>
+    <div class="legend">
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#66CC66;"></div>
+        <span>Agriculture, forestry, fishing, and hunting</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#996600;"></div>
+        <span>Mining</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FF6600;"></div>
+        <span>Utilities</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FFCC33;"></div>
+        <span>Construction</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FF0000;"></div>
+        <span>Manufacturing</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FF66FF;"></div>
+        <span>Wholesale trade</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#3399FF;"></div>
+        <span>Retail trade</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#00CC99;"></div>
+        <span>Transportation and warehousing</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#999966;"></div>
+        <span>Information</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#6666FF;"></div>
+        <span>Finance and insurance</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FF99CC;"></div>
+        <span>Professional, scientific, and technical services</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#66CCCC;"></div>
+        <span>Educational services</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FF9933;"></div>
+        <span>Healthcare and social assistance</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#CC99FF;"></div>
+        <span>Arts, entertainment, and recreation</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FF9999;"></div>
+        <span>Accommodation and food services</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#CCCC00;"></div>
+        <span>Other services</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#663300;"></div>
+        <span>Public administration</span>
+      </div>
+    </div>
+    <script>const data = [];
+const colors = ["#66CC66","#996600","#FF6600","#FFCC33","#FF0000","#FF66FF","#3399FF","#00CC99","#999966","#6666FF","#FF99CC","#66CCCC","#FF9933","#CC99FF","#FF9999","#CCCC00","#663300"];
+let chart;
+function renderChart(region) {
+  const ctx = document.getElementById("pieChart").getContext("2d");
+  const labels = Object.keys(data[region]);
+  const values = Object.values(data[region]);
+  const backgroundColors = labels.map(l => colors[l] || "#999");
+  if (chart) chart.destroy();
+  chart = new Chart(ctx, {
+    type: "pie",
+    data: {
+      labels: labels,
+      datasets: [{
+        data: values,
+        backgroundColor: backgroundColors
+      }]
+    },
+    options: {
+      plugins: {
+        tooltip: {
+          callbacks: {
+            label: ctx => ctx.label + ": " + ctx.raw + "%"
+          }
+        }
+      }
+    }
+  });
+}
+document.getElementById("countySelect").addEventListener("change", function() {
+  renderChart(this.value);
+});
+renderChart("Statewide");</script>
+  </body>
+</html>
+</html>

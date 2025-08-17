@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Living Arrangements of Children – Nevada</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Children’s Living Arrangements (Under 18) – Nevada</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Carson City, Nevada">Carson City, Nevada</option>
+      <option value="Churchill County, Nevada">Churchill County, Nevada</option>
+      <option value="Clark County, Nevada">Clark County, Nevada</option>
+      <option value="Douglas County, Nevada">Douglas County, Nevada</option>
+      <option value="Elko County, Nevada">Elko County, Nevada</option>
+      <option value="Esmeralda County, Nevada">Esmeralda County, Nevada</option>
+      <option value="Eureka County, Nevada">Eureka County, Nevada</option>
+      <option value="Humboldt County, Nevada">Humboldt County, Nevada</option>
+      <option value="Lander County, Nevada">Lander County, Nevada</option>
+      <option value="Lincoln County, Nevada">Lincoln County, Nevada</option>
+      <option value="Lyon County, Nevada">Lyon County, Nevada</option>
+      <option value="Mineral County, Nevada">Mineral County, Nevada</option>
+      <option value="Nye County, Nevada">Nye County, Nevada</option>
+      <option value="Pershing County, Nevada">Pershing County, Nevada</option>
+      <option value="Storey County, Nevada">Storey County, Nevada</option>
+      <option value="Washoe County, Nevada">Washoe County, Nevada</option>
+      <option value="White Pine County, Nevada">White Pine County, Nevada</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>  const data = {"Statewide":{"Married Couple (%)":61.5,"Cohabiting Couple (%)":11.1,"Male Householder (%)":6.1,"Female Householder (%)":21.3},"Carson City, Nevada":{"Married Couple (%)":61.4,"Cohabiting Couple (%)":16.4,"Male Householder (%)":7.7,"Female Householder (%)":14.5},"Churchill County, Nevada":{"Married Couple (%)":76.2,"Cohabiting Couple (%)":8.8,"Male Householder (%)":6.4,"Female Householder (%)":8.6},"Clark County, Nevada":{"Married Couple (%)":59.9,"Cohabiting Couple (%)":11,"Male Householder (%)":6,"Female Householder (%)":23.1},"Douglas County, Nevada":{"Married Couple (%)":76.9,"Cohabiting Couple (%)":4.1,"Male Householder (%)":7.6,"Female Householder (%)":11.5},"Elko County, Nevada":{"Married Couple (%)":68.8,"Cohabiting Couple (%)":10.1,"Male Householder (%)":6.5,"Female Householder (%)":14.7},"Esmeralda County, Nevada":{"Married Couple (%)":93.2,"Cohabiting Couple (%)":6.8,"Male Householder (%)":0,"Female Householder (%)":0},"Eureka County, Nevada":{"Married Couple (%)":77,"Cohabiting Couple (%)":6.4,"Male Householder (%)":0,"Female Householder (%)":16.6},"Humboldt County, Nevada":{"Married Couple (%)":73.6,"Cohabiting Couple (%)":8.2,"Male Householder (%)":7.9,"Female Householder (%)":10.3},"Lander County, Nevada":{"Married Couple (%)":61.1,"Cohabiting Couple (%)":13.2,"Male Householder (%)":19.1,"Female Householder (%)":6.6},"Lincoln County, Nevada":{"Married Couple (%)":70.2,"Cohabiting Couple (%)":6,"Male Householder (%)":8.2,"Female Householder (%)":15.6},"Lyon County, Nevada":{"Married Couple (%)":68.5,"Cohabiting Couple (%)":14.7,"Male Householder (%)":4.2,"Female Householder (%)":12.6},"Mineral County, Nevada":{"Married Couple (%)":38.7,"Cohabiting Couple (%)":35.7,"Male Householder (%)":4.3,"Female Householder (%)":21.3},"Nye County, Nevada":{"Married Couple (%)":63.9,"Cohabiting Couple (%)":9.8,"Male Householder (%)":8.4,"Female Householder (%)":17.9},"Pershing County, Nevada":{"Married Couple (%)":75,"Cohabiting Couple (%)":2,"Male Householder (%)":2.5,"Female Householder (%)":20.5},"Storey County, Nevada":{"Married Couple (%)":66.2,"Cohabiting Couple (%)":4,"Male Householder (%)":4,"Female Householder (%)":25.8},"Washoe County, Nevada":{"Married Couple (%)":64.6,"Cohabiting Couple (%)":12,"Male Householder (%)":6,"Female Householder (%)":17.4},"White Pine County, Nevada":{"Married Couple (%)":64.5,"Cohabiting Couple (%)":9.6,"Male Householder (%)":14,"Female Householder (%)":12}};
+  const categories = ["Married Couple (%)","Cohabiting Couple (%)","Male Householder (%)","Female Householder (%)"];
+  const ctx = document.getElementById("barChart").getContext("2d");
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: categories,
+        datasets: [{
+          label: "Share of Children (%)",
+          data: values,
+          backgroundColor: ["#5DA5DA","#FAA43A","#60BD68","#F17CB0"]
+        }]
+      },
+      options: {
+        indexAxis: "y",
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            ticks: { callback: v => v + "%" },
+            title: { display: true, text: "Percent of Children" }
+          }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.raw + "%"
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById("countySelect").addEventListener("change", function() {
+    renderChart(Object.values(data[this.value]));
+  });
+
+  renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

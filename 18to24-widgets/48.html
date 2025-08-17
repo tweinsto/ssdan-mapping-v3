@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Educational Enrollment – Texas</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Educational Enrollment (Age 18–24) in Texas</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Anderson County, Texas">Anderson County, Texas</option>
+      <option value="Andrews County, Texas">Andrews County, Texas</option>
+      <option value="Angelina County, Texas">Angelina County, Texas</option>
+      <option value="Aransas County, Texas">Aransas County, Texas</option>
+      <option value="Archer County, Texas">Archer County, Texas</option>
+      <option value="Armstrong County, Texas">Armstrong County, Texas</option>
+      <option value="Atascosa County, Texas">Atascosa County, Texas</option>
+      <option value="Austin County, Texas">Austin County, Texas</option>
+      <option value="Bailey County, Texas">Bailey County, Texas</option>
+      <option value="Bandera County, Texas">Bandera County, Texas</option>
+      <option value="Bastrop County, Texas">Bastrop County, Texas</option>
+      <option value="Baylor County, Texas">Baylor County, Texas</option>
+      <option value="Bee County, Texas">Bee County, Texas</option>
+      <option value="Bell County, Texas">Bell County, Texas</option>
+      <option value="Bexar County, Texas">Bexar County, Texas</option>
+      <option value="Blanco County, Texas">Blanco County, Texas</option>
+      <option value="Borden County, Texas">Borden County, Texas</option>
+      <option value="Bosque County, Texas">Bosque County, Texas</option>
+      <option value="Bowie County, Texas">Bowie County, Texas</option>
+      <option value="Brazoria County, Texas">Brazoria County, Texas</option>
+      <option value="Brazos County, Texas">Brazos County, Texas</option>
+      <option value="Brewster County, Texas">Brewster County, Texas</option>
+      <option value="Briscoe County, Texas">Briscoe County, Texas</option>
+      <option value="Brooks County, Texas">Brooks County, Texas</option>
+      <option value="Brown County, Texas">Brown County, Texas</option>
+      <option value="Burleson County, Texas">Burleson County, Texas</option>
+      <option value="Burnet County, Texas">Burnet County, Texas</option>
+      <option value="Caldwell County, Texas">Caldwell County, Texas</option>
+      <option value="Calhoun County, Texas">Calhoun County, Texas</option>
+      <option value="Callahan County, Texas">Callahan County, Texas</option>
+      <option value="Cameron County, Texas">Cameron County, Texas</option>
+      <option value="Camp County, Texas">Camp County, Texas</option>
+      <option value="Carson County, Texas">Carson County, Texas</option>
+      <option value="Cass County, Texas">Cass County, Texas</option>
+      <option value="Castro County, Texas">Castro County, Texas</option>
+      <option value="Chambers County, Texas">Chambers County, Texas</option>
+      <option value="Cherokee County, Texas">Cherokee County, Texas</option>
+      <option value="Childress County, Texas">Childress County, Texas</option>
+      <option value="Clay County, Texas">Clay County, Texas</option>
+      <option value="Cochran County, Texas">Cochran County, Texas</option>
+      <option value="Coke County, Texas">Coke County, Texas</option>
+      <option value="Coleman County, Texas">Coleman County, Texas</option>
+      <option value="Collin County, Texas">Collin County, Texas</option>
+      <option value="Collingsworth County, Texas">Collingsworth County, Texas</option>
+      <option value="Colorado County, Texas">Colorado County, Texas</option>
+      <option value="Comal County, Texas">Comal County, Texas</option>
+      <option value="Comanche County, Texas">Comanche County, Texas</option>
+      <option value="Concho County, Texas">Concho County, Texas</option>
+      <option value="Cooke County, Texas">Cooke County, Texas</option>
+      <option value="Coryell County, Texas">Coryell County, Texas</option>
+      <option value="Cottle County, Texas">Cottle County, Texas</option>
+      <option value="Crane County, Texas">Crane County, Texas</option>
+      <option value="Crockett County, Texas">Crockett County, Texas</option>
+      <option value="Crosby County, Texas">Crosby County, Texas</option>
+      <option value="Culberson County, Texas">Culberson County, Texas</option>
+      <option value="Dallam County, Texas">Dallam County, Texas</option>
+      <option value="Dallas County, Texas">Dallas County, Texas</option>
+      <option value="Dawson County, Texas">Dawson County, Texas</option>
+      <option value="Deaf Smith County, Texas">Deaf Smith County, Texas</option>
+      <option value="Delta County, Texas">Delta County, Texas</option>
+      <option value="Denton County, Texas">Denton County, Texas</option>
+      <option value="DeWitt County, Texas">DeWitt County, Texas</option>
+      <option value="Dickens County, Texas">Dickens County, Texas</option>
+      <option value="Dimmit County, Texas">Dimmit County, Texas</option>
+      <option value="Donley County, Texas">Donley County, Texas</option>
+      <option value="Duval County, Texas">Duval County, Texas</option>
+      <option value="Eastland County, Texas">Eastland County, Texas</option>
+      <option value="Ector County, Texas">Ector County, Texas</option>
+      <option value="Edwards County, Texas">Edwards County, Texas</option>
+      <option value="El Paso County, Texas">El Paso County, Texas</option>
+      <option value="Ellis County, Texas">Ellis County, Texas</option>
+      <option value="Erath County, Texas">Erath County, Texas</option>
+      <option value="Falls County, Texas">Falls County, Texas</option>
+      <option value="Fannin County, Texas">Fannin County, Texas</option>
+      <option value="Fayette County, Texas">Fayette County, Texas</option>
+      <option value="Fisher County, Texas">Fisher County, Texas</option>
+      <option value="Floyd County, Texas">Floyd County, Texas</option>
+      <option value="Foard County, Texas">Foard County, Texas</option>
+      <option value="Fort Bend County, Texas">Fort Bend County, Texas</option>
+      <option value="Franklin County, Texas">Franklin County, Texas</option>
+      <option value="Freestone County, Texas">Freestone County, Texas</option>
+      <option value="Frio County, Texas">Frio County, Texas</option>
+      <option value="Gaines County, Texas">Gaines County, Texas</option>
+      <option value="Galveston County, Texas">Galveston County, Texas</option>
+      <option value="Garza County, Texas">Garza County, Texas</option>
+      <option value="Gillespie County, Texas">Gillespie County, Texas</option>
+      <option value="Glasscock County, Texas">Glasscock County, Texas</option>
+      <option value="Goliad County, Texas">Goliad County, Texas</option>
+      <option value="Gonzales County, Texas">Gonzales County, Texas</option>
+      <option value="Gray County, Texas">Gray County, Texas</option>
+      <option value="Grayson County, Texas">Grayson County, Texas</option>
+      <option value="Gregg County, Texas">Gregg County, Texas</option>
+      <option value="Grimes County, Texas">Grimes County, Texas</option>
+      <option value="Guadalupe County, Texas">Guadalupe County, Texas</option>
+      <option value="Hale County, Texas">Hale County, Texas</option>
+      <option value="Hall County, Texas">Hall County, Texas</option>
+      <option value="Hamilton County, Texas">Hamilton County, Texas</option>
+      <option value="Hansford County, Texas">Hansford County, Texas</option>
+      <option value="Hardeman County, Texas">Hardeman County, Texas</option>
+      <option value="Hardin County, Texas">Hardin County, Texas</option>
+      <option value="Harris County, Texas">Harris County, Texas</option>
+      <option value="Harrison County, Texas">Harrison County, Texas</option>
+      <option value="Hartley County, Texas">Hartley County, Texas</option>
+      <option value="Haskell County, Texas">Haskell County, Texas</option>
+      <option value="Hays County, Texas">Hays County, Texas</option>
+      <option value="Hemphill County, Texas">Hemphill County, Texas</option>
+      <option value="Henderson County, Texas">Henderson County, Texas</option>
+      <option value="Hidalgo County, Texas">Hidalgo County, Texas</option>
+      <option value="Hill County, Texas">Hill County, Texas</option>
+      <option value="Hockley County, Texas">Hockley County, Texas</option>
+      <option value="Hood County, Texas">Hood County, Texas</option>
+      <option value="Hopkins County, Texas">Hopkins County, Texas</option>
+      <option value="Houston County, Texas">Houston County, Texas</option>
+      <option value="Howard County, Texas">Howard County, Texas</option>
+      <option value="Hudspeth County, Texas">Hudspeth County, Texas</option>
+      <option value="Hunt County, Texas">Hunt County, Texas</option>
+      <option value="Hutchinson County, Texas">Hutchinson County, Texas</option>
+      <option value="Irion County, Texas">Irion County, Texas</option>
+      <option value="Jack County, Texas">Jack County, Texas</option>
+      <option value="Jackson County, Texas">Jackson County, Texas</option>
+      <option value="Jasper County, Texas">Jasper County, Texas</option>
+      <option value="Jeff Davis County, Texas">Jeff Davis County, Texas</option>
+      <option value="Jefferson County, Texas">Jefferson County, Texas</option>
+      <option value="Jim Hogg County, Texas">Jim Hogg County, Texas</option>
+      <option value="Jim Wells County, Texas">Jim Wells County, Texas</option>
+      <option value="Johnson County, Texas">Johnson County, Texas</option>
+      <option value="Jones County, Texas">Jones County, Texas</option>
+      <option value="Karnes County, Texas">Karnes County, Texas</option>
+      <option value="Kaufman County, Texas">Kaufman County, Texas</option>
+      <option value="Kendall County, Texas">Kendall County, Texas</option>
+      <option value="Kenedy County, Texas">Kenedy County, Texas</option>
+      <option value="Kent County, Texas">Kent County, Texas</option>
+      <option value="Kerr County, Texas">Kerr County, Texas</option>
+      <option value="Kimble County, Texas">Kimble County, Texas</option>
+      <option value="King County, Texas">King County, Texas</option>
+      <option value="Kinney County, Texas">Kinney County, Texas</option>
+      <option value="Kleberg County, Texas">Kleberg County, Texas</option>
+      <option value="Knox County, Texas">Knox County, Texas</option>
+      <option value="La Salle County, Texas">La Salle County, Texas</option>
+      <option value="Lamar County, Texas">Lamar County, Texas</option>
+      <option value="Lamb County, Texas">Lamb County, Texas</option>
+      <option value="Lampasas County, Texas">Lampasas County, Texas</option>
+      <option value="Lavaca County, Texas">Lavaca County, Texas</option>
+      <option value="Lee County, Texas">Lee County, Texas</option>
+      <option value="Leon County, Texas">Leon County, Texas</option>
+      <option value="Liberty County, Texas">Liberty County, Texas</option>
+      <option value="Limestone County, Texas">Limestone County, Texas</option>
+      <option value="Lipscomb County, Texas">Lipscomb County, Texas</option>
+      <option value="Live Oak County, Texas">Live Oak County, Texas</option>
+      <option value="Llano County, Texas">Llano County, Texas</option>
+      <option value="Loving County, Texas">Loving County, Texas</option>
+      <option value="Lubbock County, Texas">Lubbock County, Texas</option>
+      <option value="Lynn County, Texas">Lynn County, Texas</option>
+      <option value="Madison County, Texas">Madison County, Texas</option>
+      <option value="Marion County, Texas">Marion County, Texas</option>
+      <option value="Martin County, Texas">Martin County, Texas</option>
+      <option value="Mason County, Texas">Mason County, Texas</option>
+      <option value="Matagorda County, Texas">Matagorda County, Texas</option>
+      <option value="Maverick County, Texas">Maverick County, Texas</option>
+      <option value="McCulloch County, Texas">McCulloch County, Texas</option>
+      <option value="McLennan County, Texas">McLennan County, Texas</option>
+      <option value="McMullen County, Texas">McMullen County, Texas</option>
+      <option value="Medina County, Texas">Medina County, Texas</option>
+      <option value="Menard County, Texas">Menard County, Texas</option>
+      <option value="Midland County, Texas">Midland County, Texas</option>
+      <option value="Milam County, Texas">Milam County, Texas</option>
+      <option value="Mills County, Texas">Mills County, Texas</option>
+      <option value="Mitchell County, Texas">Mitchell County, Texas</option>
+      <option value="Montague County, Texas">Montague County, Texas</option>
+      <option value="Montgomery County, Texas">Montgomery County, Texas</option>
+      <option value="Moore County, Texas">Moore County, Texas</option>
+      <option value="Morris County, Texas">Morris County, Texas</option>
+      <option value="Motley County, Texas">Motley County, Texas</option>
+      <option value="Nacogdoches County, Texas">Nacogdoches County, Texas</option>
+      <option value="Navarro County, Texas">Navarro County, Texas</option>
+      <option value="Newton County, Texas">Newton County, Texas</option>
+      <option value="Nolan County, Texas">Nolan County, Texas</option>
+      <option value="Nueces County, Texas">Nueces County, Texas</option>
+      <option value="Ochiltree County, Texas">Ochiltree County, Texas</option>
+      <option value="Oldham County, Texas">Oldham County, Texas</option>
+      <option value="Orange County, Texas">Orange County, Texas</option>
+      <option value="Palo Pinto County, Texas">Palo Pinto County, Texas</option>
+      <option value="Panola County, Texas">Panola County, Texas</option>
+      <option value="Parker County, Texas">Parker County, Texas</option>
+      <option value="Parmer County, Texas">Parmer County, Texas</option>
+      <option value="Pecos County, Texas">Pecos County, Texas</option>
+      <option value="Polk County, Texas">Polk County, Texas</option>
+      <option value="Potter County, Texas">Potter County, Texas</option>
+      <option value="Presidio County, Texas">Presidio County, Texas</option>
+      <option value="Rains County, Texas">Rains County, Texas</option>
+      <option value="Randall County, Texas">Randall County, Texas</option>
+      <option value="Reagan County, Texas">Reagan County, Texas</option>
+      <option value="Real County, Texas">Real County, Texas</option>
+      <option value="Red River County, Texas">Red River County, Texas</option>
+      <option value="Reeves County, Texas">Reeves County, Texas</option>
+      <option value="Refugio County, Texas">Refugio County, Texas</option>
+      <option value="Roberts County, Texas">Roberts County, Texas</option>
+      <option value="Robertson County, Texas">Robertson County, Texas</option>
+      <option value="Rockwall County, Texas">Rockwall County, Texas</option>
+      <option value="Runnels County, Texas">Runnels County, Texas</option>
+      <option value="Rusk County, Texas">Rusk County, Texas</option>
+      <option value="Sabine County, Texas">Sabine County, Texas</option>
+      <option value="San Augustine County, Texas">San Augustine County, Texas</option>
+      <option value="San Jacinto County, Texas">San Jacinto County, Texas</option>
+      <option value="San Patricio County, Texas">San Patricio County, Texas</option>
+      <option value="San Saba County, Texas">San Saba County, Texas</option>
+      <option value="Schleicher County, Texas">Schleicher County, Texas</option>
+      <option value="Scurry County, Texas">Scurry County, Texas</option>
+      <option value="Shackelford County, Texas">Shackelford County, Texas</option>
+      <option value="Shelby County, Texas">Shelby County, Texas</option>
+      <option value="Sherman County, Texas">Sherman County, Texas</option>
+      <option value="Smith County, Texas">Smith County, Texas</option>
+      <option value="Somervell County, Texas">Somervell County, Texas</option>
+      <option value="Starr County, Texas">Starr County, Texas</option>
+      <option value="Stephens County, Texas">Stephens County, Texas</option>
+      <option value="Sterling County, Texas">Sterling County, Texas</option>
+      <option value="Stonewall County, Texas">Stonewall County, Texas</option>
+      <option value="Sutton County, Texas">Sutton County, Texas</option>
+      <option value="Swisher County, Texas">Swisher County, Texas</option>
+      <option value="Tarrant County, Texas">Tarrant County, Texas</option>
+      <option value="Taylor County, Texas">Taylor County, Texas</option>
+      <option value="Terrell County, Texas">Terrell County, Texas</option>
+      <option value="Terry County, Texas">Terry County, Texas</option>
+      <option value="Throckmorton County, Texas">Throckmorton County, Texas</option>
+      <option value="Titus County, Texas">Titus County, Texas</option>
+      <option value="Tom Green County, Texas">Tom Green County, Texas</option>
+      <option value="Travis County, Texas">Travis County, Texas</option>
+      <option value="Trinity County, Texas">Trinity County, Texas</option>
+      <option value="Tyler County, Texas">Tyler County, Texas</option>
+      <option value="Upshur County, Texas">Upshur County, Texas</option>
+      <option value="Upton County, Texas">Upton County, Texas</option>
+      <option value="Uvalde County, Texas">Uvalde County, Texas</option>
+      <option value="Val Verde County, Texas">Val Verde County, Texas</option>
+      <option value="Van Zandt County, Texas">Van Zandt County, Texas</option>
+      <option value="Victoria County, Texas">Victoria County, Texas</option>
+      <option value="Walker County, Texas">Walker County, Texas</option>
+      <option value="Waller County, Texas">Waller County, Texas</option>
+      <option value="Ward County, Texas">Ward County, Texas</option>
+      <option value="Washington County, Texas">Washington County, Texas</option>
+      <option value="Webb County, Texas">Webb County, Texas</option>
+      <option value="Wharton County, Texas">Wharton County, Texas</option>
+      <option value="Wheeler County, Texas">Wheeler County, Texas</option>
+      <option value="Wichita County, Texas">Wichita County, Texas</option>
+      <option value="Wilbarger County, Texas">Wilbarger County, Texas</option>
+      <option value="Willacy County, Texas">Willacy County, Texas</option>
+      <option value="Williamson County, Texas">Williamson County, Texas</option>
+      <option value="Wilson County, Texas">Wilson County, Texas</option>
+      <option value="Winkler County, Texas">Winkler County, Texas</option>
+      <option value="Wise County, Texas">Wise County, Texas</option>
+      <option value="Wood County, Texas">Wood County, Texas</option>
+      <option value="Yoakum County, Texas">Yoakum County, Texas</option>
+      <option value="Young County, Texas">Young County, Texas</option>
+      <option value="Zapata County, Texas">Zapata County, Texas</option>
+      <option value="Zavala County, Texas">Zavala County, Texas</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>  const data = {"Statewide":{"Enrolled in College / Grad. School":36.9,"Not Enrolled":63.1},"Anderson County, Texas":{"Enrolled in College / Grad. School":14.3,"Not Enrolled":85.7},"Andrews County, Texas":{"Enrolled in College / Grad. School":27.6,"Not Enrolled":72.4},"Angelina County, Texas":{"Enrolled in College / Grad. School":25.2,"Not Enrolled":74.8},"Aransas County, Texas":{"Enrolled in College / Grad. School":43.2,"Not Enrolled":56.8},"Archer County, Texas":{"Enrolled in College / Grad. School":28.3,"Not Enrolled":71.7},"Armstrong County, Texas":{"Enrolled in College / Grad. School":43.8,"Not Enrolled":56.2},"Atascosa County, Texas":{"Enrolled in College / Grad. School":18.7,"Not Enrolled":81.3},"Austin County, Texas":{"Enrolled in College / Grad. School":15.7,"Not Enrolled":84.3},"Bailey County, Texas":{"Enrolled in College / Grad. School":11.4,"Not Enrolled":88.6},"Bandera County, Texas":{"Enrolled in College / Grad. School":33.7,"Not Enrolled":66.3},"Bastrop County, Texas":{"Enrolled in College / Grad. School":22.8,"Not Enrolled":77.2},"Baylor County, Texas":{"Enrolled in College / Grad. School":0,"Not Enrolled":100},"Bee County, Texas":{"Enrolled in College / Grad. School":33.5,"Not Enrolled":66.5},"Bell County, Texas":{"Enrolled in College / Grad. School":27.7,"Not Enrolled":72.3},"Bexar County, Texas":{"Enrolled in College / Grad. School":34.9,"Not Enrolled":65.1},"Blanco County, Texas":{"Enrolled in College / Grad. School":7.9,"Not Enrolled":92.1},"Borden County, Texas":{"Enrolled in College / Grad. School":0,"Not Enrolled":100},"Bosque County, Texas":{"Enrolled in College / Grad. School":22.5,"Not Enrolled":77.5},"Bowie County, Texas":{"Enrolled in College / Grad. School":23.2,"Not Enrolled":76.8},"Brazoria County, Texas":{"Enrolled in College / Grad. School":35.7,"Not Enrolled":64.3},"Brazos County, Texas":{"Enrolled in College / Grad. School":76.3,"Not Enrolled":23.7},"Brewster County, Texas":{"Enrolled in College / Grad. School":58.4,"Not Enrolled":41.6},"Briscoe County, Texas":{"Enrolled in College / Grad. School":74.4,"Not Enrolled":25.6},"Brooks County, Texas":{"Enrolled in College / Grad. School":37,"Not Enrolled":63},"Brown County, Texas":{"Enrolled in College / Grad. School":34.4,"Not Enrolled":65.6},"Burleson County, Texas":{"Enrolled in College / Grad. School":29.7,"Not Enrolled":70.3},"Burnet County, Texas":{"Enrolled in College / Grad. School":17.2,"Not Enrolled":82.8},"Caldwell County, Texas":{"Enrolled in College / Grad. School":29.2,"Not Enrolled":70.8},"Calhoun County, Texas":{"Enrolled in College / Grad. School":25.9,"Not Enrolled":74.1},"Callahan County, Texas":{"Enrolled in College / Grad. School":25.6,"Not Enrolled":74.4},"Cameron County, Texas":{"Enrolled in College / Grad. School":33.9,"Not Enrolled":66.1},"Camp County, Texas":{"Enrolled in College / Grad. School":36.3,"Not Enrolled":63.7},"Carson County, Texas":{"Enrolled in College / Grad. School":19.4,"Not Enrolled":80.6},"Cass County, Texas":{"Enrolled in College / Grad. School":29.8,"Not Enrolled":70.2},"Castro County, Texas":{"Enrolled in College / Grad. School":5.9,"Not Enrolled":94.1},"Chambers County, Texas":{"Enrolled in College / Grad. School":37.1,"Not Enrolled":62.9},"Cherokee County, Texas":{"Enrolled in College / Grad. School":25.7,"Not Enrolled":74.3},"Childress County, Texas":{"Enrolled in College / Grad. School":2.6,"Not Enrolled":97.4},"Clay County, Texas":{"Enrolled in College / Grad. School":32.2,"Not Enrolled":67.8},"Cochran County, Texas":{"Enrolled in College / Grad. School":27.3,"Not Enrolled":72.7},"Coke County, Texas":{"Enrolled in College / Grad. School":20.3,"Not Enrolled":79.7},"Coleman County, Texas":{"Enrolled in College / Grad. School":1.5,"Not Enrolled":98.5},"Collin County, Texas":{"Enrolled in College / Grad. School":44.3,"Not Enrolled":55.7},"Collingsworth County, Texas":{"Enrolled in College / Grad. School":34.4,"Not Enrolled":65.6},"Colorado County, Texas":{"Enrolled in College / Grad. School":20.2,"Not Enrolled":79.8},"Comal County, Texas":{"Enrolled in College / Grad. School":23.7,"Not Enrolled":76.3},"Comanche County, Texas":{"Enrolled in College / Grad. School":12.6,"Not Enrolled":87.4},"Concho County, Texas":{"Enrolled in College / Grad. School":5.6,"Not Enrolled":94.4},"Cooke County, Texas":{"Enrolled in College / Grad. School":19,"Not Enrolled":81},"Coryell County, Texas":{"Enrolled in College / Grad. School":14.6,"Not Enrolled":85.4},"Cottle County, Texas":{"Enrolled in College / Grad. School":0,"Not Enrolled":100},"Crane County, Texas":{"Enrolled in College / Grad. School":11.2,"Not Enrolled":88.8},"Crockett County, Texas":{"Enrolled in College / Grad. School":0,"Not Enrolled":100},"Crosby County, Texas":{"Enrolled in College / Grad. School":11.2,"Not Enrolled":88.8},"Culberson County, Texas":{"Enrolled in College / Grad. School":0,"Not Enrolled":100},"Dallam County, Texas":{"Enrolled in College / Grad. School":11,"Not Enrolled":89},"Dallas County, Texas":{"Enrolled in College / Grad. School":30.7,"Not Enrolled":69.3},"Dawson County, Texas":{"Enrolled in College / Grad. School":13.7,"Not Enrolled":86.3},"Deaf Smith County, Texas":{"Enrolled in College / Grad. School":20.4,"Not Enrolled":79.6},"Delta County, Texas":{"Enrolled in College / Grad. School":11.4,"Not Enrolled":88.6},"Denton County, Texas":{"Enrolled in College / Grad. School":48.6,"Not Enrolled":51.4},"DeWitt County, Texas":{"Enrolled in College / Grad. School":15.3,"Not Enrolled":84.7},"Dickens County, Texas":{"Enrolled in College / Grad. School":30.1,"Not Enrolled":69.9},"Dimmit County, Texas":{"Enrolled in College / Grad. School":18.4,"Not Enrolled":81.6},"Donley County, Texas":{"Enrolled in College / Grad. School":62,"Not Enrolled":38},"Duval County, Texas":{"Enrolled in College / Grad. School":7.6,"Not Enrolled":92.4},"Eastland County, Texas":{"Enrolled in College / Grad. School":44.7,"Not Enrolled":55.3},"Ector County, Texas":{"Enrolled in College / Grad. School":25.5,"Not Enrolled":74.5},"Edwards County, Texas":{"Enrolled in College / Grad. School":0.4,"Not Enrolled":99.6},"Ellis County, Texas":{"Enrolled in College / Grad. School":27.8,"Not Enrolled":72.2},"El Paso County, Texas":{"Enrolled in College / Grad. School":38.6,"Not Enrolled":61.4},"Erath County, Texas":{"Enrolled in College / Grad. School":66.9,"Not Enrolled":33.1},"Falls County, Texas":{"Enrolled in College / Grad. School":8.9,"Not Enrolled":91.1},"Fannin County, Texas":{"Enrolled in College / Grad. School":22.7,"Not Enrolled":77.3},"Fayette County, Texas":{"Enrolled in College / Grad. School":15.4,"Not Enrolled":84.6},"Fisher County, Texas":{"Enrolled in College / Grad. School":26.2,"Not Enrolled":73.8},"Floyd County, Texas":{"Enrolled in College / Grad. School":15.6,"Not Enrolled":84.4},"Foard County, Texas":{"Enrolled in College / Grad. School":2,"Not Enrolled":98},"Fort Bend County, Texas":{"Enrolled in College / Grad. School":46.4,"Not Enrolled":53.6},"Franklin County, Texas":{"Enrolled in College / Grad. School":30.3,"Not Enrolled":69.7},"Freestone County, Texas":{"Enrolled in College / Grad. School":21.4,"Not Enrolled":78.6},"Frio County, Texas":{"Enrolled in College / Grad. School":16.7,"Not Enrolled":83.3},"Gaines County, Texas":{"Enrolled in College / Grad. School":12.4,"Not Enrolled":87.6},"Galveston County, Texas":{"Enrolled in College / Grad. School":42.7,"Not Enrolled":57.3},"Garza County, Texas":{"Enrolled in College / Grad. School":18.5,"Not Enrolled":81.5},"Gillespie County, Texas":{"Enrolled in College / Grad. School":8.4,"Not Enrolled":91.6},"Glasscock County, Texas":{"Enrolled in College / Grad. School":0,"Not Enrolled":100},"Goliad County, Texas":{"Enrolled in College / Grad. School":17.7,"Not Enrolled":82.3},"Gonzales County, Texas":{"Enrolled in College / Grad. School":12.6,"Not Enrolled":87.4},"Gray County, Texas":{"Enrolled in College / Grad. School":15.1,"Not Enrolled":84.9},"Grayson County, Texas":{"Enrolled in College / Grad. School":33,"Not Enrolled":67},"Gregg County, Texas":{"Enrolled in College / Grad. School":33,"Not Enrolled":67},"Grimes County, Texas":{"Enrolled in College / Grad. School":22.7,"Not Enrolled":77.3},"Guadalupe County, Texas":{"Enrolled in College / Grad. School":34.6,"Not Enrolled":65.4},"Hale County, Texas":{"Enrolled in College / Grad. School":29.3,"Not Enrolled":70.7},"Hall County, Texas":{"Enrolled in College / Grad. School":17.2,"Not Enrolled":82.8},"Hamilton County, Texas":{"Enrolled in College / Grad. School":8.7,"Not Enrolled":91.3},"Hansford County, Texas":{"Enrolled in College / Grad. School":24,"Not Enrolled":76},"Hardeman County, Texas":{"Enrolled in College / Grad. School":26.1,"Not Enrolled":73.9},"Hardin County, Texas":{"Enrolled in College / Grad. School":25.8,"Not Enrolled":74.2},"Harris County, Texas":{"Enrolled in College / Grad. School":34.5,"Not Enrolled":65.5},"Harrison County, Texas":{"Enrolled in College / Grad. School":34.9,"Not Enrolled":65.1},"Hartley County, Texas":{"Enrolled in College / Grad. School":2.8,"Not Enrolled":97.2},"Haskell County, Texas":{"Enrolled in College / Grad. School":5.2,"Not Enrolled":94.8},"Hays County, Texas":{"Enrolled in College / Grad. School":59.9,"Not Enrolled":40.1},"Hemphill County, Texas":{"Enrolled in College / Grad. School":32.5,"Not Enrolled":67.5},"Henderson County, Texas":{"Enrolled in College / Grad. School":29.4,"Not Enrolled":70.6},"Hidalgo County, Texas":{"Enrolled in College / Grad. School":35.2,"Not Enrolled":64.8},"Hill County, Texas":{"Enrolled in College / Grad. School":33.3,"Not Enrolled":66.7},"Hockley County, Texas":{"Enrolled in College / Grad. School":38.6,"Not Enrolled":61.4},"Hood County, Texas":{"Enrolled in College / Grad. School":24.3,"Not Enrolled":75.7},"Hopkins County, Texas":{"Enrolled in College / Grad. School":23.1,"Not Enrolled":76.9},"Houston County, Texas":{"Enrolled in College / Grad. School":23.9,"Not Enrolled":76.1},"Howard County, Texas":{"Enrolled in College / Grad. School":31.8,"Not Enrolled":68.2},"Hudspeth County, Texas":{"Enrolled in College / Grad. School":7,"Not Enrolled":93},"Hunt County, Texas":{"Enrolled in College / Grad. School":43.6,"Not Enrolled":56.4},"Hutchinson County, Texas":{"Enrolled in College / Grad. School":34.5,"Not Enrolled":65.5},"Irion County, Texas":{"Enrolled in College / Grad. School":0,"Not Enrolled":100},"Jack County, Texas":{"Enrolled in College / Grad. School":16.1,"Not Enrolled":83.9},"Jackson County, Texas":{"Enrolled in College / Grad. School":34.2,"Not Enrolled":65.8},"Jasper County, Texas":{"Enrolled in College / Grad. School":13.1,"Not Enrolled":86.9},"Jeff Davis County, Texas":{"Enrolled in College / Grad. School":0,"Not Enrolled":100},"Jefferson County, Texas":{"Enrolled in College / Grad. School":30.4,"Not Enrolled":69.6},"Jim Hogg County, Texas":{"Enrolled in College / Grad. School":17.3,"Not Enrolled":82.7},"Jim Wells County, Texas":{"Enrolled in College / Grad. School":11.9,"Not Enrolled":88.1},"Johnson County, Texas":{"Enrolled in College / Grad. School":22.8,"Not Enrolled":77.2},"Jones County, Texas":{"Enrolled in College / Grad. School":7.2,"Not Enrolled":92.8},"Karnes County, Texas":{"Enrolled in College / Grad. School":7.5,"Not Enrolled":92.5},"Kaufman County, Texas":{"Enrolled in College / Grad. School":31,"Not Enrolled":69},"Kendall County, Texas":{"Enrolled in College / Grad. School":37.7,"Not Enrolled":62.3},"Kenedy County, Texas":{"Enrolled in College / Grad. School":0,"Not Enrolled":100},"Kent County, Texas":{"Enrolled in College / Grad. School":28.6,"Not Enrolled":71.4},"Kerr County, Texas":{"Enrolled in College / Grad. School":35.7,"Not Enrolled":64.3},"Kimble County, Texas":{"Enrolled in College / Grad. School":3.2,"Not Enrolled":96.8},"King County, Texas":{"Enrolled in College / Grad. School":"NaN","Not Enrolled":"NaN"},"Kinney County, Texas":{"Enrolled in College / Grad. School":17.8,"Not Enrolled":82.2},"Kleberg County, Texas":{"Enrolled in College / Grad. School":64.4,"Not Enrolled":35.6},"Knox County, Texas":{"Enrolled in College / Grad. School":29.2,"Not Enrolled":70.8},"Lamar County, Texas":{"Enrolled in College / Grad. School":27.7,"Not Enrolled":72.3},"Lamb County, Texas":{"Enrolled in College / Grad. School":28.6,"Not Enrolled":71.4},"Lampasas County, Texas":{"Enrolled in College / Grad. School":21,"Not Enrolled":79},"La Salle County, Texas":{"Enrolled in College / Grad. School":29.4,"Not Enrolled":70.6},"Lavaca County, Texas":{"Enrolled in College / Grad. School":16.3,"Not Enrolled":83.7},"Lee County, Texas":{"Enrolled in College / Grad. School":31,"Not Enrolled":69},"Leon County, Texas":{"Enrolled in College / Grad. School":26.3,"Not Enrolled":73.7},"Liberty County, Texas":{"Enrolled in College / Grad. School":19,"Not Enrolled":81},"Limestone County, Texas":{"Enrolled in College / Grad. School":14.7,"Not Enrolled":85.3},"Lipscomb County, Texas":{"Enrolled in College / Grad. School":11.4,"Not Enrolled":88.6},"Live Oak County, Texas":{"Enrolled in College / Grad. School":12.6,"Not Enrolled":87.4},"Llano County, Texas":{"Enrolled in College / Grad. School":4.3,"Not Enrolled":95.7},"Loving County, Texas":{"Enrolled in College / Grad. School":0,"Not Enrolled":100},"Lubbock County, Texas":{"Enrolled in College / Grad. School":57.3,"Not Enrolled":42.7},"Lynn County, Texas":{"Enrolled in College / Grad. School":20.8,"Not Enrolled":79.2},"McCulloch County, Texas":{"Enrolled in College / Grad. School":10,"Not Enrolled":90},"McLennan County, Texas":{"Enrolled in College / Grad. School":51.6,"Not Enrolled":48.4},"McMullen County, Texas":{"Enrolled in College / Grad. School":15.6,"Not Enrolled":84.4},"Madison County, Texas":{"Enrolled in College / Grad. School":15.4,"Not Enrolled":84.6},"Marion County, Texas":{"Enrolled in College / Grad. School":10,"Not Enrolled":90},"Martin County, Texas":{"Enrolled in College / Grad. School":7.3,"Not Enrolled":92.7},"Mason County, Texas":{"Enrolled in College / Grad. School":21.9,"Not Enrolled":78.1},"Matagorda County, Texas":{"Enrolled in College / Grad. School":17,"Not Enrolled":83},"Maverick County, Texas":{"Enrolled in College / Grad. School":27.7,"Not Enrolled":72.3},"Medina County, Texas":{"Enrolled in College / Grad. School":28.3,"Not Enrolled":71.7},"Menard County, Texas":{"Enrolled in College / Grad. School":0,"Not Enrolled":100},"Midland County, Texas":{"Enrolled in College / Grad. School":23.4,"Not Enrolled":76.6},"Milam County, Texas":{"Enrolled in College / Grad. School":27.3,"Not Enrolled":72.7},"Mills County, Texas":{"Enrolled in College / Grad. School":2.5,"Not Enrolled":97.5},"Mitchell County, Texas":{"Enrolled in College / Grad. School":16.9,"Not Enrolled":83.1},"Montague County, Texas":{"Enrolled in College / Grad. School":15.3,"Not Enrolled":84.7},"Montgomery County, Texas":{"Enrolled in College / Grad. School":28.2,"Not Enrolled":71.8},"Moore County, Texas":{"Enrolled in College / Grad. School":26.9,"Not Enrolled":73.1},"Morris County, Texas":{"Enrolled in College / Grad. School":17.6,"Not Enrolled":82.4},"Motley County, Texas":{"Enrolled in College / Grad. School":0,"Not Enrolled":100},"Nacogdoches County, Texas":{"Enrolled in College / Grad. School":69.7,"Not Enrolled":30.3},"Navarro County, Texas":{"Enrolled in College / Grad. School":33.6,"Not Enrolled":66.4},"Newton County, Texas":{"Enrolled in College / Grad. School":11.2,"Not Enrolled":88.8},"Nolan County, Texas":{"Enrolled in College / Grad. School":24,"Not Enrolled":76},"Nueces County, Texas":{"Enrolled in College / Grad. School":33,"Not Enrolled":67},"Ochiltree County, Texas":{"Enrolled in College / Grad. School":29.6,"Not Enrolled":70.4},"Oldham County, Texas":{"Enrolled in College / Grad. School":22.2,"Not Enrolled":77.8},"Orange County, Texas":{"Enrolled in College / Grad. School":26,"Not Enrolled":74},"Palo Pinto County, Texas":{"Enrolled in College / Grad. School":18.7,"Not Enrolled":81.3},"Panola County, Texas":{"Enrolled in College / Grad. School":29.5,"Not Enrolled":70.5},"Parker County, Texas":{"Enrolled in College / Grad. School":32.1,"Not Enrolled":67.9},"Parmer County, Texas":{"Enrolled in College / Grad. School":23.5,"Not Enrolled":76.5},"Pecos County, Texas":{"Enrolled in College / Grad. School":26.8,"Not Enrolled":73.2},"Polk County, Texas":{"Enrolled in College / Grad. School":16,"Not Enrolled":84},"Potter County, Texas":{"Enrolled in College / Grad. School":27.9,"Not Enrolled":72.1},"Presidio County, Texas":{"Enrolled in College / Grad. School":28.4,"Not Enrolled":71.6},"Rains County, Texas":{"Enrolled in College / Grad. School":19.2,"Not Enrolled":80.8},"Randall County, Texas":{"Enrolled in College / Grad. School":42.5,"Not Enrolled":57.5},"Reagan County, Texas":{"Enrolled in College / Grad. School":25.6,"Not Enrolled":74.4},"Real County, Texas":{"Enrolled in College / Grad. School":44.4,"Not Enrolled":55.6},"Red River County, Texas":{"Enrolled in College / Grad. School":18.7,"Not Enrolled":81.3},"Reeves County, Texas":{"Enrolled in College / Grad. School":21.2,"Not Enrolled":78.8},"Refugio County, Texas":{"Enrolled in College / Grad. School":15.9,"Not Enrolled":84.1},"Roberts County, Texas":{"Enrolled in College / Grad. School":0,"Not Enrolled":100},"Robertson County, Texas":{"Enrolled in College / Grad. School":20.9,"Not Enrolled":79.1},"Rockwall County, Texas":{"Enrolled in College / Grad. School":32.4,"Not Enrolled":67.6},"Runnels County, Texas":{"Enrolled in College / Grad. School":26.4,"Not Enrolled":73.6},"Rusk County, Texas":{"Enrolled in College / Grad. School":23.4,"Not Enrolled":76.6},"Sabine County, Texas":{"Enrolled in College / Grad. School":13.9,"Not Enrolled":86.1},"San Augustine County, Texas":{"Enrolled in College / Grad. School":23.4,"Not Enrolled":76.6},"San Jacinto County, Texas":{"Enrolled in College / Grad. School":26.5,"Not Enrolled":73.5},"San Patricio County, Texas":{"Enrolled in College / Grad. School":29.3,"Not Enrolled":70.7},"San Saba County, Texas":{"Enrolled in College / Grad. School":9.2,"Not Enrolled":90.8},"Schleicher County, Texas":{"Enrolled in College / Grad. School":12.8,"Not Enrolled":87.2},"Scurry County, Texas":{"Enrolled in College / Grad. School":27.1,"Not Enrolled":72.9},"Shackelford County, Texas":{"Enrolled in College / Grad. School":28.8,"Not Enrolled":71.2},"Shelby County, Texas":{"Enrolled in College / Grad. School":19.6,"Not Enrolled":80.4},"Sherman County, Texas":{"Enrolled in College / Grad. School":68.5,"Not Enrolled":31.5},"Smith County, Texas":{"Enrolled in College / Grad. School":39.2,"Not Enrolled":60.8},"Somervell County, Texas":{"Enrolled in College / Grad. School":22.8,"Not Enrolled":77.2},"Starr County, Texas":{"Enrolled in College / Grad. School":39.5,"Not Enrolled":60.5},"Stephens County, Texas":{"Enrolled in College / Grad. School":13.7,"Not Enrolled":86.3},"Sterling County, Texas":{"Enrolled in College / Grad. School":0,"Not Enrolled":100},"Stonewall County, Texas":{"Enrolled in College / Grad. School":22.5,"Not Enrolled":77.5},"Sutton County, Texas":{"Enrolled in College / Grad. School":12.7,"Not Enrolled":87.3},"Swisher County, Texas":{"Enrolled in College / Grad. School":32.2,"Not Enrolled":67.8},"Tarrant County, Texas":{"Enrolled in College / Grad. School":36.6,"Not Enrolled":63.4},"Taylor County, Texas":{"Enrolled in College / Grad. School":39.8,"Not Enrolled":60.2},"Terrell County, Texas":{"Enrolled in College / Grad. School":0,"Not Enrolled":100},"Terry County, Texas":{"Enrolled in College / Grad. School":6.5,"Not Enrolled":93.5},"Throckmorton County, Texas":{"Enrolled in College / Grad. School":37.5,"Not Enrolled":62.5},"Titus County, Texas":{"Enrolled in College / Grad. School":26.3,"Not Enrolled":73.7},"Tom Green County, Texas":{"Enrolled in College / Grad. School":39,"Not Enrolled":61},"Travis County, Texas":{"Enrolled in College / Grad. School":46.8,"Not Enrolled":53.2},"Trinity County, Texas":{"Enrolled in College / Grad. School":19.1,"Not Enrolled":80.9},"Tyler County, Texas":{"Enrolled in College / Grad. School":12.8,"Not Enrolled":87.2},"Upshur County, Texas":{"Enrolled in College / Grad. School":21.9,"Not Enrolled":78.1},"Upton County, Texas":{"Enrolled in College / Grad. School":42.5,"Not Enrolled":57.5},"Uvalde County, Texas":{"Enrolled in College / Grad. School":34.6,"Not Enrolled":65.4},"Val Verde County, Texas":{"Enrolled in College / Grad. School":17.3,"Not Enrolled":82.7},"Van Zandt County, Texas":{"Enrolled in College / Grad. School":20.2,"Not Enrolled":79.8},"Victoria County, Texas":{"Enrolled in College / Grad. School":22.7,"Not Enrolled":77.3},"Walker County, Texas":{"Enrolled in College / Grad. School":63.5,"Not Enrolled":36.5},"Waller County, Texas":{"Enrolled in College / Grad. School":61.7,"Not Enrolled":38.3},"Ward County, Texas":{"Enrolled in College / Grad. School":15.9,"Not Enrolled":84.1},"Washington County, Texas":{"Enrolled in College / Grad. School":46.4,"Not Enrolled":53.6},"Webb County, Texas":{"Enrolled in College / Grad. School":36.3,"Not Enrolled":63.7},"Wharton County, Texas":{"Enrolled in College / Grad. School":33.5,"Not Enrolled":66.5},"Wheeler County, Texas":{"Enrolled in College / Grad. School":6,"Not Enrolled":94},"Wichita County, Texas":{"Enrolled in College / Grad. School":29.9,"Not Enrolled":70.1},"Wilbarger County, Texas":{"Enrolled in College / Grad. School":25.5,"Not Enrolled":74.5},"Willacy County, Texas":{"Enrolled in College / Grad. School":24.4,"Not Enrolled":75.6},"Williamson County, Texas":{"Enrolled in College / Grad. School":35.7,"Not Enrolled":64.3},"Wilson County, Texas":{"Enrolled in College / Grad. School":28.6,"Not Enrolled":71.4},"Winkler County, Texas":{"Enrolled in College / Grad. School":13.7,"Not Enrolled":86.3},"Wise County, Texas":{"Enrolled in College / Grad. School":28.1,"Not Enrolled":71.9},"Wood County, Texas":{"Enrolled in College / Grad. School":34.3,"Not Enrolled":65.7},"Yoakum County, Texas":{"Enrolled in College / Grad. School":43.3,"Not Enrolled":56.7},"Young County, Texas":{"Enrolled in College / Grad. School":8.2,"Not Enrolled":91.8},"Zapata County, Texas":{"Enrolled in College / Grad. School":20.5,"Not Enrolled":79.5},"Zavala County, Texas":{"Enrolled in College / Grad. School":33.9,"Not Enrolled":66.1}};
+  const categories = ["Enrolled in College / Grad. School","Not Enrolled"];
+  const ctx = document.getElementById("barChart").getContext("2d");
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: categories,
+        datasets: [
+          {
+            label: "County/State",
+            data: values,
+            backgroundColor: ["#66c2a5", "#fc8d62"]
+          }
+        ]
+      },
+      options: {
+        indexAxis: "y",
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            ticks: {
+              callback: v => v + "%"
+            }
+          }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.dataset.label + ": " + ctx.raw + "%"
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById("countySelect").addEventListener("change", function() {
+    renderChart(Object.values(data[this.value]));
+  });
+
+  renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

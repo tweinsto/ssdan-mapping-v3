@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Living Arrangements 18–64 – Arizona</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+      body { font-family: sans-serif; margin: 1.25rem 2rem; text-align: center; }
+      h2 { margin-bottom: .25rem; font-size: 1.6rem; color: #2c348b; }
+      label { margin-right: .5rem; }
+      select { padding: .45rem .6rem; font-size: 1rem; border-radius: .5rem; border: 2px solid #f39c12; }
+      canvas { width: 100%; max-width: 900px; height: 520px; }
+    </style>
+</head>
+<html>
+  <body>
+    <h2>Living Arrangements of Adults 18–64 in Arizona</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Apache County, Arizona">Apache County, Arizona</option>
+      <option value="Cochise County, Arizona">Cochise County, Arizona</option>
+      <option value="Coconino County, Arizona">Coconino County, Arizona</option>
+      <option value="Gila County, Arizona">Gila County, Arizona</option>
+      <option value="Graham County, Arizona">Graham County, Arizona</option>
+      <option value="Greenlee County, Arizona">Greenlee County, Arizona</option>
+      <option value="La Paz County, Arizona">La Paz County, Arizona</option>
+      <option value="Maricopa County, Arizona">Maricopa County, Arizona</option>
+      <option value="Mohave County, Arizona">Mohave County, Arizona</option>
+      <option value="Navajo County, Arizona">Navajo County, Arizona</option>
+      <option value="Pima County, Arizona">Pima County, Arizona</option>
+      <option value="Pinal County, Arizona">Pinal County, Arizona</option>
+      <option value="Santa Cruz County, Arizona">Santa Cruz County, Arizona</option>
+      <option value="Yavapai County, Arizona">Yavapai County, Arizona</option>
+      <option value="Yuma County, Arizona">Yuma County, Arizona</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>document.addEventListener("DOMContentLoaded", function () {
+  const data = {"Statewide":[10.4,14.5,6.7,13.6,44.7,10.1],"Apache County, Arizona":[10.2,31.3,2.9,21.9,27.9,5.8],"Cochise County, Arizona":[12.6,15.6,4.1,13.2,48.4,6],"Coconino County, Arizona":[12.5,12.1,11.2,11.1,39.5,13.5],"Gila County, Arizona":[10.7,12.4,3.9,14.5,47.3,11.1],"Graham County, Arizona":[7.2,14,6.1,18.6,43.9,10.1],"Greenlee County, Arizona":[11.5,18,4,12.6,47.6,6.4],"La Paz County, Arizona":[16.3,4.2,3.6,16.8,44.5,14.5],"Maricopa County, Arizona":[10.2,14.1,7.2,13.6,45,9.9],"Mohave County, Arizona":[11.6,13,5.9,13.6,45.9,10.1],"Navajo County, Arizona":[10.3,19.3,1.5,16.1,43.3,9.5],"Pima County, Arizona":[12.6,14.8,6.4,13.3,41.5,11.3],"Pinal County, Arizona":[6.4,16.8,5.3,14.5,47.2,9.9],"Santa Cruz County, Arizona":[7.7,21.1,2.3,18.4,44.6,6],"Yavapai County, Arizona":[11,11,7.1,10.3,49.9,10.7],"Yuma County, Arizona":[7.4,16.1,3.3,14.3,49.3,9.8]};
+  const cats = ["lives_alone_18_64","with_child_18_64","with_nonrel_18_64","with_other_rel_18_64","with_spouse_only_18_64","with_unmar_partner_18_64"];
+
+  const ORDER = [
+    "Lives alone",
+    "With child",
+    "With nonrelatives",
+    "With other relatives",
+    "With spouse only",
+    "With unmarried partner"
+  ];
+
+  const PRETTY_TO_SNAKE = {
+    "Lives alone":            "lives_alone_18_64",
+    "With child":             "with_child_18_64",
+    "With nonrelatives":      "with_nonrel_18_64",
+    "With other relatives":   "with_other_rel_18_64",
+    "With spouse only":       "with_spouse_only_18_64",
+    "With unmarried partner": "with_unmar_partner_18_64"
+  };
+
+  const COLOR_BY_CAT = {
+    "Lives alone":            "#e41a1c",
+    "With child":             "#ff7f00",
+    "With nonrelatives":      "#4daf4a",
+    "With other relatives":   "#984ea3",
+    "With spouse only":       "#377eb8",
+    "With unmarried partner": "#a65628"
+  };
+
+  // snake key → array index
+  const keyToIndex = Object.fromEntries((cats || []).map((k, i) => [String(k), i]));
+
+  function valuesFor(name) {
+    const row = data?.[name] || [];
+    return ORDER.map(lbl => {
+      const idx = keyToIndex[PRETTY_TO_SNAKE[lbl]];
+      const v = (idx != null && idx >= 0) ? row[idx] : 0;
+      return (typeof v === "number") ? v : Number(v) || 0;
+    });
+  }
+
+  const canvas = document.getElementById("barChart");
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+  let chart;
+
+  function renderChart(name) {
+    const vals = valuesFor(name);
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: ORDER,
+        datasets: [{
+          data: vals,
+          backgroundColor: ORDER.map(c => COLOR_BY_CAT[c]),
+          borderWidth: 0
+        }]
+      },
+      options: {
+        indexAxis: "y",
+        plugins: {
+          legend: { display: false },
+          tooltip: { callbacks: { label: (c) => c.raw + "%" } }
+        },
+        scales: {
+          x: { min: 0, max: 100, ticks: { callback: v => v + "%" } }
+        }
+      }
+    });
+  }
+
+  const DEFAULT_NAME = (data && Object.prototype.hasOwnProperty.call(data, "Statewide"))
+    ? "Statewide" : Object.keys(data || {})[0];
+
+  const sel = document.getElementById("countySelect");
+  if (sel) sel.addEventListener("change", e => renderChart(e.target.value));
+  if (DEFAULT_NAME) renderChart(DEFAULT_NAME);
+});</script>
+  </body>
+</html>
+</html>

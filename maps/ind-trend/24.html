@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+
+</head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Median Earnings by Industry – 24</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background: white;
+    }
+    .layout {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1.5rem;
+    }
+    label {
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+    #countySelect {
+      font-size: 1rem;
+      padding: 0.4rem 0.8rem;
+      margin-bottom: 1rem;
+    }
+    canvas {
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <label for="countySelect">Median Earnings by Industry:</label>
+    <select id="countySelect"></select>
+    <canvas id="barChart"></canvas>
+  </div>
+
+  <script>
+    const data = {"Statewide":{"Agriculture & mining":57008,"Arts & food services":41863,"Construction":61759,"Education & health":67069,"Finance & real estate":85232,"Information":90308,"Manufacturing":76831,"Other services":60757,"Prof. & waste services":95804,"Public administration":110039,"Retail trade":46165,"Transport & utilities":61521,"Wholesale trade":66135},"Allegany County":{"Agriculture & mining":30764,"Arts & food services":35819,"Construction":60577,"Education & health":55173,"Finance & real estate":59024,"Information":79659,"Manufacturing":54402,"Other services":36509,"Prof. & waste services":54125,"Public administration":61954,"Retail trade":38989,"Transport & utilities":59986,"Wholesale trade":52042},"Anne Arundel County":{"Agriculture & mining":65000,"Arts & food services":44180,"Construction":72287,"Education & health":72907,"Finance & real estate":89211,"Information":93695,"Manufacturing":84497,"Other services":63484,"Prof. & waste services":103503,"Public administration":114275,"Retail trade":55012,"Transport & utilities":70966,"Wholesale trade":79911},"Baltimore County":{"Agriculture & mining":58347,"Arts & food services":42946,"Construction":68579,"Education & health":66707,"Finance & real estate":84441,"Information":75783,"Manufacturing":72765,"Other services":54641,"Prof. & waste services":86902,"Public administration":92541,"Retail trade":45467,"Transport & utilities":59482,"Wholesale trade":70870},"Calvert County":{"Agriculture & mining":28929,"Arts & food services":58300,"Construction":80996,"Education & health":71189,"Finance & real estate":94643,"Information":101406,"Manufacturing":84800,"Other services":62096,"Prof. & waste services":102345,"Public administration":118376,"Retail trade":45852,"Transport & utilities":84430,"Wholesale trade":72078},"Caroline County":{"Agriculture & mining":61518,"Arts & food services":35187,"Construction":56029,"Education & health":49469,"Finance & real estate":57292,"Information":68063,"Manufacturing":50176,"Other services":51333,"Prof. & waste services":66290,"Public administration":68333,"Retail trade":42054,"Transport & utilities":64961,"Wholesale trade":70825},"Carroll County":{"Agriculture & mining":50000,"Arts & food services":45443,"Construction":74826,"Education & health":71088,"Finance & real estate":89772,"Information":87206,"Manufacturing":77404,"Other services":62233,"Prof. & waste services":96073,"Public administration":109475,"Retail trade":49398,"Transport & utilities":78380,"Wholesale trade":74153},"Cecil County":{"Agriculture & mining":62679,"Arts & food services":31125,"Construction":71382,"Education & health":67868,"Finance & real estate":86188,"Information":39944,"Manufacturing":69935,"Other services":62746,"Prof. & waste services":86848,"Public administration":85801,"Retail trade":48562,"Transport & utilities":70281,"Wholesale trade":63424},"Charles County":{"Agriculture & mining":50750,"Arts & food services":40049,"Construction":72307,"Education & health":63144,"Finance & real estate":71291,"Information":113099,"Manufacturing":83250,"Other services":73675,"Prof. & waste services":84457,"Public administration":115106,"Retail trade":46731,"Transport & utilities":65882,"Wholesale trade":65135},"Dorchester County":{"Agriculture & mining":57813,"Arts & food services":35082,"Construction":51039,"Education & health":53151,"Finance & real estate":68854,"Information":59119,"Manufacturing":56410,"Other services":55529,"Prof. & waste services":47868,"Public administration":73158,"Retail trade":38542,"Transport & utilities":55040,"Wholesale trade":61654},"Frederick County":{"Agriculture & mining":62125,"Arts & food services":44497,"Construction":71706,"Education & health":71316,"Finance & real estate":84769,"Information":107111,"Manufacturing":92238,"Other services":62950,"Prof. & waste services":104649,"Public administration":115192,"Retail trade":51732,"Transport & utilities":74085,"Wholesale trade":74253},"Garrett County":{"Agriculture & mining":80402,"Arts & food services":44760,"Construction":55300,"Education & health":60635,"Finance & real estate":46971,"Information":76667,"Manufacturing":47708,"Other services":48125,"Prof. & waste services":59151,"Public administration":65712,"Retail trade":47623,"Transport & utilities":62014,"Wholesale trade":58750},"Harford County":{"Agriculture & mining":46468,"Arts & food services":41375,"Construction":71626,"Education & health":71170,"Finance & real estate":82574,"Information":89301,"Manufacturing":78244,"Other services":54691,"Prof. & waste services":90399,"Public administration":105638,"Retail trade":47547,"Transport & utilities":73750,"Wholesale trade":78059},"Howard County":{"Agriculture & mining":61971,"Arts & food services":50458,"Construction":83283,"Education & health":87500,"Finance & real estate":102817,"Information":108229,"Manufacturing":109861,"Other services":67610,"Prof. & waste services":124464,"Public administration":131131,"Retail trade":53032,"Transport & utilities":65961,"Wholesale trade":86033},"Kent County":{"Agriculture & mining":44933,"Arts & food services":55385,"Construction":55938,"Education & health":63056,"Finance & real estate":58500,"Information":250001,"Manufacturing":48485,"Other services":47813,"Prof. & waste services":88698,"Public administration":72301,"Retail trade":73906,"Transport & utilities":57675,"Wholesale trade":33393},"Montgomery County":{"Agriculture & mining":69513,"Arts & food services":48673,"Construction":55946,"Education & health":74581,"Finance & real estate":109192,"Information":111352,"Manufacturing":105690,"Other services":71309,"Prof. & waste services":113931,"Public administration":132136,"Retail trade":47765,"Transport & utilities":61074,"Wholesale trade":70227},"Prince George's County":{"Agriculture & mining":50938,"Arts & food services":39599,"Construction":51448,"Education & health":62095,"Finance & real estate":73342,"Information":78827,"Manufacturing":68380,"Other services":58253,"Prof. & waste services":80785,"Public administration":107055,"Retail trade":42222,"Transport & utilities":58921,"Wholesale trade":50410},"Queen Anne's County":{"Agriculture & mining":79453,"Arts & food services":36960,"Construction":69979,"Education & health":69225,"Finance & real estate":67250,"Information":97716,"Manufacturing":75556,"Other services":71953,"Prof. & waste services":93393,"Public administration":92194,"Retail trade":55652,"Transport & utilities":95359,"Wholesale trade":145227},"St. Mary's County":{"Agriculture & mining":48102,"Arts & food services":39129,"Construction":69755,"Education & health":59742,"Finance & real estate":53036,"Information":79667,"Manufacturing":97213,"Other services":63648,"Prof. & waste services":92904,"Public administration":118819,"Retail trade":33095,"Transport & utilities":78671,"Wholesale trade":58151},"Somerset County":{"Agriculture & mining":62625,"Arts & food services":39090,"Construction":40508,"Education & health":42243,"Finance & real estate":57000,"Information":0,"Manufacturing":43641,"Other services":45395,"Prof. & waste services":64464,"Public administration":71813,"Retail trade":38864,"Transport & utilities":24375,"Wholesale trade":66964},"Talbot County":{"Agriculture & mining":35958,"Arts & food services":33202,"Construction":62688,"Education & health":66439,"Finance & real estate":94265,"Information":75750,"Manufacturing":72569,"Other services":59457,"Prof. & waste services":80536,"Public administration":92179,"Retail trade":49399,"Transport & utilities":56250,"Wholesale trade":85637},"Washington County":{"Agriculture & mining":53947,"Arts & food services":37072,"Construction":62709,"Education & health":61389,"Finance & real estate":66369,"Information":65565,"Manufacturing":59035,"Other services":52944,"Prof. & waste services":73904,"Public administration":83376,"Retail trade":42333,"Transport & utilities":57556,"Wholesale trade":55520},"Wicomico County":{"Agriculture & mining":51467,"Arts & food services":35636,"Construction":59673,"Education & health":57247,"Finance & real estate":66420,"Information":64821,"Manufacturing":55358,"Other services":52092,"Prof. & waste services":64101,"Public administration":70699,"Retail trade":42846,"Transport & utilities":58711,"Wholesale trade":58644},"Worcester County":{"Agriculture & mining":53125,"Arts & food services":44000,"Construction":94868,"Education & health":57109,"Finance & real estate":74688,"Information":96406,"Manufacturing":78673,"Other services":54226,"Prof. & waste services":88363,"Public administration":70871,"Retail trade":47701,"Transport & utilities":50714,"Wholesale trade":95734},"Baltimore city":{"Agriculture & mining":36435,"Arts & food services":38750,"Construction":55375,"Education & health":58681,"Finance & real estate":72799,"Information":77067,"Manufacturing":66399,"Other services":52783,"Prof. & waste services":74677,"Public administration":79348,"Retail trade":41172,"Transport & utilities":48768,"Wholesale trade":49098}};
+    const colors = {
+  'Agriculture & mining': '#FFFF01',
+  'Arts & food services': '#00008B',
+  'Construction': '#7570B1',
+  'Education & health': '#66A61E',
+  'Finance & real estate': '#E6AB01',
+  'Information': '#379',
+  'Manufacturing': '#E41A1C',
+  'Other services': '#377EF1',
+  'Prof. & waste services': '#FF7F00',
+  'Public administration': '#1B9E77',
+  'Retail trade': '#A65011',
+  'Transport & utilities': '#F781BF',
+  'Wholesale trade': '#919'
+};
+
+    const ctx = document.getElementById("barChart").getContext("2d");
+    let chart;
+
+    function renderChart(county) {
+      const values = data[county];
+      const labels = Object.keys(values);
+      const earnings = Object.values(values);
+
+      if (chart) chart.destroy();
+
+      chart = new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels: labels,
+          datasets: [{
+            label: "Median Earnings ($)",
+            data: earnings,
+            backgroundColor: labels.map(label => colors[label] || "#ccc")
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: true,
+  aspectRatio: 1.5, 
+          indexAxis: "x",
+          scales: {
+            y: {
+              beginAtZero: true,
+              title: {
+                display: true,
+                text: "Median Earnings ($)"
+              },
+              ticks: {
+                callback: function(value) {
+                  return "$" + value.toLocaleString();
+                }
+              }
+            },
+            x: {
+              ticks: {
+                maxRotation: 45,
+                minRotation: 20,
+                autoSkip: false,
+                callback: function(value, index, ticks) {
+                  let label = this.getLabelForValue(value);
+                  return label.length > 25 ? label.slice(0, 25) + "…" : label;
+                }
+              }
+            }
+          },
+          plugins: {
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  return "$" + context.parsed.y.toLocaleString();
+                }
+              }
+            },
+            legend: {
+              display: false
+            }
+          }
+        }
+      });
+    }
+
+    const select = document.getElementById("countySelect");
+    Object.keys(data).forEach(county => {
+      const option = document.createElement("option");
+      option.value = county;
+      option.text = county;
+      select.appendChild(option);
+    });
+    select.value = "Statewide";
+    select.addEventListener("change", () => renderChart(select.value));
+    renderChart("Statewide");
+  </script>
+</body>
+</html>
+</html>

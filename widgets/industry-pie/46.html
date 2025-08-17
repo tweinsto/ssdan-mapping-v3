@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <title>Industry Distribution – South Dakota</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+        canvas { max-width: 600px; height: 500px; }
+        select { padding: 0.5rem; font-size: 1rem; margin: 1rem; }
+        .legend { max-width: 600px; margin: 1rem auto; display: flex; flex-wrap: wrap; justify-content: center; font-size: 0.9rem; }
+        .legend-item { display: flex; align-items: center; margin: 0.3rem 1rem; }
+        .legend-color { width: 12px; height: 12px; margin-right: 6px; border: 1px solid #444; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Industry Distribution in South Dakota</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Aurora County, South Dakota">Aurora County, South Dakota</option>
+      <option value="Beadle County, South Dakota">Beadle County, South Dakota</option>
+      <option value="Bennett County, South Dakota">Bennett County, South Dakota</option>
+      <option value="Bon Homme County, South Dakota">Bon Homme County, South Dakota</option>
+      <option value="Brookings County, South Dakota">Brookings County, South Dakota</option>
+      <option value="Brown County, South Dakota">Brown County, South Dakota</option>
+      <option value="Brule County, South Dakota">Brule County, South Dakota</option>
+      <option value="Buffalo County, South Dakota">Buffalo County, South Dakota</option>
+      <option value="Butte County, South Dakota">Butte County, South Dakota</option>
+      <option value="Campbell County, South Dakota">Campbell County, South Dakota</option>
+      <option value="Charles Mix County, South Dakota">Charles Mix County, South Dakota</option>
+      <option value="Clark County, South Dakota">Clark County, South Dakota</option>
+      <option value="Clay County, South Dakota">Clay County, South Dakota</option>
+      <option value="Codington County, South Dakota">Codington County, South Dakota</option>
+      <option value="Corson County, South Dakota">Corson County, South Dakota</option>
+      <option value="Custer County, South Dakota">Custer County, South Dakota</option>
+      <option value="Davison County, South Dakota">Davison County, South Dakota</option>
+      <option value="Day County, South Dakota">Day County, South Dakota</option>
+      <option value="Deuel County, South Dakota">Deuel County, South Dakota</option>
+      <option value="Dewey County, South Dakota">Dewey County, South Dakota</option>
+      <option value="Douglas County, South Dakota">Douglas County, South Dakota</option>
+      <option value="Edmunds County, South Dakota">Edmunds County, South Dakota</option>
+      <option value="Fall River County, South Dakota">Fall River County, South Dakota</option>
+      <option value="Faulk County, South Dakota">Faulk County, South Dakota</option>
+      <option value="Grant County, South Dakota">Grant County, South Dakota</option>
+      <option value="Gregory County, South Dakota">Gregory County, South Dakota</option>
+      <option value="Haakon County, South Dakota">Haakon County, South Dakota</option>
+      <option value="Hamlin County, South Dakota">Hamlin County, South Dakota</option>
+      <option value="Hand County, South Dakota">Hand County, South Dakota</option>
+      <option value="Hanson County, South Dakota">Hanson County, South Dakota</option>
+      <option value="Harding County, South Dakota">Harding County, South Dakota</option>
+      <option value="Hughes County, South Dakota">Hughes County, South Dakota</option>
+      <option value="Hutchinson County, South Dakota">Hutchinson County, South Dakota</option>
+      <option value="Hyde County, South Dakota">Hyde County, South Dakota</option>
+      <option value="Jackson County, South Dakota">Jackson County, South Dakota</option>
+      <option value="Jerauld County, South Dakota">Jerauld County, South Dakota</option>
+      <option value="Jones County, South Dakota">Jones County, South Dakota</option>
+      <option value="Kingsbury County, South Dakota">Kingsbury County, South Dakota</option>
+      <option value="Lake County, South Dakota">Lake County, South Dakota</option>
+      <option value="Lawrence County, South Dakota">Lawrence County, South Dakota</option>
+      <option value="Lincoln County, South Dakota">Lincoln County, South Dakota</option>
+      <option value="Lyman County, South Dakota">Lyman County, South Dakota</option>
+      <option value="Marshall County, South Dakota">Marshall County, South Dakota</option>
+      <option value="McCook County, South Dakota">McCook County, South Dakota</option>
+      <option value="McPherson County, South Dakota">McPherson County, South Dakota</option>
+      <option value="Meade County, South Dakota">Meade County, South Dakota</option>
+      <option value="Mellette County, South Dakota">Mellette County, South Dakota</option>
+      <option value="Miner County, South Dakota">Miner County, South Dakota</option>
+      <option value="Minnehaha County, South Dakota">Minnehaha County, South Dakota</option>
+      <option value="Moody County, South Dakota">Moody County, South Dakota</option>
+      <option value="Oglala Lakota County, South Dakota">Oglala Lakota County, South Dakota</option>
+      <option value="Pennington County, South Dakota">Pennington County, South Dakota</option>
+      <option value="Perkins County, South Dakota">Perkins County, South Dakota</option>
+      <option value="Potter County, South Dakota">Potter County, South Dakota</option>
+      <option value="Roberts County, South Dakota">Roberts County, South Dakota</option>
+      <option value="Sanborn County, South Dakota">Sanborn County, South Dakota</option>
+      <option value="Spink County, South Dakota">Spink County, South Dakota</option>
+      <option value="Stanley County, South Dakota">Stanley County, South Dakota</option>
+      <option value="Sully County, South Dakota">Sully County, South Dakota</option>
+      <option value="Todd County, South Dakota">Todd County, South Dakota</option>
+      <option value="Tripp County, South Dakota">Tripp County, South Dakota</option>
+      <option value="Turner County, South Dakota">Turner County, South Dakota</option>
+      <option value="Union County, South Dakota">Union County, South Dakota</option>
+      <option value="Walworth County, South Dakota">Walworth County, South Dakota</option>
+      <option value="Yankton County, South Dakota">Yankton County, South Dakota</option>
+      <option value="Ziebach County, South Dakota">Ziebach County, South Dakota</option>
+    </select>
+    <canvas id="pieChart"></canvas>
+    <div class="legend">
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#66CC66;"></div>
+        <span>Agriculture, forestry, fishing, and hunting</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#996600;"></div>
+        <span>Mining</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FF6600;"></div>
+        <span>Utilities</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FFCC33;"></div>
+        <span>Construction</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FF0000;"></div>
+        <span>Manufacturing</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FF66FF;"></div>
+        <span>Wholesale trade</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#3399FF;"></div>
+        <span>Retail trade</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#00CC99;"></div>
+        <span>Transportation and warehousing</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#999966;"></div>
+        <span>Information</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#6666FF;"></div>
+        <span>Finance and insurance</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FF99CC;"></div>
+        <span>Professional, scientific, and technical services</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#66CCCC;"></div>
+        <span>Educational services</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FF9933;"></div>
+        <span>Healthcare and social assistance</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#CC99FF;"></div>
+        <span>Arts, entertainment, and recreation</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FF9999;"></div>
+        <span>Accommodation and food services</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#CCCC00;"></div>
+        <span>Other services</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#663300;"></div>
+        <span>Public administration</span>
+      </div>
+    </div>
+    <script>const data = [];
+const colors = ["#66CC66","#996600","#FF6600","#FFCC33","#FF0000","#FF66FF","#3399FF","#00CC99","#999966","#6666FF","#FF99CC","#66CCCC","#FF9933","#CC99FF","#FF9999","#CCCC00","#663300"];
+let chart;
+function renderChart(region) {
+  const ctx = document.getElementById("pieChart").getContext("2d");
+  const labels = Object.keys(data[region]);
+  const values = Object.values(data[region]);
+  const backgroundColors = labels.map(l => colors[l] || "#999");
+  if (chart) chart.destroy();
+  chart = new Chart(ctx, {
+    type: "pie",
+    data: {
+      labels: labels,
+      datasets: [{
+        data: values,
+        backgroundColor: backgroundColors
+      }]
+    },
+    options: {
+      plugins: {
+        tooltip: {
+          callbacks: {
+            label: ctx => ctx.label + ": " + ctx.raw + "%"
+          }
+        }
+      }
+    }
+  });
+}
+document.getElementById("countySelect").addEventListener("change", function() {
+  renderChart(this.value);
+});
+renderChart("Statewide");</script>
+  </body>
+</html>
+</html>

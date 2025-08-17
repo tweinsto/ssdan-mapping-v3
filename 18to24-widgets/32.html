@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Educational Enrollment – Nevada</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Educational Enrollment (Age 18–24) in Nevada</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Carson City, Nevada">Carson City, Nevada</option>
+      <option value="Churchill County, Nevada">Churchill County, Nevada</option>
+      <option value="Clark County, Nevada">Clark County, Nevada</option>
+      <option value="Douglas County, Nevada">Douglas County, Nevada</option>
+      <option value="Elko County, Nevada">Elko County, Nevada</option>
+      <option value="Esmeralda County, Nevada">Esmeralda County, Nevada</option>
+      <option value="Eureka County, Nevada">Eureka County, Nevada</option>
+      <option value="Humboldt County, Nevada">Humboldt County, Nevada</option>
+      <option value="Lander County, Nevada">Lander County, Nevada</option>
+      <option value="Lincoln County, Nevada">Lincoln County, Nevada</option>
+      <option value="Lyon County, Nevada">Lyon County, Nevada</option>
+      <option value="Mineral County, Nevada">Mineral County, Nevada</option>
+      <option value="Nye County, Nevada">Nye County, Nevada</option>
+      <option value="Pershing County, Nevada">Pershing County, Nevada</option>
+      <option value="Storey County, Nevada">Storey County, Nevada</option>
+      <option value="Washoe County, Nevada">Washoe County, Nevada</option>
+      <option value="White Pine County, Nevada">White Pine County, Nevada</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>  const data = {"Statewide":{"Enrolled in College / Grad. School":30.2,"Not Enrolled":69.8},"Churchill County, Nevada":{"Enrolled in College / Grad. School":19.9,"Not Enrolled":80.1},"Clark County, Nevada":{"Enrolled in College / Grad. School":28.7,"Not Enrolled":71.3},"Douglas County, Nevada":{"Enrolled in College / Grad. School":27.6,"Not Enrolled":72.4},"Elko County, Nevada":{"Enrolled in College / Grad. School":23,"Not Enrolled":77},"Esmeralda County, Nevada":{"Enrolled in College / Grad. School":90,"Not Enrolled":10},"Eureka County, Nevada":{"Enrolled in College / Grad. School":0,"Not Enrolled":100},"Humboldt County, Nevada":{"Enrolled in College / Grad. School":17.4,"Not Enrolled":82.6},"Lander County, Nevada":{"Enrolled in College / Grad. School":23.7,"Not Enrolled":76.3},"Lincoln County, Nevada":{"Enrolled in College / Grad. School":0,"Not Enrolled":100},"Lyon County, Nevada":{"Enrolled in College / Grad. School":17.7,"Not Enrolled":82.3},"Mineral County, Nevada":{"Enrolled in College / Grad. School":11.1,"Not Enrolled":88.9},"Nye County, Nevada":{"Enrolled in College / Grad. School":12.2,"Not Enrolled":87.8},"Pershing County, Nevada":{"Enrolled in College / Grad. School":8.8,"Not Enrolled":91.2},"Storey County, Nevada":{"Enrolled in College / Grad. School":15.8,"Not Enrolled":84.2},"Washoe County, Nevada":{"Enrolled in College / Grad. School":41.7,"Not Enrolled":58.3},"White Pine County, Nevada":{"Enrolled in College / Grad. School":12.5,"Not Enrolled":87.5},"Carson City, Nevada":{"Enrolled in College / Grad. School":28.9,"Not Enrolled":71.1}};
+  const categories = ["Enrolled in College / Grad. School","Not Enrolled"];
+  const ctx = document.getElementById("barChart").getContext("2d");
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: categories,
+        datasets: [
+          {
+            label: "County/State",
+            data: values,
+            backgroundColor: ["#66c2a5", "#fc8d62"]
+          }
+        ]
+      },
+      options: {
+        indexAxis: "y",
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            ticks: {
+              callback: v => v + "%"
+            }
+          }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.dataset.label + ": " + ctx.raw + "%"
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById("countySelect").addEventListener("change", function() {
+    renderChart(Object.values(data[this.value]));
+  });
+
+  renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

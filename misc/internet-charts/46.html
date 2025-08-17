@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Internet Access Over Time –  South Dakota</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+                      h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+                      select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; border-radius: 5px; border: 1px solid #999; }
+                      canvas { width: 100%; max-width: 850px; height: 450px; margin-top: 1rem; }</style>
+</head>
+<html>
+  <body>
+    <h2>Internet Access in  South Dakota (2013–2023)</h2>
+    <label>Select County: </label>
+    <select id="countySelect"><option value='Statewide'>Statewide</option>
+<option value='Aurora County, South Dakota'>Aurora County, South Dakota</option>
+<option value='Beadle County, South Dakota'>Beadle County, South Dakota</option>
+<option value='Bennett County, South Dakota'>Bennett County, South Dakota</option>
+<option value='Bon Homme County, South Dakota'>Bon Homme County, South Dakota</option>
+<option value='Brookings County, South Dakota'>Brookings County, South Dakota</option>
+<option value='Brown County, South Dakota'>Brown County, South Dakota</option>
+<option value='Brule County, South Dakota'>Brule County, South Dakota</option>
+<option value='Buffalo County, South Dakota'>Buffalo County, South Dakota</option>
+<option value='Butte County, South Dakota'>Butte County, South Dakota</option>
+<option value='Campbell County, South Dakota'>Campbell County, South Dakota</option>
+<option value='Charles Mix County, South Dakota'>Charles Mix County, South Dakota</option>
+<option value='Clark County, South Dakota'>Clark County, South Dakota</option>
+<option value='Clay County, South Dakota'>Clay County, South Dakota</option>
+<option value='Codington County, South Dakota'>Codington County, South Dakota</option>
+<option value='Corson County, South Dakota'>Corson County, South Dakota</option>
+<option value='Custer County, South Dakota'>Custer County, South Dakota</option>
+<option value='Davison County, South Dakota'>Davison County, South Dakota</option>
+<option value='Day County, South Dakota'>Day County, South Dakota</option>
+<option value='Deuel County, South Dakota'>Deuel County, South Dakota</option>
+<option value='Dewey County, South Dakota'>Dewey County, South Dakota</option>
+<option value='Douglas County, South Dakota'>Douglas County, South Dakota</option>
+<option value='Edmunds County, South Dakota'>Edmunds County, South Dakota</option>
+<option value='Fall River County, South Dakota'>Fall River County, South Dakota</option>
+<option value='Faulk County, South Dakota'>Faulk County, South Dakota</option>
+<option value='Grant County, South Dakota'>Grant County, South Dakota</option>
+<option value='Gregory County, South Dakota'>Gregory County, South Dakota</option>
+<option value='Haakon County, South Dakota'>Haakon County, South Dakota</option>
+<option value='Hamlin County, South Dakota'>Hamlin County, South Dakota</option>
+<option value='Hand County, South Dakota'>Hand County, South Dakota</option>
+<option value='Hanson County, South Dakota'>Hanson County, South Dakota</option>
+<option value='Harding County, South Dakota'>Harding County, South Dakota</option>
+<option value='Hughes County, South Dakota'>Hughes County, South Dakota</option>
+<option value='Hutchinson County, South Dakota'>Hutchinson County, South Dakota</option>
+<option value='Hyde County, South Dakota'>Hyde County, South Dakota</option>
+<option value='Jackson County, South Dakota'>Jackson County, South Dakota</option>
+<option value='Jerauld County, South Dakota'>Jerauld County, South Dakota</option>
+<option value='Jones County, South Dakota'>Jones County, South Dakota</option>
+<option value='Kingsbury County, South Dakota'>Kingsbury County, South Dakota</option>
+<option value='Lake County, South Dakota'>Lake County, South Dakota</option>
+<option value='Lawrence County, South Dakota'>Lawrence County, South Dakota</option>
+<option value='Lincoln County, South Dakota'>Lincoln County, South Dakota</option>
+<option value='Lyman County, South Dakota'>Lyman County, South Dakota</option>
+<option value='Marshall County, South Dakota'>Marshall County, South Dakota</option>
+<option value='McCook County, South Dakota'>McCook County, South Dakota</option>
+<option value='McPherson County, South Dakota'>McPherson County, South Dakota</option>
+<option value='Meade County, South Dakota'>Meade County, South Dakota</option>
+<option value='Mellette County, South Dakota'>Mellette County, South Dakota</option>
+<option value='Miner County, South Dakota'>Miner County, South Dakota</option>
+<option value='Minnehaha County, South Dakota'>Minnehaha County, South Dakota</option>
+<option value='Moody County, South Dakota'>Moody County, South Dakota</option>
+<option value='Oglala Lakota County, South Dakota'>Oglala Lakota County, South Dakota</option>
+<option value='Pennington County, South Dakota'>Pennington County, South Dakota</option>
+<option value='Perkins County, South Dakota'>Perkins County, South Dakota</option>
+<option value='Potter County, South Dakota'>Potter County, South Dakota</option>
+<option value='Roberts County, South Dakota'>Roberts County, South Dakota</option>
+<option value='Sanborn County, South Dakota'>Sanborn County, South Dakota</option>
+<option value='Spink County, South Dakota'>Spink County, South Dakota</option>
+<option value='Stanley County, South Dakota'>Stanley County, South Dakota</option>
+<option value='Sully County, South Dakota'>Sully County, South Dakota</option>
+<option value='Todd County, South Dakota'>Todd County, South Dakota</option>
+<option value='Tripp County, South Dakota'>Tripp County, South Dakota</option>
+<option value='Turner County, South Dakota'>Turner County, South Dakota</option>
+<option value='Union County, South Dakota'>Union County, South Dakota</option>
+<option value='Walworth County, South Dakota'>Walworth County, South Dakota</option>
+<option value='Yankton County, South Dakota'>Yankton County, South Dakota</option>
+<option value='Ziebach County, South Dakota'>Ziebach County, South Dakota</option></select>
+    <canvas id="lineChart" width="850" height="450"></canvas>
+    <script>const internetData = {"Statewide":{"2017":80.9,"2018":82.4,"2019":84.4,"2020":86.7,"2021":88.4,"2022":89.8,"2023":91.4},"Aurora County, South Dakota":{"2017":74.7,"2018":75.4,"2019":77.3,"2020":78.6,"2021":78.5,"2022":81.5,"2023":85},"Beadle County, South Dakota":{"2017":77,"2018":75.1,"2019":76.1,"2020":79.5,"2021":82.9,"2022":84.8,"2023":88.4},"Bennett County, South Dakota":{"2017":66.9,"2018":73.9,"2019":73.7,"2020":75.8,"2021":73.3,"2022":72.7,"2023":71.4},"Bon Homme County, South Dakota":{"2017":74,"2018":73.3,"2019":75.8,"2020":80.5,"2021":81.5,"2022":82.1,"2023":86.2},"Brookings County, South Dakota":{"2017":87.1,"2018":87.4,"2019":88.1,"2020":88.2,"2021":90.6,"2022":92,"2023":93},"Brown County, South Dakota":{"2017":81,"2018":82.1,"2019":84.5,"2020":86.4,"2021":86.6,"2022":88.5,"2023":91.7},"Brule County, South Dakota":{"2017":76.9,"2018":76,"2019":79.5,"2020":82.9,"2021":83,"2022":81,"2023":84.7},"Buffalo County, South Dakota":{"2017":58.9,"2018":62.9,"2019":59.2,"2020":63.1,"2021":63.2,"2022":61.4,"2023":62.5},"Butte County, South Dakota":{"2017":79.6,"2018":78.7,"2019":79.1,"2020":83.1,"2021":87,"2022":89.1,"2023":88.5},"Campbell County, South Dakota":{"2017":71.7,"2018":72.3,"2019":75.8,"2020":74.1,"2021":78,"2022":77.6,"2023":80.5},"Charles Mix County, South Dakota":{"2017":65.8,"2018":69.9,"2019":72.8,"2020":76.4,"2021":79.4,"2022":81.4,"2023":83.6},"Clark County, South Dakota":{"2017":70.6,"2018":74.3,"2019":79.2,"2020":82.4,"2021":84.6,"2022":86.4,"2023":88.1},"Clay County, South Dakota":{"2017":87.9,"2018":90.4,"2019":91.7,"2020":91.5,"2021":92.5,"2022":93.6,"2023":93.5},"Codington County, South Dakota":{"2017":81.9,"2018":83.6,"2019":84.6,"2020":84.6,"2021":86.5,"2022":86.8,"2023":88.9},"Corson County, South Dakota":{"2017":54.4,"2018":55.9,"2019":62.2,"2020":68,"2021":72.7,"2022":78,"2023":84.1},"Custer County, South Dakota":{"2017":83.1,"2018":83.2,"2019":84.1,"2020":84.2,"2021":85.5,"2022":85.7,"2023":88.5},"Davison County, South Dakota":{"2017":83,"2018":84.9,"2019":85.9,"2020":86,"2021":86.2,"2022":87.5,"2023":88.1},"Day County, South Dakota":{"2017":68.6,"2018":72.8,"2019":76.1,"2020":78,"2021":81.7,"2022":84.5,"2023":85.4},"Deuel County, South Dakota":{"2017":78.5,"2018":81,"2019":81.8,"2020":82.2,"2021":83.4,"2022":85.3,"2023":84.8},"Dewey County, South Dakota":{"2017":53.3,"2018":55.8,"2019":59.8,"2020":64.3,"2021":67.3,"2022":73,"2023":78.8},"Douglas County, South Dakota":{"2017":71.5,"2018":74,"2019":75.2,"2020":79.7,"2021":81.8,"2022":85.8,"2023":86.5},"Edmunds County, South Dakota":{"2017":77.8,"2018":79.7,"2019":83.8,"2020":87.7,"2021":90.5,"2022":92.2,"2023":93.5},"Fall River County, South Dakota":{"2017":79.3,"2018":79.4,"2019":85.1,"2020":84.9,"2021":83.7,"2022":83.9,"2023":86.7},"Faulk County, South Dakota":{"2017":68.4,"2018":72.5,"2019":77,"2020":86.6,"2021":89.4,"2022":89.4,"2023":88.2},"Grant County, South Dakota":{"2017":80.8,"2018":83.9,"2019":84.7,"2020":85,"2021":87.5,"2022":84.8,"2023":85.6},"Gregory County, South Dakota":{"2017":67.8,"2018":72.8,"2019":73.8,"2020":78.1,"2021":81.7,"2022":81.5,"2023":82.9},"Haakon County, South Dakota":{"2017":66.5,"2018":65.5,"2019":71.7,"2020":64.4,"2021":70.2,"2022":72.1,"2023":82.5},"Hamlin County, South Dakota":{"2017":78.9,"2018":78.3,"2019":81.5,"2020":83.2,"2021":85.7,"2022":88.9,"2023":90.7},"Hand County, South Dakota":{"2017":72.6,"2018":78.3,"2019":79.9,"2020":80.7,"2021":83.6,"2022":86.9,"2023":87.3},"Hanson County, South Dakota":{"2017":83.7,"2018":85,"2019":88.4,"2020":89.2,"2021":89,"2022":91.1,"2023":92.9},"Harding County, South Dakota":{"2017":84.2,"2018":87.8,"2019":91.4,"2020":88,"2021":90,"2022":92.9,"2023":94.3},"Hughes County, South Dakota":{"2017":79.6,"2018":82.3,"2019":83.4,"2020":86.4,"2021":90,"2022":91,"2023":91.2},"Hutchinson County, South Dakota":{"2017":71.7,"2018":73.4,"2019":75.3,"2020":78.6,"2021":82.5,"2022":85.7,"2023":87.8},"Hyde County, South Dakota":{"2017":74.6,"2018":78.4,"2019":82.9,"2020":87,"2021":87.4,"2022":88,"2023":91.8},"Jackson County, South Dakota":{"2017":55.8,"2018":56.2,"2019":53.3,"2020":58.2,"2021":64.5,"2022":66.3,"2023":71.9},"Jerauld County, South Dakota":{"2017":79.6,"2018":79.8,"2019":79,"2020":83.7,"2021":86.8,"2022":87.5,"2023":86.8},"Jones County, South Dakota":{"2017":77.8,"2018":78.2,"2019":80.1,"2020":81.4,"2021":83.7,"2022":86.9,"2023":88.2},"Kingsbury County, South Dakota":{"2017":74,"2018":76.4,"2019":79.6,"2020":83.2,"2021":85.8,"2022":87.9,"2023":90.5},"Lake County, South Dakota":{"2017":81.5,"2018":85.3,"2019":89.4,"2020":91.4,"2021":92.8,"2022":93.4,"2023":91.8},"Lawrence County, South Dakota":{"2017":83.1,"2018":84.6,"2019":87.8,"2020":87.4,"2021":88.8,"2022":90.8,"2023":91.3},"Lincoln County, South Dakota":{"2017":91.3,"2018":91.7,"2019":93.1,"2020":95,"2021":96.7,"2022":96.9,"2023":97.3},"Lyman County, South Dakota":{"2017":70.5,"2018":72.9,"2019":75.9,"2020":80.5,"2021":80.8,"2022":82.9,"2023":83.6},"Marshall County, South Dakota":{"2017":80.3,"2018":79.6,"2019":77.9,"2020":84.7,"2021":83,"2022":82,"2023":87.1},"McCook County, South Dakota":{"2017":79.6,"2018":81.9,"2019":84.1,"2020":86.6,"2021":87.8,"2022":89.4,"2023":89.6},"McPherson County, South Dakota":{"2017":66.2,"2018":70.8,"2019":71.3,"2020":69.5,"2021":69.4,"2022":74.3,"2023":80.2},"Meade County, South Dakota":{"2017":84.6,"2018":85.9,"2019":85.6,"2020":86.7,"2021":89.1,"2022":89.5,"2023":90.5},"Mellette County, South Dakota":{"2017":43,"2018":44.8,"2019":48.1,"2020":50.2,"2021":55.5,"2022":67.6,"2023":73.7},"Miner County, South Dakota":{"2017":78.2,"2018":80.4,"2019":79.9,"2020":82.3,"2021":81.1,"2022":82.3,"2023":84},"Minnehaha County, South Dakota":{"2017":84.7,"2018":86.1,"2019":88.6,"2020":91.6,"2021":92.6,"2022":93.7,"2023":95.1},"Moody County, South Dakota":{"2017":79.8,"2018":81,"2019":85.9,"2020":86.1,"2021":86.8,"2022":86,"2023":88.9},"Oglala Lakota County, South Dakota":{"2017":49.4,"2018":52.4,"2019":50,"2020":59.3,"2021":62.2,"2022":64.2,"2023":67.2},"Pennington County, South Dakota":{"2017":83.1,"2018":85.3,"2019":87.2,"2020":89.8,"2021":90.7,"2022":92,"2023":93.8},"Perkins County, South Dakota":{"2017":75.1,"2018":78.4,"2019":81.4,"2020":85.5,"2021":86,"2022":89.8,"2023":91},"Potter County, South Dakota":{"2017":82,"2018":81.5,"2019":83.1,"2020":85.1,"2021":85.1,"2022":89.9,"2023":91.8},"Roberts County, South Dakota":{"2017":71.6,"2018":75.5,"2019":78.6,"2020":78.7,"2021":81.6,"2022":83.4,"2023":84.3},"Sanborn County, South Dakota":{"2017":80.6,"2018":83.2,"2019":84.8,"2020":82.8,"2021":82.8,"2022":81.4,"2023":82.7},"Spink County, South Dakota":{"2017":80.6,"2018":80.8,"2019":84.1,"2020":86.5,"2021":88.2,"2022":89.9,"2023":90.8},"Stanley County, South Dakota":{"2017":85.6,"2018":83.5,"2019":84.2,"2020":86.7,"2021":85.8,"2022":89.4,"2023":89.6},"Sully County, South Dakota":{"2017":80.4,"2018":81.3,"2019":81.9,"2020":84.3,"2021":82.9,"2022":85.6,"2023":85.9},"Todd County, South Dakota":{"2017":51.7,"2018":49.3,"2019":47.6,"2020":47.8,"2021":51.8,"2022":67.3,"2023":74.9},"Tripp County, South Dakota":{"2017":70.8,"2018":74.3,"2019":81.6,"2020":82.4,"2021":85.3,"2022":85.7,"2023":88.3},"Turner County, South Dakota":{"2017":73.9,"2018":76.9,"2019":77.8,"2020":83,"2021":84.2,"2022":85.9,"2023":87.9},"Union County, South Dakota":{"2017":84,"2018":84.8,"2019":87.3,"2020":89.6,"2021":90.1,"2022":89.9,"2023":91.9},"Walworth County, South Dakota":{"2017":69,"2018":70.9,"2019":68.6,"2020":75,"2021":79.4,"2022":84.7,"2023":88.9},"Yankton County, South Dakota":{"2017":80.8,"2018":82,"2019":83,"2020":87.4,"2021":88.1,"2022":88.8,"2023":89},"Ziebach County, South Dakota":{"2017":49.1,"2018":52.8,"2019":56.1,"2020":64,"2021":69.8,"2022":74.7,"2023":81.6}};
+const ctx = document.getElementById('lineChart').getContext('2d');
+let chart;
+
+function renderChart(data) {
+  const labels = Object.keys(data);
+  const values = Object.values(data);
+
+  if (chart) chart.destroy();
+  chart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: labels,
+      datasets: [{
+        label: '% With Internet',
+        data: values,
+        fill: false,
+        borderColor: 'teal',
+        backgroundColor: 'teal',
+        tension: 0.3,
+        pointRadius: 4
+      }]
+    },
+    options: {
+      responsive: true,
+      scales: {
+        y: {
+          beginAtZero: true,
+          max: 100,
+          title: { display: true, text: '% With Internet' }
+        },
+        x: {
+          title: { display: true, text: 'Year' }
+        }
+      },
+      plugins: {
+        tooltip: {
+          callbacks: {
+            label: function(ctx) {
+              return ctx.parsed.y.toFixed(1) + '%';
+            }
+          }
+        }
+      }
+    }
+  });
+}
+
+document.getElementById('countySelect').addEventListener('change', function() {
+  renderChart(internetData[this.value]);
+});
+renderChart(internetData['Statewide']);</script>
+  </body>
+</html>
+</html>

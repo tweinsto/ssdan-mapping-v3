@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Living Arrangements of Children – Arizona</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Children’s Living Arrangements (Under 18) – Arizona</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Apache County, Arizona">Apache County, Arizona</option>
+      <option value="Cochise County, Arizona">Cochise County, Arizona</option>
+      <option value="Coconino County, Arizona">Coconino County, Arizona</option>
+      <option value="Gila County, Arizona">Gila County, Arizona</option>
+      <option value="Graham County, Arizona">Graham County, Arizona</option>
+      <option value="Greenlee County, Arizona">Greenlee County, Arizona</option>
+      <option value="La Paz County, Arizona">La Paz County, Arizona</option>
+      <option value="Maricopa County, Arizona">Maricopa County, Arizona</option>
+      <option value="Mohave County, Arizona">Mohave County, Arizona</option>
+      <option value="Navajo County, Arizona">Navajo County, Arizona</option>
+      <option value="Pima County, Arizona">Pima County, Arizona</option>
+      <option value="Pinal County, Arizona">Pinal County, Arizona</option>
+      <option value="Santa Cruz County, Arizona">Santa Cruz County, Arizona</option>
+      <option value="Yavapai County, Arizona">Yavapai County, Arizona</option>
+      <option value="Yuma County, Arizona">Yuma County, Arizona</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>  const data = {"Statewide":{"Married Couple (%)":64.5,"Cohabiting Couple (%)":10.1,"Male Householder (%)":5.8,"Female Householder (%)":19.6},"Apache County, Arizona":{"Married Couple (%)":49.6,"Cohabiting Couple (%)":8.6,"Male Householder (%)":3.6,"Female Householder (%)":38.2},"Cochise County, Arizona":{"Married Couple (%)":65.3,"Cohabiting Couple (%)":7.7,"Male Householder (%)":5.3,"Female Householder (%)":21.6},"Coconino County, Arizona":{"Married Couple (%)":61.3,"Cohabiting Couple (%)":10.2,"Male Householder (%)":5.5,"Female Householder (%)":23.1},"Gila County, Arizona":{"Married Couple (%)":53.1,"Cohabiting Couple (%)":12.8,"Male Householder (%)":5,"Female Householder (%)":29.2},"Graham County, Arizona":{"Married Couple (%)":62,"Cohabiting Couple (%)":9.7,"Male Householder (%)":6.3,"Female Householder (%)":22.1},"Greenlee County, Arizona":{"Married Couple (%)":66.7,"Cohabiting Couple (%)":7.8,"Male Householder (%)":8.8,"Female Householder (%)":16.7},"La Paz County, Arizona":{"Married Couple (%)":43,"Cohabiting Couple (%)":13.9,"Male Householder (%)":20.2,"Female Householder (%)":22.9},"Maricopa County, Arizona":{"Married Couple (%)":65.9,"Cohabiting Couple (%)":10,"Male Householder (%)":5.5,"Female Householder (%)":18.6},"Mohave County, Arizona":{"Married Couple (%)":57.1,"Cohabiting Couple (%)":11.6,"Male Householder (%)":9.3,"Female Householder (%)":22.1},"Navajo County, Arizona":{"Married Couple (%)":59.2,"Cohabiting Couple (%)":9.8,"Male Householder (%)":4.9,"Female Householder (%)":26.1},"Pima County, Arizona":{"Married Couple (%)":61.7,"Cohabiting Couple (%)":10.6,"Male Householder (%)":7.1,"Female Householder (%)":20.6},"Pinal County, Arizona":{"Married Couple (%)":67.2,"Cohabiting Couple (%)":11,"Male Householder (%)":5.1,"Female Householder (%)":16.7},"Santa Cruz County, Arizona":{"Married Couple (%)":65.5,"Cohabiting Couple (%)":5.2,"Male Householder (%)":3.8,"Female Householder (%)":25.5},"Yavapai County, Arizona":{"Married Couple (%)":64.5,"Cohabiting Couple (%)":12.2,"Male Householder (%)":5.3,"Female Householder (%)":17.9},"Yuma County, Arizona":{"Married Couple (%)":61,"Cohabiting Couple (%)":10.7,"Male Householder (%)":5.5,"Female Householder (%)":22.9}};
+  const categories = ["Married Couple (%)","Cohabiting Couple (%)","Male Householder (%)","Female Householder (%)"];
+  const ctx = document.getElementById("barChart").getContext("2d");
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: categories,
+        datasets: [{
+          label: "Share of Children (%)",
+          data: values,
+          backgroundColor: ["#5DA5DA","#FAA43A","#60BD68","#F17CB0"]
+        }]
+      },
+      options: {
+        indexAxis: "y",
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            ticks: { callback: v => v + "%" },
+            title: { display: true, text: "Percent of Children" }
+          }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.raw + "%"
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById("countySelect").addEventListener("change", function() {
+    renderChart(Object.values(data[this.value]));
+  });
+
+  renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

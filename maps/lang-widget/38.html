@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Language Spoken at Home – North Dakota</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          text-align: center;
+          margin: 2rem;
+        }
+        select {
+          font-size: 1rem;
+          padding: 0.4rem;
+          margin-bottom: 1rem;
+        }
+        canvas {
+          width: 100%;
+          max-width: 700px;
+          height: 800px;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Language Spoken at Home – North Dakota</h2>
+    <label>Select County, State:</label>
+    <select id="countySelect"><option value='Statewide'>Statewide</option>
+<option value='Adams County, North Dakota'>Adams County, North Dakota</option>
+<option value='Barnes County, North Dakota'>Barnes County, North Dakota</option>
+<option value='Benson County, North Dakota'>Benson County, North Dakota</option>
+<option value='Billings County, North Dakota'>Billings County, North Dakota</option>
+<option value='Bottineau County, North Dakota'>Bottineau County, North Dakota</option>
+<option value='Bowman County, North Dakota'>Bowman County, North Dakota</option>
+<option value='Burke County, North Dakota'>Burke County, North Dakota</option>
+<option value='Burleigh County, North Dakota'>Burleigh County, North Dakota</option>
+<option value='Cass County, North Dakota'>Cass County, North Dakota</option>
+<option value='Cavalier County, North Dakota'>Cavalier County, North Dakota</option>
+<option value='Dickey County, North Dakota'>Dickey County, North Dakota</option>
+<option value='Divide County, North Dakota'>Divide County, North Dakota</option>
+<option value='Dunn County, North Dakota'>Dunn County, North Dakota</option>
+<option value='Eddy County, North Dakota'>Eddy County, North Dakota</option>
+<option value='Emmons County, North Dakota'>Emmons County, North Dakota</option>
+<option value='Foster County, North Dakota'>Foster County, North Dakota</option>
+<option value='Golden Valley County, North Dakota'>Golden Valley County, North Dakota</option>
+<option value='Grand Forks County, North Dakota'>Grand Forks County, North Dakota</option>
+<option value='Grant County, North Dakota'>Grant County, North Dakota</option>
+<option value='Griggs County, North Dakota'>Griggs County, North Dakota</option>
+<option value='Hettinger County, North Dakota'>Hettinger County, North Dakota</option>
+<option value='Kidder County, North Dakota'>Kidder County, North Dakota</option>
+<option value='LaMoure County, North Dakota'>LaMoure County, North Dakota</option>
+<option value='Logan County, North Dakota'>Logan County, North Dakota</option>
+<option value='McHenry County, North Dakota'>McHenry County, North Dakota</option>
+<option value='McIntosh County, North Dakota'>McIntosh County, North Dakota</option>
+<option value='McKenzie County, North Dakota'>McKenzie County, North Dakota</option>
+<option value='McLean County, North Dakota'>McLean County, North Dakota</option>
+<option value='Mercer County, North Dakota'>Mercer County, North Dakota</option>
+<option value='Morton County, North Dakota'>Morton County, North Dakota</option>
+<option value='Mountrail County, North Dakota'>Mountrail County, North Dakota</option>
+<option value='Nelson County, North Dakota'>Nelson County, North Dakota</option>
+<option value='Oliver County, North Dakota'>Oliver County, North Dakota</option>
+<option value='Pembina County, North Dakota'>Pembina County, North Dakota</option>
+<option value='Pierce County, North Dakota'>Pierce County, North Dakota</option>
+<option value='Ramsey County, North Dakota'>Ramsey County, North Dakota</option>
+<option value='Ransom County, North Dakota'>Ransom County, North Dakota</option>
+<option value='Renville County, North Dakota'>Renville County, North Dakota</option>
+<option value='Richland County, North Dakota'>Richland County, North Dakota</option>
+<option value='Rolette County, North Dakota'>Rolette County, North Dakota</option>
+<option value='Sargent County, North Dakota'>Sargent County, North Dakota</option>
+<option value='Sheridan County, North Dakota'>Sheridan County, North Dakota</option>
+<option value='Sioux County, North Dakota'>Sioux County, North Dakota</option>
+<option value='Slope County, North Dakota'>Slope County, North Dakota</option>
+<option value='Stark County, North Dakota'>Stark County, North Dakota</option>
+<option value='Steele County, North Dakota'>Steele County, North Dakota</option>
+<option value='Stutsman County, North Dakota'>Stutsman County, North Dakota</option>
+<option value='Towner County, North Dakota'>Towner County, North Dakota</option>
+<option value='Traill County, North Dakota'>Traill County, North Dakota</option>
+<option value='Walsh County, North Dakota'>Walsh County, North Dakota</option>
+<option value='Ward County, North Dakota'>Ward County, North Dakota</option>
+<option value='Wells County, North Dakota'>Wells County, North Dakota</option>
+<option value='Williams County, North Dakota'>Williams County, North Dakota</option></select>
+    <canvas id="barChart" width="700" height="700"></canvas>
+    <script>  const languageData = {"Statewide":{"Arabic":0.3,"Chinese (incl. Mandarin, Cantonese)":0.2,"English":91.5,"French, Haitian, or Cajun":0.4,"German or other West Germanic":1.1,"Korean":0.1,"Other Asian & Pacific":0.4,"Other Indo-European":0.7,"Other and Unspecified":1.7,"Russian, Polish, other Slavic":0.4,"Spanish":2.6,"Tagalog (incl. Filipino)":0.5,"Vietnamese":0.1},"Adams County, North Dakota":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":93.4,"French, Haitian, or Cajun":0,"German or other West Germanic":1.5,"Korean":0,"Other Asian & Pacific":0,"Other Indo-European":0.4,"Other and Unspecified":1.5,"Russian, Polish, other Slavic":0,"Spanish":3.2,"Tagalog (incl. Filipino)":0,"Vietnamese":0},"Barnes County, North Dakota":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":95.9,"French, Haitian, or Cajun":0.6,"German or other West Germanic":1.5,"Korean":0.2,"Other Asian & Pacific":0.7,"Other Indo-European":0,"Other and Unspecified":0,"Russian, Polish, other Slavic":0,"Spanish":0.6,"Tagalog (incl. Filipino)":0.5,"Vietnamese":0},"Benson County, North Dakota":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":90.2,"French, Haitian, or Cajun":0,"German or other West Germanic":0.4,"Korean":0,"Other Asian & Pacific":0,"Other Indo-European":1.2,"Other and Unspecified":6.6,"Russian, Polish, other Slavic":0,"Spanish":1.1,"Tagalog (incl. Filipino)":0.5,"Vietnamese":0},"Billings County, North Dakota":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":95.7,"French, Haitian, or Cajun":0.5,"German or other West Germanic":1.3,"Korean":0,"Other Asian & Pacific":0,"Other Indo-European":0,"Other and Unspecified":0,"Russian, Polish, other Slavic":1.6,"Spanish":0.8,"Tagalog (incl. Filipino)":0,"Vietnamese":0},"Bottineau County, North Dakota":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":94.6,"French, Haitian, or Cajun":0.5,"German or other West Germanic":0.7,"Korean":0,"Other Asian & Pacific":0,"Other Indo-European":0.6,"Other and Unspecified":0.1,"Russian, Polish, other Slavic":0.1,"Spanish":2.3,"Tagalog (incl. Filipino)":1.2,"Vietnamese":0},"Bowman County, North Dakota":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":95.7,"French, Haitian, or Cajun":0,"German or other West Germanic":1.2,"Korean":0,"Other Asian & Pacific":0,"Other Indo-European":1,"Other and Unspecified":0,"Russian, Polish, other Slavic":0,"Spanish":2.1,"Tagalog (incl. Filipino)":0,"Vietnamese":0},"Burke County, North Dakota":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":93.2,"French, Haitian, or Cajun":0,"German or other West Germanic":0.2,"Korean":0,"Other Asian & Pacific":1.3,"Other Indo-European":0.2,"Other and Unspecified":0,"Russian, Polish, other Slavic":0,"Spanish":2.1,"Tagalog (incl. Filipino)":2.4,"Vietnamese":0.5},"Burleigh County, North Dakota":{"Arabic":0.1,"Chinese (incl. Mandarin, Cantonese)":0.1,"English":94.7,"French, Haitian, or Cajun":0.3,"German or other West Germanic":1.5,"Korean":0,"Other Asian & Pacific":0.1,"Other Indo-European":0.2,"Other and Unspecified":0.4,"Russian, Polish, other Slavic":0.4,"Spanish":1.4,"Tagalog (incl. Filipino)":0.6,"Vietnamese":0},"Cass County, North Dakota":{"Arabic":0.5,"Chinese (incl. Mandarin, Cantonese)":0.3,"English":89.3,"French, Haitian, or Cajun":0.8,"German or other West Germanic":0.5,"Korean":0.3,"Other Asian & Pacific":0.7,"Other Indo-European":1.5,"Other and Unspecified":3.1,"Russian, Polish, other Slavic":0.5,"Spanish":2,"Tagalog (incl. Filipino)":0.4,"Vietnamese":0.3},"Cavalier County, North Dakota":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":94.3,"French, Haitian, or Cajun":0.5,"German or other West Germanic":1.2,"Korean":0,"Other Asian & Pacific":0,"Other Indo-European":0.7,"Other and Unspecified":0.8,"Russian, Polish, other Slavic":0,"Spanish":2.4,"Tagalog (incl. Filipino)":0.2,"Vietnamese":0},"Dickey County, North Dakota":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":91.7,"French, Haitian, or Cajun":0.3,"German or other West Germanic":1.9,"Korean":0,"Other Asian & Pacific":0,"Other Indo-European":0,"Other and Unspecified":0,"Russian, Polish, other Slavic":1.4,"Spanish":3.3,"Tagalog (incl. Filipino)":1.4,"Vietnamese":0},"Divide County, North Dakota":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":97.7,"French, Haitian, or Cajun":1.4,"German or other West Germanic":0,"Korean":0,"Other Asian & Pacific":0.3,"Other Indo-European":0,"Other and Unspecified":0.3,"Russian, Polish, other Slavic":0,"Spanish":0,"Tagalog (incl. Filipino)":0.3,"Vietnamese":0},"Dunn County, North Dakota":{"Arabic":0.9,"Chinese (incl. Mandarin, Cantonese)":0,"English":82.3,"French, Haitian, or Cajun":0.1,"German or other West Germanic":1.5,"Korean":0.3,"Other Asian & Pacific":0,"Other Indo-European":0.4,"Other and Unspecified":6.8,"Russian, Polish, other Slavic":0,"Spanish":6.7,"Tagalog (incl. Filipino)":0,"Vietnamese":0.9},"Eddy County, North Dakota":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":95.9,"French, Haitian, or Cajun":0.2,"German or other West Germanic":1.7,"Korean":0,"Other Asian & Pacific":0.3,"Other Indo-European":0,"Other and Unspecified":1,"Russian, Polish, other Slavic":0,"Spanish":1,"Tagalog (incl. Filipino)":0,"Vietnamese":0},"Emmons County, North Dakota":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":88.9,"French, Haitian, or Cajun":0,"German or other West Germanic":9.6,"Korean":0,"Other Asian & Pacific":0.4,"Other Indo-European":0,"Other and Unspecified":0.4,"Russian, Polish, other Slavic":0,"Spanish":0.7,"Tagalog (incl. Filipino)":0,"Vietnamese":0},"Foster County, North Dakota":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":97.2,"French, Haitian, or Cajun":0,"German or other West Germanic":0.3,"Korean":0,"Other Asian & Pacific":0,"Other Indo-European":2,"Other and Unspecified":0,"Russian, Polish, other Slavic":0,"Spanish":0.5,"Tagalog (incl. Filipino)":0,"Vietnamese":0},"Golden Valley County, North Dakota":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":97.7,"French, Haitian, or Cajun":0,"German or other West Germanic":0.1,"Korean":0,"Other Asian & Pacific":0.8,"Other Indo-European":0,"Other and Unspecified":0,"Russian, Polish, other Slavic":0.1,"Spanish":1.2,"Tagalog (incl. Filipino)":0,"Vietnamese":0},"Grand Forks County, North Dakota":{"Arabic":0.5,"Chinese (incl. Mandarin, Cantonese)":0.6,"English":90.6,"French, Haitian, or Cajun":0.2,"German or other West Germanic":0.9,"Korean":0.3,"Other Asian & Pacific":0.4,"Other Indo-European":1.5,"Other and Unspecified":1.3,"Russian, Polish, other Slavic":0.8,"Spanish":2.4,"Tagalog (incl. Filipino)":0.3,"Vietnamese":0.2},"Grant County, North Dakota":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":91.2,"French, Haitian, or Cajun":0.6,"German or other West Germanic":4.2,"Korean":0,"Other Asian & Pacific":0,"Other Indo-European":0,"Other and Unspecified":0.2,"Russian, Polish, other Slavic":0,"Spanish":1.9,"Tagalog (incl. Filipino)":2,"Vietnamese":0},"Griggs County, North Dakota":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":97.6,"French, Haitian, or Cajun":1.3,"German or other West Germanic":0,"Korean":0,"Other Asian & Pacific":0.3,"Other Indo-European":0.5,"Other and Unspecified":0,"Russian, Polish, other Slavic":0,"Spanish":0.3,"Tagalog (incl. Filipino)":0,"Vietnamese":0},"Hettinger County, North Dakota":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":94.5,"French, Haitian, or Cajun":0,"German or other West Germanic":2.8,"Korean":0,"Other Asian & Pacific":0,"Other Indo-European":0,"Other and Unspecified":0,"Russian, Polish, other Slavic":0,"Spanish":2.7,"Tagalog (incl. Filipino)":0,"Vietnamese":0},"Kidder County, North Dakota":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":95.6,"French, Haitian, or Cajun":0,"German or other West Germanic":1,"Korean":0,"Other Asian & Pacific":0,"Other Indo-European":0,"Other and Unspecified":0.3,"Russian, Polish, other Slavic":1.2,"Spanish":2,"Tagalog (incl. Filipino)":0,"Vietnamese":0},"LaMoure County, North Dakota":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0.2,"English":96.3,"French, Haitian, or Cajun":0,"German or other West Germanic":2,"Korean":0.1,"Other Asian & Pacific":0,"Other Indo-European":0,"Other and Unspecified":0,"Russian, Polish, other Slavic":0,"Spanish":1.5,"Tagalog (incl. Filipino)":0,"Vietnamese":0},"Logan County, North Dakota":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":90.7,"French, Haitian, or Cajun":0,"German or other West Germanic":7.5,"Korean":0,"Other Asian & Pacific":0,"Other Indo-European":0,"Other and Unspecified":0,"Russian, Polish, other Slavic":0,"Spanish":1.8,"Tagalog (incl. Filipino)":0,"Vietnamese":0},"McHenry County, North Dakota":{"Arabic":0.1,"Chinese (incl. Mandarin, Cantonese)":0,"English":94.3,"French, Haitian, or Cajun":0,"German or other West Germanic":2.8,"Korean":0.7,"Other Asian & Pacific":0,"Other Indo-European":0.2,"Other and Unspecified":1.5,"Russian, Polish, other Slavic":0,"Spanish":0.3,"Tagalog (incl. Filipino)":0,"Vietnamese":0},"McIntosh County, North Dakota":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":80.3,"French, Haitian, or Cajun":0.4,"German or other West Germanic":13.4,"Korean":0,"Other Asian & Pacific":2.6,"Other Indo-European":0,"Other and Unspecified":0.2,"Russian, Polish, other Slavic":0.2,"Spanish":2.2,"Tagalog (incl. Filipino)":0.6,"Vietnamese":0},"McKenzie County, North Dakota":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0.1,"English":85.1,"French, Haitian, or Cajun":0.2,"German or other West Germanic":0.2,"Korean":0,"Other Asian & Pacific":1,"Other Indo-European":0.1,"Other and Unspecified":3,"Russian, Polish, other Slavic":0.8,"Spanish":9,"Tagalog (incl. Filipino)":0.5,"Vietnamese":0},"McLean County, North Dakota":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":95.8,"French, Haitian, or Cajun":0,"German or other West Germanic":0.8,"Korean":0,"Other Asian & Pacific":0.2,"Other Indo-European":0.5,"Other and Unspecified":0.7,"Russian, Polish, other Slavic":0,"Spanish":1.6,"Tagalog (incl. Filipino)":0.3,"Vietnamese":0},"Mercer County, North Dakota":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":88.2,"French, Haitian, or Cajun":0.6,"German or other West Germanic":6.4,"Korean":0,"Other Asian & Pacific":0.6,"Other Indo-European":0.5,"Other and Unspecified":1.3,"Russian, Polish, other Slavic":0,"Spanish":2,"Tagalog (incl. Filipino)":0.4,"Vietnamese":0},"Morton County, North Dakota":{"Arabic":0.3,"Chinese (incl. Mandarin, Cantonese)":0,"English":94.5,"French, Haitian, or Cajun":0.2,"German or other West Germanic":1.3,"Korean":0,"Other Asian & Pacific":0,"Other Indo-European":0,"Other and Unspecified":0.2,"Russian, Polish, other Slavic":0,"Spanish":3.2,"Tagalog (incl. Filipino)":0.2,"Vietnamese":0},"Mountrail County, North Dakota":{"Arabic":0.6,"Chinese (incl. Mandarin, Cantonese)":0,"English":84.3,"French, Haitian, or Cajun":0.8,"German or other West Germanic":0.3,"Korean":0,"Other Asian & Pacific":0.4,"Other Indo-European":0,"Other and Unspecified":5.5,"Russian, Polish, other Slavic":0,"Spanish":8.1,"Tagalog (incl. Filipino)":0.1,"Vietnamese":0},"Nelson County, North Dakota":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":91.6,"French, Haitian, or Cajun":0,"German or other West Germanic":0.8,"Korean":0,"Other Asian & Pacific":0,"Other Indo-European":1.3,"Other and Unspecified":1.2,"Russian, Polish, other Slavic":2.2,"Spanish":1.5,"Tagalog (incl. Filipino)":1.2,"Vietnamese":0},"Oliver County, North Dakota":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":97.8,"French, Haitian, or Cajun":0,"German or other West Germanic":1.9,"Korean":0,"Other Asian & Pacific":0,"Other Indo-European":0,"Other and Unspecified":0,"Russian, Polish, other Slavic":0,"Spanish":0,"Tagalog (incl. Filipino)":0.3,"Vietnamese":0},"Pembina County, North Dakota":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":96.1,"French, Haitian, or Cajun":0.2,"German or other West Germanic":1.7,"Korean":0,"Other Asian & Pacific":0.2,"Other Indo-European":0.5,"Other and Unspecified":0,"Russian, Polish, other Slavic":0.1,"Spanish":1.2,"Tagalog (incl. Filipino)":0,"Vietnamese":0},"Pierce County, North Dakota":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":95.4,"French, Haitian, or Cajun":0,"German or other West Germanic":3.5,"Korean":0,"Other Asian & Pacific":0,"Other Indo-European":0,"Other and Unspecified":0,"Russian, Polish, other Slavic":0,"Spanish":1,"Tagalog (incl. Filipino)":0,"Vietnamese":0},"Ramsey County, North Dakota":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":94,"French, Haitian, or Cajun":0,"German or other West Germanic":1.5,"Korean":0,"Other Asian & Pacific":0,"Other Indo-European":0.3,"Other and Unspecified":1.7,"Russian, Polish, other Slavic":0,"Spanish":0.8,"Tagalog (incl. Filipino)":1.8,"Vietnamese":0},"Ransom County, North Dakota":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0.5,"English":92.4,"French, Haitian, or Cajun":0,"German or other West Germanic":1.2,"Korean":0.7,"Other Asian & Pacific":0.4,"Other Indo-European":1,"Other and Unspecified":0.1,"Russian, Polish, other Slavic":1.8,"Spanish":1.9,"Tagalog (incl. Filipino)":0,"Vietnamese":0},"Renville County, North Dakota":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":97.9,"French, Haitian, or Cajun":0,"German or other West Germanic":1.2,"Korean":0,"Other Asian & Pacific":0,"Other Indo-European":0.2,"Other and Unspecified":0,"Russian, Polish, other Slavic":0,"Spanish":0,"Tagalog (incl. Filipino)":0.7,"Vietnamese":0},"Richland County, North Dakota":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0.1,"English":96.1,"French, Haitian, or Cajun":0,"German or other West Germanic":0.5,"Korean":0.1,"Other Asian & Pacific":0,"Other Indo-European":0.6,"Other and Unspecified":0.6,"Russian, Polish, other Slavic":0.8,"Spanish":1.2,"Tagalog (incl. Filipino)":0,"Vietnamese":0},"Rolette County, North Dakota":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0.1,"English":86.7,"French, Haitian, or Cajun":0.8,"German or other West Germanic":0.6,"Korean":0,"Other Asian & Pacific":0.8,"Other Indo-European":0.3,"Other and Unspecified":8.7,"Russian, Polish, other Slavic":0.1,"Spanish":2,"Tagalog (incl. Filipino)":0,"Vietnamese":0},"Sargent County, North Dakota":{"Arabic":0.2,"Chinese (incl. Mandarin, Cantonese)":0,"English":92.4,"French, Haitian, or Cajun":0,"German or other West Germanic":0.9,"Korean":0,"Other Asian & Pacific":0,"Other Indo-European":0.5,"Other and Unspecified":3.3,"Russian, Polish, other Slavic":0.2,"Spanish":2.5,"Tagalog (incl. Filipino)":0,"Vietnamese":0},"Sheridan County, North Dakota":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":95.7,"French, Haitian, or Cajun":0,"German or other West Germanic":3.5,"Korean":0,"Other Asian & Pacific":0,"Other Indo-European":0,"Other and Unspecified":0.7,"Russian, Polish, other Slavic":0,"Spanish":0,"Tagalog (incl. Filipino)":0,"Vietnamese":0},"Sioux County, North Dakota":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":84.5,"French, Haitian, or Cajun":0,"German or other West Germanic":0.8,"Korean":0,"Other Asian & Pacific":0,"Other Indo-European":0,"Other and Unspecified":13.7,"Russian, Polish, other Slavic":0,"Spanish":1,"Tagalog (incl. Filipino)":0,"Vietnamese":0},"Slope County, North Dakota":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":96.2,"French, Haitian, or Cajun":0,"German or other West Germanic":0,"Korean":0,"Other Asian & Pacific":0,"Other Indo-European":0,"Other and Unspecified":2.6,"Russian, Polish, other Slavic":0,"Spanish":1.2,"Tagalog (incl. Filipino)":0,"Vietnamese":0},"Stark County, North Dakota":{"Arabic":1,"Chinese (incl. Mandarin, Cantonese)":0.6,"English":89.1,"French, Haitian, or Cajun":0,"German or other West Germanic":1.4,"Korean":0,"Other Asian & Pacific":0.2,"Other Indo-European":0.6,"Other and Unspecified":0.9,"Russian, Polish, other Slavic":0.3,"Spanish":4.9,"Tagalog (incl. Filipino)":0.7,"Vietnamese":0.4},"Steele County, North Dakota":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":97.5,"French, Haitian, or Cajun":0,"German or other West Germanic":1.6,"Korean":0,"Other Asian & Pacific":0,"Other Indo-European":0.6,"Other and Unspecified":0.3,"Russian, Polish, other Slavic":0,"Spanish":0,"Tagalog (incl. Filipino)":0,"Vietnamese":0},"Stutsman County, North Dakota":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":95,"French, Haitian, or Cajun":0.2,"German or other West Germanic":2.6,"Korean":0,"Other Asian & Pacific":0,"Other Indo-European":0.3,"Other and Unspecified":0.2,"Russian, Polish, other Slavic":0,"Spanish":1.6,"Tagalog (incl. Filipino)":0.1,"Vietnamese":0},"Towner County, North Dakota":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":96.4,"French, Haitian, or Cajun":0,"German or other West Germanic":0.2,"Korean":0,"Other Asian & Pacific":0,"Other Indo-European":0,"Other and Unspecified":0.9,"Russian, Polish, other Slavic":0,"Spanish":2.4,"Tagalog (incl. Filipino)":0,"Vietnamese":0},"Traill County, North Dakota":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":96.7,"French, Haitian, or Cajun":0.2,"German or other West Germanic":0.2,"Korean":0.1,"Other Asian & Pacific":0,"Other Indo-European":0.3,"Other and Unspecified":0.4,"Russian, Polish, other Slavic":0,"Spanish":2,"Tagalog (incl. Filipino)":0.2,"Vietnamese":0},"Walsh County, North Dakota":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":88.4,"French, Haitian, or Cajun":0.2,"German or other West Germanic":0.9,"Korean":0,"Other Asian & Pacific":0.2,"Other Indo-European":0.2,"Other and Unspecified":0.4,"Russian, Polish, other Slavic":1.2,"Spanish":8.4,"Tagalog (incl. Filipino)":0.1,"Vietnamese":0.1},"Ward County, North Dakota":{"Arabic":0.1,"Chinese (incl. Mandarin, Cantonese)":0.1,"English":92.1,"French, Haitian, or Cajun":0.5,"German or other West Germanic":0.3,"Korean":0,"Other Asian & Pacific":0.8,"Other Indo-European":0.7,"Other and Unspecified":1,"Russian, Polish, other Slavic":0.3,"Spanish":3.2,"Tagalog (incl. Filipino)":1,"Vietnamese":0.1},"Wells County, North Dakota":{"Arabic":0.2,"Chinese (incl. Mandarin, Cantonese)":0.2,"English":95.8,"French, Haitian, or Cajun":0,"German or other West Germanic":1.6,"Korean":0,"Other Asian & Pacific":0.1,"Other Indo-European":0.1,"Other and Unspecified":0,"Russian, Polish, other Slavic":0,"Spanish":1.7,"Tagalog (incl. Filipino)":0.3,"Vietnamese":0},"Williams County, North Dakota":{"Arabic":0.6,"Chinese (incl. Mandarin, Cantonese)":0.1,"English":86.8,"French, Haitian, or Cajun":0.6,"German or other West Germanic":0.6,"Korean":0,"Other Asian & Pacific":0.3,"Other Indo-European":0.1,"Other and Unspecified":2.8,"Russian, Polish, other Slavic":0.1,"Spanish":7,"Tagalog (incl. Filipino)":0.8,"Vietnamese":0}};
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: Object.keys(values),
+        datasets: [{
+          label: 'Share (%)',
+          data: Object.values(values),
+          backgroundColor: '#4576a7'
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.parsed.y + '%'
+            }
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 100,
+            title: {
+              display: true,
+              text: 'Population Share (%)'
+            }
+          },
+          x: {
+            title: {
+              display: true,
+              text: 'Language Group'
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(languageData[this.value]);
+  });
+
+  renderChart(languageData['Statewide']);</script>
+  </body>
+</html>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+
+</head>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Owners: Year Moved In (%) – 24</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #fff;
+    }
+    .container {
+      width: 95%;
+      max-width: 1200px;
+      margin: auto;
+      text-align: center;
+    }
+    #countySelect {
+      font-size: 1rem;
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    canvas {
+      max-width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Owners: Year Moved In (%)</h2>
+    <select id="countySelect"></select>
+    <canvas id="pieChart"></canvas>
+  </div>
+
+  <script>
+    const data = {"Statewide":{"Moved in 2021 or later":5.6,"Moved in 2018–2020":14.4,"Moved in 2010–2017":26.2,"Moved in 2000–2009":23.2,"Moved in 1990–1999":15.4,"1989 or earlier":15.3},"Allegany County":{"Moved in 2021 or later":5.8827,"Moved in 2018–2020":11.1485,"Moved in 2010–2017":21.2294,"Moved in 2000–2009":20.8821,"Moved in 1990–1999":13.8126,"1989 or earlier":27.0447},"Anne Arundel County":{"Moved in 2021 or later":6.0167,"Moved in 2018–2020":16.3533,"Moved in 2010–2017":26.5401,"Moved in 2000–2009":21.3772,"Moved in 1990–1999":15.1076,"1989 or earlier":14.6052},"Baltimore city":{"Moved in 2021 or later":6.5512,"Moved in 2018–2020":15.4102,"Moved in 2010–2017":24.3061,"Moved in 2000–2009":19.4177,"Moved in 1990–1999":14.3319,"1989 or earlier":19.9829},"Baltimore County":{"Moved in 2021 or later":4.8189,"Moved in 2018–2020":12.699,"Moved in 2010–2017":25.5692,"Moved in 2000–2009":23.0892,"Moved in 1990–1999":16.9164,"1989 or earlier":16.9073},"Calvert County":{"Moved in 2021 or later":7.0689,"Moved in 2018–2020":14.974,"Moved in 2010–2017":26.3363,"Moved in 2000–2009":22.0395,"Moved in 1990–1999":16.8928,"1989 or earlier":12.6885},"Caroline County":{"Moved in 2021 or later":6.9348,"Moved in 2018–2020":10.8191,"Moved in 2010–2017":24.4488,"Moved in 2000–2009":22.815,"Moved in 1990–1999":16.5543,"1989 or earlier":18.428},"Carroll County":{"Moved in 2021 or later":4.8181,"Moved in 2018–2020":13.7442,"Moved in 2010–2017":24.7084,"Moved in 2000–2009":24.3815,"Moved in 1990–1999":16.7571,"1989 or earlier":15.5907},"Cecil County":{"Moved in 2021 or later":4.403,"Moved in 2018–2020":14.1677,"Moved in 2010–2017":25.2843,"Moved in 2000–2009":24.9967,"Moved in 1990–1999":15.1164,"1989 or earlier":16.032},"Charles County":{"Moved in 2021 or later":6.7014,"Moved in 2018–2020":15.5521,"Moved in 2010–2017":31.5031,"Moved in 2000–2009":21.998,"Moved in 1990–1999":13.3661,"1989 or earlier":10.8793},"Dorchester County":{"Moved in 2021 or later":4.3906,"Moved in 2018–2020":15.3672,"Moved in 2010–2017":23.2771,"Moved in 2000–2009":23.0055,"Moved in 1990–1999":13.6358,"1989 or earlier":20.3236},"Frederick County":{"Moved in 2021 or later":6.861,"Moved in 2018–2020":17.5994,"Moved in 2010–2017":28.4818,"Moved in 2000–2009":21.6782,"Moved in 1990–1999":13.0526,"1989 or earlier":12.3271},"Garrett County":{"Moved in 2021 or later":5.0393,"Moved in 2018–2020":14.558,"Moved in 2010–2017":20.7269,"Moved in 2000–2009":17.5147,"Moved in 1990–1999":19.4204,"1989 or earlier":22.7407},"Harford County":{"Moved in 2021 or later":5.5338,"Moved in 2018–2020":15.4203,"Moved in 2010–2017":26.0851,"Moved in 2000–2009":23.6078,"Moved in 1990–1999":15.5029,"1989 or earlier":13.8501},"Howard County":{"Moved in 2021 or later":5.158,"Moved in 2018–2020":14.5401,"Moved in 2010–2017":29.1347,"Moved in 2000–2009":23.7247,"Moved in 1990–1999":14.9837,"1989 or earlier":12.4588},"Kent County":{"Moved in 2021 or later":7.3694,"Moved in 2018–2020":15.292,"Moved in 2010–2017":23.9304,"Moved in 2000–2009":22.1246,"Moved in 1990–1999":15.8614,"1989 or earlier":15.4222},"Montgomery County":{"Moved in 2021 or later":5.5226,"Moved in 2018–2020":13.1956,"Moved in 2010–2017":27.0584,"Moved in 2000–2009":25.1535,"Moved in 1990–1999":15.095,"1989 or earlier":13.9749},"Prince George's County":{"Moved in 2021 or later":4.9388,"Moved in 2018–2020":12.925,"Moved in 2010–2017":25.2466,"Moved in 2000–2009":24.9822,"Moved in 1990–1999":16.7032,"1989 or earlier":15.2042},"Queen Anne's County":{"Moved in 2021 or later":5.4971,"Moved in 2018–2020":15.4708,"Moved in 2010–2017":27.6421,"Moved in 2000–2009":21.9509,"Moved in 1990–1999":15.596,"1989 or earlier":13.843},"Somerset County":{"Moved in 2021 or later":2.662,"Moved in 2018–2020":19.0543,"Moved in 2010–2017":23.2049,"Moved in 2000–2009":21.8914,"Moved in 1990–1999":12.7671,"1989 or earlier":20.4203},"St. Mary's County":{"Moved in 2021 or later":5.8763,"Moved in 2018–2020":16.8838,"Moved in 2010–2017":25.0618,"Moved in 2000–2009":22.7073,"Moved in 1990–1999":14.427,"1989 or earlier":15.0437},"Talbot County":{"Moved in 2021 or later":6.3815,"Moved in 2018–2020":13.8747,"Moved in 2010–2017":27.1385,"Moved in 2000–2009":24.72,"Moved in 1990–1999":12.9073,"1989 or earlier":14.9779},"Washington County":{"Moved in 2021 or later":5.4592,"Moved in 2018–2020":16.0634,"Moved in 2010–2017":22.8918,"Moved in 2000–2009":22.7283,"Moved in 1990–1999":14.9317,"1989 or earlier":17.9257},"Wicomico County":{"Moved in 2021 or later":4.9724,"Moved in 2018–2020":13.6742,"Moved in 2010–2017":24.5699,"Moved in 2000–2009":26.451,"Moved in 1990–1999":14.8061,"1989 or earlier":15.5265},"Worcester County":{"Moved in 2021 or later":6.7538,"Moved in 2018–2020":16.4333,"Moved in 2010–2017":28.0871,"Moved in 2000–2009":22.1153,"Moved in 1990–1999":15.8263,"1989 or earlier":10.7842}};
+    const colors = {
+  'Moved in 2021 or later': '#377EF1',
+  'Moved in 2018–2020': '#FF7F00',
+  'Moved in 2010–2017': '#66A61E',
+  'Moved in 2000–2009': '#E6AB01',
+  'Moved in 1990–1999': '#7570B1',
+  '1989 or earlier': '#E41A1C'
+};
+
+    const ctx = document.getElementById("pieChart").getContext("2d");
+    let chart;
+
+    function renderChart(key) {
+      const values = data[key];
+      const labels = Object.keys(values);
+      const percentages = Object.values(values);
+
+      if (chart) chart.destroy();
+
+      chart = new Chart(ctx, {
+        type: "pie",
+        data: {
+          labels: labels,
+          datasets: [{
+            data: percentages,
+            backgroundColor: labels.map(label => colors[label] || "#cccccc")
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: true,
+          aspectRatio: 1.5,
+          plugins: {
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  return context.label + ": " + context.formattedValue + "%";
+                }
+              }
+            },
+            legend: {
+              position: "right",
+              labels: {
+                usePointStyle: true,
+                pointStyle: "rect"
+              }
+            }
+          }
+        }
+      });
+    }
+
+    // Populate dropdown (Statewide first, then counties A->Z)
+    const select = document.getElementById("countySelect");
+    const keys = ["Statewide", ...Object.keys(data).filter(k => k !== "Statewide").sort()];
+    keys.forEach(k => {
+      const opt = document.createElement("option");
+      opt.value = k;
+      opt.text  = k;
+      select.appendChild(opt);
+    });
+    select.value = "Statewide";
+    select.addEventListener("change", () => renderChart(select.value));
+
+    renderChart("Statewide");
+  </script>
+</body>
+</html>
+</html>

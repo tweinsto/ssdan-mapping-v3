@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Educational Enrollment – South Carolina</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Educational Enrollment (Age 18–24) in South Carolina</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Abbeville County, South Carolina">Abbeville County, South Carolina</option>
+      <option value="Aiken County, South Carolina">Aiken County, South Carolina</option>
+      <option value="Allendale County, South Carolina">Allendale County, South Carolina</option>
+      <option value="Anderson County, South Carolina">Anderson County, South Carolina</option>
+      <option value="Bamberg County, South Carolina">Bamberg County, South Carolina</option>
+      <option value="Barnwell County, South Carolina">Barnwell County, South Carolina</option>
+      <option value="Beaufort County, South Carolina">Beaufort County, South Carolina</option>
+      <option value="Berkeley County, South Carolina">Berkeley County, South Carolina</option>
+      <option value="Calhoun County, South Carolina">Calhoun County, South Carolina</option>
+      <option value="Charleston County, South Carolina">Charleston County, South Carolina</option>
+      <option value="Cherokee County, South Carolina">Cherokee County, South Carolina</option>
+      <option value="Chester County, South Carolina">Chester County, South Carolina</option>
+      <option value="Chesterfield County, South Carolina">Chesterfield County, South Carolina</option>
+      <option value="Clarendon County, South Carolina">Clarendon County, South Carolina</option>
+      <option value="Colleton County, South Carolina">Colleton County, South Carolina</option>
+      <option value="Darlington County, South Carolina">Darlington County, South Carolina</option>
+      <option value="Dillon County, South Carolina">Dillon County, South Carolina</option>
+      <option value="Dorchester County, South Carolina">Dorchester County, South Carolina</option>
+      <option value="Edgefield County, South Carolina">Edgefield County, South Carolina</option>
+      <option value="Fairfield County, South Carolina">Fairfield County, South Carolina</option>
+      <option value="Florence County, South Carolina">Florence County, South Carolina</option>
+      <option value="Georgetown County, South Carolina">Georgetown County, South Carolina</option>
+      <option value="Greenville County, South Carolina">Greenville County, South Carolina</option>
+      <option value="Greenwood County, South Carolina">Greenwood County, South Carolina</option>
+      <option value="Hampton County, South Carolina">Hampton County, South Carolina</option>
+      <option value="Horry County, South Carolina">Horry County, South Carolina</option>
+      <option value="Jasper County, South Carolina">Jasper County, South Carolina</option>
+      <option value="Kershaw County, South Carolina">Kershaw County, South Carolina</option>
+      <option value="Lancaster County, South Carolina">Lancaster County, South Carolina</option>
+      <option value="Laurens County, South Carolina">Laurens County, South Carolina</option>
+      <option value="Lee County, South Carolina">Lee County, South Carolina</option>
+      <option value="Lexington County, South Carolina">Lexington County, South Carolina</option>
+      <option value="Marion County, South Carolina">Marion County, South Carolina</option>
+      <option value="Marlboro County, South Carolina">Marlboro County, South Carolina</option>
+      <option value="McCormick County, South Carolina">McCormick County, South Carolina</option>
+      <option value="Newberry County, South Carolina">Newberry County, South Carolina</option>
+      <option value="Oconee County, South Carolina">Oconee County, South Carolina</option>
+      <option value="Orangeburg County, South Carolina">Orangeburg County, South Carolina</option>
+      <option value="Pickens County, South Carolina">Pickens County, South Carolina</option>
+      <option value="Richland County, South Carolina">Richland County, South Carolina</option>
+      <option value="Saluda County, South Carolina">Saluda County, South Carolina</option>
+      <option value="Spartanburg County, South Carolina">Spartanburg County, South Carolina</option>
+      <option value="Sumter County, South Carolina">Sumter County, South Carolina</option>
+      <option value="Union County, South Carolina">Union County, South Carolina</option>
+      <option value="Williamsburg County, South Carolina">Williamsburg County, South Carolina</option>
+      <option value="York County, South Carolina">York County, South Carolina</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>  const data = {"Statewide":{"Enrolled in College / Grad. School":37.6,"Not Enrolled":62.4},"Abbeville County, South Carolina":{"Enrolled in College / Grad. School":45.2,"Not Enrolled":54.8},"Aiken County, South Carolina":{"Enrolled in College / Grad. School":40.6,"Not Enrolled":59.4},"Allendale County, South Carolina":{"Enrolled in College / Grad. School":20.9,"Not Enrolled":79.1},"Anderson County, South Carolina":{"Enrolled in College / Grad. School":35.1,"Not Enrolled":64.9},"Bamberg County, South Carolina":{"Enrolled in College / Grad. School":66.4,"Not Enrolled":33.6},"Barnwell County, South Carolina":{"Enrolled in College / Grad. School":16.8,"Not Enrolled":83.2},"Beaufort County, South Carolina":{"Enrolled in College / Grad. School":22.7,"Not Enrolled":77.3},"Berkeley County, South Carolina":{"Enrolled in College / Grad. School":22.2,"Not Enrolled":77.8},"Calhoun County, South Carolina":{"Enrolled in College / Grad. School":38.4,"Not Enrolled":61.6},"Charleston County, South Carolina":{"Enrolled in College / Grad. School":46.2,"Not Enrolled":53.8},"Cherokee County, South Carolina":{"Enrolled in College / Grad. School":34.3,"Not Enrolled":65.7},"Chester County, South Carolina":{"Enrolled in College / Grad. School":18.9,"Not Enrolled":81.1},"Chesterfield County, South Carolina":{"Enrolled in College / Grad. School":19.5,"Not Enrolled":80.5},"Clarendon County, South Carolina":{"Enrolled in College / Grad. School":22.1,"Not Enrolled":77.9},"Colleton County, South Carolina":{"Enrolled in College / Grad. School":22,"Not Enrolled":78},"Darlington County, South Carolina":{"Enrolled in College / Grad. School":36.4,"Not Enrolled":63.6},"Dillon County, South Carolina":{"Enrolled in College / Grad. School":15.3,"Not Enrolled":84.7},"Dorchester County, South Carolina":{"Enrolled in College / Grad. School":24.5,"Not Enrolled":75.5},"Edgefield County, South Carolina":{"Enrolled in College / Grad. School":22.9,"Not Enrolled":77.1},"Fairfield County, South Carolina":{"Enrolled in College / Grad. School":23.3,"Not Enrolled":76.7},"Florence County, South Carolina":{"Enrolled in College / Grad. School":34.3,"Not Enrolled":65.7},"Georgetown County, South Carolina":{"Enrolled in College / Grad. School":33,"Not Enrolled":67},"Greenville County, South Carolina":{"Enrolled in College / Grad. School":37,"Not Enrolled":63},"Greenwood County, South Carolina":{"Enrolled in College / Grad. School":54,"Not Enrolled":46},"Hampton County, South Carolina":{"Enrolled in College / Grad. School":15.2,"Not Enrolled":84.8},"Horry County, South Carolina":{"Enrolled in College / Grad. School":43.6,"Not Enrolled":56.4},"Jasper County, South Carolina":{"Enrolled in College / Grad. School":24.2,"Not Enrolled":75.8},"Kershaw County, South Carolina":{"Enrolled in College / Grad. School":28.2,"Not Enrolled":71.8},"Lancaster County, South Carolina":{"Enrolled in College / Grad. School":27.5,"Not Enrolled":72.5},"Laurens County, South Carolina":{"Enrolled in College / Grad. School":29.9,"Not Enrolled":70.1},"Lee County, South Carolina":{"Enrolled in College / Grad. School":31.9,"Not Enrolled":68.1},"Lexington County, South Carolina":{"Enrolled in College / Grad. School":33.2,"Not Enrolled":66.8},"McCormick County, South Carolina":{"Enrolled in College / Grad. School":15.6,"Not Enrolled":84.4},"Marion County, South Carolina":{"Enrolled in College / Grad. School":22,"Not Enrolled":78},"Marlboro County, South Carolina":{"Enrolled in College / Grad. School":18.3,"Not Enrolled":81.7},"Newberry County, South Carolina":{"Enrolled in College / Grad. School":40.5,"Not Enrolled":59.5},"Oconee County, South Carolina":{"Enrolled in College / Grad. School":26.1,"Not Enrolled":73.9},"Orangeburg County, South Carolina":{"Enrolled in College / Grad. School":50.6,"Not Enrolled":49.4},"Pickens County, South Carolina":{"Enrolled in College / Grad. School":68.8,"Not Enrolled":31.2},"Richland County, South Carolina":{"Enrolled in College / Grad. School":47.7,"Not Enrolled":52.3},"Saluda County, South Carolina":{"Enrolled in College / Grad. School":16.9,"Not Enrolled":83.1},"Spartanburg County, South Carolina":{"Enrolled in College / Grad. School":35.7,"Not Enrolled":64.3},"Sumter County, South Carolina":{"Enrolled in College / Grad. School":27.5,"Not Enrolled":72.5},"Union County, South Carolina":{"Enrolled in College / Grad. School":15.8,"Not Enrolled":84.2},"Williamsburg County, South Carolina":{"Enrolled in College / Grad. School":22.2,"Not Enrolled":77.8},"York County, South Carolina":{"Enrolled in College / Grad. School":32.3,"Not Enrolled":67.7}};
+  const categories = ["Enrolled in College / Grad. School","Not Enrolled"];
+  const ctx = document.getElementById("barChart").getContext("2d");
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: categories,
+        datasets: [
+          {
+            label: "County/State",
+            data: values,
+            backgroundColor: ["#66c2a5", "#fc8d62"]
+          }
+        ]
+      },
+      options: {
+        indexAxis: "y",
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            ticks: {
+              callback: v => v + "%"
+            }
+          }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.dataset.label + ": " + ctx.raw + "%"
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById("countySelect").addEventListener("change", function() {
+    renderChart(Object.values(data[this.value]));
+  });
+
+  renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="utf-8"/>
+  <title>Race/Ethnicity in State 41</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          text-align: center;
+          margin: 2rem;
+          background-color: white;
+        }
+        canvas {
+          max-width: 500px;
+          margin: 1rem auto;
+        }
+        select {
+          font-size: 1rem;
+          padding: 0.4rem;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Race &amp; Ethnicity Distribution</h2>
+    <label>Select County:</label>
+    <select id="countySelect"><option value="Statewide">Statewide</option>
+<option value="Baker County, Oregon">Baker County, Oregon</option>
+<option value="Benton County, Oregon">Benton County, Oregon</option>
+<option value="Clackamas County, Oregon">Clackamas County, Oregon</option>
+<option value="Clatsop County, Oregon">Clatsop County, Oregon</option>
+<option value="Columbia County, Oregon">Columbia County, Oregon</option>
+<option value="Coos County, Oregon">Coos County, Oregon</option>
+<option value="Crook County, Oregon">Crook County, Oregon</option>
+<option value="Curry County, Oregon">Curry County, Oregon</option>
+<option value="Deschutes County, Oregon">Deschutes County, Oregon</option>
+<option value="Douglas County, Oregon">Douglas County, Oregon</option>
+<option value="Gilliam County, Oregon">Gilliam County, Oregon</option>
+<option value="Grant County, Oregon">Grant County, Oregon</option>
+<option value="Harney County, Oregon">Harney County, Oregon</option>
+<option value="Hood River County, Oregon">Hood River County, Oregon</option>
+<option value="Jackson County, Oregon">Jackson County, Oregon</option>
+<option value="Jefferson County, Oregon">Jefferson County, Oregon</option>
+<option value="Josephine County, Oregon">Josephine County, Oregon</option>
+<option value="Klamath County, Oregon">Klamath County, Oregon</option>
+<option value="Lake County, Oregon">Lake County, Oregon</option>
+<option value="Lane County, Oregon">Lane County, Oregon</option>
+<option value="Lincoln County, Oregon">Lincoln County, Oregon</option>
+<option value="Linn County, Oregon">Linn County, Oregon</option>
+<option value="Malheur County, Oregon">Malheur County, Oregon</option>
+<option value="Marion County, Oregon">Marion County, Oregon</option>
+<option value="Morrow County, Oregon">Morrow County, Oregon</option>
+<option value="Multnomah County, Oregon">Multnomah County, Oregon</option>
+<option value="Polk County, Oregon">Polk County, Oregon</option>
+<option value="Sherman County, Oregon">Sherman County, Oregon</option>
+<option value="Tillamook County, Oregon">Tillamook County, Oregon</option>
+<option value="Umatilla County, Oregon">Umatilla County, Oregon</option>
+<option value="Union County, Oregon">Union County, Oregon</option>
+<option value="Wallowa County, Oregon">Wallowa County, Oregon</option>
+<option value="Wasco County, Oregon">Wasco County, Oregon</option>
+<option value="Washington County, Oregon">Washington County, Oregon</option>
+<option value="Wheeler County, Oregon">Wheeler County, Oregon</option>
+<option value="Yamhill County, Oregon">Yamhill County, Oregon</option></select>
+    <canvas id="pieChart" width="400" height="400"></canvas>
+    <script>  let raceData = {};
+  fetch("41.json")
+    .then(resp => resp.json())
+    .then(data => {
+      raceData = data;
+      const raceLabels = ["American Indian / Alaska Native","Asian","Black","Hispanic","NHMulti","NHOther","NHWhite","Pacific Islander"];
+      const ctx = document.getElementById("pieChart").getContext("2d");
+      let chart;
+
+      function renderChart(values) {
+        if (chart) chart.destroy();
+        chart = new Chart(ctx, {
+          type: "pie",
+          data: {
+            labels: raceLabels,
+            datasets: [{
+              data: values,
+              backgroundColor: [
+                "#f94144", "#f3722c", "#f9c74f", "#90be6d",
+                "#9d4edd", "#577590", "#d0cde1", "#43aa8b"
+              ]
+            }]
+          },
+          options: {
+            responsive: true,
+            plugins: {
+              legend: {
+                position: "bottom",
+                labels: {
+                  font: { size: 14 },
+                  boxWidth: 20,
+                  padding: 15,
+                  usePointStyle: true,
+                  pointStyle: "rectRounded"
+                }
+              },
+              tooltip: {
+                callbacks: {
+                  label: function(context) {
+                    return context.label + ": " + context.parsed + "%";
+                  }
+                }
+              }
+            }
+          }
+        });
+      }
+
+      document.getElementById("countySelect").addEventListener("change", function() {
+        const selected = this.value;
+        const values = Object.values(raceData[selected]);
+        renderChart(values);
+      });
+
+      renderChart(Object.values(raceData["Statewide"]));
+      document.getElementById("countySelect").value = "Statewide";
+    });</script>
+  </body>
+</html>
+</html>

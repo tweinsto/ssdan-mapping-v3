@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Income Distribution – Colorado</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          text-align: center;
+          margin: 2rem;
+        }
+        select {
+          font-size: 1rem;
+          padding: 0.4rem;
+          margin-bottom: 1rem;
+        }
+        canvas {
+          width: 100%;
+          max-width: 700px;
+          height: 400px;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Income Share by Quintile – Colorado</h2>
+    <label>Select County, State:</label>
+    <select id="countySelect"><option value='Statewide'>Statewide</option>
+<option value='Adams, Colorado'>Adams, Colorado</option>
+<option value='Alamosa, Colorado'>Alamosa, Colorado</option>
+<option value='Arapahoe, Colorado'>Arapahoe, Colorado</option>
+<option value='Archuleta, Colorado'>Archuleta, Colorado</option>
+<option value='Baca, Colorado'>Baca, Colorado</option>
+<option value='Bent, Colorado'>Bent, Colorado</option>
+<option value='Boulder, Colorado'>Boulder, Colorado</option>
+<option value='Broomfield, Colorado'>Broomfield, Colorado</option>
+<option value='Chaffee, Colorado'>Chaffee, Colorado</option>
+<option value='Cheyenne, Colorado'>Cheyenne, Colorado</option>
+<option value='Clear Creek, Colorado'>Clear Creek, Colorado</option>
+<option value='Conejos, Colorado'>Conejos, Colorado</option>
+<option value='Costilla, Colorado'>Costilla, Colorado</option>
+<option value='Crowley, Colorado'>Crowley, Colorado</option>
+<option value='Custer, Colorado'>Custer, Colorado</option>
+<option value='Delta, Colorado'>Delta, Colorado</option>
+<option value='Denver, Colorado'>Denver, Colorado</option>
+<option value='Dolores, Colorado'>Dolores, Colorado</option>
+<option value='Douglas, Colorado'>Douglas, Colorado</option>
+<option value='Eagle, Colorado'>Eagle, Colorado</option>
+<option value='El Paso, Colorado'>El Paso, Colorado</option>
+<option value='Elbert, Colorado'>Elbert, Colorado</option>
+<option value='Fremont, Colorado'>Fremont, Colorado</option>
+<option value='Garfield, Colorado'>Garfield, Colorado</option>
+<option value='Gilpin, Colorado'>Gilpin, Colorado</option>
+<option value='Grand, Colorado'>Grand, Colorado</option>
+<option value='Gunnison, Colorado'>Gunnison, Colorado</option>
+<option value='Hinsdale, Colorado'>Hinsdale, Colorado</option>
+<option value='Huerfano, Colorado'>Huerfano, Colorado</option>
+<option value='Jackson, Colorado'>Jackson, Colorado</option>
+<option value='Jefferson, Colorado'>Jefferson, Colorado</option>
+<option value='Kiowa, Colorado'>Kiowa, Colorado</option>
+<option value='Kit Carson, Colorado'>Kit Carson, Colorado</option>
+<option value='La Plata, Colorado'>La Plata, Colorado</option>
+<option value='Lake, Colorado'>Lake, Colorado</option>
+<option value='Larimer, Colorado'>Larimer, Colorado</option>
+<option value='Las Animas, Colorado'>Las Animas, Colorado</option>
+<option value='Lincoln, Colorado'>Lincoln, Colorado</option>
+<option value='Logan, Colorado'>Logan, Colorado</option>
+<option value='Mesa, Colorado'>Mesa, Colorado</option>
+<option value='Mineral, Colorado'>Mineral, Colorado</option>
+<option value='Moffat, Colorado'>Moffat, Colorado</option>
+<option value='Montezuma, Colorado'>Montezuma, Colorado</option>
+<option value='Montrose, Colorado'>Montrose, Colorado</option>
+<option value='Morgan, Colorado'>Morgan, Colorado</option>
+<option value='Otero, Colorado'>Otero, Colorado</option>
+<option value='Ouray, Colorado'>Ouray, Colorado</option>
+<option value='Park, Colorado'>Park, Colorado</option>
+<option value='Phillips, Colorado'>Phillips, Colorado</option>
+<option value='Pitkin, Colorado'>Pitkin, Colorado</option>
+<option value='Prowers, Colorado'>Prowers, Colorado</option>
+<option value='Pueblo, Colorado'>Pueblo, Colorado</option>
+<option value='Rio Blanco, Colorado'>Rio Blanco, Colorado</option>
+<option value='Rio Grande, Colorado'>Rio Grande, Colorado</option>
+<option value='Routt, Colorado'>Routt, Colorado</option>
+<option value='Saguache, Colorado'>Saguache, Colorado</option>
+<option value='San Juan, Colorado'>San Juan, Colorado</option>
+<option value='San Miguel, Colorado'>San Miguel, Colorado</option>
+<option value='Sedgwick, Colorado'>Sedgwick, Colorado</option>
+<option value='Summit, Colorado'>Summit, Colorado</option>
+<option value='Teller, Colorado'>Teller, Colorado</option>
+<option value='Washington, Colorado'>Washington, Colorado</option>
+<option value='Weld, Colorado'>Weld, Colorado</option>
+<option value='Yuma, Colorado'>Yuma, Colorado</option></select>
+    <canvas id="barChart" width="700" height="400"></canvas>
+    <script>  const incomeData = {"Statewide":[5.1,8.3,12.9,27,46.6],"Adams, Colorado":[6.2,9.7,14.3,26.8,42.9],"Alamosa, Colorado":[4.2,7.3,11.5,26.6,50.4],"Arapahoe, Colorado":[5.1,8,12.1,26.8,48],"Archuleta, Colorado":[5.8,9,13,27.4,44.9],"Baca, Colorado":[4.2,7.4,13.2,28.4,46.8],"Bent, Colorado":[5.2,9.5,14.9,27.6,42.8],"Boulder, Colorado":[4.3,7.6,12.2,27.4,48.5],"Broomfield, Colorado":[6.4,9.7,14.5,26.8,42.6],"Chaffee, Colorado":[5.4,8.4,13.9,28.2,44.1],"Cheyenne, Colorado":[6.5,9.2,14.3,26.2,43.8],"Clear Creek, Colorado":[5,8.3,13.6,28.1,45],"Conejos, Colorado":[5.6,8.5,14,27.9,44.1],"Costilla, Colorado":[3.7,6.9,12.5,28.5,48.3],"Crowley, Colorado":[4.7,9.6,14.1,27.2,44.3],"Custer, Colorado":[6.2,9.3,13.5,26.2,44.7],"Delta, Colorado":[4.5,7.5,11.6,26.7,49.8],"Denver, Colorado":[4.4,7.3,11.6,27.2,49.4],"Dolores, Colorado":[5.1,9,14.4,28.1,43.4],"Douglas, Colorado":[6.4,9.7,13.6,26.5,43.8],"Eagle, Colorado":[3.8,6.4,10.4,26.9,52.6],"El Paso, Colorado":[5.7,9,13.4,27,44.9],"Elbert, Colorado":[6.2,9.5,13.5,26,44.9],"Fremont, Colorado":[4.6,8,12.2,26.2,48.9],"Garfield, Colorado":[5.6,8.8,13,26.5,46.1],"Gilpin, Colorado":[5.2,8.2,12.1,27.7,46.8],"Grand, Colorado":[5,8.4,13.1,26.2,47.4],"Gunnison, Colorado":[5,8.6,14,27.9,44.5],"Hinsdale, Colorado":[6.7,9.7,16.3,28.8,38.5],"Huerfano, Colorado":[3.7,5.8,9.4,25.6,55.4],"Jackson, Colorado":[3.7,5.4,10.4,26.8,53.7],"Jefferson, Colorado":[5.6,8.9,13.3,26.9,45.4],"Kiowa, Colorado":[6,8.9,13.3,28.2,43.7],"Kit Carson, Colorado":[4.3,6.9,10.9,25.8,52.2],"La Plata, Colorado":[5.4,9.4,14.2,27.4,43.6],"Lake, Colorado":[6.8,10.3,15.1,25.9,41.9],"Larimer, Colorado":[5.2,8.5,12.8,27.1,46.3],"Las Animas, Colorado":[4.9,8.4,13.7,28.2,44.8],"Lincoln, Colorado":[4,7.5,13.6,27.5,47.4],"Logan, Colorado":[5.7,9,14.8,27.9,42.6],"Mesa, Colorado":[5.4,8.6,12.9,27,46],"Mineral, Colorado":[4.9,7,10.3,25.8,52],"Moffat, Colorado":[5.6,10,15.8,27.4,41.2],"Montezuma, Colorado":[5.4,8.8,13.2,27.7,45],"Montrose, Colorado":[5.1,8.6,12.8,27.3,46.3],"Morgan, Colorado":[6.3,10.3,14.2,26.2,43],"Otero, Colorado":[5.6,9.6,15,28.1,41.7],"Ouray, Colorado":[5.4,9,13.2,28.1,44.3],"Park, Colorado":[6.4,10.2,14.3,26.6,42.6],"Phillips, Colorado":[3.7,5.8,9.4,26.4,54.7],"Pitkin, Colorado":[2.6,4.1,6.8,27.2,59.3],"Prowers, Colorado":[3.5,6.2,9.9,25.1,55.3],"Pueblo, Colorado":[5.1,8.5,13,27.3,46.1],"Rio Blanco, Colorado":[7.6,11.4,16.3,26.4,38.3],"Rio Grande, Colorado":[4.4,8,13,26.9,47.6],"Routt, Colorado":[4.4,7.2,11.3,26,51.1],"Saguache, Colorado":[3.6,6,9.8,25.4,55.2],"San Juan, Colorado":[6.8,10.4,14.8,26.8,41.3],"San Miguel, Colorado":[3.4,5.7,9.6,26.7,54.6],"Sedgwick, Colorado":[4,7,11.9,26.3,50.8],"Summit, Colorado":[5.3,8.6,12.8,27,46.4],"Teller, Colorado":[5.7,8.8,13.4,26.6,45.5],"Washington, Colorado":[5.5,9,13.3,27.7,44.5],"Weld, Colorado":[5.8,9.5,13.9,26.6,44.2],"Yuma, Colorado":[5.3,8.2,13.6,27.1,45.8]};
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Bottom 20%', 'Second 20%', 'Middle 20%', 'Fourth 20%', 'Top 20%'],
+        datasets: [{
+          label: 'Share (%)',
+          data: values,
+          backgroundColor: '#4576a7'
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.parsed.y + '%'
+            }
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 100,
+            title: {
+              display: true,
+              text: 'Income Share (%)'
+            }
+          },
+          x: {
+            title: {
+              display: true,
+              text: 'Quintile'
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(Object.values(incomeData[this.value]));
+  });
+
+  renderChart(Object.values(incomeData['Statewide']));</script>
+  </body>
+</html>
+</html>

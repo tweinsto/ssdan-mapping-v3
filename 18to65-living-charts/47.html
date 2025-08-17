@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Living Arrangements 18–64 – Tennessee</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+      body { font-family: sans-serif; margin: 1.25rem 2rem; text-align: center; }
+      h2 { margin-bottom: .25rem; font-size: 1.6rem; color: #2c348b; }
+      label { margin-right: .5rem; }
+      select { padding: .45rem .6rem; font-size: 1rem; border-radius: .5rem; border: 2px solid #f39c12; }
+      canvas { width: 100%; max-width: 900px; height: 520px; }
+    </style>
+</head>
+<html>
+  <body>
+    <h2>Living Arrangements of Adults 18–64 in Tennessee</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Anderson County, Tennessee">Anderson County, Tennessee</option>
+      <option value="Bedford County, Tennessee">Bedford County, Tennessee</option>
+      <option value="Benton County, Tennessee">Benton County, Tennessee</option>
+      <option value="Bledsoe County, Tennessee">Bledsoe County, Tennessee</option>
+      <option value="Blount County, Tennessee">Blount County, Tennessee</option>
+      <option value="Bradley County, Tennessee">Bradley County, Tennessee</option>
+      <option value="Campbell County, Tennessee">Campbell County, Tennessee</option>
+      <option value="Cannon County, Tennessee">Cannon County, Tennessee</option>
+      <option value="Carroll County, Tennessee">Carroll County, Tennessee</option>
+      <option value="Carter County, Tennessee">Carter County, Tennessee</option>
+      <option value="Cheatham County, Tennessee">Cheatham County, Tennessee</option>
+      <option value="Chester County, Tennessee">Chester County, Tennessee</option>
+      <option value="Claiborne County, Tennessee">Claiborne County, Tennessee</option>
+      <option value="Clay County, Tennessee">Clay County, Tennessee</option>
+      <option value="Cocke County, Tennessee">Cocke County, Tennessee</option>
+      <option value="Coffee County, Tennessee">Coffee County, Tennessee</option>
+      <option value="Crockett County, Tennessee">Crockett County, Tennessee</option>
+      <option value="Cumberland County, Tennessee">Cumberland County, Tennessee</option>
+      <option value="Davidson County, Tennessee">Davidson County, Tennessee</option>
+      <option value="DeKalb County, Tennessee">DeKalb County, Tennessee</option>
+      <option value="Decatur County, Tennessee">Decatur County, Tennessee</option>
+      <option value="Dickson County, Tennessee">Dickson County, Tennessee</option>
+      <option value="Dyer County, Tennessee">Dyer County, Tennessee</option>
+      <option value="Fayette County, Tennessee">Fayette County, Tennessee</option>
+      <option value="Fentress County, Tennessee">Fentress County, Tennessee</option>
+      <option value="Franklin County, Tennessee">Franklin County, Tennessee</option>
+      <option value="Gibson County, Tennessee">Gibson County, Tennessee</option>
+      <option value="Giles County, Tennessee">Giles County, Tennessee</option>
+      <option value="Grainger County, Tennessee">Grainger County, Tennessee</option>
+      <option value="Greene County, Tennessee">Greene County, Tennessee</option>
+      <option value="Grundy County, Tennessee">Grundy County, Tennessee</option>
+      <option value="Hamblen County, Tennessee">Hamblen County, Tennessee</option>
+      <option value="Hamilton County, Tennessee">Hamilton County, Tennessee</option>
+      <option value="Hancock County, Tennessee">Hancock County, Tennessee</option>
+      <option value="Hardeman County, Tennessee">Hardeman County, Tennessee</option>
+      <option value="Hardin County, Tennessee">Hardin County, Tennessee</option>
+      <option value="Hawkins County, Tennessee">Hawkins County, Tennessee</option>
+      <option value="Haywood County, Tennessee">Haywood County, Tennessee</option>
+      <option value="Henderson County, Tennessee">Henderson County, Tennessee</option>
+      <option value="Henry County, Tennessee">Henry County, Tennessee</option>
+      <option value="Hickman County, Tennessee">Hickman County, Tennessee</option>
+      <option value="Houston County, Tennessee">Houston County, Tennessee</option>
+      <option value="Humphreys County, Tennessee">Humphreys County, Tennessee</option>
+      <option value="Jackson County, Tennessee">Jackson County, Tennessee</option>
+      <option value="Jefferson County, Tennessee">Jefferson County, Tennessee</option>
+      <option value="Johnson County, Tennessee">Johnson County, Tennessee</option>
+      <option value="Knox County, Tennessee">Knox County, Tennessee</option>
+      <option value="Lake County, Tennessee">Lake County, Tennessee</option>
+      <option value="Lauderdale County, Tennessee">Lauderdale County, Tennessee</option>
+      <option value="Lawrence County, Tennessee">Lawrence County, Tennessee</option>
+      <option value="Lewis County, Tennessee">Lewis County, Tennessee</option>
+      <option value="Lincoln County, Tennessee">Lincoln County, Tennessee</option>
+      <option value="Loudon County, Tennessee">Loudon County, Tennessee</option>
+      <option value="Macon County, Tennessee">Macon County, Tennessee</option>
+      <option value="Madison County, Tennessee">Madison County, Tennessee</option>
+      <option value="Marion County, Tennessee">Marion County, Tennessee</option>
+      <option value="Marshall County, Tennessee">Marshall County, Tennessee</option>
+      <option value="Maury County, Tennessee">Maury County, Tennessee</option>
+      <option value="McMinn County, Tennessee">McMinn County, Tennessee</option>
+      <option value="McNairy County, Tennessee">McNairy County, Tennessee</option>
+      <option value="Meigs County, Tennessee">Meigs County, Tennessee</option>
+      <option value="Monroe County, Tennessee">Monroe County, Tennessee</option>
+      <option value="Montgomery County, Tennessee">Montgomery County, Tennessee</option>
+      <option value="Moore County, Tennessee">Moore County, Tennessee</option>
+      <option value="Morgan County, Tennessee">Morgan County, Tennessee</option>
+      <option value="Obion County, Tennessee">Obion County, Tennessee</option>
+      <option value="Overton County, Tennessee">Overton County, Tennessee</option>
+      <option value="Perry County, Tennessee">Perry County, Tennessee</option>
+      <option value="Pickett County, Tennessee">Pickett County, Tennessee</option>
+      <option value="Polk County, Tennessee">Polk County, Tennessee</option>
+      <option value="Putnam County, Tennessee">Putnam County, Tennessee</option>
+      <option value="Rhea County, Tennessee">Rhea County, Tennessee</option>
+      <option value="Roane County, Tennessee">Roane County, Tennessee</option>
+      <option value="Robertson County, Tennessee">Robertson County, Tennessee</option>
+      <option value="Rutherford County, Tennessee">Rutherford County, Tennessee</option>
+      <option value="Scott County, Tennessee">Scott County, Tennessee</option>
+      <option value="Sequatchie County, Tennessee">Sequatchie County, Tennessee</option>
+      <option value="Sevier County, Tennessee">Sevier County, Tennessee</option>
+      <option value="Shelby County, Tennessee">Shelby County, Tennessee</option>
+      <option value="Smith County, Tennessee">Smith County, Tennessee</option>
+      <option value="Stewart County, Tennessee">Stewart County, Tennessee</option>
+      <option value="Sullivan County, Tennessee">Sullivan County, Tennessee</option>
+      <option value="Sumner County, Tennessee">Sumner County, Tennessee</option>
+      <option value="Tipton County, Tennessee">Tipton County, Tennessee</option>
+      <option value="Trousdale County, Tennessee">Trousdale County, Tennessee</option>
+      <option value="Unicoi County, Tennessee">Unicoi County, Tennessee</option>
+      <option value="Union County, Tennessee">Union County, Tennessee</option>
+      <option value="Van Buren County, Tennessee">Van Buren County, Tennessee</option>
+      <option value="Warren County, Tennessee">Warren County, Tennessee</option>
+      <option value="Washington County, Tennessee">Washington County, Tennessee</option>
+      <option value="Wayne County, Tennessee">Wayne County, Tennessee</option>
+      <option value="Weakley County, Tennessee">Weakley County, Tennessee</option>
+      <option value="White County, Tennessee">White County, Tennessee</option>
+      <option value="Williamson County, Tennessee">Williamson County, Tennessee</option>
+      <option value="Wilson County, Tennessee">Wilson County, Tennessee</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>document.addEventListener("DOMContentLoaded", function () {
+  const data = {"Statewide":[11.7,13.8,5.5,13,48.1,7.9],"Anderson County, Tennessee":[11.8,13.6,4.8,12.1,48.9,8.8],"Bedford County, Tennessee":[8.7,15.8,4.2,15.6,47.1,8.6],"Benton County, Tennessee":[11.5,14.2,3.3,13.9,47.8,9.2],"Bledsoe County, Tennessee":[5.6,18.6,12,14.6,45.5,3.7],"Blount County, Tennessee":[9.6,15.1,3.3,11.8,53.2,6.9],"Bradley County, Tennessee":[9.4,13.4,4.8,13.2,52.7,6.6],"Campbell County, Tennessee":[9.8,13.1,2.6,11,50.5,13],"Cannon County, Tennessee":[9.9,14.9,8.1,15.7,45.8,5.5],"Carroll County, Tennessee":[11.8,13.9,3.3,9.8,52.5,8.5],"Carter County, Tennessee":[12.8,14.4,4.9,12.2,48.4,7.3],"Cheatham County, Tennessee":[8.5,13.2,3.4,12.9,55,7],"Chester County, Tennessee":[8,16.5,2.5,13.4,52.9,6.7],"Claiborne County, Tennessee":[12.4,12.4,5.2,12,50.3,7.6],"Clay County, Tennessee":[10.2,16.9,3.8,10.9,52.2,6.1],"Cocke County, Tennessee":[10,12.6,6.1,16.3,44.3,10.7],"Coffee County, Tennessee":[10.1,13.4,7.7,14.3,47.9,6.5],"Crockett County, Tennessee":[9.2,13.1,3.2,15.4,50.2,8.9],"Cumberland County, Tennessee":[10,12.3,2.5,8.4,57,9.8],"Davidson County, Tennessee":[18.6,7.9,10,12.7,40.3,10.4],"DeKalb County, Tennessee":[9.4,11.9,4.2,10.6,51.8,12.1],"Decatur County, Tennessee":[8.5,20.2,5.4,8.4,53.4,4.2],"Dickson County, Tennessee":[6.9,13.7,4.9,11.6,52.3,10.5],"Dyer County, Tennessee":[13.5,12.9,4.4,17.2,44,7.9],"Fayette County, Tennessee":[8.5,17.4,2.6,13.4,52.6,5.4],"Fentress County, Tennessee":[11.8,16.4,1.5,12.3,48.5,9.4],"Franklin County, Tennessee":[12,14.5,6.1,11.6,49.9,5.9],"Gibson County, Tennessee":[11.5,14,4.4,14.1,47.2,8.8],"Giles County, Tennessee":[9.3,17.3,6.2,15.8,44.3,7.1],"Grainger County, Tennessee":[10.5,17.2,3.6,11.9,51.7,5.1],"Greene County, Tennessee":[9.4,16.4,4.8,12.9,49.7,6.7],"Grundy County, Tennessee":[9.8,18.4,2.7,14.1,46.8,8.2],"Hamblen County, Tennessee":[10.4,14.1,3.8,14.5,48.5,8.7],"Hamilton County, Tennessee":[12.4,12.1,6.3,13,48.1,8.1],"Hancock County, Tennessee":[9.3,14.9,4.4,14.3,49.6,7.5],"Hardeman County, Tennessee":[16,23,0.8,17,39.6,3.7],"Hardin County, Tennessee":[10.9,14.9,2.4,12.6,46.7,12.5],"Hawkins County, Tennessee":[8.9,16.4,2.6,13.3,50.2,8.6],"Haywood County, Tennessee":[13.2,18.2,4.2,18.4,35.8,10.3],"Henderson County, Tennessee":[11.3,16.8,2,13.8,47.9,8.3],"Henry County, Tennessee":[14.2,14.8,6.9,13.4,44.7,6],"Hickman County, Tennessee":[7.2,14,4.5,15.8,49.9,8.5],"Houston County, Tennessee":[10.8,18.6,5,12,45,8.6],"Humphreys County, Tennessee":[6.5,19,4.1,13.5,53.4,3.5],"Jackson County, Tennessee":[11.1,19.7,4.2,15.2,43.8,6],"Jefferson County, Tennessee":[7.8,14.1,5.1,12.8,53.2,7],"Johnson County, Tennessee":[9.8,13.3,3,11.4,48.2,14.3],"Knox County, Tennessee":[12.9,11.9,8.4,10.7,47.8,8.3],"Lake County, Tennessee":[16.7,14.5,1.4,15.8,38.1,13.6],"Lauderdale County, Tennessee":[11.4,16.3,5.2,17.9,41.9,7.3],"Lawrence County, Tennessee":[8.9,17.4,2.5,11.7,49.6,9.8],"Lewis County, Tennessee":[11.2,12.5,1.1,12.7,57.6,4.8],"Lincoln County, Tennessee":[11,12.7,4.2,12.2,54.4,5.5],"Loudon County, Tennessee":[9,13.5,3.7,10.5,57.2,6.1],"Macon County, Tennessee":[9.4,17,5.9,11.1,47.8,8.8],"Madison County, Tennessee":[13.8,14.8,5.3,16.9,42.1,7.1],"Marion County, Tennessee":[8.5,15.9,4.3,12.2,49.4,9.7],"Marshall County, Tennessee":[9.5,17.5,3.4,10.3,52,7.3],"Maury County, Tennessee":[10,14,3.7,12.2,52.6,7.5],"McMinn County, Tennessee":[10.1,13.5,3.3,12.4,51.7,9],"McNairy County, Tennessee":[7,20,3.7,11.6,51,6.6],"Meigs County, Tennessee":[10.5,12.1,2.7,10.7,54.7,9.3],"Monroe County, Tennessee":[9.9,15.6,2.5,11.6,51.7,8.6],"Montgomery County, Tennessee":[10.3,11.3,4.8,12.7,53.1,7.9],"Moore County, Tennessee":[8.4,15.9,4.3,9.6,55.1,6.6],"Morgan County, Tennessee":[8.2,18,4.3,11.9,53.1,4.5],"Obion County, Tennessee":[12.1,15.3,4.3,11.3,48.8,8.2],"Overton County, Tennessee":[8.8,17.7,3.3,14.7,52.4,3.1],"Perry County, Tennessee":[6.1,19.3,4.7,6.4,56.5,6.9],"Pickett County, Tennessee":[14.7,22.7,1,8.2,50.1,3.3],"Polk County, Tennessee":[11.2,13,2.7,13.6,51.3,8.2],"Putnam County, Tennessee":[12.1,10.7,9,10.6,49,8.6],"Rhea County, Tennessee":[6.8,12.1,2.9,13,55.2,10.1],"Roane County, Tennessee":[9,15,3.1,11,54,7.9],"Robertson County, Tennessee":[6.7,13.2,3.5,10.8,57,8.8],"Rutherford County, Tennessee":[9,14,7.7,12,49.5,7.9],"Scott County, Tennessee":[10.9,16.7,1.9,16.3,45.8,8.4],"Sequatchie County, Tennessee":[5.6,20.1,2.7,15.9,48.6,7.1],"Sevier County, Tennessee":[9.8,14.2,3.9,14.5,50.6,7],"Shelby County, Tennessee":[14.8,17.4,4.4,18.7,37.1,7.6],"Smith County, Tennessee":[8.1,16.2,2.5,9.3,56.9,7],"Stewart County, Tennessee":[10.9,21.4,2.2,10.2,51.1,4.2],"Sullivan County, Tennessee":[12.1,14.1,3.5,12.2,49,9.1],"Sumner County, Tennessee":[9.5,13.3,4.1,10.4,55.3,7.4],"Tipton County, Tennessee":[7.4,18,2.8,14,52.5,5.3],"Trousdale County, Tennessee":[10.1,19.8,1,13.6,49.8,5.7],"Unicoi County, Tennessee":[12.9,14,2.3,11.9,52.2,6.6],"Union County, Tennessee":[6.7,14.6,2,9.5,58.5,8.7],"Van Buren County, Tennessee":[8.5,15.7,1,11.3,53.7,9.8],"Warren County, Tennessee":[10.9,15.2,4.6,14.4,47.9,6.9],"Washington County, Tennessee":[12.9,12.6,6.4,9.8,49.3,9],"Wayne County, Tennessee":[8,19.7,7.5,11.7,44.1,8.9],"Weakley County, Tennessee":[10.4,11.3,6.5,12.3,52.1,7.3],"White County, Tennessee":[9.5,12.1,6.9,14.5,49.1,8],"Williamson County, Tennessee":[5.8,14.7,3.9,6.9,65.6,3.2],"Wilson County, Tennessee":[7.4,13.6,4.8,10.9,56.6,6.7]};
+  const cats = ["lives_alone_18_64","with_child_18_64","with_nonrel_18_64","with_other_rel_18_64","with_spouse_only_18_64","with_unmar_partner_18_64"];
+
+  const ORDER = [
+    "Lives alone",
+    "With child",
+    "With nonrelatives",
+    "With other relatives",
+    "With spouse only",
+    "With unmarried partner"
+  ];
+
+  const PRETTY_TO_SNAKE = {
+    "Lives alone":            "lives_alone_18_64",
+    "With child":             "with_child_18_64",
+    "With nonrelatives":      "with_nonrel_18_64",
+    "With other relatives":   "with_other_rel_18_64",
+    "With spouse only":       "with_spouse_only_18_64",
+    "With unmarried partner": "with_unmar_partner_18_64"
+  };
+
+  const COLOR_BY_CAT = {
+    "Lives alone":            "#e41a1c",
+    "With child":             "#ff7f00",
+    "With nonrelatives":      "#4daf4a",
+    "With other relatives":   "#984ea3",
+    "With spouse only":       "#377eb8",
+    "With unmarried partner": "#a65628"
+  };
+
+  // snake key → array index
+  const keyToIndex = Object.fromEntries((cats || []).map((k, i) => [String(k), i]));
+
+  function valuesFor(name) {
+    const row = data?.[name] || [];
+    return ORDER.map(lbl => {
+      const idx = keyToIndex[PRETTY_TO_SNAKE[lbl]];
+      const v = (idx != null && idx >= 0) ? row[idx] : 0;
+      return (typeof v === "number") ? v : Number(v) || 0;
+    });
+  }
+
+  const canvas = document.getElementById("barChart");
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+  let chart;
+
+  function renderChart(name) {
+    const vals = valuesFor(name);
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: ORDER,
+        datasets: [{
+          data: vals,
+          backgroundColor: ORDER.map(c => COLOR_BY_CAT[c]),
+          borderWidth: 0
+        }]
+      },
+      options: {
+        indexAxis: "y",
+        plugins: {
+          legend: { display: false },
+          tooltip: { callbacks: { label: (c) => c.raw + "%" } }
+        },
+        scales: {
+          x: { min: 0, max: 100, ticks: { callback: v => v + "%" } }
+        }
+      }
+    });
+  }
+
+  const DEFAULT_NAME = (data && Object.prototype.hasOwnProperty.call(data, "Statewide"))
+    ? "Statewide" : Object.keys(data || {})[0];
+
+  const sel = document.getElementById("countySelect");
+  if (sel) sel.addEventListener("change", e => renderChart(e.target.value));
+  if (DEFAULT_NAME) renderChart(DEFAULT_NAME);
+});</script>
+  </body>
+</html>
+</html>

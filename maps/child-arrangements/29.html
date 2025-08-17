@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Living Arrangements of Children – Missouri</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Children’s Living Arrangements (Under 18) – Missouri</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Adair County, Missouri">Adair County, Missouri</option>
+      <option value="Andrew County, Missouri">Andrew County, Missouri</option>
+      <option value="Atchison County, Missouri">Atchison County, Missouri</option>
+      <option value="Audrain County, Missouri">Audrain County, Missouri</option>
+      <option value="Barry County, Missouri">Barry County, Missouri</option>
+      <option value="Barton County, Missouri">Barton County, Missouri</option>
+      <option value="Bates County, Missouri">Bates County, Missouri</option>
+      <option value="Benton County, Missouri">Benton County, Missouri</option>
+      <option value="Bollinger County, Missouri">Bollinger County, Missouri</option>
+      <option value="Boone County, Missouri">Boone County, Missouri</option>
+      <option value="Buchanan County, Missouri">Buchanan County, Missouri</option>
+      <option value="Butler County, Missouri">Butler County, Missouri</option>
+      <option value="Caldwell County, Missouri">Caldwell County, Missouri</option>
+      <option value="Callaway County, Missouri">Callaway County, Missouri</option>
+      <option value="Camden County, Missouri">Camden County, Missouri</option>
+      <option value="Cape Girardeau County, Missouri">Cape Girardeau County, Missouri</option>
+      <option value="Carroll County, Missouri">Carroll County, Missouri</option>
+      <option value="Carter County, Missouri">Carter County, Missouri</option>
+      <option value="Cass County, Missouri">Cass County, Missouri</option>
+      <option value="Cedar County, Missouri">Cedar County, Missouri</option>
+      <option value="Chariton County, Missouri">Chariton County, Missouri</option>
+      <option value="Christian County, Missouri">Christian County, Missouri</option>
+      <option value="Clark County, Missouri">Clark County, Missouri</option>
+      <option value="Clay County, Missouri">Clay County, Missouri</option>
+      <option value="Clinton County, Missouri">Clinton County, Missouri</option>
+      <option value="Cole County, Missouri">Cole County, Missouri</option>
+      <option value="Cooper County, Missouri">Cooper County, Missouri</option>
+      <option value="Crawford County, Missouri">Crawford County, Missouri</option>
+      <option value="Dade County, Missouri">Dade County, Missouri</option>
+      <option value="Dallas County, Missouri">Dallas County, Missouri</option>
+      <option value="Daviess County, Missouri">Daviess County, Missouri</option>
+      <option value="DeKalb County, Missouri">DeKalb County, Missouri</option>
+      <option value="Dent County, Missouri">Dent County, Missouri</option>
+      <option value="Douglas County, Missouri">Douglas County, Missouri</option>
+      <option value="Dunklin County, Missouri">Dunklin County, Missouri</option>
+      <option value="Franklin County, Missouri">Franklin County, Missouri</option>
+      <option value="Gasconade County, Missouri">Gasconade County, Missouri</option>
+      <option value="Gentry County, Missouri">Gentry County, Missouri</option>
+      <option value="Greene County, Missouri">Greene County, Missouri</option>
+      <option value="Grundy County, Missouri">Grundy County, Missouri</option>
+      <option value="Harrison County, Missouri">Harrison County, Missouri</option>
+      <option value="Henry County, Missouri">Henry County, Missouri</option>
+      <option value="Hickory County, Missouri">Hickory County, Missouri</option>
+      <option value="Holt County, Missouri">Holt County, Missouri</option>
+      <option value="Howard County, Missouri">Howard County, Missouri</option>
+      <option value="Howell County, Missouri">Howell County, Missouri</option>
+      <option value="Iron County, Missouri">Iron County, Missouri</option>
+      <option value="Jackson County, Missouri">Jackson County, Missouri</option>
+      <option value="Jasper County, Missouri">Jasper County, Missouri</option>
+      <option value="Jefferson County, Missouri">Jefferson County, Missouri</option>
+      <option value="Johnson County, Missouri">Johnson County, Missouri</option>
+      <option value="Knox County, Missouri">Knox County, Missouri</option>
+      <option value="Laclede County, Missouri">Laclede County, Missouri</option>
+      <option value="Lafayette County, Missouri">Lafayette County, Missouri</option>
+      <option value="Lawrence County, Missouri">Lawrence County, Missouri</option>
+      <option value="Lewis County, Missouri">Lewis County, Missouri</option>
+      <option value="Lincoln County, Missouri">Lincoln County, Missouri</option>
+      <option value="Linn County, Missouri">Linn County, Missouri</option>
+      <option value="Livingston County, Missouri">Livingston County, Missouri</option>
+      <option value="Macon County, Missouri">Macon County, Missouri</option>
+      <option value="Madison County, Missouri">Madison County, Missouri</option>
+      <option value="Maries County, Missouri">Maries County, Missouri</option>
+      <option value="Marion County, Missouri">Marion County, Missouri</option>
+      <option value="McDonald County, Missouri">McDonald County, Missouri</option>
+      <option value="Mercer County, Missouri">Mercer County, Missouri</option>
+      <option value="Miller County, Missouri">Miller County, Missouri</option>
+      <option value="Mississippi County, Missouri">Mississippi County, Missouri</option>
+      <option value="Moniteau County, Missouri">Moniteau County, Missouri</option>
+      <option value="Monroe County, Missouri">Monroe County, Missouri</option>
+      <option value="Montgomery County, Missouri">Montgomery County, Missouri</option>
+      <option value="Morgan County, Missouri">Morgan County, Missouri</option>
+      <option value="New Madrid County, Missouri">New Madrid County, Missouri</option>
+      <option value="Newton County, Missouri">Newton County, Missouri</option>
+      <option value="Nodaway County, Missouri">Nodaway County, Missouri</option>
+      <option value="Oregon County, Missouri">Oregon County, Missouri</option>
+      <option value="Osage County, Missouri">Osage County, Missouri</option>
+      <option value="Ozark County, Missouri">Ozark County, Missouri</option>
+      <option value="Pemiscot County, Missouri">Pemiscot County, Missouri</option>
+      <option value="Perry County, Missouri">Perry County, Missouri</option>
+      <option value="Pettis County, Missouri">Pettis County, Missouri</option>
+      <option value="Phelps County, Missouri">Phelps County, Missouri</option>
+      <option value="Pike County, Missouri">Pike County, Missouri</option>
+      <option value="Platte County, Missouri">Platte County, Missouri</option>
+      <option value="Polk County, Missouri">Polk County, Missouri</option>
+      <option value="Pulaski County, Missouri">Pulaski County, Missouri</option>
+      <option value="Putnam County, Missouri">Putnam County, Missouri</option>
+      <option value="Ralls County, Missouri">Ralls County, Missouri</option>
+      <option value="Randolph County, Missouri">Randolph County, Missouri</option>
+      <option value="Ray County, Missouri">Ray County, Missouri</option>
+      <option value="Reynolds County, Missouri">Reynolds County, Missouri</option>
+      <option value="Ripley County, Missouri">Ripley County, Missouri</option>
+      <option value="Saline County, Missouri">Saline County, Missouri</option>
+      <option value="Schuyler County, Missouri">Schuyler County, Missouri</option>
+      <option value="Scotland County, Missouri">Scotland County, Missouri</option>
+      <option value="Scott County, Missouri">Scott County, Missouri</option>
+      <option value="Shannon County, Missouri">Shannon County, Missouri</option>
+      <option value="Shelby County, Missouri">Shelby County, Missouri</option>
+      <option value="St. Charles County, Missouri">St. Charles County, Missouri</option>
+      <option value="St. Clair County, Missouri">St. Clair County, Missouri</option>
+      <option value="St. Francois County, Missouri">St. Francois County, Missouri</option>
+      <option value="St. Louis city, Missouri">St. Louis city, Missouri</option>
+      <option value="St. Louis County, Missouri">St. Louis County, Missouri</option>
+      <option value="Ste. Genevieve County, Missouri">Ste. Genevieve County, Missouri</option>
+      <option value="Stoddard County, Missouri">Stoddard County, Missouri</option>
+      <option value="Stone County, Missouri">Stone County, Missouri</option>
+      <option value="Sullivan County, Missouri">Sullivan County, Missouri</option>
+      <option value="Taney County, Missouri">Taney County, Missouri</option>
+      <option value="Texas County, Missouri">Texas County, Missouri</option>
+      <option value="Vernon County, Missouri">Vernon County, Missouri</option>
+      <option value="Warren County, Missouri">Warren County, Missouri</option>
+      <option value="Washington County, Missouri">Washington County, Missouri</option>
+      <option value="Wayne County, Missouri">Wayne County, Missouri</option>
+      <option value="Webster County, Missouri">Webster County, Missouri</option>
+      <option value="Worth County, Missouri">Worth County, Missouri</option>
+      <option value="Wright County, Missouri">Wright County, Missouri</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>  const data = {"Statewide":{"Married Couple (%)":67.3,"Cohabiting Couple (%)":9.2,"Male Householder (%)":4.8,"Female Householder (%)":18.7},"Adair County, Missouri":{"Married Couple (%)":80.3,"Cohabiting Couple (%)":8.9,"Male Householder (%)":2.3,"Female Householder (%)":8.5},"Andrew County, Missouri":{"Married Couple (%)":72.1,"Cohabiting Couple (%)":10.1,"Male Householder (%)":4.1,"Female Householder (%)":13.6},"Atchison County, Missouri":{"Married Couple (%)":66.2,"Cohabiting Couple (%)":11,"Male Householder (%)":7.1,"Female Householder (%)":15.7},"Audrain County, Missouri":{"Married Couple (%)":74.5,"Cohabiting Couple (%)":6.8,"Male Householder (%)":2.1,"Female Householder (%)":16.6},"Barry County, Missouri":{"Married Couple (%)":71.1,"Cohabiting Couple (%)":15.8,"Male Householder (%)":3.7,"Female Householder (%)":9.4},"Barton County, Missouri":{"Married Couple (%)":76.2,"Cohabiting Couple (%)":4.5,"Male Householder (%)":2.6,"Female Householder (%)":16.7},"Bates County, Missouri":{"Married Couple (%)":64.8,"Cohabiting Couple (%)":13.9,"Male Householder (%)":5.7,"Female Householder (%)":15.6},"Benton County, Missouri":{"Married Couple (%)":64.3,"Cohabiting Couple (%)":10.9,"Male Householder (%)":5,"Female Householder (%)":19.8},"Bollinger County, Missouri":{"Married Couple (%)":70.6,"Cohabiting Couple (%)":11.5,"Male Householder (%)":2.4,"Female Householder (%)":15.5},"Boone County, Missouri":{"Married Couple (%)":69,"Cohabiting Couple (%)":8.6,"Male Householder (%)":3.8,"Female Householder (%)":18.6},"Buchanan County, Missouri":{"Married Couple (%)":57.7,"Cohabiting Couple (%)":13.9,"Male Householder (%)":5.6,"Female Householder (%)":22.8},"Butler County, Missouri":{"Married Couple (%)":57.2,"Cohabiting Couple (%)":16.3,"Male Householder (%)":5.7,"Female Householder (%)":20.8},"Caldwell County, Missouri":{"Married Couple (%)":64,"Cohabiting Couple (%)":17.4,"Male Householder (%)":4.3,"Female Householder (%)":14.2},"Callaway County, Missouri":{"Married Couple (%)":69.2,"Cohabiting Couple (%)":13.8,"Male Householder (%)":4.1,"Female Householder (%)":12.9},"Camden County, Missouri":{"Married Couple (%)":74.6,"Cohabiting Couple (%)":11.1,"Male Householder (%)":3.2,"Female Householder (%)":11.2},"Cape Girardeau County, Missouri":{"Married Couple (%)":69.7,"Cohabiting Couple (%)":10.9,"Male Householder (%)":2.3,"Female Householder (%)":17.1},"Carroll County, Missouri":{"Married Couple (%)":63.2,"Cohabiting Couple (%)":18.1,"Male Householder (%)":2.8,"Female Householder (%)":15.9},"Carter County, Missouri":{"Married Couple (%)":33.7,"Cohabiting Couple (%)":37.1,"Male Householder (%)":3.3,"Female Householder (%)":25.9},"Cass County, Missouri":{"Married Couple (%)":71.5,"Cohabiting Couple (%)":9.4,"Male Householder (%)":5.7,"Female Householder (%)":13.4},"Cedar County, Missouri":{"Married Couple (%)":82.6,"Cohabiting Couple (%)":4.9,"Male Householder (%)":6.8,"Female Householder (%)":5.7},"Chariton County, Missouri":{"Married Couple (%)":76.6,"Cohabiting Couple (%)":8.3,"Male Householder (%)":1.9,"Female Householder (%)":13.2},"Christian County, Missouri":{"Married Couple (%)":78.6,"Cohabiting Couple (%)":6.2,"Male Householder (%)":4,"Female Householder (%)":11.2},"Clark County, Missouri":{"Married Couple (%)":77.5,"Cohabiting Couple (%)":12.7,"Male Householder (%)":3.7,"Female Householder (%)":6.1},"Clay County, Missouri":{"Married Couple (%)":71.1,"Cohabiting Couple (%)":9.3,"Male Householder (%)":4.6,"Female Householder (%)":15},"Clinton County, Missouri":{"Married Couple (%)":74.1,"Cohabiting Couple (%)":9.9,"Male Householder (%)":3.9,"Female Householder (%)":12.1},"Cole County, Missouri":{"Married Couple (%)":70.7,"Cohabiting Couple (%)":9.6,"Male Householder (%)":2.7,"Female Householder (%)":17},"Cooper County, Missouri":{"Married Couple (%)":74.6,"Cohabiting Couple (%)":10.1,"Male Householder (%)":3.4,"Female Householder (%)":12},"Crawford County, Missouri":{"Married Couple (%)":72.1,"Cohabiting Couple (%)":10.3,"Male Householder (%)":2.7,"Female Householder (%)":14.9},"Dade County, Missouri":{"Married Couple (%)":78.7,"Cohabiting Couple (%)":7.7,"Male Householder (%)":4.5,"Female Householder (%)":9.1},"Dallas County, Missouri":{"Married Couple (%)":71.8,"Cohabiting Couple (%)":7.8,"Male Householder (%)":5.2,"Female Householder (%)":15.1},"Daviess County, Missouri":{"Married Couple (%)":77.8,"Cohabiting Couple (%)":10.2,"Male Householder (%)":2.4,"Female Householder (%)":9.5},"DeKalb County, Missouri":{"Married Couple (%)":76.2,"Cohabiting Couple (%)":5.2,"Male Householder (%)":2.9,"Female Householder (%)":15.7},"Dent County, Missouri":{"Married Couple (%)":63.5,"Cohabiting Couple (%)":14.9,"Male Householder (%)":1.5,"Female Householder (%)":20},"Douglas County, Missouri":{"Married Couple (%)":75.2,"Cohabiting Couple (%)":1.8,"Male Householder (%)":8.2,"Female Householder (%)":14.8},"Dunklin County, Missouri":{"Married Couple (%)":52,"Cohabiting Couple (%)":14.4,"Male Householder (%)":9.6,"Female Householder (%)":24},"Franklin County, Missouri":{"Married Couple (%)":71,"Cohabiting Couple (%)":14.1,"Male Householder (%)":4.4,"Female Householder (%)":10.5},"Gasconade County, Missouri":{"Married Couple (%)":67.4,"Cohabiting Couple (%)":14.9,"Male Householder (%)":8.9,"Female Householder (%)":8.8},"Gentry County, Missouri":{"Married Couple (%)":83.2,"Cohabiting Couple (%)":6.9,"Male Householder (%)":3.4,"Female Householder (%)":6.5},"Greene County, Missouri":{"Married Couple (%)":68.6,"Cohabiting Couple (%)":9.9,"Male Householder (%)":4.7,"Female Householder (%)":16.8},"Grundy County, Missouri":{"Married Couple (%)":81.9,"Cohabiting Couple (%)":3.4,"Male Householder (%)":6.2,"Female Householder (%)":8.5},"Harrison County, Missouri":{"Married Couple (%)":64.8,"Cohabiting Couple (%)":17.5,"Male Householder (%)":2.4,"Female Householder (%)":15.3},"Henry County, Missouri":{"Married Couple (%)":67,"Cohabiting Couple (%)":11.1,"Male Householder (%)":8,"Female Householder (%)":14},"Hickory County, Missouri":{"Married Couple (%)":77.8,"Cohabiting Couple (%)":6.9,"Male Householder (%)":2.6,"Female Householder (%)":12.7},"Holt County, Missouri":{"Married Couple (%)":68.7,"Cohabiting Couple (%)":10,"Male Householder (%)":4.5,"Female Householder (%)":16.8},"Howard County, Missouri":{"Married Couple (%)":67.3,"Cohabiting Couple (%)":14.3,"Male Householder (%)":1.8,"Female Householder (%)":16.6},"Howell County, Missouri":{"Married Couple (%)":66.3,"Cohabiting Couple (%)":11.2,"Male Householder (%)":7.2,"Female Householder (%)":15.3},"Iron County, Missouri":{"Married Couple (%)":62.6,"Cohabiting Couple (%)":9.9,"Male Householder (%)":7.5,"Female Householder (%)":20},"Jackson County, Missouri":{"Married Couple (%)":60,"Cohabiting Couple (%)":9.1,"Male Householder (%)":4.5,"Female Householder (%)":26.4},"Jasper County, Missouri":{"Married Couple (%)":64.3,"Cohabiting Couple (%)":12,"Male Householder (%)":5,"Female Householder (%)":18.8},"Jefferson County, Missouri":{"Married Couple (%)":70.9,"Cohabiting Couple (%)":7.4,"Male Householder (%)":6.5,"Female Householder (%)":15.2},"Johnson County, Missouri":{"Married Couple (%)":74.7,"Cohabiting Couple (%)":8.7,"Male Householder (%)":3.2,"Female Householder (%)":13.4},"Knox County, Missouri":{"Married Couple (%)":79.8,"Cohabiting Couple (%)":2.9,"Male Householder (%)":3.1,"Female Householder (%)":14.1},"Laclede County, Missouri":{"Married Couple (%)":61.1,"Cohabiting Couple (%)":10.6,"Male Householder (%)":6.3,"Female Householder (%)":22},"Lafayette County, Missouri":{"Married Couple (%)":72.4,"Cohabiting Couple (%)":11.9,"Male Householder (%)":3.2,"Female Householder (%)":12.5},"Lawrence County, Missouri":{"Married Couple (%)":73.8,"Cohabiting Couple (%)":11.5,"Male Householder (%)":5.3,"Female Householder (%)":9.4},"Lewis County, Missouri":{"Married Couple (%)":87.4,"Cohabiting Couple (%)":4,"Male Householder (%)":3.3,"Female Householder (%)":5.2},"Lincoln County, Missouri":{"Married Couple (%)":66.4,"Cohabiting Couple (%)":11.7,"Male Householder (%)":5.9,"Female Householder (%)":16},"Linn County, Missouri":{"Married Couple (%)":71.4,"Cohabiting Couple (%)":15,"Male Householder (%)":3.4,"Female Householder (%)":10.2},"Livingston County, Missouri":{"Married Couple (%)":69.5,"Cohabiting Couple (%)":9.4,"Male Householder (%)":6.7,"Female Householder (%)":14.4},"Macon County, Missouri":{"Married Couple (%)":81.3,"Cohabiting Couple (%)":5.9,"Male Householder (%)":4.1,"Female Householder (%)":8.7},"Madison County, Missouri":{"Married Couple (%)":70.4,"Cohabiting Couple (%)":4.2,"Male Householder (%)":6.9,"Female Householder (%)":18.4},"Maries County, Missouri":{"Married Couple (%)":83.5,"Cohabiting Couple (%)":7.5,"Male Householder (%)":1.7,"Female Householder (%)":7.3},"Marion County, Missouri":{"Married Couple (%)":58.8,"Cohabiting Couple (%)":11.9,"Male Householder (%)":3,"Female Householder (%)":26.3},"McDonald County, Missouri":{"Married Couple (%)":66.8,"Cohabiting Couple (%)":9.4,"Male Householder (%)":6.2,"Female Householder (%)":17.5},"Mercer County, Missouri":{"Married Couple (%)":69.2,"Cohabiting Couple (%)":16.2,"Male Householder (%)":7.8,"Female Householder (%)":6.8},"Miller County, Missouri":{"Married Couple (%)":69.8,"Cohabiting Couple (%)":12.9,"Male Householder (%)":3.5,"Female Householder (%)":13.8},"Mississippi County, Missouri":{"Married Couple (%)":50.4,"Cohabiting Couple (%)":10,"Male Householder (%)":6,"Female Householder (%)":33.5},"Moniteau County, Missouri":{"Married Couple (%)":74.7,"Cohabiting Couple (%)":7.6,"Male Householder (%)":8.9,"Female Householder (%)":8.8},"Monroe County, Missouri":{"Married Couple (%)":73.4,"Cohabiting Couple (%)":8.5,"Male Householder (%)":7.8,"Female Householder (%)":10.3},"Montgomery County, Missouri":{"Married Couple (%)":61.5,"Cohabiting Couple (%)":17.3,"Male Householder (%)":6.3,"Female Householder (%)":14.9},"Morgan County, Missouri":{"Married Couple (%)":83.9,"Cohabiting Couple (%)":5.1,"Male Householder (%)":2.5,"Female Householder (%)":8.5},"New Madrid County, Missouri":{"Married Couple (%)":55.5,"Cohabiting Couple (%)":9.3,"Male Householder (%)":6.1,"Female Householder (%)":29},"Newton County, Missouri":{"Married Couple (%)":75.2,"Cohabiting Couple (%)":8.7,"Male Householder (%)":3.3,"Female Householder (%)":12.9},"Nodaway County, Missouri":{"Married Couple (%)":73.3,"Cohabiting Couple (%)":6.2,"Male Householder (%)":5,"Female Householder (%)":15.5},"Oregon County, Missouri":{"Married Couple (%)":65.4,"Cohabiting Couple (%)":4.1,"Male Householder (%)":3.7,"Female Householder (%)":26.7},"Osage County, Missouri":{"Married Couple (%)":77.6,"Cohabiting Couple (%)":4.7,"Male Householder (%)":7.8,"Female Householder (%)":10},"Ozark County, Missouri":{"Married Couple (%)":79,"Cohabiting Couple (%)":7.4,"Male Householder (%)":3.4,"Female Householder (%)":10.2},"Pemiscot County, Missouri":{"Married Couple (%)":40,"Cohabiting Couple (%)":21.9,"Male Householder (%)":2.8,"Female Householder (%)":35.3},"Perry County, Missouri":{"Married Couple (%)":76.6,"Cohabiting Couple (%)":7.4,"Male Householder (%)":5.6,"Female Householder (%)":10.3},"Pettis County, Missouri":{"Married Couple (%)":70.6,"Cohabiting Couple (%)":10,"Male Householder (%)":3.1,"Female Householder (%)":16.3},"Phelps County, Missouri":{"Married Couple (%)":68,"Cohabiting Couple (%)":8.6,"Male Householder (%)":4.2,"Female Householder (%)":19.2},"Pike County, Missouri":{"Married Couple (%)":57.7,"Cohabiting Couple (%)":18.1,"Male Householder (%)":14.5,"Female Householder (%)":9.7},"Platte County, Missouri":{"Married Couple (%)":75.5,"Cohabiting Couple (%)":5.4,"Male Householder (%)":5.8,"Female Householder (%)":13.3},"Polk County, Missouri":{"Married Couple (%)":69.5,"Cohabiting Couple (%)":13.4,"Male Householder (%)":2.3,"Female Householder (%)":14.9},"Pulaski County, Missouri":{"Married Couple (%)":71,"Cohabiting Couple (%)":3.7,"Male Householder (%)":4.6,"Female Householder (%)":20.7},"Putnam County, Missouri":{"Married Couple (%)":80.6,"Cohabiting Couple (%)":3.3,"Male Householder (%)":9.8,"Female Householder (%)":6.4},"Ralls County, Missouri":{"Married Couple (%)":79.8,"Cohabiting Couple (%)":3.8,"Male Householder (%)":5.6,"Female Householder (%)":10.9},"Randolph County, Missouri":{"Married Couple (%)":58.6,"Cohabiting Couple (%)":12.1,"Male Householder (%)":3.6,"Female Householder (%)":25.8},"Ray County, Missouri":{"Married Couple (%)":71.7,"Cohabiting Couple (%)":9.5,"Male Householder (%)":3.3,"Female Householder (%)":15.5},"Reynolds County, Missouri":{"Married Couple (%)":72.5,"Cohabiting Couple (%)":10,"Male Householder (%)":5,"Female Householder (%)":12.5},"Ripley County, Missouri":{"Married Couple (%)":71.7,"Cohabiting Couple (%)":4.4,"Male Householder (%)":7.9,"Female Householder (%)":16},"Saline County, Missouri":{"Married Couple (%)":68.8,"Cohabiting Couple (%)":9.4,"Male Householder (%)":1.9,"Female Householder (%)":19.8},"Schuyler County, Missouri":{"Married Couple (%)":86.1,"Cohabiting Couple (%)":4.5,"Male Householder (%)":3.6,"Female Householder (%)":5.8},"Scotland County, Missouri":{"Married Couple (%)":82.3,"Cohabiting Couple (%)":5.1,"Male Householder (%)":3.2,"Female Householder (%)":9.4},"Scott County, Missouri":{"Married Couple (%)":59.9,"Cohabiting Couple (%)":7.3,"Male Householder (%)":6.8,"Female Householder (%)":26.1},"Shannon County, Missouri":{"Married Couple (%)":71.5,"Cohabiting Couple (%)":18.1,"Male Householder (%)":1.6,"Female Householder (%)":8.7},"Shelby County, Missouri":{"Married Couple (%)":67.4,"Cohabiting Couple (%)":12,"Male Householder (%)":7,"Female Householder (%)":13.6},"St. Charles County, Missouri":{"Married Couple (%)":77.4,"Cohabiting Couple (%)":7.1,"Male Householder (%)":4.1,"Female Householder (%)":11.4},"St. Clair County, Missouri":{"Married Couple (%)":67.6,"Cohabiting Couple (%)":7.7,"Male Householder (%)":8.1,"Female Householder (%)":16.5},"St. Francois County, Missouri":{"Married Couple (%)":65.4,"Cohabiting Couple (%)":10.8,"Male Householder (%)":4.8,"Female Householder (%)":19},"St. Louis city, Missouri":{"Married Couple (%)":44.8,"Cohabiting Couple (%)":8.6,"Male Householder (%)":7.3,"Female Householder (%)":39.2},"St. Louis County, Missouri":{"Married Couple (%)":64.3,"Cohabiting Couple (%)":7.8,"Male Householder (%)":4.7,"Female Householder (%)":23.2},"Ste. Genevieve County, Missouri":{"Married Couple (%)":76.3,"Cohabiting Couple (%)":6.2,"Male Householder (%)":11.9,"Female Householder (%)":5.7},"Stoddard County, Missouri":{"Married Couple (%)":70,"Cohabiting Couple (%)":10.9,"Male Householder (%)":5.5,"Female Householder (%)":13.6},"Stone County, Missouri":{"Married Couple (%)":77.5,"Cohabiting Couple (%)":9.4,"Male Householder (%)":2.5,"Female Householder (%)":10.6},"Sullivan County, Missouri":{"Married Couple (%)":70.8,"Cohabiting Couple (%)":9.6,"Male Householder (%)":3.3,"Female Householder (%)":16.3},"Taney County, Missouri":{"Married Couple (%)":70.5,"Cohabiting Couple (%)":7,"Male Householder (%)":5.5,"Female Householder (%)":17},"Texas County, Missouri":{"Married Couple (%)":74.4,"Cohabiting Couple (%)":7.6,"Male Householder (%)":2.8,"Female Householder (%)":15.2},"Vernon County, Missouri":{"Married Couple (%)":77.9,"Cohabiting Couple (%)":8.5,"Male Householder (%)":4.4,"Female Householder (%)":9.2},"Warren County, Missouri":{"Married Couple (%)":67.3,"Cohabiting Couple (%)":14.8,"Male Householder (%)":7.6,"Female Householder (%)":10.3},"Washington County, Missouri":{"Married Couple (%)":60.7,"Cohabiting Couple (%)":9.2,"Male Householder (%)":12.9,"Female Householder (%)":17.1},"Wayne County, Missouri":{"Married Couple (%)":81.7,"Cohabiting Couple (%)":9.1,"Male Householder (%)":2.7,"Female Householder (%)":6.5},"Webster County, Missouri":{"Married Couple (%)":78.5,"Cohabiting Couple (%)":8,"Male Householder (%)":1.5,"Female Householder (%)":12},"Worth County, Missouri":{"Married Couple (%)":46.8,"Cohabiting Couple (%)":6.9,"Male Householder (%)":10.3,"Female Householder (%)":36},"Wright County, Missouri":{"Married Couple (%)":72.2,"Cohabiting Couple (%)":6.8,"Male Householder (%)":2.5,"Female Householder (%)":18.6}};
+  const categories = ["Married Couple (%)","Cohabiting Couple (%)","Male Householder (%)","Female Householder (%)"];
+  const ctx = document.getElementById("barChart").getContext("2d");
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: categories,
+        datasets: [{
+          label: "Share of Children (%)",
+          data: values,
+          backgroundColor: ["#5DA5DA","#FAA43A","#60BD68","#F17CB0"]
+        }]
+      },
+      options: {
+        indexAxis: "y",
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            ticks: { callback: v => v + "%" },
+            title: { display: true, text: "Percent of Children" }
+          }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.raw + "%"
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById("countySelect").addEventListener("change", function() {
+    renderChart(Object.values(data[this.value]));
+  });
+
+  renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

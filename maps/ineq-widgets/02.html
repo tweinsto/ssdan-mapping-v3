@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Income Distribution – Alaska</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          text-align: center;
+          margin: 2rem;
+        }
+        select {
+          font-size: 1rem;
+          padding: 0.4rem;
+          margin-bottom: 1rem;
+        }
+        canvas {
+          width: 100%;
+          max-width: 700px;
+          height: 400px;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Income Share by Quintile – Alaska</h2>
+    <label>Select County, State:</label>
+    <select id="countySelect"><option value='Statewide'>Statewide</option>
+<option value='Aleutians East Borough, Alaska, Alaska'>Aleutians East Borough, Alaska, Alaska</option>
+<option value='Aleutians West Census Area, Alaska, Alaska'>Aleutians West Census Area, Alaska, Alaska</option>
+<option value='Anchorage Municipality, Alaska, Alaska'>Anchorage Municipality, Alaska, Alaska</option>
+<option value='Bethel Census Area, Alaska, Alaska'>Bethel Census Area, Alaska, Alaska</option>
+<option value='Bristol Bay Borough, Alaska, Alaska'>Bristol Bay Borough, Alaska, Alaska</option>
+<option value='Chugach Census Area, Alaska, Alaska'>Chugach Census Area, Alaska, Alaska</option>
+<option value='Copper River Census Area, Alaska, Alaska'>Copper River Census Area, Alaska, Alaska</option>
+<option value='Denali Borough, Alaska, Alaska'>Denali Borough, Alaska, Alaska</option>
+<option value='Dillingham Census Area, Alaska, Alaska'>Dillingham Census Area, Alaska, Alaska</option>
+<option value='Fairbanks North Star Borough, Alaska, Alaska'>Fairbanks North Star Borough, Alaska, Alaska</option>
+<option value='Haines Borough, Alaska, Alaska'>Haines Borough, Alaska, Alaska</option>
+<option value='Hoonah-Angoon Census Area, Alaska, Alaska'>Hoonah-Angoon Census Area, Alaska, Alaska</option>
+<option value='Juneau City and Borough, Alaska, Alaska'>Juneau City and Borough, Alaska, Alaska</option>
+<option value='Kenai Peninsula Borough, Alaska, Alaska'>Kenai Peninsula Borough, Alaska, Alaska</option>
+<option value='Ketchikan Gateway Borough, Alaska, Alaska'>Ketchikan Gateway Borough, Alaska, Alaska</option>
+<option value='Kodiak Island Borough, Alaska, Alaska'>Kodiak Island Borough, Alaska, Alaska</option>
+<option value='Kusilvak Census Area, Alaska, Alaska'>Kusilvak Census Area, Alaska, Alaska</option>
+<option value='Lake and Peninsula Borough, Alaska, Alaska'>Lake and Peninsula Borough, Alaska, Alaska</option>
+<option value='Matanuska-Susitna Borough, Alaska, Alaska'>Matanuska-Susitna Borough, Alaska, Alaska</option>
+<option value='Nome Census Area, Alaska, Alaska'>Nome Census Area, Alaska, Alaska</option>
+<option value='North Slope Borough, Alaska, Alaska'>North Slope Borough, Alaska, Alaska</option>
+<option value='Northwest Arctic Borough, Alaska, Alaska'>Northwest Arctic Borough, Alaska, Alaska</option>
+<option value='Petersburg Borough, Alaska, Alaska'>Petersburg Borough, Alaska, Alaska</option>
+<option value='Prince of Wales-Hyder Census Area, Alaska, Alaska'>Prince of Wales-Hyder Census Area, Alaska, Alaska</option>
+<option value='Sitka City and Borough, Alaska, Alaska'>Sitka City and Borough, Alaska, Alaska</option>
+<option value='Skagway Municipality, Alaska, Alaska'>Skagway Municipality, Alaska, Alaska</option>
+<option value='Southeast Fairbanks Census Area, Alaska, Alaska'>Southeast Fairbanks Census Area, Alaska, Alaska</option>
+<option value='Wrangell City and Borough, Alaska, Alaska'>Wrangell City and Borough, Alaska, Alaska</option>
+<option value='Yakutat City and Borough, Alaska, Alaska'>Yakutat City and Borough, Alaska, Alaska</option>
+<option value='Yukon-Koyukuk Census Area, Alaska, Alaska'>Yukon-Koyukuk Census Area, Alaska, Alaska</option></select>
+    <canvas id="barChart" width="700" height="400"></canvas>
+    <script>  const incomeData = {"Statewide":[6.1,9.9,14.8,27.6,41.7],"Aleutians East Borough, Alaska, Alaska":[6.7,10.8,16.4,27.4,38.7],"Aleutians West Census Area, Alaska, Alaska":[8.3,11.8,16.4,27,36.5],"Anchorage Municipality, Alaska, Alaska":[5.6,8.8,13.2,26.8,45.6],"Bethel Census Area, Alaska, Alaska":[5.1,9,14.7,28.4,42.7],"Bristol Bay Borough, Alaska, Alaska":[5.5,8.9,12.8,26.6,46.2],"Chugach Census Area, Alaska, Alaska":[7.5,11,16.4,27.5,37.7],"Copper River Census Area, Alaska, Alaska":[6.3,10.2,15.6,27.4,40.5],"Denali Borough, Alaska, Alaska":[6.3,11,17.3,28.2,37.1],"Dillingham Census Area, Alaska, Alaska":[6,10,15.2,28.2,40.7],"Fairbanks North Star Borough, Alaska, Alaska":[6,9,13.6,27.4,43.9],"Haines Borough, Alaska, Alaska":[5.4,11,16.8,28.2,38.6],"Hoonah-Angoon Census Area, Alaska, Alaska":[5,8.7,13.5,28.5,44.3],"Juneau City and Borough, Alaska, Alaska":[6,9.6,13.9,26.7,43.8],"Kenai Peninsula Borough, Alaska, Alaska":[5.1,8.5,13,27.5,45.9],"Ketchikan Gateway Borough, Alaska, Alaska":[5.5,9.2,13.9,27.2,44.2],"Kodiak Island Borough, Alaska, Alaska":[5.9,10,15.4,27.1,41.6],"Kusilvak Census Area, Alaska, Alaska":[5.7,9.4,14.8,28.7,41.4],"Lake and Peninsula Borough, Alaska, Alaska":[6.2,10.1,14.1,28.1,41.6],"Matanuska-Susitna Borough, Alaska, Alaska":[6,9.7,14.5,27.2,42.6],"Nome Census Area, Alaska, Alaska":[5.3,9.5,15.2,28.5,41.5],"North Slope Borough, Alaska, Alaska":[5.9,9.3,14.4,27.9,42.5],"Northwest Arctic Borough, Alaska, Alaska":[6.3,10.1,15.6,28.6,39.4],"Petersburg Borough, Alaska, Alaska":[6.2,9.7,14.6,28.5,41],"Prince of Wales-Hyder Census Area, Alaska, Alaska":[5.2,8.5,13.5,27.5,45.4],"Sitka City and Borough, Alaska, Alaska":[7.8,12.4,16.2,27,36.6],"Skagway Municipality, Alaska, Alaska":[5.6,9.6,14.7,27.7,42.4],"Southeast Fairbanks Census Area, Alaska, Alaska":[4.6,8.7,12.5,26.6,47.7],"Wrangell City and Borough, Alaska, Alaska":[6.7,9.7,15.1,28.5,40.1],"Yakutat City and Borough, Alaska, Alaska":[9,12.1,17.7,25.2,36.1],"Yukon-Koyukuk Census Area, Alaska, Alaska":[5.3,9.3,14.4,27.5,43.5]};
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Bottom 20%', 'Second 20%', 'Middle 20%', 'Fourth 20%', 'Top 20%'],
+        datasets: [{
+          label: 'Share (%)',
+          data: values,
+          backgroundColor: '#4576a7'
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.parsed.y + '%'
+            }
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 100,
+            title: {
+              display: true,
+              text: 'Income Share (%)'
+            }
+          },
+          x: {
+            title: {
+              display: true,
+              text: 'Quintile'
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(Object.values(incomeData[this.value]));
+  });
+
+  renderChart(Object.values(incomeData['Statewide']));</script>
+  </body>
+</html>
+</html>

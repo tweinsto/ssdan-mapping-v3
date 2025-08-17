@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Living Arrangements 18–64 – New York</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+      body { font-family: sans-serif; margin: 1.25rem 2rem; text-align: center; }
+      h2 { margin-bottom: .25rem; font-size: 1.6rem; color: #2c348b; }
+      label { margin-right: .5rem; }
+      select { padding: .45rem .6rem; font-size: 1rem; border-radius: .5rem; border: 2px solid #f39c12; }
+      canvas { width: 100%; max-width: 900px; height: 520px; }
+    </style>
+</head>
+<html>
+  <body>
+    <h2>Living Arrangements of Adults 18–64 in New York</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Albany County, New York">Albany County, New York</option>
+      <option value="Allegany County, New York">Allegany County, New York</option>
+      <option value="Bronx County, New York">Bronx County, New York</option>
+      <option value="Broome County, New York">Broome County, New York</option>
+      <option value="Cattaraugus County, New York">Cattaraugus County, New York</option>
+      <option value="Cayuga County, New York">Cayuga County, New York</option>
+      <option value="Chautauqua County, New York">Chautauqua County, New York</option>
+      <option value="Chemung County, New York">Chemung County, New York</option>
+      <option value="Chenango County, New York">Chenango County, New York</option>
+      <option value="Clinton County, New York">Clinton County, New York</option>
+      <option value="Columbia County, New York">Columbia County, New York</option>
+      <option value="Cortland County, New York">Cortland County, New York</option>
+      <option value="Delaware County, New York">Delaware County, New York</option>
+      <option value="Dutchess County, New York">Dutchess County, New York</option>
+      <option value="Erie County, New York">Erie County, New York</option>
+      <option value="Essex County, New York">Essex County, New York</option>
+      <option value="Franklin County, New York">Franklin County, New York</option>
+      <option value="Fulton County, New York">Fulton County, New York</option>
+      <option value="Genesee County, New York">Genesee County, New York</option>
+      <option value="Greene County, New York">Greene County, New York</option>
+      <option value="Hamilton County, New York">Hamilton County, New York</option>
+      <option value="Herkimer County, New York">Herkimer County, New York</option>
+      <option value="Jefferson County, New York">Jefferson County, New York</option>
+      <option value="Kings County, New York">Kings County, New York</option>
+      <option value="Lewis County, New York">Lewis County, New York</option>
+      <option value="Livingston County, New York">Livingston County, New York</option>
+      <option value="Madison County, New York">Madison County, New York</option>
+      <option value="Monroe County, New York">Monroe County, New York</option>
+      <option value="Montgomery County, New York">Montgomery County, New York</option>
+      <option value="Nassau County, New York">Nassau County, New York</option>
+      <option value="New York County, New York">New York County, New York</option>
+      <option value="Niagara County, New York">Niagara County, New York</option>
+      <option value="Oneida County, New York">Oneida County, New York</option>
+      <option value="Onondaga County, New York">Onondaga County, New York</option>
+      <option value="Ontario County, New York">Ontario County, New York</option>
+      <option value="Orange County, New York">Orange County, New York</option>
+      <option value="Orleans County, New York">Orleans County, New York</option>
+      <option value="Oswego County, New York">Oswego County, New York</option>
+      <option value="Otsego County, New York">Otsego County, New York</option>
+      <option value="Putnam County, New York">Putnam County, New York</option>
+      <option value="Queens County, New York">Queens County, New York</option>
+      <option value="Rensselaer County, New York">Rensselaer County, New York</option>
+      <option value="Richmond County, New York">Richmond County, New York</option>
+      <option value="Rockland County, New York">Rockland County, New York</option>
+      <option value="Saratoga County, New York">Saratoga County, New York</option>
+      <option value="Schenectady County, New York">Schenectady County, New York</option>
+      <option value="Schoharie County, New York">Schoharie County, New York</option>
+      <option value="Schuyler County, New York">Schuyler County, New York</option>
+      <option value="Seneca County, New York">Seneca County, New York</option>
+      <option value="St. Lawrence County, New York">St. Lawrence County, New York</option>
+      <option value="Steuben County, New York">Steuben County, New York</option>
+      <option value="Suffolk County, New York">Suffolk County, New York</option>
+      <option value="Sullivan County, New York">Sullivan County, New York</option>
+      <option value="Tioga County, New York">Tioga County, New York</option>
+      <option value="Tompkins County, New York">Tompkins County, New York</option>
+      <option value="Ulster County, New York">Ulster County, New York</option>
+      <option value="Warren County, New York">Warren County, New York</option>
+      <option value="Washington County, New York">Washington County, New York</option>
+      <option value="Wayne County, New York">Wayne County, New York</option>
+      <option value="Westchester County, New York">Westchester County, New York</option>
+      <option value="Wyoming County, New York">Wyoming County, New York</option>
+      <option value="Yates County, New York">Yates County, New York</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>document.addEventListener("DOMContentLoaded", function () {
+  const data = {"Statewide":[11.6,17,6.6,14.3,42,8.5],"Albany County, New York":[15.3,13.1,7.8,9.3,41.5,12.9],"Allegany County, New York":[10.8,14.6,6.1,8.2,50.1,10.2],"Bronx County, New York":[12.8,21.8,5,26.4,26.7,7.2],"Broome County, New York":[14.6,12.3,10,10.4,40.6,12],"Cattaraugus County, New York":[14,11.8,3.9,11.2,47.4,11.8],"Cayuga County, New York":[11.6,13.7,4.4,9.8,44.7,15.8],"Chautauqua County, New York":[14.8,13.2,4.5,10.4,45.1,12.1],"Chemung County, New York":[14.2,11.8,3.6,11.3,45.8,13.4],"Chenango County, New York":[11.1,12.7,4.3,10.9,47.4,13.6],"Clinton County, New York":[13.8,8.7,5.3,7.6,48.8,15.8],"Columbia County, New York":[10,15.7,3.4,10.7,49.1,11.1],"Cortland County, New York":[13,11.2,6.2,8.8,46.5,14.4],"Delaware County, New York":[12.3,14.6,5.3,11,45.1,11.6],"Dutchess County, New York":[10.7,16.9,4.7,10.1,49.4,8.2],"Erie County, New York":[14.9,14.1,6,11.7,43.1,10.2],"Essex County, New York":[12.9,12,4.6,9.7,46.7,14.1],"Franklin County, New York":[12.5,9.1,2.3,7.7,52.8,15.7],"Fulton County, New York":[11.6,10.3,2.4,12.1,47.2,16.5],"Genesee County, New York":[11.6,11.5,3,9.1,49,15.9],"Greene County, New York":[10.1,20.3,5.1,10.5,44.5,9.4],"Hamilton County, New York":[14.3,13,6.2,8.3,54.4,3.8],"Herkimer County, New York":[10.6,12.9,2.4,8.8,52.4,13],"Jefferson County, New York":[12.8,9,3.1,8.2,54.8,12.1],"Kings County, New York":[12.1,16,10.1,17.2,36.1,8.6],"Lewis County, New York":[10,10.9,2.1,7.7,57.8,11.5],"Livingston County, New York":[11.6,12.6,7.3,8.8,49.2,10.5],"Madison County, New York":[10.1,16,2.9,9.8,51.4,9.8],"Monroe County, New York":[14.1,13.2,5.9,12.2,43.6,10.9],"Montgomery County, New York":[11,16,5.7,12.9,42.5,12],"Nassau County, New York":[4.4,23.6,4,13.1,50.7,4.2],"New York County, New York":[23.7,10.9,13,12.1,31.4,8.9],"Niagara County, New York":[13.3,14.7,3.2,11.3,46.7,10.9],"Oneida County, New York":[13.6,13.4,3,11.5,46.8,11.7],"Onondaga County, New York":[14,13.3,5.3,11.4,44.4,11.6],"Ontario County, New York":[11.3,11.3,3.6,8.7,50.7,14.4],"Orange County, New York":[7.4,19.4,3.7,11.3,51.2,7],"Orleans County, New York":[11.3,13.9,2.2,8.9,50.3,13.5],"Oswego County, New York":[9.7,12.6,6,9.8,46.2,15.8],"Otsego County, New York":[11.9,18.8,7.5,8.5,44,9.3],"Putnam County, New York":[6,20.9,3.7,8.1,55.5,5.8],"Queens County, New York":[9.1,18.8,7.7,19.2,39,6.3],"Rensselaer County, New York":[13.4,13.6,5.3,11.1,44.1,12.5],"Richmond County, New York":[7,23.1,3.1,15.1,46.2,5.5],"Rockland County, New York":[5,20.9,4,12.9,53.4,3.8],"Saratoga County, New York":[10.8,13.1,3.3,7.8,52.4,12.6],"Schenectady County, New York":[13.4,13.4,5.2,10.7,44.6,12.7],"Schoharie County, New York":[10.7,14,6.5,9.9,48.8,10.1],"Schuyler County, New York":[11.4,12.6,7.7,6.9,48.5,12.8],"Seneca County, New York":[13.5,12.6,3.5,8.1,46.6,15.7],"St. Lawrence County, New York":[12.3,12.1,5.9,8.8,48.5,12.4],"Steuben County, New York":[11.9,12.6,3.1,8.9,52.1,11.5],"Suffolk County, New York":[5.8,22.4,5.3,12.8,47.3,6.3],"Sullivan County, New York":[11.7,17.7,3.5,11.6,43.9,11.5],"Tioga County, New York":[11,13.1,2.9,8.4,50.5,14.1],"Tompkins County, New York":[16.8,5.9,14.3,5.6,43.4,14.1],"Ulster County, New York":[13.4,14.9,5.9,9.9,43.8,12.2],"Warren County, New York":[13,10.4,4.1,8.6,49.9,14],"Washington County, New York":[10.3,17,4.4,8.4,45.4,14.7],"Wayne County, New York":[11.2,11.6,2.6,7.6,53.9,13.1],"Westchester County, New York":[8.9,19,3.7,12.6,49.7,6.1],"Wyoming County, New York":[11.4,11.2,4,7.4,51.8,14.3],"Yates County, New York":[9.9,16.7,3.7,8.1,55.2,6.3]};
+  const cats = ["lives_alone_18_64","with_child_18_64","with_nonrel_18_64","with_other_rel_18_64","with_spouse_only_18_64","with_unmar_partner_18_64"];
+
+  const ORDER = [
+    "Lives alone",
+    "With child",
+    "With nonrelatives",
+    "With other relatives",
+    "With spouse only",
+    "With unmarried partner"
+  ];
+
+  const PRETTY_TO_SNAKE = {
+    "Lives alone":            "lives_alone_18_64",
+    "With child":             "with_child_18_64",
+    "With nonrelatives":      "with_nonrel_18_64",
+    "With other relatives":   "with_other_rel_18_64",
+    "With spouse only":       "with_spouse_only_18_64",
+    "With unmarried partner": "with_unmar_partner_18_64"
+  };
+
+  const COLOR_BY_CAT = {
+    "Lives alone":            "#e41a1c",
+    "With child":             "#ff7f00",
+    "With nonrelatives":      "#4daf4a",
+    "With other relatives":   "#984ea3",
+    "With spouse only":       "#377eb8",
+    "With unmarried partner": "#a65628"
+  };
+
+  // snake key → array index
+  const keyToIndex = Object.fromEntries((cats || []).map((k, i) => [String(k), i]));
+
+  function valuesFor(name) {
+    const row = data?.[name] || [];
+    return ORDER.map(lbl => {
+      const idx = keyToIndex[PRETTY_TO_SNAKE[lbl]];
+      const v = (idx != null && idx >= 0) ? row[idx] : 0;
+      return (typeof v === "number") ? v : Number(v) || 0;
+    });
+  }
+
+  const canvas = document.getElementById("barChart");
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+  let chart;
+
+  function renderChart(name) {
+    const vals = valuesFor(name);
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: ORDER,
+        datasets: [{
+          data: vals,
+          backgroundColor: ORDER.map(c => COLOR_BY_CAT[c]),
+          borderWidth: 0
+        }]
+      },
+      options: {
+        indexAxis: "y",
+        plugins: {
+          legend: { display: false },
+          tooltip: { callbacks: { label: (c) => c.raw + "%" } }
+        },
+        scales: {
+          x: { min: 0, max: 100, ticks: { callback: v => v + "%" } }
+        }
+      }
+    });
+  }
+
+  const DEFAULT_NAME = (data && Object.prototype.hasOwnProperty.call(data, "Statewide"))
+    ? "Statewide" : Object.keys(data || {})[0];
+
+  const sel = document.getElementById("countySelect");
+  if (sel) sel.addEventListener("change", e => renderChart(e.target.value));
+  if (DEFAULT_NAME) renderChart(DEFAULT_NAME);
+});</script>
+  </body>
+</html>
+</html>

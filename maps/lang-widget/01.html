@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Language Spoken at Home – Alabama</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          text-align: center;
+          margin: 2rem;
+        }
+        select {
+          font-size: 1rem;
+          padding: 0.4rem;
+          margin-bottom: 1rem;
+        }
+        canvas {
+          width: 100%;
+          max-width: 700px;
+          height: 800px;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Language Spoken at Home – Alabama</h2>
+    <label>Select County, State:</label>
+    <select id="countySelect"><option value='Statewide'>Statewide</option>
+<option value='Autauga County, Alabama'>Autauga County, Alabama</option>
+<option value='Baldwin County, Alabama'>Baldwin County, Alabama</option>
+<option value='Barbour County, Alabama'>Barbour County, Alabama</option>
+<option value='Bibb County, Alabama'>Bibb County, Alabama</option>
+<option value='Blount County, Alabama'>Blount County, Alabama</option>
+<option value='Bullock County, Alabama'>Bullock County, Alabama</option>
+<option value='Butler County, Alabama'>Butler County, Alabama</option>
+<option value='Calhoun County, Alabama'>Calhoun County, Alabama</option>
+<option value='Chambers County, Alabama'>Chambers County, Alabama</option>
+<option value='Cherokee County, Alabama'>Cherokee County, Alabama</option>
+<option value='Chilton County, Alabama'>Chilton County, Alabama</option>
+<option value='Choctaw County, Alabama'>Choctaw County, Alabama</option>
+<option value='Clarke County, Alabama'>Clarke County, Alabama</option>
+<option value='Clay County, Alabama'>Clay County, Alabama</option>
+<option value='Cleburne County, Alabama'>Cleburne County, Alabama</option>
+<option value='Coffee County, Alabama'>Coffee County, Alabama</option>
+<option value='Colbert County, Alabama'>Colbert County, Alabama</option>
+<option value='Conecuh County, Alabama'>Conecuh County, Alabama</option>
+<option value='Coosa County, Alabama'>Coosa County, Alabama</option>
+<option value='Covington County, Alabama'>Covington County, Alabama</option>
+<option value='Crenshaw County, Alabama'>Crenshaw County, Alabama</option>
+<option value='Cullman County, Alabama'>Cullman County, Alabama</option>
+<option value='Dale County, Alabama'>Dale County, Alabama</option>
+<option value='Dallas County, Alabama'>Dallas County, Alabama</option>
+<option value='DeKalb County, Alabama'>DeKalb County, Alabama</option>
+<option value='Elmore County, Alabama'>Elmore County, Alabama</option>
+<option value='Escambia County, Alabama'>Escambia County, Alabama</option>
+<option value='Etowah County, Alabama'>Etowah County, Alabama</option>
+<option value='Fayette County, Alabama'>Fayette County, Alabama</option>
+<option value='Franklin County, Alabama'>Franklin County, Alabama</option>
+<option value='Geneva County, Alabama'>Geneva County, Alabama</option>
+<option value='Greene County, Alabama'>Greene County, Alabama</option>
+<option value='Hale County, Alabama'>Hale County, Alabama</option>
+<option value='Henry County, Alabama'>Henry County, Alabama</option>
+<option value='Houston County, Alabama'>Houston County, Alabama</option>
+<option value='Jackson County, Alabama'>Jackson County, Alabama</option>
+<option value='Jefferson County, Alabama'>Jefferson County, Alabama</option>
+<option value='Lamar County, Alabama'>Lamar County, Alabama</option>
+<option value='Lauderdale County, Alabama'>Lauderdale County, Alabama</option>
+<option value='Lawrence County, Alabama'>Lawrence County, Alabama</option>
+<option value='Lee County, Alabama'>Lee County, Alabama</option>
+<option value='Limestone County, Alabama'>Limestone County, Alabama</option>
+<option value='Lowndes County, Alabama'>Lowndes County, Alabama</option>
+<option value='Macon County, Alabama'>Macon County, Alabama</option>
+<option value='Madison County, Alabama'>Madison County, Alabama</option>
+<option value='Marengo County, Alabama'>Marengo County, Alabama</option>
+<option value='Marion County, Alabama'>Marion County, Alabama</option>
+<option value='Marshall County, Alabama'>Marshall County, Alabama</option>
+<option value='Mobile County, Alabama'>Mobile County, Alabama</option>
+<option value='Monroe County, Alabama'>Monroe County, Alabama</option>
+<option value='Montgomery County, Alabama'>Montgomery County, Alabama</option>
+<option value='Morgan County, Alabama'>Morgan County, Alabama</option>
+<option value='Perry County, Alabama'>Perry County, Alabama</option>
+<option value='Pickens County, Alabama'>Pickens County, Alabama</option>
+<option value='Pike County, Alabama'>Pike County, Alabama</option>
+<option value='Randolph County, Alabama'>Randolph County, Alabama</option>
+<option value='Russell County, Alabama'>Russell County, Alabama</option>
+<option value='Shelby County, Alabama'>Shelby County, Alabama</option>
+<option value='St. Clair County, Alabama'>St. Clair County, Alabama</option>
+<option value='Sumter County, Alabama'>Sumter County, Alabama</option>
+<option value='Talladega County, Alabama'>Talladega County, Alabama</option>
+<option value='Tallapoosa County, Alabama'>Tallapoosa County, Alabama</option>
+<option value='Tuscaloosa County, Alabama'>Tuscaloosa County, Alabama</option>
+<option value='Walker County, Alabama'>Walker County, Alabama</option>
+<option value='Washington County, Alabama'>Washington County, Alabama</option>
+<option value='Wilcox County, Alabama'>Wilcox County, Alabama</option>
+<option value='Winston County, Alabama'>Winston County, Alabama</option></select>
+    <canvas id="barChart" width="700" height="700"></canvas>
+    <script>  const languageData = {"Statewide":{"Arabic":0.1,"Chinese (incl. Mandarin, Cantonese)":0.3,"English":93.6,"French, Haitian, or Cajun":0.2,"German or other West Germanic":0.4,"Korean":0.2,"Other Asian & Pacific":0.3,"Other Indo-European":0.5,"Other and Unspecified":0.2,"Russian, Polish, other Slavic":0.1,"Spanish":3.7,"Tagalog (incl. Filipino)":0.1,"Vietnamese":0.2},"Autauga County, Alabama":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0.1,"English":95.6,"French, Haitian, or Cajun":0,"German or other West Germanic":0.3,"Korean":0,"Other Asian & Pacific":0.2,"Other Indo-European":0.3,"Other and Unspecified":0.1,"Russian, Polish, other Slavic":0.3,"Spanish":2.4,"Tagalog (incl. Filipino)":0.4,"Vietnamese":0},"Baldwin County, Alabama":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0.1,"English":93.9,"French, Haitian, or Cajun":0.4,"German or other West Germanic":0.3,"Korean":0,"Other Asian & Pacific":0.2,"Other Indo-European":0.8,"Other and Unspecified":0.2,"Russian, Polish, other Slavic":0.4,"Spanish":3.5,"Tagalog (incl. Filipino)":0.1,"Vietnamese":0},"Barbour County, Alabama":{"Arabic":0.1,"Chinese (incl. Mandarin, Cantonese)":0.1,"English":92,"French, Haitian, or Cajun":0.5,"German or other West Germanic":0.3,"Korean":0.4,"Other Asian & Pacific":0.1,"Other Indo-European":0.2,"Other and Unspecified":0.2,"Russian, Polish, other Slavic":0,"Spanish":6,"Tagalog (incl. Filipino)":0,"Vietnamese":0},"Bibb County, Alabama":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":97.7,"French, Haitian, or Cajun":0,"German or other West Germanic":0,"Korean":0.2,"Other Asian & Pacific":0,"Other Indo-European":0,"Other and Unspecified":0,"Russian, Polish, other Slavic":0,"Spanish":2,"Tagalog (incl. Filipino)":0,"Vietnamese":0},"Blount County, Alabama":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":92.2,"French, Haitian, or Cajun":0.1,"German or other West Germanic":0.4,"Korean":0,"Other Asian & Pacific":0,"Other Indo-European":0.2,"Other and Unspecified":0.1,"Russian, Polish, other Slavic":0,"Spanish":6.9,"Tagalog (incl. Filipino)":0.1,"Vietnamese":0},"Bullock County, Alabama":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":92.3,"French, Haitian, or Cajun":0,"German or other West Germanic":0,"Korean":0,"Other Asian & Pacific":0,"Other Indo-European":0.7,"Other and Unspecified":0.3,"Russian, Polish, other Slavic":0,"Spanish":6.7,"Tagalog (incl. Filipino)":0,"Vietnamese":0},"Butler County, Alabama":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":96.7,"French, Haitian, or Cajun":0.1,"German or other West Germanic":0.2,"Korean":0.2,"Other Asian & Pacific":0,"Other Indo-European":0.7,"Other and Unspecified":0,"Russian, Polish, other Slavic":0.1,"Spanish":2.1,"Tagalog (incl. Filipino)":0,"Vietnamese":0},"Calhoun County, Alabama":{"Arabic":0.1,"Chinese (incl. Mandarin, Cantonese)":0.1,"English":95.3,"French, Haitian, or Cajun":0.1,"German or other West Germanic":0.5,"Korean":0.2,"Other Asian & Pacific":0.2,"Other Indo-European":0.3,"Other and Unspecified":0,"Russian, Polish, other Slavic":0.1,"Spanish":2.9,"Tagalog (incl. Filipino)":0.2,"Vietnamese":0.1},"Chambers County, Alabama":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0.1,"English":95.2,"French, Haitian, or Cajun":0.1,"German or other West Germanic":0.1,"Korean":1,"Other Asian & Pacific":0,"Other Indo-European":0.6,"Other and Unspecified":0.2,"Russian, Polish, other Slavic":0,"Spanish":2.6,"Tagalog (incl. Filipino)":0,"Vietnamese":0},"Cherokee County, Alabama":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":96.4,"French, Haitian, or Cajun":0.3,"German or other West Germanic":0.3,"Korean":0.2,"Other Asian & Pacific":0,"Other Indo-European":0.1,"Other and Unspecified":0,"Russian, Polish, other Slavic":0,"Spanish":2.5,"Tagalog (incl. Filipino)":0,"Vietnamese":0.1},"Chilton County, Alabama":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":92.2,"French, Haitian, or Cajun":0,"German or other West Germanic":0.3,"Korean":0,"Other Asian & Pacific":0.3,"Other Indo-European":0.1,"Other and Unspecified":0,"Russian, Polish, other Slavic":0,"Spanish":7,"Tagalog (incl. Filipino)":0,"Vietnamese":0},"Choctaw County, Alabama":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":97.3,"French, Haitian, or Cajun":0,"German or other West Germanic":0.4,"Korean":0,"Other Asian & Pacific":0,"Other Indo-European":0,"Other and Unspecified":0,"Russian, Polish, other Slavic":0,"Spanish":2.3,"Tagalog (incl. Filipino)":0,"Vietnamese":0},"Clarke County, Alabama":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0.2,"English":97.4,"French, Haitian, or Cajun":0,"German or other West Germanic":0.4,"Korean":0,"Other Asian & Pacific":0,"Other Indo-European":0,"Other and Unspecified":0.1,"Russian, Polish, other Slavic":0,"Spanish":1.6,"Tagalog (incl. Filipino)":0.4,"Vietnamese":0},"Clay County, Alabama":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":97.5,"French, Haitian, or Cajun":0.4,"German or other West Germanic":0,"Korean":0,"Other Asian & Pacific":0,"Other Indo-European":0,"Other and Unspecified":0.2,"Russian, Polish, other Slavic":0,"Spanish":1.8,"Tagalog (incl. Filipino)":0.1,"Vietnamese":0},"Cleburne County, Alabama":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":98.3,"French, Haitian, or Cajun":0,"German or other West Germanic":0.3,"Korean":0,"Other Asian & Pacific":0,"Other Indo-European":0.2,"Other and Unspecified":0,"Russian, Polish, other Slavic":0.1,"Spanish":1.1,"Tagalog (incl. Filipino)":0,"Vietnamese":0},"Coffee County, Alabama":{"Arabic":0.1,"Chinese (incl. Mandarin, Cantonese)":0,"English":89.6,"French, Haitian, or Cajun":0.1,"German or other West Germanic":1.6,"Korean":0.6,"Other Asian & Pacific":0.3,"Other Indo-European":0.1,"Other and Unspecified":0.4,"Russian, Polish, other Slavic":0.1,"Spanish":6.8,"Tagalog (incl. Filipino)":0.2,"Vietnamese":0},"Colbert County, Alabama":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":97.3,"French, Haitian, or Cajun":0,"German or other West Germanic":0,"Korean":0,"Other Asian & Pacific":0.1,"Other Indo-European":0.4,"Other and Unspecified":0.1,"Russian, Polish, other Slavic":0,"Spanish":2,"Tagalog (incl. Filipino)":0,"Vietnamese":0},"Conecuh County, Alabama":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":98.3,"French, Haitian, or Cajun":0,"German or other West Germanic":0.1,"Korean":0,"Other Asian & Pacific":0,"Other Indo-European":0.1,"Other and Unspecified":0,"Russian, Polish, other Slavic":0,"Spanish":0.9,"Tagalog (incl. Filipino)":0.5,"Vietnamese":0},"Coosa County, Alabama":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":96.3,"French, Haitian, or Cajun":0.3,"German or other West Germanic":0,"Korean":0,"Other Asian & Pacific":0,"Other Indo-European":0,"Other and Unspecified":1.1,"Russian, Polish, other Slavic":0,"Spanish":2.3,"Tagalog (incl. Filipino)":0,"Vietnamese":0},"Covington County, Alabama":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":97.7,"French, Haitian, or Cajun":0,"German or other West Germanic":0.2,"Korean":0,"Other Asian & Pacific":0.5,"Other Indo-European":0,"Other and Unspecified":0,"Russian, Polish, other Slavic":0.1,"Spanish":1.5,"Tagalog (incl. Filipino)":0.1,"Vietnamese":0},"Crenshaw County, Alabama":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":95.8,"French, Haitian, or Cajun":0,"German or other West Germanic":0.1,"Korean":0.6,"Other Asian & Pacific":0,"Other Indo-European":0.2,"Other and Unspecified":0.2,"Russian, Polish, other Slavic":0.3,"Spanish":2.4,"Tagalog (incl. Filipino)":0.4,"Vietnamese":0},"Cullman County, Alabama":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":96,"French, Haitian, or Cajun":0,"German or other West Germanic":0.2,"Korean":0,"Other Asian & Pacific":0.1,"Other Indo-European":0.2,"Other and Unspecified":0.1,"Russian, Polish, other Slavic":0,"Spanish":3,"Tagalog (incl. Filipino)":0.3,"Vietnamese":0.1},"Dale County, Alabama":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0.2,"English":92.8,"French, Haitian, or Cajun":0.2,"German or other West Germanic":1,"Korean":0.3,"Other Asian & Pacific":0.2,"Other Indo-European":0.6,"Other and Unspecified":0.1,"Russian, Polish, other Slavic":0,"Spanish":4.3,"Tagalog (incl. Filipino)":0.1,"Vietnamese":0.1},"Dallas County, Alabama":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":98,"French, Haitian, or Cajun":0,"German or other West Germanic":0.2,"Korean":0,"Other Asian & Pacific":0,"Other Indo-European":0.2,"Other and Unspecified":0.6,"Russian, Polish, other Slavic":0,"Spanish":0.6,"Tagalog (incl. Filipino)":0,"Vietnamese":0.2},"DeKalb County, Alabama":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":88.5,"French, Haitian, or Cajun":0.3,"German or other West Germanic":0.2,"Korean":0,"Other Asian & Pacific":0.2,"Other Indo-European":0.3,"Other and Unspecified":0.2,"Russian, Polish, other Slavic":0,"Spanish":10,"Tagalog (incl. Filipino)":0.1,"Vietnamese":0},"Elmore County, Alabama":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":96.7,"French, Haitian, or Cajun":0.1,"German or other West Germanic":0.4,"Korean":0.1,"Other Asian & Pacific":0.2,"Other Indo-European":0.2,"Other and Unspecified":0.2,"Russian, Polish, other Slavic":0.1,"Spanish":1.9,"Tagalog (incl. Filipino)":0.1,"Vietnamese":0},"Escambia County, Alabama":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0.1,"English":97.8,"French, Haitian, or Cajun":0,"German or other West Germanic":0.2,"Korean":0,"Other Asian & Pacific":0,"Other Indo-European":0,"Other and Unspecified":0.1,"Russian, Polish, other Slavic":0,"Spanish":1.6,"Tagalog (incl. Filipino)":0.2,"Vietnamese":0},"Etowah County, Alabama":{"Arabic":0.1,"Chinese (incl. Mandarin, Cantonese)":0,"English":95.3,"French, Haitian, or Cajun":0.2,"German or other West Germanic":0.1,"Korean":0,"Other Asian & Pacific":0.1,"Other Indo-European":0.2,"Other and Unspecified":0,"Russian, Polish, other Slavic":0.1,"Spanish":3.4,"Tagalog (incl. Filipino)":0.2,"Vietnamese":0.1},"Fayette County, Alabama":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":98.9,"French, Haitian, or Cajun":0,"German or other West Germanic":0,"Korean":0.1,"Other Asian & Pacific":0,"Other Indo-European":0,"Other and Unspecified":0.3,"Russian, Polish, other Slavic":0,"Spanish":0.6,"Tagalog (incl. Filipino)":0,"Vietnamese":0.1},"Franklin County, Alabama":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":86.7,"French, Haitian, or Cajun":0,"German or other West Germanic":0,"Korean":0,"Other Asian & Pacific":0,"Other Indo-European":0,"Other and Unspecified":0.1,"Russian, Polish, other Slavic":0.1,"Spanish":13,"Tagalog (incl. Filipino)":0,"Vietnamese":0},"Geneva County, Alabama":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":96.2,"French, Haitian, or Cajun":0,"German or other West Germanic":0.2,"Korean":1.1,"Other Asian & Pacific":0,"Other Indo-European":0,"Other and Unspecified":0,"Russian, Polish, other Slavic":0,"Spanish":2.4,"Tagalog (incl. Filipino)":0.1,"Vietnamese":0},"Greene County, Alabama":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":99,"French, Haitian, or Cajun":0,"German or other West Germanic":0,"Korean":0,"Other Asian & Pacific":0,"Other Indo-European":0,"Other and Unspecified":0.3,"Russian, Polish, other Slavic":0,"Spanish":0.7,"Tagalog (incl. Filipino)":0,"Vietnamese":0},"Hale County, Alabama":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":98.6,"French, Haitian, or Cajun":0,"German or other West Germanic":0.1,"Korean":0.1,"Other Asian & Pacific":0,"Other Indo-European":0,"Other and Unspecified":0,"Russian, Polish, other Slavic":0,"Spanish":1.2,"Tagalog (incl. Filipino)":0,"Vietnamese":0},"Henry County, Alabama":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":97.5,"French, Haitian, or Cajun":0,"German or other West Germanic":0.4,"Korean":0.1,"Other Asian & Pacific":0.3,"Other Indo-European":0.1,"Other and Unspecified":0,"Russian, Polish, other Slavic":0,"Spanish":1.4,"Tagalog (incl. Filipino)":0,"Vietnamese":0.1},"Houston County, Alabama":{"Arabic":0.1,"Chinese (incl. Mandarin, Cantonese)":0.1,"English":94.5,"French, Haitian, or Cajun":0.2,"German or other West Germanic":0.2,"Korean":0.1,"Other Asian & Pacific":0.3,"Other Indo-European":0.4,"Other and Unspecified":0.2,"Russian, Polish, other Slavic":0,"Spanish":3.2,"Tagalog (incl. Filipino)":0.3,"Vietnamese":0.2},"Jackson County, Alabama":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":96.5,"French, Haitian, or Cajun":0.1,"German or other West Germanic":0.1,"Korean":0,"Other Asian & Pacific":0,"Other Indo-European":0,"Other and Unspecified":0,"Russian, Polish, other Slavic":0,"Spanish":2.8,"Tagalog (incl. Filipino)":0.1,"Vietnamese":0.1},"Jefferson County, Alabama":{"Arabic":0.3,"Chinese (incl. Mandarin, Cantonese)":0.6,"English":92.6,"French, Haitian, or Cajun":0.3,"German or other West Germanic":0.4,"Korean":0.1,"Other Asian & Pacific":0.3,"Other Indo-European":0.8,"Other and Unspecified":0.4,"Russian, Polish, other Slavic":0.1,"Spanish":3.9,"Tagalog (incl. Filipino)":0.1,"Vietnamese":0.1},"Lamar County, Alabama":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":98.6,"French, Haitian, or Cajun":0,"German or other West Germanic":0.6,"Korean":0,"Other Asian & Pacific":0,"Other Indo-European":0.1,"Other and Unspecified":0,"Russian, Polish, other Slavic":0,"Spanish":0.7,"Tagalog (incl. Filipino)":0,"Vietnamese":0},"Lauderdale County, Alabama":{"Arabic":0.1,"Chinese (incl. Mandarin, Cantonese)":0,"English":95.9,"French, Haitian, or Cajun":0.3,"German or other West Germanic":0.3,"Korean":0,"Other Asian & Pacific":0.1,"Other Indo-European":0.3,"Other and Unspecified":0.1,"Russian, Polish, other Slavic":0.1,"Spanish":2.2,"Tagalog (incl. Filipino)":0.2,"Vietnamese":0.4},"Lawrence County, Alabama":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0.1,"English":97.3,"French, Haitian, or Cajun":0.1,"German or other West Germanic":0,"Korean":0.1,"Other Asian & Pacific":0.4,"Other Indo-European":0,"Other and Unspecified":0,"Russian, Polish, other Slavic":0,"Spanish":1.9,"Tagalog (incl. Filipino)":0.1,"Vietnamese":0.1},"Lee County, Alabama":{"Arabic":0.2,"Chinese (incl. Mandarin, Cantonese)":1,"English":89.5,"French, Haitian, or Cajun":0.4,"German or other West Germanic":0.7,"Korean":1.4,"Other Asian & Pacific":0.8,"Other Indo-European":0.9,"Other and Unspecified":0.3,"Russian, Polish, other Slavic":0.1,"Spanish":4.3,"Tagalog (incl. Filipino)":0.1,"Vietnamese":0.3},"Limestone County, Alabama":{"Arabic":0.1,"Chinese (incl. Mandarin, Cantonese)":0.3,"English":92.5,"French, Haitian, or Cajun":0.1,"German or other West Germanic":0.8,"Korean":0.4,"Other Asian & Pacific":0.4,"Other Indo-European":0.4,"Other and Unspecified":0,"Russian, Polish, other Slavic":0.1,"Spanish":4.4,"Tagalog (incl. Filipino)":0.1,"Vietnamese":0.2},"Lowndes County, Alabama":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":98.9,"French, Haitian, or Cajun":0,"German or other West Germanic":0,"Korean":0,"Other Asian & Pacific":0.2,"Other Indo-European":0,"Other and Unspecified":0,"Russian, Polish, other Slavic":0,"Spanish":0.9,"Tagalog (incl. Filipino)":0,"Vietnamese":0},"Macon County, Alabama":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":97.5,"French, Haitian, or Cajun":0.3,"German or other West Germanic":0,"Korean":0,"Other Asian & Pacific":0.1,"Other Indo-European":0.4,"Other and Unspecified":0,"Russian, Polish, other Slavic":0,"Spanish":1.8,"Tagalog (incl. Filipino)":0,"Vietnamese":0},"Madison County, Alabama":{"Arabic":0.1,"Chinese (incl. Mandarin, Cantonese)":0.4,"English":90.8,"French, Haitian, or Cajun":0.3,"German or other West Germanic":0.8,"Korean":0.4,"Other Asian & Pacific":0.8,"Other Indo-European":0.7,"Other and Unspecified":0.4,"Russian, Polish, other Slavic":0.3,"Spanish":4.6,"Tagalog (incl. Filipino)":0.2,"Vietnamese":0.3},"Marengo County, Alabama":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":96.9,"French, Haitian, or Cajun":0.1,"German or other West Germanic":0,"Korean":0,"Other Asian & Pacific":0.2,"Other Indo-European":0.6,"Other and Unspecified":0,"Russian, Polish, other Slavic":0.1,"Spanish":1.9,"Tagalog (incl. Filipino)":0.1,"Vietnamese":0},"Marion County, Alabama":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0.3,"English":97.5,"French, Haitian, or Cajun":0,"German or other West Germanic":0.2,"Korean":0.2,"Other Asian & Pacific":0,"Other Indo-European":0.1,"Other and Unspecified":0,"Russian, Polish, other Slavic":0,"Spanish":1.4,"Tagalog (incl. Filipino)":0.3,"Vietnamese":0},"Marshall County, Alabama":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0.1,"English":88.3,"French, Haitian, or Cajun":0.4,"German or other West Germanic":0.3,"Korean":0.1,"Other Asian & Pacific":0,"Other Indo-European":0.2,"Other and Unspecified":0.1,"Russian, Polish, other Slavic":0,"Spanish":10.3,"Tagalog (incl. Filipino)":0.1,"Vietnamese":0.1},"Mobile County, Alabama":{"Arabic":0.2,"Chinese (incl. Mandarin, Cantonese)":0.3,"English":94.6,"French, Haitian, or Cajun":0.2,"German or other West Germanic":0.3,"Korean":0.1,"Other Asian & Pacific":0.3,"Other Indo-European":0.6,"Other and Unspecified":0.2,"Russian, Polish, other Slavic":0.1,"Spanish":2.3,"Tagalog (incl. Filipino)":0.2,"Vietnamese":0.7},"Monroe County, Alabama":{"Arabic":0.6,"Chinese (incl. Mandarin, Cantonese)":0,"English":98.6,"French, Haitian, or Cajun":0.1,"German or other West Germanic":0.1,"Korean":0,"Other Asian & Pacific":0,"Other Indo-European":0.1,"Other and Unspecified":0,"Russian, Polish, other Slavic":0.1,"Spanish":0.1,"Tagalog (incl. Filipino)":0.1,"Vietnamese":0},"Montgomery County, Alabama":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0.4,"English":93.3,"French, Haitian, or Cajun":0.2,"German or other West Germanic":0.1,"Korean":1.4,"Other Asian & Pacific":0.3,"Other Indo-European":0.6,"Other and Unspecified":0.4,"Russian, Polish, other Slavic":0.1,"Spanish":2.6,"Tagalog (incl. Filipino)":0.2,"Vietnamese":0.1},"Morgan County, Alabama":{"Arabic":0.3,"Chinese (incl. Mandarin, Cantonese)":0,"English":91.2,"French, Haitian, or Cajun":0.1,"German or other West Germanic":0.5,"Korean":0.1,"Other Asian & Pacific":0.2,"Other Indo-European":0.4,"Other and Unspecified":0,"Russian, Polish, other Slavic":0,"Spanish":7,"Tagalog (incl. Filipino)":0.1,"Vietnamese":0},"Perry County, Alabama":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":99.2,"French, Haitian, or Cajun":0,"German or other West Germanic":0,"Korean":0,"Other Asian & Pacific":0,"Other Indo-European":0,"Other and Unspecified":0.8,"Russian, Polish, other Slavic":0,"Spanish":0,"Tagalog (incl. Filipino)":0,"Vietnamese":0},"Pickens County, Alabama":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":97.3,"French, Haitian, or Cajun":0.1,"German or other West Germanic":0.3,"Korean":0,"Other Asian & Pacific":0,"Other Indo-European":0,"Other and Unspecified":0,"Russian, Polish, other Slavic":0,"Spanish":2.2,"Tagalog (incl. Filipino)":0,"Vietnamese":0},"Pike County, Alabama":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0.4,"English":94.7,"French, Haitian, or Cajun":0.1,"German or other West Germanic":0.2,"Korean":0.7,"Other Asian & Pacific":0.2,"Other Indo-European":0.7,"Other and Unspecified":0,"Russian, Polish, other Slavic":0.1,"Spanish":2.4,"Tagalog (incl. Filipino)":0.2,"Vietnamese":0.4},"Randolph County, Alabama":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":96.4,"French, Haitian, or Cajun":0,"German or other West Germanic":0.6,"Korean":0,"Other Asian & Pacific":0.3,"Other Indo-European":0,"Other and Unspecified":0.3,"Russian, Polish, other Slavic":0,"Spanish":2.3,"Tagalog (incl. Filipino)":0,"Vietnamese":0},"Russell County, Alabama":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0.1,"English":93,"French, Haitian, or Cajun":0.3,"German or other West Germanic":0.6,"Korean":0.2,"Other Asian & Pacific":0.1,"Other Indo-European":0,"Other and Unspecified":0.1,"Russian, Polish, other Slavic":0.3,"Spanish":4.6,"Tagalog (incl. Filipino)":0.4,"Vietnamese":0},"Shelby County, Alabama":{"Arabic":0.4,"Chinese (incl. Mandarin, Cantonese)":0.6,"English":90.7,"French, Haitian, or Cajun":0.1,"German or other West Germanic":0.2,"Korean":0.2,"Other Asian & Pacific":0.5,"Other Indo-European":0.8,"Other and Unspecified":0.2,"Russian, Polish, other Slavic":0.2,"Spanish":5.6,"Tagalog (incl. Filipino)":0.2,"Vietnamese":0.4},"St. Clair County, Alabama":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0.1,"English":96.2,"French, Haitian, or Cajun":0.2,"German or other West Germanic":0.2,"Korean":0,"Other Asian & Pacific":0.1,"Other Indo-European":0.1,"Other and Unspecified":0.2,"Russian, Polish, other Slavic":0.1,"Spanish":2.5,"Tagalog (incl. Filipino)":0.3,"Vietnamese":0},"Sumter County, Alabama":{"Arabic":0.2,"Chinese (incl. Mandarin, Cantonese)":0.4,"English":97.8,"French, Haitian, or Cajun":0,"German or other West Germanic":0,"Korean":0,"Other Asian & Pacific":0,"Other Indo-European":0,"Other and Unspecified":0.5,"Russian, Polish, other Slavic":0,"Spanish":1.1,"Tagalog (incl. Filipino)":0,"Vietnamese":0},"Talladega County, Alabama":{"Arabic":0.1,"Chinese (incl. Mandarin, Cantonese)":0,"English":95.9,"French, Haitian, or Cajun":0.1,"German or other West Germanic":0.4,"Korean":0.1,"Other Asian & Pacific":0,"Other Indo-European":0.3,"Other and Unspecified":0.1,"Russian, Polish, other Slavic":0,"Spanish":2.7,"Tagalog (incl. Filipino)":0,"Vietnamese":0.1},"Tallapoosa County, Alabama":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0.1,"English":96.1,"French, Haitian, or Cajun":0.2,"German or other West Germanic":0.7,"Korean":0.4,"Other Asian & Pacific":0,"Other Indo-European":0.1,"Other and Unspecified":0,"Russian, Polish, other Slavic":0,"Spanish":2.3,"Tagalog (incl. Filipino)":0.2,"Vietnamese":0},"Tuscaloosa County, Alabama":{"Arabic":0.1,"Chinese (incl. Mandarin, Cantonese)":0.6,"English":93,"French, Haitian, or Cajun":0.1,"German or other West Germanic":0.8,"Korean":0.1,"Other Asian & Pacific":0.2,"Other Indo-European":0.7,"Other and Unspecified":0.3,"Russian, Polish, other Slavic":0.2,"Spanish":3.6,"Tagalog (incl. Filipino)":0,"Vietnamese":0.2},"Walker County, Alabama":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0.1,"English":96.7,"French, Haitian, or Cajun":0,"German or other West Germanic":0.1,"Korean":0.2,"Other Asian & Pacific":0,"Other Indo-European":0,"Other and Unspecified":0,"Russian, Polish, other Slavic":0,"Spanish":2.8,"Tagalog (incl. Filipino)":0,"Vietnamese":0},"Washington County, Alabama":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":96.6,"French, Haitian, or Cajun":0,"German or other West Germanic":0.8,"Korean":0,"Other Asian & Pacific":0,"Other Indo-European":0,"Other and Unspecified":2.4,"Russian, Polish, other Slavic":0,"Spanish":0.2,"Tagalog (incl. Filipino)":0,"Vietnamese":0},"Wilcox County, Alabama":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":99,"French, Haitian, or Cajun":0.2,"German or other West Germanic":0,"Korean":0,"Other Asian & Pacific":0,"Other Indo-European":0,"Other and Unspecified":0,"Russian, Polish, other Slavic":0,"Spanish":0.8,"Tagalog (incl. Filipino)":0,"Vietnamese":0},"Winston County, Alabama":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0.1,"English":97.2,"French, Haitian, or Cajun":0.1,"German or other West Germanic":0,"Korean":0,"Other Asian & Pacific":0.1,"Other Indo-European":0,"Other and Unspecified":0,"Russian, Polish, other Slavic":0.2,"Spanish":2.1,"Tagalog (incl. Filipino)":0.1,"Vietnamese":0}};
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: Object.keys(values),
+        datasets: [{
+          label: 'Share (%)',
+          data: Object.values(values),
+          backgroundColor: '#4576a7'
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.parsed.y + '%'
+            }
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 100,
+            title: {
+              display: true,
+              text: 'Population Share (%)'
+            }
+          },
+          x: {
+            title: {
+              display: true,
+              text: 'Language Group'
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(languageData[this.value]);
+  });
+
+  renderChart(languageData['Statewide']);</script>
+  </body>
+</html>
+</html>

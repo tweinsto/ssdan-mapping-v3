@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+
+</head>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Owners: Year Moved In (%) – 49</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #fff;
+    }
+    .container {
+      width: 95%;
+      max-width: 1200px;
+      margin: auto;
+      text-align: center;
+    }
+    #countySelect {
+      font-size: 1rem;
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    canvas {
+      max-width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Owners: Year Moved In (%)</h2>
+    <select id="countySelect"></select>
+    <canvas id="pieChart"></canvas>
+  </div>
+
+  <script>
+    const data = {"Statewide":{"Moved in 2021 or later":6.5,"Moved in 2018–2020":19.1,"Moved in 2010–2017":31.5,"Moved in 2000–2009":21.1,"Moved in 1990–1999":11.2,"1989 or earlier":10.7},"Beaver County":{"Moved in 2021 or later":5.2926,"Moved in 2018–2020":14.5038,"Moved in 2010–2017":26.0051,"Moved in 2000–2009":24.5802,"Moved in 1990–1999":11.7048,"1989 or earlier":17.9135},"Box Elder County":{"Moved in 2021 or later":5.9659,"Moved in 2018–2020":15.9597,"Moved in 2010–2017":27.4709,"Moved in 2000–2009":21.8291,"Moved in 1990–1999":11.318,"1989 or earlier":17.4564},"Cache County":{"Moved in 2021 or later":5.7964,"Moved in 2018–2020":19.0952,"Moved in 2010–2017":31.14,"Moved in 2000–2009":19.1863,"Moved in 1990–1999":11.9828,"1989 or earlier":12.7994},"Carbon County":{"Moved in 2021 or later":7.0265,"Moved in 2018–2020":15.0046,"Moved in 2010–2017":22.7447,"Moved in 2000–2009":17.7676,"Moved in 1990–1999":12.9003,"1989 or earlier":24.5563},"Daggett County":{"Moved in 2021 or later":4.6083,"Moved in 2018–2020":16.5899,"Moved in 2010–2017":29.4931,"Moved in 2000–2009":29.0323,"Moved in 1990–1999":18.894,"1989 or earlier":1.3825},"Davis County":{"Moved in 2021 or later":5.0947,"Moved in 2018–2020":18.5063,"Moved in 2010–2017":32.6694,"Moved in 2000–2009":22.4327,"Moved in 1990–1999":10.2074,"1989 or earlier":11.0896},"Duchesne County":{"Moved in 2021 or later":9.2224,"Moved in 2018–2020":14.707,"Moved in 2010–2017":25.0939,"Moved in 2000–2009":23.0654,"Moved in 1990–1999":13.7115,"1989 or earlier":14.1998},"Emery County":{"Moved in 2021 or later":5.0238,"Moved in 2018–2020":10.9278,"Moved in 2010–2017":20.8654,"Moved in 2000–2009":17.9685,"Moved in 1990–1999":20.7187,"1989 or earlier":24.4958},"Garfield County":{"Moved in 2021 or later":0.7383,"Moved in 2018–2020":12.5503,"Moved in 2010–2017":21.4765,"Moved in 2000–2009":27.3826,"Moved in 1990–1999":19.5302,"1989 or earlier":18.3221},"Grand County":{"Moved in 2021 or later":8.3119,"Moved in 2018–2020":9.5635,"Moved in 2010–2017":25.0642,"Moved in 2000–2009":31.5789,"Moved in 1990–1999":13.4788,"1989 or earlier":12.0026},"Iron County":{"Moved in 2021 or later":8.6081,"Moved in 2018–2020":20.8223,"Moved in 2010–2017":33.2931,"Moved in 2000–2009":17.9479,"Moved in 1990–1999":9.2493,"1989 or earlier":10.0792},"Juab County":{"Moved in 2021 or later":6.6032,"Moved in 2018–2020":17.6741,"Moved in 2010–2017":29.6649,"Moved in 2000–2009":23.7516,"Moved in 1990–1999":8.5085,"1989 or earlier":13.7976},"Kane County":{"Moved in 2021 or later":7.8251,"Moved in 2018–2020":11.3924,"Moved in 2010–2017":32.6045,"Moved in 2000–2009":28.27,"Moved in 1990–1999":13.3103,"1989 or earlier":6.5976},"Millard County":{"Moved in 2021 or later":4.3036,"Moved in 2018–2020":15.8099,"Moved in 2010–2017":22.7735,"Moved in 2000–2009":20.8906,"Moved in 1990–1999":16.6766,"1989 or earlier":19.5457},"Morgan County":{"Moved in 2021 or later":6.8902,"Moved in 2018–2020":14.6416,"Moved in 2010–2017":29.068,"Moved in 2000–2009":24.2387,"Moved in 1990–1999":11.6272,"1989 or earlier":13.5343},"Piute County":{"Moved in 2021 or later":5.9048,"Moved in 2018–2020":8,"Moved in 2010–2017":16.7619,"Moved in 2000–2009":34.0952,"Moved in 1990–1999":12.9524,"1989 or earlier":22.2857},"Rich County":{"Moved in 2021 or later":1.6743,"Moved in 2018–2020":10.5023,"Moved in 2010–2017":29.376,"Moved in 2000–2009":29.6804,"Moved in 1990–1999":10.9589,"1989 or earlier":17.8082},"Salt Lake County":{"Moved in 2021 or later":5.9108,"Moved in 2018–2020":17.8785,"Moved in 2010–2017":30.9042,"Moved in 2000–2009":20.987,"Moved in 1990–1999":12.2207,"1989 or earlier":12.0988},"San Juan County":{"Moved in 2021 or later":5.8998,"Moved in 2018–2020":7.57,"Moved in 2010–2017":24.0571,"Moved in 2000–2009":20.9591,"Moved in 1990–1999":17.861,"1989 or earlier":23.653},"Sanpete County":{"Moved in 2021 or later":4.3641,"Moved in 2018–2020":16.4848,"Moved in 2010–2017":27.2456,"Moved in 2000–2009":24.929,"Moved in 1990–1999":14.1683,"1989 or earlier":12.8082},"Sevier County":{"Moved in 2021 or later":4.978,"Moved in 2018–2020":15.2049,"Moved in 2010–2017":28.0393,"Moved in 2000–2009":18.9299,"Moved in 1990–1999":17.0505,"1989 or earlier":15.7975},"Summit County":{"Moved in 2021 or later":5.7327,"Moved in 2018–2020":17.3872,"Moved in 2010–2017":34.5423,"Moved in 2000–2009":22.0971,"Moved in 1990–1999":12.3421,"1989 or earlier":7.8986},"Tooele County":{"Moved in 2021 or later":8.2581,"Moved in 2018–2020":22.5745,"Moved in 2010–2017":34.3186,"Moved in 2000–2009":19.3144,"Moved in 1990–1999":8.8093,"1989 or earlier":6.7251},"Uintah County":{"Moved in 2021 or later":10.1604,"Moved in 2018–2020":17.3332,"Moved in 2010–2017":25.1104,"Moved in 2000–2009":25.5754,"Moved in 1990–1999":7.6378,"1989 or earlier":14.1827},"Utah County":{"Moved in 2021 or later":7.449,"Moved in 2018–2020":21.7055,"Moved in 2010–2017":32.742,"Moved in 2000–2009":20.5821,"Moved in 1990–1999":9.881,"1989 or earlier":7.6404},"Wasatch County":{"Moved in 2021 or later":8.8823,"Moved in 2018–2020":23.8765,"Moved in 2010–2017":36.9462,"Moved in 2000–2009":15.9776,"Moved in 1990–1999":8.1104,"1989 or earlier":6.207},"Washington County":{"Moved in 2021 or later":8.9719,"Moved in 2018–2020":24.2537,"Moved in 2010–2017":34.7923,"Moved in 2000–2009":19.7513,"Moved in 1990–1999":8.3934,"1989 or earlier":3.8374},"Wayne County":{"Moved in 2021 or later":4.1363,"Moved in 2018–2020":14.8418,"Moved in 2010–2017":25.4258,"Moved in 2000–2009":32.9684,"Moved in 1990–1999":6.8127,"1989 or earlier":15.8151},"Weber County":{"Moved in 2021 or later":5.9402,"Moved in 2018–2020":19.3703,"Moved in 2010–2017":31.3465,"Moved in 2000–2009":21.4515,"Moved in 1990–1999":11.3241,"1989 or earlier":10.5674}};
+    const colors = {
+  'Moved in 2021 or later': '#377EF1',
+  'Moved in 2018–2020': '#FF7F00',
+  'Moved in 2010–2017': '#66A61E',
+  'Moved in 2000–2009': '#E6AB01',
+  'Moved in 1990–1999': '#7570B1',
+  '1989 or earlier': '#E41A1C'
+};
+
+    const ctx = document.getElementById("pieChart").getContext("2d");
+    let chart;
+
+    function renderChart(key) {
+      const values = data[key];
+      const labels = Object.keys(values);
+      const percentages = Object.values(values);
+
+      if (chart) chart.destroy();
+
+      chart = new Chart(ctx, {
+        type: "pie",
+        data: {
+          labels: labels,
+          datasets: [{
+            data: percentages,
+            backgroundColor: labels.map(label => colors[label] || "#cccccc")
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: true,
+          aspectRatio: 1.5,
+          plugins: {
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  return context.label + ": " + context.formattedValue + "%";
+                }
+              }
+            },
+            legend: {
+              position: "right",
+              labels: {
+                usePointStyle: true,
+                pointStyle: "rect"
+              }
+            }
+          }
+        }
+      });
+    }
+
+    // Populate dropdown (Statewide first, then counties A->Z)
+    const select = document.getElementById("countySelect");
+    const keys = ["Statewide", ...Object.keys(data).filter(k => k !== "Statewide").sort()];
+    keys.forEach(k => {
+      const opt = document.createElement("option");
+      opt.value = k;
+      opt.text  = k;
+      select.appendChild(opt);
+    });
+    select.value = "Statewide";
+    select.addEventListener("change", () => renderChart(select.value));
+
+    renderChart("Statewide");
+  </script>
+</body>
+</html>
+</html>

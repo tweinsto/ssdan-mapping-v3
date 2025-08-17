@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Language Spoken at Home – Massachusetts</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          text-align: center;
+          margin: 2rem;
+        }
+        select {
+          font-size: 1rem;
+          padding: 0.4rem;
+          margin-bottom: 1rem;
+        }
+        canvas {
+          width: 100%;
+          max-width: 700px;
+          height: 800px;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Language Spoken at Home – Massachusetts</h2>
+    <label>Select County, State:</label>
+    <select id="countySelect"><option value='Statewide'>Statewide</option>
+<option value='Barnstable County, Massachusetts'>Barnstable County, Massachusetts</option>
+<option value='Berkshire County, Massachusetts'>Berkshire County, Massachusetts</option>
+<option value='Bristol County, Massachusetts'>Bristol County, Massachusetts</option>
+<option value='Dukes County, Massachusetts'>Dukes County, Massachusetts</option>
+<option value='Essex County, Massachusetts'>Essex County, Massachusetts</option>
+<option value='Franklin County, Massachusetts'>Franklin County, Massachusetts</option>
+<option value='Hampden County, Massachusetts'>Hampden County, Massachusetts</option>
+<option value='Hampshire County, Massachusetts'>Hampshire County, Massachusetts</option>
+<option value='Middlesex County, Massachusetts'>Middlesex County, Massachusetts</option>
+<option value='Nantucket County, Massachusetts'>Nantucket County, Massachusetts</option>
+<option value='Norfolk County, Massachusetts'>Norfolk County, Massachusetts</option>
+<option value='Plymouth County, Massachusetts'>Plymouth County, Massachusetts</option>
+<option value='Suffolk County, Massachusetts'>Suffolk County, Massachusetts</option>
+<option value='Worcester County, Massachusetts'>Worcester County, Massachusetts</option></select>
+    <canvas id="barChart" width="700" height="700"></canvas>
+    <script>  const languageData = {"Statewide":{"Arabic":0.6,"Chinese (incl. Mandarin, Cantonese)":2.3,"English":72.7,"French, Haitian, or Cajun":2.2,"German or other West Germanic":0.5,"Korean":0.3,"Other Asian & Pacific":1.3,"Other Indo-European":6.8,"Other and Unspecified":1.1,"Russian, Polish, other Slavic":1.2,"Spanish":10,"Tagalog (incl. Filipino)":0.2,"Vietnamese":0.6},"Barnstable County, Massachusetts":{"Arabic":0.2,"Chinese (incl. Mandarin, Cantonese)":0.5,"English":88.4,"French, Haitian, or Cajun":1.4,"German or other West Germanic":0.7,"Korean":0,"Other Asian & Pacific":0.3,"Other Indo-European":4.8,"Other and Unspecified":0.7,"Russian, Polish, other Slavic":1,"Spanish":1.9,"Tagalog (incl. Filipino)":0.1,"Vietnamese":0},"Berkshire County, Massachusetts":{"Arabic":0.1,"Chinese (incl. Mandarin, Cantonese)":0.2,"English":91.6,"French, Haitian, or Cajun":0.6,"German or other West Germanic":0.4,"Korean":0.1,"Other Asian & Pacific":0.3,"Other Indo-European":1.7,"Other and Unspecified":0.6,"Russian, Polish, other Slavic":0.9,"Spanish":3.3,"Tagalog (incl. Filipino)":0.1,"Vietnamese":0.1},"Bristol County, Massachusetts":{"Arabic":0.4,"Chinese (incl. Mandarin, Cantonese)":0.4,"English":73.9,"French, Haitian, or Cajun":1.9,"German or other West Germanic":0.2,"Korean":0,"Other Asian & Pacific":0.6,"Other Indo-European":14.8,"Other and Unspecified":0.4,"Russian, Polish, other Slavic":0.3,"Spanish":6.8,"Tagalog (incl. Filipino)":0.1,"Vietnamese":0.3},"Dukes County, Massachusetts":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":87.9,"French, Haitian, or Cajun":1.6,"German or other West Germanic":0.3,"Korean":0,"Other Asian & Pacific":0.6,"Other Indo-European":5.3,"Other and Unspecified":0.3,"Russian, Polish, other Slavic":0.2,"Spanish":3.8,"Tagalog (incl. Filipino)":0,"Vietnamese":0},"Essex County, Massachusetts":{"Arabic":0.6,"Chinese (incl. Mandarin, Cantonese)":0.8,"English":70.6,"French, Haitian, or Cajun":1.5,"German or other West Germanic":0.3,"Korean":0.2,"Other Asian & Pacific":1,"Other Indo-European":4.8,"Other and Unspecified":0.7,"Russian, Polish, other Slavic":1,"Spanish":18.3,"Tagalog (incl. Filipino)":0.1,"Vietnamese":0.2},"Franklin County, Massachusetts":{"Arabic":0.1,"Chinese (incl. Mandarin, Cantonese)":0.7,"English":91.9,"French, Haitian, or Cajun":0.7,"German or other West Germanic":0.4,"Korean":0.1,"Other Asian & Pacific":0.6,"Other Indo-European":1.4,"Other and Unspecified":0.2,"Russian, Polish, other Slavic":0.6,"Spanish":2.9,"Tagalog (incl. Filipino)":0.2,"Vietnamese":0.1},"Hampden County, Massachusetts":{"Arabic":0.4,"Chinese (incl. Mandarin, Cantonese)":0.4,"English":70.5,"French, Haitian, or Cajun":1,"German or other West Germanic":0.3,"Korean":0.1,"Other Asian & Pacific":0.7,"Other Indo-European":3.1,"Other and Unspecified":0.8,"Russian, Polish, other Slavic":2.1,"Spanish":20.1,"Tagalog (incl. Filipino)":0.1,"Vietnamese":0.4},"Hampshire County, Massachusetts":{"Arabic":0.3,"Chinese (incl. Mandarin, Cantonese)":0.7,"English":86.1,"French, Haitian, or Cajun":1.6,"German or other West Germanic":1,"Korean":0.1,"Other Asian & Pacific":0.6,"Other Indo-European":2.4,"Other and Unspecified":0.2,"Russian, Polish, other Slavic":1.3,"Spanish":5.5,"Tagalog (incl. Filipino)":0.2,"Vietnamese":0.1},"Middlesex County, Massachusetts":{"Arabic":0.7,"Chinese (incl. Mandarin, Cantonese)":4.3,"English":68.4,"French, Haitian, or Cajun":2.1,"German or other West Germanic":0.6,"Korean":0.6,"Other Asian & Pacific":2.7,"Other Indo-European":9.8,"Other and Unspecified":1.5,"Russian, Polish, other Slavic":1.6,"Spanish":6.8,"Tagalog (incl. Filipino)":0.2,"Vietnamese":0.7},"Nantucket County, Massachusetts":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0.1,"English":85.7,"French, Haitian, or Cajun":0.2,"German or other West Germanic":0.6,"Korean":0.5,"Other Asian & Pacific":0,"Other Indo-European":2,"Other and Unspecified":0.1,"Russian, Polish, other Slavic":2.8,"Spanish":7,"Tagalog (incl. Filipino)":1.1,"Vietnamese":0},"Norfolk County, Massachusetts":{"Arabic":0.8,"Chinese (incl. Mandarin, Cantonese)":5.2,"English":73.9,"French, Haitian, or Cajun":2.8,"German or other West Germanic":0.5,"Korean":0.5,"Other Asian & Pacific":1.6,"Other Indo-European":5.9,"Other and Unspecified":1.3,"Russian, Polish, other Slavic":1.7,"Spanish":4.2,"Tagalog (incl. Filipino)":0.3,"Vietnamese":1.4},"Plymouth County, Massachusetts":{"Arabic":0.2,"Chinese (incl. Mandarin, Cantonese)":0.4,"English":84,"French, Haitian, or Cajun":4.7,"German or other West Germanic":0.3,"Korean":0,"Other Asian & Pacific":0.3,"Other Indo-European":5.2,"Other and Unspecified":0.4,"Russian, Polish, other Slavic":0.4,"Spanish":3.6,"Tagalog (incl. Filipino)":0.2,"Vietnamese":0.3},"Suffolk County, Massachusetts":{"Arabic":1,"Chinese (incl. Mandarin, Cantonese)":4.5,"English":60.2,"French, Haitian, or Cajun":3.9,"German or other West Germanic":0.6,"Korean":0.5,"Other Asian & Pacific":1.1,"Other Indo-European":5.6,"Other and Unspecified":1.8,"Russian, Polish, other Slavic":1.5,"Spanish":18,"Tagalog (incl. Filipino)":0.2,"Vietnamese":1.1},"Worcester County, Massachusetts":{"Arabic":0.8,"Chinese (incl. Mandarin, Cantonese)":0.9,"English":74.8,"French, Haitian, or Cajun":1.6,"German or other West Germanic":0.4,"Korean":0.2,"Other Asian & Pacific":1.1,"Other Indo-European":5.3,"Other and Unspecified":1.9,"Russian, Polish, other Slavic":1,"Spanish":10.8,"Tagalog (incl. Filipino)":0.1,"Vietnamese":0.8}};
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: Object.keys(values),
+        datasets: [{
+          label: 'Share (%)',
+          data: Object.values(values),
+          backgroundColor: '#4576a7'
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.parsed.y + '%'
+            }
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 100,
+            title: {
+              display: true,
+              text: 'Population Share (%)'
+            }
+          },
+          x: {
+            title: {
+              display: true,
+              text: 'Language Group'
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(languageData[this.value]);
+  });
+
+  renderChart(languageData['Statewide']);</script>
+  </body>
+</html>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Living Arrangements 18–64 – Maryland</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+      body { font-family: sans-serif; margin: 1.25rem 2rem; text-align: center; }
+      h2 { margin-bottom: .25rem; font-size: 1.6rem; color: #2c348b; }
+      label { margin-right: .5rem; }
+      select { padding: .45rem .6rem; font-size: 1rem; border-radius: .5rem; border: 2px solid #f39c12; }
+      canvas { width: 100%; max-width: 900px; height: 520px; }
+    </style>
+</head>
+<html>
+  <body>
+    <h2>Living Arrangements of Adults 18–64 in Maryland</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Allegany County, Maryland">Allegany County, Maryland</option>
+      <option value="Anne Arundel County, Maryland">Anne Arundel County, Maryland</option>
+      <option value="Baltimore County, Maryland">Baltimore County, Maryland</option>
+      <option value="Baltimore city, Maryland">Baltimore city, Maryland</option>
+      <option value="Calvert County, Maryland">Calvert County, Maryland</option>
+      <option value="Caroline County, Maryland">Caroline County, Maryland</option>
+      <option value="Carroll County, Maryland">Carroll County, Maryland</option>
+      <option value="Cecil County, Maryland">Cecil County, Maryland</option>
+      <option value="Charles County, Maryland">Charles County, Maryland</option>
+      <option value="Dorchester County, Maryland">Dorchester County, Maryland</option>
+      <option value="Frederick County, Maryland">Frederick County, Maryland</option>
+      <option value="Garrett County, Maryland">Garrett County, Maryland</option>
+      <option value="Harford County, Maryland">Harford County, Maryland</option>
+      <option value="Howard County, Maryland">Howard County, Maryland</option>
+      <option value="Kent County, Maryland">Kent County, Maryland</option>
+      <option value="Montgomery County, Maryland">Montgomery County, Maryland</option>
+      <option value="Prince George&#39;s County, Maryland">Prince George's County, Maryland</option>
+      <option value="Queen Anne&#39;s County, Maryland">Queen Anne's County, Maryland</option>
+      <option value="Somerset County, Maryland">Somerset County, Maryland</option>
+      <option value="St. Mary&#39;s County, Maryland">St. Mary's County, Maryland</option>
+      <option value="Talbot County, Maryland">Talbot County, Maryland</option>
+      <option value="Washington County, Maryland">Washington County, Maryland</option>
+      <option value="Wicomico County, Maryland">Wicomico County, Maryland</option>
+      <option value="Worcester County, Maryland">Worcester County, Maryland</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>document.addEventListener("DOMContentLoaded", function () {
+  const data = {"Statewide":[10.8,16.2,5.8,14.1,45.5,7.5],"Allegany County, Maryland":[13.7,12.6,6.4,9.7,45.5,12.1],"Anne Arundel County, Maryland":[9.5,14.8,5,11.3,52.1,7.3],"Baltimore County, Maryland":[11,16.7,5.7,14.8,44,7.9],"Baltimore city, Maryland":[21.1,14.9,9.5,19.3,25.2,9.9],"Calvert County, Maryland":[6.2,17.5,3.6,9.2,57.6,5.8],"Caroline County, Maryland":[9.2,18.5,4,14.7,45.5,8.1],"Carroll County, Maryland":[6.5,16.5,2.5,8,59.8,6.7],"Cecil County, Maryland":[8.5,14.9,3.7,11.4,52.4,9.1],"Charles County, Maryland":[8.2,19.2,3.4,13.6,49,6.7],"Dorchester County, Maryland":[13.4,18.4,4.2,14.8,39.8,9.3],"Frederick County, Maryland":[7.9,15.4,4,10.5,54.5,7.7],"Garrett County, Maryland":[11.6,13.7,1.4,7.9,58,7.4],"Harford County, Maryland":[8.2,15.9,3.7,10.3,54.3,7.7],"Howard County, Maryland":[7.9,16.4,4.5,10.4,55,5.8],"Kent County, Maryland":[14.5,10.5,4,12.8,45.8,12.4],"Montgomery County, Maryland":[9.2,15.7,6.1,12.8,50.2,5.9],"Prince George's County, Maryland":[11.6,18.5,7.5,20.2,35,7.2],"Queen Anne's County, Maryland":[7.1,15.4,2.8,9.2,57.6,7.9],"Somerset County, Maryland":[12.1,16.3,6.2,13.7,43.6,8.1],"St. Mary's County, Maryland":[8.7,15.2,5.2,11.4,52.7,6.8],"Talbot County, Maryland":[11.6,15.5,3.8,11.3,48,9.7],"Washington County, Maryland":[10.5,14.2,4.6,12.6,47.1,11],"Wicomico County, Maryland":[10,13.2,8.8,13.8,42.7,11.6],"Worcester County, Maryland":[11.3,14.6,4,11.6,50.6,8]};
+  const cats = ["lives_alone_18_64","with_child_18_64","with_nonrel_18_64","with_other_rel_18_64","with_spouse_only_18_64","with_unmar_partner_18_64"];
+
+  const ORDER = [
+    "Lives alone",
+    "With child",
+    "With nonrelatives",
+    "With other relatives",
+    "With spouse only",
+    "With unmarried partner"
+  ];
+
+  const PRETTY_TO_SNAKE = {
+    "Lives alone":            "lives_alone_18_64",
+    "With child":             "with_child_18_64",
+    "With nonrelatives":      "with_nonrel_18_64",
+    "With other relatives":   "with_other_rel_18_64",
+    "With spouse only":       "with_spouse_only_18_64",
+    "With unmarried partner": "with_unmar_partner_18_64"
+  };
+
+  const COLOR_BY_CAT = {
+    "Lives alone":            "#e41a1c",
+    "With child":             "#ff7f00",
+    "With nonrelatives":      "#4daf4a",
+    "With other relatives":   "#984ea3",
+    "With spouse only":       "#377eb8",
+    "With unmarried partner": "#a65628"
+  };
+
+  // snake key → array index
+  const keyToIndex = Object.fromEntries((cats || []).map((k, i) => [String(k), i]));
+
+  function valuesFor(name) {
+    const row = data?.[name] || [];
+    return ORDER.map(lbl => {
+      const idx = keyToIndex[PRETTY_TO_SNAKE[lbl]];
+      const v = (idx != null && idx >= 0) ? row[idx] : 0;
+      return (typeof v === "number") ? v : Number(v) || 0;
+    });
+  }
+
+  const canvas = document.getElementById("barChart");
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+  let chart;
+
+  function renderChart(name) {
+    const vals = valuesFor(name);
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: ORDER,
+        datasets: [{
+          data: vals,
+          backgroundColor: ORDER.map(c => COLOR_BY_CAT[c]),
+          borderWidth: 0
+        }]
+      },
+      options: {
+        indexAxis: "y",
+        plugins: {
+          legend: { display: false },
+          tooltip: { callbacks: { label: (c) => c.raw + "%" } }
+        },
+        scales: {
+          x: { min: 0, max: 100, ticks: { callback: v => v + "%" } }
+        }
+      }
+    });
+  }
+
+  const DEFAULT_NAME = (data && Object.prototype.hasOwnProperty.call(data, "Statewide"))
+    ? "Statewide" : Object.keys(data || {})[0];
+
+  const sel = document.getElementById("countySelect");
+  if (sel) sel.addEventListener("change", e => renderChart(e.target.value));
+  if (DEFAULT_NAME) renderChart(DEFAULT_NAME);
+});</script>
+  </body>
+</html>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Age Distribution Under 18 –  Massachusetts</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          margin: 1rem 2rem;
+          text-align: center;
+        }
+        h2 {
+          margin-bottom: 0.25rem;
+          font-size: 1.6rem;
+        }
+        select {
+          padding: 0.4rem;
+          font-size: 1rem;
+          margin: 1rem 0;
+          border-radius: 5px;
+          border: 1px solid #999;
+        }
+        canvas {
+          width: 100%;
+          max-width: 850px;
+          height: 500px;
+          margin-top: 1rem;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Age Distribution Under 18 in  Massachusetts (2023)</h2>
+    <label>Select County:</label>
+            <select id="countySelect">
+          <option value='Statewide'>Statewide</option>
+<option value='Barnstable County, Massachusetts'>Barnstable County, Massachusetts</option>
+<option value='Berkshire County, Massachusetts'>Berkshire County, Massachusetts</option>
+<option value='Bristol County, Massachusetts'>Bristol County, Massachusetts</option>
+<option value='Dukes County, Massachusetts'>Dukes County, Massachusetts</option>
+<option value='Essex County, Massachusetts'>Essex County, Massachusetts</option>
+<option value='Franklin County, Massachusetts'>Franklin County, Massachusetts</option>
+<option value='Hampden County, Massachusetts'>Hampden County, Massachusetts</option>
+<option value='Hampshire County, Massachusetts'>Hampshire County, Massachusetts</option>
+<option value='Middlesex County, Massachusetts'>Middlesex County, Massachusetts</option>
+<option value='Nantucket County, Massachusetts'>Nantucket County, Massachusetts</option>
+<option value='Norfolk County, Massachusetts'>Norfolk County, Massachusetts</option>
+<option value='Plymouth County, Massachusetts'>Plymouth County, Massachusetts</option>
+<option value='Suffolk County, Massachusetts'>Suffolk County, Massachusetts</option>
+<option value='Worcester County, Massachusetts'>Worcester County, Massachusetts</option>
+        </select>
+    <canvas id="barChart" width="850" height="500"></canvas>
+    <script>  const ageData = {"Statewide":[-13.1,12.5,-14.9,14.3,-9.4,9,-13.8,13],"Barnstable County, Massachusetts":[-12.7,11.3,-14.3,12.8,-14.3,14.6,-10.5,9.4],"Berkshire County, Massachusetts":[-13.1,11.3,-13.8,12.8,-14.7,14.3,-10.9,9.2],"Bristol County, Massachusetts":[-12.6,12.1,-13.3,13.3,-15.6,14.5,-9.5,9.1],"Dukes County, Massachusetts":[-10.5,12.7,-9.5,12.3,-19,15.3,-9.6,11],"Essex County, Massachusetts":[-13.2,12.6,-13.8,12.8,-14.9,14.4,-9.3,9],"Franklin County, Massachusetts":[-12.3,10.4,-13.8,12.9,-15.9,15.3,-10.5,8.8],"Hampden County, Massachusetts":[-12.9,12.1,-13.1,14.5,-15.9,12.9,-9.6,9],"Hampshire County, Massachusetts":[-10.7,11.5,-14.1,14,-15.7,13.5,-10.5,10],"Middlesex County, Massachusetts":[-13.3,12.6,-14.3,13.1,-14.5,14.3,-9.2,8.7],"Nantucket County, Massachusetts":[-10.6,12.6,-17.9,11.4,-16.2,11.1,-11.4,8.7],"Norfolk County, Massachusetts":[-12.8,12.2,-13.8,12.9,-14.9,14.5,-9.6,9.2],"Plymouth County, Massachusetts":[-12.6,11.9,-14.2,13.2,-14.8,14,-9.9,9.3],"Suffolk County, Massachusetts":[-15.3,14.9,-13.1,12,-13.9,14.3,-8.4,8.1],"Worcester County, Massachusetts":[-12.9,12,-13.6,12.6,-15.4,14.9,-9.6,9.1]};
+  const ageBins = ["0–4","5–9","10–14","15–17"];
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(data) {
+    const maleData = data.filter((_, i) => i % 2 === 0);
+    const femaleData = data.filter((_, i) => i % 2 === 1);
+
+    const maxValue = Math.max(
+      ...maleData.map(Math.abs),
+      ...femaleData.map(Math.abs)
+    );
+    const padding = 1.0;
+    const xMax = +(maxValue + padding).toFixed(1);
+
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ageBins,
+        datasets: [
+          {
+            label: 'Male',
+            data: maleData,
+            backgroundColor: 'dodgerblue'
+          },
+          {
+            label: 'Female',
+            data: femaleData,
+            backgroundColor: 'lightpink'
+          }
+        ]
+      },
+      options: {
+        indexAxis: 'y',
+        responsive: true,
+        scales: {
+          x: {
+            min: -xMax,
+            max: xMax,
+            ticks: {
+              callback: value => Math.abs(value).toFixed(1) + '%'
+            }
+          },
+          y: {
+            stacked: false
+          }
+        },
+        plugins: {
+          legend: {
+            position: 'top',
+            align: 'start',
+            labels: {
+              usePointStyle: true
+            }
+          },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.dataset.label + ': ' + Math.abs(ctx.parsed.x).toFixed(1) + '%'
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(Object.values(ageData[this.value]));
+  });
+
+  renderChart(Object.values(ageData['Statewide']));</script>
+  </body>
+</html>
+</html>

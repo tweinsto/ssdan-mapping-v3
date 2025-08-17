@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+
+</head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Median Earnings by Industry – 06</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background: white;
+    }
+    .layout {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1.5rem;
+    }
+    label {
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+    #countySelect {
+      font-size: 1rem;
+      padding: 0.4rem 0.8rem;
+      margin-bottom: 1rem;
+    }
+    canvas {
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <label for="countySelect">Median Earnings by Industry:</label>
+    <select id="countySelect"></select>
+    <canvas id="barChart"></canvas>
+  </div>
+
+  <script>
+    const data = {"Statewide":{"Agriculture & mining":40005,"Arts & food services":41472,"Construction":61846,"Education & health":70064,"Finance & real estate":86449,"Information":117743,"Manufacturing":72483,"Other services":47370,"Prof. & waste services":91163,"Public administration":88399,"Retail trade":47340,"Transport & utilities":60294,"Wholesale trade":62148},"Alameda County":{"Agriculture & mining":42104,"Arts & food services":48462,"Construction":71593,"Education & health":79133,"Finance & real estate":108770,"Information":161850,"Manufacturing":102110,"Other services":60487,"Prof. & waste services":128676,"Public administration":102331,"Retail trade":58577,"Transport & utilities":72059,"Wholesale trade":70982},"Alpine County":{"Agriculture & mining":71875,"Arts & food services":85402,"Construction":81250,"Education & health":103333,"Finance & real estate":107500,"Information":0,"Manufacturing":108125,"Other services":0,"Prof. & waste services":68611,"Public administration":80625,"Retail trade":32031,"Transport & utilities":85758,"Wholesale trade":0},"Amador County":{"Agriculture & mining":49347,"Arts & food services":37277,"Construction":71147,"Education & health":64188,"Finance & real estate":88613,"Information":98465,"Manufacturing":59075,"Other services":55206,"Prof. & waste services":72157,"Public administration":91917,"Retail trade":46571,"Transport & utilities":92386,"Wholesale trade":56264},"Butte County":{"Agriculture & mining":52917,"Arts & food services":32813,"Construction":62536,"Education & health":61350,"Finance & real estate":65365,"Information":56583,"Manufacturing":59516,"Other services":53022,"Prof. & waste services":72268,"Public administration":72407,"Retail trade":45533,"Transport & utilities":76016,"Wholesale trade":51460},"Calaveras County":{"Agriculture & mining":62143,"Arts & food services":32196,"Construction":61932,"Education & health":62625,"Finance & real estate":61955,"Information":62438,"Manufacturing":59342,"Other services":55556,"Prof. & waste services":67364,"Public administration":67517,"Retail trade":46580,"Transport & utilities":71082,"Wholesale trade":76379},"Colusa County":{"Agriculture & mining":48070,"Arts & food services":43424,"Construction":60609,"Education & health":50291,"Finance & real estate":52632,"Information":53750,"Manufacturing":49544,"Other services":48011,"Prof. & waste services":52535,"Public administration":71353,"Retail trade":39167,"Transport & utilities":57824,"Wholesale trade":51596},"Contra Costa County":{"Agriculture & mining":54518,"Arts & food services":46775,"Construction":78227,"Education & health":79376,"Finance & real estate":111051,"Information":135709,"Manufacturing":106276,"Other services":60340,"Prof. & waste services":118396,"Public administration":102458,"Retail trade":54357,"Transport & utilities":80156,"Wholesale trade":75113},"Del Norte County":{"Agriculture & mining":45982,"Arts & food services":38455,"Construction":68750,"Education & health":63109,"Finance & real estate":40208,"Information":0,"Manufacturing":50417,"Other services":39474,"Prof. & waste services":68667,"Public administration":84247,"Retail trade":34359,"Transport & utilities":73657,"Wholesale trade":41844},"El Dorado County":{"Agriculture & mining":46019,"Arts & food services":45561,"Construction":90636,"Education & health":83695,"Finance & real estate":101994,"Information":108583,"Manufacturing":110244,"Other services":57229,"Prof. & waste services":121287,"Public administration":100789,"Retail trade":49193,"Transport & utilities":95320,"Wholesale trade":121961},"Fresno County":{"Agriculture & mining":38227,"Arts & food services":35006,"Construction":60838,"Education & health":62081,"Finance & real estate":61956,"Information":72521,"Manufacturing":49192,"Other services":44013,"Prof. & waste services":55292,"Public administration":72564,"Retail trade":42872,"Transport & utilities":57735,"Wholesale trade":55029},"Glenn County":{"Agriculture & mining":43226,"Arts & food services":33051,"Construction":52617,"Education & health":62826,"Finance & real estate":49063,"Information":0,"Manufacturing":46696,"Other services":37723,"Prof. & waste services":49370,"Public administration":83859,"Retail trade":43018,"Transport & utilities":81771,"Wholesale trade":54779},"Humboldt County":{"Agriculture & mining":49088,"Arts & food services":34355,"Construction":69917,"Education & health":53936,"Finance & real estate":62250,"Information":62554,"Manufacturing":55603,"Other services":43895,"Prof. & waste services":53938,"Public administration":63595,"Retail trade":46052,"Transport & utilities":58587,"Wholesale trade":61182},"Imperial County":{"Agriculture & mining":40340,"Arts & food services":34537,"Construction":49719,"Education & health":53048,"Finance & real estate":49819,"Information":76442,"Manufacturing":47800,"Other services":41757,"Prof. & waste services":45982,"Public administration":80483,"Retail trade":38620,"Transport & utilities":70302,"Wholesale trade":53538},"Inyo County":{"Agriculture & mining":70429,"Arts & food services":44696,"Construction":75625,"Education & health":57083,"Finance & real estate":57792,"Information":60694,"Manufacturing":48021,"Other services":58929,"Prof. & waste services":61458,"Public administration":77813,"Retail trade":67542,"Transport & utilities":93077,"Wholesale trade":70181},"Kern County":{"Agriculture & mining":37287,"Arts & food services":35998,"Construction":58466,"Education & health":58512,"Finance & real estate":57877,"Information":48379,"Manufacturing":54557,"Other services":41528,"Prof. & waste services":56641,"Public administration":92488,"Retail trade":38697,"Transport & utilities":60532,"Wholesale trade":51678},"Kings County":{"Agriculture & mining":40504,"Arts & food services":37048,"Construction":57820,"Education & health":53906,"Finance & real estate":57500,"Information":58966,"Manufacturing":49581,"Other services":41540,"Prof. & waste services":56742,"Public administration":75710,"Retail trade":40859,"Transport & utilities":66171,"Wholesale trade":60332},"Lake County":{"Agriculture & mining":45983,"Arts & food services":31373,"Construction":59806,"Education & health":53323,"Finance & real estate":63170,"Information":54609,"Manufacturing":52716,"Other services":39000,"Prof. & waste services":58848,"Public administration":60766,"Retail trade":53350,"Transport & utilities":88710,"Wholesale trade":66109},"Lassen County":{"Agriculture & mining":45197,"Arts & food services":43420,"Construction":41141,"Education & health":53365,"Finance & real estate":150114,"Information":53750,"Manufacturing":59596,"Other services":48692,"Prof. & waste services":48625,"Public administration":66789,"Retail trade":33009,"Transport & utilities":82500,"Wholesale trade":78125},"Los Angeles County":{"Agriculture & mining":38149,"Arts & food services":41489,"Construction":51532,"Education & health":65465,"Finance & real estate":80534,"Information":100148,"Manufacturing":57171,"Other services":42253,"Prof. & waste services":75445,"Public administration":84604,"Retail trade":44138,"Transport & utilities":54523,"Wholesale trade":53568},"Madera County":{"Agriculture & mining":32934,"Arts & food services":29455,"Construction":62933,"Education & health":57504,"Finance & real estate":68615,"Information":81250,"Manufacturing":52954,"Other services":48509,"Prof. & waste services":56250,"Public administration":70545,"Retail trade":36178,"Transport & utilities":49966,"Wholesale trade":50817},"Marin County":{"Agriculture & mining":34427,"Arts & food services":48572,"Construction":90185,"Education & health":97575,"Finance & real estate":177460,"Information":180691,"Manufacturing":131957,"Other services":52865,"Prof. & waste services":157509,"Public administration":113169,"Retail trade":67077,"Transport & utilities":92702,"Wholesale trade":142718},"Mariposa County":{"Agriculture & mining":41681,"Arts & food services":45000,"Construction":62250,"Education & health":71771,"Finance & real estate":55625,"Information":0,"Manufacturing":84432,"Other services":41333,"Prof. & waste services":50705,"Public administration":84911,"Retail trade":41750,"Transport & utilities":70117,"Wholesale trade":30417},"Mendocino County":{"Agriculture & mining":43250,"Arts & food services":34431,"Construction":54227,"Education & health":59563,"Finance & real estate":71080,"Information":73646,"Manufacturing":53146,"Other services":38883,"Prof. & waste services":56760,"Public administration":79911,"Retail trade":41806,"Transport & utilities":83313,"Wholesale trade":59531},"Merced County":{"Agriculture & mining":39755,"Arts & food services":36245,"Construction":57965,"Education & health":55981,"Finance & real estate":51634,"Information":75689,"Manufacturing":49871,"Other services":43788,"Prof. & waste services":48073,"Public administration":65771,"Retail trade":40082,"Transport & utilities":56631,"Wholesale trade":47865},"Modoc County":{"Agriculture & mining":40313,"Arts & food services":44620,"Construction":64125,"Education & health":54514,"Finance & real estate":45603,"Information":127788,"Manufacturing":0,"Other services":60441,"Prof. & waste services":45833,"Public administration":42478,"Retail trade":21068,"Transport & utilities":45663,"Wholesale trade":36467},"Mono County":{"Agriculture & mining":48846,"Arts & food services":49453,"Construction":54122,"Education & health":50000,"Finance & real estate":96879,"Information":0,"Manufacturing":45873,"Other services":58138,"Prof. & waste services":75768,"Public administration":90784,"Retail trade":59282,"Transport & utilities":98152,"Wholesale trade":0},"Monterey County":{"Agriculture & mining":41657,"Arts & food services":42585,"Construction":63283,"Education & health":65695,"Finance & real estate":92908,"Information":80714,"Manufacturing":57719,"Other services":47066,"Prof. & waste services":57852,"Public administration":91258,"Retail trade":43310,"Transport & utilities":60080,"Wholesale trade":61150},"Napa County":{"Agriculture & mining":53770,"Arts & food services":50351,"Construction":68062,"Education & health":78720,"Finance & real estate":110601,"Information":109338,"Manufacturing":79547,"Other services":46917,"Prof. & waste services":86732,"Public administration":93036,"Retail trade":52183,"Transport & utilities":68611,"Wholesale trade":61557},"Nevada County":{"Agriculture & mining":51222,"Arts & food services":45372,"Construction":72015,"Education & health":64972,"Finance & real estate":109221,"Information":100938,"Manufacturing":95288,"Other services":49788,"Prof. & waste services":83019,"Public administration":81050,"Retail trade":52593,"Transport & utilities":90043,"Wholesale trade":89375},"Orange County":{"Agriculture & mining":42043,"Arts & food services":42481,"Construction":67379,"Education & health":75430,"Finance & real estate":96719,"Information":100473,"Manufacturing":78998,"Other services":47708,"Prof. & waste services":90037,"Public administration":96176,"Retail trade":51424,"Transport & utilities":63302,"Wholesale trade":83073},"Placer County":{"Agriculture & mining":68776,"Arts & food services":43705,"Construction":90013,"Education & health":86952,"Finance & real estate":100262,"Information":99831,"Manufacturing":95894,"Other services":55897,"Prof. & waste services":105099,"Public administration":106222,"Retail trade":61106,"Transport & utilities":85707,"Wholesale trade":101212},"Plumas County":{"Agriculture & mining":79355,"Arts & food services":57761,"Construction":82756,"Education & health":62921,"Finance & real estate":78431,"Information":87237,"Manufacturing":74109,"Other services":52618,"Prof. & waste services":49605,"Public administration":56433,"Retail trade":39016,"Transport & utilities":82924,"Wholesale trade":36845},"Riverside County":{"Agriculture & mining":35744,"Arts & food services":39900,"Construction":60379,"Education & health":67748,"Finance & real estate":72315,"Information":75162,"Manufacturing":59378,"Other services":44910,"Prof. & waste services":58880,"Public administration":87877,"Retail trade":43271,"Transport & utilities":55032,"Wholesale trade":60120},"Sacramento County":{"Agriculture & mining":52000,"Arts & food services":41299,"Construction":66797,"Education & health":67819,"Finance & real estate":72271,"Information":78722,"Manufacturing":68113,"Other services":48103,"Prof. & waste services":71660,"Public administration":81773,"Retail trade":44736,"Transport & utilities":62416,"Wholesale trade":60933},"San Benito County":{"Agriculture & mining":48605,"Arts & food services":44458,"Construction":77254,"Education & health":63806,"Finance & real estate":66029,"Information":89444,"Manufacturing":57629,"Other services":54421,"Prof. & waste services":70500,"Public administration":88700,"Retail trade":48561,"Transport & utilities":77803,"Wholesale trade":69150},"San Bernardino County":{"Agriculture & mining":44521,"Arts & food services":37454,"Construction":60436,"Education & health":63633,"Finance & real estate":64138,"Information":70475,"Manufacturing":56980,"Other services":44863,"Prof. & waste services":57306,"Public administration":80008,"Retail trade":41667,"Transport & utilities":49560,"Wholesale trade":55223},"San Diego County":{"Agriculture & mining":39446,"Arts & food services":41153,"Construction":63434,"Education & health":69754,"Finance & real estate":80336,"Information":100756,"Manufacturing":88222,"Other services":47082,"Prof. & waste services":91644,"Public administration":94001,"Retail trade":47445,"Transport & utilities":66659,"Wholesale trade":70440},"San Francisco County":{"Agriculture & mining":46012,"Arts & food services":54923,"Construction":78461,"Education & health":88557,"Finance & real estate":143669,"Information":195434,"Manufacturing":131042,"Other services":64090,"Prof. & waste services":149240,"Public administration":105938,"Retail trade":73907,"Transport & utilities":85310,"Wholesale trade":118581},"San Joaquin County":{"Agriculture & mining":36789,"Arts & food services":36355,"Construction":67788,"Education & health":65995,"Finance & real estate":75450,"Information":99673,"Manufacturing":61637,"Other services":46493,"Prof. & waste services":71512,"Public administration":83754,"Retail trade":45122,"Transport & utilities":58029,"Wholesale trade":62813},"San Luis Obispo County":{"Agriculture & mining":55985,"Arts & food services":37092,"Construction":74196,"Education & health":72691,"Finance & real estate":82650,"Information":92401,"Manufacturing":61037,"Other services":48393,"Prof. & waste services":86138,"Public administration":96323,"Retail trade":48879,"Transport & utilities":91333,"Wholesale trade":66458},"San Mateo County":{"Agriculture & mining":41818,"Arts & food services":46625,"Construction":77666,"Education & health":88618,"Finance & real estate":133588,"Information":201851,"Manufacturing":135926,"Other services":57181,"Prof. & waste services":144349,"Public administration":107590,"Retail trade":59669,"Transport & utilities":73542,"Wholesale trade":84261},"Santa Barbara County":{"Agriculture & mining":34746,"Arts & food services":41029,"Construction":57944,"Education & health":66195,"Finance & real estate":74823,"Information":99167,"Manufacturing":81875,"Other services":48271,"Prof. & waste services":87531,"Public administration":87656,"Retail trade":46764,"Transport & utilities":67696,"Wholesale trade":58043},"Santa Clara County":{"Agriculture & mining":38116,"Arts & food services":45793,"Construction":69744,"Education & health":81589,"Finance & real estate":111472,"Information":214729,"Manufacturing":141103,"Other services":50707,"Prof. & waste services":151527,"Public administration":103445,"Retail trade":67025,"Transport & utilities":72202,"Wholesale trade":82641},"Santa Cruz County":{"Agriculture & mining":31878,"Arts & food services":47532,"Construction":83649,"Education & health":77868,"Finance & real estate":97796,"Information":105403,"Manufacturing":103780,"Other services":66489,"Prof. & waste services":106615,"Public administration":104350,"Retail trade":51956,"Transport & utilities":76781,"Wholesale trade":72539},"Shasta County":{"Agriculture & mining":58452,"Arts & food services":40751,"Construction":62185,"Education & health":57456,"Finance & real estate":67549,"Information":86503,"Manufacturing":67820,"Other services":47209,"Prof. & waste services":61053,"Public administration":74861,"Retail trade":43532,"Transport & utilities":61682,"Wholesale trade":69000},"Sierra County":{"Agriculture & mining":50336,"Arts & food services":23708,"Construction":42386,"Education & health":86031,"Finance & real estate":0,"Information":0,"Manufacturing":57688,"Other services":0,"Prof. & waste services":0,"Public administration":71154,"Retail trade":0,"Transport & utilities":96181,"Wholesale trade":0},"Siskiyou County":{"Agriculture & mining":44352,"Arts & food services":32771,"Construction":61840,"Education & health":62234,"Finance & real estate":73750,"Information":35142,"Manufacturing":53533,"Other services":40156,"Prof. & waste services":50313,"Public administration":70714,"Retail trade":35286,"Transport & utilities":48015,"Wholesale trade":65243},"Solano County":{"Agriculture & mining":43396,"Arts & food services":38622,"Construction":71520,"Education & health":70759,"Finance & real estate":73428,"Information":82514,"Manufacturing":70773,"Other services":53443,"Prof. & waste services":72024,"Public administration":86976,"Retail trade":48512,"Transport & utilities":69194,"Wholesale trade":66067},"Sonoma County":{"Agriculture & mining":49055,"Arts & food services":46692,"Construction":74907,"Education & health":72339,"Finance & real estate":88277,"Information":105094,"Manufacturing":74878,"Other services":55286,"Prof. & waste services":83816,"Public administration":100065,"Retail trade":51893,"Transport & utilities":81260,"Wholesale trade":80071},"Stanislaus County":{"Agriculture & mining":43458,"Arts & food services":35984,"Construction":66105,"Education & health":68241,"Finance & real estate":65032,"Information":74750,"Manufacturing":61491,"Other services":51965,"Prof. & waste services":59354,"Public administration":81885,"Retail trade":47830,"Transport & utilities":55956,"Wholesale trade":59341},"Sutter County":{"Agriculture & mining":34522,"Arts & food services":41625,"Construction":67523,"Education & health":60941,"Finance & real estate":88662,"Information":120750,"Manufacturing":71034,"Other services":45056,"Prof. & waste services":65272,"Public administration":84509,"Retail trade":38000,"Transport & utilities":51605,"Wholesale trade":56071},"Tehama County":{"Agriculture & mining":41471,"Arts & food services":42841,"Construction":53631,"Education & health":49355,"Finance & real estate":48611,"Information":69290,"Manufacturing":54916,"Other services":46250,"Prof. & waste services":41985,"Public administration":57784,"Retail trade":51129,"Transport & utilities":71429,"Wholesale trade":77794},"Trinity County":{"Agriculture & mining":78385,"Arts & food services":39519,"Construction":59200,"Education & health":88542,"Finance & real estate":0,"Information":0,"Manufacturing":41734,"Other services":47250,"Prof. & waste services":41000,"Public administration":62446,"Retail trade":43339,"Transport & utilities":34503,"Wholesale trade":0},"Tulare County":{"Agriculture & mining":36600,"Arts & food services":36705,"Construction":56122,"Education & health":57678,"Finance & real estate":61681,"Information":64129,"Manufacturing":56937,"Other services":40297,"Prof. & waste services":50572,"Public administration":74511,"Retail trade":39568,"Transport & utilities":50078,"Wholesale trade":55325},"Tuolumne County":{"Agriculture & mining":52845,"Arts & food services":38632,"Construction":71363,"Education & health":58512,"Finance & real estate":78750,"Information":43143,"Manufacturing":60500,"Other services":37132,"Prof. & waste services":53778,"Public administration":87731,"Retail trade":45881,"Transport & utilities":96053,"Wholesale trade":65188},"Ventura County":{"Agriculture & mining":34482,"Arts & food services":40190,"Construction":60003,"Education & health":68223,"Finance & real estate":92309,"Information":108349,"Manufacturing":72754,"Other services":49227,"Prof. & waste services":81510,"Public administration":102477,"Retail trade":46186,"Transport & utilities":64691,"Wholesale trade":59875},"Yolo County":{"Agriculture & mining":43452,"Arts & food services":40212,"Construction":68102,"Education & health":70196,"Finance & real estate":89186,"Information":76542,"Manufacturing":68000,"Other services":60706,"Prof. & waste services":82341,"Public administration":93333,"Retail trade":49527,"Transport & utilities":65172,"Wholesale trade":60133},"Yuba County":{"Agriculture & mining":42212,"Arts & food services":40717,"Construction":74671,"Education & health":52585,"Finance & real estate":66859,"Information":85721,"Manufacturing":52547,"Other services":58333,"Prof. & waste services":59106,"Public administration":82762,"Retail trade":41905,"Transport & utilities":62825,"Wholesale trade":59659}};
+    const colors = {
+  'Agriculture & mining': '#FFFF01',
+  'Arts & food services': '#00008B',
+  'Construction': '#7570B1',
+  'Education & health': '#66A61E',
+  'Finance & real estate': '#E6AB01',
+  'Information': '#379',
+  'Manufacturing': '#E41A1C',
+  'Other services': '#377EF1',
+  'Prof. & waste services': '#FF7F00',
+  'Public administration': '#1B9E77',
+  'Retail trade': '#A65011',
+  'Transport & utilities': '#F781BF',
+  'Wholesale trade': '#919'
+};
+
+    const ctx = document.getElementById("barChart").getContext("2d");
+    let chart;
+
+    function renderChart(county) {
+      const values = data[county];
+      const labels = Object.keys(values);
+      const earnings = Object.values(values);
+
+      if (chart) chart.destroy();
+
+      chart = new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels: labels,
+          datasets: [{
+            label: "Median Earnings ($)",
+            data: earnings,
+            backgroundColor: labels.map(label => colors[label] || "#ccc")
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: true,
+  aspectRatio: 1.5, 
+          indexAxis: "x",
+          scales: {
+            y: {
+              beginAtZero: true,
+              title: {
+                display: true,
+                text: "Median Earnings ($)"
+              },
+              ticks: {
+                callback: function(value) {
+                  return "$" + value.toLocaleString();
+                }
+              }
+            },
+            x: {
+              ticks: {
+                maxRotation: 45,
+                minRotation: 20,
+                autoSkip: false,
+                callback: function(value, index, ticks) {
+                  let label = this.getLabelForValue(value);
+                  return label.length > 25 ? label.slice(0, 25) + "…" : label;
+                }
+              }
+            }
+          },
+          plugins: {
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  return "$" + context.parsed.y.toLocaleString();
+                }
+              }
+            },
+            legend: {
+              display: false
+            }
+          }
+        }
+      });
+    }
+
+    const select = document.getElementById("countySelect");
+    Object.keys(data).forEach(county => {
+      const option = document.createElement("option");
+      option.value = county;
+      option.text = county;
+      select.appendChild(option);
+    });
+    select.value = "Statewide";
+    select.addEventListener("change", () => renderChart(select.value));
+    renderChart("Statewide");
+  </script>
+</body>
+</html>
+</html>

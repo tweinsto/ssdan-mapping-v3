@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+
+</head>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Owners: Year Moved In (%) – 04</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #fff;
+    }
+    .container {
+      width: 95%;
+      max-width: 1200px;
+      margin: auto;
+      text-align: center;
+    }
+    #countySelect {
+      font-size: 1rem;
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    canvas {
+      max-width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Owners: Year Moved In (%)</h2>
+    <select id="countySelect"></select>
+    <canvas id="pieChart"></canvas>
+  </div>
+
+  <script>
+    const data = {"Statewide":{"Moved in 2021 or later":7,"Moved in 2018–2020":20.4,"Moved in 2010–2017":32.6,"Moved in 2000–2009":21.6,"Moved in 1990–1999":11,"1989 or earlier":7.4},"Apache County":{"Moved in 2021 or later":2.2814,"Moved in 2018–2020":6.5104,"Moved in 2010–2017":18.3072,"Moved in 2000–2009":23.5872,"Moved in 1990–1999":21.7386,"1989 or earlier":27.5751},"Cochise County":{"Moved in 2021 or later":6.3255,"Moved in 2018–2020":19.384,"Moved in 2010–2017":25.8557,"Moved in 2000–2009":24.1809,"Moved in 1990–1999":12.4768,"1989 or earlier":11.7771},"Coconino County":{"Moved in 2021 or later":6.3298,"Moved in 2018–2020":15.1624,"Moved in 2010–2017":28.4334,"Moved in 2000–2009":21.9737,"Moved in 1990–1999":15.4158,"1989 or earlier":12.6849},"Gila County":{"Moved in 2021 or later":7.7519,"Moved in 2018–2020":16.8747,"Moved in 2010–2017":28.2769,"Moved in 2000–2009":23.7851,"Moved in 1990–1999":12.2938,"1989 or earlier":11.0176},"Graham County":{"Moved in 2021 or later":5.9806,"Moved in 2018–2020":16.8504,"Moved in 2010–2017":29.128,"Moved in 2000–2009":21.1285,"Moved in 1990–1999":11.8084,"1989 or earlier":15.1042},"Greenlee County":{"Moved in 2021 or later":4.5265,"Moved in 2018–2020":13.2674,"Moved in 2010–2017":28.9282,"Moved in 2000–2009":21.5401,"Moved in 1990–1999":14.6722,"1989 or earlier":17.0656},"La Paz County":{"Moved in 2021 or later":8.0364,"Moved in 2018–2020":13.5964,"Moved in 2010–2017":34.7979,"Moved in 2000–2009":18.8848,"Moved in 1990–1999":12.51,"1989 or earlier":12.1745},"Maricopa County":{"Moved in 2021 or later":6.7688,"Moved in 2018–2020":20.9521,"Moved in 2010–2017":33.9284,"Moved in 2000–2009":21.2163,"Moved in 1990–1999":10.8872,"1989 or earlier":6.2473},"Mohave County":{"Moved in 2021 or later":7.3962,"Moved in 2018–2020":20.0653,"Moved in 2010–2017":35.2348,"Moved in 2000–2009":23.3086,"Moved in 1990–1999":9.772,"1989 or earlier":4.223},"Navajo County":{"Moved in 2021 or later":4.7764,"Moved in 2018–2020":13.8942,"Moved in 2010–2017":24.9842,"Moved in 2000–2009":23.2189,"Moved in 1990–1999":14.4697,"1989 or earlier":18.6566},"Pima County":{"Moved in 2021 or later":6.629,"Moved in 2018–2020":18.2901,"Moved in 2010–2017":29.7833,"Moved in 2000–2009":22.3284,"Moved in 1990–1999":12.4431,"1989 or earlier":10.5262},"Pinal County":{"Moved in 2021 or later":9.2986,"Moved in 2018–2020":26.1981,"Moved in 2010–2017":34.9137,"Moved in 2000–2009":20.1639,"Moved in 1990–1999":5.4109,"1989 or earlier":4.0149},"Santa Cruz County":{"Moved in 2021 or later":4.6704,"Moved in 2018–2020":16.7855,"Moved in 2010–2017":27.4569,"Moved in 2000–2009":23.3258,"Moved in 1990–1999":13.8894,"1989 or earlier":13.872},"Yavapai County":{"Moved in 2021 or later":8.4343,"Moved in 2018–2020":21.2557,"Moved in 2010–2017":32.5643,"Moved in 2000–2009":22.1138,"Moved in 1990–1999":10.4629,"1989 or earlier":5.169},"Yuma County":{"Moved in 2021 or later":8.7707,"Moved in 2018–2020":20.5404,"Moved in 2010–2017":29.1866,"Moved in 2000–2009":22.2878,"Moved in 1990–1999":11.3575,"1989 or earlier":7.857}};
+    const colors = {
+  'Moved in 2021 or later': '#377EF1',
+  'Moved in 2018–2020': '#FF7F00',
+  'Moved in 2010–2017': '#66A61E',
+  'Moved in 2000–2009': '#E6AB01',
+  'Moved in 1990–1999': '#7570B1',
+  '1989 or earlier': '#E41A1C'
+};
+
+    const ctx = document.getElementById("pieChart").getContext("2d");
+    let chart;
+
+    function renderChart(key) {
+      const values = data[key];
+      const labels = Object.keys(values);
+      const percentages = Object.values(values);
+
+      if (chart) chart.destroy();
+
+      chart = new Chart(ctx, {
+        type: "pie",
+        data: {
+          labels: labels,
+          datasets: [{
+            data: percentages,
+            backgroundColor: labels.map(label => colors[label] || "#cccccc")
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: true,
+          aspectRatio: 1.5,
+          plugins: {
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  return context.label + ": " + context.formattedValue + "%";
+                }
+              }
+            },
+            legend: {
+              position: "right",
+              labels: {
+                usePointStyle: true,
+                pointStyle: "rect"
+              }
+            }
+          }
+        }
+      });
+    }
+
+    // Populate dropdown (Statewide first, then counties A->Z)
+    const select = document.getElementById("countySelect");
+    const keys = ["Statewide", ...Object.keys(data).filter(k => k !== "Statewide").sort()];
+    keys.forEach(k => {
+      const opt = document.createElement("option");
+      opt.value = k;
+      opt.text  = k;
+      select.appendChild(opt);
+    });
+    select.value = "Statewide";
+    select.addEventListener("change", () => renderChart(select.value));
+
+    renderChart("Statewide");
+  </script>
+</body>
+</html>
+</html>

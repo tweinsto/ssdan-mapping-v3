@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <title>Industry Distribution – Michigan</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+        canvas { max-width: 600px; height: 500px; }
+        select { padding: 0.5rem; font-size: 1rem; margin: 1rem; }
+        .legend { max-width: 600px; margin: 1rem auto; display: flex; flex-wrap: wrap; justify-content: center; font-size: 0.9rem; }
+        .legend-item { display: flex; align-items: center; margin: 0.3rem 1rem; }
+        .legend-color { width: 12px; height: 12px; margin-right: 6px; border: 1px solid #444; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Industry Distribution in Michigan</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Alcona County, Michigan">Alcona County, Michigan</option>
+      <option value="Alger County, Michigan">Alger County, Michigan</option>
+      <option value="Allegan County, Michigan">Allegan County, Michigan</option>
+      <option value="Alpena County, Michigan">Alpena County, Michigan</option>
+      <option value="Antrim County, Michigan">Antrim County, Michigan</option>
+      <option value="Arenac County, Michigan">Arenac County, Michigan</option>
+      <option value="Baraga County, Michigan">Baraga County, Michigan</option>
+      <option value="Barry County, Michigan">Barry County, Michigan</option>
+      <option value="Bay County, Michigan">Bay County, Michigan</option>
+      <option value="Benzie County, Michigan">Benzie County, Michigan</option>
+      <option value="Berrien County, Michigan">Berrien County, Michigan</option>
+      <option value="Branch County, Michigan">Branch County, Michigan</option>
+      <option value="Calhoun County, Michigan">Calhoun County, Michigan</option>
+      <option value="Cass County, Michigan">Cass County, Michigan</option>
+      <option value="Charlevoix County, Michigan">Charlevoix County, Michigan</option>
+      <option value="Cheboygan County, Michigan">Cheboygan County, Michigan</option>
+      <option value="Chippewa County, Michigan">Chippewa County, Michigan</option>
+      <option value="Clare County, Michigan">Clare County, Michigan</option>
+      <option value="Clinton County, Michigan">Clinton County, Michigan</option>
+      <option value="Crawford County, Michigan">Crawford County, Michigan</option>
+      <option value="Delta County, Michigan">Delta County, Michigan</option>
+      <option value="Dickinson County, Michigan">Dickinson County, Michigan</option>
+      <option value="Eaton County, Michigan">Eaton County, Michigan</option>
+      <option value="Emmet County, Michigan">Emmet County, Michigan</option>
+      <option value="Genesee County, Michigan">Genesee County, Michigan</option>
+      <option value="Gladwin County, Michigan">Gladwin County, Michigan</option>
+      <option value="Gogebic County, Michigan">Gogebic County, Michigan</option>
+      <option value="Grand Traverse County, Michigan">Grand Traverse County, Michigan</option>
+      <option value="Gratiot County, Michigan">Gratiot County, Michigan</option>
+      <option value="Hillsdale County, Michigan">Hillsdale County, Michigan</option>
+      <option value="Houghton County, Michigan">Houghton County, Michigan</option>
+      <option value="Huron County, Michigan">Huron County, Michigan</option>
+      <option value="Ingham County, Michigan">Ingham County, Michigan</option>
+      <option value="Ionia County, Michigan">Ionia County, Michigan</option>
+      <option value="Iosco County, Michigan">Iosco County, Michigan</option>
+      <option value="Iron County, Michigan">Iron County, Michigan</option>
+      <option value="Isabella County, Michigan">Isabella County, Michigan</option>
+      <option value="Jackson County, Michigan">Jackson County, Michigan</option>
+      <option value="Kalamazoo County, Michigan">Kalamazoo County, Michigan</option>
+      <option value="Kalkaska County, Michigan">Kalkaska County, Michigan</option>
+      <option value="Kent County, Michigan">Kent County, Michigan</option>
+      <option value="Keweenaw County, Michigan">Keweenaw County, Michigan</option>
+      <option value="Lake County, Michigan">Lake County, Michigan</option>
+      <option value="Lapeer County, Michigan">Lapeer County, Michigan</option>
+      <option value="Leelanau County, Michigan">Leelanau County, Michigan</option>
+      <option value="Lenawee County, Michigan">Lenawee County, Michigan</option>
+      <option value="Livingston County, Michigan">Livingston County, Michigan</option>
+      <option value="Luce County, Michigan">Luce County, Michigan</option>
+      <option value="Mackinac County, Michigan">Mackinac County, Michigan</option>
+      <option value="Macomb County, Michigan">Macomb County, Michigan</option>
+      <option value="Manistee County, Michigan">Manistee County, Michigan</option>
+      <option value="Marquette County, Michigan">Marquette County, Michigan</option>
+      <option value="Mason County, Michigan">Mason County, Michigan</option>
+      <option value="Mecosta County, Michigan">Mecosta County, Michigan</option>
+      <option value="Menominee County, Michigan">Menominee County, Michigan</option>
+      <option value="Midland County, Michigan">Midland County, Michigan</option>
+      <option value="Missaukee County, Michigan">Missaukee County, Michigan</option>
+      <option value="Monroe County, Michigan">Monroe County, Michigan</option>
+      <option value="Montcalm County, Michigan">Montcalm County, Michigan</option>
+      <option value="Montmorency County, Michigan">Montmorency County, Michigan</option>
+      <option value="Muskegon County, Michigan">Muskegon County, Michigan</option>
+      <option value="Newaygo County, Michigan">Newaygo County, Michigan</option>
+      <option value="Oakland County, Michigan">Oakland County, Michigan</option>
+      <option value="Oceana County, Michigan">Oceana County, Michigan</option>
+      <option value="Ogemaw County, Michigan">Ogemaw County, Michigan</option>
+      <option value="Ontonagon County, Michigan">Ontonagon County, Michigan</option>
+      <option value="Osceola County, Michigan">Osceola County, Michigan</option>
+      <option value="Oscoda County, Michigan">Oscoda County, Michigan</option>
+      <option value="Otsego County, Michigan">Otsego County, Michigan</option>
+      <option value="Ottawa County, Michigan">Ottawa County, Michigan</option>
+      <option value="Presque Isle County, Michigan">Presque Isle County, Michigan</option>
+      <option value="Roscommon County, Michigan">Roscommon County, Michigan</option>
+      <option value="Saginaw County, Michigan">Saginaw County, Michigan</option>
+      <option value="Sanilac County, Michigan">Sanilac County, Michigan</option>
+      <option value="Schoolcraft County, Michigan">Schoolcraft County, Michigan</option>
+      <option value="Shiawassee County, Michigan">Shiawassee County, Michigan</option>
+      <option value="St. Clair County, Michigan">St. Clair County, Michigan</option>
+      <option value="St. Joseph County, Michigan">St. Joseph County, Michigan</option>
+      <option value="Tuscola County, Michigan">Tuscola County, Michigan</option>
+      <option value="Van Buren County, Michigan">Van Buren County, Michigan</option>
+      <option value="Washtenaw County, Michigan">Washtenaw County, Michigan</option>
+      <option value="Wayne County, Michigan">Wayne County, Michigan</option>
+      <option value="Wexford County, Michigan">Wexford County, Michigan</option>
+    </select>
+    <canvas id="pieChart"></canvas>
+    <div class="legend">
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#66CC66;"></div>
+        <span>Agriculture, forestry, fishing, and hunting</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#996600;"></div>
+        <span>Mining</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FF6600;"></div>
+        <span>Utilities</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FFCC33;"></div>
+        <span>Construction</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FF0000;"></div>
+        <span>Manufacturing</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FF66FF;"></div>
+        <span>Wholesale trade</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#3399FF;"></div>
+        <span>Retail trade</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#00CC99;"></div>
+        <span>Transportation and warehousing</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#999966;"></div>
+        <span>Information</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#6666FF;"></div>
+        <span>Finance and insurance</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FF99CC;"></div>
+        <span>Professional, scientific, and technical services</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#66CCCC;"></div>
+        <span>Educational services</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FF9933;"></div>
+        <span>Healthcare and social assistance</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#CC99FF;"></div>
+        <span>Arts, entertainment, and recreation</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FF9999;"></div>
+        <span>Accommodation and food services</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#CCCC00;"></div>
+        <span>Other services</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#663300;"></div>
+        <span>Public administration</span>
+      </div>
+    </div>
+    <script>const data = [];
+const colors = ["#66CC66","#996600","#FF6600","#FFCC33","#FF0000","#FF66FF","#3399FF","#00CC99","#999966","#6666FF","#FF99CC","#66CCCC","#FF9933","#CC99FF","#FF9999","#CCCC00","#663300"];
+let chart;
+function renderChart(region) {
+  const ctx = document.getElementById("pieChart").getContext("2d");
+  const labels = Object.keys(data[region]);
+  const values = Object.values(data[region]);
+  const backgroundColors = labels.map(l => colors[l] || "#999");
+  if (chart) chart.destroy();
+  chart = new Chart(ctx, {
+    type: "pie",
+    data: {
+      labels: labels,
+      datasets: [{
+        data: values,
+        backgroundColor: backgroundColors
+      }]
+    },
+    options: {
+      plugins: {
+        tooltip: {
+          callbacks: {
+            label: ctx => ctx.label + ": " + ctx.raw + "%"
+          }
+        }
+      }
+    }
+  });
+}
+document.getElementById("countySelect").addEventListener("change", function() {
+  renderChart(this.value);
+});
+renderChart("Statewide");</script>
+  </body>
+</html>
+</html>

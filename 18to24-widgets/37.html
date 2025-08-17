@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Educational Enrollment – North Carolina</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Educational Enrollment (Age 18–24) in North Carolina</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Alamance County, North Carolina">Alamance County, North Carolina</option>
+      <option value="Alexander County, North Carolina">Alexander County, North Carolina</option>
+      <option value="Alleghany County, North Carolina">Alleghany County, North Carolina</option>
+      <option value="Anson County, North Carolina">Anson County, North Carolina</option>
+      <option value="Ashe County, North Carolina">Ashe County, North Carolina</option>
+      <option value="Avery County, North Carolina">Avery County, North Carolina</option>
+      <option value="Beaufort County, North Carolina">Beaufort County, North Carolina</option>
+      <option value="Bertie County, North Carolina">Bertie County, North Carolina</option>
+      <option value="Bladen County, North Carolina">Bladen County, North Carolina</option>
+      <option value="Brunswick County, North Carolina">Brunswick County, North Carolina</option>
+      <option value="Buncombe County, North Carolina">Buncombe County, North Carolina</option>
+      <option value="Burke County, North Carolina">Burke County, North Carolina</option>
+      <option value="Cabarrus County, North Carolina">Cabarrus County, North Carolina</option>
+      <option value="Caldwell County, North Carolina">Caldwell County, North Carolina</option>
+      <option value="Camden County, North Carolina">Camden County, North Carolina</option>
+      <option value="Carteret County, North Carolina">Carteret County, North Carolina</option>
+      <option value="Caswell County, North Carolina">Caswell County, North Carolina</option>
+      <option value="Catawba County, North Carolina">Catawba County, North Carolina</option>
+      <option value="Chatham County, North Carolina">Chatham County, North Carolina</option>
+      <option value="Cherokee County, North Carolina">Cherokee County, North Carolina</option>
+      <option value="Chowan County, North Carolina">Chowan County, North Carolina</option>
+      <option value="Clay County, North Carolina">Clay County, North Carolina</option>
+      <option value="Cleveland County, North Carolina">Cleveland County, North Carolina</option>
+      <option value="Columbus County, North Carolina">Columbus County, North Carolina</option>
+      <option value="Craven County, North Carolina">Craven County, North Carolina</option>
+      <option value="Cumberland County, North Carolina">Cumberland County, North Carolina</option>
+      <option value="Currituck County, North Carolina">Currituck County, North Carolina</option>
+      <option value="Dare County, North Carolina">Dare County, North Carolina</option>
+      <option value="Davidson County, North Carolina">Davidson County, North Carolina</option>
+      <option value="Davie County, North Carolina">Davie County, North Carolina</option>
+      <option value="Duplin County, North Carolina">Duplin County, North Carolina</option>
+      <option value="Durham County, North Carolina">Durham County, North Carolina</option>
+      <option value="Edgecombe County, North Carolina">Edgecombe County, North Carolina</option>
+      <option value="Forsyth County, North Carolina">Forsyth County, North Carolina</option>
+      <option value="Franklin County, North Carolina">Franklin County, North Carolina</option>
+      <option value="Gaston County, North Carolina">Gaston County, North Carolina</option>
+      <option value="Gates County, North Carolina">Gates County, North Carolina</option>
+      <option value="Graham County, North Carolina">Graham County, North Carolina</option>
+      <option value="Granville County, North Carolina">Granville County, North Carolina</option>
+      <option value="Greene County, North Carolina">Greene County, North Carolina</option>
+      <option value="Guilford County, North Carolina">Guilford County, North Carolina</option>
+      <option value="Halifax County, North Carolina">Halifax County, North Carolina</option>
+      <option value="Harnett County, North Carolina">Harnett County, North Carolina</option>
+      <option value="Haywood County, North Carolina">Haywood County, North Carolina</option>
+      <option value="Henderson County, North Carolina">Henderson County, North Carolina</option>
+      <option value="Hertford County, North Carolina">Hertford County, North Carolina</option>
+      <option value="Hoke County, North Carolina">Hoke County, North Carolina</option>
+      <option value="Hyde County, North Carolina">Hyde County, North Carolina</option>
+      <option value="Iredell County, North Carolina">Iredell County, North Carolina</option>
+      <option value="Jackson County, North Carolina">Jackson County, North Carolina</option>
+      <option value="Johnston County, North Carolina">Johnston County, North Carolina</option>
+      <option value="Jones County, North Carolina">Jones County, North Carolina</option>
+      <option value="Lee County, North Carolina">Lee County, North Carolina</option>
+      <option value="Lenoir County, North Carolina">Lenoir County, North Carolina</option>
+      <option value="Lincoln County, North Carolina">Lincoln County, North Carolina</option>
+      <option value="Macon County, North Carolina">Macon County, North Carolina</option>
+      <option value="Madison County, North Carolina">Madison County, North Carolina</option>
+      <option value="Martin County, North Carolina">Martin County, North Carolina</option>
+      <option value="McDowell County, North Carolina">McDowell County, North Carolina</option>
+      <option value="Mecklenburg County, North Carolina">Mecklenburg County, North Carolina</option>
+      <option value="Mitchell County, North Carolina">Mitchell County, North Carolina</option>
+      <option value="Montgomery County, North Carolina">Montgomery County, North Carolina</option>
+      <option value="Moore County, North Carolina">Moore County, North Carolina</option>
+      <option value="Nash County, North Carolina">Nash County, North Carolina</option>
+      <option value="New Hanover County, North Carolina">New Hanover County, North Carolina</option>
+      <option value="Northampton County, North Carolina">Northampton County, North Carolina</option>
+      <option value="Onslow County, North Carolina">Onslow County, North Carolina</option>
+      <option value="Orange County, North Carolina">Orange County, North Carolina</option>
+      <option value="Pamlico County, North Carolina">Pamlico County, North Carolina</option>
+      <option value="Pasquotank County, North Carolina">Pasquotank County, North Carolina</option>
+      <option value="Pender County, North Carolina">Pender County, North Carolina</option>
+      <option value="Perquimans County, North Carolina">Perquimans County, North Carolina</option>
+      <option value="Person County, North Carolina">Person County, North Carolina</option>
+      <option value="Pitt County, North Carolina">Pitt County, North Carolina</option>
+      <option value="Polk County, North Carolina">Polk County, North Carolina</option>
+      <option value="Randolph County, North Carolina">Randolph County, North Carolina</option>
+      <option value="Richmond County, North Carolina">Richmond County, North Carolina</option>
+      <option value="Robeson County, North Carolina">Robeson County, North Carolina</option>
+      <option value="Rockingham County, North Carolina">Rockingham County, North Carolina</option>
+      <option value="Rowan County, North Carolina">Rowan County, North Carolina</option>
+      <option value="Rutherford County, North Carolina">Rutherford County, North Carolina</option>
+      <option value="Sampson County, North Carolina">Sampson County, North Carolina</option>
+      <option value="Scotland County, North Carolina">Scotland County, North Carolina</option>
+      <option value="Stanly County, North Carolina">Stanly County, North Carolina</option>
+      <option value="Stokes County, North Carolina">Stokes County, North Carolina</option>
+      <option value="Surry County, North Carolina">Surry County, North Carolina</option>
+      <option value="Swain County, North Carolina">Swain County, North Carolina</option>
+      <option value="Transylvania County, North Carolina">Transylvania County, North Carolina</option>
+      <option value="Tyrrell County, North Carolina">Tyrrell County, North Carolina</option>
+      <option value="Union County, North Carolina">Union County, North Carolina</option>
+      <option value="Vance County, North Carolina">Vance County, North Carolina</option>
+      <option value="Wake County, North Carolina">Wake County, North Carolina</option>
+      <option value="Warren County, North Carolina">Warren County, North Carolina</option>
+      <option value="Washington County, North Carolina">Washington County, North Carolina</option>
+      <option value="Watauga County, North Carolina">Watauga County, North Carolina</option>
+      <option value="Wayne County, North Carolina">Wayne County, North Carolina</option>
+      <option value="Wilkes County, North Carolina">Wilkes County, North Carolina</option>
+      <option value="Wilson County, North Carolina">Wilson County, North Carolina</option>
+      <option value="Yadkin County, North Carolina">Yadkin County, North Carolina</option>
+      <option value="Yancey County, North Carolina">Yancey County, North Carolina</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>  const data = {"Statewide":{"Enrolled in College / Grad. School":39.3,"Not Enrolled":60.7},"Alamance County, North Carolina":{"Enrolled in College / Grad. School":47.9,"Not Enrolled":52.1},"Alexander County, North Carolina":{"Enrolled in College / Grad. School":26,"Not Enrolled":74},"Alleghany County, North Carolina":{"Enrolled in College / Grad. School":31,"Not Enrolled":69},"Anson County, North Carolina":{"Enrolled in College / Grad. School":26.4,"Not Enrolled":73.6},"Ashe County, North Carolina":{"Enrolled in College / Grad. School":18.1,"Not Enrolled":81.9},"Avery County, North Carolina":{"Enrolled in College / Grad. School":56.1,"Not Enrolled":43.9},"Beaufort County, North Carolina":{"Enrolled in College / Grad. School":24.7,"Not Enrolled":75.3},"Bertie County, North Carolina":{"Enrolled in College / Grad. School":14.4,"Not Enrolled":85.6},"Bladen County, North Carolina":{"Enrolled in College / Grad. School":16.6,"Not Enrolled":83.4},"Brunswick County, North Carolina":{"Enrolled in College / Grad. School":33.2,"Not Enrolled":66.8},"Buncombe County, North Carolina":{"Enrolled in College / Grad. School":36.3,"Not Enrolled":63.7},"Burke County, North Carolina":{"Enrolled in College / Grad. School":27.8,"Not Enrolled":72.2},"Cabarrus County, North Carolina":{"Enrolled in College / Grad. School":31.7,"Not Enrolled":68.3},"Caldwell County, North Carolina":{"Enrolled in College / Grad. School":22.5,"Not Enrolled":77.5},"Camden County, North Carolina":{"Enrolled in College / Grad. School":38.1,"Not Enrolled":61.9},"Carteret County, North Carolina":{"Enrolled in College / Grad. School":32.9,"Not Enrolled":67.1},"Caswell County, North Carolina":{"Enrolled in College / Grad. School":13.4,"Not Enrolled":86.6},"Catawba County, North Carolina":{"Enrolled in College / Grad. School":32.7,"Not Enrolled":67.3},"Chatham County, North Carolina":{"Enrolled in College / Grad. School":27,"Not Enrolled":73},"Cherokee County, North Carolina":{"Enrolled in College / Grad. School":29.3,"Not Enrolled":70.7},"Chowan County, North Carolina":{"Enrolled in College / Grad. School":16.2,"Not Enrolled":83.8},"Clay County, North Carolina":{"Enrolled in College / Grad. School":42.1,"Not Enrolled":57.9},"Cleveland County, North Carolina":{"Enrolled in College / Grad. School":35.2,"Not Enrolled":64.8},"Columbus County, North Carolina":{"Enrolled in College / Grad. School":25.9,"Not Enrolled":74.1},"Craven County, North Carolina":{"Enrolled in College / Grad. School":20.4,"Not Enrolled":79.6},"Cumberland County, North Carolina":{"Enrolled in College / Grad. School":27.8,"Not Enrolled":72.2},"Currituck County, North Carolina":{"Enrolled in College / Grad. School":31.8,"Not Enrolled":68.2},"Dare County, North Carolina":{"Enrolled in College / Grad. School":15.5,"Not Enrolled":84.5},"Davidson County, North Carolina":{"Enrolled in College / Grad. School":24,"Not Enrolled":76},"Davie County, North Carolina":{"Enrolled in College / Grad. School":30.4,"Not Enrolled":69.6},"Duplin County, North Carolina":{"Enrolled in College / Grad. School":35.3,"Not Enrolled":64.7},"Durham County, North Carolina":{"Enrolled in College / Grad. School":51.4,"Not Enrolled":48.6},"Edgecombe County, North Carolina":{"Enrolled in College / Grad. School":25.6,"Not Enrolled":74.4},"Forsyth County, North Carolina":{"Enrolled in College / Grad. School":44,"Not Enrolled":56},"Franklin County, North Carolina":{"Enrolled in College / Grad. School":32.7,"Not Enrolled":67.3},"Gaston County, North Carolina":{"Enrolled in College / Grad. School":30.4,"Not Enrolled":69.6},"Gates County, North Carolina":{"Enrolled in College / Grad. School":21,"Not Enrolled":79},"Graham County, North Carolina":{"Enrolled in College / Grad. School":37.3,"Not Enrolled":62.7},"Granville County, North Carolina":{"Enrolled in College / Grad. School":34.8,"Not Enrolled":65.2},"Greene County, North Carolina":{"Enrolled in College / Grad. School":17.1,"Not Enrolled":82.8},"Guilford County, North Carolina":{"Enrolled in College / Grad. School":54,"Not Enrolled":46},"Halifax County, North Carolina":{"Enrolled in College / Grad. School":16.2,"Not Enrolled":83.8},"Harnett County, North Carolina":{"Enrolled in College / Grad. School":40.3,"Not Enrolled":59.7},"Haywood County, North Carolina":{"Enrolled in College / Grad. School":28.3,"Not Enrolled":71.7},"Henderson County, North Carolina":{"Enrolled in College / Grad. School":27.3,"Not Enrolled":72.7},"Hertford County, North Carolina":{"Enrolled in College / Grad. School":52.6,"Not Enrolled":47.4},"Hoke County, North Carolina":{"Enrolled in College / Grad. School":29.1,"Not Enrolled":70.9},"Hyde County, North Carolina":{"Enrolled in College / Grad. School":12.3,"Not Enrolled":87.7},"Iredell County, North Carolina":{"Enrolled in College / Grad. School":30.2,"Not Enrolled":69.8},"Jackson County, North Carolina":{"Enrolled in College / Grad. School":77.1,"Not Enrolled":22.9},"Johnston County, North Carolina":{"Enrolled in College / Grad. School":36.5,"Not Enrolled":63.5},"Jones County, North Carolina":{"Enrolled in College / Grad. School":28.7,"Not Enrolled":71.3},"Lee County, North Carolina":{"Enrolled in College / Grad. School":29.6,"Not Enrolled":70.4},"Lenoir County, North Carolina":{"Enrolled in College / Grad. School":28.2,"Not Enrolled":71.8},"Lincoln County, North Carolina":{"Enrolled in College / Grad. School":26.6,"Not Enrolled":73.4},"McDowell County, North Carolina":{"Enrolled in College / Grad. School":29.1,"Not Enrolled":70.9},"Macon County, North Carolina":{"Enrolled in College / Grad. School":36.1,"Not Enrolled":63.9},"Madison County, North Carolina":{"Enrolled in College / Grad. School":52.7,"Not Enrolled":47.3},"Martin County, North Carolina":{"Enrolled in College / Grad. School":12.5,"Not Enrolled":87.5},"Mecklenburg County, North Carolina":{"Enrolled in College / Grad. School":37.8,"Not Enrolled":62.2},"Mitchell County, North Carolina":{"Enrolled in College / Grad. School":52.5,"Not Enrolled":47.5},"Montgomery County, North Carolina":{"Enrolled in College / Grad. School":30.1,"Not Enrolled":69.9},"Moore County, North Carolina":{"Enrolled in College / Grad. School":35.2,"Not Enrolled":64.8},"Nash County, North Carolina":{"Enrolled in College / Grad. School":31.5,"Not Enrolled":68.5},"New Hanover County, North Carolina":{"Enrolled in College / Grad. School":52.6,"Not Enrolled":47.4},"Northampton County, North Carolina":{"Enrolled in College / Grad. School":21.8,"Not Enrolled":78.2},"Onslow County, North Carolina":{"Enrolled in College / Grad. School":16.3,"Not Enrolled":83.7},"Orange County, North Carolina":{"Enrolled in College / Grad. School":79,"Not Enrolled":21},"Pamlico County, North Carolina":{"Enrolled in College / Grad. School":26.6,"Not Enrolled":73.4},"Pasquotank County, North Carolina":{"Enrolled in College / Grad. School":48.3,"Not Enrolled":51.7},"Pender County, North Carolina":{"Enrolled in College / Grad. School":31.1,"Not Enrolled":68.9},"Perquimans County, North Carolina":{"Enrolled in College / Grad. School":28.6,"Not Enrolled":71.4},"Person County, North Carolina":{"Enrolled in College / Grad. School":29.8,"Not Enrolled":70.2},"Pitt County, North Carolina":{"Enrolled in College / Grad. School":61.4,"Not Enrolled":38.6},"Polk County, North Carolina":{"Enrolled in College / Grad. School":27.1,"Not Enrolled":72.9},"Randolph County, North Carolina":{"Enrolled in College / Grad. School":26,"Not Enrolled":74},"Richmond County, North Carolina":{"Enrolled in College / Grad. School":23.4,"Not Enrolled":76.6},"Robeson County, North Carolina":{"Enrolled in College / Grad. School":37.8,"Not Enrolled":62.2},"Rockingham County, North Carolina":{"Enrolled in College / Grad. School":24.9,"Not Enrolled":75.1},"Rowan County, North Carolina":{"Enrolled in College / Grad. School":36.1,"Not Enrolled":63.9},"Rutherford County, North Carolina":{"Enrolled in College / Grad. School":25.7,"Not Enrolled":74.3},"Sampson County, North Carolina":{"Enrolled in College / Grad. School":28,"Not Enrolled":72},"Scotland County, North Carolina":{"Enrolled in College / Grad. School":31.1,"Not Enrolled":68.9},"Stanly County, North Carolina":{"Enrolled in College / Grad. School":31.7,"Not Enrolled":68.3},"Stokes County, North Carolina":{"Enrolled in College / Grad. School":20.7,"Not Enrolled":79.3},"Surry County, North Carolina":{"Enrolled in College / Grad. School":21.5,"Not Enrolled":78.5},"Swain County, North Carolina":{"Enrolled in College / Grad. School":19.5,"Not Enrolled":80.5},"Transylvania County, North Carolina":{"Enrolled in College / Grad. School":43.2,"Not Enrolled":56.8},"Tyrrell County, North Carolina":{"Enrolled in College / Grad. School":16.9,"Not Enrolled":83.1},"Union County, North Carolina":{"Enrolled in College / Grad. School":37,"Not Enrolled":63},"Vance County, North Carolina":{"Enrolled in College / Grad. School":27.5,"Not Enrolled":72.5},"Wake County, North Carolina":{"Enrolled in College / Grad. School":46.1,"Not Enrolled":53.9},"Warren County, North Carolina":{"Enrolled in College / Grad. School":34.2,"Not Enrolled":65.8},"Washington County, North Carolina":{"Enrolled in College / Grad. School":16.8,"Not Enrolled":83.2},"Watauga County, North Carolina":{"Enrolled in College / Grad. School":84.8,"Not Enrolled":15.2},"Wayne County, North Carolina":{"Enrolled in College / Grad. School":30.9,"Not Enrolled":69.1},"Wilkes County, North Carolina":{"Enrolled in College / Grad. School":32.2,"Not Enrolled":67.8},"Wilson County, North Carolina":{"Enrolled in College / Grad. School":23.2,"Not Enrolled":76.8},"Yadkin County, North Carolina":{"Enrolled in College / Grad. School":30.1,"Not Enrolled":69.9},"Yancey County, North Carolina":{"Enrolled in College / Grad. School":14.4,"Not Enrolled":85.6}};
+  const categories = ["Enrolled in College / Grad. School","Not Enrolled"];
+  const ctx = document.getElementById("barChart").getContext("2d");
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: categories,
+        datasets: [
+          {
+            label: "County/State",
+            data: values,
+            backgroundColor: ["#66c2a5", "#fc8d62"]
+          }
+        ]
+      },
+      options: {
+        indexAxis: "y",
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            ticks: {
+              callback: v => v + "%"
+            }
+          }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.dataset.label + ": " + ctx.raw + "%"
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById("countySelect").addEventListener("change", function() {
+    renderChart(Object.values(data[this.value]));
+  });
+
+  renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

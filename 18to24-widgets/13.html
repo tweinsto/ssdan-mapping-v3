@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Educational Enrollment – Georgia</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Educational Enrollment (Age 18–24) in Georgia</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Appling County, Georgia">Appling County, Georgia</option>
+      <option value="Atkinson County, Georgia">Atkinson County, Georgia</option>
+      <option value="Bacon County, Georgia">Bacon County, Georgia</option>
+      <option value="Baker County, Georgia">Baker County, Georgia</option>
+      <option value="Baldwin County, Georgia">Baldwin County, Georgia</option>
+      <option value="Banks County, Georgia">Banks County, Georgia</option>
+      <option value="Barrow County, Georgia">Barrow County, Georgia</option>
+      <option value="Bartow County, Georgia">Bartow County, Georgia</option>
+      <option value="Ben Hill County, Georgia">Ben Hill County, Georgia</option>
+      <option value="Berrien County, Georgia">Berrien County, Georgia</option>
+      <option value="Bibb County, Georgia">Bibb County, Georgia</option>
+      <option value="Bleckley County, Georgia">Bleckley County, Georgia</option>
+      <option value="Brantley County, Georgia">Brantley County, Georgia</option>
+      <option value="Brooks County, Georgia">Brooks County, Georgia</option>
+      <option value="Bryan County, Georgia">Bryan County, Georgia</option>
+      <option value="Bulloch County, Georgia">Bulloch County, Georgia</option>
+      <option value="Burke County, Georgia">Burke County, Georgia</option>
+      <option value="Butts County, Georgia">Butts County, Georgia</option>
+      <option value="Calhoun County, Georgia">Calhoun County, Georgia</option>
+      <option value="Camden County, Georgia">Camden County, Georgia</option>
+      <option value="Candler County, Georgia">Candler County, Georgia</option>
+      <option value="Carroll County, Georgia">Carroll County, Georgia</option>
+      <option value="Catoosa County, Georgia">Catoosa County, Georgia</option>
+      <option value="Charlton County, Georgia">Charlton County, Georgia</option>
+      <option value="Chatham County, Georgia">Chatham County, Georgia</option>
+      <option value="Chattahoochee County, Georgia">Chattahoochee County, Georgia</option>
+      <option value="Chattooga County, Georgia">Chattooga County, Georgia</option>
+      <option value="Cherokee County, Georgia">Cherokee County, Georgia</option>
+      <option value="Clarke County, Georgia">Clarke County, Georgia</option>
+      <option value="Clay County, Georgia">Clay County, Georgia</option>
+      <option value="Clayton County, Georgia">Clayton County, Georgia</option>
+      <option value="Clinch County, Georgia">Clinch County, Georgia</option>
+      <option value="Cobb County, Georgia">Cobb County, Georgia</option>
+      <option value="Coffee County, Georgia">Coffee County, Georgia</option>
+      <option value="Colquitt County, Georgia">Colquitt County, Georgia</option>
+      <option value="Columbia County, Georgia">Columbia County, Georgia</option>
+      <option value="Cook County, Georgia">Cook County, Georgia</option>
+      <option value="Coweta County, Georgia">Coweta County, Georgia</option>
+      <option value="Crawford County, Georgia">Crawford County, Georgia</option>
+      <option value="Crisp County, Georgia">Crisp County, Georgia</option>
+      <option value="Dade County, Georgia">Dade County, Georgia</option>
+      <option value="Dawson County, Georgia">Dawson County, Georgia</option>
+      <option value="Decatur County, Georgia">Decatur County, Georgia</option>
+      <option value="DeKalb County, Georgia">DeKalb County, Georgia</option>
+      <option value="Dodge County, Georgia">Dodge County, Georgia</option>
+      <option value="Dooly County, Georgia">Dooly County, Georgia</option>
+      <option value="Dougherty County, Georgia">Dougherty County, Georgia</option>
+      <option value="Douglas County, Georgia">Douglas County, Georgia</option>
+      <option value="Early County, Georgia">Early County, Georgia</option>
+      <option value="Echols County, Georgia">Echols County, Georgia</option>
+      <option value="Effingham County, Georgia">Effingham County, Georgia</option>
+      <option value="Elbert County, Georgia">Elbert County, Georgia</option>
+      <option value="Emanuel County, Georgia">Emanuel County, Georgia</option>
+      <option value="Evans County, Georgia">Evans County, Georgia</option>
+      <option value="Fannin County, Georgia">Fannin County, Georgia</option>
+      <option value="Fayette County, Georgia">Fayette County, Georgia</option>
+      <option value="Floyd County, Georgia">Floyd County, Georgia</option>
+      <option value="Forsyth County, Georgia">Forsyth County, Georgia</option>
+      <option value="Franklin County, Georgia">Franklin County, Georgia</option>
+      <option value="Fulton County, Georgia">Fulton County, Georgia</option>
+      <option value="Gilmer County, Georgia">Gilmer County, Georgia</option>
+      <option value="Glascock County, Georgia">Glascock County, Georgia</option>
+      <option value="Glynn County, Georgia">Glynn County, Georgia</option>
+      <option value="Gordon County, Georgia">Gordon County, Georgia</option>
+      <option value="Grady County, Georgia">Grady County, Georgia</option>
+      <option value="Greene County, Georgia">Greene County, Georgia</option>
+      <option value="Gwinnett County, Georgia">Gwinnett County, Georgia</option>
+      <option value="Habersham County, Georgia">Habersham County, Georgia</option>
+      <option value="Hall County, Georgia">Hall County, Georgia</option>
+      <option value="Hancock County, Georgia">Hancock County, Georgia</option>
+      <option value="Haralson County, Georgia">Haralson County, Georgia</option>
+      <option value="Harris County, Georgia">Harris County, Georgia</option>
+      <option value="Hart County, Georgia">Hart County, Georgia</option>
+      <option value="Heard County, Georgia">Heard County, Georgia</option>
+      <option value="Henry County, Georgia">Henry County, Georgia</option>
+      <option value="Houston County, Georgia">Houston County, Georgia</option>
+      <option value="Irwin County, Georgia">Irwin County, Georgia</option>
+      <option value="Jackson County, Georgia">Jackson County, Georgia</option>
+      <option value="Jasper County, Georgia">Jasper County, Georgia</option>
+      <option value="Jeff Davis County, Georgia">Jeff Davis County, Georgia</option>
+      <option value="Jefferson County, Georgia">Jefferson County, Georgia</option>
+      <option value="Jenkins County, Georgia">Jenkins County, Georgia</option>
+      <option value="Johnson County, Georgia">Johnson County, Georgia</option>
+      <option value="Jones County, Georgia">Jones County, Georgia</option>
+      <option value="Lamar County, Georgia">Lamar County, Georgia</option>
+      <option value="Lanier County, Georgia">Lanier County, Georgia</option>
+      <option value="Laurens County, Georgia">Laurens County, Georgia</option>
+      <option value="Lee County, Georgia">Lee County, Georgia</option>
+      <option value="Liberty County, Georgia">Liberty County, Georgia</option>
+      <option value="Lincoln County, Georgia">Lincoln County, Georgia</option>
+      <option value="Long County, Georgia">Long County, Georgia</option>
+      <option value="Lowndes County, Georgia">Lowndes County, Georgia</option>
+      <option value="Lumpkin County, Georgia">Lumpkin County, Georgia</option>
+      <option value="Macon County, Georgia">Macon County, Georgia</option>
+      <option value="Madison County, Georgia">Madison County, Georgia</option>
+      <option value="Marion County, Georgia">Marion County, Georgia</option>
+      <option value="McDuffie County, Georgia">McDuffie County, Georgia</option>
+      <option value="McIntosh County, Georgia">McIntosh County, Georgia</option>
+      <option value="Meriwether County, Georgia">Meriwether County, Georgia</option>
+      <option value="Miller County, Georgia">Miller County, Georgia</option>
+      <option value="Mitchell County, Georgia">Mitchell County, Georgia</option>
+      <option value="Monroe County, Georgia">Monroe County, Georgia</option>
+      <option value="Montgomery County, Georgia">Montgomery County, Georgia</option>
+      <option value="Morgan County, Georgia">Morgan County, Georgia</option>
+      <option value="Murray County, Georgia">Murray County, Georgia</option>
+      <option value="Muscogee County, Georgia">Muscogee County, Georgia</option>
+      <option value="Newton County, Georgia">Newton County, Georgia</option>
+      <option value="Oconee County, Georgia">Oconee County, Georgia</option>
+      <option value="Oglethorpe County, Georgia">Oglethorpe County, Georgia</option>
+      <option value="Paulding County, Georgia">Paulding County, Georgia</option>
+      <option value="Peach County, Georgia">Peach County, Georgia</option>
+      <option value="Pickens County, Georgia">Pickens County, Georgia</option>
+      <option value="Pierce County, Georgia">Pierce County, Georgia</option>
+      <option value="Pike County, Georgia">Pike County, Georgia</option>
+      <option value="Polk County, Georgia">Polk County, Georgia</option>
+      <option value="Pulaski County, Georgia">Pulaski County, Georgia</option>
+      <option value="Putnam County, Georgia">Putnam County, Georgia</option>
+      <option value="Quitman County, Georgia">Quitman County, Georgia</option>
+      <option value="Rabun County, Georgia">Rabun County, Georgia</option>
+      <option value="Randolph County, Georgia">Randolph County, Georgia</option>
+      <option value="Richmond County, Georgia">Richmond County, Georgia</option>
+      <option value="Rockdale County, Georgia">Rockdale County, Georgia</option>
+      <option value="Schley County, Georgia">Schley County, Georgia</option>
+      <option value="Screven County, Georgia">Screven County, Georgia</option>
+      <option value="Seminole County, Georgia">Seminole County, Georgia</option>
+      <option value="Spalding County, Georgia">Spalding County, Georgia</option>
+      <option value="Stephens County, Georgia">Stephens County, Georgia</option>
+      <option value="Stewart County, Georgia">Stewart County, Georgia</option>
+      <option value="Sumter County, Georgia">Sumter County, Georgia</option>
+      <option value="Talbot County, Georgia">Talbot County, Georgia</option>
+      <option value="Taliaferro County, Georgia">Taliaferro County, Georgia</option>
+      <option value="Tattnall County, Georgia">Tattnall County, Georgia</option>
+      <option value="Taylor County, Georgia">Taylor County, Georgia</option>
+      <option value="Telfair County, Georgia">Telfair County, Georgia</option>
+      <option value="Terrell County, Georgia">Terrell County, Georgia</option>
+      <option value="Thomas County, Georgia">Thomas County, Georgia</option>
+      <option value="Tift County, Georgia">Tift County, Georgia</option>
+      <option value="Toombs County, Georgia">Toombs County, Georgia</option>
+      <option value="Towns County, Georgia">Towns County, Georgia</option>
+      <option value="Treutlen County, Georgia">Treutlen County, Georgia</option>
+      <option value="Troup County, Georgia">Troup County, Georgia</option>
+      <option value="Turner County, Georgia">Turner County, Georgia</option>
+      <option value="Twiggs County, Georgia">Twiggs County, Georgia</option>
+      <option value="Union County, Georgia">Union County, Georgia</option>
+      <option value="Upson County, Georgia">Upson County, Georgia</option>
+      <option value="Walker County, Georgia">Walker County, Georgia</option>
+      <option value="Walton County, Georgia">Walton County, Georgia</option>
+      <option value="Ware County, Georgia">Ware County, Georgia</option>
+      <option value="Warren County, Georgia">Warren County, Georgia</option>
+      <option value="Washington County, Georgia">Washington County, Georgia</option>
+      <option value="Wayne County, Georgia">Wayne County, Georgia</option>
+      <option value="Webster County, Georgia">Webster County, Georgia</option>
+      <option value="Wheeler County, Georgia">Wheeler County, Georgia</option>
+      <option value="White County, Georgia">White County, Georgia</option>
+      <option value="Whitfield County, Georgia">Whitfield County, Georgia</option>
+      <option value="Wilcox County, Georgia">Wilcox County, Georgia</option>
+      <option value="Wilkes County, Georgia">Wilkes County, Georgia</option>
+      <option value="Wilkinson County, Georgia">Wilkinson County, Georgia</option>
+      <option value="Worth County, Georgia">Worth County, Georgia</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>  const data = {"Statewide":{"Enrolled in College / Grad. School":38.4,"Not Enrolled":61.6},"Appling County, Georgia":{"Enrolled in College / Grad. School":18.8,"Not Enrolled":81.2},"Atkinson County, Georgia":{"Enrolled in College / Grad. School":12.7,"Not Enrolled":87.3},"Bacon County, Georgia":{"Enrolled in College / Grad. School":34.9,"Not Enrolled":65.1},"Baker County, Georgia":{"Enrolled in College / Grad. School":0.8,"Not Enrolled":99.2},"Baldwin County, Georgia":{"Enrolled in College / Grad. School":62.6,"Not Enrolled":37.4},"Banks County, Georgia":{"Enrolled in College / Grad. School":26.9,"Not Enrolled":73.1},"Barrow County, Georgia":{"Enrolled in College / Grad. School":25.2,"Not Enrolled":74.8},"Bartow County, Georgia":{"Enrolled in College / Grad. School":28.7,"Not Enrolled":71.3},"Ben Hill County, Georgia":{"Enrolled in College / Grad. School":17.2,"Not Enrolled":82.8},"Berrien County, Georgia":{"Enrolled in College / Grad. School":20.9,"Not Enrolled":79.1},"Bibb County, Georgia":{"Enrolled in College / Grad. School":41.4,"Not Enrolled":58.6},"Bleckley County, Georgia":{"Enrolled in College / Grad. School":60.1,"Not Enrolled":39.9},"Brantley County, Georgia":{"Enrolled in College / Grad. School":14.6,"Not Enrolled":85.4},"Brooks County, Georgia":{"Enrolled in College / Grad. School":26.3,"Not Enrolled":73.7},"Bryan County, Georgia":{"Enrolled in College / Grad. School":26.7,"Not Enrolled":73.3},"Bulloch County, Georgia":{"Enrolled in College / Grad. School":76.5,"Not Enrolled":23.5},"Burke County, Georgia":{"Enrolled in College / Grad. School":26.4,"Not Enrolled":73.6},"Butts County, Georgia":{"Enrolled in College / Grad. School":12.6,"Not Enrolled":87.4},"Calhoun County, Georgia":{"Enrolled in College / Grad. School":19.5,"Not Enrolled":80.5},"Camden County, Georgia":{"Enrolled in College / Grad. School":12.1,"Not Enrolled":87.9},"Candler County, Georgia":{"Enrolled in College / Grad. School":15.5,"Not Enrolled":84.5},"Carroll County, Georgia":{"Enrolled in College / Grad. School":41.8,"Not Enrolled":58.2},"Catoosa County, Georgia":{"Enrolled in College / Grad. School":26.8,"Not Enrolled":73.2},"Charlton County, Georgia":{"Enrolled in College / Grad. School":16.6,"Not Enrolled":83.4},"Chatham County, Georgia":{"Enrolled in College / Grad. School":47.4,"Not Enrolled":52.6},"Chattahoochee County, Georgia":{"Enrolled in College / Grad. School":8.3,"Not Enrolled":91.7},"Chattooga County, Georgia":{"Enrolled in College / Grad. School":17.1,"Not Enrolled":82.9},"Cherokee County, Georgia":{"Enrolled in College / Grad. School":39,"Not Enrolled":61},"Clarke County, Georgia":{"Enrolled in College / Grad. School":81.8,"Not Enrolled":18.2},"Clay County, Georgia":{"Enrolled in College / Grad. School":25.3,"Not Enrolled":74.7},"Clayton County, Georgia":{"Enrolled in College / Grad. School":28.8,"Not Enrolled":71.2},"Clinch County, Georgia":{"Enrolled in College / Grad. School":20.7,"Not Enrolled":79.3},"Cobb County, Georgia":{"Enrolled in College / Grad. School":42.5,"Not Enrolled":57.5},"Coffee County, Georgia":{"Enrolled in College / Grad. School":30.2,"Not Enrolled":69.8},"Colquitt County, Georgia":{"Enrolled in College / Grad. School":18.1,"Not Enrolled":81.9},"Columbia County, Georgia":{"Enrolled in College / Grad. School":38.4,"Not Enrolled":61.6},"Cook County, Georgia":{"Enrolled in College / Grad. School":22.2,"Not Enrolled":77.8},"Coweta County, Georgia":{"Enrolled in College / Grad. School":34.6,"Not Enrolled":65.4},"Crawford County, Georgia":{"Enrolled in College / Grad. School":15,"Not Enrolled":85},"Crisp County, Georgia":{"Enrolled in College / Grad. School":11.4,"Not Enrolled":88.6},"Dade County, Georgia":{"Enrolled in College / Grad. School":73.6,"Not Enrolled":26.4},"Dawson County, Georgia":{"Enrolled in College / Grad. School":27.3,"Not Enrolled":72.7},"Decatur County, Georgia":{"Enrolled in College / Grad. School":18,"Not Enrolled":82},"DeKalb County, Georgia":{"Enrolled in College / Grad. School":40.4,"Not Enrolled":59.6},"Dodge County, Georgia":{"Enrolled in College / Grad. School":27.1,"Not Enrolled":72.9},"Dooly County, Georgia":{"Enrolled in College / Grad. School":15,"Not Enrolled":85},"Dougherty County, Georgia":{"Enrolled in College / Grad. School":43.3,"Not Enrolled":56.7},"Douglas County, Georgia":{"Enrolled in College / Grad. School":30,"Not Enrolled":70},"Early County, Georgia":{"Enrolled in College / Grad. School":17.6,"Not Enrolled":82.4},"Echols County, Georgia":{"Enrolled in College / Grad. School":31.3,"Not Enrolled":68.7},"Effingham County, Georgia":{"Enrolled in College / Grad. School":27.3,"Not Enrolled":72.7},"Elbert County, Georgia":{"Enrolled in College / Grad. School":21.2,"Not Enrolled":78.8},"Emanuel County, Georgia":{"Enrolled in College / Grad. School":24.7,"Not Enrolled":75.3},"Evans County, Georgia":{"Enrolled in College / Grad. School":32.3,"Not Enrolled":67.7},"Fannin County, Georgia":{"Enrolled in College / Grad. School":23.9,"Not Enrolled":76.1},"Fayette County, Georgia":{"Enrolled in College / Grad. School":41.2,"Not Enrolled":58.8},"Floyd County, Georgia":{"Enrolled in College / Grad. School":44.7,"Not Enrolled":55.3},"Forsyth County, Georgia":{"Enrolled in College / Grad. School":38.9,"Not Enrolled":61.1},"Franklin County, Georgia":{"Enrolled in College / Grad. School":33.9,"Not Enrolled":66.1},"Fulton County, Georgia":{"Enrolled in College / Grad. School":46.9,"Not Enrolled":53.1},"Gilmer County, Georgia":{"Enrolled in College / Grad. School":26.5,"Not Enrolled":73.5},"Glascock County, Georgia":{"Enrolled in College / Grad. School":38.2,"Not Enrolled":61.8},"Glynn County, Georgia":{"Enrolled in College / Grad. School":26.6,"Not Enrolled":73.4},"Gordon County, Georgia":{"Enrolled in College / Grad. School":25.4,"Not Enrolled":74.6},"Grady County, Georgia":{"Enrolled in College / Grad. School":30.9,"Not Enrolled":69.1},"Greene County, Georgia":{"Enrolled in College / Grad. School":29.4,"Not Enrolled":70.6},"Gwinnett County, Georgia":{"Enrolled in College / Grad. School":39.1,"Not Enrolled":60.9},"Habersham County, Georgia":{"Enrolled in College / Grad. School":42.1,"Not Enrolled":57.9},"Hall County, Georgia":{"Enrolled in College / Grad. School":30.7,"Not Enrolled":69.3},"Hancock County, Georgia":{"Enrolled in College / Grad. School":33.1,"Not Enrolled":66.9},"Haralson County, Georgia":{"Enrolled in College / Grad. School":24.3,"Not Enrolled":75.7},"Harris County, Georgia":{"Enrolled in College / Grad. School":35.6,"Not Enrolled":64.4},"Hart County, Georgia":{"Enrolled in College / Grad. School":32.3,"Not Enrolled":67.7},"Heard County, Georgia":{"Enrolled in College / Grad. School":30.4,"Not Enrolled":69.6},"Henry County, Georgia":{"Enrolled in College / Grad. School":33.6,"Not Enrolled":66.4},"Houston County, Georgia":{"Enrolled in College / Grad. School":32,"Not Enrolled":68},"Irwin County, Georgia":{"Enrolled in College / Grad. School":20.9,"Not Enrolled":79.1},"Jackson County, Georgia":{"Enrolled in College / Grad. School":31.3,"Not Enrolled":68.7},"Jasper County, Georgia":{"Enrolled in College / Grad. School":28,"Not Enrolled":72},"Jeff Davis County, Georgia":{"Enrolled in College / Grad. School":25,"Not Enrolled":75},"Jefferson County, Georgia":{"Enrolled in College / Grad. School":16.2,"Not Enrolled":83.8},"Jenkins County, Georgia":{"Enrolled in College / Grad. School":20.7,"Not Enrolled":79.3},"Johnson County, Georgia":{"Enrolled in College / Grad. School":22.7,"Not Enrolled":77.3},"Jones County, Georgia":{"Enrolled in College / Grad. School":31,"Not Enrolled":69},"Lamar County, Georgia":{"Enrolled in College / Grad. School":55.5,"Not Enrolled":44.5},"Lanier County, Georgia":{"Enrolled in College / Grad. School":22,"Not Enrolled":78},"Laurens County, Georgia":{"Enrolled in College / Grad. School":32.2,"Not Enrolled":67.8},"Lee County, Georgia":{"Enrolled in College / Grad. School":37.5,"Not Enrolled":62.5},"Liberty County, Georgia":{"Enrolled in College / Grad. School":13.1,"Not Enrolled":86.9},"Lincoln County, Georgia":{"Enrolled in College / Grad. School":42.9,"Not Enrolled":57.1},"Long County, Georgia":{"Enrolled in College / Grad. School":22.7,"Not Enrolled":77.3},"Lowndes County, Georgia":{"Enrolled in College / Grad. School":42.3,"Not Enrolled":57.7},"Lumpkin County, Georgia":{"Enrolled in College / Grad. School":70.8,"Not Enrolled":29.2},"McDuffie County, Georgia":{"Enrolled in College / Grad. School":23.9,"Not Enrolled":76.1},"McIntosh County, Georgia":{"Enrolled in College / Grad. School":21.8,"Not Enrolled":78.2},"Macon County, Georgia":{"Enrolled in College / Grad. School":19.2,"Not Enrolled":80.8},"Madison County, Georgia":{"Enrolled in College / Grad. School":19.1,"Not Enrolled":80.9},"Marion County, Georgia":{"Enrolled in College / Grad. School":27.7,"Not Enrolled":72.3},"Meriwether County, Georgia":{"Enrolled in College / Grad. School":24.1,"Not Enrolled":75.9},"Miller County, Georgia":{"Enrolled in College / Grad. School":19.8,"Not Enrolled":80.2},"Mitchell County, Georgia":{"Enrolled in College / Grad. School":24.7,"Not Enrolled":75.3},"Monroe County, Georgia":{"Enrolled in College / Grad. School":35.4,"Not Enrolled":64.6},"Montgomery County, Georgia":{"Enrolled in College / Grad. School":56.8,"Not Enrolled":43.2},"Morgan County, Georgia":{"Enrolled in College / Grad. School":24.1,"Not Enrolled":75.9},"Murray County, Georgia":{"Enrolled in College / Grad. School":32.1,"Not Enrolled":67.9},"Muscogee County, Georgia":{"Enrolled in College / Grad. School":30.7,"Not Enrolled":69.3},"Newton County, Georgia":{"Enrolled in College / Grad. School":30.1,"Not Enrolled":69.9},"Oconee County, Georgia":{"Enrolled in College / Grad. School":33.4,"Not Enrolled":66.6},"Oglethorpe County, Georgia":{"Enrolled in College / Grad. School":25.8,"Not Enrolled":74.2},"Paulding County, Georgia":{"Enrolled in College / Grad. School":31.4,"Not Enrolled":68.6},"Peach County, Georgia":{"Enrolled in College / Grad. School":58.5,"Not Enrolled":41.5},"Pickens County, Georgia":{"Enrolled in College / Grad. School":17.1,"Not Enrolled":82.9},"Pierce County, Georgia":{"Enrolled in College / Grad. School":28.8,"Not Enrolled":71.2},"Pike County, Georgia":{"Enrolled in College / Grad. School":23,"Not Enrolled":77},"Polk County, Georgia":{"Enrolled in College / Grad. School":41.1,"Not Enrolled":58.9},"Pulaski County, Georgia":{"Enrolled in College / Grad. School":26.8,"Not Enrolled":73.2},"Putnam County, Georgia":{"Enrolled in College / Grad. School":23,"Not Enrolled":77},"Quitman County, Georgia":{"Enrolled in College / Grad. School":3.2,"Not Enrolled":96.8},"Rabun County, Georgia":{"Enrolled in College / Grad. School":23.4,"Not Enrolled":76.6},"Randolph County, Georgia":{"Enrolled in College / Grad. School":46.6,"Not Enrolled":53.4},"Richmond County, Georgia":{"Enrolled in College / Grad. School":29.2,"Not Enrolled":70.8},"Rockdale County, Georgia":{"Enrolled in College / Grad. School":28.7,"Not Enrolled":71.3},"Schley County, Georgia":{"Enrolled in College / Grad. School":61.2,"Not Enrolled":38.8},"Screven County, Georgia":{"Enrolled in College / Grad. School":27.7,"Not Enrolled":72.3},"Seminole County, Georgia":{"Enrolled in College / Grad. School":15.1,"Not Enrolled":84.9},"Spalding County, Georgia":{"Enrolled in College / Grad. School":21.8,"Not Enrolled":78.2},"Stephens County, Georgia":{"Enrolled in College / Grad. School":39.7,"Not Enrolled":60.3},"Stewart County, Georgia":{"Enrolled in College / Grad. School":14,"Not Enrolled":86},"Sumter County, Georgia":{"Enrolled in College / Grad. School":54.4,"Not Enrolled":45.6},"Talbot County, Georgia":{"Enrolled in College / Grad. School":21.8,"Not Enrolled":78.2},"Taliaferro County, Georgia":{"Enrolled in College / Grad. School":11.8,"Not Enrolled":88.2},"Tattnall County, Georgia":{"Enrolled in College / Grad. School":24,"Not Enrolled":76},"Taylor County, Georgia":{"Enrolled in College / Grad. School":17.6,"Not Enrolled":82.4},"Telfair County, Georgia":{"Enrolled in College / Grad. School":29.2,"Not Enrolled":70.8},"Terrell County, Georgia":{"Enrolled in College / Grad. School":13.7,"Not Enrolled":86.3},"Thomas County, Georgia":{"Enrolled in College / Grad. School":21.3,"Not Enrolled":78.7},"Tift County, Georgia":{"Enrolled in College / Grad. School":43.5,"Not Enrolled":56.5},"Toombs County, Georgia":{"Enrolled in College / Grad. School":20.7,"Not Enrolled":79.3},"Towns County, Georgia":{"Enrolled in College / Grad. School":57.7,"Not Enrolled":42.3},"Treutlen County, Georgia":{"Enrolled in College / Grad. School":28.2,"Not Enrolled":71.8},"Troup County, Georgia":{"Enrolled in College / Grad. School":23.6,"Not Enrolled":76.4},"Turner County, Georgia":{"Enrolled in College / Grad. School":24.9,"Not Enrolled":75.1},"Twiggs County, Georgia":{"Enrolled in College / Grad. School":12.3,"Not Enrolled":87.7},"Union County, Georgia":{"Enrolled in College / Grad. School":20,"Not Enrolled":80},"Upson County, Georgia":{"Enrolled in College / Grad. School":30.6,"Not Enrolled":69.4},"Walker County, Georgia":{"Enrolled in College / Grad. School":33,"Not Enrolled":67},"Walton County, Georgia":{"Enrolled in College / Grad. School":25.1,"Not Enrolled":74.9},"Ware County, Georgia":{"Enrolled in College / Grad. School":15,"Not Enrolled":85},"Warren County, Georgia":{"Enrolled in College / Grad. School":23.5,"Not Enrolled":76.5},"Washington County, Georgia":{"Enrolled in College / Grad. School":18,"Not Enrolled":82},"Wayne County, Georgia":{"Enrolled in College / Grad. School":19.1,"Not Enrolled":80.9},"Webster County, Georgia":{"Enrolled in College / Grad. School":46.7,"Not Enrolled":53.3},"Wheeler County, Georgia":{"Enrolled in College / Grad. School":6.1,"Not Enrolled":93.9},"White County, Georgia":{"Enrolled in College / Grad. School":30.6,"Not Enrolled":69.4},"Whitfield County, Georgia":{"Enrolled in College / Grad. School":31.3,"Not Enrolled":68.7},"Wilcox County, Georgia":{"Enrolled in College / Grad. School":19.4,"Not Enrolled":80.6},"Wilkes County, Georgia":{"Enrolled in College / Grad. School":14.6,"Not Enrolled":85.4},"Wilkinson County, Georgia":{"Enrolled in College / Grad. School":30.3,"Not Enrolled":69.7},"Worth County, Georgia":{"Enrolled in College / Grad. School":38.8,"Not Enrolled":61.2}};
+  const categories = ["Enrolled in College / Grad. School","Not Enrolled"];
+  const ctx = document.getElementById("barChart").getContext("2d");
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: categories,
+        datasets: [
+          {
+            label: "County/State",
+            data: values,
+            backgroundColor: ["#66c2a5", "#fc8d62"]
+          }
+        ]
+      },
+      options: {
+        indexAxis: "y",
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            ticks: {
+              callback: v => v + "%"
+            }
+          }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.dataset.label + ": " + ctx.raw + "%"
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById("countySelect").addEventListener("change", function() {
+    renderChart(Object.values(data[this.value]));
+  });
+
+  renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

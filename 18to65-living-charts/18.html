@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Living Arrangements 18–64 – Indiana</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+      body { font-family: sans-serif; margin: 1.25rem 2rem; text-align: center; }
+      h2 { margin-bottom: .25rem; font-size: 1.6rem; color: #2c348b; }
+      label { margin-right: .5rem; }
+      select { padding: .45rem .6rem; font-size: 1rem; border-radius: .5rem; border: 2px solid #f39c12; }
+      canvas { width: 100%; max-width: 900px; height: 520px; }
+    </style>
+</head>
+<html>
+  <body>
+    <h2>Living Arrangements of Adults 18–64 in Indiana</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Adams County, Indiana">Adams County, Indiana</option>
+      <option value="Allen County, Indiana">Allen County, Indiana</option>
+      <option value="Bartholomew County, Indiana">Bartholomew County, Indiana</option>
+      <option value="Benton County, Indiana">Benton County, Indiana</option>
+      <option value="Blackford County, Indiana">Blackford County, Indiana</option>
+      <option value="Boone County, Indiana">Boone County, Indiana</option>
+      <option value="Brown County, Indiana">Brown County, Indiana</option>
+      <option value="Carroll County, Indiana">Carroll County, Indiana</option>
+      <option value="Cass County, Indiana">Cass County, Indiana</option>
+      <option value="Clark County, Indiana">Clark County, Indiana</option>
+      <option value="Clay County, Indiana">Clay County, Indiana</option>
+      <option value="Clinton County, Indiana">Clinton County, Indiana</option>
+      <option value="Crawford County, Indiana">Crawford County, Indiana</option>
+      <option value="Daviess County, Indiana">Daviess County, Indiana</option>
+      <option value="DeKalb County, Indiana">DeKalb County, Indiana</option>
+      <option value="Dearborn County, Indiana">Dearborn County, Indiana</option>
+      <option value="Decatur County, Indiana">Decatur County, Indiana</option>
+      <option value="Delaware County, Indiana">Delaware County, Indiana</option>
+      <option value="Dubois County, Indiana">Dubois County, Indiana</option>
+      <option value="Elkhart County, Indiana">Elkhart County, Indiana</option>
+      <option value="Fayette County, Indiana">Fayette County, Indiana</option>
+      <option value="Floyd County, Indiana">Floyd County, Indiana</option>
+      <option value="Fountain County, Indiana">Fountain County, Indiana</option>
+      <option value="Franklin County, Indiana">Franklin County, Indiana</option>
+      <option value="Fulton County, Indiana">Fulton County, Indiana</option>
+      <option value="Gibson County, Indiana">Gibson County, Indiana</option>
+      <option value="Grant County, Indiana">Grant County, Indiana</option>
+      <option value="Greene County, Indiana">Greene County, Indiana</option>
+      <option value="Hamilton County, Indiana">Hamilton County, Indiana</option>
+      <option value="Hancock County, Indiana">Hancock County, Indiana</option>
+      <option value="Harrison County, Indiana">Harrison County, Indiana</option>
+      <option value="Hendricks County, Indiana">Hendricks County, Indiana</option>
+      <option value="Henry County, Indiana">Henry County, Indiana</option>
+      <option value="Howard County, Indiana">Howard County, Indiana</option>
+      <option value="Huntington County, Indiana">Huntington County, Indiana</option>
+      <option value="Jackson County, Indiana">Jackson County, Indiana</option>
+      <option value="Jasper County, Indiana">Jasper County, Indiana</option>
+      <option value="Jay County, Indiana">Jay County, Indiana</option>
+      <option value="Jefferson County, Indiana">Jefferson County, Indiana</option>
+      <option value="Jennings County, Indiana">Jennings County, Indiana</option>
+      <option value="Johnson County, Indiana">Johnson County, Indiana</option>
+      <option value="Knox County, Indiana">Knox County, Indiana</option>
+      <option value="Kosciusko County, Indiana">Kosciusko County, Indiana</option>
+      <option value="LaGrange County, Indiana">LaGrange County, Indiana</option>
+      <option value="LaPorte County, Indiana">LaPorte County, Indiana</option>
+      <option value="Lake County, Indiana">Lake County, Indiana</option>
+      <option value="Lawrence County, Indiana">Lawrence County, Indiana</option>
+      <option value="Madison County, Indiana">Madison County, Indiana</option>
+      <option value="Marion County, Indiana">Marion County, Indiana</option>
+      <option value="Marshall County, Indiana">Marshall County, Indiana</option>
+      <option value="Martin County, Indiana">Martin County, Indiana</option>
+      <option value="Miami County, Indiana">Miami County, Indiana</option>
+      <option value="Monroe County, Indiana">Monroe County, Indiana</option>
+      <option value="Montgomery County, Indiana">Montgomery County, Indiana</option>
+      <option value="Morgan County, Indiana">Morgan County, Indiana</option>
+      <option value="Newton County, Indiana">Newton County, Indiana</option>
+      <option value="Noble County, Indiana">Noble County, Indiana</option>
+      <option value="Ohio County, Indiana">Ohio County, Indiana</option>
+      <option value="Orange County, Indiana">Orange County, Indiana</option>
+      <option value="Owen County, Indiana">Owen County, Indiana</option>
+      <option value="Parke County, Indiana">Parke County, Indiana</option>
+      <option value="Perry County, Indiana">Perry County, Indiana</option>
+      <option value="Pike County, Indiana">Pike County, Indiana</option>
+      <option value="Porter County, Indiana">Porter County, Indiana</option>
+      <option value="Posey County, Indiana">Posey County, Indiana</option>
+      <option value="Pulaski County, Indiana">Pulaski County, Indiana</option>
+      <option value="Putnam County, Indiana">Putnam County, Indiana</option>
+      <option value="Randolph County, Indiana">Randolph County, Indiana</option>
+      <option value="Ripley County, Indiana">Ripley County, Indiana</option>
+      <option value="Rush County, Indiana">Rush County, Indiana</option>
+      <option value="Scott County, Indiana">Scott County, Indiana</option>
+      <option value="Shelby County, Indiana">Shelby County, Indiana</option>
+      <option value="Spencer County, Indiana">Spencer County, Indiana</option>
+      <option value="St. Joseph County, Indiana">St. Joseph County, Indiana</option>
+      <option value="Starke County, Indiana">Starke County, Indiana</option>
+      <option value="Steuben County, Indiana">Steuben County, Indiana</option>
+      <option value="Sullivan County, Indiana">Sullivan County, Indiana</option>
+      <option value="Switzerland County, Indiana">Switzerland County, Indiana</option>
+      <option value="Tippecanoe County, Indiana">Tippecanoe County, Indiana</option>
+      <option value="Tipton County, Indiana">Tipton County, Indiana</option>
+      <option value="Union County, Indiana">Union County, Indiana</option>
+      <option value="Vanderburgh County, Indiana">Vanderburgh County, Indiana</option>
+      <option value="Vermillion County, Indiana">Vermillion County, Indiana</option>
+      <option value="Vigo County, Indiana">Vigo County, Indiana</option>
+      <option value="Wabash County, Indiana">Wabash County, Indiana</option>
+      <option value="Warren County, Indiana">Warren County, Indiana</option>
+      <option value="Warrick County, Indiana">Warrick County, Indiana</option>
+      <option value="Washington County, Indiana">Washington County, Indiana</option>
+      <option value="Wayne County, Indiana">Wayne County, Indiana</option>
+      <option value="Wells County, Indiana">Wells County, Indiana</option>
+      <option value="White County, Indiana">White County, Indiana</option>
+      <option value="Whitley County, Indiana">Whitley County, Indiana</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>document.addEventListener("DOMContentLoaded", function () {
+  const data = {"Statewide":[12,13,4.9,11.3,49.2,9.5],"Adams County, Indiana":[8.8,16.5,1.9,6.3,57.3,9.2],"Allen County, Indiana":[13.2,11.8,4.6,11.6,48.8,10],"Bartholomew County, Indiana":[12,11.2,6.3,10.9,51.2,8.4],"Benton County, Indiana":[12.3,15.1,2.1,9.9,51.4,9.1],"Blackford County, Indiana":[14.7,13,2.3,10.6,50.9,8.5],"Boone County, Indiana":[9.1,10.5,1.8,8.8,62.6,7.2],"Brown County, Indiana":[8.8,12.4,2.2,8.7,62,5.9],"Carroll County, Indiana":[10.2,16,2.9,6,53.3,11.6],"Cass County, Indiana":[11.9,13.5,5.3,12.1,46.8,10.3],"Clark County, Indiana":[11.8,13.9,3.9,12.4,48,10],"Clay County, Indiana":[8,11.8,3.3,13.6,55,8.4],"Clinton County, Indiana":[11.6,11.9,3.8,11,50.7,11],"Crawford County, Indiana":[15,10,2.8,7.8,54,10.3],"Daviess County, Indiana":[7.7,12.5,4.7,8,61.6,5.5],"DeKalb County, Indiana":[8.7,13.1,2.6,10.1,56.3,9.2],"Dearborn County, Indiana":[7.9,14.6,4.3,7.8,58.1,7.3],"Decatur County, Indiana":[10.4,11.7,2.6,7.4,55.7,12.2],"Delaware County, Indiana":[13.1,10.3,12.7,11.7,40,12.3],"Dubois County, Indiana":[12,10.2,3.2,7.2,57,10.3],"Elkhart County, Indiana":[10.3,17.8,4.6,12,48.6,6.7],"Fayette County, Indiana":[12.5,14.3,5.2,13.1,45.2,9.8],"Floyd County, Indiana":[11.6,16.2,3.3,11.7,48.7,8.4],"Fountain County, Indiana":[9.4,14.2,1.8,9.4,55.8,9.4],"Franklin County, Indiana":[8,15.1,2,9.9,56.1,8.8],"Fulton County, Indiana":[10.3,14.3,2.6,13.3,47.7,11.7],"Gibson County, Indiana":[10.5,10.4,3.2,11.7,54,10.2],"Grant County, Indiana":[14,10.2,4.7,11.8,46.1,13.2],"Greene County, Indiana":[10.9,12.9,3,13.7,49.4,10.1],"Hamilton County, Indiana":[8,12.5,2.6,7,64.2,5.7],"Hancock County, Indiana":[8.2,11.9,2,8.6,60.5,8.7],"Harrison County, Indiana":[9.7,15.7,2.5,10.3,53.4,8.4],"Hendricks County, Indiana":[7.3,13.2,2.6,9,59.6,8.3],"Henry County, Indiana":[12,15.9,4.8,11.9,47.2,8.2],"Howard County, Indiana":[12.2,13.9,3.5,13.9,45,11.5],"Huntington County, Indiana":[10.9,10.8,4.7,9.8,53.1,10.7],"Jackson County, Indiana":[9.5,11.9,3,10.6,53.8,11.4],"Jasper County, Indiana":[8.9,16.3,3.2,9.9,53.5,8.2],"Jay County, Indiana":[12.4,14.1,1.7,11.3,48.2,12.3],"Jefferson County, Indiana":[11.9,16,5.9,13.4,43.1,9.7],"Jennings County, Indiana":[8.1,11.1,3.1,13,47.9,16.9],"Johnson County, Indiana":[8.4,12.4,3.5,10,55.8,9.9],"Knox County, Indiana":[14.3,10.7,2.8,9.9,52,10.3],"Kosciusko County, Indiana":[10.7,11.9,4.5,8.9,55.4,8.6],"LaGrange County, Indiana":[5.3,18.1,1.8,8.6,61.3,5],"LaPorte County, Indiana":[10.6,14.6,4.1,12.4,46.2,12.1],"Lake County, Indiana":[11.2,18.9,3.6,15.4,42.6,8.4],"Lawrence County, Indiana":[12.8,12.1,3.6,9.8,52.2,9.5],"Madison County, Indiana":[11.5,13.4,3.9,15.2,45.8,10.1],"Marion County, Indiana":[17.3,12.2,6.1,14.4,39.8,10.1],"Marshall County, Indiana":[10.3,17.4,2.2,8.3,52.8,9.1],"Martin County, Indiana":[14,15.9,3.9,11,47.8,7.3],"Miami County, Indiana":[9.9,15.4,4.3,10.6,50.8,9],"Monroe County, Indiana":[18,6.5,17.8,7.6,38.2,11.9],"Montgomery County, Indiana":[11.8,9.6,3.2,8,57,10.5],"Morgan County, Indiana":[7.4,15.2,3.1,10.3,56.4,7.6],"Newton County, Indiana":[10.4,14.9,4.3,10.6,49.1,10.7],"Noble County, Indiana":[9.5,14.9,2.3,10.4,54.4,8.5],"Ohio County, Indiana":[11.2,11.8,2.7,12.9,50.7,10.8],"Orange County, Indiana":[9.2,12.6,3.3,11.3,52.1,11.5],"Owen County, Indiana":[10.2,15.2,2.1,13.3,50.5,8.8],"Parke County, Indiana":[8.6,14.1,2.3,8.5,56.3,10.2],"Perry County, Indiana":[13.8,11,1.7,8.8,53.3,11.4],"Pike County, Indiana":[10.4,12.3,3.2,5.3,56.8,12.1],"Porter County, Indiana":[10.1,14,3.5,8.7,53.5,10.2],"Posey County, Indiana":[9,9.6,2.8,8.5,62.9,7.2],"Pulaski County, Indiana":[11.3,18.2,4,12.8,45.2,8.5],"Putnam County, Indiana":[11.3,9.1,3.7,6,59.8,10.1],"Randolph County, Indiana":[10.3,11.8,3.8,11.4,51.8,10.9],"Ripley County, Indiana":[8.7,13.3,1.7,10.2,55.6,10.5],"Rush County, Indiana":[8.7,11.6,3.8,8.6,54.6,12.7],"Scott County, Indiana":[13.1,12.6,6.6,12.9,45.6,9.1],"Shelby County, Indiana":[9.8,11,3.3,8.3,57.1,10.4],"Spencer County, Indiana":[9.4,13.9,2.5,8.3,58.8,7.2],"St. Joseph County, Indiana":[13.3,13.7,6.1,12.4,44.5,9.9],"Starke County, Indiana":[10.4,17.5,6.8,9.5,45.3,10.5],"Steuben County, Indiana":[9.7,11.6,4.4,7.8,54.8,11.7],"Sullivan County, Indiana":[10.3,12.9,3.2,11,51.5,11.1],"Switzerland County, Indiana":[8.7,13.6,4.1,16.5,44,13.2],"Tippecanoe County, Indiana":[15.3,7.3,16.3,7.6,43.4,10.1],"Tipton County, Indiana":[7,10.7,2.7,7.3,65,7.3],"Union County, Indiana":[9.3,15.9,1.8,8.6,59,5.4],"Vanderburgh County, Indiana":[14.5,10.1,5.1,12.9,46.2,11.2],"Vermillion County, Indiana":[10.1,9.7,1.7,9.9,56.6,12],"Vigo County, Indiana":[15.6,11.5,9.1,12.3,40.1,11.5],"Wabash County, Indiana":[12.4,11,2.9,9.3,55.3,9.1],"Warren County, Indiana":[9.4,11.1,3.9,9.4,57.5,8.6],"Warrick County, Indiana":[8.7,14.1,2.1,8.2,60.7,6.3],"Washington County, Indiana":[8,13.1,3.5,13.9,52.2,9.2],"Wayne County, Indiana":[11.7,13.1,3.7,12.3,48.8,10.3],"Wells County, Indiana":[11.3,11.3,1.7,9,59.2,7.6],"White County, Indiana":[11,13.5,4.3,9.6,50.3,11.4],"Whitley County, Indiana":[10,12.3,3.3,8.7,56.3,9.3]};
+  const cats = ["lives_alone_18_64","with_child_18_64","with_nonrel_18_64","with_other_rel_18_64","with_spouse_only_18_64","with_unmar_partner_18_64"];
+
+  const ORDER = [
+    "Lives alone",
+    "With child",
+    "With nonrelatives",
+    "With other relatives",
+    "With spouse only",
+    "With unmarried partner"
+  ];
+
+  const PRETTY_TO_SNAKE = {
+    "Lives alone":            "lives_alone_18_64",
+    "With child":             "with_child_18_64",
+    "With nonrelatives":      "with_nonrel_18_64",
+    "With other relatives":   "with_other_rel_18_64",
+    "With spouse only":       "with_spouse_only_18_64",
+    "With unmarried partner": "with_unmar_partner_18_64"
+  };
+
+  const COLOR_BY_CAT = {
+    "Lives alone":            "#e41a1c",
+    "With child":             "#ff7f00",
+    "With nonrelatives":      "#4daf4a",
+    "With other relatives":   "#984ea3",
+    "With spouse only":       "#377eb8",
+    "With unmarried partner": "#a65628"
+  };
+
+  // snake key → array index
+  const keyToIndex = Object.fromEntries((cats || []).map((k, i) => [String(k), i]));
+
+  function valuesFor(name) {
+    const row = data?.[name] || [];
+    return ORDER.map(lbl => {
+      const idx = keyToIndex[PRETTY_TO_SNAKE[lbl]];
+      const v = (idx != null && idx >= 0) ? row[idx] : 0;
+      return (typeof v === "number") ? v : Number(v) || 0;
+    });
+  }
+
+  const canvas = document.getElementById("barChart");
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+  let chart;
+
+  function renderChart(name) {
+    const vals = valuesFor(name);
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: ORDER,
+        datasets: [{
+          data: vals,
+          backgroundColor: ORDER.map(c => COLOR_BY_CAT[c]),
+          borderWidth: 0
+        }]
+      },
+      options: {
+        indexAxis: "y",
+        plugins: {
+          legend: { display: false },
+          tooltip: { callbacks: { label: (c) => c.raw + "%" } }
+        },
+        scales: {
+          x: { min: 0, max: 100, ticks: { callback: v => v + "%" } }
+        }
+      }
+    });
+  }
+
+  const DEFAULT_NAME = (data && Object.prototype.hasOwnProperty.call(data, "Statewide"))
+    ? "Statewide" : Object.keys(data || {})[0];
+
+  const sel = document.getElementById("countySelect");
+  if (sel) sel.addEventListener("change", e => renderChart(e.target.value));
+  if (DEFAULT_NAME) renderChart(DEFAULT_NAME);
+});</script>
+  </body>
+</html>
+</html>

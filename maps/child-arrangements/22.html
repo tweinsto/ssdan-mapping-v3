@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Living Arrangements of Children – Louisiana</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Children’s Living Arrangements (Under 18) – Louisiana</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Acadia Parish, Louisiana">Acadia Parish, Louisiana</option>
+      <option value="Allen Parish, Louisiana">Allen Parish, Louisiana</option>
+      <option value="Ascension Parish, Louisiana">Ascension Parish, Louisiana</option>
+      <option value="Assumption Parish, Louisiana">Assumption Parish, Louisiana</option>
+      <option value="Avoyelles Parish, Louisiana">Avoyelles Parish, Louisiana</option>
+      <option value="Beauregard Parish, Louisiana">Beauregard Parish, Louisiana</option>
+      <option value="Bienville Parish, Louisiana">Bienville Parish, Louisiana</option>
+      <option value="Bossier Parish, Louisiana">Bossier Parish, Louisiana</option>
+      <option value="Caddo Parish, Louisiana">Caddo Parish, Louisiana</option>
+      <option value="Calcasieu Parish, Louisiana">Calcasieu Parish, Louisiana</option>
+      <option value="Caldwell Parish, Louisiana">Caldwell Parish, Louisiana</option>
+      <option value="Cameron Parish, Louisiana">Cameron Parish, Louisiana</option>
+      <option value="Catahoula Parish, Louisiana">Catahoula Parish, Louisiana</option>
+      <option value="Claiborne Parish, Louisiana">Claiborne Parish, Louisiana</option>
+      <option value="Concordia Parish, Louisiana">Concordia Parish, Louisiana</option>
+      <option value="De Soto Parish, Louisiana">De Soto Parish, Louisiana</option>
+      <option value="East Baton Rouge Parish, Louisiana">East Baton Rouge Parish, Louisiana</option>
+      <option value="East Carroll Parish, Louisiana">East Carroll Parish, Louisiana</option>
+      <option value="East Feliciana Parish, Louisiana">East Feliciana Parish, Louisiana</option>
+      <option value="Evangeline Parish, Louisiana">Evangeline Parish, Louisiana</option>
+      <option value="Franklin Parish, Louisiana">Franklin Parish, Louisiana</option>
+      <option value="Grant Parish, Louisiana">Grant Parish, Louisiana</option>
+      <option value="Iberia Parish, Louisiana">Iberia Parish, Louisiana</option>
+      <option value="Iberville Parish, Louisiana">Iberville Parish, Louisiana</option>
+      <option value="Jackson Parish, Louisiana">Jackson Parish, Louisiana</option>
+      <option value="Jefferson Davis Parish, Louisiana">Jefferson Davis Parish, Louisiana</option>
+      <option value="Jefferson Parish, Louisiana">Jefferson Parish, Louisiana</option>
+      <option value="Lafayette Parish, Louisiana">Lafayette Parish, Louisiana</option>
+      <option value="Lafourche Parish, Louisiana">Lafourche Parish, Louisiana</option>
+      <option value="LaSalle Parish, Louisiana">LaSalle Parish, Louisiana</option>
+      <option value="Lincoln Parish, Louisiana">Lincoln Parish, Louisiana</option>
+      <option value="Livingston Parish, Louisiana">Livingston Parish, Louisiana</option>
+      <option value="Madison Parish, Louisiana">Madison Parish, Louisiana</option>
+      <option value="Morehouse Parish, Louisiana">Morehouse Parish, Louisiana</option>
+      <option value="Natchitoches Parish, Louisiana">Natchitoches Parish, Louisiana</option>
+      <option value="Orleans Parish, Louisiana">Orleans Parish, Louisiana</option>
+      <option value="Ouachita Parish, Louisiana">Ouachita Parish, Louisiana</option>
+      <option value="Plaquemines Parish, Louisiana">Plaquemines Parish, Louisiana</option>
+      <option value="Pointe Coupee Parish, Louisiana">Pointe Coupee Parish, Louisiana</option>
+      <option value="Rapides Parish, Louisiana">Rapides Parish, Louisiana</option>
+      <option value="Red River Parish, Louisiana">Red River Parish, Louisiana</option>
+      <option value="Richland Parish, Louisiana">Richland Parish, Louisiana</option>
+      <option value="Sabine Parish, Louisiana">Sabine Parish, Louisiana</option>
+      <option value="St. Bernard Parish, Louisiana">St. Bernard Parish, Louisiana</option>
+      <option value="St. Charles Parish, Louisiana">St. Charles Parish, Louisiana</option>
+      <option value="St. Helena Parish, Louisiana">St. Helena Parish, Louisiana</option>
+      <option value="St. James Parish, Louisiana">St. James Parish, Louisiana</option>
+      <option value="St. John the Baptist Parish, Louisiana">St. John the Baptist Parish, Louisiana</option>
+      <option value="St. Landry Parish, Louisiana">St. Landry Parish, Louisiana</option>
+      <option value="St. Martin Parish, Louisiana">St. Martin Parish, Louisiana</option>
+      <option value="St. Mary Parish, Louisiana">St. Mary Parish, Louisiana</option>
+      <option value="St. Tammany Parish, Louisiana">St. Tammany Parish, Louisiana</option>
+      <option value="Tangipahoa Parish, Louisiana">Tangipahoa Parish, Louisiana</option>
+      <option value="Tensas Parish, Louisiana">Tensas Parish, Louisiana</option>
+      <option value="Terrebonne Parish, Louisiana">Terrebonne Parish, Louisiana</option>
+      <option value="Union Parish, Louisiana">Union Parish, Louisiana</option>
+      <option value="Vermilion Parish, Louisiana">Vermilion Parish, Louisiana</option>
+      <option value="Vernon Parish, Louisiana">Vernon Parish, Louisiana</option>
+      <option value="Washington Parish, Louisiana">Washington Parish, Louisiana</option>
+      <option value="Webster Parish, Louisiana">Webster Parish, Louisiana</option>
+      <option value="West Baton Rouge Parish, Louisiana">West Baton Rouge Parish, Louisiana</option>
+      <option value="West Carroll Parish, Louisiana">West Carroll Parish, Louisiana</option>
+      <option value="West Feliciana Parish, Louisiana">West Feliciana Parish, Louisiana</option>
+      <option value="Winn Parish, Louisiana">Winn Parish, Louisiana</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>  const data = {"Statewide":{"Married Couple (%)":56.3,"Cohabiting Couple (%)":9.2,"Male Householder (%)":4.7,"Female Householder (%)":29.7},"Acadia Parish, Louisiana":{"Married Couple (%)":58.9,"Cohabiting Couple (%)":8.8,"Male Householder (%)":4.6,"Female Householder (%)":27.6},"Allen Parish, Louisiana":{"Married Couple (%)":53.9,"Cohabiting Couple (%)":14.4,"Male Householder (%)":9.1,"Female Householder (%)":22.6},"Ascension Parish, Louisiana":{"Married Couple (%)":68.8,"Cohabiting Couple (%)":6.5,"Male Householder (%)":5.1,"Female Householder (%)":19.6},"Assumption Parish, Louisiana":{"Married Couple (%)":56,"Cohabiting Couple (%)":2.7,"Male Householder (%)":4.6,"Female Householder (%)":36.7},"Avoyelles Parish, Louisiana":{"Married Couple (%)":49.4,"Cohabiting Couple (%)":7.5,"Male Householder (%)":3.4,"Female Householder (%)":39.7},"Beauregard Parish, Louisiana":{"Married Couple (%)":67.7,"Cohabiting Couple (%)":10.1,"Male Householder (%)":6.1,"Female Householder (%)":16},"Bienville Parish, Louisiana":{"Married Couple (%)":42,"Cohabiting Couple (%)":13.3,"Male Householder (%)":2.2,"Female Householder (%)":42.4},"Bossier Parish, Louisiana":{"Married Couple (%)":61.6,"Cohabiting Couple (%)":9.4,"Male Householder (%)":5.3,"Female Householder (%)":23.7},"Caddo Parish, Louisiana":{"Married Couple (%)":46.1,"Cohabiting Couple (%)":8.7,"Male Householder (%)":3.7,"Female Householder (%)":41.5},"Calcasieu Parish, Louisiana":{"Married Couple (%)":64,"Cohabiting Couple (%)":7.6,"Male Householder (%)":4.5,"Female Householder (%)":23.8},"Caldwell Parish, Louisiana":{"Married Couple (%)":59.6,"Cohabiting Couple (%)":12.7,"Male Householder (%)":5.3,"Female Householder (%)":22.5},"Cameron Parish, Louisiana":{"Married Couple (%)":73.6,"Cohabiting Couple (%)":14.4,"Male Householder (%)":4.3,"Female Householder (%)":7.6},"Catahoula Parish, Louisiana":{"Married Couple (%)":55.7,"Cohabiting Couple (%)":8.4,"Male Householder (%)":9.2,"Female Householder (%)":26.6},"Claiborne Parish, Louisiana":{"Married Couple (%)":36.8,"Cohabiting Couple (%)":5.8,"Male Householder (%)":4.8,"Female Householder (%)":52.7},"Concordia Parish, Louisiana":{"Married Couple (%)":38.2,"Cohabiting Couple (%)":8.1,"Male Householder (%)":5.8,"Female Householder (%)":48},"De Soto Parish, Louisiana":{"Married Couple (%)":54.9,"Cohabiting Couple (%)":11,"Male Householder (%)":2.6,"Female Householder (%)":31.5},"East Baton Rouge Parish, Louisiana":{"Married Couple (%)":52.7,"Cohabiting Couple (%)":9.6,"Male Householder (%)":4.1,"Female Householder (%)":33.6},"East Carroll Parish, Louisiana":{"Married Couple (%)":24.9,"Cohabiting Couple (%)":0.5,"Male Householder (%)":1.9,"Female Householder (%)":72.7},"East Feliciana Parish, Louisiana":{"Married Couple (%)":65.2,"Cohabiting Couple (%)":3.2,"Male Householder (%)":6.5,"Female Householder (%)":25.1},"Evangeline Parish, Louisiana":{"Married Couple (%)":53.5,"Cohabiting Couple (%)":7.7,"Male Householder (%)":5.9,"Female Householder (%)":32.9},"Franklin Parish, Louisiana":{"Married Couple (%)":50.9,"Cohabiting Couple (%)":9.7,"Male Householder (%)":4.1,"Female Householder (%)":35.3},"Grant Parish, Louisiana":{"Married Couple (%)":62.7,"Cohabiting Couple (%)":11.4,"Male Householder (%)":4.7,"Female Householder (%)":21.2},"Iberia Parish, Louisiana":{"Married Couple (%)":53.7,"Cohabiting Couple (%)":14.7,"Male Householder (%)":3.8,"Female Householder (%)":27.9},"Iberville Parish, Louisiana":{"Married Couple (%)":49.8,"Cohabiting Couple (%)":6.5,"Male Householder (%)":9.2,"Female Householder (%)":34.4},"Jackson Parish, Louisiana":{"Married Couple (%)":59.6,"Cohabiting Couple (%)":7.2,"Male Householder (%)":4.4,"Female Householder (%)":28.8},"Jefferson Davis Parish, Louisiana":{"Married Couple (%)":65.4,"Cohabiting Couple (%)":12.1,"Male Householder (%)":5.5,"Female Householder (%)":17},"Jefferson Parish, Louisiana":{"Married Couple (%)":54.5,"Cohabiting Couple (%)":10.5,"Male Householder (%)":4.8,"Female Householder (%)":30.2},"Lafayette Parish, Louisiana":{"Married Couple (%)":61.7,"Cohabiting Couple (%)":9.4,"Male Householder (%)":4.5,"Female Householder (%)":24.4},"Lafourche Parish, Louisiana":{"Married Couple (%)":63.7,"Cohabiting Couple (%)":11,"Male Householder (%)":3.5,"Female Householder (%)":21.8},"LaSalle Parish, Louisiana":{"Married Couple (%)":58.4,"Cohabiting Couple (%)":9.8,"Male Householder (%)":4.4,"Female Householder (%)":27.4},"Lincoln Parish, Louisiana":{"Married Couple (%)":54.6,"Cohabiting Couple (%)":6,"Male Householder (%)":3.8,"Female Householder (%)":35.5},"Livingston Parish, Louisiana":{"Married Couple (%)":68.4,"Cohabiting Couple (%)":10.4,"Male Householder (%)":6.1,"Female Householder (%)":15.1},"Madison Parish, Louisiana":{"Married Couple (%)":36,"Cohabiting Couple (%)":5.4,"Male Householder (%)":5.3,"Female Householder (%)":53.2},"Morehouse Parish, Louisiana":{"Married Couple (%)":41.1,"Cohabiting Couple (%)":12.6,"Male Householder (%)":4.4,"Female Householder (%)":41.8},"Natchitoches Parish, Louisiana":{"Married Couple (%)":53.8,"Cohabiting Couple (%)":10.7,"Male Householder (%)":3.3,"Female Householder (%)":32.1},"Orleans Parish, Louisiana":{"Married Couple (%)":42.8,"Cohabiting Couple (%)":7,"Male Householder (%)":4.6,"Female Householder (%)":45.5},"Ouachita Parish, Louisiana":{"Married Couple (%)":52.2,"Cohabiting Couple (%)":7.2,"Male Householder (%)":5,"Female Householder (%)":35.6},"Plaquemines Parish, Louisiana":{"Married Couple (%)":78,"Cohabiting Couple (%)":7.6,"Male Householder (%)":2.5,"Female Householder (%)":11.9},"Pointe Coupee Parish, Louisiana":{"Married Couple (%)":43.5,"Cohabiting Couple (%)":17.2,"Male Householder (%)":8.9,"Female Householder (%)":30.4},"Rapides Parish, Louisiana":{"Married Couple (%)":58.8,"Cohabiting Couple (%)":9.8,"Male Householder (%)":3.7,"Female Householder (%)":27.6},"Red River Parish, Louisiana":{"Married Couple (%)":60.9,"Cohabiting Couple (%)":7.5,"Male Householder (%)":0.5,"Female Householder (%)":31.1},"Richland Parish, Louisiana":{"Married Couple (%)":52,"Cohabiting Couple (%)":5.5,"Male Householder (%)":6.7,"Female Householder (%)":35.8},"Sabine Parish, Louisiana":{"Married Couple (%)":57.6,"Cohabiting Couple (%)":7.6,"Male Householder (%)":7.8,"Female Householder (%)":27},"St. Bernard Parish, Louisiana":{"Married Couple (%)":44.1,"Cohabiting Couple (%)":11.3,"Male Householder (%)":6,"Female Householder (%)":38.6},"St. Charles Parish, Louisiana":{"Married Couple (%)":67.7,"Cohabiting Couple (%)":5.1,"Male Householder (%)":2.9,"Female Householder (%)":24.2},"St. Helena Parish, Louisiana":{"Married Couple (%)":43,"Cohabiting Couple (%)":4.1,"Male Householder (%)":0,"Female Householder (%)":52.9},"St. James Parish, Louisiana":{"Married Couple (%)":56.6,"Cohabiting Couple (%)":11.6,"Male Householder (%)":4.5,"Female Householder (%)":27.3},"St. John the Baptist Parish, Louisiana":{"Married Couple (%)":48.4,"Cohabiting Couple (%)":7.5,"Male Householder (%)":10,"Female Householder (%)":34.1},"St. Landry Parish, Louisiana":{"Married Couple (%)":48,"Cohabiting Couple (%)":12.3,"Male Householder (%)":6.2,"Female Householder (%)":33.5},"St. Martin Parish, Louisiana":{"Married Couple (%)":59.9,"Cohabiting Couple (%)":14.3,"Male Householder (%)":5.6,"Female Householder (%)":20.2},"St. Mary Parish, Louisiana":{"Married Couple (%)":53.9,"Cohabiting Couple (%)":11.7,"Male Householder (%)":2.3,"Female Householder (%)":32.1},"St. Tammany Parish, Louisiana":{"Married Couple (%)":63.8,"Cohabiting Couple (%)":9.3,"Male Householder (%)":6.2,"Female Householder (%)":20.7},"Tangipahoa Parish, Louisiana":{"Married Couple (%)":55.1,"Cohabiting Couple (%)":9.1,"Male Householder (%)":4.3,"Female Householder (%)":31.5},"Tensas Parish, Louisiana":{"Married Couple (%)":44.3,"Cohabiting Couple (%)":2.9,"Male Householder (%)":7.4,"Female Householder (%)":45.4},"Terrebonne Parish, Louisiana":{"Married Couple (%)":62.2,"Cohabiting Couple (%)":8.8,"Male Householder (%)":4.7,"Female Householder (%)":24.3},"Union Parish, Louisiana":{"Married Couple (%)":52.7,"Cohabiting Couple (%)":3.1,"Male Householder (%)":3.1,"Female Householder (%)":41.2},"Vermilion Parish, Louisiana":{"Married Couple (%)":62.5,"Cohabiting Couple (%)":10.4,"Male Householder (%)":3,"Female Householder (%)":24.1},"Vernon Parish, Louisiana":{"Married Couple (%)":69.9,"Cohabiting Couple (%)":8,"Male Householder (%)":3.5,"Female Householder (%)":18.6},"Washington Parish, Louisiana":{"Married Couple (%)":55,"Cohabiting Couple (%)":9.9,"Male Householder (%)":6.1,"Female Householder (%)":29},"Webster Parish, Louisiana":{"Married Couple (%)":57.4,"Cohabiting Couple (%)":8.5,"Male Householder (%)":4.1,"Female Householder (%)":30},"West Baton Rouge Parish, Louisiana":{"Married Couple (%)":56.2,"Cohabiting Couple (%)":10.7,"Male Householder (%)":1.1,"Female Householder (%)":31.9},"West Carroll Parish, Louisiana":{"Married Couple (%)":61.4,"Cohabiting Couple (%)":4,"Male Householder (%)":11.3,"Female Householder (%)":23.4},"West Feliciana Parish, Louisiana":{"Married Couple (%)":52,"Cohabiting Couple (%)":1.3,"Male Householder (%)":4.2,"Female Householder (%)":42.5},"Winn Parish, Louisiana":{"Married Couple (%)":46.6,"Cohabiting Couple (%)":4.5,"Male Householder (%)":6.3,"Female Householder (%)":42.7}};
+  const categories = ["Married Couple (%)","Cohabiting Couple (%)","Male Householder (%)","Female Householder (%)"];
+  const ctx = document.getElementById("barChart").getContext("2d");
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: categories,
+        datasets: [{
+          label: "Share of Children (%)",
+          data: values,
+          backgroundColor: ["#5DA5DA","#FAA43A","#60BD68","#F17CB0"]
+        }]
+      },
+      options: {
+        indexAxis: "y",
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            ticks: { callback: v => v + "%" },
+            title: { display: true, text: "Percent of Children" }
+          }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.raw + "%"
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById("countySelect").addEventListener("change", function() {
+    renderChart(Object.values(data[this.value]));
+  });
+
+  renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

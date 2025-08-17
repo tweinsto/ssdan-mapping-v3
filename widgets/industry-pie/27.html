@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <title>Industry Distribution – Minnesota</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+        canvas { max-width: 600px; height: 500px; }
+        select { padding: 0.5rem; font-size: 1rem; margin: 1rem; }
+        .legend { max-width: 600px; margin: 1rem auto; display: flex; flex-wrap: wrap; justify-content: center; font-size: 0.9rem; }
+        .legend-item { display: flex; align-items: center; margin: 0.3rem 1rem; }
+        .legend-color { width: 12px; height: 12px; margin-right: 6px; border: 1px solid #444; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Industry Distribution in Minnesota</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Aitkin County, Minnesota">Aitkin County, Minnesota</option>
+      <option value="Anoka County, Minnesota">Anoka County, Minnesota</option>
+      <option value="Becker County, Minnesota">Becker County, Minnesota</option>
+      <option value="Beltrami County, Minnesota">Beltrami County, Minnesota</option>
+      <option value="Benton County, Minnesota">Benton County, Minnesota</option>
+      <option value="Big Stone County, Minnesota">Big Stone County, Minnesota</option>
+      <option value="Blue Earth County, Minnesota">Blue Earth County, Minnesota</option>
+      <option value="Brown County, Minnesota">Brown County, Minnesota</option>
+      <option value="Carlton County, Minnesota">Carlton County, Minnesota</option>
+      <option value="Carver County, Minnesota">Carver County, Minnesota</option>
+      <option value="Cass County, Minnesota">Cass County, Minnesota</option>
+      <option value="Chippewa County, Minnesota">Chippewa County, Minnesota</option>
+      <option value="Chisago County, Minnesota">Chisago County, Minnesota</option>
+      <option value="Clay County, Minnesota">Clay County, Minnesota</option>
+      <option value="Clearwater County, Minnesota">Clearwater County, Minnesota</option>
+      <option value="Cook County, Minnesota">Cook County, Minnesota</option>
+      <option value="Cottonwood County, Minnesota">Cottonwood County, Minnesota</option>
+      <option value="Crow Wing County, Minnesota">Crow Wing County, Minnesota</option>
+      <option value="Dakota County, Minnesota">Dakota County, Minnesota</option>
+      <option value="Dodge County, Minnesota">Dodge County, Minnesota</option>
+      <option value="Douglas County, Minnesota">Douglas County, Minnesota</option>
+      <option value="Faribault County, Minnesota">Faribault County, Minnesota</option>
+      <option value="Fillmore County, Minnesota">Fillmore County, Minnesota</option>
+      <option value="Freeborn County, Minnesota">Freeborn County, Minnesota</option>
+      <option value="Goodhue County, Minnesota">Goodhue County, Minnesota</option>
+      <option value="Grant County, Minnesota">Grant County, Minnesota</option>
+      <option value="Hennepin County, Minnesota">Hennepin County, Minnesota</option>
+      <option value="Houston County, Minnesota">Houston County, Minnesota</option>
+      <option value="Hubbard County, Minnesota">Hubbard County, Minnesota</option>
+      <option value="Isanti County, Minnesota">Isanti County, Minnesota</option>
+      <option value="Itasca County, Minnesota">Itasca County, Minnesota</option>
+      <option value="Jackson County, Minnesota">Jackson County, Minnesota</option>
+      <option value="Kanabec County, Minnesota">Kanabec County, Minnesota</option>
+      <option value="Kandiyohi County, Minnesota">Kandiyohi County, Minnesota</option>
+      <option value="Kittson County, Minnesota">Kittson County, Minnesota</option>
+      <option value="Koochiching County, Minnesota">Koochiching County, Minnesota</option>
+      <option value="Lac qui Parle County, Minnesota">Lac qui Parle County, Minnesota</option>
+      <option value="Lake County, Minnesota">Lake County, Minnesota</option>
+      <option value="Lake of the Woods County, Minnesota">Lake of the Woods County, Minnesota</option>
+      <option value="Le Sueur County, Minnesota">Le Sueur County, Minnesota</option>
+      <option value="Lincoln County, Minnesota">Lincoln County, Minnesota</option>
+      <option value="Lyon County, Minnesota">Lyon County, Minnesota</option>
+      <option value="Mahnomen County, Minnesota">Mahnomen County, Minnesota</option>
+      <option value="Marshall County, Minnesota">Marshall County, Minnesota</option>
+      <option value="Martin County, Minnesota">Martin County, Minnesota</option>
+      <option value="McLeod County, Minnesota">McLeod County, Minnesota</option>
+      <option value="Meeker County, Minnesota">Meeker County, Minnesota</option>
+      <option value="Mille Lacs County, Minnesota">Mille Lacs County, Minnesota</option>
+      <option value="Morrison County, Minnesota">Morrison County, Minnesota</option>
+      <option value="Mower County, Minnesota">Mower County, Minnesota</option>
+      <option value="Murray County, Minnesota">Murray County, Minnesota</option>
+      <option value="Nicollet County, Minnesota">Nicollet County, Minnesota</option>
+      <option value="Nobles County, Minnesota">Nobles County, Minnesota</option>
+      <option value="Norman County, Minnesota">Norman County, Minnesota</option>
+      <option value="Olmsted County, Minnesota">Olmsted County, Minnesota</option>
+      <option value="Otter Tail County, Minnesota">Otter Tail County, Minnesota</option>
+      <option value="Pennington County, Minnesota">Pennington County, Minnesota</option>
+      <option value="Pine County, Minnesota">Pine County, Minnesota</option>
+      <option value="Pipestone County, Minnesota">Pipestone County, Minnesota</option>
+      <option value="Polk County, Minnesota">Polk County, Minnesota</option>
+      <option value="Pope County, Minnesota">Pope County, Minnesota</option>
+      <option value="Ramsey County, Minnesota">Ramsey County, Minnesota</option>
+      <option value="Red Lake County, Minnesota">Red Lake County, Minnesota</option>
+      <option value="Redwood County, Minnesota">Redwood County, Minnesota</option>
+      <option value="Renville County, Minnesota">Renville County, Minnesota</option>
+      <option value="Rice County, Minnesota">Rice County, Minnesota</option>
+      <option value="Rock County, Minnesota">Rock County, Minnesota</option>
+      <option value="Roseau County, Minnesota">Roseau County, Minnesota</option>
+      <option value="Scott County, Minnesota">Scott County, Minnesota</option>
+      <option value="Sherburne County, Minnesota">Sherburne County, Minnesota</option>
+      <option value="Sibley County, Minnesota">Sibley County, Minnesota</option>
+      <option value="St. Louis County, Minnesota">St. Louis County, Minnesota</option>
+      <option value="Stearns County, Minnesota">Stearns County, Minnesota</option>
+      <option value="Steele County, Minnesota">Steele County, Minnesota</option>
+      <option value="Stevens County, Minnesota">Stevens County, Minnesota</option>
+      <option value="Swift County, Minnesota">Swift County, Minnesota</option>
+      <option value="Todd County, Minnesota">Todd County, Minnesota</option>
+      <option value="Traverse County, Minnesota">Traverse County, Minnesota</option>
+      <option value="Wabasha County, Minnesota">Wabasha County, Minnesota</option>
+      <option value="Wadena County, Minnesota">Wadena County, Minnesota</option>
+      <option value="Waseca County, Minnesota">Waseca County, Minnesota</option>
+      <option value="Washington County, Minnesota">Washington County, Minnesota</option>
+      <option value="Watonwan County, Minnesota">Watonwan County, Minnesota</option>
+      <option value="Wilkin County, Minnesota">Wilkin County, Minnesota</option>
+      <option value="Winona County, Minnesota">Winona County, Minnesota</option>
+      <option value="Wright County, Minnesota">Wright County, Minnesota</option>
+      <option value="Yellow Medicine County, Minnesota">Yellow Medicine County, Minnesota</option>
+    </select>
+    <canvas id="pieChart"></canvas>
+    <div class="legend">
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#66CC66;"></div>
+        <span>Agriculture, forestry, fishing, and hunting</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#996600;"></div>
+        <span>Mining</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FF6600;"></div>
+        <span>Utilities</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FFCC33;"></div>
+        <span>Construction</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FF0000;"></div>
+        <span>Manufacturing</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FF66FF;"></div>
+        <span>Wholesale trade</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#3399FF;"></div>
+        <span>Retail trade</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#00CC99;"></div>
+        <span>Transportation and warehousing</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#999966;"></div>
+        <span>Information</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#6666FF;"></div>
+        <span>Finance and insurance</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FF99CC;"></div>
+        <span>Professional, scientific, and technical services</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#66CCCC;"></div>
+        <span>Educational services</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FF9933;"></div>
+        <span>Healthcare and social assistance</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#CC99FF;"></div>
+        <span>Arts, entertainment, and recreation</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FF9999;"></div>
+        <span>Accommodation and food services</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#CCCC00;"></div>
+        <span>Other services</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#663300;"></div>
+        <span>Public administration</span>
+      </div>
+    </div>
+    <script>const data = [];
+const colors = ["#66CC66","#996600","#FF6600","#FFCC33","#FF0000","#FF66FF","#3399FF","#00CC99","#999966","#6666FF","#FF99CC","#66CCCC","#FF9933","#CC99FF","#FF9999","#CCCC00","#663300"];
+let chart;
+function renderChart(region) {
+  const ctx = document.getElementById("pieChart").getContext("2d");
+  const labels = Object.keys(data[region]);
+  const values = Object.values(data[region]);
+  const backgroundColors = labels.map(l => colors[l] || "#999");
+  if (chart) chart.destroy();
+  chart = new Chart(ctx, {
+    type: "pie",
+    data: {
+      labels: labels,
+      datasets: [{
+        data: values,
+        backgroundColor: backgroundColors
+      }]
+    },
+    options: {
+      plugins: {
+        tooltip: {
+          callbacks: {
+            label: ctx => ctx.label + ": " + ctx.raw + "%"
+          }
+        }
+      }
+    }
+  });
+}
+document.getElementById("countySelect").addEventListener("change", function() {
+  renderChart(this.value);
+});
+renderChart("Statewide");</script>
+  </body>
+</html>
+</html>

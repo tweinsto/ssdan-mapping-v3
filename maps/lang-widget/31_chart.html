@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Population Trends</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <h2 style="text-align:center">Population Trends</h2>
+  <div style="max-width: 700px; margin: auto;">
+    <label for="countySelect">Choose County:</label>
+    <select id="countySelect"></select>
+    <canvas id="popChart"></canvas>
+  </div>
+
+<script>
+let chart;
+let rawData;
+
+fetch("31_pop.json")
+  .then(res => res.json())
+  .then(data => {
+    rawData = data;
+
+    // Put Statewide first, then sort remaining
+    const counties = Object.keys(data);
+    const ordered = ["Statewide", ...counties.filter(c => c !== "Statewide").sort()];
+
+    const dropdown = document.getElementById("countySelect");
+    ordered.forEach(c => {
+      const opt = document.createElement("option");
+      opt.value = c;
+      opt.text = c;
+      dropdown.appendChild(opt);
+    });
+
+    dropdown.value = "Statewide";
+    renderChart("Statewide");
+
+    dropdown.addEventListener("change", () => {
+      renderChart(dropdown.value);
+    });
+  });
+
+function renderChart(county) {
+  const data = rawData[county];
+  const years = data.map(d => d.year);
+  const pops = data.map(d => d.population);
+
+  const config = {
+    type: "line",
+    data: {
+      labels: years,
+      datasets: [{
+        label: county + " Population",
+        data: pops,
+        borderColor: "#0073e6",
+        backgroundColor: "rgba(0, 115, 230, 0.2)",
+        fill: true,
+        tension: 0.2
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: { display: false },
+        title: {
+          display: true,
+          text: county + " Population Over Time"
+        }
+      },
+      scales: {
+        y: {
+          beginAtZero: false,
+          title: {
+            display: true,
+            text: "Population"
+          },
+          ticks: {
+            callback: function(value) {
+              return value.toLocaleString();
+            }
+          }
+        },
+        x: {
+          title: {
+            display: true,
+            text: "Year"
+          }
+        }
+      }
+    }
+  };
+
+  if (chart) {
+    chart.destroy();
+  }
+  const ctx = document.getElementById("popChart").getContext("2d");
+  chart = new Chart(ctx, config);
+}
+</script>
+</body>
+</html>

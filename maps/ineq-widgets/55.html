@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Income Distribution – Wisconsin</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          text-align: center;
+          margin: 2rem;
+        }
+        select {
+          font-size: 1rem;
+          padding: 0.4rem;
+          margin-bottom: 1rem;
+        }
+        canvas {
+          width: 100%;
+          max-width: 700px;
+          height: 400px;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Income Share by Quintile – Wisconsin</h2>
+    <label>Select County, State:</label>
+    <select id="countySelect"><option value='Statewide'>Statewide</option>
+<option value='Adams, Wisconsin'>Adams, Wisconsin</option>
+<option value='Ashland, Wisconsin'>Ashland, Wisconsin</option>
+<option value='Barron, Wisconsin'>Barron, Wisconsin</option>
+<option value='Bayfield, Wisconsin'>Bayfield, Wisconsin</option>
+<option value='Brown, Wisconsin'>Brown, Wisconsin</option>
+<option value='Buffalo, Wisconsin'>Buffalo, Wisconsin</option>
+<option value='Burnett, Wisconsin'>Burnett, Wisconsin</option>
+<option value='Calumet, Wisconsin'>Calumet, Wisconsin</option>
+<option value='Chippewa, Wisconsin'>Chippewa, Wisconsin</option>
+<option value='Clark, Wisconsin'>Clark, Wisconsin</option>
+<option value='Columbia, Wisconsin'>Columbia, Wisconsin</option>
+<option value='Crawford, Wisconsin'>Crawford, Wisconsin</option>
+<option value='Dane, Wisconsin'>Dane, Wisconsin</option>
+<option value='Dodge, Wisconsin'>Dodge, Wisconsin</option>
+<option value='Door, Wisconsin'>Door, Wisconsin</option>
+<option value='Douglas, Wisconsin'>Douglas, Wisconsin</option>
+<option value='Dunn, Wisconsin'>Dunn, Wisconsin</option>
+<option value='Eau Claire, Wisconsin'>Eau Claire, Wisconsin</option>
+<option value='Florence, Wisconsin'>Florence, Wisconsin</option>
+<option value='Fond du Lac, Wisconsin'>Fond du Lac, Wisconsin</option>
+<option value='Forest, Wisconsin'>Forest, Wisconsin</option>
+<option value='Grant, Wisconsin'>Grant, Wisconsin</option>
+<option value='Green, Wisconsin'>Green, Wisconsin</option>
+<option value='Green Lake, Wisconsin'>Green Lake, Wisconsin</option>
+<option value='Iowa, Wisconsin'>Iowa, Wisconsin</option>
+<option value='Iron, Wisconsin'>Iron, Wisconsin</option>
+<option value='Jackson, Wisconsin'>Jackson, Wisconsin</option>
+<option value='Jefferson, Wisconsin'>Jefferson, Wisconsin</option>
+<option value='Juneau, Wisconsin'>Juneau, Wisconsin</option>
+<option value='Kenosha, Wisconsin'>Kenosha, Wisconsin</option>
+<option value='Kewaunee, Wisconsin'>Kewaunee, Wisconsin</option>
+<option value='La Crosse, Wisconsin'>La Crosse, Wisconsin</option>
+<option value='Lafayette, Wisconsin'>Lafayette, Wisconsin</option>
+<option value='Langlade, Wisconsin'>Langlade, Wisconsin</option>
+<option value='Lincoln, Wisconsin'>Lincoln, Wisconsin</option>
+<option value='Manitowoc, Wisconsin'>Manitowoc, Wisconsin</option>
+<option value='Marathon, Wisconsin'>Marathon, Wisconsin</option>
+<option value='Marinette, Wisconsin'>Marinette, Wisconsin</option>
+<option value='Marquette, Wisconsin'>Marquette, Wisconsin</option>
+<option value='Menominee, Wisconsin'>Menominee, Wisconsin</option>
+<option value='Milwaukee, Wisconsin'>Milwaukee, Wisconsin</option>
+<option value='Monroe, Wisconsin'>Monroe, Wisconsin</option>
+<option value='Oconto, Wisconsin'>Oconto, Wisconsin</option>
+<option value='Oneida, Wisconsin'>Oneida, Wisconsin</option>
+<option value='Outagamie, Wisconsin'>Outagamie, Wisconsin</option>
+<option value='Ozaukee, Wisconsin'>Ozaukee, Wisconsin</option>
+<option value='Pepin, Wisconsin'>Pepin, Wisconsin</option>
+<option value='Pierce, Wisconsin'>Pierce, Wisconsin</option>
+<option value='Polk, Wisconsin'>Polk, Wisconsin</option>
+<option value='Portage, Wisconsin'>Portage, Wisconsin</option>
+<option value='Price, Wisconsin'>Price, Wisconsin</option>
+<option value='Racine, Wisconsin'>Racine, Wisconsin</option>
+<option value='Richland, Wisconsin'>Richland, Wisconsin</option>
+<option value='Rock, Wisconsin'>Rock, Wisconsin</option>
+<option value='Rusk, Wisconsin'>Rusk, Wisconsin</option>
+<option value='Sauk, Wisconsin'>Sauk, Wisconsin</option>
+<option value='Sawyer, Wisconsin'>Sawyer, Wisconsin</option>
+<option value='Shawano, Wisconsin'>Shawano, Wisconsin</option>
+<option value='Sheboygan, Wisconsin'>Sheboygan, Wisconsin</option>
+<option value='St. Croix, Wisconsin'>St. Croix, Wisconsin</option>
+<option value='Taylor, Wisconsin'>Taylor, Wisconsin</option>
+<option value='Trempealeau, Wisconsin'>Trempealeau, Wisconsin</option>
+<option value='Vernon, Wisconsin'>Vernon, Wisconsin</option>
+<option value='Vilas, Wisconsin'>Vilas, Wisconsin</option>
+<option value='Walworth, Wisconsin'>Walworth, Wisconsin</option>
+<option value='Washburn, Wisconsin'>Washburn, Wisconsin</option>
+<option value='Washington, Wisconsin'>Washington, Wisconsin</option>
+<option value='Waukesha, Wisconsin'>Waukesha, Wisconsin</option>
+<option value='Waupaca, Wisconsin'>Waupaca, Wisconsin</option>
+<option value='Waushara, Wisconsin'>Waushara, Wisconsin</option>
+<option value='Winnebago, Wisconsin'>Winnebago, Wisconsin</option>
+<option value='Wood, Wisconsin'>Wood, Wisconsin</option></select>
+    <canvas id="barChart" width="700" height="400"></canvas>
+    <script>  const incomeData = {"Statewide":[5.8,9.1,13.5,26.6,45],"Adams, Wisconsin":[5.9,9.6,14.8,27.3,42.4],"Ashland, Wisconsin":[5.4,9.5,14.7,27.4,43],"Barron, Wisconsin":[5.3,8.3,12.3,26.4,47.7],"Bayfield, Wisconsin":[5.7,8.8,12.8,26.3,46.4],"Brown, Wisconsin":[5.5,8.7,12.8,26.3,46.7],"Buffalo, Wisconsin":[6.6,10.5,15.2,26.7,41],"Burnett, Wisconsin":[4.9,8.1,12.6,26.9,47.5],"Calumet, Wisconsin":[6.1,9.6,14,26.1,44.2],"Chippewa, Wisconsin":[5.9,9.2,13.5,26.4,45],"Clark, Wisconsin":[5.7,8.7,13,26.4,46.1],"Columbia, Wisconsin":[6.5,10.1,14.7,26.8,41.9],"Crawford, Wisconsin":[5.5,9,13.4,26.7,45.5],"Dane, Wisconsin":[5.2,8.3,12.8,26.8,46.9],"Dodge, Wisconsin":[6.8,10.4,15,26.6,41.2],"Door, Wisconsin":[4.8,7.5,11.4,25.9,50.5],"Douglas, Wisconsin":[5.9,10,15.3,27.2,41.5],"Dunn, Wisconsin":[5.9,9.6,14.2,27.2,43],"Eau Claire, Wisconsin":[5.3,8.1,12.3,26.2,48.1],"Florence, Wisconsin":[5.8,9.1,13.3,26.2,45.6],"Fond du Lac, Wisconsin":[6.3,9.7,14.3,26.6,43.2],"Forest, Wisconsin":[5.7,9.8,14.2,26.8,43.4],"Grant, Wisconsin":[5.6,8.8,13.3,26.4,46],"Green, Wisconsin":[6.2,9.7,13.8,26.7,43.7],"Green Lake, Wisconsin":[5.4,8.6,13.1,26.2,46.8],"Iowa, Wisconsin":[6.4,10.3,14.9,26.9,41.5],"Iron, Wisconsin":[6.1,9.9,14.8,27.3,41.9],"Jackson, Wisconsin":[5.5,9,13.2,26.4,46],"Jefferson, Wisconsin":[6.4,9.9,14.4,26.2,43.1],"Juneau, Wisconsin":[6.2,9.9,14.3,26.5,43.2],"Kenosha, Wisconsin":[5.9,9.5,14.5,27.1,42.9],"Kewaunee, Wisconsin":[6.6,10.1,14.5,26,42.9],"La Crosse, Wisconsin":[5,7.9,12.1,26.5,48.5],"Lafayette, Wisconsin":[6.1,9.8,14,26.6,43.5],"Langlade, Wisconsin":[5.3,8.6,13.2,26.6,46.3],"Lincoln, Wisconsin":[5.7,9.5,14.1,26.9,43.8],"Manitowoc, Wisconsin":[5.9,9.1,13.5,26.5,45.1],"Marathon, Wisconsin":[5.8,9.2,13.3,26.4,45.2],"Marinette, Wisconsin":[6,9.1,13.3,26.4,45.2],"Marquette, Wisconsin":[6,9.5,14.1,26.6,43.8],"Menominee, Wisconsin":[6.8,10.1,14.9,27.3,41],"Milwaukee, Wisconsin":[4.6,7.8,12.4,27.1,48],"Monroe, Wisconsin":[5.9,9.3,13.9,26.7,44.1],"Oconto, Wisconsin":[6.4,10.1,14.5,26.5,42.5],"Oneida, Wisconsin":[5.3,8.6,13.1,26.5,46.4],"Outagamie, Wisconsin":[5.2,7.9,11.4,25.5,50.1],"Ozaukee, Wisconsin":[4.6,7.4,11.4,26.6,50],"Pepin, Wisconsin":[5.9,8.7,12.5,25.8,47.1],"Pierce, Wisconsin":[5.8,9.4,13.7,26.4,44.7],"Polk, Wisconsin":[6.5,10,14.2,26.9,42.4],"Portage, Wisconsin":[5.9,9.4,13.8,26.8,44],"Price, Wisconsin":[5.6,9,13,26.7,45.8],"Racine, Wisconsin":[5.7,8.9,13.5,26.7,45.2],"Richland, Wisconsin":[5.7,9.1,13.6,27,44.6],"Rock, Wisconsin":[6.4,10,14.3,26.9,42.4],"Rusk, Wisconsin":[6.1,9.9,14.9,27.4,41.6],"Sauk, Wisconsin":[6.1,9.5,13.7,26.4,44.3],"Sawyer, Wisconsin":[4.8,8.2,12.5,27.1,47.5],"Shawano, Wisconsin":[5.6,8.6,12.6,25.7,47.4],"Sheboygan, Wisconsin":[6.2,9.1,13.5,26.7,44.6],"St. Croix, Wisconsin":[6.3,9.7,13.7,26.1,44.1],"Taylor, Wisconsin":[6.1,9.2,13.7,26.7,44.3],"Trempealeau, Wisconsin":[6.3,9.5,13.8,26.4,44],"Vernon, Wisconsin":[6,9.5,14.1,26.6,43.8],"Vilas, Wisconsin":[5.2,8.2,11.9,26.4,48.2],"Walworth, Wisconsin":[5.2,8.1,12.3,26.6,47.8],"Washburn, Wisconsin":[5.5,9,14,27,44.5],"Washington, Wisconsin":[6.3,9.7,13.7,26.3,44],"Waukesha, Wisconsin":[5.3,8.5,12.5,26.7,46.9],"Waupaca, Wisconsin":[5.1,8.1,11.7,25.4,49.6],"Waushara, Wisconsin":[5.6,8.9,13.3,26.6,45.6],"Winnebago, Wisconsin":[5.7,9,13.3,26.6,45.4],"Wood, Wisconsin":[5.3,8.3,12.4,26.5,47.5]};
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Bottom 20%', 'Second 20%', 'Middle 20%', 'Fourth 20%', 'Top 20%'],
+        datasets: [{
+          label: 'Share (%)',
+          data: values,
+          backgroundColor: '#4576a7'
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.parsed.y + '%'
+            }
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 100,
+            title: {
+              display: true,
+              text: 'Income Share (%)'
+            }
+          },
+          x: {
+            title: {
+              display: true,
+              text: 'Quintile'
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(Object.values(incomeData[this.value]));
+  });
+
+  renderChart(Object.values(incomeData['Statewide']));</script>
+  </body>
+</html>
+</html>

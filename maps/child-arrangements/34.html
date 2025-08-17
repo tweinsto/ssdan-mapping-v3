@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Living Arrangements of Children – New Jersey</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Children’s Living Arrangements (Under 18) – New Jersey</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Atlantic County, New Jersey">Atlantic County, New Jersey</option>
+      <option value="Bergen County, New Jersey">Bergen County, New Jersey</option>
+      <option value="Burlington County, New Jersey">Burlington County, New Jersey</option>
+      <option value="Camden County, New Jersey">Camden County, New Jersey</option>
+      <option value="Cape May County, New Jersey">Cape May County, New Jersey</option>
+      <option value="Cumberland County, New Jersey">Cumberland County, New Jersey</option>
+      <option value="Essex County, New Jersey">Essex County, New Jersey</option>
+      <option value="Gloucester County, New Jersey">Gloucester County, New Jersey</option>
+      <option value="Hudson County, New Jersey">Hudson County, New Jersey</option>
+      <option value="Hunterdon County, New Jersey">Hunterdon County, New Jersey</option>
+      <option value="Mercer County, New Jersey">Mercer County, New Jersey</option>
+      <option value="Middlesex County, New Jersey">Middlesex County, New Jersey</option>
+      <option value="Monmouth County, New Jersey">Monmouth County, New Jersey</option>
+      <option value="Morris County, New Jersey">Morris County, New Jersey</option>
+      <option value="Ocean County, New Jersey">Ocean County, New Jersey</option>
+      <option value="Passaic County, New Jersey">Passaic County, New Jersey</option>
+      <option value="Salem County, New Jersey">Salem County, New Jersey</option>
+      <option value="Somerset County, New Jersey">Somerset County, New Jersey</option>
+      <option value="Sussex County, New Jersey">Sussex County, New Jersey</option>
+      <option value="Union County, New Jersey">Union County, New Jersey</option>
+      <option value="Warren County, New Jersey">Warren County, New Jersey</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>  const data = {"Statewide":{"Married Couple (%)":70.7,"Cohabiting Couple (%)":7.9,"Male Householder (%)":3.7,"Female Householder (%)":17.7},"Atlantic County, New Jersey":{"Married Couple (%)":61.2,"Cohabiting Couple (%)":13.2,"Male Householder (%)":4.1,"Female Householder (%)":21.5},"Bergen County, New Jersey":{"Married Couple (%)":79.6,"Cohabiting Couple (%)":5.2,"Male Householder (%)":3.1,"Female Householder (%)":12.1},"Burlington County, New Jersey":{"Married Couple (%)":71.9,"Cohabiting Couple (%)":7,"Male Householder (%)":4.2,"Female Householder (%)":16.9},"Camden County, New Jersey":{"Married Couple (%)":60.2,"Cohabiting Couple (%)":9.8,"Male Householder (%)":5.6,"Female Householder (%)":24.5},"Cape May County, New Jersey":{"Married Couple (%)":74.6,"Cohabiting Couple (%)":6.8,"Male Householder (%)":3.3,"Female Householder (%)":15.3},"Cumberland County, New Jersey":{"Married Couple (%)":52.9,"Cohabiting Couple (%)":17.8,"Male Householder (%)":4,"Female Householder (%)":25.3},"Essex County, New Jersey":{"Married Couple (%)":58.6,"Cohabiting Couple (%)":9.1,"Male Householder (%)":4.7,"Female Householder (%)":27.5},"Gloucester County, New Jersey":{"Married Couple (%)":71.1,"Cohabiting Couple (%)":7.9,"Male Householder (%)":3.7,"Female Householder (%)":17.4},"Hudson County, New Jersey":{"Married Couple (%)":63.1,"Cohabiting Couple (%)":8.9,"Male Householder (%)":3.6,"Female Householder (%)":24.3},"Hunterdon County, New Jersey":{"Married Couple (%)":85.1,"Cohabiting Couple (%)":4,"Male Householder (%)":3.4,"Female Householder (%)":7.5},"Mercer County, New Jersey":{"Married Couple (%)":67.2,"Cohabiting Couple (%)":6,"Male Householder (%)":3.8,"Female Householder (%)":23},"Middlesex County, New Jersey":{"Married Couple (%)":74.1,"Cohabiting Couple (%)":8,"Male Householder (%)":3,"Female Householder (%)":15},"Monmouth County, New Jersey":{"Married Couple (%)":79.1,"Cohabiting Couple (%)":5.3,"Male Householder (%)":2.5,"Female Householder (%)":13.1},"Morris County, New Jersey":{"Married Couple (%)":84.2,"Cohabiting Couple (%)":4.1,"Male Householder (%)":2.5,"Female Householder (%)":9.2},"Ocean County, New Jersey":{"Married Couple (%)":82.4,"Cohabiting Couple (%)":4.9,"Male Householder (%)":3.3,"Female Householder (%)":9.5},"Passaic County, New Jersey":{"Married Couple (%)":61.5,"Cohabiting Couple (%)":12.2,"Male Householder (%)":3.2,"Female Householder (%)":23.1},"Salem County, New Jersey":{"Married Couple (%)":56.9,"Cohabiting Couple (%)":12.5,"Male Householder (%)":5.4,"Female Householder (%)":25.2},"Somerset County, New Jersey":{"Married Couple (%)":80,"Cohabiting Couple (%)":5.8,"Male Householder (%)":3.4,"Female Householder (%)":10.8},"Sussex County, New Jersey":{"Married Couple (%)":77.6,"Cohabiting Couple (%)":4.9,"Male Householder (%)":4.5,"Female Householder (%)":12.9},"Union County, New Jersey":{"Married Couple (%)":65.2,"Cohabiting Couple (%)":11.2,"Male Householder (%)":4.4,"Female Householder (%)":19.1},"Warren County, New Jersey":{"Married Couple (%)":72.9,"Cohabiting Couple (%)":8.6,"Male Householder (%)":5.4,"Female Householder (%)":13}};
+  const categories = ["Married Couple (%)","Cohabiting Couple (%)","Male Householder (%)","Female Householder (%)"];
+  const ctx = document.getElementById("barChart").getContext("2d");
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: categories,
+        datasets: [{
+          label: "Share of Children (%)",
+          data: values,
+          backgroundColor: ["#5DA5DA","#FAA43A","#60BD68","#F17CB0"]
+        }]
+      },
+      options: {
+        indexAxis: "y",
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            ticks: { callback: v => v + "%" },
+            title: { display: true, text: "Percent of Children" }
+          }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.raw + "%"
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById("countySelect").addEventListener("change", function() {
+    renderChart(Object.values(data[this.value]));
+  });
+
+  renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

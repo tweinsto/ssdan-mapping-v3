@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="utf-8"/>
+  <title>Race/Ethnicity in State 32</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          text-align: center;
+          margin: 2rem;
+          background-color: white;
+        }
+        canvas {
+          max-width: 500px;
+          margin: 1rem auto;
+        }
+        select {
+          font-size: 1rem;
+          padding: 0.4rem;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Race &amp; Ethnicity Distribution</h2>
+    <label>Select County:</label>
+    <select id="countySelect"><option value="Statewide">Statewide</option>
+<option value="Carson City, Nevada">Carson City, Nevada</option>
+<option value="Churchill County, Nevada">Churchill County, Nevada</option>
+<option value="Clark County, Nevada">Clark County, Nevada</option>
+<option value="Douglas County, Nevada">Douglas County, Nevada</option>
+<option value="Elko County, Nevada">Elko County, Nevada</option>
+<option value="Esmeralda County, Nevada">Esmeralda County, Nevada</option>
+<option value="Eureka County, Nevada">Eureka County, Nevada</option>
+<option value="Humboldt County, Nevada">Humboldt County, Nevada</option>
+<option value="Lander County, Nevada">Lander County, Nevada</option>
+<option value="Lincoln County, Nevada">Lincoln County, Nevada</option>
+<option value="Lyon County, Nevada">Lyon County, Nevada</option>
+<option value="Mineral County, Nevada">Mineral County, Nevada</option>
+<option value="Nye County, Nevada">Nye County, Nevada</option>
+<option value="Pershing County, Nevada">Pershing County, Nevada</option>
+<option value="Storey County, Nevada">Storey County, Nevada</option>
+<option value="Washoe County, Nevada">Washoe County, Nevada</option>
+<option value="White Pine County, Nevada">White Pine County, Nevada</option></select>
+    <canvas id="pieChart" width="400" height="400"></canvas>
+    <script>  let raceData = {};
+  fetch("32.json")
+    .then(resp => resp.json())
+    .then(data => {
+      raceData = data;
+      const raceLabels = ["American Indian / Alaska Native","Asian","Black","Hispanic","NHMulti","NHOther","NHWhite","Pacific Islander"];
+      const ctx = document.getElementById("pieChart").getContext("2d");
+      let chart;
+
+      function renderChart(values) {
+        if (chart) chart.destroy();
+        chart = new Chart(ctx, {
+          type: "pie",
+          data: {
+            labels: raceLabels,
+            datasets: [{
+              data: values,
+              backgroundColor: [
+                "#f94144", "#f3722c", "#f9c74f", "#90be6d",
+                "#9d4edd", "#577590", "#d0cde1", "#43aa8b"
+              ]
+            }]
+          },
+          options: {
+            responsive: true,
+            plugins: {
+              legend: {
+                position: "bottom",
+                labels: {
+                  font: { size: 14 },
+                  boxWidth: 20,
+                  padding: 15,
+                  usePointStyle: true,
+                  pointStyle: "rectRounded"
+                }
+              },
+              tooltip: {
+                callbacks: {
+                  label: function(context) {
+                    return context.label + ": " + context.parsed + "%";
+                  }
+                }
+              }
+            }
+          }
+        });
+      }
+
+      document.getElementById("countySelect").addEventListener("change", function() {
+        const selected = this.value;
+        const values = Object.values(raceData[selected]);
+        renderChart(values);
+      });
+
+      renderChart(Object.values(raceData["Statewide"]));
+      document.getElementById("countySelect").value = "Statewide";
+    });</script>
+  </body>
+</html>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Educational Enrollment – Ohio</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Educational Enrollment (Age 18–24) in Ohio</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Adams County, Ohio">Adams County, Ohio</option>
+      <option value="Allen County, Ohio">Allen County, Ohio</option>
+      <option value="Ashland County, Ohio">Ashland County, Ohio</option>
+      <option value="Ashtabula County, Ohio">Ashtabula County, Ohio</option>
+      <option value="Athens County, Ohio">Athens County, Ohio</option>
+      <option value="Auglaize County, Ohio">Auglaize County, Ohio</option>
+      <option value="Belmont County, Ohio">Belmont County, Ohio</option>
+      <option value="Brown County, Ohio">Brown County, Ohio</option>
+      <option value="Butler County, Ohio">Butler County, Ohio</option>
+      <option value="Carroll County, Ohio">Carroll County, Ohio</option>
+      <option value="Champaign County, Ohio">Champaign County, Ohio</option>
+      <option value="Clark County, Ohio">Clark County, Ohio</option>
+      <option value="Clermont County, Ohio">Clermont County, Ohio</option>
+      <option value="Clinton County, Ohio">Clinton County, Ohio</option>
+      <option value="Columbiana County, Ohio">Columbiana County, Ohio</option>
+      <option value="Coshocton County, Ohio">Coshocton County, Ohio</option>
+      <option value="Crawford County, Ohio">Crawford County, Ohio</option>
+      <option value="Cuyahoga County, Ohio">Cuyahoga County, Ohio</option>
+      <option value="Darke County, Ohio">Darke County, Ohio</option>
+      <option value="Defiance County, Ohio">Defiance County, Ohio</option>
+      <option value="Delaware County, Ohio">Delaware County, Ohio</option>
+      <option value="Erie County, Ohio">Erie County, Ohio</option>
+      <option value="Fairfield County, Ohio">Fairfield County, Ohio</option>
+      <option value="Fayette County, Ohio">Fayette County, Ohio</option>
+      <option value="Franklin County, Ohio">Franklin County, Ohio</option>
+      <option value="Fulton County, Ohio">Fulton County, Ohio</option>
+      <option value="Gallia County, Ohio">Gallia County, Ohio</option>
+      <option value="Geauga County, Ohio">Geauga County, Ohio</option>
+      <option value="Greene County, Ohio">Greene County, Ohio</option>
+      <option value="Guernsey County, Ohio">Guernsey County, Ohio</option>
+      <option value="Hamilton County, Ohio">Hamilton County, Ohio</option>
+      <option value="Hancock County, Ohio">Hancock County, Ohio</option>
+      <option value="Hardin County, Ohio">Hardin County, Ohio</option>
+      <option value="Harrison County, Ohio">Harrison County, Ohio</option>
+      <option value="Henry County, Ohio">Henry County, Ohio</option>
+      <option value="Highland County, Ohio">Highland County, Ohio</option>
+      <option value="Hocking County, Ohio">Hocking County, Ohio</option>
+      <option value="Holmes County, Ohio">Holmes County, Ohio</option>
+      <option value="Huron County, Ohio">Huron County, Ohio</option>
+      <option value="Jackson County, Ohio">Jackson County, Ohio</option>
+      <option value="Jefferson County, Ohio">Jefferson County, Ohio</option>
+      <option value="Knox County, Ohio">Knox County, Ohio</option>
+      <option value="Lake County, Ohio">Lake County, Ohio</option>
+      <option value="Lawrence County, Ohio">Lawrence County, Ohio</option>
+      <option value="Licking County, Ohio">Licking County, Ohio</option>
+      <option value="Logan County, Ohio">Logan County, Ohio</option>
+      <option value="Lorain County, Ohio">Lorain County, Ohio</option>
+      <option value="Lucas County, Ohio">Lucas County, Ohio</option>
+      <option value="Madison County, Ohio">Madison County, Ohio</option>
+      <option value="Mahoning County, Ohio">Mahoning County, Ohio</option>
+      <option value="Marion County, Ohio">Marion County, Ohio</option>
+      <option value="Medina County, Ohio">Medina County, Ohio</option>
+      <option value="Meigs County, Ohio">Meigs County, Ohio</option>
+      <option value="Mercer County, Ohio">Mercer County, Ohio</option>
+      <option value="Miami County, Ohio">Miami County, Ohio</option>
+      <option value="Monroe County, Ohio">Monroe County, Ohio</option>
+      <option value="Montgomery County, Ohio">Montgomery County, Ohio</option>
+      <option value="Morgan County, Ohio">Morgan County, Ohio</option>
+      <option value="Morrow County, Ohio">Morrow County, Ohio</option>
+      <option value="Muskingum County, Ohio">Muskingum County, Ohio</option>
+      <option value="Noble County, Ohio">Noble County, Ohio</option>
+      <option value="Ottawa County, Ohio">Ottawa County, Ohio</option>
+      <option value="Paulding County, Ohio">Paulding County, Ohio</option>
+      <option value="Perry County, Ohio">Perry County, Ohio</option>
+      <option value="Pickaway County, Ohio">Pickaway County, Ohio</option>
+      <option value="Pike County, Ohio">Pike County, Ohio</option>
+      <option value="Portage County, Ohio">Portage County, Ohio</option>
+      <option value="Preble County, Ohio">Preble County, Ohio</option>
+      <option value="Putnam County, Ohio">Putnam County, Ohio</option>
+      <option value="Richland County, Ohio">Richland County, Ohio</option>
+      <option value="Ross County, Ohio">Ross County, Ohio</option>
+      <option value="Sandusky County, Ohio">Sandusky County, Ohio</option>
+      <option value="Scioto County, Ohio">Scioto County, Ohio</option>
+      <option value="Seneca County, Ohio">Seneca County, Ohio</option>
+      <option value="Shelby County, Ohio">Shelby County, Ohio</option>
+      <option value="Stark County, Ohio">Stark County, Ohio</option>
+      <option value="Summit County, Ohio">Summit County, Ohio</option>
+      <option value="Trumbull County, Ohio">Trumbull County, Ohio</option>
+      <option value="Tuscarawas County, Ohio">Tuscarawas County, Ohio</option>
+      <option value="Union County, Ohio">Union County, Ohio</option>
+      <option value="Van Wert County, Ohio">Van Wert County, Ohio</option>
+      <option value="Vinton County, Ohio">Vinton County, Ohio</option>
+      <option value="Warren County, Ohio">Warren County, Ohio</option>
+      <option value="Washington County, Ohio">Washington County, Ohio</option>
+      <option value="Wayne County, Ohio">Wayne County, Ohio</option>
+      <option value="Williams County, Ohio">Williams County, Ohio</option>
+      <option value="Wood County, Ohio">Wood County, Ohio</option>
+      <option value="Wyandot County, Ohio">Wyandot County, Ohio</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>  const data = {"Statewide":{"Enrolled in College / Grad. School":38.8,"Not Enrolled":61.2},"Adams County, Ohio":{"Enrolled in College / Grad. School":22.3,"Not Enrolled":77.7},"Allen County, Ohio":{"Enrolled in College / Grad. School":37,"Not Enrolled":63},"Ashland County, Ohio":{"Enrolled in College / Grad. School":38.4,"Not Enrolled":61.6},"Ashtabula County, Ohio":{"Enrolled in College / Grad. School":19.3,"Not Enrolled":80.7},"Athens County, Ohio":{"Enrolled in College / Grad. School":82.7,"Not Enrolled":17.3},"Auglaize County, Ohio":{"Enrolled in College / Grad. School":23.4,"Not Enrolled":76.6},"Belmont County, Ohio":{"Enrolled in College / Grad. School":22.6,"Not Enrolled":77.4},"Brown County, Ohio":{"Enrolled in College / Grad. School":22.8,"Not Enrolled":77.2},"Butler County, Ohio":{"Enrolled in College / Grad. School":50.5,"Not Enrolled":49.5},"Carroll County, Ohio":{"Enrolled in College / Grad. School":11.7,"Not Enrolled":88.3},"Champaign County, Ohio":{"Enrolled in College / Grad. School":22.6,"Not Enrolled":77.4},"Clark County, Ohio":{"Enrolled in College / Grad. School":29.4,"Not Enrolled":70.6},"Clermont County, Ohio":{"Enrolled in College / Grad. School":25.4,"Not Enrolled":74.6},"Clinton County, Ohio":{"Enrolled in College / Grad. School":39.1,"Not Enrolled":60.9},"Columbiana County, Ohio":{"Enrolled in College / Grad. School":27.8,"Not Enrolled":72.2},"Coshocton County, Ohio":{"Enrolled in College / Grad. School":17.5,"Not Enrolled":82.5},"Crawford County, Ohio":{"Enrolled in College / Grad. School":18.1,"Not Enrolled":81.9},"Cuyahoga County, Ohio":{"Enrolled in College / Grad. School":38.7,"Not Enrolled":61.3},"Darke County, Ohio":{"Enrolled in College / Grad. School":18.6,"Not Enrolled":81.4},"Defiance County, Ohio":{"Enrolled in College / Grad. School":28.4,"Not Enrolled":71.6},"Delaware County, Ohio":{"Enrolled in College / Grad. School":42.4,"Not Enrolled":57.6},"Erie County, Ohio":{"Enrolled in College / Grad. School":24.3,"Not Enrolled":75.7},"Fairfield County, Ohio":{"Enrolled in College / Grad. School":29.3,"Not Enrolled":70.7},"Fayette County, Ohio":{"Enrolled in College / Grad. School":15.5,"Not Enrolled":84.5},"Franklin County, Ohio":{"Enrolled in College / Grad. School":45.7,"Not Enrolled":54.3},"Fulton County, Ohio":{"Enrolled in College / Grad. School":24.5,"Not Enrolled":75.5},"Gallia County, Ohio":{"Enrolled in College / Grad. School":30,"Not Enrolled":70},"Geauga County, Ohio":{"Enrolled in College / Grad. School":32.1,"Not Enrolled":67.9},"Greene County, Ohio":{"Enrolled in College / Grad. School":55.8,"Not Enrolled":44.2},"Guernsey County, Ohio":{"Enrolled in College / Grad. School":26.2,"Not Enrolled":73.8},"Hamilton County, Ohio":{"Enrolled in College / Grad. School":43.9,"Not Enrolled":56.1},"Hancock County, Ohio":{"Enrolled in College / Grad. School":36.9,"Not Enrolled":63.1},"Hardin County, Ohio":{"Enrolled in College / Grad. School":55.3,"Not Enrolled":44.7},"Harrison County, Ohio":{"Enrolled in College / Grad. School":26.9,"Not Enrolled":73.1},"Henry County, Ohio":{"Enrolled in College / Grad. School":23.7,"Not Enrolled":76.3},"Highland County, Ohio":{"Enrolled in College / Grad. School":16.5,"Not Enrolled":83.5},"Hocking County, Ohio":{"Enrolled in College / Grad. School":16.7,"Not Enrolled":83.3},"Holmes County, Ohio":{"Enrolled in College / Grad. School":5.4,"Not Enrolled":94.6},"Huron County, Ohio":{"Enrolled in College / Grad. School":19.8,"Not Enrolled":80.2},"Jackson County, Ohio":{"Enrolled in College / Grad. School":13.6,"Not Enrolled":86.4},"Jefferson County, Ohio":{"Enrolled in College / Grad. School":48.1,"Not Enrolled":51.9},"Knox County, Ohio":{"Enrolled in College / Grad. School":52.6,"Not Enrolled":47.4},"Lake County, Ohio":{"Enrolled in College / Grad. School":31.7,"Not Enrolled":68.3},"Lawrence County, Ohio":{"Enrolled in College / Grad. School":22.5,"Not Enrolled":77.5},"Licking County, Ohio":{"Enrolled in College / Grad. School":41.9,"Not Enrolled":58.1},"Logan County, Ohio":{"Enrolled in College / Grad. School":22.4,"Not Enrolled":77.6},"Lorain County, Ohio":{"Enrolled in College / Grad. School":38.3,"Not Enrolled":61.7},"Lucas County, Ohio":{"Enrolled in College / Grad. School":38.1,"Not Enrolled":61.9},"Madison County, Ohio":{"Enrolled in College / Grad. School":23.9,"Not Enrolled":76.1},"Mahoning County, Ohio":{"Enrolled in College / Grad. School":36.3,"Not Enrolled":63.7},"Marion County, Ohio":{"Enrolled in College / Grad. School":16.5,"Not Enrolled":83.5},"Medina County, Ohio":{"Enrolled in College / Grad. School":32.4,"Not Enrolled":67.6},"Meigs County, Ohio":{"Enrolled in College / Grad. School":26.2,"Not Enrolled":73.8},"Mercer County, Ohio":{"Enrolled in College / Grad. School":25.1,"Not Enrolled":74.9},"Miami County, Ohio":{"Enrolled in College / Grad. School":24.2,"Not Enrolled":75.8},"Monroe County, Ohio":{"Enrolled in College / Grad. School":30.1,"Not Enrolled":69.9},"Montgomery County, Ohio":{"Enrolled in College / Grad. School":43.6,"Not Enrolled":56.4},"Morgan County, Ohio":{"Enrolled in College / Grad. School":15.9,"Not Enrolled":84.1},"Morrow County, Ohio":{"Enrolled in College / Grad. School":19.7,"Not Enrolled":80.3},"Muskingum County, Ohio":{"Enrolled in College / Grad. School":31.4,"Not Enrolled":68.6},"Noble County, Ohio":{"Enrolled in College / Grad. School":21.3,"Not Enrolled":78.7},"Ottawa County, Ohio":{"Enrolled in College / Grad. School":29.5,"Not Enrolled":70.5},"Paulding County, Ohio":{"Enrolled in College / Grad. School":25.2,"Not Enrolled":74.8},"Perry County, Ohio":{"Enrolled in College / Grad. School":12.9,"Not Enrolled":87.1},"Pickaway County, Ohio":{"Enrolled in College / Grad. School":24.4,"Not Enrolled":75.6},"Pike County, Ohio":{"Enrolled in College / Grad. School":18.2,"Not Enrolled":81.8},"Portage County, Ohio":{"Enrolled in College / Grad. School":56.5,"Not Enrolled":43.5},"Preble County, Ohio":{"Enrolled in College / Grad. School":26.8,"Not Enrolled":73.2},"Putnam County, Ohio":{"Enrolled in College / Grad. School":43.8,"Not Enrolled":56.2},"Richland County, Ohio":{"Enrolled in College / Grad. School":24.8,"Not Enrolled":75.2},"Ross County, Ohio":{"Enrolled in College / Grad. School":24.5,"Not Enrolled":75.5},"Sandusky County, Ohio":{"Enrolled in College / Grad. School":24.6,"Not Enrolled":75.4},"Scioto County, Ohio":{"Enrolled in College / Grad. School":32.6,"Not Enrolled":67.4},"Seneca County, Ohio":{"Enrolled in College / Grad. School":46.7,"Not Enrolled":53.3},"Shelby County, Ohio":{"Enrolled in College / Grad. School":18.7,"Not Enrolled":81.3},"Stark County, Ohio":{"Enrolled in College / Grad. School":35.1,"Not Enrolled":64.9},"Summit County, Ohio":{"Enrolled in College / Grad. School":37.1,"Not Enrolled":62.9},"Trumbull County, Ohio":{"Enrolled in College / Grad. School":23.9,"Not Enrolled":76.1},"Tuscarawas County, Ohio":{"Enrolled in College / Grad. School":18.5,"Not Enrolled":81.5},"Union County, Ohio":{"Enrolled in College / Grad. School":25.1,"Not Enrolled":74.9},"Van Wert County, Ohio":{"Enrolled in College / Grad. School":24.9,"Not Enrolled":75.1},"Vinton County, Ohio":{"Enrolled in College / Grad. School":11.3,"Not Enrolled":88.7},"Warren County, Ohio":{"Enrolled in College / Grad. School":33.7,"Not Enrolled":66.3},"Washington County, Ohio":{"Enrolled in College / Grad. School":42.1,"Not Enrolled":57.9},"Wayne County, Ohio":{"Enrolled in College / Grad. School":38.3,"Not Enrolled":61.7},"Williams County, Ohio":{"Enrolled in College / Grad. School":21.8,"Not Enrolled":78.2},"Wood County, Ohio":{"Enrolled in College / Grad. School":62.2,"Not Enrolled":37.8},"Wyandot County, Ohio":{"Enrolled in College / Grad. School":29,"Not Enrolled":71}};
+  const categories = ["Enrolled in College / Grad. School","Not Enrolled"];
+  const ctx = document.getElementById("barChart").getContext("2d");
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: categories,
+        datasets: [
+          {
+            label: "County/State",
+            data: values,
+            backgroundColor: ["#66c2a5", "#fc8d62"]
+          }
+        ]
+      },
+      options: {
+        indexAxis: "y",
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            ticks: {
+              callback: v => v + "%"
+            }
+          }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.dataset.label + ": " + ctx.raw + "%"
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById("countySelect").addEventListener("change", function() {
+    renderChart(Object.values(data[this.value]));
+  });
+
+  renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

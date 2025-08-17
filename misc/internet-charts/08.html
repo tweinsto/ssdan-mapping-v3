@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Internet Access Over Time –  Colorado</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+                      h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+                      select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; border-radius: 5px; border: 1px solid #999; }
+                      canvas { width: 100%; max-width: 850px; height: 450px; margin-top: 1rem; }</style>
+</head>
+<html>
+  <body>
+    <h2>Internet Access in  Colorado (2013–2023)</h2>
+    <label>Select County: </label>
+    <select id="countySelect"><option value='Statewide'>Statewide</option>
+<option value='Adams County, Colorado'>Adams County, Colorado</option>
+<option value='Alamosa County, Colorado'>Alamosa County, Colorado</option>
+<option value='Arapahoe County, Colorado'>Arapahoe County, Colorado</option>
+<option value='Archuleta County, Colorado'>Archuleta County, Colorado</option>
+<option value='Baca County, Colorado'>Baca County, Colorado</option>
+<option value='Bent County, Colorado'>Bent County, Colorado</option>
+<option value='Boulder County, Colorado'>Boulder County, Colorado</option>
+<option value='Broomfield County, Colorado'>Broomfield County, Colorado</option>
+<option value='Chaffee County, Colorado'>Chaffee County, Colorado</option>
+<option value='Cheyenne County, Colorado'>Cheyenne County, Colorado</option>
+<option value='Clear Creek County, Colorado'>Clear Creek County, Colorado</option>
+<option value='Conejos County, Colorado'>Conejos County, Colorado</option>
+<option value='Costilla County, Colorado'>Costilla County, Colorado</option>
+<option value='Crowley County, Colorado'>Crowley County, Colorado</option>
+<option value='Custer County, Colorado'>Custer County, Colorado</option>
+<option value='Delta County, Colorado'>Delta County, Colorado</option>
+<option value='Denver County, Colorado'>Denver County, Colorado</option>
+<option value='Dolores County, Colorado'>Dolores County, Colorado</option>
+<option value='Douglas County, Colorado'>Douglas County, Colorado</option>
+<option value='Eagle County, Colorado'>Eagle County, Colorado</option>
+<option value='El Paso County, Colorado'>El Paso County, Colorado</option>
+<option value='Elbert County, Colorado'>Elbert County, Colorado</option>
+<option value='Fremont County, Colorado'>Fremont County, Colorado</option>
+<option value='Garfield County, Colorado'>Garfield County, Colorado</option>
+<option value='Gilpin County, Colorado'>Gilpin County, Colorado</option>
+<option value='Grand County, Colorado'>Grand County, Colorado</option>
+<option value='Gunnison County, Colorado'>Gunnison County, Colorado</option>
+<option value='Hinsdale County, Colorado'>Hinsdale County, Colorado</option>
+<option value='Huerfano County, Colorado'>Huerfano County, Colorado</option>
+<option value='Jackson County, Colorado'>Jackson County, Colorado</option>
+<option value='Jefferson County, Colorado'>Jefferson County, Colorado</option>
+<option value='Kiowa County, Colorado'>Kiowa County, Colorado</option>
+<option value='Kit Carson County, Colorado'>Kit Carson County, Colorado</option>
+<option value='La Plata County, Colorado'>La Plata County, Colorado</option>
+<option value='Lake County, Colorado'>Lake County, Colorado</option>
+<option value='Larimer County, Colorado'>Larimer County, Colorado</option>
+<option value='Las Animas County, Colorado'>Las Animas County, Colorado</option>
+<option value='Lincoln County, Colorado'>Lincoln County, Colorado</option>
+<option value='Logan County, Colorado'>Logan County, Colorado</option>
+<option value='Mesa County, Colorado'>Mesa County, Colorado</option>
+<option value='Mineral County, Colorado'>Mineral County, Colorado</option>
+<option value='Moffat County, Colorado'>Moffat County, Colorado</option>
+<option value='Montezuma County, Colorado'>Montezuma County, Colorado</option>
+<option value='Montrose County, Colorado'>Montrose County, Colorado</option>
+<option value='Morgan County, Colorado'>Morgan County, Colorado</option>
+<option value='Otero County, Colorado'>Otero County, Colorado</option>
+<option value='Ouray County, Colorado'>Ouray County, Colorado</option>
+<option value='Park County, Colorado'>Park County, Colorado</option>
+<option value='Phillips County, Colorado'>Phillips County, Colorado</option>
+<option value='Pitkin County, Colorado'>Pitkin County, Colorado</option>
+<option value='Prowers County, Colorado'>Prowers County, Colorado</option>
+<option value='Pueblo County, Colorado'>Pueblo County, Colorado</option>
+<option value='Rio Blanco County, Colorado'>Rio Blanco County, Colorado</option>
+<option value='Rio Grande County, Colorado'>Rio Grande County, Colorado</option>
+<option value='Routt County, Colorado'>Routt County, Colorado</option>
+<option value='Saguache County, Colorado'>Saguache County, Colorado</option>
+<option value='San Juan County, Colorado'>San Juan County, Colorado</option>
+<option value='San Miguel County, Colorado'>San Miguel County, Colorado</option>
+<option value='Sedgwick County, Colorado'>Sedgwick County, Colorado</option>
+<option value='Summit County, Colorado'>Summit County, Colorado</option>
+<option value='Teller County, Colorado'>Teller County, Colorado</option>
+<option value='Washington County, Colorado'>Washington County, Colorado</option>
+<option value='Weld County, Colorado'>Weld County, Colorado</option>
+<option value='Yuma County, Colorado'>Yuma County, Colorado</option></select>
+    <canvas id="lineChart" width="850" height="450"></canvas>
+    <script>const internetData = {"Statewide":{"2017":87.8,"2018":89.2,"2019":90.6,"2020":92.2,"2021":93.4,"2022":94.2,"2023":95.1},"Adams County, Colorado":{"2017":83.4,"2018":85.1,"2019":87.4,"2020":90.3,"2021":92.2,"2022":93.3,"2023":94.3},"Alamosa County, Colorado":{"2017":73.8,"2018":77,"2019":79.5,"2020":82.5,"2021":87,"2022":91.1,"2023":91.2},"Arapahoe County, Colorado":{"2017":90.4,"2018":91.4,"2019":92.5,"2020":94,"2021":95,"2022":95.6,"2023":96.4},"Archuleta County, Colorado":{"2017":83.6,"2018":84.4,"2019":86,"2020":88,"2021":89.1,"2022":90.9,"2023":91.1},"Baca County, Colorado":{"2017":72.7,"2018":73,"2019":74.3,"2020":78.5,"2021":82.1,"2022":83.9,"2023":87},"Bent County, Colorado":{"2017":74.7,"2018":76.3,"2019":74.2,"2020":77.5,"2021":81.6,"2022":83.3,"2023":85.7},"Boulder County, Colorado":{"2017":92.3,"2018":92.8,"2019":93.9,"2020":94.9,"2021":95.7,"2022":96.2,"2023":97},"Broomfield County, Colorado":{"2017":93.6,"2018":94.9,"2019":95.7,"2020":96.3,"2021":96.7,"2022":97.2,"2023":98},"Chaffee County, Colorado":{"2017":85.8,"2018":86,"2019":85.5,"2020":84.5,"2021":84.5,"2022":85.8,"2023":89.4},"Cheyenne County, Colorado":{"2017":78.6,"2018":81.8,"2019":83.6,"2020":88.1,"2021":90.2,"2022":91.9,"2023":93.6},"Clear Creek County, Colorado":{"2017":86.5,"2018":88.8,"2019":89,"2020":90.7,"2021":91.7,"2022":94.6,"2023":95.4},"Conejos County, Colorado":{"2017":64.2,"2018":66.7,"2019":72,"2020":73.4,"2021":78.1,"2022":80.2,"2023":82.1},"Costilla County, Colorado":{"2017":55,"2018":62.3,"2019":71.4,"2020":78.3,"2021":83.9,"2022":86.1,"2023":86.1},"Crowley County, Colorado":{"2017":80.3,"2018":79.2,"2019":79.6,"2020":79.4,"2021":81.2,"2022":81.4,"2023":83.9},"Custer County, Colorado":{"2017":80.8,"2018":87.3,"2019":87.3,"2020":81.5,"2021":81.4,"2022":82.8,"2023":83.7},"Delta County, Colorado":{"2017":76.1,"2018":76.4,"2019":78.4,"2020":79.9,"2021":81.8,"2022":80.9,"2023":83.2},"Denver County, Colorado":{"2017":85.6,"2018":87.8,"2019":90,"2020":92.7,"2021":93.9,"2022":94.8,"2023":95.7},"Dolores County, Colorado":{"2017":72.7,"2018":73.2,"2019":68.8,"2020":74.7,"2021":78.1,"2022":82.4,"2023":88.9},"Douglas County, Colorado":{"2017":96.6,"2018":97.2,"2019":97.5,"2020":97.9,"2021":98.1,"2022":98.4,"2023":98.8},"Eagle County, Colorado":{"2017":91.1,"2018":92.7,"2019":93.3,"2020":94.6,"2021":96.1,"2022":96.3,"2023":96.4},"El Paso County, Colorado":{"2017":90.5,"2018":91.8,"2019":92.9,"2020":94.1,"2021":94.8,"2022":95.4,"2023":96.1},"Elbert County, Colorado":{"2017":90.6,"2018":92.2,"2019":93.3,"2020":93.6,"2021":94.4,"2022":95.9,"2023":95.9},"Fremont County, Colorado":{"2017":82.4,"2018":84.4,"2019":87,"2020":86.1,"2021":85.2,"2022":84.5,"2023":86.4},"Garfield County, Colorado":{"2017":86.5,"2018":86.2,"2019":88.4,"2020":90.6,"2021":91.2,"2022":91.5,"2023":93.6},"Gilpin County, Colorado":{"2017":83.6,"2018":88.2,"2019":90.1,"2020":92.2,"2021":92.6,"2022":90.5,"2023":90.7},"Grand County, Colorado":{"2017":87.1,"2018":87.6,"2019":90,"2020":90.8,"2021":90.7,"2022":91.4,"2023":93.4},"Gunnison County, Colorado":{"2017":85.1,"2018":88.2,"2019":90.6,"2020":91.4,"2021":92.5,"2022":95.3,"2023":95.9},"Hinsdale County, Colorado":{"2017":72.3,"2018":72.6,"2019":75.3,"2020":87,"2021":94.6,"2022":92.7,"2023":94.9},"Huerfano County, Colorado":{"2017":72.1,"2018":71,"2019":72.4,"2020":73.6,"2021":73.5,"2022":76.1,"2023":78.8},"Jackson County, Colorado":{"2017":72.5,"2018":76.2,"2019":78.9,"2020":79.1,"2021":80.2,"2022":81.7,"2023":84.1},"Jefferson County, Colorado":{"2017":90.7,"2018":91.8,"2019":92.9,"2020":94.3,"2021":95,"2022":95.4,"2023":96.2},"Kiowa County, Colorado":{"2017":78.5,"2018":84,"2019":85.9,"2020":91.5,"2021":90.9,"2022":87.3,"2023":87.8},"Kit Carson County, Colorado":{"2017":76.2,"2018":80.7,"2019":83,"2020":86.4,"2021":88.8,"2022":90.1,"2023":90.6},"La Plata County, Colorado":{"2017":83.5,"2018":83.4,"2019":83.9,"2020":86,"2021":88.1,"2022":89.9,"2023":91.7},"Lake County, Colorado":{"2017":78.6,"2018":78,"2019":83.2,"2020":81.5,"2021":85.1,"2022":90.8,"2023":92.5},"Larimer County, Colorado":{"2017":91.2,"2018":92.2,"2019":93.1,"2020":94.2,"2021":95.2,"2022":95.8,"2023":96.6},"Las Animas County, Colorado":{"2017":71.9,"2018":74.7,"2019":76.4,"2020":80.2,"2021":82.6,"2022":84.8,"2023":87.4},"Lincoln County, Colorado":{"2017":80,"2018":83,"2019":82.9,"2020":81.4,"2021":80.6,"2022":83.2,"2023":83.2},"Logan County, Colorado":{"2017":82.3,"2018":85,"2019":87.4,"2020":88.7,"2021":89,"2022":88.8,"2023":89},"Mesa County, Colorado":{"2017":86.1,"2018":87.1,"2019":88.5,"2020":90.3,"2021":91.2,"2022":92.3,"2023":93.7},"Mineral County, Colorado":{"2017":82.2,"2018":82.9,"2019":87.7,"2020":93.9,"2021":94,"2022":94,"2023":95.2},"Moffat County, Colorado":{"2017":80,"2018":83.3,"2019":83.2,"2020":86.4,"2021":88.8,"2022":87.3,"2023":88},"Montezuma County, Colorado":{"2017":73.9,"2018":74.7,"2019":75.7,"2020":79.1,"2021":80.6,"2022":83.3,"2023":85.3},"Montrose County, Colorado":{"2017":76,"2018":78.1,"2019":80.5,"2020":80.5,"2021":83.6,"2022":86,"2023":87.4},"Morgan County, Colorado":{"2017":79.1,"2018":81.2,"2019":85.6,"2020":87.7,"2021":90.8,"2022":92,"2023":92.5},"Otero County, Colorado":{"2017":75.1,"2018":73,"2019":75,"2020":79.7,"2021":80.8,"2022":85,"2023":90.1},"Ouray County, Colorado":{"2017":87.1,"2018":88.1,"2019":90.8,"2020":93,"2021":92.1,"2022":91.5,"2023":94.2},"Park County, Colorado":{"2017":84.2,"2018":84.7,"2019":86,"2020":91.6,"2021":91.8,"2022":92,"2023":94},"Phillips County, Colorado":{"2017":83.4,"2018":82.9,"2019":81.8,"2020":75.7,"2021":79.9,"2022":82.2,"2023":88.1},"Pitkin County, Colorado":{"2017":93.1,"2018":93.3,"2019":96.8,"2020":97.7,"2021":98.4,"2022":98,"2023":98.2},"Prowers County, Colorado":{"2017":77.8,"2018":78.6,"2019":78.6,"2020":83.3,"2021":82.8,"2022":83.9,"2023":86.3},"Pueblo County, Colorado":{"2017":77.4,"2018":79.1,"2019":80.5,"2020":83.2,"2021":85.1,"2022":86.4,"2023":88.9},"Rio Blanco County, Colorado":{"2017":77.9,"2018":82.9,"2019":85.7,"2020":90.7,"2021":91.2,"2022":94.4,"2023":96.1},"Rio Grande County, Colorado":{"2017":66.9,"2018":69.2,"2019":69.8,"2020":74.4,"2021":80.8,"2022":86.3,"2023":86.8},"Routt County, Colorado":{"2017":90.5,"2018":92.6,"2019":93.4,"2020":92.7,"2021":93.3,"2022":94.1,"2023":94.5},"Saguache County, Colorado":{"2017":71.3,"2018":70.3,"2019":74.3,"2020":80.6,"2021":81.3,"2022":85.2,"2023":89.6},"San Juan County, Colorado":{"2017":84.7,"2018":83.8,"2019":84.4,"2020":82.5,"2021":85.3,"2022":84,"2023":89.2},"San Miguel County, Colorado":{"2017":88,"2018":89.1,"2019":90.9,"2020":89.4,"2021":90.8,"2022":91.2,"2023":90.5},"Sedgwick County, Colorado":{"2017":74.4,"2018":77.1,"2019":80.2,"2020":84.6,"2021":84.7,"2022":88.3,"2023":89.7},"Summit County, Colorado":{"2017":89.8,"2018":89.8,"2019":89.9,"2020":93.1,"2021":95,"2022":96,"2023":98},"Teller County, Colorado":{"2017":91,"2018":91.6,"2019":93.2,"2020":93.3,"2021":93.7,"2022":92.2,"2023":93.4},"Washington County, Colorado":{"2017":77,"2018":80.6,"2019":84,"2020":85.3,"2021":86.3,"2022":88.3,"2023":89},"Weld County, Colorado":{"2017":85.9,"2018":87.8,"2019":89.3,"2020":90.7,"2021":92.1,"2022":93.2,"2023":93.9},"Yuma County, Colorado":{"2017":73.2,"2018":79.2,"2019":81,"2020":83.9,"2021":85.6,"2022":89.8,"2023":91.1}};
+const ctx = document.getElementById('lineChart').getContext('2d');
+let chart;
+
+function renderChart(data) {
+  const labels = Object.keys(data);
+  const values = Object.values(data);
+
+  if (chart) chart.destroy();
+  chart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: labels,
+      datasets: [{
+        label: '% With Internet',
+        data: values,
+        fill: false,
+        borderColor: 'teal',
+        backgroundColor: 'teal',
+        tension: 0.3,
+        pointRadius: 4
+      }]
+    },
+    options: {
+      responsive: true,
+      scales: {
+        y: {
+          beginAtZero: true,
+          max: 100,
+          title: { display: true, text: '% With Internet' }
+        },
+        x: {
+          title: { display: true, text: 'Year' }
+        }
+      },
+      plugins: {
+        tooltip: {
+          callbacks: {
+            label: function(ctx) {
+              return ctx.parsed.y.toFixed(1) + '%';
+            }
+          }
+        }
+      }
+    }
+  });
+}
+
+document.getElementById('countySelect').addEventListener('change', function() {
+  renderChart(internetData[this.value]);
+});
+renderChart(internetData['Statewide']);</script>
+  </body>
+</html>
+</html>

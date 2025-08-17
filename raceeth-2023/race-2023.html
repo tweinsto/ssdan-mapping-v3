@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Race & Ethnicity – 2023</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      display: flex;
+      height: 100vh;
+    }
+
+    .sidebar {
+      width: 200px;
+      background-color: #f2f2f2;
+      padding: 1rem;
+      border-right: 1px solid #ccc;
+    }
+
+    .sidebar a {
+      display: block;
+      margin-bottom: 0.75rem;
+      text-decoration: none;
+      color: #003366;
+      font-weight: bold;
+    }
+
+    .sidebar a.active {
+      color: #ffffff;
+      background-color: #3e49a8;
+      padding: 0.4rem;
+      border-radius: 5px;
+    }
+
+    .main-content {
+      flex: 1;
+      padding: 1rem;
+    }
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="sidebar">
+    <a href="#hispanic-state.html" class="race-link" data-map="hispanic-state.html">Hispanic</a>
+    <a href="#white-state.html" class="race-link" data-map="white-state.html">White (non-Hispanic)</a>
+    <a href="#black-state.html" class="race-link" data-map="black-state.html">Black or African American</a>
+    <a href="#asian-state.html" class="race-link" data-map="asian-state.html">Asian</a>
+    <a href="#native-state.html" class="race-link" data-map="native-state.html">American Indian / Alaska Native</a>
+    <a href="#pacific-state.html" class="race-link" data-map="pacific-state.html">Pacific Islander</a>
+    <a href="#multirace-state.html" class="race-link" data-map="multirace-state.html">Two or More Races</a>
+  </div>
+
+  <div class="main-content">
+    <iframe id="mapFrame"></iframe>
+  </div>
+<p style="max-width: 800px; margin: 1.5rem auto; font-size: 0.95rem; color: #444; text-align: center;">
+  The Hispanic population includes individuals of any race who identified as being of Hispanic, Latino, or Spanish origin. This classification was determined using Census ethnicity data, separate from race. People identifying as Hispanic may also be represented in a racial group.
+</p>
+  <script>
+    const links = document.querySelectorAll('.race-link');
+    const frame = document.getElementById('mapFrame');
+
+    function setActiveLink(mapSrc) {
+      links.forEach(link => {
+        if (link.dataset.map === mapSrc) {
+          link.classList.add("active");
+        } else {
+          link.classList.remove("active");
+        }
+      });
+    }
+
+    function loadMapFromHash() {
+      const hash = window.location.hash;
+      const mapSrc = hash ? hash.substring(1) : "hispanic-state.html";
+      frame.src = mapSrc;
+      setActiveLink(mapSrc);
+    }
+
+    // Handle initial load
+    window.addEventListener("load", loadMapFromHash);
+
+    // Handle browser back/forward
+    window.addEventListener("hashchange", loadMapFromHash);
+
+    // Handle menu clicks
+    links.forEach(link => {
+      link.addEventListener("click", function(e) {
+        e.preventDefault();
+        const newMap = this.dataset.map;
+        window.location.hash = newMap; // Triggers hashchange
+      });
+    });
+  </script>
+<!-- GROWTH WIDGET CONTAINER -->
+<div id="growthWidget" style="
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  background: white;
+  padding: 1em;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  width: 280px;
+  max-height: 350px;
+  overflow-y: auto;
+  font-family: sans-serif;
+  font-size: 14px;
+  box-shadow: 0px 2px 6px rgba(0,0,0,0.1);
+"></div>
+
+<!-- WIDGET SCRIPT LOADER -->
+<script type="module">
+  import { initGrowthWidget } from "./growth-widget.js";
+
+  initGrowthWidget({
+    stateDataUrl: "./data/state_growth.json",
+    countyDataUrl: "./data/county_growth.json",
+    containerSelector: "#growthWidget"
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Internet Access Over Time –  New Mexico</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+                      h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+                      select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; border-radius: 5px; border: 1px solid #999; }
+                      canvas { width: 100%; max-width: 850px; height: 450px; margin-top: 1rem; }</style>
+</head>
+<html>
+  <body>
+    <h2>Internet Access in  New Mexico (2013–2023)</h2>
+    <label>Select County: </label>
+    <select id="countySelect"><option value='Statewide'>Statewide</option>
+<option value='Bernalillo County, New Mexico'>Bernalillo County, New Mexico</option>
+<option value='Catron County, New Mexico'>Catron County, New Mexico</option>
+<option value='Chaves County, New Mexico'>Chaves County, New Mexico</option>
+<option value='Cibola County, New Mexico'>Cibola County, New Mexico</option>
+<option value='Colfax County, New Mexico'>Colfax County, New Mexico</option>
+<option value='Curry County, New Mexico'>Curry County, New Mexico</option>
+<option value='De Baca County, New Mexico'>De Baca County, New Mexico</option>
+<option value='Doña Ana County, New Mexico'>Doña Ana County, New Mexico</option>
+<option value='Eddy County, New Mexico'>Eddy County, New Mexico</option>
+<option value='Grant County, New Mexico'>Grant County, New Mexico</option>
+<option value='Guadalupe County, New Mexico'>Guadalupe County, New Mexico</option>
+<option value='Harding County, New Mexico'>Harding County, New Mexico</option>
+<option value='Hidalgo County, New Mexico'>Hidalgo County, New Mexico</option>
+<option value='Lea County, New Mexico'>Lea County, New Mexico</option>
+<option value='Lincoln County, New Mexico'>Lincoln County, New Mexico</option>
+<option value='Los Alamos County, New Mexico'>Los Alamos County, New Mexico</option>
+<option value='Luna County, New Mexico'>Luna County, New Mexico</option>
+<option value='McKinley County, New Mexico'>McKinley County, New Mexico</option>
+<option value='Mora County, New Mexico'>Mora County, New Mexico</option>
+<option value='Otero County, New Mexico'>Otero County, New Mexico</option>
+<option value='Quay County, New Mexico'>Quay County, New Mexico</option>
+<option value='Rio Arriba County, New Mexico'>Rio Arriba County, New Mexico</option>
+<option value='Roosevelt County, New Mexico'>Roosevelt County, New Mexico</option>
+<option value='San Juan County, New Mexico'>San Juan County, New Mexico</option>
+<option value='San Miguel County, New Mexico'>San Miguel County, New Mexico</option>
+<option value='Sandoval County, New Mexico'>Sandoval County, New Mexico</option>
+<option value='Santa Fe County, New Mexico'>Santa Fe County, New Mexico</option>
+<option value='Sierra County, New Mexico'>Sierra County, New Mexico</option>
+<option value='Socorro County, New Mexico'>Socorro County, New Mexico</option>
+<option value='Taos County, New Mexico'>Taos County, New Mexico</option>
+<option value='Torrance County, New Mexico'>Torrance County, New Mexico</option>
+<option value='Union County, New Mexico'>Union County, New Mexico</option>
+<option value='Valencia County, New Mexico'>Valencia County, New Mexico</option></select>
+    <canvas id="lineChart" width="850" height="450"></canvas>
+    <script>const internetData = {"Statewide":{"2017":74.5,"2018":76.6,"2019":78.8,"2020":81.5,"2021":83.8,"2022":85.5,"2023":87.8},"Bernalillo County, New Mexico":{"2017":80.3,"2018":82.2,"2019":84.3,"2020":86.6,"2021":88.5,"2022":89.8,"2023":91.3},"Catron County, New Mexico":{"2017":63.6,"2018":61.8,"2019":65,"2020":68.1,"2021":71.2,"2022":74.1,"2023":77.5},"Chaves County, New Mexico":{"2017":73.5,"2018":74.6,"2019":74.3,"2020":77.1,"2021":79.1,"2022":80.9,"2023":83.6},"Cibola County, New Mexico":{"2017":58.9,"2018":60.5,"2019":62.5,"2020":66.3,"2021":67.9,"2022":71.6,"2023":76},"Colfax County, New Mexico":{"2017":65.9,"2018":68.9,"2019":70.5,"2020":73.7,"2021":76.9,"2022":79.6,"2023":83.7},"Curry County, New Mexico":{"2017":77.9,"2018":81,"2019":83,"2020":85.4,"2021":86.6,"2022":88.5,"2023":89.3},"De Baca County, New Mexico":{"2017":67.6,"2018":67.5,"2019":71.6,"2020":70.9,"2021":78.4,"2022":76.9,"2023":76.6},"Doña Ana County, New Mexico":{"2017":74.8,"2018":75,"2019":77.4,"2020":81.5,"2021":84.2,"2022":86.6,"2023":90.6},"Eddy County, New Mexico":{"2017":78.4,"2018":80.3,"2019":82.1,"2020":83.1,"2021":84.9,"2022":85.3,"2023":89.4},"Grant County, New Mexico":{"2017":70.8,"2018":72.1,"2019":75,"2020":81.5,"2021":82.9,"2022":86.2,"2023":87.9},"Guadalupe County, New Mexico":{"2017":35.2,"2018":41.4,"2019":42.8,"2020":54.9,"2021":60.2,"2022":73.7,"2023":79},"Harding County, New Mexico":{"2017":50.2,"2018":52.6,"2019":55.5,"2020":61.9,"2021":64.4,"2022":77.4,"2023":75.5},"Hidalgo County, New Mexico":{"2017":67.7,"2018":71.1,"2019":76.8,"2020":78.1,"2021":78.7,"2022":80,"2023":82.4},"Lea County, New Mexico":{"2017":76.5,"2018":79,"2019":81.4,"2020":83.2,"2021":84.5,"2022":85.6,"2023":87.2},"Lincoln County, New Mexico":{"2017":71.9,"2018":75.3,"2019":81.2,"2020":83.3,"2021":86.3,"2022":88.2,"2023":90.1},"Los Alamos County, New Mexico":{"2017":90.5,"2018":90,"2019":92.6,"2020":95.5,"2021":96.2,"2022":96.8,"2023":98},"Luna County, New Mexico":{"2017":56.7,"2018":60.4,"2019":66,"2020":71.6,"2021":74,"2022":77.8,"2023":81.6},"McKinley County, New Mexico":{"2017":43.8,"2018":47.3,"2019":49.4,"2020":53,"2021":56.6,"2022":59.2,"2023":63.8},"Mora County, New Mexico":{"2017":48.2,"2018":53.4,"2019":55,"2020":45.6,"2021":48.9,"2022":54.7,"2023":60.6},"Otero County, New Mexico":{"2017":76.3,"2018":79.1,"2019":81.3,"2020":85.3,"2021":86.4,"2022":88.3,"2023":90.4},"Quay County, New Mexico":{"2017":59.7,"2018":59.1,"2019":60.2,"2020":68.4,"2021":73.5,"2022":74.4,"2023":82.5},"Rio Arriba County, New Mexico":{"2017":53.4,"2018":54.7,"2019":59.9,"2020":63.4,"2021":66.5,"2022":69.6,"2023":74.7},"Roosevelt County, New Mexico":{"2017":75.2,"2018":78.6,"2019":82,"2020":82.8,"2021":83.3,"2022":84.1,"2023":87.2},"San Juan County, New Mexico":{"2017":64.5,"2018":68.6,"2019":71.2,"2020":72.8,"2021":75.1,"2022":76,"2023":77.9},"San Miguel County, New Mexico":{"2017":51.5,"2018":57.2,"2019":61.5,"2020":68.5,"2021":72.6,"2022":76.2,"2023":81.7},"Sandoval County, New Mexico":{"2017":82.6,"2018":85.3,"2019":86.4,"2020":88.6,"2021":90.1,"2022":90.9,"2023":91.7},"Santa Fe County, New Mexico":{"2017":80.1,"2018":81.5,"2019":83.2,"2020":84.7,"2021":86.5,"2022":88.2,"2023":90.6},"Sierra County, New Mexico":{"2017":64.4,"2018":66.2,"2019":66,"2020":71.4,"2021":75.2,"2022":79,"2023":82.8},"Socorro County, New Mexico":{"2017":60,"2018":59.1,"2019":62.1,"2020":64.6,"2021":64.2,"2022":62.6,"2023":66.3},"Taos County, New Mexico":{"2017":61.4,"2018":65.3,"2019":71.2,"2020":77.8,"2021":83.5,"2022":85.9,"2023":87.5},"Torrance County, New Mexico":{"2017":63.2,"2018":65.3,"2019":66.7,"2020":70.6,"2021":75.5,"2022":78.7,"2023":82},"Union County, New Mexico":{"2017":59.6,"2018":61.9,"2019":64.2,"2020":69.1,"2021":76.9,"2022":82.2,"2023":86.7},"Valencia County, New Mexico":{"2017":69.6,"2018":72.8,"2019":74.4,"2020":77.3,"2021":79.6,"2022":81.5,"2023":85.3}};
+const ctx = document.getElementById('lineChart').getContext('2d');
+let chart;
+
+function renderChart(data) {
+  const labels = Object.keys(data);
+  const values = Object.values(data);
+
+  if (chart) chart.destroy();
+  chart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: labels,
+      datasets: [{
+        label: '% With Internet',
+        data: values,
+        fill: false,
+        borderColor: 'teal',
+        backgroundColor: 'teal',
+        tension: 0.3,
+        pointRadius: 4
+      }]
+    },
+    options: {
+      responsive: true,
+      scales: {
+        y: {
+          beginAtZero: true,
+          max: 100,
+          title: { display: true, text: '% With Internet' }
+        },
+        x: {
+          title: { display: true, text: 'Year' }
+        }
+      },
+      plugins: {
+        tooltip: {
+          callbacks: {
+            label: function(ctx) {
+              return ctx.parsed.y.toFixed(1) + '%';
+            }
+          }
+        }
+      }
+    }
+  });
+}
+
+document.getElementById('countySelect').addEventListener('change', function() {
+  renderChart(internetData[this.value]);
+});
+renderChart(internetData['Statewide']);</script>
+  </body>
+</html>
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Race by Year – Alaska</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      margin: 1em;
+    }
+    #buttons button {
+      margin: 0 5px;
+    }
+    #chart-container {
+      width: 90%;
+      max-width: 800px;
+      margin: auto;
+    }
+    
+    #buttons button.active {
+  background-color: dodgerblue;
+  color: white;
+  border: none;
+  border-radius: 4px;
+}
+
+  </style>
+</head>
+<body>
+  <h2>Race/Ethnicity Population – Alaska</h2>
+
+  <label for="countySelect">County:</label>
+  <select id="countySelect">
+    <option value="Statewide" selected>Statewide</option>
+<option value="Aleutians East Borough">Aleutians East Borough</option>
+<option value="Aleutians West Census Area">Aleutians West Census Area</option>
+<option value="Anchorage Municipality">Anchorage Municipality</option>
+<option value="Bethel Census Area">Bethel Census Area</option>
+<option value="Bristol Bay Borough">Bristol Bay Borough</option>
+<option value="Chugach Census Area">Chugach Census Area</option>
+<option value="Copper River Census Area">Copper River Census Area</option>
+<option value="Denali Borough">Denali Borough</option>
+<option value="Dillingham Census Area">Dillingham Census Area</option>
+<option value="Fairbanks North Star Borough">Fairbanks North Star Borough</option>
+<option value="Haines Borough">Haines Borough</option>
+<option value="Hoonah-Angoon Census Area">Hoonah-Angoon Census Area</option>
+<option value="Juneau City and Borough">Juneau City and Borough</option>
+<option value="Kenai Peninsula Borough">Kenai Peninsula Borough</option>
+<option value="Ketchikan Gateway Borough">Ketchikan Gateway Borough</option>
+<option value="Kodiak Island Borough">Kodiak Island Borough</option>
+<option value="Kusilvak Census Area">Kusilvak Census Area</option>
+<option value="Lake and Peninsula Borough">Lake and Peninsula Borough</option>
+<option value="Matanuska-Susitna Borough">Matanuska-Susitna Borough</option>
+<option value="Nome Census Area">Nome Census Area</option>
+<option value="North Slope Borough">North Slope Borough</option>
+<option value="Northwest Arctic Borough">Northwest Arctic Borough</option>
+<option value="Petersburg Borough">Petersburg Borough</option>
+<option value="Petersburg Census Area">Petersburg Census Area</option>
+<option value="Prince of Wales-Hyder Census Area">Prince of Wales-Hyder Census Area</option>
+<option value="Sitka City and Borough">Sitka City and Borough</option>
+<option value="Skagway Municipality">Skagway Municipality</option>
+<option value="Southeast Fairbanks Census Area">Southeast Fairbanks Census Area</option>
+<option value="Valdez-Cordova Census Area">Valdez-Cordova Census Area</option>
+<option value="Wade Hampton Census Area">Wade Hampton Census Area</option>
+<option value="Wrangell City and Borough">Wrangell City and Borough</option>
+<option value="Yakutat City and Borough">Yakutat City and Borough</option>
+<option value="Yukon-Koyukuk Census Area">Yukon-Koyukuk Census Area</option>
+  </select>
+
+  <div id="buttons">
+  <button id="btn2010" onclick="updateChart(2010)">2010</button>
+  <button id="btn2020" onclick="updateChart(2020)">2020</button>
+</div>
+
+  <div id="chart-container">
+    <canvas id="raceChart"></canvas>
+  </div>
+
+   <script>
+    let data = null;
+    let chart = null;
+    let currentYear = 2010;
+
+    fetch("02.json")
+      .then(res => res.json())
+      .then(json => {
+        data = json;
+        document.getElementById("countySelect").addEventListener("change", () => updateChart(currentYear));
+        updateChart(currentYear);
+      });
+
+    function updateChart(year) {
+      currentYear = year;
+
+      // Highlight selected button
+      document.querySelectorAll("#buttons button").forEach(btn => btn.classList.remove("active"));
+      const activeBtn = document.getElementById(`btn${year}`);
+      if (activeBtn) activeBtn.classList.add("active");
+
+      const county = document.getElementById("countySelect").value;
+      const entry = data[county] && data[county][year];
+      if (!entry) return;
+
+      const races = Object.keys(entry[0]).filter(k => !["state_fips", "county", "year", "total"].includes(k));
+      const values = races.map(r => entry[0][r]);
+
+      const config = {
+        type: "bar",
+        data: {
+          labels: races,
+          datasets: [{
+            label: "Population",
+            data: values,
+            backgroundColor: "dodgerblue"
+          }]
+        },
+        options: {
+          plugins: {
+            legend: { display: false }
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              ticks: {
+                callback: function(value) {
+                  return value.toLocaleString();
+                }
+              }
+            }
+          }
+        }
+      };
+
+      if (chart) {
+        chart.destroy();
+      }
+      chart = new Chart(document.getElementById("raceChart"), config);
+    }
+  </script>
+</body>
+</html>

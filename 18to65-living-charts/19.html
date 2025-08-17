@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Living Arrangements 18–64 – Iowa</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+      body { font-family: sans-serif; margin: 1.25rem 2rem; text-align: center; }
+      h2 { margin-bottom: .25rem; font-size: 1.6rem; color: #2c348b; }
+      label { margin-right: .5rem; }
+      select { padding: .45rem .6rem; font-size: 1rem; border-radius: .5rem; border: 2px solid #f39c12; }
+      canvas { width: 100%; max-width: 900px; height: 520px; }
+    </style>
+</head>
+<html>
+  <body>
+    <h2>Living Arrangements of Adults 18–64 in Iowa</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Adair County, Iowa">Adair County, Iowa</option>
+      <option value="Adams County, Iowa">Adams County, Iowa</option>
+      <option value="Allamakee County, Iowa">Allamakee County, Iowa</option>
+      <option value="Appanoose County, Iowa">Appanoose County, Iowa</option>
+      <option value="Audubon County, Iowa">Audubon County, Iowa</option>
+      <option value="Benton County, Iowa">Benton County, Iowa</option>
+      <option value="Black Hawk County, Iowa">Black Hawk County, Iowa</option>
+      <option value="Boone County, Iowa">Boone County, Iowa</option>
+      <option value="Bremer County, Iowa">Bremer County, Iowa</option>
+      <option value="Buchanan County, Iowa">Buchanan County, Iowa</option>
+      <option value="Buena Vista County, Iowa">Buena Vista County, Iowa</option>
+      <option value="Butler County, Iowa">Butler County, Iowa</option>
+      <option value="Calhoun County, Iowa">Calhoun County, Iowa</option>
+      <option value="Carroll County, Iowa">Carroll County, Iowa</option>
+      <option value="Cass County, Iowa">Cass County, Iowa</option>
+      <option value="Cedar County, Iowa">Cedar County, Iowa</option>
+      <option value="Cerro Gordo County, Iowa">Cerro Gordo County, Iowa</option>
+      <option value="Cherokee County, Iowa">Cherokee County, Iowa</option>
+      <option value="Chickasaw County, Iowa">Chickasaw County, Iowa</option>
+      <option value="Clarke County, Iowa">Clarke County, Iowa</option>
+      <option value="Clay County, Iowa">Clay County, Iowa</option>
+      <option value="Clayton County, Iowa">Clayton County, Iowa</option>
+      <option value="Clinton County, Iowa">Clinton County, Iowa</option>
+      <option value="Crawford County, Iowa">Crawford County, Iowa</option>
+      <option value="Dallas County, Iowa">Dallas County, Iowa</option>
+      <option value="Davis County, Iowa">Davis County, Iowa</option>
+      <option value="Decatur County, Iowa">Decatur County, Iowa</option>
+      <option value="Delaware County, Iowa">Delaware County, Iowa</option>
+      <option value="Des Moines County, Iowa">Des Moines County, Iowa</option>
+      <option value="Dickinson County, Iowa">Dickinson County, Iowa</option>
+      <option value="Dubuque County, Iowa">Dubuque County, Iowa</option>
+      <option value="Emmet County, Iowa">Emmet County, Iowa</option>
+      <option value="Fayette County, Iowa">Fayette County, Iowa</option>
+      <option value="Floyd County, Iowa">Floyd County, Iowa</option>
+      <option value="Franklin County, Iowa">Franklin County, Iowa</option>
+      <option value="Fremont County, Iowa">Fremont County, Iowa</option>
+      <option value="Greene County, Iowa">Greene County, Iowa</option>
+      <option value="Grundy County, Iowa">Grundy County, Iowa</option>
+      <option value="Guthrie County, Iowa">Guthrie County, Iowa</option>
+      <option value="Hamilton County, Iowa">Hamilton County, Iowa</option>
+      <option value="Hancock County, Iowa">Hancock County, Iowa</option>
+      <option value="Hardin County, Iowa">Hardin County, Iowa</option>
+      <option value="Harrison County, Iowa">Harrison County, Iowa</option>
+      <option value="Henry County, Iowa">Henry County, Iowa</option>
+      <option value="Howard County, Iowa">Howard County, Iowa</option>
+      <option value="Humboldt County, Iowa">Humboldt County, Iowa</option>
+      <option value="Ida County, Iowa">Ida County, Iowa</option>
+      <option value="Iowa County, Iowa">Iowa County, Iowa</option>
+      <option value="Jackson County, Iowa">Jackson County, Iowa</option>
+      <option value="Jasper County, Iowa">Jasper County, Iowa</option>
+      <option value="Jefferson County, Iowa">Jefferson County, Iowa</option>
+      <option value="Johnson County, Iowa">Johnson County, Iowa</option>
+      <option value="Jones County, Iowa">Jones County, Iowa</option>
+      <option value="Keokuk County, Iowa">Keokuk County, Iowa</option>
+      <option value="Kossuth County, Iowa">Kossuth County, Iowa</option>
+      <option value="Lee County, Iowa">Lee County, Iowa</option>
+      <option value="Linn County, Iowa">Linn County, Iowa</option>
+      <option value="Louisa County, Iowa">Louisa County, Iowa</option>
+      <option value="Lucas County, Iowa">Lucas County, Iowa</option>
+      <option value="Lyon County, Iowa">Lyon County, Iowa</option>
+      <option value="Madison County, Iowa">Madison County, Iowa</option>
+      <option value="Mahaska County, Iowa">Mahaska County, Iowa</option>
+      <option value="Marion County, Iowa">Marion County, Iowa</option>
+      <option value="Marshall County, Iowa">Marshall County, Iowa</option>
+      <option value="Mills County, Iowa">Mills County, Iowa</option>
+      <option value="Mitchell County, Iowa">Mitchell County, Iowa</option>
+      <option value="Monona County, Iowa">Monona County, Iowa</option>
+      <option value="Monroe County, Iowa">Monroe County, Iowa</option>
+      <option value="Montgomery County, Iowa">Montgomery County, Iowa</option>
+      <option value="Muscatine County, Iowa">Muscatine County, Iowa</option>
+      <option value="O&#39;Brien County, Iowa">O'Brien County, Iowa</option>
+      <option value="Osceola County, Iowa">Osceola County, Iowa</option>
+      <option value="Page County, Iowa">Page County, Iowa</option>
+      <option value="Palo Alto County, Iowa">Palo Alto County, Iowa</option>
+      <option value="Plymouth County, Iowa">Plymouth County, Iowa</option>
+      <option value="Pocahontas County, Iowa">Pocahontas County, Iowa</option>
+      <option value="Polk County, Iowa">Polk County, Iowa</option>
+      <option value="Pottawattamie County, Iowa">Pottawattamie County, Iowa</option>
+      <option value="Poweshiek County, Iowa">Poweshiek County, Iowa</option>
+      <option value="Ringgold County, Iowa">Ringgold County, Iowa</option>
+      <option value="Sac County, Iowa">Sac County, Iowa</option>
+      <option value="Scott County, Iowa">Scott County, Iowa</option>
+      <option value="Shelby County, Iowa">Shelby County, Iowa</option>
+      <option value="Sioux County, Iowa">Sioux County, Iowa</option>
+      <option value="Story County, Iowa">Story County, Iowa</option>
+      <option value="Tama County, Iowa">Tama County, Iowa</option>
+      <option value="Taylor County, Iowa">Taylor County, Iowa</option>
+      <option value="Union County, Iowa">Union County, Iowa</option>
+      <option value="Van Buren County, Iowa">Van Buren County, Iowa</option>
+      <option value="Wapello County, Iowa">Wapello County, Iowa</option>
+      <option value="Warren County, Iowa">Warren County, Iowa</option>
+      <option value="Washington County, Iowa">Washington County, Iowa</option>
+      <option value="Wayne County, Iowa">Wayne County, Iowa</option>
+      <option value="Webster County, Iowa">Webster County, Iowa</option>
+      <option value="Winnebago County, Iowa">Winnebago County, Iowa</option>
+      <option value="Winneshiek County, Iowa">Winneshiek County, Iowa</option>
+      <option value="Woodbury County, Iowa">Woodbury County, Iowa</option>
+      <option value="Worth County, Iowa">Worth County, Iowa</option>
+      <option value="Wright County, Iowa">Wright County, Iowa</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>document.addEventListener("DOMContentLoaded", function () {
+  const data = {"Statewide":[12.8,9.8,6,9.3,52,10.3],"Adair County, Iowa":[15.5,9,4.7,6.7,53.9,10.1],"Adams County, Iowa":[9.3,11.3,5.4,7.7,58.6,7.6],"Allamakee County, Iowa":[12.2,5.7,1.4,5.4,59.8,15.4],"Appanoose County, Iowa":[11.9,13.7,4.4,7.8,50.7,11.6],"Audubon County, Iowa":[16.7,6,1.6,9,59,7.7],"Benton County, Iowa":[8,11.5,3.1,7.4,59.9,10.2],"Black Hawk County, Iowa":[13.9,9.2,10.7,9.6,44.3,12.3],"Boone County, Iowa":[9.9,12.6,2.7,8,57.4,9.4],"Bremer County, Iowa":[10.8,9.6,5.8,7.8,56.9,9.1],"Buchanan County, Iowa":[8.9,10,3.4,7.3,59.3,11.2],"Buena Vista County, Iowa":[13.5,10.5,4,10.1,51.2,10.6],"Butler County, Iowa":[9.3,9.7,4.3,7.1,61.9,7.6],"Calhoun County, Iowa":[11.3,12.4,4.6,5.7,56.7,9.2],"Carroll County, Iowa":[16.3,8.7,3.3,10.2,51.5,10],"Cass County, Iowa":[16.2,7.3,2.5,5.9,55.7,12.4],"Cedar County, Iowa":[10.8,12.6,3,7.4,56.3,10],"Cerro Gordo County, Iowa":[17.6,8.6,3.4,6.4,52.2,11.9],"Cherokee County, Iowa":[11.6,7.3,2.7,6.5,62.2,9.7],"Chickasaw County, Iowa":[13.3,10.1,2.2,7.1,57.9,9.3],"Clarke County, Iowa":[11.5,9.3,0.9,9,57.4,11.9],"Clay County, Iowa":[17.7,7.4,4.8,10,48.7,11.3],"Clayton County, Iowa":[14.6,9.7,3.7,7.4,54.3,10.3],"Clinton County, Iowa":[12.4,12.5,2.3,10,51.2,11.5],"Crawford County, Iowa":[7.9,11.7,3.4,12,52.9,12.2],"Dallas County, Iowa":[11.5,7.5,3.2,8.1,58.8,10.9],"Davis County, Iowa":[6.2,14.9,1.6,6.6,66.3,4.4],"Decatur County, Iowa":[11,6.6,1.7,6,58.4,16.2],"Delaware County, Iowa":[10.2,11.9,3.9,5.7,61.5,6.7],"Des Moines County, Iowa":[14.5,10.7,3.8,12,48.6,10.5],"Dickinson County, Iowa":[17.6,4.4,3.1,5.3,56.2,13.3],"Dubuque County, Iowa":[13,9.4,4.9,8.1,55.3,9.2],"Emmet County, Iowa":[13.4,10.4,5.5,10.7,42.6,17.5],"Fayette County, Iowa":[14.2,10.1,4.3,9.3,51.8,10.4],"Floyd County, Iowa":[14.6,10.4,4.2,8.1,52.7,10],"Franklin County, Iowa":[14.3,11.7,1.4,9.1,54.4,9.1],"Fremont County, Iowa":[12.9,9.4,2.3,6.9,57.2,11.3],"Greene County, Iowa":[15.3,11.2,3.2,9.4,53.1,7.9],"Grundy County, Iowa":[9.6,9.6,2.9,6.1,63.3,8.5],"Guthrie County, Iowa":[9.5,6.5,1,5.9,67,10.2],"Hamilton County, Iowa":[9.7,8.3,1,9.6,59.5,11.8],"Hancock County, Iowa":[8.5,5.7,0.5,7.3,65.7,12.3],"Hardin County, Iowa":[13.1,12.7,2.1,8.7,55.5,8.1],"Harrison County, Iowa":[9.8,9.7,2,6,63.4,9],"Henry County, Iowa":[9.4,13.7,3.7,10.7,53.2,9.2],"Howard County, Iowa":[11,11.1,2.2,7.5,56.4,11.9],"Humboldt County, Iowa":[15.2,6.1,2.5,12.9,50.4,13],"Ida County, Iowa":[15.7,5.7,3.4,6.8,52.6,15.9],"Iowa County, Iowa":[13.6,10.1,2.2,7.8,56.8,9.4],"Jackson County, Iowa":[10.8,9.1,1.4,6.1,62.8,9.8],"Jasper County, Iowa":[11.3,13.2,4.2,9.5,54.3,7.5],"Jefferson County, Iowa":[17.1,8.5,6.9,8.7,46.2,12.7],"Johnson County, Iowa":[14.3,6.4,18.4,7.5,42.7,10.8],"Jones County, Iowa":[11.6,12.1,5,11.4,50.4,9.5],"Keokuk County, Iowa":[13.4,12.8,1.9,10.6,51.8,9.6],"Kossuth County, Iowa":[15,6.6,1.8,6,58.8,11.8],"Lee County, Iowa":[13.8,11.1,2.7,10.1,49.8,12.5],"Linn County, Iowa":[13.5,10.4,5.4,9.9,50.1,10.7],"Louisa County, Iowa":[6.5,12.3,3.3,9.6,60.3,8],"Lucas County, Iowa":[12,11.3,1.2,6,57.2,12.2],"Lyon County, Iowa":[8.5,12.4,1.5,5.5,65.3,6.8],"Madison County, Iowa":[7.9,10.3,4.9,6.7,60.6,9.5],"Mahaska County, Iowa":[11.9,10,5,7.2,55.1,10.8],"Marion County, Iowa":[10.6,7,3,6.6,64.5,8.2],"Marshall County, Iowa":[11.6,10.2,3.9,8.6,56.6,9.1],"Mills County, Iowa":[7.9,16.7,3.5,8.5,55.9,7.4],"Mitchell County, Iowa":[15.5,7.5,1.3,6.6,59.2,9.9],"Monona County, Iowa":[11.1,5,3.9,8.6,59.9,11.5],"Monroe County, Iowa":[13,12,5.8,8.5,49.4,11.4],"Montgomery County, Iowa":[12.2,6.5,1.2,8.2,58.2,13.8],"Muscatine County, Iowa":[9.6,13,3.5,11,50.5,12.4],"O'Brien County, Iowa":[11.9,7,5.6,7.3,60.7,7.4],"Osceola County, Iowa":[12.3,10.2,4.1,8.8,53.6,11],"Page County, Iowa":[14,10.8,3.5,11.2,52.3,8.3],"Palo Alto County, Iowa":[12.8,9.4,1.5,5.2,57.1,13.9],"Plymouth County, Iowa":[9.5,9.9,1.8,7.5,62.7,8.5],"Pocahontas County, Iowa":[14.4,6.4,1.7,6.4,55.4,15.6],"Polk County, Iowa":[14,9.7,6.6,11.4,48.9,9.4],"Pottawattamie County, Iowa":[12.5,12.6,5.2,11.3,47.5,11],"Poweshiek County, Iowa":[17.1,9.8,2.4,6.9,53.3,10.5],"Ringgold County, Iowa":[11,10.7,1.9,6.9,64.8,4.6],"Sac County, Iowa":[14.4,9.6,3.1,7.9,56.9,8.1],"Scott County, Iowa":[12.9,10.2,3.9,10.6,50.9,11.5],"Shelby County, Iowa":[11.9,9.5,1.8,5.7,64.9,6.2],"Sioux County, Iowa":[8.8,8.7,2.9,5.2,71.4,3.1],"Story County, Iowa":[15.4,4.3,23.8,6.6,40.9,9],"Tama County, Iowa":[9.8,11.9,2.8,9.6,54.9,11],"Taylor County, Iowa":[12.3,9.6,5.2,9.7,56.2,6.9],"Union County, Iowa":[14.9,11.4,4,8.9,49.3,11.5],"Van Buren County, Iowa":[9.4,15.2,1.6,9.1,54.8,9.9],"Wapello County, Iowa":[11.3,13.2,4.9,12.5,47.9,10.3],"Warren County, Iowa":[8.3,12.5,2.7,7.6,60.5,8.3],"Washington County, Iowa":[10.8,11.8,3.4,8.2,55.6,10.2],"Wayne County, Iowa":[11.7,8.3,3.7,11.3,59.5,5.4],"Webster County, Iowa":[16.1,8.9,5.2,7.1,47.4,15.3],"Winnebago County, Iowa":[15.2,9.5,2.5,11.2,51.3,10.3],"Winneshiek County, Iowa":[13.5,7.8,3.9,4.8,62.7,7.3],"Woodbury County, Iowa":[11.3,11.7,5.6,13.5,46.7,11.1],"Worth County, Iowa":[9.2,10.1,2,5.8,62.5,10.3],"Wright County, Iowa":[11.7,8.1,2.9,10.4,56.7,10.2]};
+  const cats = ["lives_alone_18_64","with_child_18_64","with_nonrel_18_64","with_other_rel_18_64","with_spouse_only_18_64","with_unmar_partner_18_64"];
+
+  const ORDER = [
+    "Lives alone",
+    "With child",
+    "With nonrelatives",
+    "With other relatives",
+    "With spouse only",
+    "With unmarried partner"
+  ];
+
+  const PRETTY_TO_SNAKE = {
+    "Lives alone":            "lives_alone_18_64",
+    "With child":             "with_child_18_64",
+    "With nonrelatives":      "with_nonrel_18_64",
+    "With other relatives":   "with_other_rel_18_64",
+    "With spouse only":       "with_spouse_only_18_64",
+    "With unmarried partner": "with_unmar_partner_18_64"
+  };
+
+  const COLOR_BY_CAT = {
+    "Lives alone":            "#e41a1c",
+    "With child":             "#ff7f00",
+    "With nonrelatives":      "#4daf4a",
+    "With other relatives":   "#984ea3",
+    "With spouse only":       "#377eb8",
+    "With unmarried partner": "#a65628"
+  };
+
+  // snake key → array index
+  const keyToIndex = Object.fromEntries((cats || []).map((k, i) => [String(k), i]));
+
+  function valuesFor(name) {
+    const row = data?.[name] || [];
+    return ORDER.map(lbl => {
+      const idx = keyToIndex[PRETTY_TO_SNAKE[lbl]];
+      const v = (idx != null && idx >= 0) ? row[idx] : 0;
+      return (typeof v === "number") ? v : Number(v) || 0;
+    });
+  }
+
+  const canvas = document.getElementById("barChart");
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+  let chart;
+
+  function renderChart(name) {
+    const vals = valuesFor(name);
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: ORDER,
+        datasets: [{
+          data: vals,
+          backgroundColor: ORDER.map(c => COLOR_BY_CAT[c]),
+          borderWidth: 0
+        }]
+      },
+      options: {
+        indexAxis: "y",
+        plugins: {
+          legend: { display: false },
+          tooltip: { callbacks: { label: (c) => c.raw + "%" } }
+        },
+        scales: {
+          x: { min: 0, max: 100, ticks: { callback: v => v + "%" } }
+        }
+      }
+    });
+  }
+
+  const DEFAULT_NAME = (data && Object.prototype.hasOwnProperty.call(data, "Statewide"))
+    ? "Statewide" : Object.keys(data || {})[0];
+
+  const sel = document.getElementById("countySelect");
+  if (sel) sel.addEventListener("change", e => renderChart(e.target.value));
+  if (DEFAULT_NAME) renderChart(DEFAULT_NAME);
+});</script>
+  </body>
+</html>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Educational Enrollment – Alaska</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Educational Enrollment (Age 18–24) in Alaska</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Aleutians East Borough, Alaska">Aleutians East Borough, Alaska</option>
+      <option value="Aleutians West Census Area, Alaska">Aleutians West Census Area, Alaska</option>
+      <option value="Anchorage Municipality, Alaska">Anchorage Municipality, Alaska</option>
+      <option value="Bethel Census Area, Alaska">Bethel Census Area, Alaska</option>
+      <option value="Bristol Bay Borough, Alaska">Bristol Bay Borough, Alaska</option>
+      <option value="Chugach Census Area, Alaska">Chugach Census Area, Alaska</option>
+      <option value="Copper River Census Area, Alaska">Copper River Census Area, Alaska</option>
+      <option value="Denali Borough, Alaska">Denali Borough, Alaska</option>
+      <option value="Dillingham Census Area, Alaska">Dillingham Census Area, Alaska</option>
+      <option value="Fairbanks North Star Borough, Alaska">Fairbanks North Star Borough, Alaska</option>
+      <option value="Haines Borough, Alaska">Haines Borough, Alaska</option>
+      <option value="Hoonah-Angoon Census Area, Alaska">Hoonah-Angoon Census Area, Alaska</option>
+      <option value="Juneau City and Borough, Alaska">Juneau City and Borough, Alaska</option>
+      <option value="Kenai Peninsula Borough, Alaska">Kenai Peninsula Borough, Alaska</option>
+      <option value="Ketchikan Gateway Borough, Alaska">Ketchikan Gateway Borough, Alaska</option>
+      <option value="Kodiak Island Borough, Alaska">Kodiak Island Borough, Alaska</option>
+      <option value="Kusilvak Census Area, Alaska">Kusilvak Census Area, Alaska</option>
+      <option value="Lake and Peninsula Borough, Alaska">Lake and Peninsula Borough, Alaska</option>
+      <option value="Matanuska-Susitna Borough, Alaska">Matanuska-Susitna Borough, Alaska</option>
+      <option value="Nome Census Area, Alaska">Nome Census Area, Alaska</option>
+      <option value="North Slope Borough, Alaska">North Slope Borough, Alaska</option>
+      <option value="Northwest Arctic Borough, Alaska">Northwest Arctic Borough, Alaska</option>
+      <option value="Petersburg Borough, Alaska">Petersburg Borough, Alaska</option>
+      <option value="Prince of Wales-Hyder Census Area, Alaska">Prince of Wales-Hyder Census Area, Alaska</option>
+      <option value="Sitka City and Borough, Alaska">Sitka City and Borough, Alaska</option>
+      <option value="Skagway Municipality, Alaska">Skagway Municipality, Alaska</option>
+      <option value="Southeast Fairbanks Census Area, Alaska">Southeast Fairbanks Census Area, Alaska</option>
+      <option value="Wrangell City and Borough, Alaska">Wrangell City and Borough, Alaska</option>
+      <option value="Yakutat City and Borough, Alaska">Yakutat City and Borough, Alaska</option>
+      <option value="Yukon-Koyukuk Census Area, Alaska">Yukon-Koyukuk Census Area, Alaska</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>  const data = {"Statewide":{"Enrolled in College / Grad. School":21.2,"Not Enrolled":78.8},"Aleutians East Borough, Alaska":{"Enrolled in College / Grad. School":19.2,"Not Enrolled":80.8},"Aleutians West Census Area, Alaska":{"Enrolled in College / Grad. School":27.2,"Not Enrolled":72.8},"Anchorage Municipality, Alaska":{"Enrolled in College / Grad. School":23.8,"Not Enrolled":76.2},"Bethel Census Area, Alaska":{"Enrolled in College / Grad. School":4.9,"Not Enrolled":95.1},"Bristol Bay Borough, Alaska":{"Enrolled in College / Grad. School":2.8,"Not Enrolled":97.2},"Chugach Census Area, Alaska":{"Enrolled in College / Grad. School":8.2,"Not Enrolled":91.8},"Copper River Census Area, Alaska":{"Enrolled in College / Grad. School":16,"Not Enrolled":84},"Denali Borough, Alaska":{"Enrolled in College / Grad. School":43.9,"Not Enrolled":56.1},"Dillingham Census Area, Alaska":{"Enrolled in College / Grad. School":5.7,"Not Enrolled":94.3},"Fairbanks North Star Borough, Alaska":{"Enrolled in College / Grad. School":30.4,"Not Enrolled":69.6},"Haines Borough, Alaska":{"Enrolled in College / Grad. School":25,"Not Enrolled":75},"Hoonah-Angoon Census Area, Alaska":{"Enrolled in College / Grad. School":8.5,"Not Enrolled":91.5},"Juneau City and Borough, Alaska":{"Enrolled in College / Grad. School":27.1,"Not Enrolled":72.9},"Kenai Peninsula Borough, Alaska":{"Enrolled in College / Grad. School":16.9,"Not Enrolled":83.1},"Ketchikan Gateway Borough, Alaska":{"Enrolled in College / Grad. School":11.3,"Not Enrolled":88.7},"Kodiak Island Borough, Alaska":{"Enrolled in College / Grad. School":12.4,"Not Enrolled":87.6},"Kusilvak Census Area, Alaska":{"Enrolled in College / Grad. School":4.1,"Not Enrolled":95.9},"Lake and Peninsula Borough, Alaska":{"Enrolled in College / Grad. School":32.5,"Not Enrolled":67.5},"Matanuska-Susitna Borough, Alaska":{"Enrolled in College / Grad. School":17.1,"Not Enrolled":82.9},"Nome Census Area, Alaska":{"Enrolled in College / Grad. School":6.7,"Not Enrolled":93.3},"North Slope Borough, Alaska":{"Enrolled in College / Grad. School":13.9,"Not Enrolled":86.1},"Northwest Arctic Borough, Alaska":{"Enrolled in College / Grad. School":4.4,"Not Enrolled":95.6},"Petersburg Borough, Alaska":{"Enrolled in College / Grad. School":21,"Not Enrolled":79},"Prince of Wales-Hyder Census Area, Alaska":{"Enrolled in College / Grad. School":9.1,"Not Enrolled":90.9},"Sitka City and Borough, Alaska":{"Enrolled in College / Grad. School":13.3,"Not Enrolled":86.7},"Skagway Municipality, Alaska":{"Enrolled in College / Grad. School":16.1,"Not Enrolled":83.9},"Southeast Fairbanks Census Area, Alaska":{"Enrolled in College / Grad. School":3.3,"Not Enrolled":96.7},"Wrangell City and Borough, Alaska":{"Enrolled in College / Grad. School":12,"Not Enrolled":88},"Yakutat City and Borough, Alaska":{"Enrolled in College / Grad. School":0,"Not Enrolled":100},"Yukon-Koyukuk Census Area, Alaska":{"Enrolled in College / Grad. School":6.8,"Not Enrolled":93.2}};
+  const categories = ["Enrolled in College / Grad. School","Not Enrolled"];
+  const ctx = document.getElementById("barChart").getContext("2d");
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: categories,
+        datasets: [
+          {
+            label: "County/State",
+            data: values,
+            backgroundColor: ["#66c2a5", "#fc8d62"]
+          }
+        ]
+      },
+      options: {
+        indexAxis: "y",
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            ticks: {
+              callback: v => v + "%"
+            }
+          }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.dataset.label + ": " + ctx.raw + "%"
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById("countySelect").addEventListener("change", function() {
+    renderChart(Object.values(data[this.value]));
+  });
+
+  renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+
+</head>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Owners: Year Moved In (%) – 50</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #fff;
+    }
+    .container {
+      width: 95%;
+      max-width: 1200px;
+      margin: auto;
+      text-align: center;
+    }
+    #countySelect {
+      font-size: 1rem;
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    canvas {
+      max-width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Owners: Year Moved In (%)</h2>
+    <select id="countySelect"></select>
+    <canvas id="pieChart"></canvas>
+  </div>
+
+  <script>
+    const data = {"Statewide":{"Moved in 2021 or later":4.7,"Moved in 2018–2020":13.6,"Moved in 2010–2017":24.8,"Moved in 2000–2009":22.7,"Moved in 1990–1999":14.9,"1989 or earlier":19.3},"Addison County":{"Moved in 2021 or later":4.4158,"Moved in 2018–2020":12.1882,"Moved in 2010–2017":24.5217,"Moved in 2000–2009":21.5323,"Moved in 1990–1999":16.4759,"1989 or earlier":20.8661},"Bennington County":{"Moved in 2021 or later":3.1876,"Moved in 2018–2020":13.9064,"Moved in 2010–2017":22.3316,"Moved in 2000–2009":22.6025,"Moved in 1990–1999":14.8727,"1989 or earlier":23.0992},"Caledonia County":{"Moved in 2021 or later":4.6096,"Moved in 2018–2020":10.9676,"Moved in 2010–2017":24.1804,"Moved in 2000–2009":23.942,"Moved in 1990–1999":13.8188,"1989 or earlier":22.4816},"Chittenden County":{"Moved in 2021 or later":5.1261,"Moved in 2018–2020":15.318,"Moved in 2010–2017":27.6898,"Moved in 2000–2009":21.9897,"Moved in 1990–1999":14.2213,"1989 or earlier":15.6552},"Essex County":{"Moved in 2021 or later":2.5551,"Moved in 2018–2020":15.9031,"Moved in 2010–2017":21.2335,"Moved in 2000–2009":19.9119,"Moved in 1990–1999":16.1233,"1989 or earlier":24.2731},"Franklin County":{"Moved in 2021 or later":4.7554,"Moved in 2018–2020":15.0772,"Moved in 2010–2017":26.3998,"Moved in 2000–2009":20.7418,"Moved in 1990–1999":15.2473,"1989 or earlier":17.7786},"Grand Isle County":{"Moved in 2021 or later":6.5046,"Moved in 2018–2020":19.6569,"Moved in 2010–2017":29.2352,"Moved in 2000–2009":22.802,"Moved in 1990–1999":11.4725,"1989 or earlier":10.3288},"Lamoille County":{"Moved in 2021 or later":7.3535,"Moved in 2018–2020":11.4454,"Moved in 2010–2017":24.648,"Moved in 2000–2009":27.4281,"Moved in 1990–1999":11.987,"1989 or earlier":17.138},"Orange County":{"Moved in 2021 or later":4.75,"Moved in 2018–2020":12.3884,"Moved in 2010–2017":22.042,"Moved in 2000–2009":24.441,"Moved in 1990–1999":15.1329,"1989 or earlier":21.2456},"Orleans County":{"Moved in 2021 or later":4.9332,"Moved in 2018–2020":14.3539,"Moved in 2010–2017":23.2654,"Moved in 2000–2009":24.146,"Moved in 1990–1999":14.2372,"1989 or earlier":19.0643},"Rutland County":{"Moved in 2021 or later":3.6548,"Moved in 2018–2020":12.2405,"Moved in 2010–2017":23.4862,"Moved in 2000–2009":23.0536,"Moved in 1990–1999":16.7874,"1989 or earlier":20.7775},"Washington County":{"Moved in 2021 or later":4.9379,"Moved in 2018–2020":12.181,"Moved in 2010–2017":25.1034,"Moved in 2000–2009":22.6479,"Moved in 1990–1999":14.6687,"1989 or earlier":20.461},"Windham County":{"Moved in 2021 or later":4.7952,"Moved in 2018–2020":10.8067,"Moved in 2010–2017":24.0528,"Moved in 2000–2009":24.1857,"Moved in 1990–1999":16.5385,"1989 or earlier":19.6211},"Windsor County":{"Moved in 2021 or later":4.0445,"Moved in 2018–2020":15.1359,"Moved in 2010–2017":22.7092,"Moved in 2000–2009":21.0979,"Moved in 1990–1999":15.1466,"1989 or earlier":21.8659}};
+    const colors = {
+  'Moved in 2021 or later': '#377EF1',
+  'Moved in 2018–2020': '#FF7F00',
+  'Moved in 2010–2017': '#66A61E',
+  'Moved in 2000–2009': '#E6AB01',
+  'Moved in 1990–1999': '#7570B1',
+  '1989 or earlier': '#E41A1C'
+};
+
+    const ctx = document.getElementById("pieChart").getContext("2d");
+    let chart;
+
+    function renderChart(key) {
+      const values = data[key];
+      const labels = Object.keys(values);
+      const percentages = Object.values(values);
+
+      if (chart) chart.destroy();
+
+      chart = new Chart(ctx, {
+        type: "pie",
+        data: {
+          labels: labels,
+          datasets: [{
+            data: percentages,
+            backgroundColor: labels.map(label => colors[label] || "#cccccc")
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: true,
+          aspectRatio: 1.5,
+          plugins: {
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  return context.label + ": " + context.formattedValue + "%";
+                }
+              }
+            },
+            legend: {
+              position: "right",
+              labels: {
+                usePointStyle: true,
+                pointStyle: "rect"
+              }
+            }
+          }
+        }
+      });
+    }
+
+    // Populate dropdown (Statewide first, then counties A->Z)
+    const select = document.getElementById("countySelect");
+    const keys = ["Statewide", ...Object.keys(data).filter(k => k !== "Statewide").sort()];
+    keys.forEach(k => {
+      const opt = document.createElement("option");
+      opt.value = k;
+      opt.text  = k;
+      select.appendChild(opt);
+    });
+    select.value = "Statewide";
+    select.addEventListener("change", () => renderChart(select.value));
+
+    renderChart("Statewide");
+  </script>
+</body>
+</html>
+</html>

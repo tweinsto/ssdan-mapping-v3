@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="utf-8"/>
+  <title>Race/Ethnicity in State 56</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          text-align: center;
+          margin: 2rem;
+          background-color: white;
+        }
+        canvas {
+          max-width: 500px;
+          margin: 1rem auto;
+        }
+        select {
+          font-size: 1rem;
+          padding: 0.4rem;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Race &amp; Ethnicity Distribution</h2>
+    <label>Select County:</label>
+    <select id="countySelect"><option value="Statewide">Statewide</option>
+<option value="Albany County, Wyoming">Albany County, Wyoming</option>
+<option value="Big Horn County, Wyoming">Big Horn County, Wyoming</option>
+<option value="Campbell County, Wyoming">Campbell County, Wyoming</option>
+<option value="Carbon County, Wyoming">Carbon County, Wyoming</option>
+<option value="Converse County, Wyoming">Converse County, Wyoming</option>
+<option value="Crook County, Wyoming">Crook County, Wyoming</option>
+<option value="Fremont County, Wyoming">Fremont County, Wyoming</option>
+<option value="Goshen County, Wyoming">Goshen County, Wyoming</option>
+<option value="Hot Springs County, Wyoming">Hot Springs County, Wyoming</option>
+<option value="Johnson County, Wyoming">Johnson County, Wyoming</option>
+<option value="Laramie County, Wyoming">Laramie County, Wyoming</option>
+<option value="Lincoln County, Wyoming">Lincoln County, Wyoming</option>
+<option value="Natrona County, Wyoming">Natrona County, Wyoming</option>
+<option value="Niobrara County, Wyoming">Niobrara County, Wyoming</option>
+<option value="Park County, Wyoming">Park County, Wyoming</option>
+<option value="Platte County, Wyoming">Platte County, Wyoming</option>
+<option value="Sheridan County, Wyoming">Sheridan County, Wyoming</option>
+<option value="Sublette County, Wyoming">Sublette County, Wyoming</option>
+<option value="Sweetwater County, Wyoming">Sweetwater County, Wyoming</option>
+<option value="Teton County, Wyoming">Teton County, Wyoming</option>
+<option value="Uinta County, Wyoming">Uinta County, Wyoming</option>
+<option value="Washakie County, Wyoming">Washakie County, Wyoming</option>
+<option value="Weston County, Wyoming">Weston County, Wyoming</option></select>
+    <canvas id="pieChart" width="400" height="400"></canvas>
+    <script>  let raceData = {};
+  fetch("56.json")
+    .then(resp => resp.json())
+    .then(data => {
+      raceData = data;
+      const raceLabels = ["American Indian / Alaska Native","Asian","Black","Hispanic","NHMulti","NHOther","NHWhite","Pacific Islander"];
+      const ctx = document.getElementById("pieChart").getContext("2d");
+      let chart;
+
+      function renderChart(values) {
+        if (chart) chart.destroy();
+        chart = new Chart(ctx, {
+          type: "pie",
+          data: {
+            labels: raceLabels,
+            datasets: [{
+              data: values,
+              backgroundColor: [
+                "#f94144", "#f3722c", "#f9c74f", "#90be6d",
+                "#9d4edd", "#577590", "#d0cde1", "#43aa8b"
+              ]
+            }]
+          },
+          options: {
+            responsive: true,
+            plugins: {
+              legend: {
+                position: "bottom",
+                labels: {
+                  font: { size: 14 },
+                  boxWidth: 20,
+                  padding: 15,
+                  usePointStyle: true,
+                  pointStyle: "rectRounded"
+                }
+              },
+              tooltip: {
+                callbacks: {
+                  label: function(context) {
+                    return context.label + ": " + context.parsed + "%";
+                  }
+                }
+              }
+            }
+          }
+        });
+      }
+
+      document.getElementById("countySelect").addEventListener("change", function() {
+        const selected = this.value;
+        const values = Object.values(raceData[selected]);
+        renderChart(values);
+      });
+
+      renderChart(Object.values(raceData["Statewide"]));
+      document.getElementById("countySelect").value = "Statewide";
+    });</script>
+  </body>
+</html>
+</html>

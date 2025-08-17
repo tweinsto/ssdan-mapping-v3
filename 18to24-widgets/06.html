@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Educational Enrollment – California</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Educational Enrollment (Age 18–24) in California</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Alameda County, California">Alameda County, California</option>
+      <option value="Alpine County, California">Alpine County, California</option>
+      <option value="Amador County, California">Amador County, California</option>
+      <option value="Butte County, California">Butte County, California</option>
+      <option value="Calaveras County, California">Calaveras County, California</option>
+      <option value="Colusa County, California">Colusa County, California</option>
+      <option value="Contra Costa County, California">Contra Costa County, California</option>
+      <option value="Del Norte County, California">Del Norte County, California</option>
+      <option value="El Dorado County, California">El Dorado County, California</option>
+      <option value="Fresno County, California">Fresno County, California</option>
+      <option value="Glenn County, California">Glenn County, California</option>
+      <option value="Humboldt County, California">Humboldt County, California</option>
+      <option value="Imperial County, California">Imperial County, California</option>
+      <option value="Inyo County, California">Inyo County, California</option>
+      <option value="Kern County, California">Kern County, California</option>
+      <option value="Kings County, California">Kings County, California</option>
+      <option value="Lake County, California">Lake County, California</option>
+      <option value="Lassen County, California">Lassen County, California</option>
+      <option value="Los Angeles County, California">Los Angeles County, California</option>
+      <option value="Madera County, California">Madera County, California</option>
+      <option value="Marin County, California">Marin County, California</option>
+      <option value="Mariposa County, California">Mariposa County, California</option>
+      <option value="Mendocino County, California">Mendocino County, California</option>
+      <option value="Merced County, California">Merced County, California</option>
+      <option value="Modoc County, California">Modoc County, California</option>
+      <option value="Mono County, California">Mono County, California</option>
+      <option value="Monterey County, California">Monterey County, California</option>
+      <option value="Napa County, California">Napa County, California</option>
+      <option value="Nevada County, California">Nevada County, California</option>
+      <option value="Orange County, California">Orange County, California</option>
+      <option value="Placer County, California">Placer County, California</option>
+      <option value="Plumas County, California">Plumas County, California</option>
+      <option value="Riverside County, California">Riverside County, California</option>
+      <option value="Sacramento County, California">Sacramento County, California</option>
+      <option value="San Benito County, California">San Benito County, California</option>
+      <option value="San Bernardino County, California">San Bernardino County, California</option>
+      <option value="San Diego County, California">San Diego County, California</option>
+      <option value="San Francisco County, California">San Francisco County, California</option>
+      <option value="San Joaquin County, California">San Joaquin County, California</option>
+      <option value="San Luis Obispo County, California">San Luis Obispo County, California</option>
+      <option value="San Mateo County, California">San Mateo County, California</option>
+      <option value="Santa Barbara County, California">Santa Barbara County, California</option>
+      <option value="Santa Clara County, California">Santa Clara County, California</option>
+      <option value="Santa Cruz County, California">Santa Cruz County, California</option>
+      <option value="Shasta County, California">Shasta County, California</option>
+      <option value="Sierra County, California">Sierra County, California</option>
+      <option value="Siskiyou County, California">Siskiyou County, California</option>
+      <option value="Solano County, California">Solano County, California</option>
+      <option value="Sonoma County, California">Sonoma County, California</option>
+      <option value="Stanislaus County, California">Stanislaus County, California</option>
+      <option value="Sutter County, California">Sutter County, California</option>
+      <option value="Tehama County, California">Tehama County, California</option>
+      <option value="Trinity County, California">Trinity County, California</option>
+      <option value="Tulare County, California">Tulare County, California</option>
+      <option value="Tuolumne County, California">Tuolumne County, California</option>
+      <option value="Ventura County, California">Ventura County, California</option>
+      <option value="Yolo County, California">Yolo County, California</option>
+      <option value="Yuba County, California">Yuba County, California</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>  const data = {"Statewide":{"Enrolled in College / Grad. School":47,"Not Enrolled":53},"Alameda County, California":{"Enrolled in College / Grad. School":54.8,"Not Enrolled":45.2},"Alpine County, California":{"Enrolled in College / Grad. School":35.8,"Not Enrolled":64.2},"Amador County, California":{"Enrolled in College / Grad. School":25.2,"Not Enrolled":74.8},"Butte County, California":{"Enrolled in College / Grad. School":57.9,"Not Enrolled":42.1},"Calaveras County, California":{"Enrolled in College / Grad. School":25.5,"Not Enrolled":74.5},"Colusa County, California":{"Enrolled in College / Grad. School":24.4,"Not Enrolled":75.6},"Contra Costa County, California":{"Enrolled in College / Grad. School":46.7,"Not Enrolled":53.3},"Del Norte County, California":{"Enrolled in College / Grad. School":30.1,"Not Enrolled":69.9},"El Dorado County, California":{"Enrolled in College / Grad. School":40.6,"Not Enrolled":59.4},"Fresno County, California":{"Enrolled in College / Grad. School":42.4,"Not Enrolled":57.6},"Glenn County, California":{"Enrolled in College / Grad. School":24.3,"Not Enrolled":75.7},"Humboldt County, California":{"Enrolled in College / Grad. School":46.3,"Not Enrolled":53.7},"Imperial County, California":{"Enrolled in College / Grad. School":40.5,"Not Enrolled":59.5},"Inyo County, California":{"Enrolled in College / Grad. School":23.3,"Not Enrolled":76.7},"Kern County, California":{"Enrolled in College / Grad. School":32.5,"Not Enrolled":67.5},"Kings County, California":{"Enrolled in College / Grad. School":25.7,"Not Enrolled":74.3},"Lake County, California":{"Enrolled in College / Grad. School":34.1,"Not Enrolled":65.9},"Lassen County, California":{"Enrolled in College / Grad. School":17.2,"Not Enrolled":82.8},"Los Angeles County, California":{"Enrolled in College / Grad. School":48,"Not Enrolled":52},"Madera County, California":{"Enrolled in College / Grad. School":38.9,"Not Enrolled":61.1},"Marin County, California":{"Enrolled in College / Grad. School":50.5,"Not Enrolled":49.5},"Mariposa County, California":{"Enrolled in College / Grad. School":19.9,"Not Enrolled":80.1},"Mendocino County, California":{"Enrolled in College / Grad. School":30.2,"Not Enrolled":69.8},"Merced County, California":{"Enrolled in College / Grad. School":42.6,"Not Enrolled":57.4},"Modoc County, California":{"Enrolled in College / Grad. School":23.6,"Not Enrolled":76.4},"Mono County, California":{"Enrolled in College / Grad. School":38.6,"Not Enrolled":61.4},"Monterey County, California":{"Enrolled in College / Grad. School":42.6,"Not Enrolled":57.4},"Napa County, California":{"Enrolled in College / Grad. School":45.4,"Not Enrolled":54.6},"Nevada County, California":{"Enrolled in College / Grad. School":19.3,"Not Enrolled":80.7},"Orange County, California":{"Enrolled in College / Grad. School":55.9,"Not Enrolled":44.1},"Placer County, California":{"Enrolled in College / Grad. School":42.9,"Not Enrolled":57.1},"Plumas County, California":{"Enrolled in College / Grad. School":48.7,"Not Enrolled":51.3},"Riverside County, California":{"Enrolled in College / Grad. School":41.9,"Not Enrolled":58.1},"Sacramento County, California":{"Enrolled in College / Grad. School":42.6,"Not Enrolled":57.4},"San Benito County, California":{"Enrolled in College / Grad. School":35,"Not Enrolled":65},"San Bernardino County, California":{"Enrolled in College / Grad. School":39.4,"Not Enrolled":60.6},"San Diego County, California":{"Enrolled in College / Grad. School":45.3,"Not Enrolled":54.7},"San Francisco County, California":{"Enrolled in College / Grad. School":49.2,"Not Enrolled":50.8},"San Joaquin County, California":{"Enrolled in College / Grad. School":38.4,"Not Enrolled":61.6},"San Luis Obispo County, California":{"Enrolled in College / Grad. School":67.9,"Not Enrolled":32.1},"San Mateo County, California":{"Enrolled in College / Grad. School":47.6,"Not Enrolled":52.4},"Santa Barbara County, California":{"Enrolled in College / Grad. School":60.2,"Not Enrolled":39.8},"Santa Clara County, California":{"Enrolled in College / Grad. School":56.5,"Not Enrolled":43.5},"Santa Cruz County, California":{"Enrolled in College / Grad. School":66.1,"Not Enrolled":33.9},"Shasta County, California":{"Enrolled in College / Grad. School":34.3,"Not Enrolled":65.7},"Sierra County, California":{"Enrolled in College / Grad. School":95.5,"Not Enrolled":4.5},"Siskiyou County, California":{"Enrolled in College / Grad. School":30.9,"Not Enrolled":69.1},"Solano County, California":{"Enrolled in College / Grad. School":37.9,"Not Enrolled":62.1},"Sonoma County, California":{"Enrolled in College / Grad. School":42.2,"Not Enrolled":57.8},"Stanislaus County, California":{"Enrolled in College / Grad. School":37.1,"Not Enrolled":62.9},"Sutter County, California":{"Enrolled in College / Grad. School":38.6,"Not Enrolled":61.4},"Tehama County, California":{"Enrolled in College / Grad. School":26.6,"Not Enrolled":73.4},"Trinity County, California":{"Enrolled in College / Grad. School":33.6,"Not Enrolled":66.4},"Tulare County, California":{"Enrolled in College / Grad. School":36.4,"Not Enrolled":63.6},"Tuolumne County, California":{"Enrolled in College / Grad. School":32.2,"Not Enrolled":67.8},"Ventura County, California":{"Enrolled in College / Grad. School":47.5,"Not Enrolled":52.5},"Yolo County, California":{"Enrolled in College / Grad. School":72.6,"Not Enrolled":27.4},"Yuba County, California":{"Enrolled in College / Grad. School":35.4,"Not Enrolled":64.6}};
+  const categories = ["Enrolled in College / Grad. School","Not Enrolled"];
+  const ctx = document.getElementById("barChart").getContext("2d");
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: categories,
+        datasets: [
+          {
+            label: "County/State",
+            data: values,
+            backgroundColor: ["#66c2a5", "#fc8d62"]
+          }
+        ]
+      },
+      options: {
+        indexAxis: "y",
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            ticks: {
+              callback: v => v + "%"
+            }
+          }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.dataset.label + ": " + ctx.raw + "%"
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById("countySelect").addEventListener("change", function() {
+    renderChart(Object.values(data[this.value]));
+  });
+
+  renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

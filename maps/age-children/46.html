@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Age Distribution Under 18 –  South Dakota</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          margin: 1rem 2rem;
+          text-align: center;
+        }
+        h2 {
+          margin-bottom: 0.25rem;
+          font-size: 1.6rem;
+        }
+        select {
+          padding: 0.4rem;
+          font-size: 1rem;
+          margin: 1rem 0;
+          border-radius: 5px;
+          border: 1px solid #999;
+        }
+        canvas {
+          width: 100%;
+          max-width: 850px;
+          height: 500px;
+          margin-top: 1rem;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Age Distribution Under 18 in  South Dakota (2023)</h2>
+    <label>Select County:</label>
+            <select id="countySelect">
+          <option value='Statewide'>Statewide</option>
+<option value='Aurora County, South Dakota'>Aurora County, South Dakota</option>
+<option value='Beadle County, South Dakota'>Beadle County, South Dakota</option>
+<option value='Bennett County, South Dakota'>Bennett County, South Dakota</option>
+<option value='Bon Homme County, South Dakota'>Bon Homme County, South Dakota</option>
+<option value='Brookings County, South Dakota'>Brookings County, South Dakota</option>
+<option value='Brown County, South Dakota'>Brown County, South Dakota</option>
+<option value='Brule County, South Dakota'>Brule County, South Dakota</option>
+<option value='Buffalo County, South Dakota'>Buffalo County, South Dakota</option>
+<option value='Butte County, South Dakota'>Butte County, South Dakota</option>
+<option value='Campbell County, South Dakota'>Campbell County, South Dakota</option>
+<option value='Charles Mix County, South Dakota'>Charles Mix County, South Dakota</option>
+<option value='Clark County, South Dakota'>Clark County, South Dakota</option>
+<option value='Clay County, South Dakota'>Clay County, South Dakota</option>
+<option value='Codington County, South Dakota'>Codington County, South Dakota</option>
+<option value='Corson County, South Dakota'>Corson County, South Dakota</option>
+<option value='Custer County, South Dakota'>Custer County, South Dakota</option>
+<option value='Davison County, South Dakota'>Davison County, South Dakota</option>
+<option value='Day County, South Dakota'>Day County, South Dakota</option>
+<option value='Deuel County, South Dakota'>Deuel County, South Dakota</option>
+<option value='Dewey County, South Dakota'>Dewey County, South Dakota</option>
+<option value='Douglas County, South Dakota'>Douglas County, South Dakota</option>
+<option value='Edmunds County, South Dakota'>Edmunds County, South Dakota</option>
+<option value='Fall River County, South Dakota'>Fall River County, South Dakota</option>
+<option value='Faulk County, South Dakota'>Faulk County, South Dakota</option>
+<option value='Grant County, South Dakota'>Grant County, South Dakota</option>
+<option value='Gregory County, South Dakota'>Gregory County, South Dakota</option>
+<option value='Haakon County, South Dakota'>Haakon County, South Dakota</option>
+<option value='Hamlin County, South Dakota'>Hamlin County, South Dakota</option>
+<option value='Hand County, South Dakota'>Hand County, South Dakota</option>
+<option value='Hanson County, South Dakota'>Hanson County, South Dakota</option>
+<option value='Harding County, South Dakota'>Harding County, South Dakota</option>
+<option value='Hughes County, South Dakota'>Hughes County, South Dakota</option>
+<option value='Hutchinson County, South Dakota'>Hutchinson County, South Dakota</option>
+<option value='Hyde County, South Dakota'>Hyde County, South Dakota</option>
+<option value='Jackson County, South Dakota'>Jackson County, South Dakota</option>
+<option value='Jerauld County, South Dakota'>Jerauld County, South Dakota</option>
+<option value='Jones County, South Dakota'>Jones County, South Dakota</option>
+<option value='Kingsbury County, South Dakota'>Kingsbury County, South Dakota</option>
+<option value='Lake County, South Dakota'>Lake County, South Dakota</option>
+<option value='Lawrence County, South Dakota'>Lawrence County, South Dakota</option>
+<option value='Lincoln County, South Dakota'>Lincoln County, South Dakota</option>
+<option value='Lyman County, South Dakota'>Lyman County, South Dakota</option>
+<option value='Marshall County, South Dakota'>Marshall County, South Dakota</option>
+<option value='McCook County, South Dakota'>McCook County, South Dakota</option>
+<option value='McPherson County, South Dakota'>McPherson County, South Dakota</option>
+<option value='Meade County, South Dakota'>Meade County, South Dakota</option>
+<option value='Mellette County, South Dakota'>Mellette County, South Dakota</option>
+<option value='Miner County, South Dakota'>Miner County, South Dakota</option>
+<option value='Minnehaha County, South Dakota'>Minnehaha County, South Dakota</option>
+<option value='Moody County, South Dakota'>Moody County, South Dakota</option>
+<option value='Oglala Lakota County, South Dakota'>Oglala Lakota County, South Dakota</option>
+<option value='Pennington County, South Dakota'>Pennington County, South Dakota</option>
+<option value='Perkins County, South Dakota'>Perkins County, South Dakota</option>
+<option value='Potter County, South Dakota'>Potter County, South Dakota</option>
+<option value='Roberts County, South Dakota'>Roberts County, South Dakota</option>
+<option value='Sanborn County, South Dakota'>Sanborn County, South Dakota</option>
+<option value='Spink County, South Dakota'>Spink County, South Dakota</option>
+<option value='Stanley County, South Dakota'>Stanley County, South Dakota</option>
+<option value='Sully County, South Dakota'>Sully County, South Dakota</option>
+<option value='Todd County, South Dakota'>Todd County, South Dakota</option>
+<option value='Tripp County, South Dakota'>Tripp County, South Dakota</option>
+<option value='Turner County, South Dakota'>Turner County, South Dakota</option>
+<option value='Union County, South Dakota'>Union County, South Dakota</option>
+<option value='Walworth County, South Dakota'>Walworth County, South Dakota</option>
+<option value='Yankton County, South Dakota'>Yankton County, South Dakota</option>
+<option value='Ziebach County, South Dakota'>Ziebach County, South Dakota</option>
+        </select>
+    <canvas id="barChart" width="850" height="500"></canvas>
+    <script>  const ageData = {"Statewide":[-13.3,13.1,-14.7,13.8,-8.7,8.2,-14.3,13.9],"Aurora County, South Dakota":[-12.5,13.5,-13.7,9,-14.4,15.4,-12.5,8.9],"Beadle County, South Dakota":[-12.6,15.8,-12.6,19.3,-15.5,11.3,-6.2,6.8],"Bennett County, South Dakota":[-12.2,12.7,-13.8,14.5,-11.1,15.9,-2.8,17.2],"Bon Homme County, South Dakota":[-12.6,13.3,-12.6,9.6,-16.6,18.1,-8,9.2],"Brookings County, South Dakota":[-12.9,14.3,-14.2,15.3,-13.8,12.1,-7.8,9.5],"Brown County, South Dakota":[-11.3,13.2,-13.4,14,-16.2,14.4,-9.5,8.1],"Brule County, South Dakota":[-12.9,10.5,-14.7,7.5,-20.6,17.2,-9.5,7.1],"Buffalo County, South Dakota":[-20.7,12.7,-15.2,11.8,-9.3,10.4,-9.3,10.7],"Butte County, South Dakota":[-13.2,12.8,-10.5,18.9,-16.9,8.8,-7.8,11.2],"Campbell County, South Dakota":[-23.5,3.5,-17.4,12.6,-15.2,17.4,-1.9,8.4],"Charles Mix County, South Dakota":[-14.5,13,-16.8,13.7,-12.6,13.6,-8,7.8],"Clark County, South Dakota":[-15.3,14.7,-8,10.1,-21.3,16.8,-8.8,5],"Clay County, South Dakota":[-10.9,17.5,-11.2,15.9,-16.8,11.4,-9.7,6.6],"Codington County, South Dakota":[-11.4,12,-12.5,15,-16.2,14.3,-9.8,8.8],"Corson County, South Dakota":[-14.3,14.4,-10,11.4,-16.3,16,-8.7,8.8],"Custer County, South Dakota":[-12.1,15.6,-13.3,13.7,-11.6,14.4,-8.2,11.1],"Davison County, South Dakota":[-11.1,17.5,-12.6,13.5,-12.4,14.1,-10.4,8.3],"Day County, South Dakota":[-11.1,11.4,-8.3,12.9,-18.6,15.4,-9.7,12.5],"Deuel County, South Dakota":[-11.7,12.6,-14,13,-15.2,14.9,-10.8,7.8],"Dewey County, South Dakota":[-15.1,14.2,-15.9,13,-13.2,13.9,-7.9,6.8],"Douglas County, South Dakota":[-14.3,16.1,-12.7,16.5,-13,11.4,-8.4,7.6],"Edmunds County, South Dakota":[-17.8,18.6,-18.7,13.2,-9.4,7.7,-8.5,6.1],"Fall River County, South Dakota":[-12,13,-11.6,17.4,-13.2,14,-9.1,9.7],"Faulk County, South Dakota":[-5.7,11.7,-10.9,15.8,-13.2,22.5,-8.5,11.7],"Grant County, South Dakota":[-12.5,12.4,-13.4,8.9,-15.2,17.1,-12.5,8.1],"Gregory County, South Dakota":[-11.4,12.6,-15.3,10.7,-16.3,11.5,-12,10.3],"Haakon County, South Dakota":[-12.6,15,-11.8,12.8,-16.8,16.6,-9.4,5.1],"Hamlin County, South Dakota":[-16,14.1,-13,14.1,-13.7,13,-8.7,7.5],"Hand County, South Dakota":[-9.8,14.6,-12.8,12.1,-16.7,16.7,-7.5,9.7],"Hanson County, South Dakota":[-11.2,15,-8.9,10.6,-18.5,16.7,-9.2,10],"Harding County, South Dakota":[-11,15.6,-10.1,15.2,-14.8,10.5,-21.5,1.3],"Hughes County, South Dakota":[-12.1,9.7,-17.1,13.2,-16.8,12.7,-8,10.4],"Hutchinson County, South Dakota":[-15.2,15.2,-15.8,14,-10.3,14,-7.1,8.5],"Hyde County, South Dakota":[-26.3,9.4,-24.4,8.6,-6.8,7.1,-9.4,7.9],"Jackson County, South Dakota":[-13.9,11.7,-14.6,9.7,-11.4,19.4,-8.3,11],"Jerauld County, South Dakota":[-12,13.7,-10.2,14.1,-22.9,11.8,-7.2,8.1],"Jones County, South Dakota":[-26.5,16.5,-2.1,14,-6.4,16.2,-2.7,15.5],"Kingsbury County, South Dakota":[-12.2,14.2,-15.3,14.4,-15.7,13,-9.1,6.2],"Lake County, South Dakota":[-11.7,10.7,-14.7,15.9,-13.8,14.3,-11.1,7.8],"Lawrence County, South Dakota":[-11.8,11,-12.7,11.3,-15.1,16.6,-11.1,10.3],"Lincoln County, South Dakota":[-12.4,11.3,-17.2,14.3,-14.1,15.2,-8,7.5],"Lyman County, South Dakota":[-15.5,13.6,-14.6,15.5,-13.2,10.7,-6.7,10.3],"McCook County, South Dakota":[-14.2,13.7,-14.8,13.2,-14.6,13.3,-8.3,7.9],"McPherson County, South Dakota":[-7.2,20.3,-15.3,17.2,-14.1,7.5,-8.7,9.7],"Marshall County, South Dakota":[-17.5,12.8,-13.3,12.8,-12.2,16.1,-10.3,4.9],"Meade County, South Dakota":[-12.6,11.3,-12.4,15.4,-16.7,12.7,-9.4,9.5],"Mellette County, South Dakota":[-11.5,12.7,-15.6,11.8,-12.8,19,-9,7.6],"Miner County, South Dakota":[-10.4,13.6,-14.5,7.4,-12.6,19.1,-13.2,9.1],"Minnehaha County, South Dakota":[-14.4,13.7,-13.9,14.7,-15,12.6,-8.2,7.6],"Moody County, South Dakota":[-13.1,13.8,-11,14.2,-16.8,13.5,-10.4,7.2],"Oglala Lakota County, South Dakota":[-14.1,11.4,-12.6,14.7,-16.3,14.7,-8.2,8],"Pennington County, South Dakota":[-13.9,13.3,-15.5,12.4,-13.3,14.7,-9.1,7.8],"Perkins County, South Dakota":[-16,15.3,-9.9,15.5,-15.5,15.2,-6.4,6.3],"Potter County, South Dakota":[-16.2,9.3,-22.4,12.5,-10.4,14.4,-4.5,10.4],"Roberts County, South Dakota":[-12.5,14.7,-15,13.2,-15.5,13.4,-8.1,7.6],"Sanborn County, South Dakota":[-15.3,13.7,-17.9,10.6,-12.3,13.7,-4.7,11.7],"Spink County, South Dakota":[-15.9,14.1,-14.5,15.1,-12.3,11.1,-8.7,8.4],"Stanley County, South Dakota":[-7.6,7.4,-19.9,20.8,-18.2,2,-12.2,12],"Sully County, South Dakota":[-9.4,14.6,-10.5,14.3,-20.2,4.5,-3.1,23.3],"Todd County, South Dakota":[-14.2,13.6,-16.6,14,-12.3,14.4,-7.1,7.9],"Tripp County, South Dakota":[-15.4,14,-18.1,14.5,-9.2,14.1,-9.9,4.8],"Turner County, South Dakota":[-11,11.9,-16.3,10.9,-13.9,18.3,-9.3,8.5],"Union County, South Dakota":[-11.1,10.9,-16.7,10.5,-14.9,17.1,-10.9,8],"Walworth County, South Dakota":[-17.8,11.5,-13.7,13.3,-16.2,14.3,-4.7,8.6],"Yankton County, South Dakota":[-13,11.3,-13.8,11.4,-15.7,16.4,-10.9,7.4],"Ziebach County, South Dakota":[-16.5,13.2,-12.1,11.8,-11.8,9.9,-6.2,18.6]};
+  const ageBins = ["0–4","5–9","10–14","15–17"];
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(data) {
+    const maleData = data.filter((_, i) => i % 2 === 0);
+    const femaleData = data.filter((_, i) => i % 2 === 1);
+
+    const maxValue = Math.max(
+      ...maleData.map(Math.abs),
+      ...femaleData.map(Math.abs)
+    );
+    const padding = 1.0;
+    const xMax = +(maxValue + padding).toFixed(1);
+
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ageBins,
+        datasets: [
+          {
+            label: 'Male',
+            data: maleData,
+            backgroundColor: 'dodgerblue'
+          },
+          {
+            label: 'Female',
+            data: femaleData,
+            backgroundColor: 'lightpink'
+          }
+        ]
+      },
+      options: {
+        indexAxis: 'y',
+        responsive: true,
+        scales: {
+          x: {
+            min: -xMax,
+            max: xMax,
+            ticks: {
+              callback: value => Math.abs(value).toFixed(1) + '%'
+            }
+          },
+          y: {
+            stacked: false
+          }
+        },
+        plugins: {
+          legend: {
+            position: 'top',
+            align: 'start',
+            labels: {
+              usePointStyle: true
+            }
+          },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.dataset.label + ': ' + Math.abs(ctx.parsed.x).toFixed(1) + '%'
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(Object.values(ageData[this.value]));
+  });
+
+  renderChart(Object.values(ageData['Statewide']));</script>
+  </body>
+</html>
+</html>

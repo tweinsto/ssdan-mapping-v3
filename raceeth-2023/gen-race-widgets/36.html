@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="utf-8"/>
+  <title>Race/Ethnicity in State 36</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          text-align: center;
+          margin: 2rem;
+          background-color: white;
+        }
+        canvas {
+          max-width: 500px;
+          margin: 1rem auto;
+        }
+        select {
+          font-size: 1rem;
+          padding: 0.4rem;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Race &amp; Ethnicity Distribution</h2>
+    <label>Select County:</label>
+    <select id="countySelect"><option value="Statewide">Statewide</option>
+<option value="Albany County, New York">Albany County, New York</option>
+<option value="Allegany County, New York">Allegany County, New York</option>
+<option value="Bronx County, New York">Bronx County, New York</option>
+<option value="Broome County, New York">Broome County, New York</option>
+<option value="Cattaraugus County, New York">Cattaraugus County, New York</option>
+<option value="Cayuga County, New York">Cayuga County, New York</option>
+<option value="Chautauqua County, New York">Chautauqua County, New York</option>
+<option value="Chemung County, New York">Chemung County, New York</option>
+<option value="Chenango County, New York">Chenango County, New York</option>
+<option value="Clinton County, New York">Clinton County, New York</option>
+<option value="Columbia County, New York">Columbia County, New York</option>
+<option value="Cortland County, New York">Cortland County, New York</option>
+<option value="Delaware County, New York">Delaware County, New York</option>
+<option value="Dutchess County, New York">Dutchess County, New York</option>
+<option value="Erie County, New York">Erie County, New York</option>
+<option value="Essex County, New York">Essex County, New York</option>
+<option value="Franklin County, New York">Franklin County, New York</option>
+<option value="Fulton County, New York">Fulton County, New York</option>
+<option value="Genesee County, New York">Genesee County, New York</option>
+<option value="Greene County, New York">Greene County, New York</option>
+<option value="Hamilton County, New York">Hamilton County, New York</option>
+<option value="Herkimer County, New York">Herkimer County, New York</option>
+<option value="Jefferson County, New York">Jefferson County, New York</option>
+<option value="Kings County, New York">Kings County, New York</option>
+<option value="Lewis County, New York">Lewis County, New York</option>
+<option value="Livingston County, New York">Livingston County, New York</option>
+<option value="Madison County, New York">Madison County, New York</option>
+<option value="Monroe County, New York">Monroe County, New York</option>
+<option value="Montgomery County, New York">Montgomery County, New York</option>
+<option value="Nassau County, New York">Nassau County, New York</option>
+<option value="New York County, New York">New York County, New York</option>
+<option value="Niagara County, New York">Niagara County, New York</option>
+<option value="Oneida County, New York">Oneida County, New York</option>
+<option value="Onondaga County, New York">Onondaga County, New York</option>
+<option value="Ontario County, New York">Ontario County, New York</option>
+<option value="Orange County, New York">Orange County, New York</option>
+<option value="Orleans County, New York">Orleans County, New York</option>
+<option value="Oswego County, New York">Oswego County, New York</option>
+<option value="Otsego County, New York">Otsego County, New York</option>
+<option value="Putnam County, New York">Putnam County, New York</option>
+<option value="Queens County, New York">Queens County, New York</option>
+<option value="Rensselaer County, New York">Rensselaer County, New York</option>
+<option value="Richmond County, New York">Richmond County, New York</option>
+<option value="Rockland County, New York">Rockland County, New York</option>
+<option value="Saratoga County, New York">Saratoga County, New York</option>
+<option value="Schenectady County, New York">Schenectady County, New York</option>
+<option value="Schoharie County, New York">Schoharie County, New York</option>
+<option value="Schuyler County, New York">Schuyler County, New York</option>
+<option value="Seneca County, New York">Seneca County, New York</option>
+<option value="St. Lawrence County, New York">St. Lawrence County, New York</option>
+<option value="Steuben County, New York">Steuben County, New York</option>
+<option value="Suffolk County, New York">Suffolk County, New York</option>
+<option value="Sullivan County, New York">Sullivan County, New York</option>
+<option value="Tioga County, New York">Tioga County, New York</option>
+<option value="Tompkins County, New York">Tompkins County, New York</option>
+<option value="Ulster County, New York">Ulster County, New York</option>
+<option value="Warren County, New York">Warren County, New York</option>
+<option value="Washington County, New York">Washington County, New York</option>
+<option value="Wayne County, New York">Wayne County, New York</option>
+<option value="Westchester County, New York">Westchester County, New York</option>
+<option value="Wyoming County, New York">Wyoming County, New York</option>
+<option value="Yates County, New York">Yates County, New York</option></select>
+    <canvas id="pieChart" width="400" height="400"></canvas>
+    <script>  let raceData = {};
+  fetch("36.json")
+    .then(resp => resp.json())
+    .then(data => {
+      raceData = data;
+      const raceLabels = ["American Indian / Alaska Native","Asian","Black","Hispanic","NHMulti","NHOther","NHWhite","Pacific Islander"];
+      const ctx = document.getElementById("pieChart").getContext("2d");
+      let chart;
+
+      function renderChart(values) {
+        if (chart) chart.destroy();
+        chart = new Chart(ctx, {
+          type: "pie",
+          data: {
+            labels: raceLabels,
+            datasets: [{
+              data: values,
+              backgroundColor: [
+                "#f94144", "#f3722c", "#f9c74f", "#90be6d",
+                "#9d4edd", "#577590", "#d0cde1", "#43aa8b"
+              ]
+            }]
+          },
+          options: {
+            responsive: true,
+            plugins: {
+              legend: {
+                position: "bottom",
+                labels: {
+                  font: { size: 14 },
+                  boxWidth: 20,
+                  padding: 15,
+                  usePointStyle: true,
+                  pointStyle: "rectRounded"
+                }
+              },
+              tooltip: {
+                callbacks: {
+                  label: function(context) {
+                    return context.label + ": " + context.parsed + "%";
+                  }
+                }
+              }
+            }
+          }
+        });
+      }
+
+      document.getElementById("countySelect").addEventListener("change", function() {
+        const selected = this.value;
+        const values = Object.values(raceData[selected]);
+        renderChart(values);
+      });
+
+      renderChart(Object.values(raceData["Statewide"]));
+      document.getElementById("countySelect").value = "Statewide";
+    });</script>
+  </body>
+</html>
+</html>

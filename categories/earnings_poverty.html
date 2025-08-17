@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Income & Opportunity (2023)</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background-color: #f2f2f2;
+    }
+
+    #bottom-left-label {
+      position: absolute;
+      bottom: 10px;
+      left: 20px;
+      font-size: 15px;
+      color: #444;
+      padding: 2px 3px;
+    }
+
+    h1 {
+      font-size: 1.5rem;
+      margin: 1rem 1.5rem 0.5rem;
+    }
+
+    h2 {
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      color: #4576a7;
+      margin-left: 1.8rem;
+    }
+
+    .main-wrapper {
+      display: flex;
+      flex-direction: column;
+      padding-bottom: 2rem;
+    }
+
+    .map-rankings-container {
+      display: flex;
+      align-items: flex-start;
+      padding: 0 1.5rem;
+    }
+
+    .map-wrap {
+      position: relative;
+      width: 65%;
+      height: 550px;
+      border: 2px solid #ccc;
+      border-radius: 8px;
+      box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+      margin-right: 1rem;
+      max-width: 800px;
+      background: #fff;
+      overflow: hidden;
+    }
+
+    .map-frame {
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-radius: 8px;
+    }
+
+    .view-toggle {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      z-index: 10;
+      background: #ffffff;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      padding: 4px 8px;
+      font-size: 12px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    }
+    .view-toggle a {
+      text-decoration: none;
+      color: #1f4aa3;
+      font-weight: normal;
+    }
+    .view-toggle a:hover { text-decoration: underline; }
+    .view-toggle a.active {
+      font-weight: 700;
+      color: #000;
+      text-decoration: underline;
+    }
+
+    .right-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      width: 30%;
+      margin-left: 1.5rem;
+    }
+
+    .link-list {
+      background-color: #ffffff;
+      padding: 1rem;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+      border: 2px solid #3e49a8;
+      margin-top: -5rem;
+      transition: box-shadow 0.3s ease;
+    }
+    .link-list:hover { box-shadow: 0 0 16px rgba(62, 73, 168, 0.3); }
+    .link-list h3 {
+      color: #3e49a8;
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 0.3rem;
+    }
+
+    .link-list a {
+      display: block;
+      text-decoration: none;
+      font-size: 1rem;
+      color: #003366;
+      margin: 0.3rem 0;
+      padding: 0.2rem 0;
+    }
+    .link-list a:hover { text-decoration: underline; color: #1a2d7c; }
+
+    .widget-box {
+      background-color: white;
+      padding: 1rem;
+      border-radius: 10px;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+    }
+    .widget-frame {
+      width: 120%;
+      height: 400px;
+      border: none;
+      margin-top: 0.5rem;
+    }
+
+    .metric-nav { font-size: 0.8rem; }
+    .metric-title { font-size: 0.8rem; margin: 0 0 .4rem 0; }
+    .metric-grid {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: baseline;
+      row-gap: .45rem;
+      column-gap: .75rem;
+    }
+    .metric-name { font-weight: 600; }
+    .metric-views { white-space: nowrap; }
+    .metric-nav a { display: inline; text-decoration: none; color: #1f4aa3; }
+    .metric-nav a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <h1>Median Earnings in the United States (2023)</h1>
+  <h2>Click a State to Explore Further</h2>
+
+  <div class="main-wrapper">
+    <div class="map-rankings-container">
+
+      <!-- Map with toggle -->
+      <div class="map-wrap">
+        <div class="view-toggle">
+          <strong>View:</strong>
+                    <a href="#" id="view-county">County</a> /
+          <a href="#" id="view-state">State</a> 
+
+        </div>
+        <iframe
+          class="map-frame"
+          src="maps/income.html"
+          title="Earnings Map"
+        ></iframe>
+      </div>
+
+      <!-- Right panel -->
+      <div class="right-panel">
+        <div class="link-list metric-nav">
+          <h3 class="metric-title">Select a different Metric:</h3>
+          <div class="metric-grid">
+            <span class="metric-name" style = "font-size: 1rem;"><u>Category</u></span>
+            <span class="metric-views" style = "font-size: 1rem;"><u><strong>    View</strong></u></span>
+
+            <span class="metric-name">Poverty</span>
+            <span class="metric-views">(  <a href="maps/poverty.html">County</a> | <a href="maps/poverty-state.html">State</a> )</span>
+
+            <span class="metric-name">Renters</span>
+            <span class="metric-views">( <a href="maps/stress.html">County</a> | <a href="maps/stress-state.html">State</a> )</span>
+
+            <span class="metric-name">Income Inequality</span>
+            <span class="metric-views">(  <a href="maps/ratio.html">County</a> | <a href="maps/ratio-state.html">State</a>)</span>
+
+            <span class="metric-name">Top 20% Earners</span>
+            <span class="metric-views">( <a href="maps/top20-county.html">County</a> | <a href="maps/top20.html">State</a> )</span>
+          </div>
+        </div>
+
+        <div class="widget-box">
+          <h3>Explore Employment Statistics by State/County (2023)</h3>
+          <a href="maps/industrypage.html" style="display:inline-block;margin-top:0.5rem;padding:0.5rem 1rem;background-color:#3e49a8;color:white;text-decoration:none;border-radius:5px;font-weight:bold;">Industry Map →</a>
+          <a href="maps/industryearnings.html" style="display:inline-block;margin-top:0.5rem;padding:0.5rem 1rem;background-color:#3e49a8;color:white;text-decoration:none;border-radius:5px;font-weight:bold;">Industry Earnings Map →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="bottom-left-label">
+    <strong>Source:</strong>
+    <a href="https://www.census.gov/programs-surveys/acs" target="_blank" style="color:#003366;text-decoration:underline;">ACS 2023</a>
+  </div>
+
+  <script>
+    // Toggle: swap iframe src and highlight active view.
+    (function () {
+      const stateBtn = document.getElementById('view-state');
+      const countyBtn = document.getElementById('view-county');
+      const frame    = document.querySelector('.map-frame');
+
+      function setActive(btn) {
+        stateBtn.classList.remove('active');
+        countyBtn.classList.remove('active');
+        btn.classList.add('active');
+      }
+
+      // Initialize highlight based on current src
+      function initActive() {
+        const src = frame.getAttribute('src') || '';
+        if (src.indexOf('earnings-state.html') !== -1 || src.indexOf('-state.html') !== -1) {
+          setActive(stateBtn);
+        } else {
+          setActive(countyBtn);
+        }
+      }
+
+      stateBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+        frame.src = 'maps/earnings-state.html';
+        setActive(stateBtn);
+      });
+
+      countyBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+        frame.src = 'maps/income.html';
+        setActive(countyBtn);
+      });
+
+      initActive();
+    })();
+  </script>
+</body>
+</html>

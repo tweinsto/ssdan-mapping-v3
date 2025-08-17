@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>School District County Maps – 17</title>
+  <style>
+        body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; background:#f6f7fb; }
+        .topbar { display:flex; flex-wrap:wrap; gap:.5rem; padding: .75rem 1rem; background:#fff; border-bottom:1px solid #e5e7eb; position:sticky; top:0; z-index:10; }
+        .map-btn { padding:.55rem .9rem; font-weight:600; border:2px solid #3e49a8; color:#3e49a8; background:#eef2ff; border-radius:8px; cursor:pointer; }
+        .map-btn:hover { background:#e0e7ff; }
+        .map-btn.active { background:#3e49a8; color:#fff; }
+        .frame-wrap { padding: 1rem; }
+        iframe#mapframe { width: 100%; height: 86vh; border: 2px solid #d1d5db; border-radius:10px; background:#fff; }
+      </style>
+</head>
+<html>
+  <body>
+    <div class="topbar"><button type="button" class="map-btn" data-src="../../maps/sd-educ-maps/17.html" id="btn-educ">Education</button>
+      <button type="button" class="map-btn" data-src="../../maps/sd-hvalue-maps/17.html" id="btn-hvalue">Home Value</button>
+      <button type="button" class="map-btn" data-src="../../maps/sd-income-maps/17.html" id="btn-income">Income</button>
+      <button type="button" class="map-btn" data-src="../../maps/sd-internet-maps/17.html" id="btn-internet">Internet</button>
+      <button type="button" class="map-btn" data-src="../../maps/sd-median-maps/17.html" id="btn-median">Median Age</button>
+      <button type="button" class="map-btn" data-src="../../maps/sd-pov-maps/17.html" id="btn-pov">Poverty</button>
+      <button type="button" class="map-btn" data-src="../../maps/sd-rent-maps/17.html" id="btn-rent">Rent</button></div>
+    <div class="frame-wrap">
+      <iframe id="mapframe" src="../../maps/sd-educ-maps/17.html" title="Map"></iframe>
+    </div>
+    <script>(() => {
+  const frame = document.getElementById('mapframe');
+  const buttons = Array.from(document.querySelectorAll('.map-btn'));
+  const key = 'sdCountyLast_17';
+
+  function setActive(btn) {
+    buttons.forEach(b => b.classList.toggle('active', b === btn));
+    const src = btn.getAttribute('data-src');
+    if (src && frame) frame.src = src;
+    try { sessionStorage.setItem(key, src); } catch (e) {}
+  }
+
+  // restore last viewed map for this state, if any
+  let restored = false;
+  try {
+    const last = sessionStorage.getItem(key);
+    if (last) {
+      const match = buttons.find(b => b.getAttribute('data-src') === last);
+      if (match) { setActive(match); restored = true; }
+    }
+  } catch (e) {}
+
+  if (!restored && buttons.length) setActive(buttons[0]);
+
+  buttons.forEach(btn => btn.addEventListener('click', () => setActive(btn)));
+})();</script>
+  </body>
+</html>
+</html>

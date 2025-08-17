@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Age Pyramid –  Iowa</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+      body {
+        font-family: sans-serif;
+        margin: 1rem 2rem;
+        text-align: center;
+      }
+      h2 {
+        margin-bottom: 0.25rem;
+        font-size: 1.6rem;
+      }
+      select {
+        padding: 0.4rem;
+        font-size: 1rem;
+        margin: 1rem 0;
+        border-radius: 5px;
+        border: 1px solid #999;
+      }
+      canvas {
+        width: 100%;
+        max-width: 850px;
+        height: 500px;
+        margin-top: 1rem;
+      }
+    </style>
+</head>
+<html>
+  <body>
+    <h2>Age Distribution in  Iowa (2023)</h2>
+    <label>Select County:</label>
+          <select id="countySelect">
+        <option value='Statewide'>Statewide</option>
+<option value='Adair County, Iowa'>Adair County, Iowa</option>
+<option value='Adams County, Iowa'>Adams County, Iowa</option>
+<option value='Allamakee County, Iowa'>Allamakee County, Iowa</option>
+<option value='Appanoose County, Iowa'>Appanoose County, Iowa</option>
+<option value='Audubon County, Iowa'>Audubon County, Iowa</option>
+<option value='Benton County, Iowa'>Benton County, Iowa</option>
+<option value='Black Hawk County, Iowa'>Black Hawk County, Iowa</option>
+<option value='Boone County, Iowa'>Boone County, Iowa</option>
+<option value='Bremer County, Iowa'>Bremer County, Iowa</option>
+<option value='Buchanan County, Iowa'>Buchanan County, Iowa</option>
+<option value='Buena Vista County, Iowa'>Buena Vista County, Iowa</option>
+<option value='Butler County, Iowa'>Butler County, Iowa</option>
+<option value='Calhoun County, Iowa'>Calhoun County, Iowa</option>
+<option value='Carroll County, Iowa'>Carroll County, Iowa</option>
+<option value='Cass County, Iowa'>Cass County, Iowa</option>
+<option value='Cedar County, Iowa'>Cedar County, Iowa</option>
+<option value='Cerro Gordo County, Iowa'>Cerro Gordo County, Iowa</option>
+<option value='Cherokee County, Iowa'>Cherokee County, Iowa</option>
+<option value='Chickasaw County, Iowa'>Chickasaw County, Iowa</option>
+<option value='Clarke County, Iowa'>Clarke County, Iowa</option>
+<option value='Clay County, Iowa'>Clay County, Iowa</option>
+<option value='Clayton County, Iowa'>Clayton County, Iowa</option>
+<option value='Clinton County, Iowa'>Clinton County, Iowa</option>
+<option value='Crawford County, Iowa'>Crawford County, Iowa</option>
+<option value='Dallas County, Iowa'>Dallas County, Iowa</option>
+<option value='Davis County, Iowa'>Davis County, Iowa</option>
+<option value='Decatur County, Iowa'>Decatur County, Iowa</option>
+<option value='Delaware County, Iowa'>Delaware County, Iowa</option>
+<option value='Des Moines County, Iowa'>Des Moines County, Iowa</option>
+<option value='Dickinson County, Iowa'>Dickinson County, Iowa</option>
+<option value='Dubuque County, Iowa'>Dubuque County, Iowa</option>
+<option value='Emmet County, Iowa'>Emmet County, Iowa</option>
+<option value='Fayette County, Iowa'>Fayette County, Iowa</option>
+<option value='Floyd County, Iowa'>Floyd County, Iowa</option>
+<option value='Franklin County, Iowa'>Franklin County, Iowa</option>
+<option value='Fremont County, Iowa'>Fremont County, Iowa</option>
+<option value='Greene County, Iowa'>Greene County, Iowa</option>
+<option value='Grundy County, Iowa'>Grundy County, Iowa</option>
+<option value='Guthrie County, Iowa'>Guthrie County, Iowa</option>
+<option value='Hamilton County, Iowa'>Hamilton County, Iowa</option>
+<option value='Hancock County, Iowa'>Hancock County, Iowa</option>
+<option value='Hardin County, Iowa'>Hardin County, Iowa</option>
+<option value='Harrison County, Iowa'>Harrison County, Iowa</option>
+<option value='Henry County, Iowa'>Henry County, Iowa</option>
+<option value='Howard County, Iowa'>Howard County, Iowa</option>
+<option value='Humboldt County, Iowa'>Humboldt County, Iowa</option>
+<option value='Ida County, Iowa'>Ida County, Iowa</option>
+<option value='Iowa County, Iowa'>Iowa County, Iowa</option>
+<option value='Jackson County, Iowa'>Jackson County, Iowa</option>
+<option value='Jasper County, Iowa'>Jasper County, Iowa</option>
+<option value='Jefferson County, Iowa'>Jefferson County, Iowa</option>
+<option value='Johnson County, Iowa'>Johnson County, Iowa</option>
+<option value='Jones County, Iowa'>Jones County, Iowa</option>
+<option value='Keokuk County, Iowa'>Keokuk County, Iowa</option>
+<option value='Kossuth County, Iowa'>Kossuth County, Iowa</option>
+<option value='Lee County, Iowa'>Lee County, Iowa</option>
+<option value='Linn County, Iowa'>Linn County, Iowa</option>
+<option value='Louisa County, Iowa'>Louisa County, Iowa</option>
+<option value='Lucas County, Iowa'>Lucas County, Iowa</option>
+<option value='Lyon County, Iowa'>Lyon County, Iowa</option>
+<option value='Madison County, Iowa'>Madison County, Iowa</option>
+<option value='Mahaska County, Iowa'>Mahaska County, Iowa</option>
+<option value='Marion County, Iowa'>Marion County, Iowa</option>
+<option value='Marshall County, Iowa'>Marshall County, Iowa</option>
+<option value='Mills County, Iowa'>Mills County, Iowa</option>
+<option value='Mitchell County, Iowa'>Mitchell County, Iowa</option>
+<option value='Monona County, Iowa'>Monona County, Iowa</option>
+<option value='Monroe County, Iowa'>Monroe County, Iowa</option>
+<option value='Montgomery County, Iowa'>Montgomery County, Iowa</option>
+<option value='Muscatine County, Iowa'>Muscatine County, Iowa</option>
+<option value='O'Brien County, Iowa'>O'Brien County, Iowa</option>
+<option value='Osceola County, Iowa'>Osceola County, Iowa</option>
+<option value='Page County, Iowa'>Page County, Iowa</option>
+<option value='Palo Alto County, Iowa'>Palo Alto County, Iowa</option>
+<option value='Plymouth County, Iowa'>Plymouth County, Iowa</option>
+<option value='Pocahontas County, Iowa'>Pocahontas County, Iowa</option>
+<option value='Polk County, Iowa'>Polk County, Iowa</option>
+<option value='Pottawattamie County, Iowa'>Pottawattamie County, Iowa</option>
+<option value='Poweshiek County, Iowa'>Poweshiek County, Iowa</option>
+<option value='Ringgold County, Iowa'>Ringgold County, Iowa</option>
+<option value='Sac County, Iowa'>Sac County, Iowa</option>
+<option value='Scott County, Iowa'>Scott County, Iowa</option>
+<option value='Shelby County, Iowa'>Shelby County, Iowa</option>
+<option value='Sioux County, Iowa'>Sioux County, Iowa</option>
+<option value='Story County, Iowa'>Story County, Iowa</option>
+<option value='Tama County, Iowa'>Tama County, Iowa</option>
+<option value='Taylor County, Iowa'>Taylor County, Iowa</option>
+<option value='Union County, Iowa'>Union County, Iowa</option>
+<option value='Van Buren County, Iowa'>Van Buren County, Iowa</option>
+<option value='Wapello County, Iowa'>Wapello County, Iowa</option>
+<option value='Warren County, Iowa'>Warren County, Iowa</option>
+<option value='Washington County, Iowa'>Washington County, Iowa</option>
+<option value='Wayne County, Iowa'>Wayne County, Iowa</option>
+<option value='Webster County, Iowa'>Webster County, Iowa</option>
+<option value='Winnebago County, Iowa'>Winnebago County, Iowa</option>
+<option value='Winneshiek County, Iowa'>Winneshiek County, Iowa</option>
+<option value='Woodbury County, Iowa'>Woodbury County, Iowa</option>
+<option value='Worth County, Iowa'>Worth County, Iowa</option>
+<option value='Wright County, Iowa'>Wright County, Iowa</option>
+      </select>
+    <canvas id="barChart" width="850" height="500"></canvas>
+    <script>  const ageData = {"Statewide":[-6.3,6,-5.5,5.3,-5.1,4.8,-3.2,3,-6.4,6.2,-6,5.7,-6,5.9,-6.1,6.3,-3.6,4,-0.9,1.2,-0.8,1.5],"Adair County, Iowa":[-6.8,6,-4.8,5.4,-3.8,2.9,-2.7,2.5,-6.2,6.2,-4.8,5,-6,6,-7.5,6.3,-5.7,5.1,-1,1.8,-1.2,2.5],"Adams County, Iowa":[-5.5,5.9,-5.2,5.2,-3.1,2.2,-2.2,2.9,-5.8,5,-4.9,5.3,-6.6,7.4,-8.6,7.3,-5.7,5.1,-1.1,2.1,-0.9,1.9],"Allamakee County, Iowa":[-6.1,6.9,-6.2,4.9,-3.9,3.1,-2.3,2.4,-4.8,5.8,-6.2,4.4,-7.2,6.4,-7.3,6.9,-3.8,4.8,-1.7,1.8,-1.4,1.8],"Appanoose County, Iowa":[-5.4,5.5,-5.8,4.7,-3.6,3.1,-2.2,2.3,-6.3,6.5,-4.6,5.2,-7.5,6.1,-6.7,7,-5.7,5.9,-0.8,1.4,-1.5,2.2],"Audubon County, Iowa":[-5.3,5.9,-6.5,4.6,-3,3,-2.5,2.5,-4.9,4.8,-4.8,5.6,-6.4,7,-8.1,7.6,-5.5,4.9,-1.5,2.5,-0.7,2.5],"Benton County, Iowa":[-6.1,6.1,-5.6,5.2,-3.7,3.3,-2.7,2.4,-6.1,5.4,-5.6,6.1,-7.5,7.2,-6.5,6.1,-4.5,4.7,-1,1.1,-0.9,1.9],"Black Hawk County, Iowa":[-6.3,5.9,-4.8,4.9,-6.9,7.5,-3.4,3.3,-6.3,6,-5.5,5.3,-5.1,5,-5.7,6.1,-3.5,4.2,-0.9,1.2,-0.7,1.3],"Boone County, Iowa":[-5.8,4.9,-5.4,4.8,-4.2,3.3,-3.2,3,-6.8,6.1,-6.2,6,-6.8,6.8,-7.3,6.8,-4.3,4.6,-0.5,1.3,-0.6,1.2],"Bremer County, Iowa":[-6.5,6.1,-5.1,4.9,-5.8,5.6,-2.7,2.6,-6.2,6.3,-5.5,5.6,-5.8,5.8,-6,5.9,-4,4.6,-1.1,1.3,-1,1.5],"Buchanan County, Iowa":[-6.3,6,-6.8,6.6,-4,3.1,-2.5,2.6,-6.9,5.3,-5.6,6.2,-5.9,6.7,-6.7,6.7,-3.8,4.2,-1,0.9,-0.8,1.2],"Buena Vista County, Iowa":[-8.6,6,-6.2,5.9,-5,5.1,-3.2,3,-6.3,6.7,-6.2,5.4,-5.9,4.8,-5.4,5.5,-3,3.5,-0.7,0.8,-1.1,1.7],"Butler County, Iowa":[-6,5.1,-5.6,5.8,-3.3,3.4,-2.7,2.5,-5.4,5.5,-6.1,5.8,-6,6.2,-7.4,7.6,-4.8,4.9,-1.2,1.1,-1,2.5],"Calhoun County, Iowa":[-6.1,6.4,-5.3,4.1,-3.8,2.7,-2.9,2.6,-7.3,5.9,-6,4,-5.3,5.9,-9.3,7.4,-3.6,5.1,-1.2,1.3,-1.2,2.4],"Carroll County, Iowa":[-6.2,5.7,-6.8,5.4,-4.4,3.5,-2.7,2.7,-5.6,4.3,-5.6,6.1,-6.3,6.4,-7.3,7.1,-3.3,4.6,-1.1,1.2,-1.2,2.5],"Cass County, Iowa":[-6.2,5.5,-6,5.9,-3.4,2.9,-2.6,2.5,-5,5.3,-5.8,5.6,-6.5,6,-7.3,7.4,-4.7,5.3,-1.3,1.4,-0.8,2.7],"Cedar County, Iowa":[-6.1,5.3,-5.1,5,-3.5,3.2,-2.7,2.8,-6.4,6.1,-5.7,5.7,-6.9,7.6,-7.3,6.5,-4.1,4.8,-1.1,1.3,-1,2.1],"Cerro Gordo County, Iowa":[-5.4,5.3,-5.5,4.8,-3.9,3.5,-3,3.1,-5.8,5.1,-5.4,5.5,-6.3,6.4,-7.4,8.1,-4.7,5.4,-0.9,1.6,-1.2,1.9],"Cherokee County, Iowa":[-5,4.8,-6,5.9,-3.2,3.2,-2.4,2.3,-4.9,4.7,-7.2,5.9,-5.9,6.2,-7.7,7.5,-4.6,4.7,-1.7,2,-1.4,2.8],"Chickasaw County, Iowa":[-6.7,6.2,-5.1,5.3,-4,3.7,-2.7,2.2,-4.9,4.8,-6.2,5,-5.8,5.1,-8.8,7.7,-5.1,5.2,-1,1.5,-0.9,2.2],"Clarke County, Iowa":[-6.9,6.9,-7,4.7,-4.5,3.7,-2.7,1.8,-6.2,7.3,-5.4,3.3,-4.6,8.7,-8.2,5.4,-4.6,4,-0.4,0.8,-0.8,2],"Clay County, Iowa":[-6.5,5.5,-5.2,5.8,-4,3.6,-2.5,2.5,-6.2,5.8,-5.1,5.6,-6,5.7,-7,7.7,-3.6,5.3,-1.8,1.6,-1.4,1.5],"Clayton County, Iowa":[-5.7,5.8,-5.3,4.9,-3.5,3.2,-2.6,2.3,-4.9,4.8,-5.7,5.3,-6.3,5.8,-9.5,9.3,-4.3,4.3,-1.4,1.4,-1.3,2.3],"Clinton County, Iowa":[-5.2,5.7,-6.3,5.5,-3.9,3.9,-2.7,2.6,-5.2,6,-5.8,5.6,-6.6,6.6,-7.4,7.5,-4.3,4.1,-0.8,1.7,-1,1.5],"Crawford County, Iowa":[-7,7,-6.1,5.2,-4.9,4.6,-2.5,2.5,-5.3,6.2,-6.3,5.8,-5.7,6.4,-7.7,5.4,-2.7,4.3,-1.1,1.2,-0.8,1.4],"Dallas County, Iowa":[-8,6.9,-5.7,6.2,-3.8,3.6,-3.5,3.3,-8.1,8.1,-7.1,7,-5.6,5.7,-4.1,4.8,-2.7,2.7,-0.6,0.7,-0.6,1.3],"Davis County, Iowa":[-7.9,8.4,-7.5,6.1,-3.9,3.7,-2.7,2.6,-5.5,5.2,-5.8,5.2,-5.7,5.1,-6.6,6.4,-3.3,4,-1.1,0.6,-0.8,2],"Decatur County, Iowa":[-7,5.5,-4.7,5.3,-8.3,7,-2.4,2.3,-5.7,5.3,-4.2,4.7,-5.2,5.8,-6.7,5.7,-4.5,5.3,-0.9,1.4,-0.7,1.5],"Delaware County, Iowa":[-6.2,4.8,-6.2,6.2,-3.9,3.2,-2.6,2.2,-5,5.3,-5.6,5.4,-7.5,6.8,-8.1,8.6,-3.4,2.7,-1.7,1.6,-0.7,2.2],"Des Moines County, Iowa":[-6.3,5.4,-4.9,5.3,-4.4,3.9,-2.8,2.7,-5.5,6,-6,5.9,-6.5,6.1,-6.7,7.4,-4,5.1,-0.8,1.2,-1.4,1.7],"Dickinson County, Iowa":[-5,5.3,-5.3,3.6,-3.2,2.9,-2.3,2.6,-5.4,4.7,-5.7,5.6,-6.8,5.7,-7.4,9,-6.1,6.4,-1.5,1.8,-1.4,2.3],"Dubuque County, Iowa":[-6.6,6.2,-4.9,4.9,-5.3,4.8,-3.1,3.2,-6.6,6.2,-5.1,5.1,-6.1,6.1,-6.4,6.4,-3.7,4.4,-1.1,1.5,-0.8,1.6],"Emmet County, Iowa":[-4.7,6.1,-4.7,4,-5.4,4.3,-3.2,2.7,-6,5.1,-4.6,4.9,-6.6,6.7,-8.1,6.2,-4.8,6.2,-1.1,1.2,-1.1,2.3],"Fayette County, Iowa":[-6.2,5.2,-4.8,5.2,-4.7,4,-2.9,2.3,-5.7,5.5,-5.1,4.6,-7,6.8,-7.2,7.4,-4.4,4.7,-1.1,1.8,-1.2,2.1],"Floyd County, Iowa":[-6.2,4.8,-6.2,5.5,-4.2,3.2,-2.8,2.5,-5,5.2,-6.2,5,-6.6,7.3,-6.8,7,-4.9,3.8,-1.1,1.6,-1.4,2.8],"Franklin County, Iowa":[-6.2,5.7,-6.4,6.2,-3.6,3.7,-2.4,2.4,-6.3,4.5,-6,5.1,-6.1,7.1,-7,6.7,-4,4.5,-2,1.3,-0.9,2.2],"Fremont County, Iowa":[-6.1,5,-5.4,5.4,-3.5,3,-2.5,2.4,-4.7,4.5,-6.3,6.1,-6.3,5.7,-8.1,9.3,-5.3,4.5,-1.3,0.9,-1.2,2.5],"Greene County, Iowa":[-5.8,5.7,-5.3,4.5,-4.2,3.2,-2.5,2.2,-6,5.4,-5.9,5.2,-6,5.8,-7.9,8.9,-4.4,4,-1.7,2.3,-1.1,2.4],"Grundy County, Iowa":[-6.5,6.3,-5,5.9,-3.6,3.3,-2.9,2.5,-6.2,6.1,-5.8,5.2,-6.7,6.4,-6.8,7.1,-3.6,4.2,-1.7,1.7,-1,1.7],"Guthrie County, Iowa":[-4.9,5.6,-6,4.9,-3.4,3.1,-2.2,2.3,-5.1,4.9,-6.4,6,-7.1,6.5,-8.1,8.6,-4.9,5.2,-1.2,1.6,-0.6,1.4],"Hamilton County, Iowa":[-6.8,5.6,-5.7,5.3,-3.3,3,-2.5,2.6,-6.6,5.6,-5.8,6.1,-5.9,6.9,-6.5,6.1,-5.1,4.4,-0.7,1,-1.7,2.8],"Hancock County, Iowa":[-6.8,4.9,-4.9,4.8,-4,3,-2.5,2.4,-5.7,5.2,-6.3,5.9,-5.7,5.5,-8,6.9,-4.9,5.6,-1.2,1.5,-1.2,3.1],"Hardin County, Iowa":[-5,4.2,-5.1,4.9,-4.2,3.6,-2.8,2.4,-5.3,6.2,-7,5,-6.6,6.5,-7.7,8.4,-4,4.4,-1.3,1.7,-1.4,2.2],"Harrison County, Iowa":[-6.3,5.1,-5.7,6,-4.1,3.2,-2.8,2.5,-6.3,6.1,-5.4,5.4,-6.9,6.7,-7.3,7.1,-3.9,3.8,-1,1.3,-1.3,2.1],"Henry County, Iowa":[-5.3,5.8,-5.9,4.1,-5.9,4.7,-3.7,2.2,-6.9,5,-5.6,5.5,-6.2,5.9,-7.4,6.6,-3.9,4.7,-1,1.3,-1,1.4],"Howard County, Iowa":[-7.9,6.3,-5.5,5.9,-3.7,3.6,-2.6,2.6,-6.3,6.8,-4.7,4.4,-6.4,6.4,-6.6,6.5,-4.1,4.1,-1.2,2.1,-1.3,1.2],"Humboldt County, Iowa":[-6.2,7.3,-6.3,3.8,-3.3,3.6,-2.8,2.9,-5.6,5.9,-6.1,5.1,-6.3,5.5,-6.9,7.2,-4.6,4.6,-0.8,1.6,-1.1,2.4],"Ida County, Iowa":[-5.9,6.1,-6.5,5.9,-3.9,3.7,-2.3,2.2,-5.8,5.2,-5.3,5.1,-5.3,5.5,-8.1,7.8,-4.6,4.6,-1.1,1.1,-1.5,2.2],"Iowa County, Iowa":[-7,5,-5.5,6.1,-3.3,3.1,-3.2,2.4,-5.6,6.1,-6.1,5.5,-7.3,6.8,-7.5,6.5,-3.7,4.6,-1,1.4,-1.1,1.6],"Jackson County, Iowa":[-6.1,6.2,-5.1,4.8,-3.6,3.3,-2.7,2.4,-6.5,4.6,-5,5.6,-7,7.4,-8,7.5,-3.8,4.7,-1.4,1.7,-1.3,1.5],"Jasper County, Iowa":[-6.6,5,-5.1,5.4,-4.2,3.3,-3.1,2.5,-7.2,5.9,-6.9,5.4,-7.2,5.6,-5.9,7.1,-3.8,4.6,-1.1,1.4,-1.2,1.5],"Jefferson County, Iowa":[-4.5,5.5,-3.8,3.4,-3.7,4.1,-4.9,2.3,-7.2,6.3,-6.5,4.6,-4.5,5.3,-8.4,8.2,-5.9,5.7,-1.3,1.5,-0.7,1.7],"Johnson County, Iowa":[-6,5.2,-4.1,4.2,-10,10.8,-4.2,3.9,-6.9,6.2,-5.5,5.5,-4.7,4.8,-4.6,4.7,-2.6,3.2,-0.6,0.7,-0.5,0.9],"Jones County, Iowa":[-5,5.2,-5.5,5.2,-3.8,3,-3.1,2.6,-6.6,5,-7.3,5.6,-7.7,6,-7.1,7.1,-4.4,4.7,-1.3,1.3,-0.8,1.7],"Keokuk County, Iowa":[-6.1,5.9,-5.8,4.8,-4.2,3.1,-2.9,2.7,-5.6,5.5,-6,5.2,-6.1,6.3,-8.2,7,-4.1,4.7,-1.5,1.6,-1,1.6],"Kossuth County, Iowa":[-6,5.3,-6,5,-3.5,3.2,-2.5,2.6,-5.7,5.7,-5.1,4.4,-6,6,-8.3,7.2,-5.3,4.7,-1.4,1.7,-1.1,3.4],"Lee County, Iowa":[-6.1,6,-4.8,4.5,-3.8,3.3,-3.2,3,-5.6,5,-6.2,6,-6.7,6.8,-7.3,7.3,-4.4,5.1,-1,1.3,-0.8,1.8],"Linn County, Iowa":[-6.1,5.9,-5.4,5.3,-4.5,4.5,-3.4,3.3,-6.8,6.6,-6.3,6.3,-6.3,6.2,-5.8,6.2,-3.1,3.9,-0.9,1.1,-0.8,1.3],"Louisa County, Iowa":[-5.8,5.6,-5.9,5,-4.2,3.3,-2.8,2.6,-6.4,5.2,-5.9,6.4,-7.5,6.3,-6.6,6.9,-4.3,3.9,-0.9,1.8,-0.9,1.8],"Lucas County, Iowa":[-6.2,6.7,-5.6,4.5,-3.8,3,-3.4,2.6,-5.1,4.9,-5.6,5.3,-7.8,6.3,-7.3,8.1,-4.7,3.7,-1.3,0.9,-0.9,2.6],"Lyon County, Iowa":[-8,7.9,-6.9,5.8,-4.2,3.3,-2.9,2.4,-5.6,6,-6.2,5,-5.6,5.2,-5.8,5.5,-4.3,4.4,-0.8,1.5,-0.9,2],"Madison County, Iowa":[-6.8,6.9,-6.3,4.9,-3.8,3.2,-2.2,2.3,-6.1,6.2,-6.5,6.3,-6.7,6.7,-7.5,6.4,-3.4,3.7,-1.4,1.2,-0.3,1.2],"Mahaska County, Iowa":[-6.4,6.1,-6.1,5.4,-5.5,4.3,-2.7,2.5,-5.8,6.2,-6.2,5.3,-5.8,5.5,-6.8,6.5,-3.8,4.4,-1.2,1.4,-0.8,1.3],"Marion County, Iowa":[-5.7,5.7,-6.2,5.9,-5.3,4.7,-2.8,2.4,-6,5.7,-5.8,5.5,-6.2,6.3,-6.4,5.8,-4,4.4,-0.9,1.1,-0.9,2.4],"Marshall County, Iowa":[-7.7,5.6,-5.6,6.6,-4.5,3.8,-2.9,2.6,-6.6,5.9,-5.6,5.6,-6.2,6,-6.4,6.3,-3.3,3.8,-0.8,1.6,-1.3,1.5],"Mills County, Iowa":[-5.6,5.9,-6.4,5.1,-3.4,3.3,-2.7,2.5,-5.5,6.1,-6.5,6.2,-5.6,6.9,-7.6,6.5,-4.3,5.2,-1,1,-1.1,1.4],"Mitchell County, Iowa":[-5.8,6.1,-6.1,5.9,-3.7,3.7,-3.1,2.3,-5.7,5,-5.1,5.5,-5.9,6.8,-7.4,6.5,-4.6,4.6,-1.1,1.8,-1.3,2],"Monona County, Iowa":[-5.7,6.3,-5.1,5.4,-3.3,2.9,-2.7,2.6,-5.7,5.7,-4.8,4.9,-5.3,6.8,-8.5,8,-5,4.4,-1.1,1.7,-1.3,2.9],"Monroe County, Iowa":[-6.4,4.7,-5.7,6.4,-4.2,3.6,-2.6,2.8,-6.1,5.8,-5.2,5.1,-8.1,7.1,-6.2,5.8,-3.6,5.8,-0.5,1.2,-1.7,1.4],"Montgomery County, Iowa":[-5,6.9,-6,4.7,-3.6,3.3,-2.7,2.5,-5.2,5.6,-6.3,4.8,-5.9,6.3,-8,7.8,-4.1,5.2,-0.8,1.3,-1.4,2.6],"Muscatine County, Iowa":[-6.1,5.9,-6.2,6,-4.5,3.8,-2.8,2.9,-6.5,6.7,-6.1,5.5,-6.2,6.3,-6.9,6.4,-3.5,4.2,-0.6,1.2,-0.9,1.1],"O'Brien County, Iowa":[-7.4,6.7,-4.9,5.3,-4.1,3.1,-3.1,3.1,-6.4,6.2,-5.2,5.2,-5.8,4.7,-7.1,6.9,-3.4,4.1,-0.8,1.8,-1.6,3],"Osceola County, Iowa":[-7.6,5.1,-5.1,5.7,-3.3,2.8,-3.2,2.1,-6.6,4.4,-4.7,4.9,-6.4,6.7,-8.8,6.3,-4.1,5.1,-1.9,1.3,-1.1,2.7],"Page County, Iowa":[-4.5,5.1,-5.5,4.2,-3.9,2.4,-3.2,2.5,-7.4,5.8,-7.1,4.7,-6.6,6.2,-7.8,8,-4.1,4,-1.5,1.9,-1.5,2.5],"Palo Alto County, Iowa":[-7,5.7,-5.1,5.7,-4.4,3.8,-2.6,2.6,-5.7,4.7,-6.2,5.6,-6.1,5.6,-6,6.9,-4.5,4.7,-0.9,1.7,-1.7,2.8],"Plymouth County, Iowa":[-7.1,5.4,-5.8,6.7,-3.9,3.2,-2.7,2.4,-5.9,6.1,-6.3,5.6,-6.1,6.1,-7.4,6.5,-3.7,3.9,-1.1,1.3,-0.9,1.9],"Pocahontas County, Iowa":[-5.7,6.3,-5.2,5.7,-3.7,4,-2.7,2,-5.3,5,-5.2,4.1,-6.3,5.8,-8.6,8.1,-4.7,5.1,-1.1,1.6,-1.3,2.3],"Polk County, Iowa":[-6.7,6.8,-5.8,5.3,-4.3,4.4,-3.9,3.7,-7.4,7.4,-6.7,6.2,-6,5.9,-4.8,5.3,-2.8,3.4,-0.6,0.9,-0.6,0.9],"Pottawattamie County, Iowa":[-6.5,5.9,-5.5,5.2,-4.4,4.1,-3,2.8,-6.1,6.2,-6.2,5.9,-6.5,6.2,-6.3,7,-3.7,4.2,-0.9,1.2,-0.7,1.4],"Poweshiek County, Iowa":[-5.5,4.4,-4.2,5.4,-7.7,7.2,-2.5,2.4,-4.7,5,-5.3,5.6,-6.2,6,-5.5,6.6,-5.7,5.4,-1,1.4,-0.5,2.1],"Ringgold County, Iowa":[-7.4,5.2,-5.5,5.1,-3.9,3.6,-1.9,2.2,-4.9,6.1,-5.4,4.2,-6.2,6,-7.2,9.5,-5,4.5,-1.1,1.7,-1.1,2.5],"Sac County, Iowa":[-5.9,5.4,-5.8,5.1,-3.7,3.2,-2.5,2.2,-5.2,5.7,-5.4,4.6,-7.8,6.4,-7.2,7.5,-5,4.2,-1.1,1.4,-1.2,3.4],"Scott County, Iowa":[-6.5,6,-5.3,5.5,-4.2,4.2,-3.1,3.1,-6.6,6.7,-6.3,6.2,-6.1,6.1,-5.9,6.3,-3.9,4,-0.8,1.1,-0.6,1.3],"Shelby County, Iowa":[-7,4.8,-4.9,6.2,-3.7,3.3,-2.3,2.1,-5.5,5.5,-4.8,5.2,-6.3,6.9,-7.8,8.2,-4.6,4.4,-1.2,1.3,-1.5,2.6],"Sioux County, Iowa":[-7.7,7,-6.3,6.4,-6.7,6.6,-2.7,2.5,-5.4,5.2,-6,5.8,-4.9,4.6,-5.5,5.4,-3.3,3.8,-1,1.2,-0.6,1.3],"Story County, Iowa":[-4.7,4.5,-3.5,3.7,-16.7,13.6,-4.4,3.1,-5.9,4.9,-4.6,4.5,-4,4.2,-4.2,4.4,-2.6,2.8,-0.7,1,-0.8,1],"Tama County, Iowa":[-6.5,5.9,-6,5.5,-4.1,3,-2.8,2.3,-5.6,6.6,-5.3,5.1,-6.6,5.9,-7.3,7.7,-4.1,3.9,-1,1.4,-1.3,2.1],"Taylor County, Iowa":[-6,5.7,-5.2,6.7,-3.9,2.9,-2.5,2.2,-5.3,5.6,-6.3,5.3,-5.4,5.9,-7.4,6.9,-5.4,5.1,-0.9,1.6,-1.5,2.4],"Union County, Iowa":[-5.6,4.4,-6.1,7.6,-4.5,4.2,-2.4,2.5,-5.9,5.9,-5.4,5.8,-5.8,5.3,-7.3,7,-3.5,5.5,-1.4,2.1,-0.8,1],"Van Buren County, Iowa":[-6.9,5.7,-5.5,5.1,-3.6,3.2,-2.6,2.5,-4.2,4.1,-6.7,5.7,-6.7,6.4,-7.7,7.4,-4.9,5.2,-1.1,1.9,-1.4,1.5],"Wapello County, Iowa":[-6.6,5.1,-6.1,5.9,-4.2,4,-3.3,2.7,-6.2,6.1,-6.6,5.9,-5.5,5.7,-6.9,7.4,-3.7,3.5,-0.8,1,-0.9,1.9],"Warren County, Iowa":[-6.6,6.2,-6.1,5.7,-4.5,4.4,-2.6,2.7,-6.6,6.4,-6.3,6.6,-6.1,6,-5.9,6,-3.1,4,-0.9,0.9,-0.9,1.4],"Washington County, Iowa":[-6.3,5.7,-6.1,6.5,-4,3.5,-2.7,3,-5.7,6.1,-6,5.3,-6.2,6,-6.7,6.6,-4.1,4.3,-1.2,1.4,-0.7,1.9],"Wayne County, Iowa":[-7.5,7.7,-5.5,5.6,-3.4,3.3,-2.6,2.8,-4.5,5,-5.6,4.9,-6.2,6,-8.3,6.4,-4.4,4.3,-1.5,2.3,-0.8,1.7],"Webster County, Iowa":[-6,5.2,-4.9,5.2,-6.8,4.4,-3.9,2.5,-6.3,4.9,-6,5,-5.8,5.8,-6.7,7.5,-4.1,3.9,-1.1,1.3,-0.7,2],"Winnebago County, Iowa":[-5.9,5.2,-5.4,5.3,-5.7,4.7,-2.7,2.3,-5.7,5.4,-5.8,5.1,-6.2,5.9,-7.3,6.4,-3.7,5,-1,2.3,-1.3,1.5],"Winneshiek County, Iowa":[-4.3,4.9,-5.9,3.9,-6.5,7.4,-2.3,2.1,-5.2,4.5,-5.1,5,-6.5,6.1,-7.1,7.2,-5.4,4.9,-1.4,1.4,-0.9,2],"Woodbury County, Iowa":[-6.7,7.1,-6.5,5.6,-5.1,5.1,-3.2,2.9,-6.4,5.7,-6.1,6.4,-6,5.6,-5.9,6.1,-2.8,3.2,-0.9,1.2,-0.5,1],"Worth County, Iowa":[-6.4,5.2,-4.5,4.5,-3.5,3.2,-2.8,2.9,-5.6,5.5,-7.2,5.2,-7.1,7,-7.3,6.4,-4.9,4.6,-1.5,1.4,-1,2.1],"Wright County, Iowa":[-6.6,7,-6.6,5.9,-3.5,3.3,-2.6,2.1,-6.5,6.2,-4.8,4.5,-5.4,4.5,-7.6,7.9,-3.3,4.4,-1.3,2.3,-1.9,1.8]};
+  const ageBins = ["0–9","10–17","18–24","25–29","30–39","40–49","50–59","60–69","70–79","80–84","85+"];
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(data) {
+    const maleData = data.filter((_, i) => i % 2 === 0);
+    const femaleData = data.filter((_, i) => i % 2 === 1);
+
+    const maxValue = Math.max(
+      ...maleData.map(Math.abs),
+      ...femaleData.map(Math.abs)
+    );
+    const padding = 1.0;
+    const xMax = +(maxValue + padding).toFixed(1);
+
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ageBins,
+        datasets: [
+          {
+            label: 'Male',
+            data: maleData,
+            backgroundColor: 'darkslategray'
+          },
+          {
+            label: 'Female',
+            data: femaleData,
+            backgroundColor: 'darkorange'
+          }
+        ]
+      },
+      options: {
+        indexAxis: 'y',
+        responsive: true,
+        scales: {
+          x: {
+            min: -xMax,
+            max: xMax,
+            ticks: {
+              callback: value => Math.abs(value).toFixed(1) + '%'
+            }
+          },
+          y: {
+            stacked: false
+          }
+        },
+        plugins: {
+          legend: {
+            position: 'top',
+            align: 'start',
+            labels: {
+              usePointStyle: true
+            }
+          },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.dataset.label + ': ' + Math.abs(ctx.parsed.x).toFixed(1) + '%'
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(Object.values(ageData[this.value]));
+  });
+
+  renderChart(Object.values(ageData['Statewide']));</script>
+  </body>
+</html>
+</html>

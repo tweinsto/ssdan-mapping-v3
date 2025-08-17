@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Living Arrangements 18–64 – Alaska</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+      body { font-family: sans-serif; margin: 1.25rem 2rem; text-align: center; }
+      h2 { margin-bottom: .25rem; font-size: 1.6rem; color: #2c348b; }
+      label { margin-right: .5rem; }
+      select { padding: .45rem .6rem; font-size: 1rem; border-radius: .5rem; border: 2px solid #f39c12; }
+      canvas { width: 100%; max-width: 900px; height: 520px; }
+    </style>
+</head>
+<html>
+  <body>
+    <h2>Living Arrangements of Adults 18–64 in Alaska</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Aleutians East Borough, Alaska">Aleutians East Borough, Alaska</option>
+      <option value="Aleutians West Census Area, Alaska">Aleutians West Census Area, Alaska</option>
+      <option value="Anchorage Municipality, Alaska">Anchorage Municipality, Alaska</option>
+      <option value="Bethel Census Area, Alaska">Bethel Census Area, Alaska</option>
+      <option value="Bristol Bay Borough, Alaska">Bristol Bay Borough, Alaska</option>
+      <option value="Chugach Census Area, Alaska">Chugach Census Area, Alaska</option>
+      <option value="Copper River Census Area, Alaska">Copper River Census Area, Alaska</option>
+      <option value="Denali Borough, Alaska">Denali Borough, Alaska</option>
+      <option value="Dillingham Census Area, Alaska">Dillingham Census Area, Alaska</option>
+      <option value="Fairbanks North Star Borough, Alaska">Fairbanks North Star Borough, Alaska</option>
+      <option value="Haines Borough, Alaska">Haines Borough, Alaska</option>
+      <option value="Hoonah-Angoon Census Area, Alaska">Hoonah-Angoon Census Area, Alaska</option>
+      <option value="Juneau City and Borough, Alaska">Juneau City and Borough, Alaska</option>
+      <option value="Kenai Peninsula Borough, Alaska">Kenai Peninsula Borough, Alaska</option>
+      <option value="Ketchikan Gateway Borough, Alaska">Ketchikan Gateway Borough, Alaska</option>
+      <option value="Kodiak Island Borough, Alaska">Kodiak Island Borough, Alaska</option>
+      <option value="Kusilvak Census Area, Alaska">Kusilvak Census Area, Alaska</option>
+      <option value="Lake and Peninsula Borough, Alaska">Lake and Peninsula Borough, Alaska</option>
+      <option value="Matanuska-Susitna Borough, Alaska">Matanuska-Susitna Borough, Alaska</option>
+      <option value="Nome Census Area, Alaska">Nome Census Area, Alaska</option>
+      <option value="North Slope Borough, Alaska">North Slope Borough, Alaska</option>
+      <option value="Northwest Arctic Borough, Alaska">Northwest Arctic Borough, Alaska</option>
+      <option value="Petersburg Borough, Alaska">Petersburg Borough, Alaska</option>
+      <option value="Prince of Wales-Hyder Census Area, Alaska">Prince of Wales-Hyder Census Area, Alaska</option>
+      <option value="Sitka City and Borough, Alaska">Sitka City and Borough, Alaska</option>
+      <option value="Skagway Municipality, Alaska">Skagway Municipality, Alaska</option>
+      <option value="Southeast Fairbanks Census Area, Alaska">Southeast Fairbanks Census Area, Alaska</option>
+      <option value="Wrangell City and Borough, Alaska">Wrangell City and Borough, Alaska</option>
+      <option value="Yakutat City and Borough, Alaska">Yakutat City and Borough, Alaska</option>
+      <option value="Yukon-Koyukuk Census Area, Alaska">Yukon-Koyukuk Census Area, Alaska</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>document.addEventListener("DOMContentLoaded", function () {
+  const data = {"Statewide":[11.6,13.2,6.1,10.8,48.3,10.1],"Aleutians East Borough, Alaska":[14.5,14.2,5.9,9.2,37.1,19.2],"Aleutians West Census Area, Alaska":[11.2,19.7,16.3,16.4,29.4,7],"Anchorage Municipality, Alaska":[12.2,12.8,7.1,11.2,46.5,10.2],"Bethel Census Area, Alaska":[7.7,27.5,3.7,19.8,33.4,7.9],"Bristol Bay Borough, Alaska":[12.4,9.4,5.9,7.6,53.8,11],"Chugach Census Area, Alaska":[11,8.9,3.8,11.6,57.7,7],"Copper River Census Area, Alaska":[15.9,10,6.7,7.9,50.7,8.8],"Denali Borough, Alaska":[17.6,8.9,4.1,4.7,54.2,10.5],"Dillingham Census Area, Alaska":[6.6,22.7,4.1,19.2,32.6,14.9],"Fairbanks North Star Borough, Alaska":[12.6,10.6,6.3,7.3,55.2,8],"Haines Borough, Alaska":[9.9,2.8,2.1,4.9,65.9,14.4],"Hoonah-Angoon Census Area, Alaska":[14.7,22.8,4.5,11.4,38.3,8.3],"Juneau City and Borough, Alaska":[14.4,12.7,6.4,10,45.9,10.7],"Kenai Peninsula Borough, Alaska":[13.9,12.3,4.7,9.3,48.8,11],"Ketchikan Gateway Borough, Alaska":[13.1,12.1,5.3,10.4,47.3,11.8],"Kodiak Island Borough, Alaska":[9.1,11.1,4.7,9,60.8,5.2],"Kusilvak Census Area, Alaska":[2.9,29.4,4.2,18.8,29.3,15.4],"Lake and Peninsula Borough, Alaska":[12.8,13.6,0.9,15.4,41.1,16.2],"Matanuska-Susitna Borough, Alaska":[8.7,12.7,5,10.1,54.3,9.3],"Nome Census Area, Alaska":[7.9,22.4,4.3,17.6,31.4,16.5],"North Slope Borough, Alaska":[7.7,21,3.8,21.5,31.4,14.6],"Northwest Arctic Borough, Alaska":[7.3,25.4,6.6,17.7,30,13],"Petersburg Borough, Alaska":[9.9,11.8,4.6,9.7,53.3,10.8],"Prince of Wales-Hyder Census Area, Alaska":[14,13.3,5,14.9,40.7,12],"Sitka City and Borough, Alaska":[11.4,7.6,5.6,8.9,54.1,12.4],"Skagway Municipality, Alaska":[16.8,11.2,11.5,9.7,41,9.7],"Southeast Fairbanks Census Area, Alaska":[11.6,16.4,2.3,11,49.8,8.9],"Wrangell City and Borough, Alaska":[17.9,14.1,0.7,9.1,40.8,17.4],"Yakutat City and Borough, Alaska":[16.8,5.6,14.7,5.6,41.1,16.2],"Yukon-Koyukuk Census Area, Alaska":[20.9,3.9,1.3,15.8,32.1,26]};
+  const cats = ["lives_alone_18_64","with_child_18_64","with_nonrel_18_64","with_other_rel_18_64","with_spouse_only_18_64","with_unmar_partner_18_64"];
+
+  const ORDER = [
+    "Lives alone",
+    "With child",
+    "With nonrelatives",
+    "With other relatives",
+    "With spouse only",
+    "With unmarried partner"
+  ];
+
+  const PRETTY_TO_SNAKE = {
+    "Lives alone":            "lives_alone_18_64",
+    "With child":             "with_child_18_64",
+    "With nonrelatives":      "with_nonrel_18_64",
+    "With other relatives":   "with_other_rel_18_64",
+    "With spouse only":       "with_spouse_only_18_64",
+    "With unmarried partner": "with_unmar_partner_18_64"
+  };
+
+  const COLOR_BY_CAT = {
+    "Lives alone":            "#e41a1c",
+    "With child":             "#ff7f00",
+    "With nonrelatives":      "#4daf4a",
+    "With other relatives":   "#984ea3",
+    "With spouse only":       "#377eb8",
+    "With unmarried partner": "#a65628"
+  };
+
+  // snake key → array index
+  const keyToIndex = Object.fromEntries((cats || []).map((k, i) => [String(k), i]));
+
+  function valuesFor(name) {
+    const row = data?.[name] || [];
+    return ORDER.map(lbl => {
+      const idx = keyToIndex[PRETTY_TO_SNAKE[lbl]];
+      const v = (idx != null && idx >= 0) ? row[idx] : 0;
+      return (typeof v === "number") ? v : Number(v) || 0;
+    });
+  }
+
+  const canvas = document.getElementById("barChart");
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+  let chart;
+
+  function renderChart(name) {
+    const vals = valuesFor(name);
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: ORDER,
+        datasets: [{
+          data: vals,
+          backgroundColor: ORDER.map(c => COLOR_BY_CAT[c]),
+          borderWidth: 0
+        }]
+      },
+      options: {
+        indexAxis: "y",
+        plugins: {
+          legend: { display: false },
+          tooltip: { callbacks: { label: (c) => c.raw + "%" } }
+        },
+        scales: {
+          x: { min: 0, max: 100, ticks: { callback: v => v + "%" } }
+        }
+      }
+    });
+  }
+
+  const DEFAULT_NAME = (data && Object.prototype.hasOwnProperty.call(data, "Statewide"))
+    ? "Statewide" : Object.keys(data || {})[0];
+
+  const sel = document.getElementById("countySelect");
+  if (sel) sel.addEventListener("change", e => renderChart(e.target.value));
+  if (DEFAULT_NAME) renderChart(DEFAULT_NAME);
+});</script>
+  </body>
+</html>
+</html>

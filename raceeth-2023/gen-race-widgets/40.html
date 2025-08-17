@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="utf-8"/>
+  <title>Race/Ethnicity in State 40</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          text-align: center;
+          margin: 2rem;
+          background-color: white;
+        }
+        canvas {
+          max-width: 500px;
+          margin: 1rem auto;
+        }
+        select {
+          font-size: 1rem;
+          padding: 0.4rem;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Race &amp; Ethnicity Distribution</h2>
+    <label>Select County:</label>
+    <select id="countySelect"><option value="Statewide">Statewide</option>
+<option value="Adair County, Oklahoma">Adair County, Oklahoma</option>
+<option value="Alfalfa County, Oklahoma">Alfalfa County, Oklahoma</option>
+<option value="Atoka County, Oklahoma">Atoka County, Oklahoma</option>
+<option value="Beaver County, Oklahoma">Beaver County, Oklahoma</option>
+<option value="Beckham County, Oklahoma">Beckham County, Oklahoma</option>
+<option value="Blaine County, Oklahoma">Blaine County, Oklahoma</option>
+<option value="Bryan County, Oklahoma">Bryan County, Oklahoma</option>
+<option value="Caddo County, Oklahoma">Caddo County, Oklahoma</option>
+<option value="Canadian County, Oklahoma">Canadian County, Oklahoma</option>
+<option value="Carter County, Oklahoma">Carter County, Oklahoma</option>
+<option value="Cherokee County, Oklahoma">Cherokee County, Oklahoma</option>
+<option value="Choctaw County, Oklahoma">Choctaw County, Oklahoma</option>
+<option value="Cimarron County, Oklahoma">Cimarron County, Oklahoma</option>
+<option value="Cleveland County, Oklahoma">Cleveland County, Oklahoma</option>
+<option value="Coal County, Oklahoma">Coal County, Oklahoma</option>
+<option value="Comanche County, Oklahoma">Comanche County, Oklahoma</option>
+<option value="Cotton County, Oklahoma">Cotton County, Oklahoma</option>
+<option value="Craig County, Oklahoma">Craig County, Oklahoma</option>
+<option value="Creek County, Oklahoma">Creek County, Oklahoma</option>
+<option value="Custer County, Oklahoma">Custer County, Oklahoma</option>
+<option value="Delaware County, Oklahoma">Delaware County, Oklahoma</option>
+<option value="Dewey County, Oklahoma">Dewey County, Oklahoma</option>
+<option value="Ellis County, Oklahoma">Ellis County, Oklahoma</option>
+<option value="Garfield County, Oklahoma">Garfield County, Oklahoma</option>
+<option value="Garvin County, Oklahoma">Garvin County, Oklahoma</option>
+<option value="Grady County, Oklahoma">Grady County, Oklahoma</option>
+<option value="Grant County, Oklahoma">Grant County, Oklahoma</option>
+<option value="Greer County, Oklahoma">Greer County, Oklahoma</option>
+<option value="Harmon County, Oklahoma">Harmon County, Oklahoma</option>
+<option value="Harper County, Oklahoma">Harper County, Oklahoma</option>
+<option value="Haskell County, Oklahoma">Haskell County, Oklahoma</option>
+<option value="Hughes County, Oklahoma">Hughes County, Oklahoma</option>
+<option value="Jackson County, Oklahoma">Jackson County, Oklahoma</option>
+<option value="Jefferson County, Oklahoma">Jefferson County, Oklahoma</option>
+<option value="Johnston County, Oklahoma">Johnston County, Oklahoma</option>
+<option value="Kay County, Oklahoma">Kay County, Oklahoma</option>
+<option value="Kingfisher County, Oklahoma">Kingfisher County, Oklahoma</option>
+<option value="Kiowa County, Oklahoma">Kiowa County, Oklahoma</option>
+<option value="Latimer County, Oklahoma">Latimer County, Oklahoma</option>
+<option value="Le Flore County, Oklahoma">Le Flore County, Oklahoma</option>
+<option value="Lincoln County, Oklahoma">Lincoln County, Oklahoma</option>
+<option value="Logan County, Oklahoma">Logan County, Oklahoma</option>
+<option value="Love County, Oklahoma">Love County, Oklahoma</option>
+<option value="Major County, Oklahoma">Major County, Oklahoma</option>
+<option value="Marshall County, Oklahoma">Marshall County, Oklahoma</option>
+<option value="Mayes County, Oklahoma">Mayes County, Oklahoma</option>
+<option value="McClain County, Oklahoma">McClain County, Oklahoma</option>
+<option value="McCurtain County, Oklahoma">McCurtain County, Oklahoma</option>
+<option value="McIntosh County, Oklahoma">McIntosh County, Oklahoma</option>
+<option value="Murray County, Oklahoma">Murray County, Oklahoma</option>
+<option value="Muskogee County, Oklahoma">Muskogee County, Oklahoma</option>
+<option value="Noble County, Oklahoma">Noble County, Oklahoma</option>
+<option value="Nowata County, Oklahoma">Nowata County, Oklahoma</option>
+<option value="Okfuskee County, Oklahoma">Okfuskee County, Oklahoma</option>
+<option value="Oklahoma County, Oklahoma">Oklahoma County, Oklahoma</option>
+<option value="Okmulgee County, Oklahoma">Okmulgee County, Oklahoma</option>
+<option value="Osage County, Oklahoma">Osage County, Oklahoma</option>
+<option value="Ottawa County, Oklahoma">Ottawa County, Oklahoma</option>
+<option value="Pawnee County, Oklahoma">Pawnee County, Oklahoma</option>
+<option value="Payne County, Oklahoma">Payne County, Oklahoma</option>
+<option value="Pittsburg County, Oklahoma">Pittsburg County, Oklahoma</option>
+<option value="Pontotoc County, Oklahoma">Pontotoc County, Oklahoma</option>
+<option value="Pottawatomie County, Oklahoma">Pottawatomie County, Oklahoma</option>
+<option value="Pushmataha County, Oklahoma">Pushmataha County, Oklahoma</option>
+<option value="Roger Mills County, Oklahoma">Roger Mills County, Oklahoma</option>
+<option value="Rogers County, Oklahoma">Rogers County, Oklahoma</option>
+<option value="Seminole County, Oklahoma">Seminole County, Oklahoma</option>
+<option value="Sequoyah County, Oklahoma">Sequoyah County, Oklahoma</option>
+<option value="Stephens County, Oklahoma">Stephens County, Oklahoma</option>
+<option value="Texas County, Oklahoma">Texas County, Oklahoma</option>
+<option value="Tillman County, Oklahoma">Tillman County, Oklahoma</option>
+<option value="Tulsa County, Oklahoma">Tulsa County, Oklahoma</option>
+<option value="Wagoner County, Oklahoma">Wagoner County, Oklahoma</option>
+<option value="Washington County, Oklahoma">Washington County, Oklahoma</option>
+<option value="Washita County, Oklahoma">Washita County, Oklahoma</option>
+<option value="Woods County, Oklahoma">Woods County, Oklahoma</option>
+<option value="Woodward County, Oklahoma">Woodward County, Oklahoma</option></select>
+    <canvas id="pieChart" width="400" height="400"></canvas>
+    <script>  let raceData = {};
+  fetch("40.json")
+    .then(resp => resp.json())
+    .then(data => {
+      raceData = data;
+      const raceLabels = ["American Indian / Alaska Native","Asian","Black","Hispanic","NHMulti","NHOther","NHWhite","Pacific Islander"];
+      const ctx = document.getElementById("pieChart").getContext("2d");
+      let chart;
+
+      function renderChart(values) {
+        if (chart) chart.destroy();
+        chart = new Chart(ctx, {
+          type: "pie",
+          data: {
+            labels: raceLabels,
+            datasets: [{
+              data: values,
+              backgroundColor: [
+                "#f94144", "#f3722c", "#f9c74f", "#90be6d",
+                "#9d4edd", "#577590", "#d0cde1", "#43aa8b"
+              ]
+            }]
+          },
+          options: {
+            responsive: true,
+            plugins: {
+              legend: {
+                position: "bottom",
+                labels: {
+                  font: { size: 14 },
+                  boxWidth: 20,
+                  padding: 15,
+                  usePointStyle: true,
+                  pointStyle: "rectRounded"
+                }
+              },
+              tooltip: {
+                callbacks: {
+                  label: function(context) {
+                    return context.label + ": " + context.parsed + "%";
+                  }
+                }
+              }
+            }
+          }
+        });
+      }
+
+      document.getElementById("countySelect").addEventListener("change", function() {
+        const selected = this.value;
+        const values = Object.values(raceData[selected]);
+        renderChart(values);
+      });
+
+      renderChart(Object.values(raceData["Statewide"]));
+      document.getElementById("countySelect").value = "Statewide";
+    });</script>
+  </body>
+</html>
+</html>

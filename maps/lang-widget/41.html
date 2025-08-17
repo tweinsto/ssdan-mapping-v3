@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Language Spoken at Home – Oregon</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          text-align: center;
+          margin: 2rem;
+        }
+        select {
+          font-size: 1rem;
+          padding: 0.4rem;
+          margin-bottom: 1rem;
+        }
+        canvas {
+          width: 100%;
+          max-width: 700px;
+          height: 800px;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Language Spoken at Home – Oregon</h2>
+    <label>Select County, State:</label>
+    <select id="countySelect"><option value='Statewide'>Statewide</option>
+<option value='Baker County, Oregon'>Baker County, Oregon</option>
+<option value='Benton County, Oregon'>Benton County, Oregon</option>
+<option value='Clackamas County, Oregon'>Clackamas County, Oregon</option>
+<option value='Clatsop County, Oregon'>Clatsop County, Oregon</option>
+<option value='Columbia County, Oregon'>Columbia County, Oregon</option>
+<option value='Coos County, Oregon'>Coos County, Oregon</option>
+<option value='Crook County, Oregon'>Crook County, Oregon</option>
+<option value='Curry County, Oregon'>Curry County, Oregon</option>
+<option value='Deschutes County, Oregon'>Deschutes County, Oregon</option>
+<option value='Douglas County, Oregon'>Douglas County, Oregon</option>
+<option value='Gilliam County, Oregon'>Gilliam County, Oregon</option>
+<option value='Grant County, Oregon'>Grant County, Oregon</option>
+<option value='Harney County, Oregon'>Harney County, Oregon</option>
+<option value='Hood River County, Oregon'>Hood River County, Oregon</option>
+<option value='Jackson County, Oregon'>Jackson County, Oregon</option>
+<option value='Jefferson County, Oregon'>Jefferson County, Oregon</option>
+<option value='Josephine County, Oregon'>Josephine County, Oregon</option>
+<option value='Klamath County, Oregon'>Klamath County, Oregon</option>
+<option value='Lake County, Oregon'>Lake County, Oregon</option>
+<option value='Lane County, Oregon'>Lane County, Oregon</option>
+<option value='Lincoln County, Oregon'>Lincoln County, Oregon</option>
+<option value='Linn County, Oregon'>Linn County, Oregon</option>
+<option value='Malheur County, Oregon'>Malheur County, Oregon</option>
+<option value='Marion County, Oregon'>Marion County, Oregon</option>
+<option value='Morrow County, Oregon'>Morrow County, Oregon</option>
+<option value='Multnomah County, Oregon'>Multnomah County, Oregon</option>
+<option value='Polk County, Oregon'>Polk County, Oregon</option>
+<option value='Sherman County, Oregon'>Sherman County, Oregon</option>
+<option value='Tillamook County, Oregon'>Tillamook County, Oregon</option>
+<option value='Umatilla County, Oregon'>Umatilla County, Oregon</option>
+<option value='Union County, Oregon'>Union County, Oregon</option>
+<option value='Wallowa County, Oregon'>Wallowa County, Oregon</option>
+<option value='Wasco County, Oregon'>Wasco County, Oregon</option>
+<option value='Washington County, Oregon'>Washington County, Oregon</option>
+<option value='Wheeler County, Oregon'>Wheeler County, Oregon</option>
+<option value='Yamhill County, Oregon'>Yamhill County, Oregon</option></select>
+    <canvas id="barChart" width="700" height="700"></canvas>
+    <script>  const languageData = {"Statewide":{"Arabic":0.2,"Chinese (incl. Mandarin, Cantonese)":0.9,"English":84,"French, Haitian, or Cajun":0.5,"German or other West Germanic":0.7,"Korean":0.3,"Other Asian & Pacific":1.3,"Other Indo-European":1.3,"Other and Unspecified":0.6,"Russian, Polish, other Slavic":0.8,"Spanish":8.4,"Tagalog (incl. Filipino)":0.4,"Vietnamese":0.6},"Baker County, Oregon":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":96.7,"French, Haitian, or Cajun":0.4,"German or other West Germanic":0.1,"Korean":0.1,"Other Asian & Pacific":0.4,"Other Indo-European":0.2,"Other and Unspecified":0,"Russian, Polish, other Slavic":0.4,"Spanish":1.7,"Tagalog (incl. Filipino)":0,"Vietnamese":0},"Benton County, Oregon":{"Arabic":0.5,"Chinese (incl. Mandarin, Cantonese)":2.8,"English":84.2,"French, Haitian, or Cajun":0.8,"German or other West Germanic":0.4,"Korean":1,"Other Asian & Pacific":1.2,"Other Indo-European":1.5,"Other and Unspecified":0.5,"Russian, Polish, other Slavic":0.6,"Spanish":6,"Tagalog (incl. Filipino)":0.1,"Vietnamese":0.3},"Clackamas County, Oregon":{"Arabic":0.2,"Chinese (incl. Mandarin, Cantonese)":1.2,"English":85.7,"French, Haitian, or Cajun":0.5,"German or other West Germanic":0.8,"Korean":0.4,"Other Asian & Pacific":0.9,"Other Indo-European":1.6,"Other and Unspecified":0.3,"Russian, Polish, other Slavic":1.4,"Spanish":5.9,"Tagalog (incl. Filipino)":0.4,"Vietnamese":0.7},"Clatsop County, Oregon":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0.2,"English":90.6,"French, Haitian, or Cajun":0.4,"German or other West Germanic":0.9,"Korean":0.1,"Other Asian & Pacific":0.5,"Other Indo-European":0.8,"Other and Unspecified":0.3,"Russian, Polish, other Slavic":0.1,"Spanish":5.5,"Tagalog (incl. Filipino)":0.2,"Vietnamese":0.3},"Columbia County, Oregon":{"Arabic":0.6,"Chinese (incl. Mandarin, Cantonese)":0,"English":93.4,"French, Haitian, or Cajun":0.3,"German or other West Germanic":0.7,"Korean":0,"Other Asian & Pacific":0.7,"Other Indo-European":0.3,"Other and Unspecified":0,"Russian, Polish, other Slavic":0.4,"Spanish":3,"Tagalog (incl. Filipino)":0.3,"Vietnamese":0.2},"Coos County, Oregon":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0.2,"English":94.4,"French, Haitian, or Cajun":0,"German or other West Germanic":0.3,"Korean":0.1,"Other Asian & Pacific":0.4,"Other Indo-European":0.6,"Other and Unspecified":0.1,"Russian, Polish, other Slavic":0.1,"Spanish":3.3,"Tagalog (incl. Filipino)":0.3,"Vietnamese":0.2},"Crook County, Oregon":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":93.1,"French, Haitian, or Cajun":0,"German or other West Germanic":0.7,"Korean":0,"Other Asian & Pacific":0.1,"Other Indo-European":0.1,"Other and Unspecified":0,"Russian, Polish, other Slavic":0.9,"Spanish":5,"Tagalog (incl. Filipino)":0,"Vietnamese":0.1},"Curry County, Oregon":{"Arabic":0.1,"Chinese (incl. Mandarin, Cantonese)":0.1,"English":91.6,"French, Haitian, or Cajun":0.1,"German or other West Germanic":0.6,"Korean":0,"Other Asian & Pacific":0.2,"Other Indo-European":1.1,"Other and Unspecified":0.4,"Russian, Polish, other Slavic":1,"Spanish":4.4,"Tagalog (incl. Filipino)":0.3,"Vietnamese":0},"Deschutes County, Oregon":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0.4,"English":91.1,"French, Haitian, or Cajun":0.5,"German or other West Germanic":0.8,"Korean":0,"Other Asian & Pacific":0.4,"Other Indo-European":0.5,"Other and Unspecified":0.1,"Russian, Polish, other Slavic":0.4,"Spanish":5.5,"Tagalog (incl. Filipino)":0.1,"Vietnamese":0.1},"Douglas County, Oregon":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":94.4,"French, Haitian, or Cajun":0.1,"German or other West Germanic":0.7,"Korean":0.1,"Other Asian & Pacific":0.3,"Other Indo-European":0.3,"Other and Unspecified":0.2,"Russian, Polish, other Slavic":0.3,"Spanish":3.1,"Tagalog (incl. Filipino)":0.4,"Vietnamese":0},"Gilliam County, Oregon":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":95,"French, Haitian, or Cajun":0,"German or other West Germanic":0,"Korean":0.9,"Other Asian & Pacific":0,"Other Indo-European":0,"Other and Unspecified":0,"Russian, Polish, other Slavic":0,"Spanish":4,"Tagalog (incl. Filipino)":0,"Vietnamese":0},"Grant County, Oregon":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0.1,"English":96.3,"French, Haitian, or Cajun":0.1,"German or other West Germanic":0.1,"Korean":0,"Other Asian & Pacific":0,"Other Indo-European":0.7,"Other and Unspecified":0.4,"Russian, Polish, other Slavic":0.1,"Spanish":2.3,"Tagalog (incl. Filipino)":0,"Vietnamese":0},"Harney County, Oregon":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":94.8,"French, Haitian, or Cajun":0.3,"German or other West Germanic":0.3,"Korean":0,"Other Asian & Pacific":0.9,"Other Indo-European":0.6,"Other and Unspecified":0.1,"Russian, Polish, other Slavic":0,"Spanish":3,"Tagalog (incl. Filipino)":0,"Vietnamese":0},"Hood River County, Oregon":{"Arabic":0.3,"Chinese (incl. Mandarin, Cantonese)":0.4,"English":76.2,"French, Haitian, or Cajun":0.3,"German or other West Germanic":0.8,"Korean":0.5,"Other Asian & Pacific":0.4,"Other Indo-European":0.5,"Other and Unspecified":0,"Russian, Polish, other Slavic":0.2,"Spanish":20.3,"Tagalog (incl. Filipino)":0,"Vietnamese":0},"Jackson County, Oregon":{"Arabic":0.1,"Chinese (incl. Mandarin, Cantonese)":0.2,"English":89.8,"French, Haitian, or Cajun":0.3,"German or other West Germanic":0.6,"Korean":0.1,"Other Asian & Pacific":0.5,"Other Indo-European":0.7,"Other and Unspecified":0.2,"Russian, Polish, other Slavic":0.3,"Spanish":7,"Tagalog (incl. Filipino)":0.3,"Vietnamese":0},"Jefferson County, Oregon":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":84.8,"French, Haitian, or Cajun":0.7,"German or other West Germanic":0.8,"Korean":0.2,"Other Asian & Pacific":0.6,"Other Indo-European":0.1,"Other and Unspecified":2.6,"Russian, Polish, other Slavic":0,"Spanish":10.3,"Tagalog (incl. Filipino)":0,"Vietnamese":0},"Josephine County, Oregon":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0.1,"English":92.5,"French, Haitian, or Cajun":0.3,"German or other West Germanic":1.3,"Korean":0,"Other Asian & Pacific":0.4,"Other Indo-European":0.7,"Other and Unspecified":0.2,"Russian, Polish, other Slavic":0.4,"Spanish":3.8,"Tagalog (incl. Filipino)":0.2,"Vietnamese":0.1},"Klamath County, Oregon":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0.2,"English":90.1,"French, Haitian, or Cajun":0.1,"German or other West Germanic":0.3,"Korean":0,"Other Asian & Pacific":0.2,"Other Indo-European":0.1,"Other and Unspecified":0.4,"Russian, Polish, other Slavic":0.3,"Spanish":8,"Tagalog (incl. Filipino)":0.1,"Vietnamese":0},"Lake County, Oregon":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":93.1,"French, Haitian, or Cajun":0.5,"German or other West Germanic":0.2,"Korean":0,"Other Asian & Pacific":0,"Other Indo-European":0.6,"Other and Unspecified":0.7,"Russian, Polish, other Slavic":0,"Spanish":4.7,"Tagalog (incl. Filipino)":0,"Vietnamese":0.3},"Lane County, Oregon":{"Arabic":0.1,"Chinese (incl. Mandarin, Cantonese)":0.7,"English":89.3,"French, Haitian, or Cajun":0.7,"German or other West Germanic":0.7,"Korean":0.2,"Other Asian & Pacific":0.7,"Other Indo-European":0.7,"Other and Unspecified":0.3,"Russian, Polish, other Slavic":0.4,"Spanish":5.6,"Tagalog (incl. Filipino)":0.4,"Vietnamese":0.1},"Lincoln County, Oregon":{"Arabic":0.1,"Chinese (incl. Mandarin, Cantonese)":0.3,"English":91.1,"French, Haitian, or Cajun":0.3,"German or other West Germanic":1,"Korean":0.2,"Other Asian & Pacific":0.4,"Other Indo-European":0.4,"Other and Unspecified":0.1,"Russian, Polish, other Slavic":0.4,"Spanish":5.4,"Tagalog (incl. Filipino)":0.2,"Vietnamese":0.2},"Linn County, Oregon":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0.3,"English":91.6,"French, Haitian, or Cajun":0.3,"German or other West Germanic":0.7,"Korean":0,"Other Asian & Pacific":0.2,"Other Indo-European":0.4,"Other and Unspecified":0.1,"Russian, Polish, other Slavic":0.2,"Spanish":5.7,"Tagalog (incl. Filipino)":0.3,"Vietnamese":0},"Malheur County, Oregon":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0.1,"English":79,"French, Haitian, or Cajun":0.1,"German or other West Germanic":0.3,"Korean":0,"Other Asian & Pacific":0.7,"Other Indo-European":0.3,"Other and Unspecified":0.1,"Russian, Polish, other Slavic":0,"Spanish":19.4,"Tagalog (incl. Filipino)":0,"Vietnamese":0},"Marion County, Oregon":{"Arabic":0.2,"Chinese (incl. Mandarin, Cantonese)":0.4,"English":76.6,"French, Haitian, or Cajun":0.3,"German or other West Germanic":0.5,"Korean":0.2,"Other Asian & Pacific":1.4,"Other Indo-European":0.4,"Other and Unspecified":0.4,"Russian, Polish, other Slavic":1.2,"Spanish":17.8,"Tagalog (incl. Filipino)":0.4,"Vietnamese":0.2},"Morrow County, Oregon":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":69.8,"French, Haitian, or Cajun":0,"German or other West Germanic":0.1,"Korean":0,"Other Asian & Pacific":0,"Other Indo-European":0,"Other and Unspecified":0.3,"Russian, Polish, other Slavic":0.2,"Spanish":29.4,"Tagalog (incl. Filipino)":0,"Vietnamese":0.1},"Multnomah County, Oregon":{"Arabic":0.4,"Chinese (incl. Mandarin, Cantonese)":1.6,"English":80.2,"French, Haitian, or Cajun":0.9,"German or other West Germanic":0.8,"Korean":0.3,"Other Asian & Pacific":1.9,"Other Indo-European":1.4,"Other and Unspecified":1.1,"Russian, Polish, other Slavic":1.4,"Spanish":8.1,"Tagalog (incl. Filipino)":0.6,"Vietnamese":1.5},"Polk County, Oregon":{"Arabic":0.1,"Chinese (incl. Mandarin, Cantonese)":0.4,"English":87,"French, Haitian, or Cajun":0.2,"German or other West Germanic":0.7,"Korean":0.1,"Other Asian & Pacific":0.9,"Other Indo-European":0.7,"Other and Unspecified":0.2,"Russian, Polish, other Slavic":0.2,"Spanish":9.1,"Tagalog (incl. Filipino)":0.2,"Vietnamese":0.1},"Sherman County, Oregon":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":95,"French, Haitian, or Cajun":0,"German or other West Germanic":0.8,"Korean":0,"Other Asian & Pacific":0,"Other Indo-European":2.2,"Other and Unspecified":0.5,"Russian, Polish, other Slavic":0,"Spanish":1.5,"Tagalog (incl. Filipino)":0,"Vietnamese":0},"Tillamook County, Oregon":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":90.2,"French, Haitian, or Cajun":0.4,"German or other West Germanic":0.4,"Korean":0,"Other Asian & Pacific":1.2,"Other Indo-European":0.3,"Other and Unspecified":0.3,"Russian, Polish, other Slavic":0,"Spanish":7,"Tagalog (incl. Filipino)":0.1,"Vietnamese":0},"Umatilla County, Oregon":{"Arabic":0.1,"Chinese (incl. Mandarin, Cantonese)":0.1,"English":77.1,"French, Haitian, or Cajun":0,"German or other West Germanic":0.2,"Korean":0,"Other Asian & Pacific":0.7,"Other Indo-European":0.2,"Other and Unspecified":0.7,"Russian, Polish, other Slavic":0.1,"Spanish":20.6,"Tagalog (incl. Filipino)":0.1,"Vietnamese":0},"Union County, Oregon":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0.2,"English":92.8,"French, Haitian, or Cajun":0.4,"German or other West Germanic":0.3,"Korean":0,"Other Asian & Pacific":0.9,"Other Indo-European":0.7,"Other and Unspecified":0.1,"Russian, Polish, other Slavic":0.1,"Spanish":4.2,"Tagalog (incl. Filipino)":0.3,"Vietnamese":0},"Wallowa County, Oregon":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0.6,"English":94.4,"French, Haitian, or Cajun":0,"German or other West Germanic":0.3,"Korean":0,"Other Asian & Pacific":0.2,"Other Indo-European":0.7,"Other and Unspecified":0,"Russian, Polish, other Slavic":0,"Spanish":3.5,"Tagalog (incl. Filipino)":0.3,"Vietnamese":0},"Wasco County, Oregon":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0.3,"English":84,"French, Haitian, or Cajun":0.2,"German or other West Germanic":0.3,"Korean":0.1,"Other Asian & Pacific":0.3,"Other Indo-European":0.5,"Other and Unspecified":0.6,"Russian, Polish, other Slavic":0.1,"Spanish":13.2,"Tagalog (incl. Filipino)":0.4,"Vietnamese":0},"Washington County, Oregon":{"Arabic":0.6,"Chinese (incl. Mandarin, Cantonese)":1.8,"English":73.3,"French, Haitian, or Cajun":0.6,"German or other West Germanic":0.6,"Korean":0.9,"Other Asian & Pacific":3.2,"Other Indo-European":3.7,"Other and Unspecified":0.9,"Russian, Polish, other Slavic":1.1,"Spanish":11.1,"Tagalog (incl. Filipino)":0.8,"Vietnamese":1.3},"Wheeler County, Oregon":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":95.3,"French, Haitian, or Cajun":0,"German or other West Germanic":0,"Korean":0,"Other Asian & Pacific":0.4,"Other Indo-European":0,"Other and Unspecified":0.4,"Russian, Polish, other Slavic":0,"Spanish":3.8,"Tagalog (incl. Filipino)":0,"Vietnamese":0},"Yamhill County, Oregon":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0.5,"English":85.8,"French, Haitian, or Cajun":0.1,"German or other West Germanic":0.8,"Korean":0.1,"Other Asian & Pacific":0.4,"Other Indo-European":0.8,"Other and Unspecified":0.6,"Russian, Polish, other Slavic":0.2,"Spanish":10.4,"Tagalog (incl. Filipino)":0.2,"Vietnamese":0.1}};
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: Object.keys(values),
+        datasets: [{
+          label: 'Share (%)',
+          data: Object.values(values),
+          backgroundColor: '#4576a7'
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.parsed.y + '%'
+            }
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 100,
+            title: {
+              display: true,
+              text: 'Population Share (%)'
+            }
+          },
+          x: {
+            title: {
+              display: true,
+              text: 'Language Group'
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(languageData[this.value]);
+  });
+
+  renderChart(languageData['Statewide']);</script>
+  </body>
+</html>
+</html>

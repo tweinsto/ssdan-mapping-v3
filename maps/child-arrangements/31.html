@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Living Arrangements of Children – Nebraska</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Children’s Living Arrangements (Under 18) – Nebraska</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Adams County, Nebraska">Adams County, Nebraska</option>
+      <option value="Antelope County, Nebraska">Antelope County, Nebraska</option>
+      <option value="Arthur County, Nebraska">Arthur County, Nebraska</option>
+      <option value="Banner County, Nebraska">Banner County, Nebraska</option>
+      <option value="Blaine County, Nebraska">Blaine County, Nebraska</option>
+      <option value="Boone County, Nebraska">Boone County, Nebraska</option>
+      <option value="Box Butte County, Nebraska">Box Butte County, Nebraska</option>
+      <option value="Boyd County, Nebraska">Boyd County, Nebraska</option>
+      <option value="Brown County, Nebraska">Brown County, Nebraska</option>
+      <option value="Buffalo County, Nebraska">Buffalo County, Nebraska</option>
+      <option value="Burt County, Nebraska">Burt County, Nebraska</option>
+      <option value="Butler County, Nebraska">Butler County, Nebraska</option>
+      <option value="Cass County, Nebraska">Cass County, Nebraska</option>
+      <option value="Cedar County, Nebraska">Cedar County, Nebraska</option>
+      <option value="Chase County, Nebraska">Chase County, Nebraska</option>
+      <option value="Cherry County, Nebraska">Cherry County, Nebraska</option>
+      <option value="Cheyenne County, Nebraska">Cheyenne County, Nebraska</option>
+      <option value="Clay County, Nebraska">Clay County, Nebraska</option>
+      <option value="Colfax County, Nebraska">Colfax County, Nebraska</option>
+      <option value="Cuming County, Nebraska">Cuming County, Nebraska</option>
+      <option value="Custer County, Nebraska">Custer County, Nebraska</option>
+      <option value="Dakota County, Nebraska">Dakota County, Nebraska</option>
+      <option value="Dawes County, Nebraska">Dawes County, Nebraska</option>
+      <option value="Dawson County, Nebraska">Dawson County, Nebraska</option>
+      <option value="Deuel County, Nebraska">Deuel County, Nebraska</option>
+      <option value="Dixon County, Nebraska">Dixon County, Nebraska</option>
+      <option value="Dodge County, Nebraska">Dodge County, Nebraska</option>
+      <option value="Douglas County, Nebraska">Douglas County, Nebraska</option>
+      <option value="Dundy County, Nebraska">Dundy County, Nebraska</option>
+      <option value="Fillmore County, Nebraska">Fillmore County, Nebraska</option>
+      <option value="Franklin County, Nebraska">Franklin County, Nebraska</option>
+      <option value="Frontier County, Nebraska">Frontier County, Nebraska</option>
+      <option value="Furnas County, Nebraska">Furnas County, Nebraska</option>
+      <option value="Gage County, Nebraska">Gage County, Nebraska</option>
+      <option value="Garden County, Nebraska">Garden County, Nebraska</option>
+      <option value="Garfield County, Nebraska">Garfield County, Nebraska</option>
+      <option value="Gosper County, Nebraska">Gosper County, Nebraska</option>
+      <option value="Grant County, Nebraska">Grant County, Nebraska</option>
+      <option value="Greeley County, Nebraska">Greeley County, Nebraska</option>
+      <option value="Hall County, Nebraska">Hall County, Nebraska</option>
+      <option value="Hamilton County, Nebraska">Hamilton County, Nebraska</option>
+      <option value="Harlan County, Nebraska">Harlan County, Nebraska</option>
+      <option value="Hayes County, Nebraska">Hayes County, Nebraska</option>
+      <option value="Hitchcock County, Nebraska">Hitchcock County, Nebraska</option>
+      <option value="Holt County, Nebraska">Holt County, Nebraska</option>
+      <option value="Hooker County, Nebraska">Hooker County, Nebraska</option>
+      <option value="Howard County, Nebraska">Howard County, Nebraska</option>
+      <option value="Jefferson County, Nebraska">Jefferson County, Nebraska</option>
+      <option value="Johnson County, Nebraska">Johnson County, Nebraska</option>
+      <option value="Kearney County, Nebraska">Kearney County, Nebraska</option>
+      <option value="Keith County, Nebraska">Keith County, Nebraska</option>
+      <option value="Keya Paha County, Nebraska">Keya Paha County, Nebraska</option>
+      <option value="Kimball County, Nebraska">Kimball County, Nebraska</option>
+      <option value="Knox County, Nebraska">Knox County, Nebraska</option>
+      <option value="Lancaster County, Nebraska">Lancaster County, Nebraska</option>
+      <option value="Lincoln County, Nebraska">Lincoln County, Nebraska</option>
+      <option value="Logan County, Nebraska">Logan County, Nebraska</option>
+      <option value="Loup County, Nebraska">Loup County, Nebraska</option>
+      <option value="Madison County, Nebraska">Madison County, Nebraska</option>
+      <option value="McPherson County, Nebraska">McPherson County, Nebraska</option>
+      <option value="Merrick County, Nebraska">Merrick County, Nebraska</option>
+      <option value="Morrill County, Nebraska">Morrill County, Nebraska</option>
+      <option value="Nance County, Nebraska">Nance County, Nebraska</option>
+      <option value="Nemaha County, Nebraska">Nemaha County, Nebraska</option>
+      <option value="Nuckolls County, Nebraska">Nuckolls County, Nebraska</option>
+      <option value="Otoe County, Nebraska">Otoe County, Nebraska</option>
+      <option value="Pawnee County, Nebraska">Pawnee County, Nebraska</option>
+      <option value="Perkins County, Nebraska">Perkins County, Nebraska</option>
+      <option value="Phelps County, Nebraska">Phelps County, Nebraska</option>
+      <option value="Pierce County, Nebraska">Pierce County, Nebraska</option>
+      <option value="Platte County, Nebraska">Platte County, Nebraska</option>
+      <option value="Polk County, Nebraska">Polk County, Nebraska</option>
+      <option value="Red Willow County, Nebraska">Red Willow County, Nebraska</option>
+      <option value="Richardson County, Nebraska">Richardson County, Nebraska</option>
+      <option value="Rock County, Nebraska">Rock County, Nebraska</option>
+      <option value="Saline County, Nebraska">Saline County, Nebraska</option>
+      <option value="Sarpy County, Nebraska">Sarpy County, Nebraska</option>
+      <option value="Saunders County, Nebraska">Saunders County, Nebraska</option>
+      <option value="Scotts Bluff County, Nebraska">Scotts Bluff County, Nebraska</option>
+      <option value="Seward County, Nebraska">Seward County, Nebraska</option>
+      <option value="Sheridan County, Nebraska">Sheridan County, Nebraska</option>
+      <option value="Sherman County, Nebraska">Sherman County, Nebraska</option>
+      <option value="Sioux County, Nebraska">Sioux County, Nebraska</option>
+      <option value="Stanton County, Nebraska">Stanton County, Nebraska</option>
+      <option value="Thayer County, Nebraska">Thayer County, Nebraska</option>
+      <option value="Thomas County, Nebraska">Thomas County, Nebraska</option>
+      <option value="Thurston County, Nebraska">Thurston County, Nebraska</option>
+      <option value="Valley County, Nebraska">Valley County, Nebraska</option>
+      <option value="Washington County, Nebraska">Washington County, Nebraska</option>
+      <option value="Wayne County, Nebraska">Wayne County, Nebraska</option>
+      <option value="Webster County, Nebraska">Webster County, Nebraska</option>
+      <option value="Wheeler County, Nebraska">Wheeler County, Nebraska</option>
+      <option value="York County, Nebraska">York County, Nebraska</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>  const data = {"Statewide":{"Married Couple (%)":71.6,"Cohabiting Couple (%)":8.2,"Male Householder (%)":4.3,"Female Householder (%)":15.9},"Adams County, Nebraska":{"Married Couple (%)":69.3,"Cohabiting Couple (%)":7.3,"Male Householder (%)":4.5,"Female Householder (%)":19},"Antelope County, Nebraska":{"Married Couple (%)":76.1,"Cohabiting Couple (%)":10.8,"Male Householder (%)":1,"Female Householder (%)":12.2},"Arthur County, Nebraska":{"Married Couple (%)":85.1,"Cohabiting Couple (%)":4.3,"Male Householder (%)":0,"Female Householder (%)":10.6},"Banner County, Nebraska":{"Married Couple (%)":93.4,"Cohabiting Couple (%)":0,"Male Householder (%)":3.3,"Female Householder (%)":3.3},"Blaine County, Nebraska":{"Married Couple (%)":89.3,"Cohabiting Couple (%)":10.7,"Male Householder (%)":0,"Female Householder (%)":0},"Boone County, Nebraska":{"Married Couple (%)":81.7,"Cohabiting Couple (%)":10.1,"Male Householder (%)":4.3,"Female Householder (%)":3.9},"Box Butte County, Nebraska":{"Married Couple (%)":74.6,"Cohabiting Couple (%)":12.7,"Male Householder (%)":5.1,"Female Householder (%)":7.6},"Boyd County, Nebraska":{"Married Couple (%)":62.7,"Cohabiting Couple (%)":18.3,"Male Householder (%)":15.2,"Female Householder (%)":3.7},"Brown County, Nebraska":{"Married Couple (%)":81.3,"Cohabiting Couple (%)":7.2,"Male Householder (%)":0,"Female Householder (%)":11.4},"Buffalo County, Nebraska":{"Married Couple (%)":71.9,"Cohabiting Couple (%)":10.4,"Male Householder (%)":2.1,"Female Householder (%)":15.7},"Burt County, Nebraska":{"Married Couple (%)":69.2,"Cohabiting Couple (%)":12.7,"Male Householder (%)":6.2,"Female Householder (%)":11.9},"Butler County, Nebraska":{"Married Couple (%)":86.3,"Cohabiting Couple (%)":3.1,"Male Householder (%)":4.4,"Female Householder (%)":6.2},"Cass County, Nebraska":{"Married Couple (%)":79.5,"Cohabiting Couple (%)":8.1,"Male Householder (%)":5.7,"Female Householder (%)":6.7},"Cedar County, Nebraska":{"Married Couple (%)":84.7,"Cohabiting Couple (%)":1.9,"Male Householder (%)":5.7,"Female Householder (%)":7.8},"Chase County, Nebraska":{"Married Couple (%)":85.6,"Cohabiting Couple (%)":2.1,"Male Householder (%)":2.8,"Female Householder (%)":9.5},"Cherry County, Nebraska":{"Married Couple (%)":79.4,"Cohabiting Couple (%)":0.2,"Male Householder (%)":10.2,"Female Householder (%)":10.2},"Cheyenne County, Nebraska":{"Married Couple (%)":85,"Cohabiting Couple (%)":6.7,"Male Householder (%)":2.2,"Female Householder (%)":6.1},"Clay County, Nebraska":{"Married Couple (%)":75.7,"Cohabiting Couple (%)":4.3,"Male Householder (%)":7.1,"Female Householder (%)":12.9},"Colfax County, Nebraska":{"Married Couple (%)":53.4,"Cohabiting Couple (%)":23.4,"Male Householder (%)":9.7,"Female Householder (%)":13.5},"Cuming County, Nebraska":{"Married Couple (%)":80.5,"Cohabiting Couple (%)":5.5,"Male Householder (%)":3.4,"Female Householder (%)":10.5},"Custer County, Nebraska":{"Married Couple (%)":72.4,"Cohabiting Couple (%)":10.6,"Male Householder (%)":3.2,"Female Householder (%)":13.8},"Dakota County, Nebraska":{"Married Couple (%)":76.7,"Cohabiting Couple (%)":5.1,"Male Householder (%)":5.6,"Female Householder (%)":12.7},"Dawes County, Nebraska":{"Married Couple (%)":82.4,"Cohabiting Couple (%)":2.2,"Male Householder (%)":0.2,"Female Householder (%)":15.2},"Dawson County, Nebraska":{"Married Couple (%)":69.4,"Cohabiting Couple (%)":9.1,"Male Householder (%)":4,"Female Householder (%)":17.5},"Deuel County, Nebraska":{"Married Couple (%)":62.5,"Cohabiting Couple (%)":11.2,"Male Householder (%)":0.5,"Female Householder (%)":25.8},"Dixon County, Nebraska":{"Married Couple (%)":63.6,"Cohabiting Couple (%)":15.9,"Male Householder (%)":2.4,"Female Householder (%)":18},"Dodge County, Nebraska":{"Married Couple (%)":62.3,"Cohabiting Couple (%)":13.5,"Male Householder (%)":5.6,"Female Householder (%)":18.6},"Douglas County, Nebraska":{"Married Couple (%)":68.8,"Cohabiting Couple (%)":7.8,"Male Householder (%)":4.7,"Female Householder (%)":18.7},"Dundy County, Nebraska":{"Married Couple (%)":75,"Cohabiting Couple (%)":3.2,"Male Householder (%)":0.8,"Female Householder (%)":21},"Fillmore County, Nebraska":{"Married Couple (%)":83.1,"Cohabiting Couple (%)":9.1,"Male Householder (%)":1.2,"Female Householder (%)":6.6},"Franklin County, Nebraska":{"Married Couple (%)":63,"Cohabiting Couple (%)":11.2,"Male Householder (%)":2.6,"Female Householder (%)":23.2},"Frontier County, Nebraska":{"Married Couple (%)":85.6,"Cohabiting Couple (%)":3.3,"Male Householder (%)":1.8,"Female Householder (%)":9.2},"Furnas County, Nebraska":{"Married Couple (%)":87.2,"Cohabiting Couple (%)":5.5,"Male Householder (%)":0.2,"Female Householder (%)":7.1},"Gage County, Nebraska":{"Married Couple (%)":71.5,"Cohabiting Couple (%)":7.3,"Male Householder (%)":4.6,"Female Householder (%)":16.6},"Garden County, Nebraska":{"Married Couple (%)":50,"Cohabiting Couple (%)":1.4,"Male Householder (%)":11.7,"Female Householder (%)":36.9},"Garfield County, Nebraska":{"Married Couple (%)":80.7,"Cohabiting Couple (%)":0,"Male Householder (%)":2.6,"Female Householder (%)":16.8},"Gosper County, Nebraska":{"Married Couple (%)":86,"Cohabiting Couple (%)":9.9,"Male Householder (%)":1.9,"Female Householder (%)":2.2},"Grant County, Nebraska":{"Married Couple (%)":96.3,"Cohabiting Couple (%)":2.5,"Male Householder (%)":1.2,"Female Householder (%)":0},"Greeley County, Nebraska":{"Married Couple (%)":79.2,"Cohabiting Couple (%)":6.6,"Male Householder (%)":4.6,"Female Householder (%)":9.6},"Hall County, Nebraska":{"Married Couple (%)":61.5,"Cohabiting Couple (%)":16.8,"Male Householder (%)":3.4,"Female Householder (%)":18.2},"Hamilton County, Nebraska":{"Married Couple (%)":85.8,"Cohabiting Couple (%)":3,"Male Householder (%)":3.6,"Female Householder (%)":7.6},"Harlan County, Nebraska":{"Married Couple (%)":88.8,"Cohabiting Couple (%)":0.7,"Male Householder (%)":3.4,"Female Householder (%)":7},"Hayes County, Nebraska":{"Married Couple (%)":89.9,"Cohabiting Couple (%)":5.3,"Male Householder (%)":0,"Female Householder (%)":4.8},"Hitchcock County, Nebraska":{"Married Couple (%)":77.9,"Cohabiting Couple (%)":8.5,"Male Householder (%)":2.2,"Female Householder (%)":11.4},"Holt County, Nebraska":{"Married Couple (%)":82.7,"Cohabiting Couple (%)":6.6,"Male Householder (%)":4.1,"Female Householder (%)":6.5},"Hooker County, Nebraska":{"Married Couple (%)":79.6,"Cohabiting Couple (%)":0,"Male Householder (%)":0,"Female Householder (%)":20.4},"Howard County, Nebraska":{"Married Couple (%)":77,"Cohabiting Couple (%)":7.3,"Male Householder (%)":5.4,"Female Householder (%)":10.3},"Jefferson County, Nebraska":{"Married Couple (%)":78.9,"Cohabiting Couple (%)":10.3,"Male Householder (%)":1.5,"Female Householder (%)":9.2},"Johnson County, Nebraska":{"Married Couple (%)":69.7,"Cohabiting Couple (%)":10.8,"Male Householder (%)":11.9,"Female Householder (%)":7.6},"Kearney County, Nebraska":{"Married Couple (%)":79.3,"Cohabiting Couple (%)":3.2,"Male Householder (%)":0.5,"Female Householder (%)":17},"Keith County, Nebraska":{"Married Couple (%)":75.6,"Cohabiting Couple (%)":5,"Male Householder (%)":5.2,"Female Householder (%)":14.2},"Keya Paha County, Nebraska":{"Married Couple (%)":72.3,"Cohabiting Couple (%)":2.1,"Male Householder (%)":1.7,"Female Householder (%)":23.8},"Kimball County, Nebraska":{"Married Couple (%)":64.7,"Cohabiting Couple (%)":21.9,"Male Householder (%)":1.4,"Female Householder (%)":12},"Knox County, Nebraska":{"Married Couple (%)":71.6,"Cohabiting Couple (%)":8.8,"Male Householder (%)":4.2,"Female Householder (%)":15.4},"Lancaster County, Nebraska":{"Married Couple (%)":71.7,"Cohabiting Couple (%)":7,"Male Householder (%)":4.3,"Female Householder (%)":17},"Lincoln County, Nebraska":{"Married Couple (%)":63,"Cohabiting Couple (%)":12.4,"Male Householder (%)":3.3,"Female Householder (%)":21.3},"Logan County, Nebraska":{"Married Couple (%)":92.4,"Cohabiting Couple (%)":4.9,"Male Householder (%)":0,"Female Householder (%)":2.7},"Loup County, Nebraska":{"Married Couple (%)":70.6,"Cohabiting Couple (%)":0,"Male Householder (%)":8.4,"Female Householder (%)":21},"Madison County, Nebraska":{"Married Couple (%)":71.6,"Cohabiting Couple (%)":8,"Male Householder (%)":2.6,"Female Householder (%)":17.8},"McPherson County, Nebraska":{"Married Couple (%)":96.8,"Cohabiting Couple (%)":0,"Male Householder (%)":3.2,"Female Householder (%)":0},"Merrick County, Nebraska":{"Married Couple (%)":78,"Cohabiting Couple (%)":6.8,"Male Householder (%)":3.3,"Female Householder (%)":11.8},"Morrill County, Nebraska":{"Married Couple (%)":82.3,"Cohabiting Couple (%)":3.2,"Male Householder (%)":2,"Female Householder (%)":12.6},"Nance County, Nebraska":{"Married Couple (%)":67.5,"Cohabiting Couple (%)":10.2,"Male Householder (%)":1.5,"Female Householder (%)":20.7},"Nemaha County, Nebraska":{"Married Couple (%)":70.5,"Cohabiting Couple (%)":15.4,"Male Householder (%)":1.7,"Female Householder (%)":12.4},"Nuckolls County, Nebraska":{"Married Couple (%)":87.9,"Cohabiting Couple (%)":3.8,"Male Householder (%)":0.5,"Female Householder (%)":7.7},"Otoe County, Nebraska":{"Married Couple (%)":78.8,"Cohabiting Couple (%)":4.1,"Male Householder (%)":3.2,"Female Householder (%)":13.8},"Pawnee County, Nebraska":{"Married Couple (%)":72.2,"Cohabiting Couple (%)":8,"Male Householder (%)":7.2,"Female Householder (%)":12.6},"Perkins County, Nebraska":{"Married Couple (%)":78.3,"Cohabiting Couple (%)":6.4,"Male Householder (%)":1.4,"Female Householder (%)":13.9},"Phelps County, Nebraska":{"Married Couple (%)":73.4,"Cohabiting Couple (%)":14.6,"Male Householder (%)":3.7,"Female Householder (%)":8.4},"Pierce County, Nebraska":{"Married Couple (%)":79.2,"Cohabiting Couple (%)":6.1,"Male Householder (%)":1.1,"Female Householder (%)":13.6},"Platte County, Nebraska":{"Married Couple (%)":66.5,"Cohabiting Couple (%)":10.7,"Male Householder (%)":4.6,"Female Householder (%)":18.2},"Polk County, Nebraska":{"Married Couple (%)":87.4,"Cohabiting Couple (%)":6.1,"Male Householder (%)":2,"Female Householder (%)":4.5},"Red Willow County, Nebraska":{"Married Couple (%)":75.9,"Cohabiting Couple (%)":2.7,"Male Householder (%)":7.8,"Female Householder (%)":13.6},"Richardson County, Nebraska":{"Married Couple (%)":73.9,"Cohabiting Couple (%)":8.9,"Male Householder (%)":7.3,"Female Householder (%)":9.8},"Rock County, Nebraska":{"Married Couple (%)":88.8,"Cohabiting Couple (%)":2,"Male Householder (%)":0,"Female Householder (%)":9.2},"Saline County, Nebraska":{"Married Couple (%)":65.6,"Cohabiting Couple (%)":12,"Male Householder (%)":5.3,"Female Householder (%)":17},"Sarpy County, Nebraska":{"Married Couple (%)":76.9,"Cohabiting Couple (%)":7,"Male Householder (%)":3.3,"Female Householder (%)":12.8},"Saunders County, Nebraska":{"Married Couple (%)":84.1,"Cohabiting Couple (%)":6.2,"Male Householder (%)":2.8,"Female Householder (%)":6.9},"Scotts Bluff County, Nebraska":{"Married Couple (%)":65.6,"Cohabiting Couple (%)":7.1,"Male Householder (%)":10.3,"Female Householder (%)":17.1},"Seward County, Nebraska":{"Married Couple (%)":74.9,"Cohabiting Couple (%)":6.2,"Male Householder (%)":3.9,"Female Householder (%)":15},"Sheridan County, Nebraska":{"Married Couple (%)":71.5,"Cohabiting Couple (%)":14.2,"Male Householder (%)":6,"Female Householder (%)":8.3},"Sherman County, Nebraska":{"Married Couple (%)":62.2,"Cohabiting Couple (%)":12.9,"Male Householder (%)":7.5,"Female Householder (%)":17.4},"Sioux County, Nebraska":{"Married Couple (%)":91.7,"Cohabiting Couple (%)":6.8,"Male Householder (%)":0,"Female Householder (%)":1.5},"Stanton County, Nebraska":{"Married Couple (%)":88.2,"Cohabiting Couple (%)":5.6,"Male Householder (%)":2.1,"Female Householder (%)":4.1},"Thayer County, Nebraska":{"Married Couple (%)":77.2,"Cohabiting Couple (%)":7,"Male Householder (%)":3.9,"Female Householder (%)":11.9},"Thomas County, Nebraska":{"Married Couple (%)":88.5,"Cohabiting Couple (%)":0,"Male Householder (%)":0,"Female Householder (%)":11.5},"Thurston County, Nebraska":{"Married Couple (%)":45.1,"Cohabiting Couple (%)":9.1,"Male Householder (%)":12,"Female Householder (%)":33.8},"Valley County, Nebraska":{"Married Couple (%)":74.6,"Cohabiting Couple (%)":5.7,"Male Householder (%)":9.6,"Female Householder (%)":10.1},"Washington County, Nebraska":{"Married Couple (%)":83.3,"Cohabiting Couple (%)":3.6,"Male Householder (%)":1.4,"Female Householder (%)":11.7},"Wayne County, Nebraska":{"Married Couple (%)":71.8,"Cohabiting Couple (%)":20.1,"Male Householder (%)":2.1,"Female Householder (%)":6},"Webster County, Nebraska":{"Married Couple (%)":80.5,"Cohabiting Couple (%)":7.4,"Male Householder (%)":6.1,"Female Householder (%)":6},"Wheeler County, Nebraska":{"Married Couple (%)":90,"Cohabiting Couple (%)":0,"Male Householder (%)":8.5,"Female Householder (%)":1.5},"York County, Nebraska":{"Married Couple (%)":74.7,"Cohabiting Couple (%)":8,"Male Householder (%)":5.8,"Female Householder (%)":11.4}};
+  const categories = ["Married Couple (%)","Cohabiting Couple (%)","Male Householder (%)","Female Householder (%)"];
+  const ctx = document.getElementById("barChart").getContext("2d");
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: categories,
+        datasets: [{
+          label: "Share of Children (%)",
+          data: values,
+          backgroundColor: ["#5DA5DA","#FAA43A","#60BD68","#F17CB0"]
+        }]
+      },
+      options: {
+        indexAxis: "y",
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            ticks: { callback: v => v + "%" },
+            title: { display: true, text: "Percent of Children" }
+          }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.raw + "%"
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById("countySelect").addEventListener("change", function() {
+    renderChart(Object.values(data[this.value]));
+  });
+
+  renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

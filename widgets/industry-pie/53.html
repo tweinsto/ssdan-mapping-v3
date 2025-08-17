@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <title>Industry Distribution – Washington</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+        canvas { max-width: 600px; height: 500px; }
+        select { padding: 0.5rem; font-size: 1rem; margin: 1rem; }
+        .legend { max-width: 600px; margin: 1rem auto; display: flex; flex-wrap: wrap; justify-content: center; font-size: 0.9rem; }
+        .legend-item { display: flex; align-items: center; margin: 0.3rem 1rem; }
+        .legend-color { width: 12px; height: 12px; margin-right: 6px; border: 1px solid #444; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Industry Distribution in Washington</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Adams County, Washington">Adams County, Washington</option>
+      <option value="Asotin County, Washington">Asotin County, Washington</option>
+      <option value="Benton County, Washington">Benton County, Washington</option>
+      <option value="Chelan County, Washington">Chelan County, Washington</option>
+      <option value="Clallam County, Washington">Clallam County, Washington</option>
+      <option value="Clark County, Washington">Clark County, Washington</option>
+      <option value="Columbia County, Washington">Columbia County, Washington</option>
+      <option value="Cowlitz County, Washington">Cowlitz County, Washington</option>
+      <option value="Douglas County, Washington">Douglas County, Washington</option>
+      <option value="Ferry County, Washington">Ferry County, Washington</option>
+      <option value="Franklin County, Washington">Franklin County, Washington</option>
+      <option value="Garfield County, Washington">Garfield County, Washington</option>
+      <option value="Grant County, Washington">Grant County, Washington</option>
+      <option value="Grays Harbor County, Washington">Grays Harbor County, Washington</option>
+      <option value="Island County, Washington">Island County, Washington</option>
+      <option value="Jefferson County, Washington">Jefferson County, Washington</option>
+      <option value="King County, Washington">King County, Washington</option>
+      <option value="Kitsap County, Washington">Kitsap County, Washington</option>
+      <option value="Kittitas County, Washington">Kittitas County, Washington</option>
+      <option value="Klickitat County, Washington">Klickitat County, Washington</option>
+      <option value="Lewis County, Washington">Lewis County, Washington</option>
+      <option value="Lincoln County, Washington">Lincoln County, Washington</option>
+      <option value="Mason County, Washington">Mason County, Washington</option>
+      <option value="Okanogan County, Washington">Okanogan County, Washington</option>
+      <option value="Pacific County, Washington">Pacific County, Washington</option>
+      <option value="Pend Oreille County, Washington">Pend Oreille County, Washington</option>
+      <option value="Pierce County, Washington">Pierce County, Washington</option>
+      <option value="San Juan County, Washington">San Juan County, Washington</option>
+      <option value="Skagit County, Washington">Skagit County, Washington</option>
+      <option value="Skamania County, Washington">Skamania County, Washington</option>
+      <option value="Snohomish County, Washington">Snohomish County, Washington</option>
+      <option value="Spokane County, Washington">Spokane County, Washington</option>
+      <option value="Stevens County, Washington">Stevens County, Washington</option>
+      <option value="Thurston County, Washington">Thurston County, Washington</option>
+      <option value="Wahkiakum County, Washington">Wahkiakum County, Washington</option>
+      <option value="Walla Walla County, Washington">Walla Walla County, Washington</option>
+      <option value="Whatcom County, Washington">Whatcom County, Washington</option>
+      <option value="Whitman County, Washington">Whitman County, Washington</option>
+      <option value="Yakima County, Washington">Yakima County, Washington</option>
+    </select>
+    <canvas id="pieChart"></canvas>
+    <div class="legend">
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#66CC66;"></div>
+        <span>Agriculture, forestry, fishing, and hunting</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#996600;"></div>
+        <span>Mining</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FF6600;"></div>
+        <span>Utilities</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FFCC33;"></div>
+        <span>Construction</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FF0000;"></div>
+        <span>Manufacturing</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FF66FF;"></div>
+        <span>Wholesale trade</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#3399FF;"></div>
+        <span>Retail trade</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#00CC99;"></div>
+        <span>Transportation and warehousing</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#999966;"></div>
+        <span>Information</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#6666FF;"></div>
+        <span>Finance and insurance</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FF99CC;"></div>
+        <span>Professional, scientific, and technical services</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#66CCCC;"></div>
+        <span>Educational services</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FF9933;"></div>
+        <span>Healthcare and social assistance</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#CC99FF;"></div>
+        <span>Arts, entertainment, and recreation</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FF9999;"></div>
+        <span>Accommodation and food services</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#CCCC00;"></div>
+        <span>Other services</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#663300;"></div>
+        <span>Public administration</span>
+      </div>
+    </div>
+    <script>const data = [];
+const colors = ["#66CC66","#996600","#FF6600","#FFCC33","#FF0000","#FF66FF","#3399FF","#00CC99","#999966","#6666FF","#FF99CC","#66CCCC","#FF9933","#CC99FF","#FF9999","#CCCC00","#663300"];
+let chart;
+function renderChart(region) {
+  const ctx = document.getElementById("pieChart").getContext("2d");
+  const labels = Object.keys(data[region]);
+  const values = Object.values(data[region]);
+  const backgroundColors = labels.map(l => colors[l] || "#999");
+  if (chart) chart.destroy();
+  chart = new Chart(ctx, {
+    type: "pie",
+    data: {
+      labels: labels,
+      datasets: [{
+        data: values,
+        backgroundColor: backgroundColors
+      }]
+    },
+    options: {
+      plugins: {
+        tooltip: {
+          callbacks: {
+            label: ctx => ctx.label + ": " + ctx.raw + "%"
+          }
+        }
+      }
+    }
+  });
+}
+document.getElementById("countySelect").addEventListener("change", function() {
+  renderChart(this.value);
+});
+renderChart("Statewide");</script>
+  </body>
+</html>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Income Distribution – California</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          text-align: center;
+          margin: 2rem;
+        }
+        select {
+          font-size: 1rem;
+          padding: 0.4rem;
+          margin-bottom: 1rem;
+        }
+        canvas {
+          width: 100%;
+          max-width: 700px;
+          height: 400px;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Income Share by Quintile – California</h2>
+    <label>Select County, State:</label>
+    <select id="countySelect"><option value='Statewide'>Statewide</option>
+<option value='Alameda, California'>Alameda, California</option>
+<option value='Alpine, California'>Alpine, California</option>
+<option value='Amador, California'>Amador, California</option>
+<option value='Butte, California'>Butte, California</option>
+<option value='Calaveras, California'>Calaveras, California</option>
+<option value='Colusa, California'>Colusa, California</option>
+<option value='Contra Costa, California'>Contra Costa, California</option>
+<option value='Del Norte, California'>Del Norte, California</option>
+<option value='El Dorado, California'>El Dorado, California</option>
+<option value='Fresno, California'>Fresno, California</option>
+<option value='Glenn, California'>Glenn, California</option>
+<option value='Humboldt, California'>Humboldt, California</option>
+<option value='Imperial, California'>Imperial, California</option>
+<option value='Inyo, California'>Inyo, California</option>
+<option value='Kern, California'>Kern, California</option>
+<option value='Kings, California'>Kings, California</option>
+<option value='Lake, California'>Lake, California</option>
+<option value='Lassen, California'>Lassen, California</option>
+<option value='Los Angeles, California'>Los Angeles, California</option>
+<option value='Madera, California'>Madera, California</option>
+<option value='Marin, California'>Marin, California</option>
+<option value='Mariposa, California'>Mariposa, California</option>
+<option value='Mendocino, California'>Mendocino, California</option>
+<option value='Merced, California'>Merced, California</option>
+<option value='Modoc, California'>Modoc, California</option>
+<option value='Mono, California'>Mono, California</option>
+<option value='Monterey, California'>Monterey, California</option>
+<option value='Napa, California'>Napa, California</option>
+<option value='Nevada, California'>Nevada, California</option>
+<option value='Orange, California'>Orange, California</option>
+<option value='Placer, California'>Placer, California</option>
+<option value='Plumas, California'>Plumas, California</option>
+<option value='Riverside, California'>Riverside, California</option>
+<option value='Sacramento, California'>Sacramento, California</option>
+<option value='San Benito, California'>San Benito, California</option>
+<option value='San Bernardino, California'>San Bernardino, California</option>
+<option value='San Diego, California'>San Diego, California</option>
+<option value='San Francisco, California'>San Francisco, California</option>
+<option value='San Joaquin, California'>San Joaquin, California</option>
+<option value='San Luis Obispo, California'>San Luis Obispo, California</option>
+<option value='San Mateo, California'>San Mateo, California</option>
+<option value='Santa Barbara, California'>Santa Barbara, California</option>
+<option value='Santa Clara, California'>Santa Clara, California</option>
+<option value='Santa Cruz, California'>Santa Cruz, California</option>
+<option value='Shasta, California'>Shasta, California</option>
+<option value='Sierra, California'>Sierra, California</option>
+<option value='Siskiyou, California'>Siskiyou, California</option>
+<option value='Solano, California'>Solano, California</option>
+<option value='Sonoma, California'>Sonoma, California</option>
+<option value='Stanislaus, California'>Stanislaus, California</option>
+<option value='Sutter, California'>Sutter, California</option>
+<option value='Tehama, California'>Tehama, California</option>
+<option value='Trinity, California'>Trinity, California</option>
+<option value='Tulare, California'>Tulare, California</option>
+<option value='Tuolumne, California'>Tuolumne, California</option>
+<option value='Ventura, California'>Ventura, California</option>
+<option value='Yolo, California'>Yolo, California</option>
+<option value='Yuba, California'>Yuba, California</option></select>
+    <canvas id="barChart" width="700" height="400"></canvas>
+    <script>  const incomeData = {"Statewide":[4.9,8.2,12.7,27.3,46.8],"Alameda, California":[4.7,8.2,13.3,27.9,45.9],"Alpine, California":[3.4,5.8,7.9,23.9,58.8],"Amador, California":[5.4,8.6,13,26.5,46.5],"Butte, California":[4.3,7.7,12.5,27.7,47.6],"Calaveras, California":[5.5,9.1,14,28.2,43.1],"Colusa, California":[5.1,9,13.6,28.1,44.2],"Contra Costa, California":[4.7,7.9,12.2,27.2,47.9],"Del Norte, California":[5.7,9.5,15.1,27.8,41.8],"El Dorado, California":[4.7,7.9,12.2,27.6,47.6],"Fresno, California":[4.7,8.1,12.8,27.4,47.1],"Glenn, California":[6.4,10.2,15.1,27.1,41.2],"Humboldt, California":[4.4,7.6,12.4,27.7,47.9],"Imperial, California":[4.8,8.4,14.1,27.8,45],"Inyo, California":[5.5,9.4,14.6,28.7,41.8],"Kern, California":[4.8,8.2,13,27.5,46.5],"Kings, California":[6.1,9.6,14.4,27.7,42.2],"Lake, California":[4.5,7.4,12.2,27.8,48.2],"Lassen, California":[5.9,9.9,15.2,27.9,41.1],"Los Angeles, California":[4.2,7.2,11.6,27.2,49.8],"Madera, California":[4.8,8.2,12.5,27.1,47.4],"Marin, California":[3.6,6.6,11.2,28.3,50.3],"Mariposa, California":[5.5,9.3,15.2,28.8,41.2],"Mendocino, California":[4.4,7.5,12,27,49],"Merced, California":[4.9,8.1,12.5,27,47.4],"Modoc, California":[5.3,8,11.7,26,49.1],"Mono, California":[5.2,8.2,11.6,26.4,48.6],"Monterey, California":[4.9,7.9,11.8,26.9,48.6],"Napa, California":[4.4,7.4,11.4,26.8,50.1],"Nevada, California":[4.5,7.9,12.5,27.7,47.4],"Orange, California":[4.9,8.1,12.6,27.1,47.3],"Placer, California":[5.3,8.7,13.3,26.9,45.7],"Plumas, California":[5,7.7,12.1,27.2,48],"Riverside, California":[5.4,8.8,13.4,27,45.3],"Sacramento, California":[5.4,8.8,13.4,27.2,45.2],"San Benito, California":[5.9,9.2,13.6,26.8,44.5],"San Bernardino, California":[5.4,9,13.6,27.1,45],"San Diego, California":[5,8.3,12.8,27.2,46.7],"San Francisco, California":[3.7,7.2,12,28,49.1],"San Joaquin, California":[5.4,8.8,13.4,27,45.4],"San Luis Obispo, California":[4.6,7.8,11.9,26.7,49.1],"San Mateo, California":[4.2,7.2,11.5,27.6,49.5],"Santa Barbara, California":[4.3,7.2,11.4,27.2,49.8],"Santa Clara, California":[4.7,8,12.7,27.8,46.8],"Santa Cruz, California":[4.5,7.7,12.3,27.5,48],"Shasta, California":[4.8,8.3,12.7,27.3,46.9],"Sierra, California":[3.8,6.8,11.2,28.9,49.3],"Siskiyou, California":[4.6,8,12.9,27.4,47.1],"Solano, California":[6,9.5,14.1,27,43.5],"Sonoma, California":[5,8.1,12.5,26.9,47.5],"Stanislaus, California":[5.5,8.9,13.4,27.2,45],"Sutter, California":[5.2,8.5,13.1,27.6,45.6],"Tehama, California":[3.9,6.4,10.1,25.8,53.8],"Trinity, California":[4.1,7,11.1,28.1,49.7],"Tulare, California":[5.4,8.8,13.4,27.3,45.1],"Tuolumne, California":[5.4,8.6,13.5,27.2,45.2],"Ventura, California":[5.2,8.4,12.8,26.8,46.8],"Yolo, California":[4.5,8,12.8,27.7,47],"Yuba, California":[5.3,8.9,13.3,27.1,45.4]};
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Bottom 20%', 'Second 20%', 'Middle 20%', 'Fourth 20%', 'Top 20%'],
+        datasets: [{
+          label: 'Share (%)',
+          data: values,
+          backgroundColor: '#4576a7'
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.parsed.y + '%'
+            }
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 100,
+            title: {
+              display: true,
+              text: 'Income Share (%)'
+            }
+          },
+          x: {
+            title: {
+              display: true,
+              text: 'Quintile'
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(Object.values(incomeData[this.value]));
+  });
+
+  renderChart(Object.values(incomeData['Statewide']));</script>
+  </body>
+</html>
+</html>

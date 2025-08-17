@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+
+</head>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Owners: Year Moved In (%) – 06</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #fff;
+    }
+    .container {
+      width: 95%;
+      max-width: 1200px;
+      margin: auto;
+      text-align: center;
+    }
+    #countySelect {
+      font-size: 1rem;
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    canvas {
+      max-width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Owners: Year Moved In (%)</h2>
+    <select id="countySelect"></select>
+    <canvas id="pieChart"></canvas>
+  </div>
+
+  <script>
+    const data = {"Statewide":{"Moved in 2021 or later":5.1,"Moved in 2018–2020":13.5,"Moved in 2010–2017":27.8,"Moved in 2000–2009":23.1,"Moved in 1990–1999":15.1,"1989 or earlier":15.4},"Alameda County":{"Moved in 2021 or later":5.4787,"Moved in 2018–2020":12.8012,"Moved in 2010–2017":27.5871,"Moved in 2000–2009":21.8782,"Moved in 1990–1999":15.214,"1989 or earlier":17.0408},"Alpine County":{"Moved in 2021 or later":6.0052,"Moved in 2018–2020":6.5274,"Moved in 2010–2017":33.1593,"Moved in 2000–2009":20.6266,"Moved in 1990–1999":15.1436,"1989 or earlier":18.5379},"Amador County":{"Moved in 2021 or later":7.0512,"Moved in 2018–2020":20.4773,"Moved in 2010–2017":28.2593,"Moved in 2000–2009":21.3636,"Moved in 1990–1999":12.0112,"1989 or earlier":10.8373},"Butte County":{"Moved in 2021 or later":6.6164,"Moved in 2018–2020":19.5511,"Moved in 2010–2017":28.1576,"Moved in 2000–2009":20.8098,"Moved in 1990–1999":11.2801,"1989 or earlier":13.5849},"Calaveras County":{"Moved in 2021 or later":5.603,"Moved in 2018–2020":15.6567,"Moved in 2010–2017":31.7306,"Moved in 2000–2009":25.6441,"Moved in 1990–1999":13.0803,"1989 or earlier":8.2853},"Colusa County":{"Moved in 2021 or later":3.3793,"Moved in 2018–2020":13.5385,"Moved in 2010–2017":28.0026,"Moved in 2000–2009":22.8368,"Moved in 1990–1999":12.4408,"1989 or earlier":19.802},"Contra Costa County":{"Moved in 2021 or later":5.5718,"Moved in 2018–2020":13.2405,"Moved in 2010–2017":28.2149,"Moved in 2000–2009":22.8915,"Moved in 1990–1999":14.4433,"1989 or earlier":15.6379},"Del Norte County":{"Moved in 2021 or later":5.4882,"Moved in 2018–2020":11.2392,"Moved in 2010–2017":32.477,"Moved in 2000–2009":22.7996,"Moved in 1990–1999":13.6476,"1989 or earlier":14.3483},"El Dorado County":{"Moved in 2021 or later":5.5828,"Moved in 2018–2020":17.7219,"Moved in 2010–2017":29.1746,"Moved in 2000–2009":22.1999,"Moved in 1990–1999":14.5562,"1989 or earlier":10.7645},"Fresno County":{"Moved in 2021 or later":5.0394,"Moved in 2018–2020":15.0801,"Moved in 2010–2017":29.4657,"Moved in 2000–2009":23.1313,"Moved in 1990–1999":14.2635,"1989 or earlier":13.02},"Glenn County":{"Moved in 2021 or later":5.3598,"Moved in 2018–2020":13.8704,"Moved in 2010–2017":23.1931,"Moved in 2000–2009":25.337,"Moved in 1990–1999":16.2417,"1989 or earlier":15.9981},"Humboldt County":{"Moved in 2021 or later":4.3168,"Moved in 2018–2020":12.4227,"Moved in 2010–2017":25.9885,"Moved in 2000–2009":23.346,"Moved in 1990–1999":16.6262,"1989 or earlier":17.2998},"Imperial County":{"Moved in 2021 or later":3.2526,"Moved in 2018–2020":13.9802,"Moved in 2010–2017":31.5808,"Moved in 2000–2009":22.4794,"Moved in 1990–1999":15.4659,"1989 or earlier":13.241},"Inyo County":{"Moved in 2021 or later":6.3017,"Moved in 2018–2020":12.6975,"Moved in 2010–2017":32.4492,"Moved in 2000–2009":20.5229,"Moved in 1990–1999":13.2242,"1989 or earlier":14.8044},"Kern County":{"Moved in 2021 or later":5.8579,"Moved in 2018–2020":16.5909,"Moved in 2010–2017":31.0953,"Moved in 2000–2009":23.5651,"Moved in 1990–1999":13.0471,"1989 or earlier":9.8437},"Kings County":{"Moved in 2021 or later":6.348,"Moved in 2018–2020":16.8502,"Moved in 2010–2017":26.4932,"Moved in 2000–2009":25.8926,"Moved in 1990–1999":12.3916,"1989 or earlier":12.0245},"Lake County":{"Moved in 2021 or later":6.1227,"Moved in 2018–2020":13.5447,"Moved in 2010–2017":30.3353,"Moved in 2000–2009":24.4479,"Moved in 1990–1999":14.0367,"1989 or earlier":11.5128},"Lassen County":{"Moved in 2021 or later":5.5502,"Moved in 2018–2020":19.7896,"Moved in 2010–2017":20.3074,"Moved in 2000–2009":22.945,"Moved in 1990–1999":15.6311,"1989 or earlier":15.7767},"Los Angeles County":{"Moved in 2021 or later":4.1289,"Moved in 2018–2020":10.6107,"Moved in 2010–2017":24.8569,"Moved in 2000–2009":23.2361,"Moved in 1990–1999":17.2453,"1989 or earlier":19.9221},"Madera County":{"Moved in 2021 or later":5.8969,"Moved in 2018–2020":14.2313,"Moved in 2010–2017":27.4239,"Moved in 2000–2009":26.0662,"Moved in 1990–1999":14.4988,"1989 or earlier":11.8829},"Marin County":{"Moved in 2021 or later":4.6491,"Moved in 2018–2020":11.8692,"Moved in 2010–2017":23.6625,"Moved in 2000–2009":20.4317,"Moved in 1990–1999":16.8535,"1989 or earlier":22.534},"Mariposa County":{"Moved in 2021 or later":6.6774,"Moved in 2018–2020":13.7821,"Moved in 2010–2017":25.8369,"Moved in 2000–2009":22.4537,"Moved in 1990–1999":15.3668,"1989 or earlier":15.8832},"Mendocino County":{"Moved in 2021 or later":4.0011,"Moved in 2018–2020":12.3598,"Moved in 2010–2017":24.1874,"Moved in 2000–2009":20.5759,"Moved in 1990–1999":19.0696,"1989 or earlier":19.8061},"Merced County":{"Moved in 2021 or later":4.3772,"Moved in 2018–2020":14.1894,"Moved in 2010–2017":29.5252,"Moved in 2000–2009":24.3054,"Moved in 1990–1999":13.329,"1989 or earlier":14.2737},"Modoc County":{"Moved in 2021 or later":4.9921,"Moved in 2018–2020":18.9778,"Moved in 2010–2017":18.1062,"Moved in 2000–2009":21.9493,"Moved in 1990–1999":17.7892,"1989 or earlier":18.1854},"Mono County":{"Moved in 2021 or later":7.1223,"Moved in 2018–2020":12.6473,"Moved in 2010–2017":36.2922,"Moved in 2000–2009":19.9791,"Moved in 1990–1999":13.1186,"1989 or earlier":10.8405},"Monterey County":{"Moved in 2021 or later":3.9054,"Moved in 2018–2020":11.7292,"Moved in 2010–2017":27.2681,"Moved in 2000–2009":23.0759,"Moved in 1990–1999":15.1116,"1989 or earlier":18.9098},"Napa County":{"Moved in 2021 or later":4.5521,"Moved in 2018–2020":13.1843,"Moved in 2010–2017":26.1435,"Moved in 2000–2009":23.7611,"Moved in 1990–1999":15.0164,"1989 or earlier":17.3425},"Nevada County":{"Moved in 2021 or later":5.8165,"Moved in 2018–2020":16.4293,"Moved in 2010–2017":28.752,"Moved in 2000–2009":23.9686,"Moved in 1990–1999":14.206,"1989 or earlier":10.8277},"Orange County":{"Moved in 2021 or later":4.962,"Moved in 2018–2020":12.5489,"Moved in 2010–2017":26.9938,"Moved in 2000–2009":22.5234,"Moved in 1990–1999":17.4435,"1989 or earlier":15.5284},"Placer County":{"Moved in 2021 or later":6.9626,"Moved in 2018–2020":16.0958,"Moved in 2010–2017":33.517,"Moved in 2000–2009":23.1927,"Moved in 1990–1999":11.4868,"1989 or earlier":8.7452},"Plumas County":{"Moved in 2021 or later":3.0876,"Moved in 2018–2020":12.5498,"Moved in 2010–2017":26.162,"Moved in 2000–2009":29.0007,"Moved in 1990–1999":11.6866,"1989 or earlier":17.5133},"Riverside County":{"Moved in 2021 or later":6.562,"Moved in 2018–2020":17.3126,"Moved in 2010–2017":32.5258,"Moved in 2000–2009":25.4352,"Moved in 1990–1999":11.138,"1989 or earlier":7.0265},"Sacramento County":{"Moved in 2021 or later":5.6546,"Moved in 2018–2020":16.0781,"Moved in 2010–2017":30.5028,"Moved in 2000–2009":22.4294,"Moved in 1990–1999":12.1981,"1989 or earlier":13.137},"San Benito County":{"Moved in 2021 or later":6.7142,"Moved in 2018–2020":16.0802,"Moved in 2010–2017":29.2074,"Moved in 2000–2009":18.6366,"Moved in 1990–1999":15.2207,"1989 or earlier":14.1409},"San Bernardino County":{"Moved in 2021 or later":5.6128,"Moved in 2018–2020":14.783,"Moved in 2010–2017":28.7374,"Moved in 2000–2009":24.9004,"Moved in 1990–1999":13.8678,"1989 or earlier":12.0986},"San Diego County":{"Moved in 2021 or later":5.4371,"Moved in 2018–2020":14.6052,"Moved in 2010–2017":29.1472,"Moved in 2000–2009":21.8887,"Moved in 1990–1999":14.6053,"1989 or earlier":14.3165},"San Francisco County":{"Moved in 2021 or later":5.8126,"Moved in 2018–2020":12.353,"Moved in 2010–2017":24.1365,"Moved in 2000–2009":21.3566,"Moved in 1990–1999":15.7059,"1989 or earlier":20.6353},"San Joaquin County":{"Moved in 2021 or later":5.4039,"Moved in 2018–2020":15.4199,"Moved in 2010–2017":31.8505,"Moved in 2000–2009":23.8591,"Moved in 1990–1999":11.6858,"1989 or earlier":11.7807},"San Luis Obispo County":{"Moved in 2021 or later":5.4345,"Moved in 2018–2020":13.7635,"Moved in 2010–2017":29.9111,"Moved in 2000–2009":22.8447,"Moved in 1990–1999":15.1195,"1989 or earlier":12.9267},"San Mateo County":{"Moved in 2021 or later":3.9694,"Moved in 2018–2020":10.3921,"Moved in 2010–2017":23.4524,"Moved in 2000–2009":22.6639,"Moved in 1990–1999":16.7418,"1989 or earlier":22.7804},"Santa Barbara County":{"Moved in 2021 or later":4.2512,"Moved in 2018–2020":12.5644,"Moved in 2010–2017":27.0881,"Moved in 2000–2009":21.3488,"Moved in 1990–1999":16.3141,"1989 or earlier":18.4333},"Santa Clara County":{"Moved in 2021 or later":5.164,"Moved in 2018–2020":11.2868,"Moved in 2010–2017":26.1496,"Moved in 2000–2009":23.5959,"Moved in 1990–1999":16.2165,"1989 or earlier":17.5872},"Santa Cruz County":{"Moved in 2021 or later":5.1203,"Moved in 2018–2020":11.1253,"Moved in 2010–2017":25.1231,"Moved in 2000–2009":22.5242,"Moved in 1990–1999":17.3178,"1989 or earlier":18.7894},"Shasta County":{"Moved in 2021 or later":5.731,"Moved in 2018–2020":17.3963,"Moved in 2010–2017":28.839,"Moved in 2000–2009":21.3783,"Moved in 1990–1999":14.0181,"1989 or earlier":12.6373},"Sierra County":{"Moved in 2021 or later":1.9068,"Moved in 2018–2020":8.6864,"Moved in 2010–2017":25.2119,"Moved in 2000–2009":29.2373,"Moved in 1990–1999":21.2924,"1989 or earlier":13.6653},"Siskiyou County":{"Moved in 2021 or later":5.1218,"Moved in 2018–2020":14.7507,"Moved in 2010–2017":26.3829,"Moved in 2000–2009":19.6525,"Moved in 1990–1999":16.3594,"1989 or earlier":17.7328},"Solano County":{"Moved in 2021 or later":5.2685,"Moved in 2018–2020":14.8797,"Moved in 2010–2017":29.932,"Moved in 2000–2009":20.7309,"Moved in 1990–1999":14.8949,"1989 or earlier":14.294},"Sonoma County":{"Moved in 2021 or later":5.138,"Moved in 2018–2020":13.2865,"Moved in 2010–2017":26.459,"Moved in 2000–2009":23.8208,"Moved in 1990–1999":16.1931,"1989 or earlier":15.1027},"Stanislaus County":{"Moved in 2021 or later":5.4114,"Moved in 2018–2020":13.3551,"Moved in 2010–2017":30.691,"Moved in 2000–2009":24.5792,"Moved in 1990–1999":12.9473,"1989 or earlier":13.0161},"Sutter County":{"Moved in 2021 or later":4.392,"Moved in 2018–2020":16.0685,"Moved in 2010–2017":27.4807,"Moved in 2000–2009":23.1547,"Moved in 1990–1999":16.4396,"1989 or earlier":12.4644},"Tehama County":{"Moved in 2021 or later":5.0561,"Moved in 2018–2020":17.0086,"Moved in 2010–2017":27.1691,"Moved in 2000–2009":22.9938,"Moved in 1990–1999":13.304,"1989 or earlier":14.4684},"Trinity County":{"Moved in 2021 or later":5.4281,"Moved in 2018–2020":16.4628,"Moved in 2010–2017":23.42,"Moved in 2000–2009":26.5291,"Moved in 1990–1999":9.1488,"1989 or earlier":19.0112},"Tulare County":{"Moved in 2021 or later":5.0148,"Moved in 2018–2020":16.624,"Moved in 2010–2017":26.5312,"Moved in 2000–2009":24.9937,"Moved in 1990–1999":14.3322,"1989 or earlier":12.5041},"Tuolumne County":{"Moved in 2021 or later":4.8782,"Moved in 2018–2020":13.6412,"Moved in 2010–2017":31.2382,"Moved in 2000–2009":24.6157,"Moved in 1990–1999":12.8252,"1989 or earlier":12.8016},"Ventura County":{"Moved in 2021 or later":4.7245,"Moved in 2018–2020":12.04,"Moved in 2010–2017":26.7137,"Moved in 2000–2009":22.9051,"Moved in 1990–1999":17.3358,"1989 or earlier":16.2808},"Yolo County":{"Moved in 2021 or later":4.7605,"Moved in 2018–2020":13.9039,"Moved in 2010–2017":30.7801,"Moved in 2000–2009":21.9851,"Moved in 1990–1999":15.0392,"1989 or earlier":13.5312},"Yuba County":{"Moved in 2021 or later":6.6126,"Moved in 2018–2020":18.9938,"Moved in 2010–2017":31.8138,"Moved in 2000–2009":21.9596,"Moved in 1990–1999":10.7885,"1989 or earlier":9.8317}};
+    const colors = {
+  'Moved in 2021 or later': '#377EF1',
+  'Moved in 2018–2020': '#FF7F00',
+  'Moved in 2010–2017': '#66A61E',
+  'Moved in 2000–2009': '#E6AB01',
+  'Moved in 1990–1999': '#7570B1',
+  '1989 or earlier': '#E41A1C'
+};
+
+    const ctx = document.getElementById("pieChart").getContext("2d");
+    let chart;
+
+    function renderChart(key) {
+      const values = data[key];
+      const labels = Object.keys(values);
+      const percentages = Object.values(values);
+
+      if (chart) chart.destroy();
+
+      chart = new Chart(ctx, {
+        type: "pie",
+        data: {
+          labels: labels,
+          datasets: [{
+            data: percentages,
+            backgroundColor: labels.map(label => colors[label] || "#cccccc")
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: true,
+          aspectRatio: 1.5,
+          plugins: {
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  return context.label + ": " + context.formattedValue + "%";
+                }
+              }
+            },
+            legend: {
+              position: "right",
+              labels: {
+                usePointStyle: true,
+                pointStyle: "rect"
+              }
+            }
+          }
+        }
+      });
+    }
+
+    // Populate dropdown (Statewide first, then counties A->Z)
+    const select = document.getElementById("countySelect");
+    const keys = ["Statewide", ...Object.keys(data).filter(k => k !== "Statewide").sort()];
+    keys.forEach(k => {
+      const opt = document.createElement("option");
+      opt.value = k;
+      opt.text  = k;
+      select.appendChild(opt);
+    });
+    select.value = "Statewide";
+    select.addEventListener("change", () => renderChart(select.value));
+
+    renderChart("Statewide");
+  </script>
+</body>
+</html>
+</html>

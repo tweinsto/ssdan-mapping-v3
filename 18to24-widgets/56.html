@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Educational Enrollment – Wyoming</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Educational Enrollment (Age 18–24) in Wyoming</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Albany County, Wyoming">Albany County, Wyoming</option>
+      <option value="Big Horn County, Wyoming">Big Horn County, Wyoming</option>
+      <option value="Campbell County, Wyoming">Campbell County, Wyoming</option>
+      <option value="Carbon County, Wyoming">Carbon County, Wyoming</option>
+      <option value="Converse County, Wyoming">Converse County, Wyoming</option>
+      <option value="Crook County, Wyoming">Crook County, Wyoming</option>
+      <option value="Fremont County, Wyoming">Fremont County, Wyoming</option>
+      <option value="Goshen County, Wyoming">Goshen County, Wyoming</option>
+      <option value="Hot Springs County, Wyoming">Hot Springs County, Wyoming</option>
+      <option value="Johnson County, Wyoming">Johnson County, Wyoming</option>
+      <option value="Laramie County, Wyoming">Laramie County, Wyoming</option>
+      <option value="Lincoln County, Wyoming">Lincoln County, Wyoming</option>
+      <option value="Natrona County, Wyoming">Natrona County, Wyoming</option>
+      <option value="Niobrara County, Wyoming">Niobrara County, Wyoming</option>
+      <option value="Park County, Wyoming">Park County, Wyoming</option>
+      <option value="Platte County, Wyoming">Platte County, Wyoming</option>
+      <option value="Sheridan County, Wyoming">Sheridan County, Wyoming</option>
+      <option value="Sublette County, Wyoming">Sublette County, Wyoming</option>
+      <option value="Sweetwater County, Wyoming">Sweetwater County, Wyoming</option>
+      <option value="Teton County, Wyoming">Teton County, Wyoming</option>
+      <option value="Uinta County, Wyoming">Uinta County, Wyoming</option>
+      <option value="Washakie County, Wyoming">Washakie County, Wyoming</option>
+      <option value="Weston County, Wyoming">Weston County, Wyoming</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>  const data = {"Statewide":{"Enrolled in College / Grad. School":37,"Not Enrolled":63},"Albany County, Wyoming":{"Enrolled in College / Grad. School":80.4,"Not Enrolled":19.6},"Big Horn County, Wyoming":{"Enrolled in College / Grad. School":18.6,"Not Enrolled":81.4},"Campbell County, Wyoming":{"Enrolled in College / Grad. School":16.5,"Not Enrolled":83.5},"Carbon County, Wyoming":{"Enrolled in College / Grad. School":18.2,"Not Enrolled":81.8},"Converse County, Wyoming":{"Enrolled in College / Grad. School":13.1,"Not Enrolled":86.9},"Crook County, Wyoming":{"Enrolled in College / Grad. School":14.2,"Not Enrolled":85.8},"Fremont County, Wyoming":{"Enrolled in College / Grad. School":20.6,"Not Enrolled":79.4},"Goshen County, Wyoming":{"Enrolled in College / Grad. School":45.3,"Not Enrolled":54.7},"Hot Springs County, Wyoming":{"Enrolled in College / Grad. School":2.4,"Not Enrolled":97.6},"Johnson County, Wyoming":{"Enrolled in College / Grad. School":7,"Not Enrolled":93},"Laramie County, Wyoming":{"Enrolled in College / Grad. School":29.2,"Not Enrolled":70.8},"Lincoln County, Wyoming":{"Enrolled in College / Grad. School":18.1,"Not Enrolled":81.9},"Natrona County, Wyoming":{"Enrolled in College / Grad. School":33.4,"Not Enrolled":66.6},"Niobrara County, Wyoming":{"Enrolled in College / Grad. School":0,"Not Enrolled":100},"Park County, Wyoming":{"Enrolled in College / Grad. School":35.7,"Not Enrolled":64.3},"Platte County, Wyoming":{"Enrolled in College / Grad. School":51.4,"Not Enrolled":48.6},"Sheridan County, Wyoming":{"Enrolled in College / Grad. School":46,"Not Enrolled":54},"Sublette County, Wyoming":{"Enrolled in College / Grad. School":12.2,"Not Enrolled":87.8},"Sweetwater County, Wyoming":{"Enrolled in College / Grad. School":20.5,"Not Enrolled":79.5},"Teton County, Wyoming":{"Enrolled in College / Grad. School":29.5,"Not Enrolled":70.5},"Uinta County, Wyoming":{"Enrolled in College / Grad. School":10.7,"Not Enrolled":89.3},"Washakie County, Wyoming":{"Enrolled in College / Grad. School":11.2,"Not Enrolled":88.8},"Weston County, Wyoming":{"Enrolled in College / Grad. School":13.1,"Not Enrolled":86.9}};
+  const categories = ["Enrolled in College / Grad. School","Not Enrolled"];
+  const ctx = document.getElementById("barChart").getContext("2d");
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: categories,
+        datasets: [
+          {
+            label: "County/State",
+            data: values,
+            backgroundColor: ["#66c2a5", "#fc8d62"]
+          }
+        ]
+      },
+      options: {
+        indexAxis: "y",
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            ticks: {
+              callback: v => v + "%"
+            }
+          }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.dataset.label + ": " + ctx.raw + "%"
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById("countySelect").addEventListener("change", function() {
+    renderChart(Object.values(data[this.value]));
+  });
+
+  renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

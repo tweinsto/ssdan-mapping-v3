@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+
+</head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Median Earnings by Industry – 44</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background: white;
+    }
+    .layout {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1.5rem;
+    }
+    label {
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+    #countySelect {
+      font-size: 1rem;
+      padding: 0.4rem 0.8rem;
+      margin-bottom: 1rem;
+    }
+    canvas {
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <label for="countySelect">Median Earnings by Industry:</label>
+    <select id="countySelect"></select>
+    <canvas id="barChart"></canvas>
+  </div>
+
+  <script>
+    const data = {"Statewide":{"Agriculture & mining":44010,"Arts & food services":47622,"Construction":61516,"Education & health":66373,"Finance & real estate":78292,"Information":76087,"Manufacturing":61781,"Other services":53202,"Prof. & waste services":72346,"Public administration":86059,"Retail trade":52776,"Transport & utilities":63063,"Wholesale trade":66702},"Bristol County":{"Agriculture & mining":28906,"Arts & food services":44643,"Construction":90598,"Education & health":83309,"Finance & real estate":93272,"Information":78438,"Manufacturing":76165,"Other services":61081,"Prof. & waste services":102355,"Public administration":94799,"Retail trade":56400,"Transport & utilities":83144,"Wholesale trade":112361},"Kent County":{"Agriculture & mining":37094,"Arts & food services":46346,"Construction":67054,"Education & health":67126,"Finance & real estate":82664,"Information":71411,"Manufacturing":73503,"Other services":45932,"Prof. & waste services":74531,"Public administration":91427,"Retail trade":58476,"Transport & utilities":68531,"Wholesale trade":74340},"Newport County":{"Agriculture & mining":41301,"Arts & food services":49650,"Construction":62337,"Education & health":70361,"Finance & real estate":100580,"Information":97813,"Manufacturing":77869,"Other services":52321,"Prof. & waste services":95871,"Public administration":98423,"Retail trade":46866,"Transport & utilities":66744,"Wholesale trade":84265},"Providence County":{"Agriculture & mining":37328,"Arts & food services":46444,"Construction":55887,"Education & health":63490,"Finance & real estate":71693,"Information":76553,"Manufacturing":52526,"Other services":53515,"Prof. & waste services":68164,"Public administration":82719,"Retail trade":52331,"Transport & utilities":60685,"Wholesale trade":59836},"Washington County":{"Agriculture & mining":60256,"Arts & food services":49651,"Construction":72805,"Education & health":74196,"Finance & real estate":86825,"Information":61048,"Manufacturing":80006,"Other services":57917,"Prof. & waste services":82522,"Public administration":86060,"Retail trade":52090,"Transport & utilities":70147,"Wholesale trade":95787}};
+    const colors = {
+  'Agriculture & mining': '#FFFF01',
+  'Arts & food services': '#00008B',
+  'Construction': '#7570B1',
+  'Education & health': '#66A61E',
+  'Finance & real estate': '#E6AB01',
+  'Information': '#379',
+  'Manufacturing': '#E41A1C',
+  'Other services': '#377EF1',
+  'Prof. & waste services': '#FF7F00',
+  'Public administration': '#1B9E77',
+  'Retail trade': '#A65011',
+  'Transport & utilities': '#F781BF',
+  'Wholesale trade': '#919'
+};
+
+    const ctx = document.getElementById("barChart").getContext("2d");
+    let chart;
+
+    function renderChart(county) {
+      const values = data[county];
+      const labels = Object.keys(values);
+      const earnings = Object.values(values);
+
+      if (chart) chart.destroy();
+
+      chart = new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels: labels,
+          datasets: [{
+            label: "Median Earnings ($)",
+            data: earnings,
+            backgroundColor: labels.map(label => colors[label] || "#ccc")
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: true,
+  aspectRatio: 1.5, 
+          indexAxis: "x",
+          scales: {
+            y: {
+              beginAtZero: true,
+              title: {
+                display: true,
+                text: "Median Earnings ($)"
+              },
+              ticks: {
+                callback: function(value) {
+                  return "$" + value.toLocaleString();
+                }
+              }
+            },
+            x: {
+              ticks: {
+                maxRotation: 45,
+                minRotation: 20,
+                autoSkip: false,
+                callback: function(value, index, ticks) {
+                  let label = this.getLabelForValue(value);
+                  return label.length > 25 ? label.slice(0, 25) + "…" : label;
+                }
+              }
+            }
+          },
+          plugins: {
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  return "$" + context.parsed.y.toLocaleString();
+                }
+              }
+            },
+            legend: {
+              display: false
+            }
+          }
+        }
+      });
+    }
+
+    const select = document.getElementById("countySelect");
+    Object.keys(data).forEach(county => {
+      const option = document.createElement("option");
+      option.value = county;
+      option.text = county;
+      select.appendChild(option);
+    });
+    select.value = "Statewide";
+    select.addEventListener("change", () => renderChart(select.value));
+    renderChart("Statewide");
+  </script>
+</body>
+</html>
+</html>

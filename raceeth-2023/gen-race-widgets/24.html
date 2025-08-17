@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="utf-8"/>
+  <title>Race/Ethnicity in State 24</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          text-align: center;
+          margin: 2rem;
+          background-color: white;
+        }
+        canvas {
+          max-width: 500px;
+          margin: 1rem auto;
+        }
+        select {
+          font-size: 1rem;
+          padding: 0.4rem;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Race &amp; Ethnicity Distribution</h2>
+    <label>Select County:</label>
+    <select id="countySelect"><option value="Statewide">Statewide</option>
+<option value="Allegany County, Maryland">Allegany County, Maryland</option>
+<option value="Anne Arundel County, Maryland">Anne Arundel County, Maryland</option>
+<option value="Baltimore city, Maryland">Baltimore city, Maryland</option>
+<option value="Baltimore County, Maryland">Baltimore County, Maryland</option>
+<option value="Calvert County, Maryland">Calvert County, Maryland</option>
+<option value="Caroline County, Maryland">Caroline County, Maryland</option>
+<option value="Carroll County, Maryland">Carroll County, Maryland</option>
+<option value="Cecil County, Maryland">Cecil County, Maryland</option>
+<option value="Charles County, Maryland">Charles County, Maryland</option>
+<option value="Dorchester County, Maryland">Dorchester County, Maryland</option>
+<option value="Frederick County, Maryland">Frederick County, Maryland</option>
+<option value="Garrett County, Maryland">Garrett County, Maryland</option>
+<option value="Harford County, Maryland">Harford County, Maryland</option>
+<option value="Howard County, Maryland">Howard County, Maryland</option>
+<option value="Kent County, Maryland">Kent County, Maryland</option>
+<option value="Montgomery County, Maryland">Montgomery County, Maryland</option>
+<option value="Prince George's County, Maryland">Prince George's County, Maryland</option>
+<option value="Queen Anne's County, Maryland">Queen Anne's County, Maryland</option>
+<option value="Somerset County, Maryland">Somerset County, Maryland</option>
+<option value="St. Mary's County, Maryland">St. Mary's County, Maryland</option>
+<option value="Talbot County, Maryland">Talbot County, Maryland</option>
+<option value="Washington County, Maryland">Washington County, Maryland</option>
+<option value="Wicomico County, Maryland">Wicomico County, Maryland</option>
+<option value="Worcester County, Maryland">Worcester County, Maryland</option></select>
+    <canvas id="pieChart" width="400" height="400"></canvas>
+    <script>  let raceData = {};
+  fetch("24.json")
+    .then(resp => resp.json())
+    .then(data => {
+      raceData = data;
+      const raceLabels = ["American Indian / Alaska Native","Asian","Black","Hispanic","NHMulti","NHOther","NHWhite","Pacific Islander"];
+      const ctx = document.getElementById("pieChart").getContext("2d");
+      let chart;
+
+      function renderChart(values) {
+        if (chart) chart.destroy();
+        chart = new Chart(ctx, {
+          type: "pie",
+          data: {
+            labels: raceLabels,
+            datasets: [{
+              data: values,
+              backgroundColor: [
+                "#f94144", "#f3722c", "#f9c74f", "#90be6d",
+                "#9d4edd", "#577590", "#d0cde1", "#43aa8b"
+              ]
+            }]
+          },
+          options: {
+            responsive: true,
+            plugins: {
+              legend: {
+                position: "bottom",
+                labels: {
+                  font: { size: 14 },
+                  boxWidth: 20,
+                  padding: 15,
+                  usePointStyle: true,
+                  pointStyle: "rectRounded"
+                }
+              },
+              tooltip: {
+                callbacks: {
+                  label: function(context) {
+                    return context.label + ": " + context.parsed + "%";
+                  }
+                }
+              }
+            }
+          }
+        });
+      }
+
+      document.getElementById("countySelect").addEventListener("change", function() {
+        const selected = this.value;
+        const values = Object.values(raceData[selected]);
+        renderChart(values);
+      });
+
+      renderChart(Object.values(raceData["Statewide"]));
+      document.getElementById("countySelect").value = "Statewide";
+    });</script>
+  </body>
+</html>
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Living Arrangements of Children – South Dakota</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Children’s Living Arrangements (Under 18) – South Dakota</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Aurora County, South Dakota">Aurora County, South Dakota</option>
+      <option value="Beadle County, South Dakota">Beadle County, South Dakota</option>
+      <option value="Bennett County, South Dakota">Bennett County, South Dakota</option>
+      <option value="Bon Homme County, South Dakota">Bon Homme County, South Dakota</option>
+      <option value="Brookings County, South Dakota">Brookings County, South Dakota</option>
+      <option value="Brown County, South Dakota">Brown County, South Dakota</option>
+      <option value="Brule County, South Dakota">Brule County, South Dakota</option>
+      <option value="Buffalo County, South Dakota">Buffalo County, South Dakota</option>
+      <option value="Butte County, South Dakota">Butte County, South Dakota</option>
+      <option value="Campbell County, South Dakota">Campbell County, South Dakota</option>
+      <option value="Charles Mix County, South Dakota">Charles Mix County, South Dakota</option>
+      <option value="Clark County, South Dakota">Clark County, South Dakota</option>
+      <option value="Clay County, South Dakota">Clay County, South Dakota</option>
+      <option value="Codington County, South Dakota">Codington County, South Dakota</option>
+      <option value="Corson County, South Dakota">Corson County, South Dakota</option>
+      <option value="Custer County, South Dakota">Custer County, South Dakota</option>
+      <option value="Davison County, South Dakota">Davison County, South Dakota</option>
+      <option value="Day County, South Dakota">Day County, South Dakota</option>
+      <option value="Deuel County, South Dakota">Deuel County, South Dakota</option>
+      <option value="Dewey County, South Dakota">Dewey County, South Dakota</option>
+      <option value="Douglas County, South Dakota">Douglas County, South Dakota</option>
+      <option value="Edmunds County, South Dakota">Edmunds County, South Dakota</option>
+      <option value="Fall River County, South Dakota">Fall River County, South Dakota</option>
+      <option value="Faulk County, South Dakota">Faulk County, South Dakota</option>
+      <option value="Grant County, South Dakota">Grant County, South Dakota</option>
+      <option value="Gregory County, South Dakota">Gregory County, South Dakota</option>
+      <option value="Haakon County, South Dakota">Haakon County, South Dakota</option>
+      <option value="Hamlin County, South Dakota">Hamlin County, South Dakota</option>
+      <option value="Hand County, South Dakota">Hand County, South Dakota</option>
+      <option value="Hanson County, South Dakota">Hanson County, South Dakota</option>
+      <option value="Harding County, South Dakota">Harding County, South Dakota</option>
+      <option value="Hughes County, South Dakota">Hughes County, South Dakota</option>
+      <option value="Hutchinson County, South Dakota">Hutchinson County, South Dakota</option>
+      <option value="Hyde County, South Dakota">Hyde County, South Dakota</option>
+      <option value="Jackson County, South Dakota">Jackson County, South Dakota</option>
+      <option value="Jerauld County, South Dakota">Jerauld County, South Dakota</option>
+      <option value="Jones County, South Dakota">Jones County, South Dakota</option>
+      <option value="Kingsbury County, South Dakota">Kingsbury County, South Dakota</option>
+      <option value="Lake County, South Dakota">Lake County, South Dakota</option>
+      <option value="Lawrence County, South Dakota">Lawrence County, South Dakota</option>
+      <option value="Lincoln County, South Dakota">Lincoln County, South Dakota</option>
+      <option value="Lyman County, South Dakota">Lyman County, South Dakota</option>
+      <option value="Marshall County, South Dakota">Marshall County, South Dakota</option>
+      <option value="McCook County, South Dakota">McCook County, South Dakota</option>
+      <option value="McPherson County, South Dakota">McPherson County, South Dakota</option>
+      <option value="Meade County, South Dakota">Meade County, South Dakota</option>
+      <option value="Mellette County, South Dakota">Mellette County, South Dakota</option>
+      <option value="Miner County, South Dakota">Miner County, South Dakota</option>
+      <option value="Minnehaha County, South Dakota">Minnehaha County, South Dakota</option>
+      <option value="Moody County, South Dakota">Moody County, South Dakota</option>
+      <option value="Oglala Lakota County, South Dakota">Oglala Lakota County, South Dakota</option>
+      <option value="Pennington County, South Dakota">Pennington County, South Dakota</option>
+      <option value="Perkins County, South Dakota">Perkins County, South Dakota</option>
+      <option value="Potter County, South Dakota">Potter County, South Dakota</option>
+      <option value="Roberts County, South Dakota">Roberts County, South Dakota</option>
+      <option value="Sanborn County, South Dakota">Sanborn County, South Dakota</option>
+      <option value="Spink County, South Dakota">Spink County, South Dakota</option>
+      <option value="Stanley County, South Dakota">Stanley County, South Dakota</option>
+      <option value="Sully County, South Dakota">Sully County, South Dakota</option>
+      <option value="Todd County, South Dakota">Todd County, South Dakota</option>
+      <option value="Tripp County, South Dakota">Tripp County, South Dakota</option>
+      <option value="Turner County, South Dakota">Turner County, South Dakota</option>
+      <option value="Union County, South Dakota">Union County, South Dakota</option>
+      <option value="Walworth County, South Dakota">Walworth County, South Dakota</option>
+      <option value="Yankton County, South Dakota">Yankton County, South Dakota</option>
+      <option value="Ziebach County, South Dakota">Ziebach County, South Dakota</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>  const data = {"Statewide":{"Married Couple (%)":69.9,"Cohabiting Couple (%)":9.4,"Male Householder (%)":5,"Female Householder (%)":15.6},"Aurora County, South Dakota":{"Married Couple (%)":76,"Cohabiting Couple (%)":10.5,"Male Householder (%)":1.3,"Female Householder (%)":12.2},"Beadle County, South Dakota":{"Married Couple (%)":75.2,"Cohabiting Couple (%)":13.3,"Male Householder (%)":3,"Female Householder (%)":8.5},"Bennett County, South Dakota":{"Married Couple (%)":37.2,"Cohabiting Couple (%)":16.6,"Male Householder (%)":3.3,"Female Householder (%)":42.9},"Bon Homme County, South Dakota":{"Married Couple (%)":75.1,"Cohabiting Couple (%)":5.1,"Male Householder (%)":8.9,"Female Householder (%)":10.9},"Brookings County, South Dakota":{"Married Couple (%)":73.8,"Cohabiting Couple (%)":12.3,"Male Householder (%)":4.1,"Female Householder (%)":9.8},"Brown County, South Dakota":{"Married Couple (%)":72,"Cohabiting Couple (%)":10,"Male Householder (%)":4.5,"Female Householder (%)":13.5},"Brule County, South Dakota":{"Married Couple (%)":75.8,"Cohabiting Couple (%)":6.3,"Male Householder (%)":3.6,"Female Householder (%)":14.3},"Buffalo County, South Dakota":{"Married Couple (%)":36.7,"Cohabiting Couple (%)":16,"Male Householder (%)":14.9,"Female Householder (%)":32.3},"Butte County, South Dakota":{"Married Couple (%)":81.8,"Cohabiting Couple (%)":6,"Male Householder (%)":1.8,"Female Householder (%)":10.4},"Campbell County, South Dakota":{"Married Couple (%)":95.5,"Cohabiting Couple (%)":0,"Male Householder (%)":3.9,"Female Householder (%)":0.6},"Charles Mix County, South Dakota":{"Married Couple (%)":56.4,"Cohabiting Couple (%)":12.4,"Male Householder (%)":5.8,"Female Householder (%)":25.4},"Clark County, South Dakota":{"Married Couple (%)":81.7,"Cohabiting Couple (%)":2.3,"Male Householder (%)":6.3,"Female Householder (%)":9.8},"Clay County, South Dakota":{"Married Couple (%)":70.1,"Cohabiting Couple (%)":12.3,"Male Householder (%)":5.6,"Female Householder (%)":12},"Codington County, South Dakota":{"Married Couple (%)":74.8,"Cohabiting Couple (%)":8.1,"Male Householder (%)":6.5,"Female Householder (%)":10.5},"Corson County, South Dakota":{"Married Couple (%)":40.7,"Cohabiting Couple (%)":11.3,"Male Householder (%)":13.1,"Female Householder (%)":34.8},"Custer County, South Dakota":{"Married Couple (%)":74.2,"Cohabiting Couple (%)":8.9,"Male Householder (%)":6,"Female Householder (%)":10.9},"Davison County, South Dakota":{"Married Couple (%)":72.2,"Cohabiting Couple (%)":8.9,"Male Householder (%)":5.6,"Female Householder (%)":13.3},"Day County, South Dakota":{"Married Couple (%)":57.4,"Cohabiting Couple (%)":21.6,"Male Householder (%)":5.9,"Female Householder (%)":15},"Deuel County, South Dakota":{"Married Couple (%)":80.2,"Cohabiting Couple (%)":11.4,"Male Householder (%)":2.2,"Female Householder (%)":6.2},"Dewey County, South Dakota":{"Married Couple (%)":46.9,"Cohabiting Couple (%)":20.7,"Male Householder (%)":8.4,"Female Householder (%)":24},"Douglas County, South Dakota":{"Married Couple (%)":87,"Cohabiting Couple (%)":6,"Male Householder (%)":3.8,"Female Householder (%)":3.2},"Edmunds County, South Dakota":{"Married Couple (%)":81.2,"Cohabiting Couple (%)":8.5,"Male Householder (%)":0.7,"Female Householder (%)":9.5},"Fall River County, South Dakota":{"Married Couple (%)":60.5,"Cohabiting Couple (%)":7.1,"Male Householder (%)":20,"Female Householder (%)":12.4},"Faulk County, South Dakota":{"Married Couple (%)":89.4,"Cohabiting Couple (%)":1.7,"Male Householder (%)":6.6,"Female Householder (%)":2.3},"Grant County, South Dakota":{"Married Couple (%)":83.9,"Cohabiting Couple (%)":7.4,"Male Householder (%)":2.1,"Female Householder (%)":6.7},"Gregory County, South Dakota":{"Married Couple (%)":81.4,"Cohabiting Couple (%)":7.4,"Male Householder (%)":8,"Female Householder (%)":3.2},"Haakon County, South Dakota":{"Married Couple (%)":93.6,"Cohabiting Couple (%)":0,"Male Householder (%)":0,"Female Householder (%)":6.4},"Hamlin County, South Dakota":{"Married Couple (%)":84.6,"Cohabiting Couple (%)":6.9,"Male Householder (%)":3.4,"Female Householder (%)":5.1},"Hand County, South Dakota":{"Married Couple (%)":84.8,"Cohabiting Couple (%)":0,"Male Householder (%)":2.8,"Female Householder (%)":12.4},"Hanson County, South Dakota":{"Married Couple (%)":83.9,"Cohabiting Couple (%)":1.6,"Male Householder (%)":0.6,"Female Householder (%)":14},"Harding County, South Dakota":{"Married Couple (%)":75.5,"Cohabiting Couple (%)":13.7,"Male Householder (%)":6.9,"Female Householder (%)":3.9},"Hughes County, South Dakota":{"Married Couple (%)":66.1,"Cohabiting Couple (%)":18,"Male Householder (%)":4.5,"Female Householder (%)":11.4},"Hutchinson County, South Dakota":{"Married Couple (%)":78.1,"Cohabiting Couple (%)":12.3,"Male Householder (%)":1,"Female Householder (%)":8.6},"Hyde County, South Dakota":{"Married Couple (%)":91,"Cohabiting Couple (%)":2.3,"Male Householder (%)":0,"Female Householder (%)":6.8},"Jackson County, South Dakota":{"Married Couple (%)":53.1,"Cohabiting Couple (%)":10.7,"Male Householder (%)":0,"Female Householder (%)":36.3},"Jerauld County, South Dakota":{"Married Couple (%)":83.6,"Cohabiting Couple (%)":2.8,"Male Householder (%)":4.2,"Female Householder (%)":9.4},"Jones County, South Dakota":{"Married Couple (%)":60.4,"Cohabiting Couple (%)":8.2,"Male Householder (%)":13.7,"Female Householder (%)":17.7},"Kingsbury County, South Dakota":{"Married Couple (%)":87.4,"Cohabiting Couple (%)":3.1,"Male Householder (%)":6,"Female Householder (%)":3.5},"Lake County, South Dakota":{"Married Couple (%)":75.6,"Cohabiting Couple (%)":7.5,"Male Householder (%)":13.2,"Female Householder (%)":3.6},"Lawrence County, South Dakota":{"Married Couple (%)":74.5,"Cohabiting Couple (%)":9.8,"Male Householder (%)":7,"Female Householder (%)":8.6},"Lincoln County, South Dakota":{"Married Couple (%)":76.3,"Cohabiting Couple (%)":5.5,"Male Householder (%)":3.2,"Female Householder (%)":15},"Lyman County, South Dakota":{"Married Couple (%)":49.8,"Cohabiting Couple (%)":12.3,"Male Householder (%)":2.6,"Female Householder (%)":35.3},"Marshall County, South Dakota":{"Married Couple (%)":74.9,"Cohabiting Couple (%)":9.7,"Male Householder (%)":2.9,"Female Householder (%)":12.5},"McCook County, South Dakota":{"Married Couple (%)":84.3,"Cohabiting Couple (%)":2.6,"Male Householder (%)":3.8,"Female Householder (%)":9.3},"McPherson County, South Dakota":{"Married Couple (%)":83.1,"Cohabiting Couple (%)":10.9,"Male Householder (%)":5,"Female Householder (%)":0.9},"Meade County, South Dakota":{"Married Couple (%)":79,"Cohabiting Couple (%)":7,"Male Householder (%)":5.8,"Female Householder (%)":8.2},"Mellette County, South Dakota":{"Married Couple (%)":45.5,"Cohabiting Couple (%)":1.1,"Male Householder (%)":8.7,"Female Householder (%)":44.7},"Miner County, South Dakota":{"Married Couple (%)":71.7,"Cohabiting Couple (%)":7,"Male Householder (%)":16.8,"Female Householder (%)":4.5},"Minnehaha County, South Dakota":{"Married Couple (%)":69.6,"Cohabiting Couple (%)":8.9,"Male Householder (%)":5.3,"Female Householder (%)":16.3},"Moody County, South Dakota":{"Married Couple (%)":67,"Cohabiting Couple (%)":14.6,"Male Householder (%)":10.1,"Female Householder (%)":8.4},"Oglala Lakota County, South Dakota":{"Married Couple (%)":29.5,"Cohabiting Couple (%)":11.3,"Male Householder (%)":6.8,"Female Householder (%)":52.4},"Pennington County, South Dakota":{"Married Couple (%)":67.7,"Cohabiting Couple (%)":9.8,"Male Householder (%)":4.5,"Female Householder (%)":18},"Perkins County, South Dakota":{"Married Couple (%)":75.3,"Cohabiting Couple (%)":1.6,"Male Householder (%)":3.4,"Female Householder (%)":19.7},"Potter County, South Dakota":{"Married Couple (%)":89.5,"Cohabiting Couple (%)":7.5,"Male Householder (%)":1.1,"Female Householder (%)":2},"Roberts County, South Dakota":{"Married Couple (%)":58.2,"Cohabiting Couple (%)":11.1,"Male Householder (%)":9,"Female Householder (%)":21.7},"Sanborn County, South Dakota":{"Married Couple (%)":75.7,"Cohabiting Couple (%)":12,"Male Householder (%)":0.9,"Female Householder (%)":11.4},"Spink County, South Dakota":{"Married Couple (%)":82.6,"Cohabiting Couple (%)":5.1,"Male Householder (%)":2.8,"Female Householder (%)":9.4},"Stanley County, South Dakota":{"Married Couple (%)":82.6,"Cohabiting Couple (%)":6.5,"Male Householder (%)":0,"Female Householder (%)":10.9},"Sully County, South Dakota":{"Married Couple (%)":72.1,"Cohabiting Couple (%)":9.1,"Male Householder (%)":12.5,"Female Householder (%)":6.3},"Todd County, South Dakota":{"Married Couple (%)":33.2,"Cohabiting Couple (%)":12.5,"Male Householder (%)":8.5,"Female Householder (%)":45.7},"Tripp County, South Dakota":{"Married Couple (%)":65,"Cohabiting Couple (%)":13.5,"Male Householder (%)":2.1,"Female Householder (%)":19.4},"Turner County, South Dakota":{"Married Couple (%)":75,"Cohabiting Couple (%)":9.6,"Male Householder (%)":7.9,"Female Householder (%)":7.5},"Union County, South Dakota":{"Married Couple (%)":75.7,"Cohabiting Couple (%)":10.9,"Male Householder (%)":4.2,"Female Householder (%)":9.2},"Walworth County, South Dakota":{"Married Couple (%)":79.9,"Cohabiting Couple (%)":5,"Male Householder (%)":1.5,"Female Householder (%)":13.6},"Yankton County, South Dakota":{"Married Couple (%)":75.8,"Cohabiting Couple (%)":14.9,"Male Householder (%)":0.7,"Female Householder (%)":8.5},"Ziebach County, South Dakota":{"Married Couple (%)":42,"Cohabiting Couple (%)":13,"Male Householder (%)":6.2,"Female Householder (%)":38.8}};
+  const categories = ["Married Couple (%)","Cohabiting Couple (%)","Male Householder (%)","Female Householder (%)"];
+  const ctx = document.getElementById("barChart").getContext("2d");
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: categories,
+        datasets: [{
+          label: "Share of Children (%)",
+          data: values,
+          backgroundColor: ["#5DA5DA","#FAA43A","#60BD68","#F17CB0"]
+        }]
+      },
+      options: {
+        indexAxis: "y",
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            ticks: { callback: v => v + "%" },
+            title: { display: true, text: "Percent of Children" }
+          }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.raw + "%"
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById("countySelect").addEventListener("change", function() {
+    renderChart(Object.values(data[this.value]));
+  });
+
+  renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

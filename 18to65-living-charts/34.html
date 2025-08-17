@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Living Arrangements 18–64 – New Jersey</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+      body { font-family: sans-serif; margin: 1.25rem 2rem; text-align: center; }
+      h2 { margin-bottom: .25rem; font-size: 1.6rem; color: #2c348b; }
+      label { margin-right: .5rem; }
+      select { padding: .45rem .6rem; font-size: 1rem; border-radius: .5rem; border: 2px solid #f39c12; }
+      canvas { width: 100%; max-width: 900px; height: 520px; }
+    </style>
+</head>
+<html>
+  <body>
+    <h2>Living Arrangements of Adults 18–64 in New Jersey</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Atlantic County, New Jersey">Atlantic County, New Jersey</option>
+      <option value="Bergen County, New Jersey">Bergen County, New Jersey</option>
+      <option value="Burlington County, New Jersey">Burlington County, New Jersey</option>
+      <option value="Camden County, New Jersey">Camden County, New Jersey</option>
+      <option value="Cape May County, New Jersey">Cape May County, New Jersey</option>
+      <option value="Cumberland County, New Jersey">Cumberland County, New Jersey</option>
+      <option value="Essex County, New Jersey">Essex County, New Jersey</option>
+      <option value="Gloucester County, New Jersey">Gloucester County, New Jersey</option>
+      <option value="Hudson County, New Jersey">Hudson County, New Jersey</option>
+      <option value="Hunterdon County, New Jersey">Hunterdon County, New Jersey</option>
+      <option value="Mercer County, New Jersey">Mercer County, New Jersey</option>
+      <option value="Middlesex County, New Jersey">Middlesex County, New Jersey</option>
+      <option value="Monmouth County, New Jersey">Monmouth County, New Jersey</option>
+      <option value="Morris County, New Jersey">Morris County, New Jersey</option>
+      <option value="Ocean County, New Jersey">Ocean County, New Jersey</option>
+      <option value="Passaic County, New Jersey">Passaic County, New Jersey</option>
+      <option value="Salem County, New Jersey">Salem County, New Jersey</option>
+      <option value="Somerset County, New Jersey">Somerset County, New Jersey</option>
+      <option value="Sussex County, New Jersey">Sussex County, New Jersey</option>
+      <option value="Union County, New Jersey">Union County, New Jersey</option>
+      <option value="Warren County, New Jersey">Warren County, New Jersey</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>document.addEventListener("DOMContentLoaded", function () {
+  const data = {"Statewide":[9.2,17.7,4.2,12.8,48.5,7.6],"Atlantic County, New Jersey":[10.2,17,4.3,14.1,43.9,10.4],"Bergen County, New Jersey":[7.8,18.7,3.1,11.8,52.7,5.9],"Burlington County, New Jersey":[9.1,19.3,2.9,10.7,50.5,7.5],"Camden County, New Jersey":[10.5,18.2,3.5,14.9,43.2,9.5],"Cape May County, New Jersey":[12.8,9.8,1.5,9.2,56.9,9.8],"Cumberland County, New Jersey":[8.5,17.8,3.2,16.8,41,12.6],"Essex County, New Jersey":[11.8,18,4.8,18,39.7,7.7],"Gloucester County, New Jersey":[7.9,19.1,4.6,11,49.3,8.2],"Hudson County, New Jersey":[13.6,12.2,9.1,14.2,41.1,9.7],"Hunterdon County, New Jersey":[7.7,17,2.1,6.3,60.8,6.1],"Mercer County, New Jersey":[10.4,16.1,5.7,15.5,46.6,5.8],"Middlesex County, New Jersey":[7.3,17.1,4.8,12.5,51.6,6.8],"Monmouth County, New Jersey":[8.7,18.2,3.3,8.8,54.3,6.8],"Morris County, New Jersey":[8.3,18.1,2.7,8.1,56.8,6.1],"Ocean County, New Jersey":[7.7,19,3.5,9.9,52.6,7.3],"Passaic County, New Jersey":[7.2,21.7,3.6,17.7,41.2,8.6],"Salem County, New Jersey":[11.3,21.1,3.3,12.5,42.8,8.9],"Somerset County, New Jersey":[8.2,17.3,3,9.9,55.5,6],"Sussex County, New Jersey":[8,17.1,2.7,8.5,55.4,8.2],"Union County, New Jersey":[7.2,18.6,4.2,15.7,46.2,8.1],"Warren County, New Jersey":[10.7,16.9,3.2,8.6,51.4,9.2]};
+  const cats = ["lives_alone_18_64","with_child_18_64","with_nonrel_18_64","with_other_rel_18_64","with_spouse_only_18_64","with_unmar_partner_18_64"];
+
+  const ORDER = [
+    "Lives alone",
+    "With child",
+    "With nonrelatives",
+    "With other relatives",
+    "With spouse only",
+    "With unmarried partner"
+  ];
+
+  const PRETTY_TO_SNAKE = {
+    "Lives alone":            "lives_alone_18_64",
+    "With child":             "with_child_18_64",
+    "With nonrelatives":      "with_nonrel_18_64",
+    "With other relatives":   "with_other_rel_18_64",
+    "With spouse only":       "with_spouse_only_18_64",
+    "With unmarried partner": "with_unmar_partner_18_64"
+  };
+
+  const COLOR_BY_CAT = {
+    "Lives alone":            "#e41a1c",
+    "With child":             "#ff7f00",
+    "With nonrelatives":      "#4daf4a",
+    "With other relatives":   "#984ea3",
+    "With spouse only":       "#377eb8",
+    "With unmarried partner": "#a65628"
+  };
+
+  // snake key → array index
+  const keyToIndex = Object.fromEntries((cats || []).map((k, i) => [String(k), i]));
+
+  function valuesFor(name) {
+    const row = data?.[name] || [];
+    return ORDER.map(lbl => {
+      const idx = keyToIndex[PRETTY_TO_SNAKE[lbl]];
+      const v = (idx != null && idx >= 0) ? row[idx] : 0;
+      return (typeof v === "number") ? v : Number(v) || 0;
+    });
+  }
+
+  const canvas = document.getElementById("barChart");
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+  let chart;
+
+  function renderChart(name) {
+    const vals = valuesFor(name);
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: ORDER,
+        datasets: [{
+          data: vals,
+          backgroundColor: ORDER.map(c => COLOR_BY_CAT[c]),
+          borderWidth: 0
+        }]
+      },
+      options: {
+        indexAxis: "y",
+        plugins: {
+          legend: { display: false },
+          tooltip: { callbacks: { label: (c) => c.raw + "%" } }
+        },
+        scales: {
+          x: { min: 0, max: 100, ticks: { callback: v => v + "%" } }
+        }
+      }
+    });
+  }
+
+  const DEFAULT_NAME = (data && Object.prototype.hasOwnProperty.call(data, "Statewide"))
+    ? "Statewide" : Object.keys(data || {})[0];
+
+  const sel = document.getElementById("countySelect");
+  if (sel) sel.addEventListener("change", e => renderChart(e.target.value));
+  if (DEFAULT_NAME) renderChart(DEFAULT_NAME);
+});</script>
+  </body>
+</html>
+</html>

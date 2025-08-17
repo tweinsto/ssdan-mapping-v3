@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+
+</head>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Owners: Year Moved In (%) – 12</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #fff;
+    }
+    .container {
+      width: 95%;
+      max-width: 1200px;
+      margin: auto;
+      text-align: center;
+    }
+    #countySelect {
+      font-size: 1rem;
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    canvas {
+      max-width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Owners: Year Moved In (%)</h2>
+    <select id="countySelect"></select>
+    <canvas id="pieChart"></canvas>
+  </div>
+
+  <script>
+    const data = {"Statewide":{"Moved in 2021 or later":7.4,"Moved in 2018–2020":19,"Moved in 2010–2017":30.6,"Moved in 2000–2009":22.2,"Moved in 1990–1999":12.3,"1989 or earlier":8.6},"Alachua County":{"Moved in 2021 or later":8.3167,"Moved in 2018–2020":18.8047,"Moved in 2010–2017":27.0804,"Moved in 2000–2009":20.5186,"Moved in 1990–1999":13.5582,"1989 or earlier":11.7214},"Baker County":{"Moved in 2021 or later":7.6954,"Moved in 2018–2020":16.191,"Moved in 2010–2017":25.8469,"Moved in 2000–2009":23.2062,"Moved in 1990–1999":12.7767,"1989 or earlier":14.2838},"Bay County":{"Moved in 2021 or later":9.4678,"Moved in 2018–2020":21.6254,"Moved in 2010–2017":26.5507,"Moved in 2000–2009":20.3228,"Moved in 1990–1999":12.6308,"1989 or earlier":9.4024},"Bradford County":{"Moved in 2021 or later":4.2939,"Moved in 2018–2020":15.765,"Moved in 2010–2017":20.989,"Moved in 2000–2009":27.8251,"Moved in 1990–1999":12.4322,"1989 or earlier":18.6948},"Brevard County":{"Moved in 2021 or later":6.2481,"Moved in 2018–2020":18.8754,"Moved in 2010–2017":30.4782,"Moved in 2000–2009":21.8962,"Moved in 1990–1999":13.1145,"1989 or earlier":9.3876},"Broward County":{"Moved in 2021 or later":6.7839,"Moved in 2018–2020":17.3019,"Moved in 2010–2017":29.8577,"Moved in 2000–2009":23.9586,"Moved in 1990–1999":14.0731,"1989 or earlier":8.0249},"Calhoun County":{"Moved in 2021 or later":9.027,"Moved in 2018–2020":14.5669,"Moved in 2010–2017":21.7379,"Moved in 2000–2009":21.6254,"Moved in 1990–1999":19.0101,"1989 or earlier":14.0326},"Charlotte County":{"Moved in 2021 or later":8.5001,"Moved in 2018–2020":22.0173,"Moved in 2010–2017":32.7288,"Moved in 2000–2009":20.7059,"Moved in 1990–1999":11.0321,"1989 or earlier":5.0158},"Citrus County":{"Moved in 2021 or later":7.8675,"Moved in 2018–2020":19.3137,"Moved in 2010–2017":31.2469,"Moved in 2000–2009":24.641,"Moved in 1990–1999":10.2166,"1989 or earlier":6.7141},"Clay County":{"Moved in 2021 or later":6.8565,"Moved in 2018–2020":16.2942,"Moved in 2010–2017":28.3661,"Moved in 2000–2009":25.91,"Moved in 1990–1999":12.8692,"1989 or earlier":9.704},"Collier County":{"Moved in 2021 or later":8.2111,"Moved in 2018–2020":20.9368,"Moved in 2010–2017":34.3571,"Moved in 2000–2009":21.4449,"Moved in 1990–1999":10.6713,"1989 or earlier":4.3788},"Columbia County":{"Moved in 2021 or later":6.1517,"Moved in 2018–2020":17.4411,"Moved in 2010–2017":27.5848,"Moved in 2000–2009":24.1208,"Moved in 1990–1999":13.5125,"1989 or earlier":11.1891},"DeSoto County":{"Moved in 2021 or later":5.0416,"Moved in 2018–2020":18.2825,"Moved in 2010–2017":28.3102,"Moved in 2000–2009":27.5679,"Moved in 1990–1999":9.5512,"1989 or earlier":11.2465},"Dixie County":{"Moved in 2021 or later":6.908,"Moved in 2018–2020":12.0062,"Moved in 2010–2017":22.3195,"Moved in 2000–2009":27.0091,"Moved in 1990–1999":20.9963,"1989 or earlier":10.7608},"Duval County":{"Moved in 2021 or later":6.6386,"Moved in 2018–2020":18.2023,"Moved in 2010–2017":26.7075,"Moved in 2000–2009":21.9023,"Moved in 1990–1999":13.5897,"1989 or earlier":12.9597},"Escambia County":{"Moved in 2021 or later":6.9849,"Moved in 2018–2020":18.9353,"Moved in 2010–2017":25.45,"Moved in 2000–2009":20.7999,"Moved in 1990–1999":13.8212,"1989 or earlier":14.0087},"Flagler County":{"Moved in 2021 or later":9.1554,"Moved in 2018–2020":21.357,"Moved in 2010–2017":33.8853,"Moved in 2000–2009":25.2469,"Moved in 1990–1999":7.7458,"1989 or earlier":2.6096},"Franklin County":{"Moved in 2021 or later":5.8189,"Moved in 2018–2020":13.1385,"Moved in 2010–2017":32.8067,"Moved in 2000–2009":20.4845,"Moved in 1990–1999":14.139,"1989 or earlier":13.6124},"Gadsden County":{"Moved in 2021 or later":5.6309,"Moved in 2018–2020":9.3571,"Moved in 2010–2017":16.9758,"Moved in 2000–2009":28.7366,"Moved in 1990–1999":18.4397,"1989 or earlier":20.86},"Gilchrist County":{"Moved in 2021 or later":9.7287,"Moved in 2018–2020":20.0449,"Moved in 2010–2017":20.9435,"Moved in 2000–2009":24.7797,"Moved in 1990–1999":18.0923,"1989 or earlier":6.4109},"Glades County":{"Moved in 2021 or later":3.88,"Moved in 2018–2020":13.4012,"Moved in 2010–2017":25.2889,"Moved in 2000–2009":29.967,"Moved in 1990–1999":18.5746,"1989 or earlier":8.8883},"Gulf County":{"Moved in 2021 or later":7.0677,"Moved in 2018–2020":19.8711,"Moved in 2010–2017":26.5091,"Moved in 2000–2009":22.0623,"Moved in 1990–1999":10.3545,"1989 or earlier":14.1353},"Hamilton County":{"Moved in 2021 or later":2.389,"Moved in 2018–2020":17.9173,"Moved in 2010–2017":25.758,"Moved in 2000–2009":24.1654,"Moved in 1990–1999":14.977,"1989 or earlier":14.7933},"Hardee County":{"Moved in 2021 or later":5.1538,"Moved in 2018–2020":12.9187,"Moved in 2010–2017":30.682,"Moved in 2000–2009":19.1548,"Moved in 1990–1999":15.6674,"1989 or earlier":16.4233},"Hendry County":{"Moved in 2021 or later":9.117,"Moved in 2018–2020":21.7124,"Moved in 2010–2017":30.1159,"Moved in 2000–2009":18.9476,"Moved in 1990–1999":12.8828,"1989 or earlier":7.2243},"Hernando County":{"Moved in 2021 or later":6.6414,"Moved in 2018–2020":20.8315,"Moved in 2010–2017":32.1417,"Moved in 2000–2009":24.2379,"Moved in 1990–1999":10.4863,"1989 or earlier":5.6612},"Highlands County":{"Moved in 2021 or later":8.6687,"Moved in 2018–2020":18.6447,"Moved in 2010–2017":32.7688,"Moved in 2000–2009":21.582,"Moved in 1990–1999":10.5166,"1989 or earlier":7.8192},"Hillsborough County":{"Moved in 2021 or later":6.9303,"Moved in 2018–2020":20.8552,"Moved in 2010–2017":31.1628,"Moved in 2000–2009":20.0876,"Moved in 1990–1999":11.3071,"1989 or earlier":9.6571},"Holmes County":{"Moved in 2021 or later":3.1813,"Moved in 2018–2020":10.7392,"Moved in 2010–2017":28.0986,"Moved in 2000–2009":25.3586,"Moved in 1990–1999":16.4766,"1989 or earlier":16.1456},"Indian River County":{"Moved in 2021 or later":7.6573,"Moved in 2018–2020":20.992,"Moved in 2010–2017":31.8256,"Moved in 2000–2009":23.0673,"Moved in 1990–1999":10.0905,"1989 or earlier":6.3673},"Jackson County":{"Moved in 2021 or later":3.3864,"Moved in 2018–2020":12.9863,"Moved in 2010–2017":24.4842,"Moved in 2000–2009":26.5396,"Moved in 1990–1999":16.3727,"1989 or earlier":16.2309},"Jefferson County":{"Moved in 2021 or later":5.0446,"Moved in 2018–2020":18.794,"Moved in 2010–2017":26.138,"Moved in 2000–2009":19.3571,"Moved in 1990–1999":14.8991,"1989 or earlier":15.7672},"Lafayette County":{"Moved in 2021 or later":2.7205,"Moved in 2018–2020":9.7561,"Moved in 2010–2017":33.4897,"Moved in 2000–2009":21.5291,"Moved in 1990–1999":17.5891,"1989 or earlier":14.9156},"Lake County":{"Moved in 2021 or later":8.2204,"Moved in 2018–2020":21.0058,"Moved in 2010–2017":33.1694,"Moved in 2000–2009":23.1296,"Moved in 1990–1999":9.3649,"1989 or earlier":5.1099},"Lee County":{"Moved in 2021 or later":8.4015,"Moved in 2018–2020":22.5252,"Moved in 2010–2017":35.1393,"Moved in 2000–2009":21.0406,"Moved in 1990–1999":8.4481,"1989 or earlier":4.4452},"Leon County":{"Moved in 2021 or later":6.0602,"Moved in 2018–2020":18.0976,"Moved in 2010–2017":25.2062,"Moved in 2000–2009":23.111,"Moved in 1990–1999":16.1462,"1989 or earlier":11.3789},"Levy County":{"Moved in 2021 or later":7.6987,"Moved in 2018–2020":14.5126,"Moved in 2010–2017":28.67,"Moved in 2000–2009":27.0745,"Moved in 1990–1999":12.2692,"1989 or earlier":9.775},"Liberty County":{"Moved in 2021 or later":2.708,"Moved in 2018–2020":12.8508,"Moved in 2010–2017":31.0684,"Moved in 2000–2009":23.5352,"Moved in 1990–1999":19.4978,"1989 or earlier":10.3397},"Madison County":{"Moved in 2021 or later":5.571,"Moved in 2018–2020":16.6136,"Moved in 2010–2017":18.1854,"Moved in 2000–2009":24.7115,"Moved in 1990–1999":17.7079,"1989 or earlier":17.2105},"Manatee County":{"Moved in 2021 or later":8.8802,"Moved in 2018–2020":20.2458,"Moved in 2010–2017":35.0385,"Moved in 2000–2009":21.0794,"Moved in 1990–1999":9.4857,"1989 or earlier":5.2704},"Marion County":{"Moved in 2021 or later":7.2152,"Moved in 2018–2020":19.8706,"Moved in 2010–2017":30.1862,"Moved in 2000–2009":25.4315,"Moved in 1990–1999":10.3425,"1989 or earlier":6.954},"Martin County":{"Moved in 2021 or later":6.192,"Moved in 2018–2020":20.5345,"Moved in 2010–2017":33.0327,"Moved in 2000–2009":21.0499,"Moved in 1990–1999":10.6336,"1989 or earlier":8.5573},"Miami-Dade County":{"Moved in 2021 or later":6.4475,"Moved in 2018–2020":13.7395,"Moved in 2010–2017":26.6509,"Moved in 2000–2009":23.1447,"Moved in 1990–1999":16.3769,"1989 or earlier":13.6404},"Monroe County":{"Moved in 2021 or later":6.7556,"Moved in 2018–2020":19.2739,"Moved in 2010–2017":28.7582,"Moved in 2000–2009":17.3652,"Moved in 1990–1999":16.2172,"1989 or earlier":11.6299},"Nassau County":{"Moved in 2021 or later":8.5307,"Moved in 2018–2020":24.5834,"Moved in 2010–2017":28.0899,"Moved in 2000–2009":21.3773,"Moved in 1990–1999":10.3393,"1989 or earlier":7.0794},"Okaloosa County":{"Moved in 2021 or later":8.0338,"Moved in 2018–2020":21.745,"Moved in 2010–2017":27.7471,"Moved in 2000–2009":20.3432,"Moved in 1990–1999":11.9971,"1989 or earlier":10.1339},"Okeechobee County":{"Moved in 2021 or later":10.28,"Moved in 2018–2020":20.1625,"Moved in 2010–2017":27.3161,"Moved in 2000–2009":20.9573,"Moved in 1990–1999":12.4614,"1989 or earlier":8.8228},"Orange County":{"Moved in 2021 or later":6.113,"Moved in 2018–2020":19.2024,"Moved in 2010–2017":32.193,"Moved in 2000–2009":22.0492,"Moved in 1990–1999":12.1257,"1989 or earlier":8.3166},"Osceola County":{"Moved in 2021 or later":8.9283,"Moved in 2018–2020":22.4047,"Moved in 2010–2017":35.0857,"Moved in 2000–2009":21.5105,"Moved in 1990–1999":8.5191,"1989 or earlier":3.5516},"Palm Beach County":{"Moved in 2021 or later":7.1512,"Moved in 2018–2020":17.7462,"Moved in 2010–2017":31.8761,"Moved in 2000–2009":23.2204,"Moved in 1990–1999":12.7431,"1989 or earlier":7.2631},"Pasco County":{"Moved in 2021 or later":8.2033,"Moved in 2018–2020":21.2811,"Moved in 2010–2017":32.4402,"Moved in 2000–2009":22.6496,"Moved in 1990–1999":10.474,"1989 or earlier":4.9518},"Pinellas County":{"Moved in 2021 or later":7.2485,"Moved in 2018–2020":18.4895,"Moved in 2010–2017":29.8153,"Moved in 2000–2009":19.8315,"Moved in 1990–1999":13.6657,"1989 or earlier":10.9495},"Polk County":{"Moved in 2021 or later":8.5742,"Moved in 2018–2020":21.9207,"Moved in 2010–2017":31.2739,"Moved in 2000–2009":20.3337,"Moved in 1990–1999":9.9831,"1989 or earlier":7.9144},"Putnam County":{"Moved in 2021 or later":5.7468,"Moved in 2018–2020":16.7101,"Moved in 2010–2017":27.3769,"Moved in 2000–2009":20.7854,"Moved in 1990–1999":15.4475,"1989 or earlier":13.9333},"Santa Rosa County":{"Moved in 2021 or later":9.5164,"Moved in 2018–2020":22.0756,"Moved in 2010–2017":28.6983,"Moved in 2000–2009":20.1909,"Moved in 1990–1999":11.6274,"1989 or earlier":7.8914},"Sarasota County":{"Moved in 2021 or later":8.443,"Moved in 2018–2020":20.571,"Moved in 2010–2017":32.2146,"Moved in 2000–2009":21.5833,"Moved in 1990–1999":10.9195,"1989 or earlier":6.2686},"Seminole County":{"Moved in 2021 or later":5.3479,"Moved in 2018–2020":17.3118,"Moved in 2010–2017":28.9525,"Moved in 2000–2009":23.1543,"Moved in 1990–1999":14.427,"1989 or earlier":10.8065},"St. Johns County":{"Moved in 2021 or later":10.2719,"Moved in 2018–2020":23.8192,"Moved in 2010–2017":31.9713,"Moved in 2000–2009":20.7341,"Moved in 1990–1999":8.4164,"1989 or earlier":4.7871},"St. Lucie County":{"Moved in 2021 or later":9.5554,"Moved in 2018–2020":20.1634,"Moved in 2010–2017":33.2463,"Moved in 2000–2009":21.6757,"Moved in 1990–1999":9.6816,"1989 or earlier":5.6777},"Sumter County":{"Moved in 2021 or later":9.4154,"Moved in 2018–2020":18.178,"Moved in 2010–2017":39.1875,"Moved in 2000–2009":24.3921,"Moved in 1990–1999":6.0039,"1989 or earlier":2.8231},"Suwannee County":{"Moved in 2021 or later":4.6121,"Moved in 2018–2020":14.25,"Moved in 2010–2017":26.0431,"Moved in 2000–2009":26.2414,"Moved in 1990–1999":17.7155,"1989 or earlier":11.1379},"Taylor County":{"Moved in 2021 or later":7.8742,"Moved in 2018–2020":14.1662,"Moved in 2010–2017":20.822,"Moved in 2000–2009":20.4765,"Moved in 1990–1999":12.4204,"1989 or earlier":24.2408},"Union County":{"Moved in 2021 or later":9.8217,"Moved in 2018–2020":12.1232,"Moved in 2010–2017":23.6629,"Moved in 2000–2009":27.3582,"Moved in 1990–1999":16.9854,"1989 or earlier":10.0486},"Volusia County":{"Moved in 2021 or later":7.361,"Moved in 2018–2020":18.5629,"Moved in 2010–2017":30.3705,"Moved in 2000–2009":22.6137,"Moved in 1990–1999":13.1465,"1989 or earlier":7.9454},"Wakulla County":{"Moved in 2021 or later":8.4956,"Moved in 2018–2020":17.559,"Moved in 2010–2017":27.1508,"Moved in 2000–2009":23.8035,"Moved in 1990–1999":13.5363,"1989 or earlier":9.4548},"Walton County":{"Moved in 2021 or later":8.3618,"Moved in 2018–2020":24.7599,"Moved in 2010–2017":31.3755,"Moved in 2000–2009":20.5016,"Moved in 1990–1999":8.8817,"1989 or earlier":6.1195},"Washington County":{"Moved in 2021 or later":5.3328,"Moved in 2018–2020":15.8364,"Moved in 2010–2017":26.6775,"Moved in 2000–2009":22.8568,"Moved in 1990–1999":14.3378,"1989 or earlier":14.9588}};
+    const colors = {
+  'Moved in 2021 or later': '#377EF1',
+  'Moved in 2018–2020': '#FF7F00',
+  'Moved in 2010–2017': '#66A61E',
+  'Moved in 2000–2009': '#E6AB01',
+  'Moved in 1990–1999': '#7570B1',
+  '1989 or earlier': '#E41A1C'
+};
+
+    const ctx = document.getElementById("pieChart").getContext("2d");
+    let chart;
+
+    function renderChart(key) {
+      const values = data[key];
+      const labels = Object.keys(values);
+      const percentages = Object.values(values);
+
+      if (chart) chart.destroy();
+
+      chart = new Chart(ctx, {
+        type: "pie",
+        data: {
+          labels: labels,
+          datasets: [{
+            data: percentages,
+            backgroundColor: labels.map(label => colors[label] || "#cccccc")
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: true,
+          aspectRatio: 1.5,
+          plugins: {
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  return context.label + ": " + context.formattedValue + "%";
+                }
+              }
+            },
+            legend: {
+              position: "right",
+              labels: {
+                usePointStyle: true,
+                pointStyle: "rect"
+              }
+            }
+          }
+        }
+      });
+    }
+
+    // Populate dropdown (Statewide first, then counties A->Z)
+    const select = document.getElementById("countySelect");
+    const keys = ["Statewide", ...Object.keys(data).filter(k => k !== "Statewide").sort()];
+    keys.forEach(k => {
+      const opt = document.createElement("option");
+      opt.value = k;
+      opt.text  = k;
+      select.appendChild(opt);
+    });
+    select.value = "Statewide";
+    select.addEventListener("change", () => renderChart(select.value));
+
+    renderChart("Statewide");
+  </script>
+</body>
+</html>
+</html>

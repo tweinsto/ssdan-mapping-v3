@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Living Arrangements – Maryland</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Living Arrangements of Adults 65+ in Maryland</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Allegany County, Maryland">Allegany County, Maryland</option>
+      <option value="Anne Arundel County, Maryland">Anne Arundel County, Maryland</option>
+      <option value="Baltimore city, Maryland">Baltimore city, Maryland</option>
+      <option value="Baltimore County, Maryland">Baltimore County, Maryland</option>
+      <option value="Calvert County, Maryland">Calvert County, Maryland</option>
+      <option value="Caroline County, Maryland">Caroline County, Maryland</option>
+      <option value="Carroll County, Maryland">Carroll County, Maryland</option>
+      <option value="Cecil County, Maryland">Cecil County, Maryland</option>
+      <option value="Charles County, Maryland">Charles County, Maryland</option>
+      <option value="Dorchester County, Maryland">Dorchester County, Maryland</option>
+      <option value="Frederick County, Maryland">Frederick County, Maryland</option>
+      <option value="Garrett County, Maryland">Garrett County, Maryland</option>
+      <option value="Harford County, Maryland">Harford County, Maryland</option>
+      <option value="Howard County, Maryland">Howard County, Maryland</option>
+      <option value="Kent County, Maryland">Kent County, Maryland</option>
+      <option value="Montgomery County, Maryland">Montgomery County, Maryland</option>
+      <option value="Prince George&#39;s County, Maryland">Prince George's County, Maryland</option>
+      <option value="Queen Anne&#39;s County, Maryland">Queen Anne's County, Maryland</option>
+      <option value="Somerset County, Maryland">Somerset County, Maryland</option>
+      <option value="St. Mary&#39;s County, Maryland">St. Mary's County, Maryland</option>
+      <option value="Talbot County, Maryland">Talbot County, Maryland</option>
+      <option value="Washington County, Maryland">Washington County, Maryland</option>
+      <option value="Wicomico County, Maryland">Wicomico County, Maryland</option>
+      <option value="Worcester County, Maryland">Worcester County, Maryland</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>  const data = {"Statewide":[27,0.3,2.3,17.2,50.6,2.5],"Allegany County, Maryland":[35,0.5,3.1,8,50.9,2.4],"Anne Arundel County, Maryland":[25.3,0.2,1.5,14.7,55.9,2.5],"Baltimore County, Maryland":[30.5,0.2,1.7,15.8,49.1,2.7],"Baltimore city, Maryland":[41.2,0.7,3.9,22.7,28.6,2.9],"Calvert County, Maryland":[22.5,0.2,1,17.8,55.4,3.1],"Caroline County, Maryland":[27,0.3,0.9,17.1,53.1,1.5],"Carroll County, Maryland":[25.5,0.4,1.5,13.4,57.9,1.4],"Cecil County, Maryland":[24.8,0.2,2.7,13.6,56.1,2.6],"Charles County, Maryland":[25.3,0.2,2.2,21.2,49,2.1],"Dorchester County, Maryland":[29.8,0,2.8,10.6,53.4,3.4],"Frederick County, Maryland":[22.9,0.2,1.5,15.8,57.6,2],"Garrett County, Maryland":[32.4,0.8,0.4,8.6,56.2,1.7],"Harford County, Maryland":[23.7,0.1,1,13.8,59.6,1.7],"Howard County, Maryland":[19.6,0.4,1.3,16.6,60.5,1.6],"Kent County, Maryland":[28,0,2.3,6.2,58.5,4.9],"Montgomery County, Maryland":[23.8,0.1,2.7,17.9,53.1,2.4],"Prince George's County, Maryland":[25.4,0.4,3.4,24.7,43.1,2.9],"Queen Anne's County, Maryland":[23.7,0.2,2.1,11.4,59.4,3.2],"Somerset County, Maryland":[34.8,0.1,1.8,10.5,49.1,3.7],"St. Mary's County, Maryland":[22.7,0.8,1.2,18.2,54.6,2.6],"Talbot County, Maryland":[28.2,0.9,4.4,6.8,58.1,1.6],"Washington County, Maryland":[27.2,0.1,2,12.2,56.4,2.1],"Wicomico County, Maryland":[27.9,0.3,2,12.1,52.4,5.3],"Worcester County, Maryland":[25.3,0.3,1.7,7.7,61.8,3.3]};
+  const nationalAvg = [27.3,0.3,2.3,14.5,53.2,2.4];
+  const categories = ["Lives alone","With child","With nonrelatives","With other relatives","With spouse only","With unmarried partner"];
+  const ctx = document.getElementById("barChart").getContext("2d");
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: categories,
+        datasets: [
+          {
+            label: "County/State",
+            data: values,
+            backgroundColor: [
+              "#e41a1c", "#ff7f00", "#4daf4a",
+              "#984ea3", "#377eb8", "#a65628"
+            ]
+          },
+          {
+            label: "",
+            data: categories.map(c => nationalAvg[c]),
+            type: "line",
+            borderColor: "gray",
+            borderWidth: 1,
+            borderDash: [4, 4],
+            pointRadius: 0,
+            fill: false
+          }
+        ]
+      },
+      options: {
+        indexAxis: "y",
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            ticks: {
+              callback: function(v) { return v + "%"; }
+            }
+          }
+        },
+        plugins: {
+          legend: {
+            labels: {
+              filter: function(item) { return item.text !== ""; }
+            }
+          },
+          tooltip: {
+            callbacks: {
+              label: function(ctx) {
+                return ctx.dataset.label !== "" ? ctx.dataset.label + ": " + ctx.raw + "%" : null;
+              }
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById("countySelect").addEventListener("change", function() {
+    renderChart(Object.values(data[this.value]));
+  });
+
+  renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

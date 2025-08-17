@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Living Arrangements – Utah</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          margin: 1rem 2rem;
+          text-align: center;
+        }
+        h2 {
+          font-size: 1.5rem;
+          margin-bottom: 0.5rem;
+        }
+        select {
+          font-size: 1rem;
+          padding: 0.4rem;
+          margin: 1rem 0;
+          border: 1px solid #999;
+          border-radius: 5px;
+        }
+        canvas {
+          width: 100%;
+          max-width: 850px;
+          height: 600px;
+          margin-top: 1rem;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Living Arrangements of Adults 65+ in Utah</h2>
+    <label>Select County:</label>
+            <select id="countySelect">
+          <option value='Statewide'>Default</option>
+<option value='Beaver County, Utah'>Beaver County, Utah</option>
+<option value='Box Elder County, Utah'>Box Elder County, Utah</option>
+<option value='Cache County, Utah'>Cache County, Utah</option>
+<option value='Carbon County, Utah'>Carbon County, Utah</option>
+<option value='Daggett County, Utah'>Daggett County, Utah</option>
+<option value='Davis County, Utah'>Davis County, Utah</option>
+<option value='Duchesne County, Utah'>Duchesne County, Utah</option>
+<option value='Emery County, Utah'>Emery County, Utah</option>
+<option value='Garfield County, Utah'>Garfield County, Utah</option>
+<option value='Grand County, Utah'>Grand County, Utah</option>
+<option value='Iron County, Utah'>Iron County, Utah</option>
+<option value='Juab County, Utah'>Juab County, Utah</option>
+<option value='Kane County, Utah'>Kane County, Utah</option>
+<option value='Millard County, Utah'>Millard County, Utah</option>
+<option value='Morgan County, Utah'>Morgan County, Utah</option>
+<option value='Piute County, Utah'>Piute County, Utah</option>
+<option value='Rich County, Utah'>Rich County, Utah</option>
+<option value='Salt Lake County, Utah'>Salt Lake County, Utah</option>
+<option value='San Juan County, Utah'>San Juan County, Utah</option>
+<option value='Sanpete County, Utah'>Sanpete County, Utah</option>
+<option value='Sevier County, Utah'>Sevier County, Utah</option>
+<option value='Summit County, Utah'>Summit County, Utah</option>
+<option value='Tooele County, Utah'>Tooele County, Utah</option>
+<option value='Uintah County, Utah'>Uintah County, Utah</option>
+<option value='Utah County, Utah'>Utah County, Utah</option>
+<option value='Wasatch County, Utah'>Wasatch County, Utah</option>
+<option value='Washington County, Utah'>Washington County, Utah</option>
+<option value='Wayne County, Utah'>Wayne County, Utah</option>
+<option value='Weber County, Utah'>Weber County, Utah</option>
+        </select>
+    <canvas id="barChart"></canvas>
+    <script>  const chartData = {"Statewide":[0,0,0,0,0,0],"Beaver County, Utah":[0,0,0,0,0,0],"Box Elder County, Utah":[0,0,0,0,0,0],"Cache County, Utah":[0,0,0,0,0,0],"Carbon County, Utah":[0,0,0,0,0,0],"Daggett County, Utah":[0,0,0,0,0,0],"Davis County, Utah":[0,0,0,0,0,0],"Duchesne County, Utah":[0,0,0,0,0,0],"Emery County, Utah":[0,0,0,0,0,0],"Garfield County, Utah":[0,0,0,0,0,0],"Grand County, Utah":[0,0,0,0,0,0],"Iron County, Utah":[0,0,0,0,0,0],"Juab County, Utah":[0,0,0,0,0,0],"Kane County, Utah":[0,0,0,0,0,0],"Millard County, Utah":[0,0,0,0,0,0],"Morgan County, Utah":[0,0,0,0,0,0],"Piute County, Utah":[0,0,0,0,0,0],"Rich County, Utah":[0,0,0,0,0,0],"Salt Lake County, Utah":[0,0,0,0,0,0],"San Juan County, Utah":[0,0,0,0,0,0],"Sanpete County, Utah":[0,0,0,0,0,0],"Sevier County, Utah":[0,0,0,0,0,0],"Summit County, Utah":[0,0,0,0,0,0],"Tooele County, Utah":[0,0,0,0,0,0],"Uintah County, Utah":[0,0,0,0,0,0],"Utah County, Utah":[0,0,0,0,0,0],"Wasatch County, Utah":[0,0,0,0,0,0],"Washington County, Utah":[0,0,0,0,0,0],"Wayne County, Utah":[0,0,0,0,0,0],"Weber County, Utah":[0,0,0,0,0,0]};
+  const categories = ["With unmarried partner","With spouse only","With other relatives","With nonrelatives","With child","Lives alone"];
+  const usAverages = [27.3,0.3,2.3,14.5,53.2,2.4];
+
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(data) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: categories,
+        datasets: [
+          {
+            label: 'Percent (County/State)',
+            data: data,
+            backgroundColor: '#4576a7'
+          },
+          {
+            label: 'National Average',
+            data: categories.map(c => usAverages[c] || 0),
+            type: 'line',
+            borderColor: '#000',
+            borderWidth: 1,
+            pointRadius: 0,
+            fill: false
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        indexAxis: 'y',
+        scales: {
+          x: {
+            title: {
+              display: true,
+              text: 'Percent of 65+ Population'
+            },
+            min: 0,
+            max: 100,
+            ticks: {
+              callback: value => value + '%'
+            }
+          }
+        },
+        plugins: {
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.dataset.label + ': ' + ctx.parsed.x + '%'
+            }
+          },
+          legend: {
+            position: 'top',
+            align: 'start'
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(Object.values(chartData[this.value]));
+  });
+
+  renderChart(Object.values(chartData['Statewide']));</script>
+  </body>
+</html>
+</html>

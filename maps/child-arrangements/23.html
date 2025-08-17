@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Living Arrangements of Children – Maine</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Children’s Living Arrangements (Under 18) – Maine</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Androscoggin County, Maine">Androscoggin County, Maine</option>
+      <option value="Aroostook County, Maine">Aroostook County, Maine</option>
+      <option value="Cumberland County, Maine">Cumberland County, Maine</option>
+      <option value="Franklin County, Maine">Franklin County, Maine</option>
+      <option value="Hancock County, Maine">Hancock County, Maine</option>
+      <option value="Kennebec County, Maine">Kennebec County, Maine</option>
+      <option value="Knox County, Maine">Knox County, Maine</option>
+      <option value="Lincoln County, Maine">Lincoln County, Maine</option>
+      <option value="Oxford County, Maine">Oxford County, Maine</option>
+      <option value="Penobscot County, Maine">Penobscot County, Maine</option>
+      <option value="Piscataquis County, Maine">Piscataquis County, Maine</option>
+      <option value="Sagadahoc County, Maine">Sagadahoc County, Maine</option>
+      <option value="Somerset County, Maine">Somerset County, Maine</option>
+      <option value="Waldo County, Maine">Waldo County, Maine</option>
+      <option value="Washington County, Maine">Washington County, Maine</option>
+      <option value="York County, Maine">York County, Maine</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>  const data = {"Statewide":{"Married Couple (%)":69.7,"Cohabiting Couple (%)":11.6,"Male Householder (%)":4.6,"Female Householder (%)":14.2},"Androscoggin County, Maine":{"Married Couple (%)":62.2,"Cohabiting Couple (%)":16.4,"Male Householder (%)":4.5,"Female Householder (%)":17},"Aroostook County, Maine":{"Married Couple (%)":68.6,"Cohabiting Couple (%)":10.4,"Male Householder (%)":7.8,"Female Householder (%)":13.2},"Cumberland County, Maine":{"Married Couple (%)":76.5,"Cohabiting Couple (%)":6.5,"Male Householder (%)":4.9,"Female Householder (%)":12.1},"Franklin County, Maine":{"Married Couple (%)":69.6,"Cohabiting Couple (%)":12,"Male Householder (%)":5.5,"Female Householder (%)":12.9},"Hancock County, Maine":{"Married Couple (%)":73.7,"Cohabiting Couple (%)":9.4,"Male Householder (%)":4.6,"Female Householder (%)":12.3},"Kennebec County, Maine":{"Married Couple (%)":63.3,"Cohabiting Couple (%)":15.3,"Male Householder (%)":4.2,"Female Householder (%)":17.2},"Knox County, Maine":{"Married Couple (%)":66.1,"Cohabiting Couple (%)":15.2,"Male Householder (%)":4.6,"Female Householder (%)":14.1},"Lincoln County, Maine":{"Married Couple (%)":69.4,"Cohabiting Couple (%)":12.6,"Male Householder (%)":3.3,"Female Householder (%)":14.6},"Oxford County, Maine":{"Married Couple (%)":62.8,"Cohabiting Couple (%)":19.1,"Male Householder (%)":2.6,"Female Householder (%)":15.5},"Penobscot County, Maine":{"Married Couple (%)":71.9,"Cohabiting Couple (%)":11.7,"Male Householder (%)":3.6,"Female Householder (%)":12.8},"Piscataquis County, Maine":{"Married Couple (%)":64.9,"Cohabiting Couple (%)":18.8,"Male Householder (%)":5.5,"Female Householder (%)":10.7},"Sagadahoc County, Maine":{"Married Couple (%)":70,"Cohabiting Couple (%)":8.8,"Male Householder (%)":4.3,"Female Householder (%)":17},"Somerset County, Maine":{"Married Couple (%)":66.9,"Cohabiting Couple (%)":17.6,"Male Householder (%)":3.6,"Female Householder (%)":11.9},"Waldo County, Maine":{"Married Couple (%)":63.7,"Cohabiting Couple (%)":12.5,"Male Householder (%)":3.9,"Female Householder (%)":19.9},"Washington County, Maine":{"Married Couple (%)":61.5,"Cohabiting Couple (%)":16.2,"Male Householder (%)":4.3,"Female Householder (%)":18.1},"York County, Maine":{"Married Couple (%)":72,"Cohabiting Couple (%)":9.2,"Male Householder (%)":5,"Female Householder (%)":13.8}};
+  const categories = ["Married Couple (%)","Cohabiting Couple (%)","Male Householder (%)","Female Householder (%)"];
+  const ctx = document.getElementById("barChart").getContext("2d");
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: categories,
+        datasets: [{
+          label: "Share of Children (%)",
+          data: values,
+          backgroundColor: ["#5DA5DA","#FAA43A","#60BD68","#F17CB0"]
+        }]
+      },
+      options: {
+        indexAxis: "y",
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            ticks: { callback: v => v + "%" },
+            title: { display: true, text: "Percent of Children" }
+          }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.raw + "%"
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById("countySelect").addEventListener("change", function() {
+    renderChart(Object.values(data[this.value]));
+  });
+
+  renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

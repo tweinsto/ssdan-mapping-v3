@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Income Distribution – Maine</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          text-align: center;
+          margin: 2rem;
+        }
+        select {
+          font-size: 1rem;
+          padding: 0.4rem;
+          margin-bottom: 1rem;
+        }
+        canvas {
+          width: 100%;
+          max-width: 700px;
+          height: 400px;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Income Share by Quintile – Maine</h2>
+    <label>Select County, State:</label>
+    <select id="countySelect"><option value='Statewide'>Statewide</option>
+<option value='Androscoggin, Maine'>Androscoggin, Maine</option>
+<option value='Aroostook, Maine'>Aroostook, Maine</option>
+<option value='Cumberland, Maine'>Cumberland, Maine</option>
+<option value='Franklin, Maine'>Franklin, Maine</option>
+<option value='Hancock, Maine'>Hancock, Maine</option>
+<option value='Kennebec, Maine'>Kennebec, Maine</option>
+<option value='Knox, Maine'>Knox, Maine</option>
+<option value='Lincoln, Maine'>Lincoln, Maine</option>
+<option value='Oxford, Maine'>Oxford, Maine</option>
+<option value='Penobscot, Maine'>Penobscot, Maine</option>
+<option value='Piscataquis, Maine'>Piscataquis, Maine</option>
+<option value='Sagadahoc, Maine'>Sagadahoc, Maine</option>
+<option value='Somerset, Maine'>Somerset, Maine</option>
+<option value='Waldo, Maine'>Waldo, Maine</option>
+<option value='Washington, Maine'>Washington, Maine</option>
+<option value='York, Maine'>York, Maine</option></select>
+    <canvas id="barChart" width="700" height="400"></canvas>
+    <script>  const incomeData = {"Statewide":[5.1,8.5,12.9,26.9,46.6],"Androscoggin, Maine":[5.6,9.1,13.9,27,44.3],"Aroostook, Maine":[4.7,8.1,12.7,26.8,47.7],"Cumberland, Maine":[4.8,7.9,12,26.6,48.6],"Franklin, Maine":[4.9,8,12.6,26.5,47.9],"Hancock, Maine":[5,8.4,12.7,26.9,46.9],"Kennebec, Maine":[5.4,8.7,13.5,26.9,45.5],"Knox, Maine":[5.2,8.3,12.3,27.3,47],"Lincoln, Maine":[5,7.9,11.9,26.2,49.1],"Oxford, Maine":[5.1,8.4,13.5,27.3,45.7],"Penobscot, Maine":[5,8.4,13.3,27.4,45.9],"Piscataquis, Maine":[5,8,11.7,26.9,48.4],"Sagadahoc, Maine":[5.4,8.9,12.9,26.1,46.8],"Somerset, Maine":[5.2,8.7,13.6,27.1,45.4],"Waldo, Maine":[5.5,9.1,13.6,26.7,45.2],"Washington, Maine":[4.6,8.1,12.6,27.3,47.4],"York, Maine":[5.9,9.4,13.9,26.8,44.1]};
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Bottom 20%', 'Second 20%', 'Middle 20%', 'Fourth 20%', 'Top 20%'],
+        datasets: [{
+          label: 'Share (%)',
+          data: values,
+          backgroundColor: '#4576a7'
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.parsed.y + '%'
+            }
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 100,
+            title: {
+              display: true,
+              text: 'Income Share (%)'
+            }
+          },
+          x: {
+            title: {
+              display: true,
+              text: 'Quintile'
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(Object.values(incomeData[this.value]));
+  });
+
+  renderChart(Object.values(incomeData['Statewide']));</script>
+  </body>
+</html>
+</html>

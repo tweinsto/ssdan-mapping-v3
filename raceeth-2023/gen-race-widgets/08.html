@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="utf-8"/>
+  <title>Race/Ethnicity in State 08</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          text-align: center;
+          margin: 2rem;
+          background-color: white;
+        }
+        canvas {
+          max-width: 500px;
+          margin: 1rem auto;
+        }
+        select {
+          font-size: 1rem;
+          padding: 0.4rem;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Race &amp; Ethnicity Distribution</h2>
+    <label>Select County:</label>
+    <select id="countySelect"><option value="Statewide">Statewide</option>
+<option value="Adams County, Colorado">Adams County, Colorado</option>
+<option value="Alamosa County, Colorado">Alamosa County, Colorado</option>
+<option value="Arapahoe County, Colorado">Arapahoe County, Colorado</option>
+<option value="Archuleta County, Colorado">Archuleta County, Colorado</option>
+<option value="Baca County, Colorado">Baca County, Colorado</option>
+<option value="Bent County, Colorado">Bent County, Colorado</option>
+<option value="Boulder County, Colorado">Boulder County, Colorado</option>
+<option value="Broomfield County, Colorado">Broomfield County, Colorado</option>
+<option value="Chaffee County, Colorado">Chaffee County, Colorado</option>
+<option value="Cheyenne County, Colorado">Cheyenne County, Colorado</option>
+<option value="Clear Creek County, Colorado">Clear Creek County, Colorado</option>
+<option value="Conejos County, Colorado">Conejos County, Colorado</option>
+<option value="Costilla County, Colorado">Costilla County, Colorado</option>
+<option value="Crowley County, Colorado">Crowley County, Colorado</option>
+<option value="Custer County, Colorado">Custer County, Colorado</option>
+<option value="Delta County, Colorado">Delta County, Colorado</option>
+<option value="Denver County, Colorado">Denver County, Colorado</option>
+<option value="Dolores County, Colorado">Dolores County, Colorado</option>
+<option value="Douglas County, Colorado">Douglas County, Colorado</option>
+<option value="Eagle County, Colorado">Eagle County, Colorado</option>
+<option value="El Paso County, Colorado">El Paso County, Colorado</option>
+<option value="Elbert County, Colorado">Elbert County, Colorado</option>
+<option value="Fremont County, Colorado">Fremont County, Colorado</option>
+<option value="Garfield County, Colorado">Garfield County, Colorado</option>
+<option value="Gilpin County, Colorado">Gilpin County, Colorado</option>
+<option value="Grand County, Colorado">Grand County, Colorado</option>
+<option value="Gunnison County, Colorado">Gunnison County, Colorado</option>
+<option value="Hinsdale County, Colorado">Hinsdale County, Colorado</option>
+<option value="Huerfano County, Colorado">Huerfano County, Colorado</option>
+<option value="Jackson County, Colorado">Jackson County, Colorado</option>
+<option value="Jefferson County, Colorado">Jefferson County, Colorado</option>
+<option value="Kiowa County, Colorado">Kiowa County, Colorado</option>
+<option value="Kit Carson County, Colorado">Kit Carson County, Colorado</option>
+<option value="La Plata County, Colorado">La Plata County, Colorado</option>
+<option value="Lake County, Colorado">Lake County, Colorado</option>
+<option value="Larimer County, Colorado">Larimer County, Colorado</option>
+<option value="Las Animas County, Colorado">Las Animas County, Colorado</option>
+<option value="Lincoln County, Colorado">Lincoln County, Colorado</option>
+<option value="Logan County, Colorado">Logan County, Colorado</option>
+<option value="Mesa County, Colorado">Mesa County, Colorado</option>
+<option value="Mineral County, Colorado">Mineral County, Colorado</option>
+<option value="Moffat County, Colorado">Moffat County, Colorado</option>
+<option value="Montezuma County, Colorado">Montezuma County, Colorado</option>
+<option value="Montrose County, Colorado">Montrose County, Colorado</option>
+<option value="Morgan County, Colorado">Morgan County, Colorado</option>
+<option value="Otero County, Colorado">Otero County, Colorado</option>
+<option value="Ouray County, Colorado">Ouray County, Colorado</option>
+<option value="Park County, Colorado">Park County, Colorado</option>
+<option value="Phillips County, Colorado">Phillips County, Colorado</option>
+<option value="Pitkin County, Colorado">Pitkin County, Colorado</option>
+<option value="Prowers County, Colorado">Prowers County, Colorado</option>
+<option value="Pueblo County, Colorado">Pueblo County, Colorado</option>
+<option value="Rio Blanco County, Colorado">Rio Blanco County, Colorado</option>
+<option value="Rio Grande County, Colorado">Rio Grande County, Colorado</option>
+<option value="Routt County, Colorado">Routt County, Colorado</option>
+<option value="Saguache County, Colorado">Saguache County, Colorado</option>
+<option value="San Juan County, Colorado">San Juan County, Colorado</option>
+<option value="San Miguel County, Colorado">San Miguel County, Colorado</option>
+<option value="Sedgwick County, Colorado">Sedgwick County, Colorado</option>
+<option value="Summit County, Colorado">Summit County, Colorado</option>
+<option value="Teller County, Colorado">Teller County, Colorado</option>
+<option value="Washington County, Colorado">Washington County, Colorado</option>
+<option value="Weld County, Colorado">Weld County, Colorado</option>
+<option value="Yuma County, Colorado">Yuma County, Colorado</option></select>
+    <canvas id="pieChart" width="400" height="400"></canvas>
+    <script>  let raceData = {};
+  fetch("08.json")
+    .then(resp => resp.json())
+    .then(data => {
+      raceData = data;
+      const raceLabels = ["American Indian / Alaska Native","Asian","Black","Hispanic","NHMulti","NHOther","NHWhite","Pacific Islander"];
+      const ctx = document.getElementById("pieChart").getContext("2d");
+      let chart;
+
+      function renderChart(values) {
+        if (chart) chart.destroy();
+        chart = new Chart(ctx, {
+          type: "pie",
+          data: {
+            labels: raceLabels,
+            datasets: [{
+              data: values,
+              backgroundColor: [
+                "#f94144", "#f3722c", "#f9c74f", "#90be6d",
+                "#9d4edd", "#577590", "#d0cde1", "#43aa8b"
+              ]
+            }]
+          },
+          options: {
+            responsive: true,
+            plugins: {
+              legend: {
+                position: "bottom",
+                labels: {
+                  font: { size: 14 },
+                  boxWidth: 20,
+                  padding: 15,
+                  usePointStyle: true,
+                  pointStyle: "rectRounded"
+                }
+              },
+              tooltip: {
+                callbacks: {
+                  label: function(context) {
+                    return context.label + ": " + context.parsed + "%";
+                  }
+                }
+              }
+            }
+          }
+        });
+      }
+
+      document.getElementById("countySelect").addEventListener("change", function() {
+        const selected = this.value;
+        const values = Object.values(raceData[selected]);
+        renderChart(values);
+      });
+
+      renderChart(Object.values(raceData["Statewide"]));
+      document.getElementById("countySelect").value = "Statewide";
+    });</script>
+  </body>
+</html>
+</html>

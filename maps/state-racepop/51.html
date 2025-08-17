@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Race by Year – Virginia</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      margin: 1em;
+    }
+    #buttons button {
+      margin: 0 5px;
+    }
+    #chart-container {
+      width: 90%;
+      max-width: 800px;
+      margin: auto;
+    }
+    
+    #buttons button.active {
+  background-color: dodgerblue;
+  color: white;
+  border: none;
+  border-radius: 4px;
+}
+
+  </style>
+</head>
+<body>
+  <h2>Race/Ethnicity Population – Virginia</h2>
+
+  <label for="countySelect">County:</label>
+  <select id="countySelect">
+    <option value="Statewide" selected>Statewide</option>
+<option value="Accomack County">Accomack County</option>
+<option value="Albemarle County">Albemarle County</option>
+<option value="Alexandria city">Alexandria city</option>
+<option value="Alleghany County">Alleghany County</option>
+<option value="Amelia County">Amelia County</option>
+<option value="Amherst County">Amherst County</option>
+<option value="Appomattox County">Appomattox County</option>
+<option value="Arlington County">Arlington County</option>
+<option value="Augusta County">Augusta County</option>
+<option value="Bath County">Bath County</option>
+<option value="Bedford city">Bedford city</option>
+<option value="Bedford County">Bedford County</option>
+<option value="Bland County">Bland County</option>
+<option value="Botetourt County">Botetourt County</option>
+<option value="Bristol city">Bristol city</option>
+<option value="Brunswick County">Brunswick County</option>
+<option value="Buchanan County">Buchanan County</option>
+<option value="Buckingham County">Buckingham County</option>
+<option value="Buena Vista city">Buena Vista city</option>
+<option value="Campbell County">Campbell County</option>
+<option value="Caroline County">Caroline County</option>
+<option value="Carroll County">Carroll County</option>
+<option value="Charles City County">Charles City County</option>
+<option value="Charlotte County">Charlotte County</option>
+<option value="Charlottesville city">Charlottesville city</option>
+<option value="Chesapeake city">Chesapeake city</option>
+<option value="Chesterfield County">Chesterfield County</option>
+<option value="Clarke County">Clarke County</option>
+<option value="Colonial Heights city">Colonial Heights city</option>
+<option value="Covington city">Covington city</option>
+<option value="Craig County">Craig County</option>
+<option value="Culpeper County">Culpeper County</option>
+<option value="Cumberland County">Cumberland County</option>
+<option value="Danville city">Danville city</option>
+<option value="Dickenson County">Dickenson County</option>
+<option value="Dinwiddie County">Dinwiddie County</option>
+<option value="Emporia city">Emporia city</option>
+<option value="Essex County">Essex County</option>
+<option value="Fairfax city">Fairfax city</option>
+<option value="Fairfax County">Fairfax County</option>
+<option value="Falls Church city">Falls Church city</option>
+<option value="Fauquier County">Fauquier County</option>
+<option value="Floyd County">Floyd County</option>
+<option value="Fluvanna County">Fluvanna County</option>
+<option value="Franklin city">Franklin city</option>
+<option value="Franklin County">Franklin County</option>
+<option value="Frederick County">Frederick County</option>
+<option value="Fredericksburg city">Fredericksburg city</option>
+<option value="Galax city">Galax city</option>
+<option value="Giles County">Giles County</option>
+<option value="Gloucester County">Gloucester County</option>
+<option value="Goochland County">Goochland County</option>
+<option value="Grayson County">Grayson County</option>
+<option value="Greene County">Greene County</option>
+<option value="Greensville County">Greensville County</option>
+<option value="Halifax County">Halifax County</option>
+<option value="Hampton city">Hampton city</option>
+<option value="Hanover County">Hanover County</option>
+<option value="Harrisonburg city">Harrisonburg city</option>
+<option value="Henrico County">Henrico County</option>
+<option value="Henry County">Henry County</option>
+<option value="Highland County">Highland County</option>
+<option value="Hopewell city">Hopewell city</option>
+<option value="Isle of Wight County">Isle of Wight County</option>
+<option value="James City County">James City County</option>
+<option value="King and Queen County">King and Queen County</option>
+<option value="King George County">King George County</option>
+<option value="King William County">King William County</option>
+<option value="Lancaster County">Lancaster County</option>
+<option value="Lee County">Lee County</option>
+<option value="Lexington city">Lexington city</option>
+<option value="Loudoun County">Loudoun County</option>
+<option value="Louisa County">Louisa County</option>
+<option value="Lunenburg County">Lunenburg County</option>
+<option value="Lynchburg city">Lynchburg city</option>
+<option value="Madison County">Madison County</option>
+<option value="Manassas city">Manassas city</option>
+<option value="Manassas Park city">Manassas Park city</option>
+<option value="Martinsville city">Martinsville city</option>
+<option value="Mathews County">Mathews County</option>
+<option value="Mecklenburg County">Mecklenburg County</option>
+<option value="Middlesex County">Middlesex County</option>
+<option value="Montgomery County">Montgomery County</option>
+<option value="Nelson County">Nelson County</option>
+<option value="New Kent County">New Kent County</option>
+<option value="Newport News city">Newport News city</option>
+<option value="Norfolk city">Norfolk city</option>
+<option value="Northampton County">Northampton County</option>
+<option value="Northumberland County">Northumberland County</option>
+<option value="Norton city">Norton city</option>
+<option value="Nottoway County">Nottoway County</option>
+<option value="Orange County">Orange County</option>
+<option value="Page County">Page County</option>
+<option value="Patrick County">Patrick County</option>
+<option value="Petersburg city">Petersburg city</option>
+<option value="Pittsylvania County">Pittsylvania County</option>
+<option value="Poquoson city">Poquoson city</option>
+<option value="Portsmouth city">Portsmouth city</option>
+<option value="Powhatan County">Powhatan County</option>
+<option value="Prince Edward County">Prince Edward County</option>
+<option value="Prince George County">Prince George County</option>
+<option value="Prince William County">Prince William County</option>
+<option value="Pulaski County">Pulaski County</option>
+<option value="Radford city">Radford city</option>
+<option value="Rappahannock County">Rappahannock County</option>
+<option value="Richmond city">Richmond city</option>
+<option value="Richmond County">Richmond County</option>
+<option value="Roanoke city">Roanoke city</option>
+<option value="Roanoke County">Roanoke County</option>
+<option value="Rockbridge County">Rockbridge County</option>
+<option value="Rockingham County">Rockingham County</option>
+<option value="Russell County">Russell County</option>
+<option value="Salem city">Salem city</option>
+<option value="Scott County">Scott County</option>
+<option value="Shenandoah County">Shenandoah County</option>
+<option value="Smyth County">Smyth County</option>
+<option value="Southampton County">Southampton County</option>
+<option value="Spotsylvania County">Spotsylvania County</option>
+<option value="Stafford County">Stafford County</option>
+<option value="Staunton city">Staunton city</option>
+<option value="Suffolk city">Suffolk city</option>
+<option value="Surry County">Surry County</option>
+<option value="Sussex County">Sussex County</option>
+<option value="Tazewell County">Tazewell County</option>
+<option value="Virginia Beach city">Virginia Beach city</option>
+<option value="Warren County">Warren County</option>
+<option value="Washington County">Washington County</option>
+<option value="Waynesboro city">Waynesboro city</option>
+<option value="Westmoreland County">Westmoreland County</option>
+<option value="Williamsburg city">Williamsburg city</option>
+<option value="Winchester city">Winchester city</option>
+<option value="Wise County">Wise County</option>
+<option value="Wythe County">Wythe County</option>
+<option value="York County">York County</option>
+  </select>
+
+  <div id="buttons">
+  <button id="btn2010" onclick="updateChart(2010)">2010</button>
+  <button id="btn2020" onclick="updateChart(2020)">2020</button>
+</div>
+
+  <div id="chart-container">
+    <canvas id="raceChart"></canvas>
+  </div>
+
+   <script>
+    let data = null;
+    let chart = null;
+    let currentYear = 2010;
+
+    fetch("51.json")
+      .then(res => res.json())
+      .then(json => {
+        data = json;
+        document.getElementById("countySelect").addEventListener("change", () => updateChart(currentYear));
+        updateChart(currentYear);
+      });
+
+    function updateChart(year) {
+      currentYear = year;
+
+      // Highlight selected button
+      document.querySelectorAll("#buttons button").forEach(btn => btn.classList.remove("active"));
+      const activeBtn = document.getElementById(`btn${year}`);
+      if (activeBtn) activeBtn.classList.add("active");
+
+      const county = document.getElementById("countySelect").value;
+      const entry = data[county] && data[county][year];
+      if (!entry) return;
+
+      const races = Object.keys(entry[0]).filter(k => !["state_fips", "county", "year", "total"].includes(k));
+      const values = races.map(r => entry[0][r]);
+
+      const config = {
+        type: "bar",
+        data: {
+          labels: races,
+          datasets: [{
+            label: "Population",
+            data: values,
+            backgroundColor: "dodgerblue"
+          }]
+        },
+        options: {
+          plugins: {
+            legend: { display: false }
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              ticks: {
+                callback: function(value) {
+                  return value.toLocaleString();
+                }
+              }
+            }
+          }
+        }
+      };
+
+      if (chart) {
+        chart.destroy();
+      }
+      chart = new Chart(document.getElementById("raceChart"), config);
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+
+</head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Median Earnings by Industry – 22</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background: white;
+    }
+    .layout {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1.5rem;
+    }
+    label {
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+    #countySelect {
+      font-size: 1rem;
+      padding: 0.4rem 0.8rem;
+      margin-bottom: 1rem;
+    }
+    canvas {
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <label for="countySelect">Median Earnings by Industry:</label>
+    <select id="countySelect"></select>
+    <canvas id="barChart"></canvas>
+  </div>
+
+  <script>
+    const data = {"Statewide":{"Agriculture & mining":74965,"Arts & food services":31350,"Construction":55185,"Education & health":50423,"Finance & real estate":59206,"Information":57973,"Manufacturing":73341,"Other services":41565,"Prof. & waste services":61139,"Public administration":58794,"Retail trade":36683,"Transport & utilities":62688,"Wholesale trade":59573},"Acadia Parish":{"Agriculture & mining":88167,"Arts & food services":25443,"Construction":36618,"Education & health":41901,"Finance & real estate":40609,"Information":22284,"Manufacturing":60583,"Other services":40417,"Prof. & waste services":57688,"Public administration":48947,"Retail trade":41893,"Transport & utilities":52532,"Wholesale trade":50256},"Allen Parish":{"Agriculture & mining":117516,"Arts & food services":31016,"Construction":70227,"Education & health":39121,"Finance & real estate":35357,"Information":0,"Manufacturing":69479,"Other services":26321,"Prof. & waste services":25185,"Public administration":51722,"Retail trade":26929,"Transport & utilities":57750,"Wholesale trade":39241},"Ascension Parish":{"Agriculture & mining":141250,"Arts & food services":32030,"Construction":65646,"Education & health":51978,"Finance & real estate":75573,"Information":95284,"Manufacturing":106680,"Other services":36569,"Prof. & waste services":71569,"Public administration":67500,"Retail trade":41059,"Transport & utilities":73253,"Wholesale trade":58147},"Assumption Parish":{"Agriculture & mining":73010,"Arts & food services":37045,"Construction":69432,"Education & health":49575,"Finance & real estate":65313,"Information":49352,"Manufacturing":60341,"Other services":32617,"Prof. & waste services":68450,"Public administration":57713,"Retail trade":26266,"Transport & utilities":44844,"Wholesale trade":59261},"Avoyelles Parish":{"Agriculture & mining":41467,"Arts & food services":29253,"Construction":56167,"Education & health":41730,"Finance & real estate":19974,"Information":43558,"Manufacturing":35320,"Other services":40924,"Prof. & waste services":70341,"Public administration":40556,"Retail trade":36824,"Transport & utilities":54665,"Wholesale trade":42790},"Beauregard Parish":{"Agriculture & mining":88519,"Arts & food services":36387,"Construction":67056,"Education & health":39513,"Finance & real estate":45673,"Information":49514,"Manufacturing":92808,"Other services":48750,"Prof. & waste services":66771,"Public administration":55600,"Retail trade":29778,"Transport & utilities":69618,"Wholesale trade":37750},"Bienville Parish":{"Agriculture & mining":27143,"Arts & food services":22500,"Construction":41792,"Education & health":34527,"Finance & real estate":36106,"Information":0,"Manufacturing":49063,"Other services":35179,"Prof. & waste services":28816,"Public administration":60156,"Retail trade":35833,"Transport & utilities":57708,"Wholesale trade":145670},"Bossier Parish":{"Agriculture & mining":95590,"Arts & food services":26695,"Construction":47673,"Education & health":57528,"Finance & real estate":59566,"Information":40424,"Manufacturing":64009,"Other services":39970,"Prof. & waste services":59922,"Public administration":58499,"Retail trade":40732,"Transport & utilities":65507,"Wholesale trade":52292},"Caddo Parish":{"Agriculture & mining":57352,"Arts & food services":28877,"Construction":48943,"Education & health":50999,"Finance & real estate":47429,"Information":65806,"Manufacturing":54877,"Other services":36872,"Prof. & waste services":50738,"Public administration":58967,"Retail trade":35552,"Transport & utilities":55248,"Wholesale trade":53217},"Calcasieu Parish":{"Agriculture & mining":62413,"Arts & food services":33794,"Construction":59622,"Education & health":49154,"Finance & real estate":58239,"Information":53920,"Manufacturing":115398,"Other services":51728,"Prof. & waste services":58718,"Public administration":53750,"Retail trade":33928,"Transport & utilities":71152,"Wholesale trade":70684},"Caldwell Parish":{"Agriculture & mining":71058,"Arts & food services":95635,"Construction":51796,"Education & health":49900,"Finance & real estate":73382,"Information":101250,"Manufacturing":45184,"Other services":31238,"Prof. & waste services":44007,"Public administration":55556,"Retail trade":17299,"Transport & utilities":45329,"Wholesale trade":34423},"Cameron Parish":{"Agriculture & mining":158125,"Arts & food services":71130,"Construction":62383,"Education & health":49561,"Finance & real estate":0,"Information":41023,"Manufacturing":103371,"Other services":168047,"Prof. & waste services":75614,"Public administration":31792,"Retail trade":38750,"Transport & utilities":62099,"Wholesale trade":0},"Catahoula Parish":{"Agriculture & mining":61923,"Arts & food services":25667,"Construction":45667,"Education & health":47708,"Finance & real estate":57188,"Information":0,"Manufacturing":10461,"Other services":39423,"Prof. & waste services":37193,"Public administration":46250,"Retail trade":27266,"Transport & utilities":31250,"Wholesale trade":75192},"Claiborne Parish":{"Agriculture & mining":45398,"Arts & food services":21566,"Construction":35766,"Education & health":30137,"Finance & real estate":16250,"Information":16993,"Manufacturing":36932,"Other services":20938,"Prof. & waste services":39868,"Public administration":36784,"Retail trade":29836,"Transport & utilities":36591,"Wholesale trade":0},"Concordia Parish":{"Agriculture & mining":41151,"Arts & food services":33377,"Construction":41096,"Education & health":40625,"Finance & real estate":39000,"Information":0,"Manufacturing":48000,"Other services":21797,"Prof. & waste services":34089,"Public administration":46343,"Retail trade":41250,"Transport & utilities":65143,"Wholesale trade":36442},"De Soto Parish":{"Agriculture & mining":88680,"Arts & food services":23222,"Construction":51982,"Education & health":39363,"Finance & real estate":47361,"Information":0,"Manufacturing":57286,"Other services":55686,"Prof. & waste services":65179,"Public administration":61048,"Retail trade":33823,"Transport & utilities":70469,"Wholesale trade":40714},"East Baton Rouge Parish":{"Agriculture & mining":65600,"Arts & food services":33050,"Construction":56136,"Education & health":53795,"Finance & real estate":65124,"Information":54444,"Manufacturing":73513,"Other services":43739,"Prof. & waste services":68905,"Public administration":66432,"Retail trade":38428,"Transport & utilities":69516,"Wholesale trade":82861},"East Carroll Parish":{"Agriculture & mining":23750,"Arts & food services":0,"Construction":101413,"Education & health":38568,"Finance & real estate":34050,"Information":0,"Manufacturing":36576,"Other services":32589,"Prof. & waste services":19138,"Public administration":27600,"Retail trade":31382,"Transport & utilities":0,"Wholesale trade":46467},"East Feliciana Parish":{"Agriculture & mining":57877,"Arts & food services":24324,"Construction":65506,"Education & health":58466,"Finance & real estate":80385,"Information":43214,"Manufacturing":97857,"Other services":61875,"Prof. & waste services":73333,"Public administration":58415,"Retail trade":33580,"Transport & utilities":75104,"Wholesale trade":95625},"Evangeline Parish":{"Agriculture & mining":98438,"Arts & food services":16429,"Construction":46672,"Education & health":43540,"Finance & real estate":34020,"Information":0,"Manufacturing":61341,"Other services":44038,"Prof. & waste services":59432,"Public administration":41053,"Retail trade":29460,"Transport & utilities":57673,"Wholesale trade":29853},"Franklin Parish":{"Agriculture & mining":51974,"Arts & food services":13418,"Construction":75536,"Education & health":41207,"Finance & real estate":37558,"Information":29167,"Manufacturing":40993,"Other services":29792,"Prof. & waste services":36360,"Public administration":49679,"Retail trade":37469,"Transport & utilities":109340,"Wholesale trade":45699},"Grant Parish":{"Agriculture & mining":73056,"Arts & food services":34107,"Construction":49674,"Education & health":43865,"Finance & real estate":36967,"Information":88472,"Manufacturing":78977,"Other services":123009,"Prof. & waste services":37064,"Public administration":41667,"Retail trade":26477,"Transport & utilities":49180,"Wholesale trade":58309},"Iberia Parish":{"Agriculture & mining":71054,"Arts & food services":26281,"Construction":60053,"Education & health":45729,"Finance & real estate":51413,"Information":45809,"Manufacturing":62361,"Other services":38214,"Prof. & waste services":50934,"Public administration":56727,"Retail trade":36340,"Transport & utilities":64626,"Wholesale trade":61000},"Iberville Parish":{"Agriculture & mining":28400,"Arts & food services":24983,"Construction":59318,"Education & health":50708,"Finance & real estate":66492,"Information":52723,"Manufacturing":84103,"Other services":44672,"Prof. & waste services":39956,"Public administration":61875,"Retail trade":27560,"Transport & utilities":73536,"Wholesale trade":41935},"Jackson Parish":{"Agriculture & mining":73971,"Arts & food services":20417,"Construction":52107,"Education & health":42146,"Finance & real estate":45995,"Information":27031,"Manufacturing":71793,"Other services":45724,"Prof. & waste services":46806,"Public administration":29018,"Retail trade":38190,"Transport & utilities":42422,"Wholesale trade":58750},"Jefferson Parish":{"Agriculture & mining":71420,"Arts & food services":35116,"Construction":47017,"Education & health":54199,"Finance & real estate":62469,"Information":72292,"Manufacturing":67875,"Other services":36685,"Prof. & waste services":59064,"Public administration":59740,"Retail trade":41113,"Transport & utilities":56919,"Wholesale trade":60590},"Jefferson Davis Parish":{"Agriculture & mining":65096,"Arts & food services":40762,"Construction":66798,"Education & health":42295,"Finance & real estate":45255,"Information":0,"Manufacturing":61781,"Other services":33731,"Prof. & waste services":45977,"Public administration":37434,"Retail trade":33156,"Transport & utilities":57316,"Wholesale trade":146036},"Lafayette Parish":{"Agriculture & mining":112759,"Arts & food services":29567,"Construction":50341,"Education & health":51104,"Finance & real estate":68500,"Information":55936,"Manufacturing":65404,"Other services":40556,"Prof. & waste services":70901,"Public administration":59716,"Retail trade":41193,"Transport & utilities":58088,"Wholesale trade":61827},"Lafourche Parish":{"Agriculture & mining":83592,"Arts & food services":29660,"Construction":58705,"Education & health":47873,"Finance & real estate":49225,"Information":52119,"Manufacturing":71406,"Other services":34340,"Prof. & waste services":59695,"Public administration":60872,"Retail trade":36312,"Transport & utilities":70361,"Wholesale trade":62083},"LaSalle Parish":{"Agriculture & mining":97318,"Arts & food services":46020,"Construction":59545,"Education & health":51786,"Finance & real estate":32109,"Information":0,"Manufacturing":52447,"Other services":25880,"Prof. & waste services":47453,"Public administration":46731,"Retail trade":57788,"Transport & utilities":37150,"Wholesale trade":77308},"Lincoln Parish":{"Agriculture & mining":72266,"Arts & food services":21161,"Construction":50076,"Education & health":50528,"Finance & real estate":52245,"Information":70234,"Manufacturing":36556,"Other services":29514,"Prof. & waste services":59954,"Public administration":49375,"Retail trade":24786,"Transport & utilities":58295,"Wholesale trade":30223},"Livingston Parish":{"Agriculture & mining":105656,"Arts & food services":37696,"Construction":66839,"Education & health":47483,"Finance & real estate":68716,"Information":52406,"Manufacturing":73932,"Other services":48387,"Prof. & waste services":68348,"Public administration":66027,"Retail trade":50858,"Transport & utilities":69177,"Wholesale trade":70945},"Madison Parish":{"Agriculture & mining":48144,"Arts & food services":26833,"Construction":44205,"Education & health":30245,"Finance & real estate":67875,"Information":0,"Manufacturing":32917,"Other services":49000,"Prof. & waste services":45163,"Public administration":40430,"Retail trade":46500,"Transport & utilities":54583,"Wholesale trade":66635},"Morehouse Parish":{"Agriculture & mining":45313,"Arts & food services":12946,"Construction":45000,"Education & health":34622,"Finance & real estate":44792,"Information":93942,"Manufacturing":50938,"Other services":27586,"Prof. & waste services":39485,"Public administration":44420,"Retail trade":30874,"Transport & utilities":55625,"Wholesale trade":50365},"Natchitoches Parish":{"Agriculture & mining":59418,"Arts & food services":22989,"Construction":40583,"Education & health":57281,"Finance & real estate":49656,"Information":73750,"Manufacturing":48550,"Other services":46307,"Prof. & waste services":44787,"Public administration":40507,"Retail trade":43158,"Transport & utilities":52321,"Wholesale trade":54737},"Orleans Parish":{"Agriculture & mining":130389,"Arts & food services":34573,"Construction":56563,"Education & health":57563,"Finance & real estate":67488,"Information":68469,"Manufacturing":69294,"Other services":41064,"Prof. & waste services":76661,"Public administration":75042,"Retail trade":34792,"Transport & utilities":53571,"Wholesale trade":63571},"Ouachita Parish":{"Agriculture & mining":45817,"Arts & food services":24787,"Construction":49810,"Education & health":49001,"Finance & real estate":52890,"Information":62638,"Manufacturing":65172,"Other services":45675,"Prof. & waste services":55028,"Public administration":51939,"Retail trade":38068,"Transport & utilities":56250,"Wholesale trade":57235},"Plaquemines Parish":{"Agriculture & mining":90069,"Arts & food services":24967,"Construction":102825,"Education & health":53900,"Finance & real estate":51296,"Information":9327,"Manufacturing":110192,"Other services":51250,"Prof. & waste services":33846,"Public administration":62822,"Retail trade":37351,"Transport & utilities":77750,"Wholesale trade":80680},"Pointe Coupee Parish":{"Agriculture & mining":64464,"Arts & food services":26575,"Construction":59782,"Education & health":50476,"Finance & real estate":46287,"Information":0,"Manufacturing":63129,"Other services":74063,"Prof. & waste services":61250,"Public administration":54318,"Retail trade":35820,"Transport & utilities":95607,"Wholesale trade":34375},"Rapides Parish":{"Agriculture & mining":41672,"Arts & food services":31952,"Construction":58276,"Education & health":49617,"Finance & real estate":59443,"Information":42813,"Manufacturing":66449,"Other services":36931,"Prof. & waste services":53125,"Public administration":62853,"Retail trade":33313,"Transport & utilities":58281,"Wholesale trade":50969},"Red River Parish":{"Agriculture & mining":40924,"Arts & food services":35729,"Construction":41250,"Education & health":49879,"Finance & real estate":43125,"Information":0,"Manufacturing":66034,"Other services":53295,"Prof. & waste services":27128,"Public administration":24345,"Retail trade":50417,"Transport & utilities":50278,"Wholesale trade":19120},"Richland Parish":{"Agriculture & mining":70031,"Arts & food services":24327,"Construction":45705,"Education & health":52500,"Finance & real estate":52763,"Information":69265,"Manufacturing":52315,"Other services":58897,"Prof. & waste services":49464,"Public administration":46607,"Retail trade":36719,"Transport & utilities":68594,"Wholesale trade":42188},"Sabine Parish":{"Agriculture & mining":61375,"Arts & food services":26313,"Construction":57411,"Education & health":46985,"Finance & real estate":32647,"Information":58393,"Manufacturing":61625,"Other services":32500,"Prof. & waste services":49375,"Public administration":40913,"Retail trade":35795,"Transport & utilities":64272,"Wholesale trade":60909},"St. Bernard Parish":{"Agriculture & mining":88438,"Arts & food services":32262,"Construction":50625,"Education & health":48661,"Finance & real estate":63015,"Information":62857,"Manufacturing":89565,"Other services":49148,"Prof. & waste services":54225,"Public administration":71111,"Retail trade":45824,"Transport & utilities":60074,"Wholesale trade":47839},"St. Charles Parish":{"Agriculture & mining":96607,"Arts & food services":34797,"Construction":64907,"Education & health":51775,"Finance & real estate":63640,"Information":42031,"Manufacturing":84963,"Other services":46650,"Prof. & waste services":55739,"Public administration":46979,"Retail trade":41448,"Transport & utilities":71888,"Wholesale trade":64219},"St. Helena Parish":{"Agriculture & mining":22378,"Arts & food services":14393,"Construction":36580,"Education & health":49625,"Finance & real estate":39719,"Information":0,"Manufacturing":65099,"Other services":14449,"Prof. & waste services":54211,"Public administration":60688,"Retail trade":34214,"Transport & utilities":38625,"Wholesale trade":152619},"St. James Parish":{"Agriculture & mining":45104,"Arts & food services":16198,"Construction":34917,"Education & health":53480,"Finance & real estate":39210,"Information":30250,"Manufacturing":93209,"Other services":59904,"Prof. & waste services":55399,"Public administration":56972,"Retail trade":30563,"Transport & utilities":44500,"Wholesale trade":65893},"St. John the Baptist Parish":{"Agriculture & mining":72727,"Arts & food services":29688,"Construction":61034,"Education & health":49182,"Finance & real estate":47524,"Information":0,"Manufacturing":85483,"Other services":41839,"Prof. & waste services":44549,"Public administration":60771,"Retail trade":31362,"Transport & utilities":74118,"Wholesale trade":47364},"St. Landry Parish":{"Agriculture & mining":52120,"Arts & food services":25731,"Construction":45041,"Education & health":43062,"Finance & real estate":44368,"Information":44219,"Manufacturing":60508,"Other services":45094,"Prof. & waste services":48289,"Public administration":53582,"Retail trade":31540,"Transport & utilities":54408,"Wholesale trade":61167},"St. Martin Parish":{"Agriculture & mining":76964,"Arts & food services":26618,"Construction":47241,"Education & health":42757,"Finance & real estate":43631,"Information":40769,"Manufacturing":59221,"Other services":52732,"Prof. & waste services":57656,"Public administration":46827,"Retail trade":37415,"Transport & utilities":56537,"Wholesale trade":57112},"St. Mary Parish":{"Agriculture & mining":65625,"Arts & food services":23059,"Construction":49669,"Education & health":41941,"Finance & real estate":52853,"Information":38125,"Manufacturing":64079,"Other services":42333,"Prof. & waste services":37045,"Public administration":49531,"Retail trade":33933,"Transport & utilities":60735,"Wholesale trade":54423},"St. Tammany Parish":{"Agriculture & mining":88600,"Arts & food services":44123,"Construction":56487,"Education & health":55603,"Finance & real estate":74297,"Information":67283,"Manufacturing":89053,"Other services":46000,"Prof. & waste services":70254,"Public administration":69097,"Retail trade":38590,"Transport & utilities":79669,"Wholesale trade":66911},"Tangipahoa Parish":{"Agriculture & mining":54353,"Arts & food services":28534,"Construction":61017,"Education & health":45825,"Finance & real estate":47948,"Information":36780,"Manufacturing":71738,"Other services":39177,"Prof. & waste services":61641,"Public administration":57439,"Retail trade":36745,"Transport & utilities":72575,"Wholesale trade":50972},"Tensas Parish":{"Agriculture & mining":38500,"Arts & food services":29688,"Construction":35750,"Education & health":23690,"Finance & real estate":0,"Information":0,"Manufacturing":66250,"Other services":58382,"Prof. & waste services":24196,"Public administration":29643,"Retail trade":17292,"Transport & utilities":32500,"Wholesale trade":39238},"Terrebonne Parish":{"Agriculture & mining":84878,"Arts & food services":29705,"Construction":61003,"Education & health":46389,"Finance & real estate":56461,"Information":48750,"Manufacturing":70498,"Other services":47309,"Prof. & waste services":52810,"Public administration":51541,"Retail trade":33276,"Transport & utilities":72444,"Wholesale trade":59030},"Union Parish":{"Agriculture & mining":44188,"Arts & food services":14758,"Construction":40588,"Education & health":47454,"Finance & real estate":58846,"Information":49858,"Manufacturing":37014,"Other services":47464,"Prof. & waste services":54509,"Public administration":39091,"Retail trade":32308,"Transport & utilities":71047,"Wholesale trade":56161},"Vermilion Parish":{"Agriculture & mining":77191,"Arts & food services":23532,"Construction":56975,"Education & health":43686,"Finance & real estate":51071,"Information":40750,"Manufacturing":62594,"Other services":38990,"Prof. & waste services":62647,"Public administration":48036,"Retail trade":40889,"Transport & utilities":66479,"Wholesale trade":60552},"Vernon Parish":{"Agriculture & mining":56071,"Arts & food services":24375,"Construction":41447,"Education & health":43075,"Finance & real estate":43259,"Information":43182,"Manufacturing":53385,"Other services":32468,"Prof. & waste services":60313,"Public administration":50625,"Retail trade":34741,"Transport & utilities":40703,"Wholesale trade":44545},"Washington Parish":{"Agriculture & mining":70536,"Arts & food services":22773,"Construction":55867,"Education & health":45546,"Finance & real estate":30303,"Information":118056,"Manufacturing":81395,"Other services":25956,"Prof. & waste services":35982,"Public administration":51378,"Retail trade":28257,"Transport & utilities":51607,"Wholesale trade":70417},"Webster Parish":{"Agriculture & mining":76534,"Arts & food services":13974,"Construction":40125,"Education & health":36601,"Finance & real estate":37917,"Information":59306,"Manufacturing":44205,"Other services":26964,"Prof. & waste services":33431,"Public administration":36121,"Retail trade":25070,"Transport & utilities":36875,"Wholesale trade":26222},"West Baton Rouge Parish":{"Agriculture & mining":143273,"Arts & food services":29901,"Construction":61757,"Education & health":49340,"Finance & real estate":70636,"Information":21356,"Manufacturing":85087,"Other services":44074,"Prof. & waste services":49741,"Public administration":46897,"Retail trade":37938,"Transport & utilities":60813,"Wholesale trade":83885},"West Carroll Parish":{"Agriculture & mining":41000,"Arts & food services":17234,"Construction":61964,"Education & health":40576,"Finance & real estate":60859,"Information":33689,"Manufacturing":46964,"Other services":32917,"Prof. & waste services":111567,"Public administration":28953,"Retail trade":48169,"Transport & utilities":46537,"Wholesale trade":53924},"West Feliciana Parish":{"Agriculture & mining":158383,"Arts & food services":8750,"Construction":72000,"Education & health":60077,"Finance & real estate":105363,"Information":56357,"Manufacturing":97500,"Other services":41522,"Prof. & waste services":47074,"Public administration":58167,"Retail trade":40952,"Transport & utilities":46343,"Wholesale trade":34076},"Winn Parish":{"Agriculture & mining":53015,"Arts & food services":16461,"Construction":68563,"Education & health":48589,"Finance & real estate":36162,"Information":0,"Manufacturing":51250,"Other services":47045,"Prof. & waste services":51705,"Public administration":52908,"Retail trade":35670,"Transport & utilities":57048,"Wholesale trade":96875}};
+    const colors = {
+  'Agriculture & mining': '#FFFF01',
+  'Arts & food services': '#00008B',
+  'Construction': '#7570B1',
+  'Education & health': '#66A61E',
+  'Finance & real estate': '#E6AB01',
+  'Information': '#379',
+  'Manufacturing': '#E41A1C',
+  'Other services': '#377EF1',
+  'Prof. & waste services': '#FF7F00',
+  'Public administration': '#1B9E77',
+  'Retail trade': '#A65011',
+  'Transport & utilities': '#F781BF',
+  'Wholesale trade': '#919'
+};
+
+    const ctx = document.getElementById("barChart").getContext("2d");
+    let chart;
+
+    function renderChart(county) {
+      const values = data[county];
+      const labels = Object.keys(values);
+      const earnings = Object.values(values);
+
+      if (chart) chart.destroy();
+
+      chart = new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels: labels,
+          datasets: [{
+            label: "Median Earnings ($)",
+            data: earnings,
+            backgroundColor: labels.map(label => colors[label] || "#ccc")
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: true,
+  aspectRatio: 1.5, 
+          indexAxis: "x",
+          scales: {
+            y: {
+              beginAtZero: true,
+              title: {
+                display: true,
+                text: "Median Earnings ($)"
+              },
+              ticks: {
+                callback: function(value) {
+                  return "$" + value.toLocaleString();
+                }
+              }
+            },
+            x: {
+              ticks: {
+                maxRotation: 45,
+                minRotation: 20,
+                autoSkip: false,
+                callback: function(value, index, ticks) {
+                  let label = this.getLabelForValue(value);
+                  return label.length > 25 ? label.slice(0, 25) + "…" : label;
+                }
+              }
+            }
+          },
+          plugins: {
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  return "$" + context.parsed.y.toLocaleString();
+                }
+              }
+            },
+            legend: {
+              display: false
+            }
+          }
+        }
+      });
+    }
+
+    const select = document.getElementById("countySelect");
+    Object.keys(data).forEach(county => {
+      const option = document.createElement("option");
+      option.value = county;
+      option.text = county;
+      select.appendChild(option);
+    });
+    select.value = "Statewide";
+    select.addEventListener("change", () => renderChart(select.value));
+    renderChart("Statewide");
+  </script>
+</body>
+</html>
+</html>

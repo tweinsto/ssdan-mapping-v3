@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Language Spoken at Home – Alaska</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          text-align: center;
+          margin: 2rem;
+        }
+        select {
+          font-size: 1rem;
+          padding: 0.4rem;
+          margin-bottom: 1rem;
+        }
+        canvas {
+          width: 100%;
+          max-width: 700px;
+          height: 800px;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Language Spoken at Home – Alaska</h2>
+    <label>Select County, State:</label>
+    <select id="countySelect"><option value='Statewide'>Statewide</option>
+<option value='Aleutians East Borough, Alaska'>Aleutians East Borough, Alaska</option>
+<option value='Aleutians West Census Area, Alaska'>Aleutians West Census Area, Alaska</option>
+<option value='Anchorage Municipality, Alaska'>Anchorage Municipality, Alaska</option>
+<option value='Bethel Census Area, Alaska'>Bethel Census Area, Alaska</option>
+<option value='Bristol Bay Borough, Alaska'>Bristol Bay Borough, Alaska</option>
+<option value='Chugach Census Area, Alaska'>Chugach Census Area, Alaska</option>
+<option value='Copper River Census Area, Alaska'>Copper River Census Area, Alaska</option>
+<option value='Denali Borough, Alaska'>Denali Borough, Alaska</option>
+<option value='Dillingham Census Area, Alaska'>Dillingham Census Area, Alaska</option>
+<option value='Fairbanks North Star Borough, Alaska'>Fairbanks North Star Borough, Alaska</option>
+<option value='Haines Borough, Alaska'>Haines Borough, Alaska</option>
+<option value='Hoonah-Angoon Census Area, Alaska'>Hoonah-Angoon Census Area, Alaska</option>
+<option value='Juneau City and Borough, Alaska'>Juneau City and Borough, Alaska</option>
+<option value='Kenai Peninsula Borough, Alaska'>Kenai Peninsula Borough, Alaska</option>
+<option value='Ketchikan Gateway Borough, Alaska'>Ketchikan Gateway Borough, Alaska</option>
+<option value='Kodiak Island Borough, Alaska'>Kodiak Island Borough, Alaska</option>
+<option value='Kusilvak Census Area, Alaska'>Kusilvak Census Area, Alaska</option>
+<option value='Lake and Peninsula Borough, Alaska'>Lake and Peninsula Borough, Alaska</option>
+<option value='Matanuska-Susitna Borough, Alaska'>Matanuska-Susitna Borough, Alaska</option>
+<option value='Nome Census Area, Alaska'>Nome Census Area, Alaska</option>
+<option value='North Slope Borough, Alaska'>North Slope Borough, Alaska</option>
+<option value='Northwest Arctic Borough, Alaska'>Northwest Arctic Borough, Alaska</option>
+<option value='Petersburg Borough, Alaska'>Petersburg Borough, Alaska</option>
+<option value='Prince of Wales-Hyder Census Area, Alaska'>Prince of Wales-Hyder Census Area, Alaska</option>
+<option value='Sitka City and Borough, Alaska'>Sitka City and Borough, Alaska</option>
+<option value='Skagway Municipality, Alaska'>Skagway Municipality, Alaska</option>
+<option value='Southeast Fairbanks Census Area, Alaska'>Southeast Fairbanks Census Area, Alaska</option>
+<option value='Wrangell City and Borough, Alaska'>Wrangell City and Borough, Alaska</option>
+<option value='Yakutat City and Borough, Alaska'>Yakutat City and Borough, Alaska</option>
+<option value='Yukon-Koyukuk Census Area, Alaska'>Yukon-Koyukuk Census Area, Alaska</option></select>
+    <canvas id="barChart" width="700" height="700"></canvas>
+    <script>  const languageData = {"Statewide":{"Arabic":0.2,"Chinese (incl. Mandarin, Cantonese)":0.3,"English":81.2,"French, Haitian, or Cajun":0.5,"German or other West Germanic":0.7,"Korean":0.8,"Other Asian & Pacific":2,"Other Indo-European":0.8,"Other and Unspecified":4.9,"Russian, Polish, other Slavic":1.1,"Spanish":4.6,"Tagalog (incl. Filipino)":2.7,"Vietnamese":0.2},"Aleutians East Borough, Alaska":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":81.4,"French, Haitian, or Cajun":0,"German or other West Germanic":0,"Korean":0,"Other Asian & Pacific":1,"Other Indo-European":0,"Other and Unspecified":2.5,"Russian, Polish, other Slavic":0,"Spanish":4.6,"Tagalog (incl. Filipino)":10.5,"Vietnamese":0},"Aleutians West Census Area, Alaska":{"Arabic":0.3,"Chinese (incl. Mandarin, Cantonese)":0,"English":40.2,"French, Haitian, or Cajun":0.1,"German or other West Germanic":0,"Korean":1.3,"Other Asian & Pacific":5.2,"Other Indo-European":0.1,"Other and Unspecified":3.6,"Russian, Polish, other Slavic":0.3,"Spanish":6.7,"Tagalog (incl. Filipino)":37.1,"Vietnamese":5},"Anchorage Municipality, Alaska":{"Arabic":0.3,"Chinese (incl. Mandarin, Cantonese)":0.5,"English":78.9,"French, Haitian, or Cajun":0.4,"German or other West Germanic":0.8,"Korean":1.2,"Other Asian & Pacific":3.6,"Other Indo-European":1.1,"Other and Unspecified":2.1,"Russian, Polish, other Slavic":1,"Spanish":6.2,"Tagalog (incl. Filipino)":3.6,"Vietnamese":0.3},"Bethel Census Area, Alaska":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":24.4,"French, Haitian, or Cajun":1.4,"German or other West Germanic":1,"Korean":1.9,"Other Asian & Pacific":0.2,"Other Indo-European":0.4,"Other and Unspecified":68.7,"Russian, Polish, other Slavic":0.6,"Spanish":1,"Tagalog (incl. Filipino)":0.3,"Vietnamese":0},"Bristol Bay Borough, Alaska":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":85.2,"French, Haitian, or Cajun":0,"German or other West Germanic":1.4,"Korean":0,"Other Asian & Pacific":0,"Other Indo-European":0,"Other and Unspecified":8.1,"Russian, Polish, other Slavic":0.7,"Spanish":2.1,"Tagalog (incl. Filipino)":2.5,"Vietnamese":0},"Chugach Census Area, Alaska":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0.6,"English":82.1,"French, Haitian, or Cajun":1.6,"German or other West Germanic":0.7,"Korean":0,"Other Asian & Pacific":1.9,"Other Indo-European":0.6,"Other and Unspecified":1,"Russian, Polish, other Slavic":2.4,"Spanish":4.6,"Tagalog (incl. Filipino)":3.4,"Vietnamese":1},"Copper River Census Area, Alaska":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":96.2,"French, Haitian, or Cajun":0,"German or other West Germanic":0,"Korean":0,"Other Asian & Pacific":0,"Other Indo-European":0,"Other and Unspecified":3.6,"Russian, Polish, other Slavic":0,"Spanish":0.3,"Tagalog (incl. Filipino)":0,"Vietnamese":0},"Denali Borough, Alaska":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0.4,"English":91.6,"French, Haitian, or Cajun":0.4,"German or other West Germanic":0.8,"Korean":0,"Other Asian & Pacific":0,"Other Indo-European":0,"Other and Unspecified":0,"Russian, Polish, other Slavic":1.5,"Spanish":2.2,"Tagalog (incl. Filipino)":1.5,"Vietnamese":1.7},"Dillingham Census Area, Alaska":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":42.9,"French, Haitian, or Cajun":0.8,"German or other West Germanic":0,"Korean":0.1,"Other Asian & Pacific":0.1,"Other Indo-European":0,"Other and Unspecified":52.6,"Russian, Polish, other Slavic":0,"Spanish":1.7,"Tagalog (incl. Filipino)":1.8,"Vietnamese":0},"Fairbanks North Star Borough, Alaska":{"Arabic":0.1,"Chinese (incl. Mandarin, Cantonese)":0.2,"English":84.3,"French, Haitian, or Cajun":1.6,"German or other West Germanic":0.8,"Korean":1.5,"Other Asian & Pacific":1.3,"Other Indo-European":0.9,"Other and Unspecified":2.6,"Russian, Polish, other Slavic":0.9,"Spanish":4.9,"Tagalog (incl. Filipino)":0.9,"Vietnamese":0},"Haines Borough, Alaska":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":95.4,"French, Haitian, or Cajun":0.4,"German or other West Germanic":0.2,"Korean":0,"Other Asian & Pacific":1,"Other Indo-European":1.1,"Other and Unspecified":1.2,"Russian, Polish, other Slavic":0,"Spanish":0.6,"Tagalog (incl. Filipino)":0,"Vietnamese":0},"Hoonah-Angoon Census Area, Alaska":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":80.5,"French, Haitian, or Cajun":0.9,"German or other West Germanic":0.9,"Korean":0,"Other Asian & Pacific":1.6,"Other Indo-European":1.1,"Other and Unspecified":10.5,"Russian, Polish, other Slavic":0,"Spanish":3.8,"Tagalog (incl. Filipino)":0.8,"Vietnamese":0},"Juneau City and Borough, Alaska":{"Arabic":0.2,"Chinese (incl. Mandarin, Cantonese)":0.7,"English":86.4,"French, Haitian, or Cajun":0.2,"German or other West Germanic":0.1,"Korean":0,"Other Asian & Pacific":1.8,"Other Indo-European":0.2,"Other and Unspecified":1.9,"Russian, Polish, other Slavic":0.3,"Spanish":4.4,"Tagalog (incl. Filipino)":3.8,"Vietnamese":0},"Kenai Peninsula Borough, Alaska":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0.1,"English":90.7,"French, Haitian, or Cajun":0.4,"German or other West Germanic":0.9,"Korean":0.2,"Other Asian & Pacific":0.5,"Other Indo-European":0.4,"Other and Unspecified":1.8,"Russian, Polish, other Slavic":1.3,"Spanish":2.5,"Tagalog (incl. Filipino)":1.1,"Vietnamese":0},"Ketchikan Gateway Borough, Alaska":{"Arabic":0.1,"Chinese (incl. Mandarin, Cantonese)":0.2,"English":87.2,"French, Haitian, or Cajun":0.5,"German or other West Germanic":0.2,"Korean":0.1,"Other Asian & Pacific":0.5,"Other Indo-European":0.4,"Other and Unspecified":1.4,"Russian, Polish, other Slavic":0.1,"Spanish":3.6,"Tagalog (incl. Filipino)":5.6,"Vietnamese":0.1},"Kodiak Island Borough, Alaska":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":72.1,"French, Haitian, or Cajun":0.3,"German or other West Germanic":0.3,"Korean":0,"Other Asian & Pacific":1.7,"Other Indo-European":0.6,"Other and Unspecified":1.9,"Russian, Polish, other Slavic":3.1,"Spanish":4.8,"Tagalog (incl. Filipino)":15.3,"Vietnamese":0},"Kusilvak Census Area, Alaska":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":50.7,"French, Haitian, or Cajun":0,"German or other West Germanic":0,"Korean":0,"Other Asian & Pacific":0.2,"Other Indo-European":0,"Other and Unspecified":48.2,"Russian, Polish, other Slavic":0.1,"Spanish":0.3,"Tagalog (incl. Filipino)":0.6,"Vietnamese":0},"Lake and Peninsula Borough, Alaska":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":80.1,"French, Haitian, or Cajun":0,"German or other West Germanic":0.6,"Korean":0,"Other Asian & Pacific":0,"Other Indo-European":0,"Other and Unspecified":18.3,"Russian, Polish, other Slavic":0.6,"Spanish":0.3,"Tagalog (incl. Filipino)":0,"Vietnamese":0},"Matanuska-Susitna Borough, Alaska":{"Arabic":0.1,"Chinese (incl. Mandarin, Cantonese)":0.3,"English":90.7,"French, Haitian, or Cajun":0.2,"German or other West Germanic":0.8,"Korean":0.3,"Other Asian & Pacific":0.8,"Other Indo-European":0.4,"Other and Unspecified":1,"Russian, Polish, other Slavic":1.6,"Spanish":3,"Tagalog (incl. Filipino)":0.7,"Vietnamese":0.1},"Nome Census Area, Alaska":{"Arabic":0.1,"Chinese (incl. Mandarin, Cantonese)":0,"English":56.8,"French, Haitian, or Cajun":0.4,"German or other West Germanic":1.2,"Korean":1,"Other Asian & Pacific":1.4,"Other Indo-European":0.2,"Other and Unspecified":36.2,"Russian, Polish, other Slavic":0.2,"Spanish":1.4,"Tagalog (incl. Filipino)":0.7,"Vietnamese":0.3},"North Slope Borough, Alaska":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":34.4,"French, Haitian, or Cajun":0.9,"German or other West Germanic":0,"Korean":1.1,"Other Asian & Pacific":2,"Other Indo-European":0,"Other and Unspecified":51,"Russian, Polish, other Slavic":0.4,"Spanish":4.1,"Tagalog (incl. Filipino)":6,"Vietnamese":0},"Northwest Arctic Borough, Alaska":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":55.5,"French, Haitian, or Cajun":0,"German or other West Germanic":0.3,"Korean":0.5,"Other Asian & Pacific":0.4,"Other Indo-European":0,"Other and Unspecified":41.3,"Russian, Polish, other Slavic":0.2,"Spanish":1,"Tagalog (incl. Filipino)":0.3,"Vietnamese":0.6},"Petersburg Borough, Alaska":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":1.7,"English":78.1,"French, Haitian, or Cajun":0,"German or other West Germanic":0,"Korean":0,"Other Asian & Pacific":5.3,"Other Indo-European":3.3,"Other and Unspecified":0.7,"Russian, Polish, other Slavic":0.2,"Spanish":4.7,"Tagalog (incl. Filipino)":5.6,"Vietnamese":0.4},"Prince of Wales-Hyder Census Area, Alaska":{"Arabic":0.1,"Chinese (incl. Mandarin, Cantonese)":0.1,"English":92,"French, Haitian, or Cajun":0.2,"German or other West Germanic":0.8,"Korean":0,"Other Asian & Pacific":0.7,"Other Indo-European":0,"Other and Unspecified":3.6,"Russian, Polish, other Slavic":0.2,"Spanish":1.7,"Tagalog (incl. Filipino)":0.7,"Vietnamese":0},"Sitka City and Borough, Alaska":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0.1,"English":87.3,"French, Haitian, or Cajun":0.2,"German or other West Germanic":0.5,"Korean":0,"Other Asian & Pacific":0.7,"Other Indo-European":0.8,"Other and Unspecified":1.9,"Russian, Polish, other Slavic":0.4,"Spanish":4.7,"Tagalog (incl. Filipino)":3.4,"Vietnamese":0},"Skagway Municipality, Alaska":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":2.2,"English":86.7,"French, Haitian, or Cajun":0,"German or other West Germanic":1.6,"Korean":0,"Other Asian & Pacific":1.1,"Other Indo-European":4.2,"Other and Unspecified":0,"Russian, Polish, other Slavic":2.2,"Spanish":2,"Tagalog (incl. Filipino)":0,"Vietnamese":0},"Southeast Fairbanks Census Area, Alaska":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":83.2,"French, Haitian, or Cajun":0,"German or other West Germanic":0,"Korean":0,"Other Asian & Pacific":0.5,"Other Indo-European":0,"Other and Unspecified":5.8,"Russian, Polish, other Slavic":7.4,"Spanish":2.3,"Tagalog (incl. Filipino)":0.7,"Vietnamese":0},"Wrangell City and Borough, Alaska":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":93.8,"French, Haitian, or Cajun":0,"German or other West Germanic":0.2,"Korean":0,"Other Asian & Pacific":0.3,"Other Indo-European":0,"Other and Unspecified":1.1,"Russian, Polish, other Slavic":0.2,"Spanish":1.6,"Tagalog (incl. Filipino)":2.7,"Vietnamese":0},"Yakutat City and Borough, Alaska":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":82.6,"French, Haitian, or Cajun":0,"German or other West Germanic":0,"Korean":0,"Other Asian & Pacific":2.9,"Other Indo-European":0,"Other and Unspecified":3.9,"Russian, Polish, other Slavic":0,"Spanish":4.3,"Tagalog (incl. Filipino)":6.3,"Vietnamese":0},"Yukon-Koyukuk Census Area, Alaska":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":81.2,"French, Haitian, or Cajun":0,"German or other West Germanic":0.3,"Korean":0,"Other Asian & Pacific":0.1,"Other Indo-European":0.4,"Other and Unspecified":16.3,"Russian, Polish, other Slavic":0,"Spanish":1.6,"Tagalog (incl. Filipino)":0,"Vietnamese":0}};
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: Object.keys(values),
+        datasets: [{
+          label: 'Share (%)',
+          data: Object.values(values),
+          backgroundColor: '#4576a7'
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.parsed.y + '%'
+            }
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 100,
+            title: {
+              display: true,
+              text: 'Population Share (%)'
+            }
+          },
+          x: {
+            title: {
+              display: true,
+              text: 'Language Group'
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(languageData[this.value]);
+  });
+
+  renderChart(languageData['Statewide']);</script>
+  </body>
+</html>
+</html>

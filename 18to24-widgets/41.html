@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Educational Enrollment – Oregon</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Educational Enrollment (Age 18–24) in Oregon</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Baker County, Oregon">Baker County, Oregon</option>
+      <option value="Benton County, Oregon">Benton County, Oregon</option>
+      <option value="Clackamas County, Oregon">Clackamas County, Oregon</option>
+      <option value="Clatsop County, Oregon">Clatsop County, Oregon</option>
+      <option value="Columbia County, Oregon">Columbia County, Oregon</option>
+      <option value="Coos County, Oregon">Coos County, Oregon</option>
+      <option value="Crook County, Oregon">Crook County, Oregon</option>
+      <option value="Curry County, Oregon">Curry County, Oregon</option>
+      <option value="Deschutes County, Oregon">Deschutes County, Oregon</option>
+      <option value="Douglas County, Oregon">Douglas County, Oregon</option>
+      <option value="Gilliam County, Oregon">Gilliam County, Oregon</option>
+      <option value="Grant County, Oregon">Grant County, Oregon</option>
+      <option value="Harney County, Oregon">Harney County, Oregon</option>
+      <option value="Hood River County, Oregon">Hood River County, Oregon</option>
+      <option value="Jackson County, Oregon">Jackson County, Oregon</option>
+      <option value="Jefferson County, Oregon">Jefferson County, Oregon</option>
+      <option value="Josephine County, Oregon">Josephine County, Oregon</option>
+      <option value="Klamath County, Oregon">Klamath County, Oregon</option>
+      <option value="Lake County, Oregon">Lake County, Oregon</option>
+      <option value="Lane County, Oregon">Lane County, Oregon</option>
+      <option value="Lincoln County, Oregon">Lincoln County, Oregon</option>
+      <option value="Linn County, Oregon">Linn County, Oregon</option>
+      <option value="Malheur County, Oregon">Malheur County, Oregon</option>
+      <option value="Marion County, Oregon">Marion County, Oregon</option>
+      <option value="Morrow County, Oregon">Morrow County, Oregon</option>
+      <option value="Multnomah County, Oregon">Multnomah County, Oregon</option>
+      <option value="Polk County, Oregon">Polk County, Oregon</option>
+      <option value="Sherman County, Oregon">Sherman County, Oregon</option>
+      <option value="Tillamook County, Oregon">Tillamook County, Oregon</option>
+      <option value="Umatilla County, Oregon">Umatilla County, Oregon</option>
+      <option value="Union County, Oregon">Union County, Oregon</option>
+      <option value="Wallowa County, Oregon">Wallowa County, Oregon</option>
+      <option value="Wasco County, Oregon">Wasco County, Oregon</option>
+      <option value="Washington County, Oregon">Washington County, Oregon</option>
+      <option value="Wheeler County, Oregon">Wheeler County, Oregon</option>
+      <option value="Yamhill County, Oregon">Yamhill County, Oregon</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>  const data = {"Statewide":{"Enrolled in College / Grad. School":37,"Not Enrolled":63},"Baker County, Oregon":{"Enrolled in College / Grad. School":11,"Not Enrolled":89},"Benton County, Oregon":{"Enrolled in College / Grad. School":74.2,"Not Enrolled":25.8},"Clackamas County, Oregon":{"Enrolled in College / Grad. School":30.6,"Not Enrolled":69.4},"Clatsop County, Oregon":{"Enrolled in College / Grad. School":29.5,"Not Enrolled":70.5},"Columbia County, Oregon":{"Enrolled in College / Grad. School":22.7,"Not Enrolled":77.3},"Coos County, Oregon":{"Enrolled in College / Grad. School":23.3,"Not Enrolled":76.7},"Crook County, Oregon":{"Enrolled in College / Grad. School":11.6,"Not Enrolled":88.4},"Curry County, Oregon":{"Enrolled in College / Grad. School":2.7,"Not Enrolled":97.3},"Deschutes County, Oregon":{"Enrolled in College / Grad. School":26.3,"Not Enrolled":73.7},"Douglas County, Oregon":{"Enrolled in College / Grad. School":23.1,"Not Enrolled":76.9},"Gilliam County, Oregon":{"Enrolled in College / Grad. School":0,"Not Enrolled":100},"Grant County, Oregon":{"Enrolled in College / Grad. School":7.5,"Not Enrolled":92.5},"Harney County, Oregon":{"Enrolled in College / Grad. School":24.9,"Not Enrolled":75.1},"Hood River County, Oregon":{"Enrolled in College / Grad. School":26.5,"Not Enrolled":73.5},"Jackson County, Oregon":{"Enrolled in College / Grad. School":31.4,"Not Enrolled":68.6},"Jefferson County, Oregon":{"Enrolled in College / Grad. School":23.4,"Not Enrolled":76.6},"Josephine County, Oregon":{"Enrolled in College / Grad. School":15,"Not Enrolled":85},"Klamath County, Oregon":{"Enrolled in College / Grad. School":34.9,"Not Enrolled":65.1},"Lake County, Oregon":{"Enrolled in College / Grad. School":7.8,"Not Enrolled":92.2},"Lane County, Oregon":{"Enrolled in College / Grad. School":49,"Not Enrolled":51},"Lincoln County, Oregon":{"Enrolled in College / Grad. School":22.8,"Not Enrolled":77.2},"Linn County, Oregon":{"Enrolled in College / Grad. School":23.9,"Not Enrolled":76.1},"Malheur County, Oregon":{"Enrolled in College / Grad. School":20.4,"Not Enrolled":79.6},"Marion County, Oregon":{"Enrolled in College / Grad. School":27.5,"Not Enrolled":72.5},"Morrow County, Oregon":{"Enrolled in College / Grad. School":22.5,"Not Enrolled":77.5},"Multnomah County, Oregon":{"Enrolled in College / Grad. School":41.8,"Not Enrolled":58.2},"Polk County, Oregon":{"Enrolled in College / Grad. School":37.3,"Not Enrolled":62.7},"Sherman County, Oregon":{"Enrolled in College / Grad. School":29.2,"Not Enrolled":70.8},"Tillamook County, Oregon":{"Enrolled in College / Grad. School":16.5,"Not Enrolled":83.5},"Umatilla County, Oregon":{"Enrolled in College / Grad. School":28.8,"Not Enrolled":71.2},"Union County, Oregon":{"Enrolled in College / Grad. School":33.9,"Not Enrolled":66.1},"Wallowa County, Oregon":{"Enrolled in College / Grad. School":19.9,"Not Enrolled":80.1},"Wasco County, Oregon":{"Enrolled in College / Grad. School":29.3,"Not Enrolled":70.7},"Washington County, Oregon":{"Enrolled in College / Grad. School":34.5,"Not Enrolled":65.5},"Wheeler County, Oregon":{"Enrolled in College / Grad. School":11.7,"Not Enrolled":88.3},"Yamhill County, Oregon":{"Enrolled in College / Grad. School":43.2,"Not Enrolled":56.8}};
+  const categories = ["Enrolled in College / Grad. School","Not Enrolled"];
+  const ctx = document.getElementById("barChart").getContext("2d");
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: categories,
+        datasets: [
+          {
+            label: "County/State",
+            data: values,
+            backgroundColor: ["#66c2a5", "#fc8d62"]
+          }
+        ]
+      },
+      options: {
+        indexAxis: "y",
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            ticks: {
+              callback: v => v + "%"
+            }
+          }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.dataset.label + ": " + ctx.raw + "%"
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById("countySelect").addEventListener("change", function() {
+    renderChart(Object.values(data[this.value]));
+  });
+
+  renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

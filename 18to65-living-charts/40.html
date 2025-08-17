@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Living Arrangements 18–64 – Oklahoma</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+      body { font-family: sans-serif; margin: 1.25rem 2rem; text-align: center; }
+      h2 { margin-bottom: .25rem; font-size: 1.6rem; color: #2c348b; }
+      label { margin-right: .5rem; }
+      select { padding: .45rem .6rem; font-size: 1rem; border-radius: .5rem; border: 2px solid #f39c12; }
+      canvas { width: 100%; max-width: 900px; height: 520px; }
+    </style>
+</head>
+<html>
+  <body>
+    <h2>Living Arrangements of Adults 18–64 in Oklahoma</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Adair County, Oklahoma">Adair County, Oklahoma</option>
+      <option value="Alfalfa County, Oklahoma">Alfalfa County, Oklahoma</option>
+      <option value="Atoka County, Oklahoma">Atoka County, Oklahoma</option>
+      <option value="Beaver County, Oklahoma">Beaver County, Oklahoma</option>
+      <option value="Beckham County, Oklahoma">Beckham County, Oklahoma</option>
+      <option value="Blaine County, Oklahoma">Blaine County, Oklahoma</option>
+      <option value="Bryan County, Oklahoma">Bryan County, Oklahoma</option>
+      <option value="Caddo County, Oklahoma">Caddo County, Oklahoma</option>
+      <option value="Canadian County, Oklahoma">Canadian County, Oklahoma</option>
+      <option value="Carter County, Oklahoma">Carter County, Oklahoma</option>
+      <option value="Cherokee County, Oklahoma">Cherokee County, Oklahoma</option>
+      <option value="Choctaw County, Oklahoma">Choctaw County, Oklahoma</option>
+      <option value="Cimarron County, Oklahoma">Cimarron County, Oklahoma</option>
+      <option value="Cleveland County, Oklahoma">Cleveland County, Oklahoma</option>
+      <option value="Coal County, Oklahoma">Coal County, Oklahoma</option>
+      <option value="Comanche County, Oklahoma">Comanche County, Oklahoma</option>
+      <option value="Cotton County, Oklahoma">Cotton County, Oklahoma</option>
+      <option value="Craig County, Oklahoma">Craig County, Oklahoma</option>
+      <option value="Creek County, Oklahoma">Creek County, Oklahoma</option>
+      <option value="Custer County, Oklahoma">Custer County, Oklahoma</option>
+      <option value="Delaware County, Oklahoma">Delaware County, Oklahoma</option>
+      <option value="Dewey County, Oklahoma">Dewey County, Oklahoma</option>
+      <option value="Ellis County, Oklahoma">Ellis County, Oklahoma</option>
+      <option value="Garfield County, Oklahoma">Garfield County, Oklahoma</option>
+      <option value="Garvin County, Oklahoma">Garvin County, Oklahoma</option>
+      <option value="Grady County, Oklahoma">Grady County, Oklahoma</option>
+      <option value="Grant County, Oklahoma">Grant County, Oklahoma</option>
+      <option value="Greer County, Oklahoma">Greer County, Oklahoma</option>
+      <option value="Harmon County, Oklahoma">Harmon County, Oklahoma</option>
+      <option value="Harper County, Oklahoma">Harper County, Oklahoma</option>
+      <option value="Haskell County, Oklahoma">Haskell County, Oklahoma</option>
+      <option value="Hughes County, Oklahoma">Hughes County, Oklahoma</option>
+      <option value="Jackson County, Oklahoma">Jackson County, Oklahoma</option>
+      <option value="Jefferson County, Oklahoma">Jefferson County, Oklahoma</option>
+      <option value="Johnston County, Oklahoma">Johnston County, Oklahoma</option>
+      <option value="Kay County, Oklahoma">Kay County, Oklahoma</option>
+      <option value="Kingfisher County, Oklahoma">Kingfisher County, Oklahoma</option>
+      <option value="Kiowa County, Oklahoma">Kiowa County, Oklahoma</option>
+      <option value="Latimer County, Oklahoma">Latimer County, Oklahoma</option>
+      <option value="Le Flore County, Oklahoma">Le Flore County, Oklahoma</option>
+      <option value="Lincoln County, Oklahoma">Lincoln County, Oklahoma</option>
+      <option value="Logan County, Oklahoma">Logan County, Oklahoma</option>
+      <option value="Love County, Oklahoma">Love County, Oklahoma</option>
+      <option value="Major County, Oklahoma">Major County, Oklahoma</option>
+      <option value="Marshall County, Oklahoma">Marshall County, Oklahoma</option>
+      <option value="Mayes County, Oklahoma">Mayes County, Oklahoma</option>
+      <option value="McClain County, Oklahoma">McClain County, Oklahoma</option>
+      <option value="McCurtain County, Oklahoma">McCurtain County, Oklahoma</option>
+      <option value="McIntosh County, Oklahoma">McIntosh County, Oklahoma</option>
+      <option value="Murray County, Oklahoma">Murray County, Oklahoma</option>
+      <option value="Muskogee County, Oklahoma">Muskogee County, Oklahoma</option>
+      <option value="Noble County, Oklahoma">Noble County, Oklahoma</option>
+      <option value="Nowata County, Oklahoma">Nowata County, Oklahoma</option>
+      <option value="Okfuskee County, Oklahoma">Okfuskee County, Oklahoma</option>
+      <option value="Oklahoma County, Oklahoma">Oklahoma County, Oklahoma</option>
+      <option value="Okmulgee County, Oklahoma">Okmulgee County, Oklahoma</option>
+      <option value="Osage County, Oklahoma">Osage County, Oklahoma</option>
+      <option value="Ottawa County, Oklahoma">Ottawa County, Oklahoma</option>
+      <option value="Pawnee County, Oklahoma">Pawnee County, Oklahoma</option>
+      <option value="Payne County, Oklahoma">Payne County, Oklahoma</option>
+      <option value="Pittsburg County, Oklahoma">Pittsburg County, Oklahoma</option>
+      <option value="Pontotoc County, Oklahoma">Pontotoc County, Oklahoma</option>
+      <option value="Pottawatomie County, Oklahoma">Pottawatomie County, Oklahoma</option>
+      <option value="Pushmataha County, Oklahoma">Pushmataha County, Oklahoma</option>
+      <option value="Roger Mills County, Oklahoma">Roger Mills County, Oklahoma</option>
+      <option value="Rogers County, Oklahoma">Rogers County, Oklahoma</option>
+      <option value="Seminole County, Oklahoma">Seminole County, Oklahoma</option>
+      <option value="Sequoyah County, Oklahoma">Sequoyah County, Oklahoma</option>
+      <option value="Stephens County, Oklahoma">Stephens County, Oklahoma</option>
+      <option value="Texas County, Oklahoma">Texas County, Oklahoma</option>
+      <option value="Tillman County, Oklahoma">Tillman County, Oklahoma</option>
+      <option value="Tulsa County, Oklahoma">Tulsa County, Oklahoma</option>
+      <option value="Wagoner County, Oklahoma">Wagoner County, Oklahoma</option>
+      <option value="Washington County, Oklahoma">Washington County, Oklahoma</option>
+      <option value="Washita County, Oklahoma">Washita County, Oklahoma</option>
+      <option value="Woods County, Oklahoma">Woods County, Oklahoma</option>
+      <option value="Woodward County, Oklahoma">Woodward County, Oklahoma</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>document.addEventListener("DOMContentLoaded", function () {
+  const data = {"Statewide":[11.6,12.8,5.5,12.8,48.9,8.4],"Adair County, Oklahoma":[9.8,17.2,3.1,17.7,45.7,6.4],"Alfalfa County, Oklahoma":[11.3,10.4,1.2,5.1,65.2,6.9],"Atoka County, Oklahoma":[7.7,14.5,4.8,12.8,52.1,8.2],"Beaver County, Oklahoma":[8.9,18.6,3.8,11.2,49.4,8.1],"Beckham County, Oklahoma":[15.9,5.4,3.2,9.6,56.5,9.4],"Blaine County, Oklahoma":[13.6,6,2,11.1,58.3,9],"Bryan County, Oklahoma":[10.4,12.2,7.4,14.4,43.6,12.1],"Caddo County, Oklahoma":[9.6,22,5.1,13.6,43.2,6.4],"Canadian County, Oklahoma":[7.8,15,4.3,10.2,56,6.7],"Carter County, Oklahoma":[12,12.5,4.3,13.8,48,9.3],"Cherokee County, Oklahoma":[10.1,14.4,6.4,12,48.1,9],"Choctaw County, Oklahoma":[13.1,12.6,4.3,15.8,45.5,8.7],"Cimarron County, Oklahoma":[3.1,20,10.3,16.7,44.4,5.4],"Cleveland County, Oklahoma":[11,11.4,9.8,11.4,47.9,8.5],"Coal County, Oklahoma":[10.5,15.4,5.4,12.6,48.5,7.6],"Comanche County, Oklahoma":[13.7,12.9,5.7,13.9,44.2,9.5],"Cotton County, Oklahoma":[8.5,17.5,3.9,13.3,48.5,8.3],"Craig County, Oklahoma":[10.9,13.8,5.7,12.6,48.1,8.9],"Creek County, Oklahoma":[9.5,14.8,3.2,13.4,52.3,6.9],"Custer County, Oklahoma":[15.2,6.6,9.5,12.5,49,7.1],"Delaware County, Oklahoma":[9.8,13.8,5,14,48.8,8.7],"Dewey County, Oklahoma":[12.3,15.4,3.1,10,51.3,7.9],"Ellis County, Oklahoma":[8.1,18.2,0.9,10.5,55.9,6.4],"Garfield County, Oklahoma":[11.6,11.4,4.5,13,51.5,8],"Garvin County, Oklahoma":[11.8,13.1,4.2,13.5,48.1,9.3],"Grady County, Oklahoma":[7,14.4,4.3,10.1,57.6,6.6],"Grant County, Oklahoma":[12.8,12.7,4.9,11.5,50.9,7.2],"Greer County, Oklahoma":[13.4,8.8,0,11.2,60.6,6],"Harmon County, Oklahoma":[8.4,12.7,0.7,12.9,48.5,16.8],"Harper County, Oklahoma":[6.7,13.8,3.2,5.8,63.8,6.7],"Haskell County, Oklahoma":[8.3,13.3,4.3,13.7,54.8,5.6],"Hughes County, Oklahoma":[8.2,23.3,6.7,18.1,38.4,5.2],"Jackson County, Oklahoma":[13.3,10.9,4.3,12.6,51.3,7.6],"Jefferson County, Oklahoma":[11.9,14.1,5.3,17.1,44.5,7.1],"Johnston County, Oklahoma":[9.9,14,4.1,18.2,47.5,6.3],"Kay County, Oklahoma":[10.6,13.6,6.8,14.1,46.4,8.6],"Kingfisher County, Oklahoma":[7.1,14,1.8,11.2,59,6.9],"Kiowa County, Oklahoma":[8.5,12.1,2.4,13.7,50.8,12.6],"Latimer County, Oklahoma":[11,12.1,4.6,10.2,54.3,7.9],"Le Flore County, Oklahoma":[8.7,15.9,4.8,15.1,48.3,7.3],"Lincoln County, Oklahoma":[9,14.6,4.9,11.9,53.8,5.9],"Logan County, Oklahoma":[5.5,15.9,4.4,11.3,57.5,5.3],"Love County, Oklahoma":[9.7,17.5,4.6,10.4,50,7.8],"Major County, Oklahoma":[7.9,4.4,1.5,7.8,71.2,7.1],"Marshall County, Oklahoma":[9,16.1,4,14,49,8],"Mayes County, Oklahoma":[8.7,15.1,3.8,12.6,52.3,7.4],"McClain County, Oklahoma":[6.6,14.6,2.7,10.2,61.7,4.2],"McCurtain County, Oklahoma":[9.9,17.1,3.5,19.1,43.8,6.7],"McIntosh County, Oklahoma":[10.9,20.3,1.6,16.9,43.4,6.8],"Murray County, Oklahoma":[10.3,17.2,6,12.4,49.4,4.8],"Muskogee County, Oklahoma":[12.7,13.3,3.1,14.7,47.2,8.9],"Noble County, Oklahoma":[9.6,12.1,2.3,11,57.5,7.5],"Nowata County, Oklahoma":[8.4,12.7,3.6,12.8,52.5,9.9],"Okfuskee County, Oklahoma":[10.6,14.9,2.8,15.1,50.4,6.1],"Oklahoma County, Oklahoma":[14.4,11.2,5.5,13.7,45.6,9.6],"Okmulgee County, Oklahoma":[11.8,15.5,4.6,13.1,47.8,7.3],"Osage County, Oklahoma":[9,18,3.8,12.1,51.3,5.9],"Ottawa County, Oklahoma":[10.3,12.7,3.6,14.2,47.4,11.8],"Pawnee County, Oklahoma":[8.8,13.5,4.4,11.9,53.1,8.2],"Payne County, Oklahoma":[17.7,6.8,16.5,10,40.7,8.3],"Pittsburg County, Oklahoma":[12.7,11.1,2.9,12,52.2,9],"Pontotoc County, Oklahoma":[12.1,11.9,3.3,13.1,50.1,9.5],"Pottawatomie County, Oklahoma":[9.7,15.6,3.8,13.8,50.2,6.9],"Pushmataha County, Oklahoma":[12.2,11.4,4.9,14.9,49.6,6.8],"Roger Mills County, Oklahoma":[8.2,7.2,0.5,7.6,66.8,9.6],"Rogers County, Oklahoma":[7.2,15.8,3.3,10.3,55.9,7.4],"Seminole County, Oklahoma":[10,15.9,3.5,17.8,45.2,7.6],"Sequoyah County, Oklahoma":[9.2,15.6,3.5,15,49.9,6.8],"Stephens County, Oklahoma":[9.5,11.2,4.4,12.1,56,6.9],"Texas County, Oklahoma":[10,14.7,5.3,13.9,44.8,11.3],"Tillman County, Oklahoma":[11.4,19.8,1,11,49.5,7.2],"Tulsa County, Oklahoma":[13.2,11.9,5.6,13.1,47.3,9],"Wagoner County, Oklahoma":[7.1,16.4,3.8,10.6,55.2,6.9],"Washington County, Oklahoma":[10.1,15.5,4,11.8,49.9,8.7],"Washita County, Oklahoma":[9.3,12,4.9,13.4,52.5,7.9],"Woods County, Oklahoma":[18.8,5.3,12.6,9.5,46.7,7.1],"Woodward County, Oklahoma":[11.1,8.2,2.7,11.4,61.4,5.2]};
+  const cats = ["lives_alone_18_64","with_child_18_64","with_nonrel_18_64","with_other_rel_18_64","with_spouse_only_18_64","with_unmar_partner_18_64"];
+
+  const ORDER = [
+    "Lives alone",
+    "With child",
+    "With nonrelatives",
+    "With other relatives",
+    "With spouse only",
+    "With unmarried partner"
+  ];
+
+  const PRETTY_TO_SNAKE = {
+    "Lives alone":            "lives_alone_18_64",
+    "With child":             "with_child_18_64",
+    "With nonrelatives":      "with_nonrel_18_64",
+    "With other relatives":   "with_other_rel_18_64",
+    "With spouse only":       "with_spouse_only_18_64",
+    "With unmarried partner": "with_unmar_partner_18_64"
+  };
+
+  const COLOR_BY_CAT = {
+    "Lives alone":            "#e41a1c",
+    "With child":             "#ff7f00",
+    "With nonrelatives":      "#4daf4a",
+    "With other relatives":   "#984ea3",
+    "With spouse only":       "#377eb8",
+    "With unmarried partner": "#a65628"
+  };
+
+  // snake key → array index
+  const keyToIndex = Object.fromEntries((cats || []).map((k, i) => [String(k), i]));
+
+  function valuesFor(name) {
+    const row = data?.[name] || [];
+    return ORDER.map(lbl => {
+      const idx = keyToIndex[PRETTY_TO_SNAKE[lbl]];
+      const v = (idx != null && idx >= 0) ? row[idx] : 0;
+      return (typeof v === "number") ? v : Number(v) || 0;
+    });
+  }
+
+  const canvas = document.getElementById("barChart");
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+  let chart;
+
+  function renderChart(name) {
+    const vals = valuesFor(name);
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: ORDER,
+        datasets: [{
+          data: vals,
+          backgroundColor: ORDER.map(c => COLOR_BY_CAT[c]),
+          borderWidth: 0
+        }]
+      },
+      options: {
+        indexAxis: "y",
+        plugins: {
+          legend: { display: false },
+          tooltip: { callbacks: { label: (c) => c.raw + "%" } }
+        },
+        scales: {
+          x: { min: 0, max: 100, ticks: { callback: v => v + "%" } }
+        }
+      }
+    });
+  }
+
+  const DEFAULT_NAME = (data && Object.prototype.hasOwnProperty.call(data, "Statewide"))
+    ? "Statewide" : Object.keys(data || {})[0];
+
+  const sel = document.getElementById("countySelect");
+  if (sel) sel.addEventListener("change", e => renderChart(e.target.value));
+  if (DEFAULT_NAME) renderChart(DEFAULT_NAME);
+});</script>
+  </body>
+</html>
+</html>

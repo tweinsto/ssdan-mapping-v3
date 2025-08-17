@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Living Arrangements 18–64 – South Carolina</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+      body { font-family: sans-serif; margin: 1.25rem 2rem; text-align: center; }
+      h2 { margin-bottom: .25rem; font-size: 1.6rem; color: #2c348b; }
+      label { margin-right: .5rem; }
+      select { padding: .45rem .6rem; font-size: 1rem; border-radius: .5rem; border: 2px solid #f39c12; }
+      canvas { width: 100%; max-width: 900px; height: 520px; }
+    </style>
+</head>
+<html>
+  <body>
+    <h2>Living Arrangements of Adults 18–64 in South Carolina</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Abbeville County, South Carolina">Abbeville County, South Carolina</option>
+      <option value="Aiken County, South Carolina">Aiken County, South Carolina</option>
+      <option value="Allendale County, South Carolina">Allendale County, South Carolina</option>
+      <option value="Anderson County, South Carolina">Anderson County, South Carolina</option>
+      <option value="Bamberg County, South Carolina">Bamberg County, South Carolina</option>
+      <option value="Barnwell County, South Carolina">Barnwell County, South Carolina</option>
+      <option value="Beaufort County, South Carolina">Beaufort County, South Carolina</option>
+      <option value="Berkeley County, South Carolina">Berkeley County, South Carolina</option>
+      <option value="Calhoun County, South Carolina">Calhoun County, South Carolina</option>
+      <option value="Charleston County, South Carolina">Charleston County, South Carolina</option>
+      <option value="Cherokee County, South Carolina">Cherokee County, South Carolina</option>
+      <option value="Chester County, South Carolina">Chester County, South Carolina</option>
+      <option value="Chesterfield County, South Carolina">Chesterfield County, South Carolina</option>
+      <option value="Clarendon County, South Carolina">Clarendon County, South Carolina</option>
+      <option value="Colleton County, South Carolina">Colleton County, South Carolina</option>
+      <option value="Darlington County, South Carolina">Darlington County, South Carolina</option>
+      <option value="Dillon County, South Carolina">Dillon County, South Carolina</option>
+      <option value="Dorchester County, South Carolina">Dorchester County, South Carolina</option>
+      <option value="Edgefield County, South Carolina">Edgefield County, South Carolina</option>
+      <option value="Fairfield County, South Carolina">Fairfield County, South Carolina</option>
+      <option value="Florence County, South Carolina">Florence County, South Carolina</option>
+      <option value="Georgetown County, South Carolina">Georgetown County, South Carolina</option>
+      <option value="Greenville County, South Carolina">Greenville County, South Carolina</option>
+      <option value="Greenwood County, South Carolina">Greenwood County, South Carolina</option>
+      <option value="Hampton County, South Carolina">Hampton County, South Carolina</option>
+      <option value="Horry County, South Carolina">Horry County, South Carolina</option>
+      <option value="Jasper County, South Carolina">Jasper County, South Carolina</option>
+      <option value="Kershaw County, South Carolina">Kershaw County, South Carolina</option>
+      <option value="Lancaster County, South Carolina">Lancaster County, South Carolina</option>
+      <option value="Laurens County, South Carolina">Laurens County, South Carolina</option>
+      <option value="Lee County, South Carolina">Lee County, South Carolina</option>
+      <option value="Lexington County, South Carolina">Lexington County, South Carolina</option>
+      <option value="Marion County, South Carolina">Marion County, South Carolina</option>
+      <option value="Marlboro County, South Carolina">Marlboro County, South Carolina</option>
+      <option value="McCormick County, South Carolina">McCormick County, South Carolina</option>
+      <option value="Newberry County, South Carolina">Newberry County, South Carolina</option>
+      <option value="Oconee County, South Carolina">Oconee County, South Carolina</option>
+      <option value="Orangeburg County, South Carolina">Orangeburg County, South Carolina</option>
+      <option value="Pickens County, South Carolina">Pickens County, South Carolina</option>
+      <option value="Richland County, South Carolina">Richland County, South Carolina</option>
+      <option value="Saluda County, South Carolina">Saluda County, South Carolina</option>
+      <option value="Spartanburg County, South Carolina">Spartanburg County, South Carolina</option>
+      <option value="Sumter County, South Carolina">Sumter County, South Carolina</option>
+      <option value="Union County, South Carolina">Union County, South Carolina</option>
+      <option value="Williamsburg County, South Carolina">Williamsburg County, South Carolina</option>
+      <option value="York County, South Carolina">York County, South Carolina</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>document.addEventListener("DOMContentLoaded", function () {
+  const data = {"Statewide":[11.8,14.9,5.3,13.6,47,7.3],"Abbeville County, South Carolina":[10.5,16.4,2.5,15.3,45.9,9.3],"Aiken County, South Carolina":[10.9,16.5,4.4,13,48.4,6.9],"Allendale County, South Carolina":[17.1,18.5,5.8,20.6,33.5,4.4],"Anderson County, South Carolina":[10.4,13.8,3.8,12.7,51.6,7.6],"Bamberg County, South Carolina":[10.8,31,3.9,16.6,34.6,3],"Barnwell County, South Carolina":[13.6,20.1,4.8,19.4,38.1,4.1],"Beaufort County, South Carolina":[9.6,15.3,4.8,10.8,53.7,5.8],"Berkeley County, South Carolina":[9.7,13.2,5,14,50.7,7.4],"Calhoun County, South Carolina":[12.1,15.9,1.5,15.2,48.5,6.9],"Charleston County, South Carolina":[15.2,11,9.6,10.8,45.6,7.9],"Cherokee County, South Carolina":[12.2,17.2,4.7,15.3,43.4,7.1],"Chester County, South Carolina":[10.2,18.6,2.6,15.4,45.2,8],"Chesterfield County, South Carolina":[13.1,18.3,2.5,17.4,39.8,8.7],"Clarendon County, South Carolina":[10.4,23.5,3.4,17.9,38.9,6],"Colleton County, South Carolina":[12.9,16.2,3,19.4,39,9.4],"Darlington County, South Carolina":[13.5,23.1,1.9,16.9,37.7,6.8],"Dillon County, South Carolina":[12.3,19.7,1.9,21.5,32.7,11.8],"Dorchester County, South Carolina":[9.4,14.8,5.1,13.1,49.9,7.7],"Edgefield County, South Carolina":[7.8,21.5,4.6,15.7,45.4,4.9],"Fairfield County, South Carolina":[13.3,22.1,4.7,18.5,37,4.4],"Florence County, South Carolina":[13.1,17.5,3,18.2,42.5,5.7],"Georgetown County, South Carolina":[8.8,20.3,2,15.9,47.4,5.5],"Greenville County, South Carolina":[12.1,12.1,5,12.1,51.1,7.8],"Greenwood County, South Carolina":[15.1,17.2,4.2,14.6,41.1,7.8],"Hampton County, South Carolina":[11.1,25.5,2.7,16.2,36.1,8.4],"Horry County, South Carolina":[10.8,15.9,7.5,12.7,44.4,8.7],"Jasper County, South Carolina":[11.9,14.1,7.4,13.4,45.7,7.6],"Kershaw County, South Carolina":[10.4,17.3,2.3,12.7,51.2,6.1],"Lancaster County, South Carolina":[9.7,16.4,3.6,10.6,53.5,6.2],"Laurens County, South Carolina":[11,16.3,2.9,16,47.3,6.5],"Lee County, South Carolina":[13.4,21.6,1.9,15.8,38.6,8.7],"Lexington County, South Carolina":[10.9,13.2,4.8,11.4,51.6,8.2],"Marion County, South Carolina":[16.9,21.3,5.2,26.9,23.8,5.8],"Marlboro County, South Carolina":[16.9,23.5,3.7,16.2,30.7,9],"McCormick County, South Carolina":[12.4,23,4.2,16,42.5,1.9],"Newberry County, South Carolina":[11,15.3,1.9,15.9,48.7,7.2],"Oconee County, South Carolina":[11.3,13.4,5.5,14.2,50.7,5],"Orangeburg County, South Carolina":[13.9,23,1.7,21.6,32.1,7.7],"Pickens County, South Carolina":[10.5,12.8,12.8,9,47.9,6.9],"Richland County, South Carolina":[16,13.6,7.9,15.3,39.9,7.3],"Saluda County, South Carolina":[8.6,14.5,2,14.8,55.1,5],"Spartanburg County, South Carolina":[10.1,14.9,4.1,13.7,49.5,7.7],"Sumter County, South Carolina":[12.6,17.4,2.9,17.1,44.3,5.6],"Union County, South Carolina":[17.3,16,2.6,18,38.7,7.4],"Williamsburg County, South Carolina":[12.4,24.5,2.5,17.7,37.9,5],"York County, South Carolina":[9.6,13.5,4.2,12.4,53.5,6.9]};
+  const cats = ["lives_alone_18_64","with_child_18_64","with_nonrel_18_64","with_other_rel_18_64","with_spouse_only_18_64","with_unmar_partner_18_64"];
+
+  const ORDER = [
+    "Lives alone",
+    "With child",
+    "With nonrelatives",
+    "With other relatives",
+    "With spouse only",
+    "With unmarried partner"
+  ];
+
+  const PRETTY_TO_SNAKE = {
+    "Lives alone":            "lives_alone_18_64",
+    "With child":             "with_child_18_64",
+    "With nonrelatives":      "with_nonrel_18_64",
+    "With other relatives":   "with_other_rel_18_64",
+    "With spouse only":       "with_spouse_only_18_64",
+    "With unmarried partner": "with_unmar_partner_18_64"
+  };
+
+  const COLOR_BY_CAT = {
+    "Lives alone":            "#e41a1c",
+    "With child":             "#ff7f00",
+    "With nonrelatives":      "#4daf4a",
+    "With other relatives":   "#984ea3",
+    "With spouse only":       "#377eb8",
+    "With unmarried partner": "#a65628"
+  };
+
+  // snake key → array index
+  const keyToIndex = Object.fromEntries((cats || []).map((k, i) => [String(k), i]));
+
+  function valuesFor(name) {
+    const row = data?.[name] || [];
+    return ORDER.map(lbl => {
+      const idx = keyToIndex[PRETTY_TO_SNAKE[lbl]];
+      const v = (idx != null && idx >= 0) ? row[idx] : 0;
+      return (typeof v === "number") ? v : Number(v) || 0;
+    });
+  }
+
+  const canvas = document.getElementById("barChart");
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+  let chart;
+
+  function renderChart(name) {
+    const vals = valuesFor(name);
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: ORDER,
+        datasets: [{
+          data: vals,
+          backgroundColor: ORDER.map(c => COLOR_BY_CAT[c]),
+          borderWidth: 0
+        }]
+      },
+      options: {
+        indexAxis: "y",
+        plugins: {
+          legend: { display: false },
+          tooltip: { callbacks: { label: (c) => c.raw + "%" } }
+        },
+        scales: {
+          x: { min: 0, max: 100, ticks: { callback: v => v + "%" } }
+        }
+      }
+    });
+  }
+
+  const DEFAULT_NAME = (data && Object.prototype.hasOwnProperty.call(data, "Statewide"))
+    ? "Statewide" : Object.keys(data || {})[0];
+
+  const sel = document.getElementById("countySelect");
+  if (sel) sel.addEventListener("change", e => renderChart(e.target.value));
+  if (DEFAULT_NAME) renderChart(DEFAULT_NAME);
+});</script>
+  </body>
+</html>
+</html>

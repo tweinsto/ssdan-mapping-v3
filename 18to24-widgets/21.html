@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Educational Enrollment – Kentucky</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Educational Enrollment (Age 18–24) in Kentucky</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Adair County, Kentucky">Adair County, Kentucky</option>
+      <option value="Allen County, Kentucky">Allen County, Kentucky</option>
+      <option value="Anderson County, Kentucky">Anderson County, Kentucky</option>
+      <option value="Ballard County, Kentucky">Ballard County, Kentucky</option>
+      <option value="Barren County, Kentucky">Barren County, Kentucky</option>
+      <option value="Bath County, Kentucky">Bath County, Kentucky</option>
+      <option value="Bell County, Kentucky">Bell County, Kentucky</option>
+      <option value="Boone County, Kentucky">Boone County, Kentucky</option>
+      <option value="Bourbon County, Kentucky">Bourbon County, Kentucky</option>
+      <option value="Boyd County, Kentucky">Boyd County, Kentucky</option>
+      <option value="Boyle County, Kentucky">Boyle County, Kentucky</option>
+      <option value="Bracken County, Kentucky">Bracken County, Kentucky</option>
+      <option value="Breathitt County, Kentucky">Breathitt County, Kentucky</option>
+      <option value="Breckinridge County, Kentucky">Breckinridge County, Kentucky</option>
+      <option value="Bullitt County, Kentucky">Bullitt County, Kentucky</option>
+      <option value="Butler County, Kentucky">Butler County, Kentucky</option>
+      <option value="Caldwell County, Kentucky">Caldwell County, Kentucky</option>
+      <option value="Calloway County, Kentucky">Calloway County, Kentucky</option>
+      <option value="Campbell County, Kentucky">Campbell County, Kentucky</option>
+      <option value="Carlisle County, Kentucky">Carlisle County, Kentucky</option>
+      <option value="Carroll County, Kentucky">Carroll County, Kentucky</option>
+      <option value="Carter County, Kentucky">Carter County, Kentucky</option>
+      <option value="Casey County, Kentucky">Casey County, Kentucky</option>
+      <option value="Christian County, Kentucky">Christian County, Kentucky</option>
+      <option value="Clark County, Kentucky">Clark County, Kentucky</option>
+      <option value="Clay County, Kentucky">Clay County, Kentucky</option>
+      <option value="Clinton County, Kentucky">Clinton County, Kentucky</option>
+      <option value="Crittenden County, Kentucky">Crittenden County, Kentucky</option>
+      <option value="Cumberland County, Kentucky">Cumberland County, Kentucky</option>
+      <option value="Daviess County, Kentucky">Daviess County, Kentucky</option>
+      <option value="Edmonson County, Kentucky">Edmonson County, Kentucky</option>
+      <option value="Elliott County, Kentucky">Elliott County, Kentucky</option>
+      <option value="Estill County, Kentucky">Estill County, Kentucky</option>
+      <option value="Fayette County, Kentucky">Fayette County, Kentucky</option>
+      <option value="Fleming County, Kentucky">Fleming County, Kentucky</option>
+      <option value="Floyd County, Kentucky">Floyd County, Kentucky</option>
+      <option value="Franklin County, Kentucky">Franklin County, Kentucky</option>
+      <option value="Fulton County, Kentucky">Fulton County, Kentucky</option>
+      <option value="Gallatin County, Kentucky">Gallatin County, Kentucky</option>
+      <option value="Garrard County, Kentucky">Garrard County, Kentucky</option>
+      <option value="Grant County, Kentucky">Grant County, Kentucky</option>
+      <option value="Graves County, Kentucky">Graves County, Kentucky</option>
+      <option value="Grayson County, Kentucky">Grayson County, Kentucky</option>
+      <option value="Green County, Kentucky">Green County, Kentucky</option>
+      <option value="Greenup County, Kentucky">Greenup County, Kentucky</option>
+      <option value="Hancock County, Kentucky">Hancock County, Kentucky</option>
+      <option value="Hardin County, Kentucky">Hardin County, Kentucky</option>
+      <option value="Harlan County, Kentucky">Harlan County, Kentucky</option>
+      <option value="Harrison County, Kentucky">Harrison County, Kentucky</option>
+      <option value="Hart County, Kentucky">Hart County, Kentucky</option>
+      <option value="Henderson County, Kentucky">Henderson County, Kentucky</option>
+      <option value="Henry County, Kentucky">Henry County, Kentucky</option>
+      <option value="Hickman County, Kentucky">Hickman County, Kentucky</option>
+      <option value="Hopkins County, Kentucky">Hopkins County, Kentucky</option>
+      <option value="Jackson County, Kentucky">Jackson County, Kentucky</option>
+      <option value="Jefferson County, Kentucky">Jefferson County, Kentucky</option>
+      <option value="Jessamine County, Kentucky">Jessamine County, Kentucky</option>
+      <option value="Johnson County, Kentucky">Johnson County, Kentucky</option>
+      <option value="Kenton County, Kentucky">Kenton County, Kentucky</option>
+      <option value="Knott County, Kentucky">Knott County, Kentucky</option>
+      <option value="Knox County, Kentucky">Knox County, Kentucky</option>
+      <option value="Larue County, Kentucky">Larue County, Kentucky</option>
+      <option value="Laurel County, Kentucky">Laurel County, Kentucky</option>
+      <option value="Lawrence County, Kentucky">Lawrence County, Kentucky</option>
+      <option value="Lee County, Kentucky">Lee County, Kentucky</option>
+      <option value="Leslie County, Kentucky">Leslie County, Kentucky</option>
+      <option value="Letcher County, Kentucky">Letcher County, Kentucky</option>
+      <option value="Lewis County, Kentucky">Lewis County, Kentucky</option>
+      <option value="Lincoln County, Kentucky">Lincoln County, Kentucky</option>
+      <option value="Livingston County, Kentucky">Livingston County, Kentucky</option>
+      <option value="Logan County, Kentucky">Logan County, Kentucky</option>
+      <option value="Lyon County, Kentucky">Lyon County, Kentucky</option>
+      <option value="Madison County, Kentucky">Madison County, Kentucky</option>
+      <option value="Magoffin County, Kentucky">Magoffin County, Kentucky</option>
+      <option value="Marion County, Kentucky">Marion County, Kentucky</option>
+      <option value="Marshall County, Kentucky">Marshall County, Kentucky</option>
+      <option value="Martin County, Kentucky">Martin County, Kentucky</option>
+      <option value="Mason County, Kentucky">Mason County, Kentucky</option>
+      <option value="McCracken County, Kentucky">McCracken County, Kentucky</option>
+      <option value="McCreary County, Kentucky">McCreary County, Kentucky</option>
+      <option value="McLean County, Kentucky">McLean County, Kentucky</option>
+      <option value="Meade County, Kentucky">Meade County, Kentucky</option>
+      <option value="Menifee County, Kentucky">Menifee County, Kentucky</option>
+      <option value="Mercer County, Kentucky">Mercer County, Kentucky</option>
+      <option value="Metcalfe County, Kentucky">Metcalfe County, Kentucky</option>
+      <option value="Monroe County, Kentucky">Monroe County, Kentucky</option>
+      <option value="Montgomery County, Kentucky">Montgomery County, Kentucky</option>
+      <option value="Morgan County, Kentucky">Morgan County, Kentucky</option>
+      <option value="Muhlenberg County, Kentucky">Muhlenberg County, Kentucky</option>
+      <option value="Nelson County, Kentucky">Nelson County, Kentucky</option>
+      <option value="Nicholas County, Kentucky">Nicholas County, Kentucky</option>
+      <option value="Ohio County, Kentucky">Ohio County, Kentucky</option>
+      <option value="Oldham County, Kentucky">Oldham County, Kentucky</option>
+      <option value="Owen County, Kentucky">Owen County, Kentucky</option>
+      <option value="Owsley County, Kentucky">Owsley County, Kentucky</option>
+      <option value="Pendleton County, Kentucky">Pendleton County, Kentucky</option>
+      <option value="Perry County, Kentucky">Perry County, Kentucky</option>
+      <option value="Pike County, Kentucky">Pike County, Kentucky</option>
+      <option value="Powell County, Kentucky">Powell County, Kentucky</option>
+      <option value="Pulaski County, Kentucky">Pulaski County, Kentucky</option>
+      <option value="Robertson County, Kentucky">Robertson County, Kentucky</option>
+      <option value="Rockcastle County, Kentucky">Rockcastle County, Kentucky</option>
+      <option value="Rowan County, Kentucky">Rowan County, Kentucky</option>
+      <option value="Russell County, Kentucky">Russell County, Kentucky</option>
+      <option value="Scott County, Kentucky">Scott County, Kentucky</option>
+      <option value="Shelby County, Kentucky">Shelby County, Kentucky</option>
+      <option value="Simpson County, Kentucky">Simpson County, Kentucky</option>
+      <option value="Spencer County, Kentucky">Spencer County, Kentucky</option>
+      <option value="Taylor County, Kentucky">Taylor County, Kentucky</option>
+      <option value="Todd County, Kentucky">Todd County, Kentucky</option>
+      <option value="Trigg County, Kentucky">Trigg County, Kentucky</option>
+      <option value="Trimble County, Kentucky">Trimble County, Kentucky</option>
+      <option value="Union County, Kentucky">Union County, Kentucky</option>
+      <option value="Warren County, Kentucky">Warren County, Kentucky</option>
+      <option value="Washington County, Kentucky">Washington County, Kentucky</option>
+      <option value="Wayne County, Kentucky">Wayne County, Kentucky</option>
+      <option value="Webster County, Kentucky">Webster County, Kentucky</option>
+      <option value="Whitley County, Kentucky">Whitley County, Kentucky</option>
+      <option value="Wolfe County, Kentucky">Wolfe County, Kentucky</option>
+      <option value="Woodford County, Kentucky">Woodford County, Kentucky</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>  const data = {"Statewide":{"Enrolled in College / Grad. School":35.9,"Not Enrolled":64.1},"Adair County, Kentucky":{"Enrolled in College / Grad. School":60.6,"Not Enrolled":39.4},"Allen County, Kentucky":{"Enrolled in College / Grad. School":17.3,"Not Enrolled":82.7},"Anderson County, Kentucky":{"Enrolled in College / Grad. School":18.5,"Not Enrolled":81.5},"Ballard County, Kentucky":{"Enrolled in College / Grad. School":30.3,"Not Enrolled":69.7},"Barren County, Kentucky":{"Enrolled in College / Grad. School":21.8,"Not Enrolled":78.2},"Bath County, Kentucky":{"Enrolled in College / Grad. School":13.2,"Not Enrolled":86.8},"Bell County, Kentucky":{"Enrolled in College / Grad. School":12.7,"Not Enrolled":87.3},"Boone County, Kentucky":{"Enrolled in College / Grad. School":37,"Not Enrolled":63},"Bourbon County, Kentucky":{"Enrolled in College / Grad. School":26.3,"Not Enrolled":73.7},"Boyd County, Kentucky":{"Enrolled in College / Grad. School":33.3,"Not Enrolled":66.7},"Boyle County, Kentucky":{"Enrolled in College / Grad. School":48.8,"Not Enrolled":51.2},"Bracken County, Kentucky":{"Enrolled in College / Grad. School":18.9,"Not Enrolled":81.1},"Breathitt County, Kentucky":{"Enrolled in College / Grad. School":23.1,"Not Enrolled":76.9},"Breckinridge County, Kentucky":{"Enrolled in College / Grad. School":20.3,"Not Enrolled":79.7},"Bullitt County, Kentucky":{"Enrolled in College / Grad. School":28.4,"Not Enrolled":71.6},"Butler County, Kentucky":{"Enrolled in College / Grad. School":22,"Not Enrolled":78},"Caldwell County, Kentucky":{"Enrolled in College / Grad. School":27.6,"Not Enrolled":72.4},"Calloway County, Kentucky":{"Enrolled in College / Grad. School":64.3,"Not Enrolled":35.7},"Campbell County, Kentucky":{"Enrolled in College / Grad. School":48.9,"Not Enrolled":51.1},"Carlisle County, Kentucky":{"Enrolled in College / Grad. School":15.2,"Not Enrolled":84.8},"Carroll County, Kentucky":{"Enrolled in College / Grad. School":20.3,"Not Enrolled":79.7},"Carter County, Kentucky":{"Enrolled in College / Grad. School":37.7,"Not Enrolled":62.3},"Casey County, Kentucky":{"Enrolled in College / Grad. School":15.6,"Not Enrolled":84.4},"Christian County, Kentucky":{"Enrolled in College / Grad. School":13,"Not Enrolled":87},"Clark County, Kentucky":{"Enrolled in College / Grad. School":22,"Not Enrolled":78},"Clay County, Kentucky":{"Enrolled in College / Grad. School":27.1,"Not Enrolled":72.9},"Clinton County, Kentucky":{"Enrolled in College / Grad. School":30.8,"Not Enrolled":69.2},"Crittenden County, Kentucky":{"Enrolled in College / Grad. School":15.1,"Not Enrolled":84.9},"Cumberland County, Kentucky":{"Enrolled in College / Grad. School":23.3,"Not Enrolled":76.7},"Daviess County, Kentucky":{"Enrolled in College / Grad. School":28.6,"Not Enrolled":71.4},"Edmonson County, Kentucky":{"Enrolled in College / Grad. School":12.3,"Not Enrolled":87.7},"Elliott County, Kentucky":{"Enrolled in College / Grad. School":21,"Not Enrolled":79},"Estill County, Kentucky":{"Enrolled in College / Grad. School":19.7,"Not Enrolled":80.3},"Fayette County, Kentucky":{"Enrolled in College / Grad. School":58.4,"Not Enrolled":41.6},"Fleming County, Kentucky":{"Enrolled in College / Grad. School":17.4,"Not Enrolled":82.6},"Floyd County, Kentucky":{"Enrolled in College / Grad. School":26.4,"Not Enrolled":73.6},"Franklin County, Kentucky":{"Enrolled in College / Grad. School":36.3,"Not Enrolled":63.7},"Fulton County, Kentucky":{"Enrolled in College / Grad. School":12.8,"Not Enrolled":87.2},"Gallatin County, Kentucky":{"Enrolled in College / Grad. School":26.7,"Not Enrolled":73.3},"Garrard County, Kentucky":{"Enrolled in College / Grad. School":17.4,"Not Enrolled":82.6},"Grant County, Kentucky":{"Enrolled in College / Grad. School":21.3,"Not Enrolled":78.7},"Graves County, Kentucky":{"Enrolled in College / Grad. School":22.4,"Not Enrolled":77.6},"Grayson County, Kentucky":{"Enrolled in College / Grad. School":21.1,"Not Enrolled":78.9},"Green County, Kentucky":{"Enrolled in College / Grad. School":22.1,"Not Enrolled":77.9},"Greenup County, Kentucky":{"Enrolled in College / Grad. School":31.8,"Not Enrolled":68.2},"Hancock County, Kentucky":{"Enrolled in College / Grad. School":16.7,"Not Enrolled":83.3},"Hardin County, Kentucky":{"Enrolled in College / Grad. School":17,"Not Enrolled":83},"Harlan County, Kentucky":{"Enrolled in College / Grad. School":23.1,"Not Enrolled":76.9},"Harrison County, Kentucky":{"Enrolled in College / Grad. School":16,"Not Enrolled":84},"Hart County, Kentucky":{"Enrolled in College / Grad. School":17.2,"Not Enrolled":82.8},"Henderson County, Kentucky":{"Enrolled in College / Grad. School":21.4,"Not Enrolled":78.6},"Henry County, Kentucky":{"Enrolled in College / Grad. School":16.3,"Not Enrolled":83.7},"Hickman County, Kentucky":{"Enrolled in College / Grad. School":10.1,"Not Enrolled":89.9},"Hopkins County, Kentucky":{"Enrolled in College / Grad. School":14.2,"Not Enrolled":85.8},"Jackson County, Kentucky":{"Enrolled in College / Grad. School":10.3,"Not Enrolled":89.7},"Jefferson County, Kentucky":{"Enrolled in College / Grad. School":37.1,"Not Enrolled":62.9},"Jessamine County, Kentucky":{"Enrolled in College / Grad. School":38.9,"Not Enrolled":61.1},"Johnson County, Kentucky":{"Enrolled in College / Grad. School":39.1,"Not Enrolled":60.9},"Kenton County, Kentucky":{"Enrolled in College / Grad. School":32.4,"Not Enrolled":67.6},"Knott County, Kentucky":{"Enrolled in College / Grad. School":40.8,"Not Enrolled":59.2},"Knox County, Kentucky":{"Enrolled in College / Grad. School":20.9,"Not Enrolled":79.1},"Larue County, Kentucky":{"Enrolled in College / Grad. School":25.8,"Not Enrolled":74.2},"Laurel County, Kentucky":{"Enrolled in College / Grad. School":20.3,"Not Enrolled":79.7},"Lawrence County, Kentucky":{"Enrolled in College / Grad. School":29.3,"Not Enrolled":70.7},"Lee County, Kentucky":{"Enrolled in College / Grad. School":15.6,"Not Enrolled":84.4},"Leslie County, Kentucky":{"Enrolled in College / Grad. School":25.9,"Not Enrolled":74.1},"Letcher County, Kentucky":{"Enrolled in College / Grad. School":30.3,"Not Enrolled":69.7},"Lewis County, Kentucky":{"Enrolled in College / Grad. School":17,"Not Enrolled":83},"Lincoln County, Kentucky":{"Enrolled in College / Grad. School":21.3,"Not Enrolled":78.7},"Livingston County, Kentucky":{"Enrolled in College / Grad. School":17.8,"Not Enrolled":82.2},"Logan County, Kentucky":{"Enrolled in College / Grad. School":12.5,"Not Enrolled":87.5},"Lyon County, Kentucky":{"Enrolled in College / Grad. School":9.2,"Not Enrolled":90.8},"McCracken County, Kentucky":{"Enrolled in College / Grad. School":29.8,"Not Enrolled":70.2},"McCreary County, Kentucky":{"Enrolled in College / Grad. School":25.1,"Not Enrolled":74.9},"McLean County, Kentucky":{"Enrolled in College / Grad. School":26.2,"Not Enrolled":73.8},"Madison County, Kentucky":{"Enrolled in College / Grad. School":59.2,"Not Enrolled":40.8},"Magoffin County, Kentucky":{"Enrolled in College / Grad. School":21.7,"Not Enrolled":78.3},"Marion County, Kentucky":{"Enrolled in College / Grad. School":21.5,"Not Enrolled":78.5},"Marshall County, Kentucky":{"Enrolled in College / Grad. School":22.3,"Not Enrolled":77.7},"Martin County, Kentucky":{"Enrolled in College / Grad. School":40.9,"Not Enrolled":59.1},"Mason County, Kentucky":{"Enrolled in College / Grad. School":26.7,"Not Enrolled":73.3},"Meade County, Kentucky":{"Enrolled in College / Grad. School":22.4,"Not Enrolled":77.6},"Menifee County, Kentucky":{"Enrolled in College / Grad. School":11.7,"Not Enrolled":88.3},"Mercer County, Kentucky":{"Enrolled in College / Grad. School":22.6,"Not Enrolled":77.4},"Metcalfe County, Kentucky":{"Enrolled in College / Grad. School":10.3,"Not Enrolled":89.7},"Monroe County, Kentucky":{"Enrolled in College / Grad. School":20,"Not Enrolled":80},"Montgomery County, Kentucky":{"Enrolled in College / Grad. School":16,"Not Enrolled":84},"Morgan County, Kentucky":{"Enrolled in College / Grad. School":20.8,"Not Enrolled":79.2},"Muhlenberg County, Kentucky":{"Enrolled in College / Grad. School":25,"Not Enrolled":75},"Nelson County, Kentucky":{"Enrolled in College / Grad. School":24.6,"Not Enrolled":75.4},"Nicholas County, Kentucky":{"Enrolled in College / Grad. School":27.7,"Not Enrolled":72.3},"Ohio County, Kentucky":{"Enrolled in College / Grad. School":23.1,"Not Enrolled":76.9},"Oldham County, Kentucky":{"Enrolled in College / Grad. School":32.5,"Not Enrolled":67.5},"Owen County, Kentucky":{"Enrolled in College / Grad. School":13.6,"Not Enrolled":86.4},"Owsley County, Kentucky":{"Enrolled in College / Grad. School":20.5,"Not Enrolled":79.5},"Pendleton County, Kentucky":{"Enrolled in College / Grad. School":18.3,"Not Enrolled":81.7},"Perry County, Kentucky":{"Enrolled in College / Grad. School":22.7,"Not Enrolled":77.3},"Pike County, Kentucky":{"Enrolled in College / Grad. School":43.6,"Not Enrolled":56.4},"Powell County, Kentucky":{"Enrolled in College / Grad. School":24.6,"Not Enrolled":75.4},"Pulaski County, Kentucky":{"Enrolled in College / Grad. School":31.5,"Not Enrolled":68.5},"Robertson County, Kentucky":{"Enrolled in College / Grad. School":19.2,"Not Enrolled":80.8},"Rockcastle County, Kentucky":{"Enrolled in College / Grad. School":13,"Not Enrolled":87},"Rowan County, Kentucky":{"Enrolled in College / Grad. School":71.4,"Not Enrolled":28.6},"Russell County, Kentucky":{"Enrolled in College / Grad. School":40.5,"Not Enrolled":59.5},"Scott County, Kentucky":{"Enrolled in College / Grad. School":35,"Not Enrolled":65},"Shelby County, Kentucky":{"Enrolled in College / Grad. School":24.2,"Not Enrolled":75.8},"Simpson County, Kentucky":{"Enrolled in College / Grad. School":15.1,"Not Enrolled":84.9},"Spencer County, Kentucky":{"Enrolled in College / Grad. School":22.8,"Not Enrolled":77.2},"Taylor County, Kentucky":{"Enrolled in College / Grad. School":52.1,"Not Enrolled":47.9},"Todd County, Kentucky":{"Enrolled in College / Grad. School":16.3,"Not Enrolled":83.7},"Trigg County, Kentucky":{"Enrolled in College / Grad. School":15.2,"Not Enrolled":84.8},"Trimble County, Kentucky":{"Enrolled in College / Grad. School":8,"Not Enrolled":92},"Union County, Kentucky":{"Enrolled in College / Grad. School":17.9,"Not Enrolled":82.1},"Warren County, Kentucky":{"Enrolled in College / Grad. School":51.7,"Not Enrolled":48.3},"Washington County, Kentucky":{"Enrolled in College / Grad. School":26.1,"Not Enrolled":73.9},"Wayne County, Kentucky":{"Enrolled in College / Grad. School":16,"Not Enrolled":84},"Webster County, Kentucky":{"Enrolled in College / Grad. School":13,"Not Enrolled":87},"Whitley County, Kentucky":{"Enrolled in College / Grad. School":42.9,"Not Enrolled":57.1},"Wolfe County, Kentucky":{"Enrolled in College / Grad. School":27.6,"Not Enrolled":72.4},"Woodford County, Kentucky":{"Enrolled in College / Grad. School":28.9,"Not Enrolled":71.1}};
+  const categories = ["Enrolled in College / Grad. School","Not Enrolled"];
+  const ctx = document.getElementById("barChart").getContext("2d");
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: categories,
+        datasets: [
+          {
+            label: "County/State",
+            data: values,
+            backgroundColor: ["#66c2a5", "#fc8d62"]
+          }
+        ]
+      },
+      options: {
+        indexAxis: "y",
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            ticks: {
+              callback: v => v + "%"
+            }
+          }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.dataset.label + ": " + ctx.raw + "%"
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById("countySelect").addEventListener("change", function() {
+    renderChart(Object.values(data[this.value]));
+  });
+
+  renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

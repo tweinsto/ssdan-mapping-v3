@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Income Distribution – Arizona</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          text-align: center;
+          margin: 2rem;
+        }
+        select {
+          font-size: 1rem;
+          padding: 0.4rem;
+          margin-bottom: 1rem;
+        }
+        canvas {
+          width: 100%;
+          max-width: 700px;
+          height: 400px;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Income Share by Quintile – Arizona</h2>
+    <label>Select County, State:</label>
+    <select id="countySelect"><option value='Statewide'>Statewide</option>
+<option value='Apache, Arizona'>Apache, Arizona</option>
+<option value='Cochise, Arizona'>Cochise, Arizona</option>
+<option value='Coconino, Arizona'>Coconino, Arizona</option>
+<option value='Gila, Arizona'>Gila, Arizona</option>
+<option value='Graham, Arizona'>Graham, Arizona</option>
+<option value='Greenlee, Arizona'>Greenlee, Arizona</option>
+<option value='La Paz, Arizona'>La Paz, Arizona</option>
+<option value='Maricopa, Arizona'>Maricopa, Arizona</option>
+<option value='Mohave, Arizona'>Mohave, Arizona</option>
+<option value='Navajo, Arizona'>Navajo, Arizona</option>
+<option value='Pima, Arizona'>Pima, Arizona</option>
+<option value='Pinal, Arizona'>Pinal, Arizona</option>
+<option value='Santa Cruz, Arizona'>Santa Cruz, Arizona</option>
+<option value='Yavapai, Arizona'>Yavapai, Arizona</option>
+<option value='Yuma, Arizona'>Yuma, Arizona</option></select>
+    <canvas id="barChart" width="700" height="400"></canvas>
+    <script>  const incomeData = {"Statewide":[5.3,8.7,13.2,27.3,45.5],"Apache, Arizona":[3.9,7.7,13.4,29.1,45.9],"Cochise, Arizona":[5.5,9.1,14.5,28.4,42.5],"Coconino, Arizona":[4.6,7.9,12.4,27.3,47.9],"Gila, Arizona":[5.6,8.9,13.3,27.2,45],"Graham, Arizona":[6.1,10.2,15.3,28,40.4],"Greenlee, Arizona":[6.8,10.4,13.6,25.9,43.4],"La Paz, Arizona":[4.8,7.8,11.9,27.6,48],"Maricopa, Arizona":[5,8.1,12.2,26.8,47.9],"Mohave, Arizona":[4.8,7.9,12,26.7,48.7],"Navajo, Arizona":[5.3,9.2,14.4,28.1,43],"Pima, Arizona":[4.8,8,12.6,27.2,47.4],"Pinal, Arizona":[6,9.2,13.4,26.3,45.1],"Santa Cruz, Arizona":[5.4,8.8,14.1,27.8,43.9],"Yavapai, Arizona":[5.2,8.4,12.8,27.3,46.2],"Yuma, Arizona":[5.3,8.7,12.8,26.6,46.6]};
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Bottom 20%', 'Second 20%', 'Middle 20%', 'Fourth 20%', 'Top 20%'],
+        datasets: [{
+          label: 'Share (%)',
+          data: values,
+          backgroundColor: '#4576a7'
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.parsed.y + '%'
+            }
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 100,
+            title: {
+              display: true,
+              text: 'Income Share (%)'
+            }
+          },
+          x: {
+            title: {
+              display: true,
+              text: 'Quintile'
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(Object.values(incomeData[this.value]));
+  });
+
+  renderChart(Object.values(incomeData['Statewide']));</script>
+  </body>
+</html>
+</html>

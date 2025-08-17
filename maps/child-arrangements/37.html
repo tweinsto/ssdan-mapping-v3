@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Living Arrangements of Children – North Carolina</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Children’s Living Arrangements (Under 18) – North Carolina</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Alamance County, North Carolina">Alamance County, North Carolina</option>
+      <option value="Alexander County, North Carolina">Alexander County, North Carolina</option>
+      <option value="Alleghany County, North Carolina">Alleghany County, North Carolina</option>
+      <option value="Anson County, North Carolina">Anson County, North Carolina</option>
+      <option value="Ashe County, North Carolina">Ashe County, North Carolina</option>
+      <option value="Avery County, North Carolina">Avery County, North Carolina</option>
+      <option value="Beaufort County, North Carolina">Beaufort County, North Carolina</option>
+      <option value="Bertie County, North Carolina">Bertie County, North Carolina</option>
+      <option value="Bladen County, North Carolina">Bladen County, North Carolina</option>
+      <option value="Brunswick County, North Carolina">Brunswick County, North Carolina</option>
+      <option value="Buncombe County, North Carolina">Buncombe County, North Carolina</option>
+      <option value="Burke County, North Carolina">Burke County, North Carolina</option>
+      <option value="Cabarrus County, North Carolina">Cabarrus County, North Carolina</option>
+      <option value="Caldwell County, North Carolina">Caldwell County, North Carolina</option>
+      <option value="Camden County, North Carolina">Camden County, North Carolina</option>
+      <option value="Carteret County, North Carolina">Carteret County, North Carolina</option>
+      <option value="Caswell County, North Carolina">Caswell County, North Carolina</option>
+      <option value="Catawba County, North Carolina">Catawba County, North Carolina</option>
+      <option value="Chatham County, North Carolina">Chatham County, North Carolina</option>
+      <option value="Cherokee County, North Carolina">Cherokee County, North Carolina</option>
+      <option value="Chowan County, North Carolina">Chowan County, North Carolina</option>
+      <option value="Clay County, North Carolina">Clay County, North Carolina</option>
+      <option value="Cleveland County, North Carolina">Cleveland County, North Carolina</option>
+      <option value="Columbus County, North Carolina">Columbus County, North Carolina</option>
+      <option value="Craven County, North Carolina">Craven County, North Carolina</option>
+      <option value="Cumberland County, North Carolina">Cumberland County, North Carolina</option>
+      <option value="Currituck County, North Carolina">Currituck County, North Carolina</option>
+      <option value="Dare County, North Carolina">Dare County, North Carolina</option>
+      <option value="Davidson County, North Carolina">Davidson County, North Carolina</option>
+      <option value="Davie County, North Carolina">Davie County, North Carolina</option>
+      <option value="Duplin County, North Carolina">Duplin County, North Carolina</option>
+      <option value="Durham County, North Carolina">Durham County, North Carolina</option>
+      <option value="Edgecombe County, North Carolina">Edgecombe County, North Carolina</option>
+      <option value="Forsyth County, North Carolina">Forsyth County, North Carolina</option>
+      <option value="Franklin County, North Carolina">Franklin County, North Carolina</option>
+      <option value="Gaston County, North Carolina">Gaston County, North Carolina</option>
+      <option value="Gates County, North Carolina">Gates County, North Carolina</option>
+      <option value="Graham County, North Carolina">Graham County, North Carolina</option>
+      <option value="Granville County, North Carolina">Granville County, North Carolina</option>
+      <option value="Greene County, North Carolina">Greene County, North Carolina</option>
+      <option value="Guilford County, North Carolina">Guilford County, North Carolina</option>
+      <option value="Halifax County, North Carolina">Halifax County, North Carolina</option>
+      <option value="Harnett County, North Carolina">Harnett County, North Carolina</option>
+      <option value="Haywood County, North Carolina">Haywood County, North Carolina</option>
+      <option value="Henderson County, North Carolina">Henderson County, North Carolina</option>
+      <option value="Hertford County, North Carolina">Hertford County, North Carolina</option>
+      <option value="Hoke County, North Carolina">Hoke County, North Carolina</option>
+      <option value="Hyde County, North Carolina">Hyde County, North Carolina</option>
+      <option value="Iredell County, North Carolina">Iredell County, North Carolina</option>
+      <option value="Jackson County, North Carolina">Jackson County, North Carolina</option>
+      <option value="Johnston County, North Carolina">Johnston County, North Carolina</option>
+      <option value="Jones County, North Carolina">Jones County, North Carolina</option>
+      <option value="Lee County, North Carolina">Lee County, North Carolina</option>
+      <option value="Lenoir County, North Carolina">Lenoir County, North Carolina</option>
+      <option value="Lincoln County, North Carolina">Lincoln County, North Carolina</option>
+      <option value="Macon County, North Carolina">Macon County, North Carolina</option>
+      <option value="Madison County, North Carolina">Madison County, North Carolina</option>
+      <option value="Martin County, North Carolina">Martin County, North Carolina</option>
+      <option value="McDowell County, North Carolina">McDowell County, North Carolina</option>
+      <option value="Mecklenburg County, North Carolina">Mecklenburg County, North Carolina</option>
+      <option value="Mitchell County, North Carolina">Mitchell County, North Carolina</option>
+      <option value="Montgomery County, North Carolina">Montgomery County, North Carolina</option>
+      <option value="Moore County, North Carolina">Moore County, North Carolina</option>
+      <option value="Nash County, North Carolina">Nash County, North Carolina</option>
+      <option value="New Hanover County, North Carolina">New Hanover County, North Carolina</option>
+      <option value="Northampton County, North Carolina">Northampton County, North Carolina</option>
+      <option value="Onslow County, North Carolina">Onslow County, North Carolina</option>
+      <option value="Orange County, North Carolina">Orange County, North Carolina</option>
+      <option value="Pamlico County, North Carolina">Pamlico County, North Carolina</option>
+      <option value="Pasquotank County, North Carolina">Pasquotank County, North Carolina</option>
+      <option value="Pender County, North Carolina">Pender County, North Carolina</option>
+      <option value="Perquimans County, North Carolina">Perquimans County, North Carolina</option>
+      <option value="Person County, North Carolina">Person County, North Carolina</option>
+      <option value="Pitt County, North Carolina">Pitt County, North Carolina</option>
+      <option value="Polk County, North Carolina">Polk County, North Carolina</option>
+      <option value="Randolph County, North Carolina">Randolph County, North Carolina</option>
+      <option value="Richmond County, North Carolina">Richmond County, North Carolina</option>
+      <option value="Robeson County, North Carolina">Robeson County, North Carolina</option>
+      <option value="Rockingham County, North Carolina">Rockingham County, North Carolina</option>
+      <option value="Rowan County, North Carolina">Rowan County, North Carolina</option>
+      <option value="Rutherford County, North Carolina">Rutherford County, North Carolina</option>
+      <option value="Sampson County, North Carolina">Sampson County, North Carolina</option>
+      <option value="Scotland County, North Carolina">Scotland County, North Carolina</option>
+      <option value="Stanly County, North Carolina">Stanly County, North Carolina</option>
+      <option value="Stokes County, North Carolina">Stokes County, North Carolina</option>
+      <option value="Surry County, North Carolina">Surry County, North Carolina</option>
+      <option value="Swain County, North Carolina">Swain County, North Carolina</option>
+      <option value="Transylvania County, North Carolina">Transylvania County, North Carolina</option>
+      <option value="Tyrrell County, North Carolina">Tyrrell County, North Carolina</option>
+      <option value="Union County, North Carolina">Union County, North Carolina</option>
+      <option value="Vance County, North Carolina">Vance County, North Carolina</option>
+      <option value="Wake County, North Carolina">Wake County, North Carolina</option>
+      <option value="Warren County, North Carolina">Warren County, North Carolina</option>
+      <option value="Washington County, North Carolina">Washington County, North Carolina</option>
+      <option value="Watauga County, North Carolina">Watauga County, North Carolina</option>
+      <option value="Wayne County, North Carolina">Wayne County, North Carolina</option>
+      <option value="Wilkes County, North Carolina">Wilkes County, North Carolina</option>
+      <option value="Wilson County, North Carolina">Wilson County, North Carolina</option>
+      <option value="Yadkin County, North Carolina">Yadkin County, North Carolina</option>
+      <option value="Yancey County, North Carolina">Yancey County, North Carolina</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>  const data = {"Statewide":{"Married Couple (%)":65.1,"Cohabiting Couple (%)":8,"Male Householder (%)":4.5,"Female Householder (%)":22.5},"Alamance County, North Carolina":{"Married Couple (%)":63.8,"Cohabiting Couple (%)":10.4,"Male Householder (%)":3.3,"Female Householder (%)":22.5},"Alexander County, North Carolina":{"Married Couple (%)":67.6,"Cohabiting Couple (%)":8.3,"Male Householder (%)":8.8,"Female Householder (%)":15.2},"Alleghany County, North Carolina":{"Married Couple (%)":74,"Cohabiting Couple (%)":1.4,"Male Householder (%)":2.5,"Female Householder (%)":22.1},"Anson County, North Carolina":{"Married Couple (%)":49.2,"Cohabiting Couple (%)":6.5,"Male Householder (%)":2,"Female Householder (%)":42.3},"Ashe County, North Carolina":{"Married Couple (%)":68.8,"Cohabiting Couple (%)":5.7,"Male Householder (%)":3.3,"Female Householder (%)":22.2},"Avery County, North Carolina":{"Married Couple (%)":79.5,"Cohabiting Couple (%)":4.3,"Male Householder (%)":5.4,"Female Householder (%)":10.8},"Beaufort County, North Carolina":{"Married Couple (%)":59.6,"Cohabiting Couple (%)":5.4,"Male Householder (%)":2.3,"Female Householder (%)":32.8},"Bertie County, North Carolina":{"Married Couple (%)":44.1,"Cohabiting Couple (%)":3.5,"Male Householder (%)":9,"Female Householder (%)":43.4},"Bladen County, North Carolina":{"Married Couple (%)":55.1,"Cohabiting Couple (%)":8.9,"Male Householder (%)":2.7,"Female Householder (%)":33.3},"Brunswick County, North Carolina":{"Married Couple (%)":66.4,"Cohabiting Couple (%)":8.5,"Male Householder (%)":4.1,"Female Householder (%)":21},"Buncombe County, North Carolina":{"Married Couple (%)":68.7,"Cohabiting Couple (%)":6.5,"Male Householder (%)":5.8,"Female Householder (%)":19},"Burke County, North Carolina":{"Married Couple (%)":64.8,"Cohabiting Couple (%)":10.7,"Male Householder (%)":3.6,"Female Householder (%)":21},"Cabarrus County, North Carolina":{"Married Couple (%)":70.5,"Cohabiting Couple (%)":7.6,"Male Householder (%)":2.6,"Female Householder (%)":19.2},"Caldwell County, North Carolina":{"Married Couple (%)":66,"Cohabiting Couple (%)":8.5,"Male Householder (%)":5.2,"Female Householder (%)":20.3},"Camden County, North Carolina":{"Married Couple (%)":83.3,"Cohabiting Couple (%)":4.8,"Male Householder (%)":4.8,"Female Householder (%)":7.2},"Carteret County, North Carolina":{"Married Couple (%)":74.2,"Cohabiting Couple (%)":5,"Male Householder (%)":3.6,"Female Householder (%)":17.2},"Caswell County, North Carolina":{"Married Couple (%)":62.8,"Cohabiting Couple (%)":13.5,"Male Householder (%)":3.6,"Female Householder (%)":20.1},"Catawba County, North Carolina":{"Married Couple (%)":60.4,"Cohabiting Couple (%)":11.2,"Male Householder (%)":5.3,"Female Householder (%)":23.1},"Chatham County, North Carolina":{"Married Couple (%)":73.8,"Cohabiting Couple (%)":7.3,"Male Householder (%)":3,"Female Householder (%)":15.8},"Cherokee County, North Carolina":{"Married Couple (%)":60.1,"Cohabiting Couple (%)":7.9,"Male Householder (%)":4.6,"Female Householder (%)":27.4},"Chowan County, North Carolina":{"Married Couple (%)":54.2,"Cohabiting Couple (%)":7.5,"Male Householder (%)":6,"Female Householder (%)":32.4},"Clay County, North Carolina":{"Married Couple (%)":82.6,"Cohabiting Couple (%)":4.3,"Male Householder (%)":5.2,"Female Householder (%)":7.9},"Cleveland County, North Carolina":{"Married Couple (%)":53.4,"Cohabiting Couple (%)":10.6,"Male Householder (%)":9.6,"Female Householder (%)":26.5},"Columbus County, North Carolina":{"Married Couple (%)":57.3,"Cohabiting Couple (%)":5.1,"Male Householder (%)":8.4,"Female Householder (%)":29.2},"Craven County, North Carolina":{"Married Couple (%)":66.4,"Cohabiting Couple (%)":6.1,"Male Householder (%)":6.8,"Female Householder (%)":20.7},"Cumberland County, North Carolina":{"Married Couple (%)":56.5,"Cohabiting Couple (%)":7.1,"Male Householder (%)":5.2,"Female Householder (%)":31.1},"Currituck County, North Carolina":{"Married Couple (%)":70.1,"Cohabiting Couple (%)":7.3,"Male Householder (%)":7.5,"Female Householder (%)":15.1},"Dare County, North Carolina":{"Married Couple (%)":65,"Cohabiting Couple (%)":11.4,"Male Householder (%)":4,"Female Householder (%)":19.6},"Davidson County, North Carolina":{"Married Couple (%)":66.2,"Cohabiting Couple (%)":7.6,"Male Householder (%)":5.6,"Female Householder (%)":20.5},"Davie County, North Carolina":{"Married Couple (%)":75.4,"Cohabiting Couple (%)":6.6,"Male Householder (%)":4.9,"Female Householder (%)":13},"Duplin County, North Carolina":{"Married Couple (%)":57.6,"Cohabiting Couple (%)":10.1,"Male Householder (%)":3.3,"Female Householder (%)":28.9},"Durham County, North Carolina":{"Married Couple (%)":60.7,"Cohabiting Couple (%)":10.4,"Male Householder (%)":4.6,"Female Householder (%)":24.3},"Edgecombe County, North Carolina":{"Married Couple (%)":42.4,"Cohabiting Couple (%)":12.1,"Male Householder (%)":8.8,"Female Householder (%)":36.7},"Forsyth County, North Carolina":{"Married Couple (%)":59.9,"Cohabiting Couple (%)":8.3,"Male Householder (%)":3.9,"Female Householder (%)":27.9},"Franklin County, North Carolina":{"Married Couple (%)":71,"Cohabiting Couple (%)":7.4,"Male Householder (%)":3.3,"Female Householder (%)":18.4},"Gaston County, North Carolina":{"Married Couple (%)":60.2,"Cohabiting Couple (%)":9.1,"Male Householder (%)":6,"Female Householder (%)":24.7},"Gates County, North Carolina":{"Married Couple (%)":76.4,"Cohabiting Couple (%)":3.2,"Male Householder (%)":1.7,"Female Householder (%)":18.7},"Graham County, North Carolina":{"Married Couple (%)":76.6,"Cohabiting Couple (%)":8,"Male Householder (%)":6.7,"Female Householder (%)":8.7},"Granville County, North Carolina":{"Married Couple (%)":60.1,"Cohabiting Couple (%)":9.7,"Male Householder (%)":5.5,"Female Householder (%)":24.6},"Greene County, North Carolina":{"Married Couple (%)":42.4,"Cohabiting Couple (%)":15.3,"Male Householder (%)":3.4,"Female Householder (%)":39},"Guilford County, North Carolina":{"Married Couple (%)":60.4,"Cohabiting Couple (%)":7.6,"Male Householder (%)":5.3,"Female Householder (%)":26.8},"Halifax County, North Carolina":{"Married Couple (%)":38.1,"Cohabiting Couple (%)":6.9,"Male Householder (%)":5.3,"Female Householder (%)":49.8},"Harnett County, North Carolina":{"Married Couple (%)":70.5,"Cohabiting Couple (%)":7.9,"Male Householder (%)":2.8,"Female Householder (%)":18.8},"Haywood County, North Carolina":{"Married Couple (%)":65.4,"Cohabiting Couple (%)":10.2,"Male Householder (%)":4.2,"Female Householder (%)":20.2},"Henderson County, North Carolina":{"Married Couple (%)":67.5,"Cohabiting Couple (%)":8.5,"Male Householder (%)":4.7,"Female Householder (%)":19.4},"Hertford County, North Carolina":{"Married Couple (%)":52.6,"Cohabiting Couple (%)":11.6,"Male Householder (%)":4.3,"Female Householder (%)":31.5},"Hoke County, North Carolina":{"Married Couple (%)":61.3,"Cohabiting Couple (%)":11.4,"Male Householder (%)":4.7,"Female Householder (%)":22.6},"Hyde County, North Carolina":{"Married Couple (%)":60.2,"Cohabiting Couple (%)":8.4,"Male Householder (%)":9.2,"Female Householder (%)":22.2},"Iredell County, North Carolina":{"Married Couple (%)":74,"Cohabiting Couple (%)":6.3,"Male Householder (%)":4.8,"Female Householder (%)":15},"Jackson County, North Carolina":{"Married Couple (%)":55.8,"Cohabiting Couple (%)":12.3,"Male Householder (%)":4.7,"Female Householder (%)":27.2},"Johnston County, North Carolina":{"Married Couple (%)":72.9,"Cohabiting Couple (%)":7.6,"Male Householder (%)":3.8,"Female Householder (%)":15.7},"Jones County, North Carolina":{"Married Couple (%)":68.5,"Cohabiting Couple (%)":2.6,"Male Householder (%)":1.7,"Female Householder (%)":27.2},"Lee County, North Carolina":{"Married Couple (%)":55.9,"Cohabiting Couple (%)":10.8,"Male Householder (%)":5.7,"Female Householder (%)":27.6},"Lenoir County, North Carolina":{"Married Couple (%)":47.5,"Cohabiting Couple (%)":10.6,"Male Householder (%)":3.5,"Female Householder (%)":38.4},"Lincoln County, North Carolina":{"Married Couple (%)":77.2,"Cohabiting Couple (%)":4.8,"Male Householder (%)":5.8,"Female Householder (%)":12.3},"Macon County, North Carolina":{"Married Couple (%)":66.4,"Cohabiting Couple (%)":9.7,"Male Householder (%)":3.2,"Female Householder (%)":20.7},"Madison County, North Carolina":{"Married Couple (%)":74.6,"Cohabiting Couple (%)":4.6,"Male Householder (%)":10.8,"Female Householder (%)":10},"Martin County, North Carolina":{"Married Couple (%)":55.5,"Cohabiting Couple (%)":8,"Male Householder (%)":5.5,"Female Householder (%)":31},"McDowell County, North Carolina":{"Married Couple (%)":72.1,"Cohabiting Couple (%)":6.3,"Male Householder (%)":2.9,"Female Householder (%)":18.6},"Mecklenburg County, North Carolina":{"Married Couple (%)":63.6,"Cohabiting Couple (%)":7.9,"Male Householder (%)":4.7,"Female Householder (%)":23.8},"Mitchell County, North Carolina":{"Married Couple (%)":68.6,"Cohabiting Couple (%)":12.1,"Male Householder (%)":1,"Female Householder (%)":18.2},"Montgomery County, North Carolina":{"Married Couple (%)":63.2,"Cohabiting Couple (%)":10.9,"Male Householder (%)":3.1,"Female Householder (%)":22.8},"Moore County, North Carolina":{"Married Couple (%)":74.1,"Cohabiting Couple (%)":6.1,"Male Householder (%)":4.8,"Female Householder (%)":14.9},"Nash County, North Carolina":{"Married Couple (%)":52.1,"Cohabiting Couple (%)":11.9,"Male Householder (%)":3.5,"Female Householder (%)":32.5},"New Hanover County, North Carolina":{"Married Couple (%)":69.7,"Cohabiting Couple (%)":6.3,"Male Householder (%)":3.8,"Female Householder (%)":20.2},"Northampton County, North Carolina":{"Married Couple (%)":49.2,"Cohabiting Couple (%)":14.3,"Male Householder (%)":7.6,"Female Householder (%)":28.8},"Onslow County, North Carolina":{"Married Couple (%)":74.4,"Cohabiting Couple (%)":5.5,"Male Householder (%)":3.6,"Female Householder (%)":16.5},"Orange County, North Carolina":{"Married Couple (%)":77,"Cohabiting Couple (%)":5.7,"Male Householder (%)":3.3,"Female Householder (%)":14},"Pamlico County, North Carolina":{"Married Couple (%)":62,"Cohabiting Couple (%)":10.5,"Male Householder (%)":9.6,"Female Householder (%)":17.9},"Pasquotank County, North Carolina":{"Married Couple (%)":57.1,"Cohabiting Couple (%)":5,"Male Householder (%)":6.2,"Female Householder (%)":31.6},"Pender County, North Carolina":{"Married Couple (%)":69.6,"Cohabiting Couple (%)":9.6,"Male Householder (%)":5.2,"Female Householder (%)":15.6},"Perquimans County, North Carolina":{"Married Couple (%)":52.9,"Cohabiting Couple (%)":8.6,"Male Householder (%)":9.2,"Female Householder (%)":29.4},"Person County, North Carolina":{"Married Couple (%)":57.2,"Cohabiting Couple (%)":8.3,"Male Householder (%)":4.5,"Female Householder (%)":29.9},"Pitt County, North Carolina":{"Married Couple (%)":55.2,"Cohabiting Couple (%)":8.7,"Male Householder (%)":4.1,"Female Householder (%)":32},"Polk County, North Carolina":{"Married Couple (%)":75.7,"Cohabiting Couple (%)":7.2,"Male Householder (%)":0.6,"Female Householder (%)":16.5},"Randolph County, North Carolina":{"Married Couple (%)":65.5,"Cohabiting Couple (%)":13.1,"Male Householder (%)":4.1,"Female Householder (%)":17.2},"Richmond County, North Carolina":{"Married Couple (%)":44.2,"Cohabiting Couple (%)":10.1,"Male Householder (%)":3.2,"Female Householder (%)":42.5},"Robeson County, North Carolina":{"Married Couple (%)":44.4,"Cohabiting Couple (%)":9.4,"Male Householder (%)":5.3,"Female Householder (%)":40.9},"Rockingham County, North Carolina":{"Married Couple (%)":61.4,"Cohabiting Couple (%)":8.2,"Male Householder (%)":6.8,"Female Householder (%)":23.5},"Rowan County, North Carolina":{"Married Couple (%)":64.3,"Cohabiting Couple (%)":9.1,"Male Householder (%)":4.6,"Female Householder (%)":22},"Rutherford County, North Carolina":{"Married Couple (%)":56.2,"Cohabiting Couple (%)":13.5,"Male Householder (%)":6.1,"Female Householder (%)":24.1},"Sampson County, North Carolina":{"Married Couple (%)":58.1,"Cohabiting Couple (%)":10.8,"Male Householder (%)":4.8,"Female Householder (%)":26.3},"Scotland County, North Carolina":{"Married Couple (%)":40.9,"Cohabiting Couple (%)":11.8,"Male Householder (%)":5,"Female Householder (%)":42.3},"Stanly County, North Carolina":{"Married Couple (%)":65.9,"Cohabiting Couple (%)":12,"Male Householder (%)":4,"Female Householder (%)":18.2},"Stokes County, North Carolina":{"Married Couple (%)":69.8,"Cohabiting Couple (%)":8.4,"Male Householder (%)":1.3,"Female Householder (%)":20.4},"Surry County, North Carolina":{"Married Couple (%)":62.9,"Cohabiting Couple (%)":12.4,"Male Householder (%)":4.7,"Female Householder (%)":19.9},"Swain County, North Carolina":{"Married Couple (%)":52.3,"Cohabiting Couple (%)":14.2,"Male Householder (%)":10.7,"Female Householder (%)":22.8},"Transylvania County, North Carolina":{"Married Couple (%)":64.2,"Cohabiting Couple (%)":7.6,"Male Householder (%)":6.9,"Female Householder (%)":21.2},"Tyrrell County, North Carolina":{"Married Couple (%)":68.6,"Cohabiting Couple (%)":10.2,"Male Householder (%)":11.4,"Female Householder (%)":9.8},"Union County, North Carolina":{"Married Couple (%)":80.1,"Cohabiting Couple (%)":5.1,"Male Householder (%)":3.2,"Female Householder (%)":11.6},"Vance County, North Carolina":{"Married Couple (%)":48,"Cohabiting Couple (%)":6.6,"Male Householder (%)":5.9,"Female Householder (%)":39.4},"Wake County, North Carolina":{"Married Couple (%)":74.6,"Cohabiting Couple (%)":5.8,"Male Householder (%)":3.8,"Female Householder (%)":15.8},"Warren County, North Carolina":{"Married Couple (%)":44,"Cohabiting Couple (%)":7.7,"Male Householder (%)":4.9,"Female Householder (%)":43.4},"Washington County, North Carolina":{"Married Couple (%)":35.3,"Cohabiting Couple (%)":12.7,"Male Householder (%)":1.6,"Female Householder (%)":50.4},"Watauga County, North Carolina":{"Married Couple (%)":80.2,"Cohabiting Couple (%)":5,"Male Householder (%)":2,"Female Householder (%)":12.7},"Wayne County, North Carolina":{"Married Couple (%)":56,"Cohabiting Couple (%)":10.3,"Male Householder (%)":4.1,"Female Householder (%)":29.6},"Wilkes County, North Carolina":{"Married Couple (%)":66.2,"Cohabiting Couple (%)":10.1,"Male Householder (%)":3.6,"Female Householder (%)":20.2},"Wilson County, North Carolina":{"Married Couple (%)":57.9,"Cohabiting Couple (%)":8.6,"Male Householder (%)":5.3,"Female Householder (%)":28.2},"Yadkin County, North Carolina":{"Married Couple (%)":71.8,"Cohabiting Couple (%)":9.1,"Male Householder (%)":3.1,"Female Householder (%)":16.1},"Yancey County, North Carolina":{"Married Couple (%)":67.6,"Cohabiting Couple (%)":3,"Male Householder (%)":9,"Female Householder (%)":20.4}};
+  const categories = ["Married Couple (%)","Cohabiting Couple (%)","Male Householder (%)","Female Householder (%)"];
+  const ctx = document.getElementById("barChart").getContext("2d");
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: categories,
+        datasets: [{
+          label: "Share of Children (%)",
+          data: values,
+          backgroundColor: ["#5DA5DA","#FAA43A","#60BD68","#F17CB0"]
+        }]
+      },
+      options: {
+        indexAxis: "y",
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            ticks: { callback: v => v + "%" },
+            title: { display: true, text: "Percent of Children" }
+          }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.raw + "%"
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById("countySelect").addEventListener("change", function() {
+    renderChart(Object.values(data[this.value]));
+  });
+
+  renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

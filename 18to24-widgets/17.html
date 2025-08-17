@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Educational Enrollment – Illinois</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Educational Enrollment (Age 18–24) in Illinois</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Adams County, Illinois">Adams County, Illinois</option>
+      <option value="Alexander County, Illinois">Alexander County, Illinois</option>
+      <option value="Bond County, Illinois">Bond County, Illinois</option>
+      <option value="Boone County, Illinois">Boone County, Illinois</option>
+      <option value="Brown County, Illinois">Brown County, Illinois</option>
+      <option value="Bureau County, Illinois">Bureau County, Illinois</option>
+      <option value="Calhoun County, Illinois">Calhoun County, Illinois</option>
+      <option value="Carroll County, Illinois">Carroll County, Illinois</option>
+      <option value="Cass County, Illinois">Cass County, Illinois</option>
+      <option value="Champaign County, Illinois">Champaign County, Illinois</option>
+      <option value="Christian County, Illinois">Christian County, Illinois</option>
+      <option value="Clark County, Illinois">Clark County, Illinois</option>
+      <option value="Clay County, Illinois">Clay County, Illinois</option>
+      <option value="Clinton County, Illinois">Clinton County, Illinois</option>
+      <option value="Coles County, Illinois">Coles County, Illinois</option>
+      <option value="Cook County, Illinois">Cook County, Illinois</option>
+      <option value="Crawford County, Illinois">Crawford County, Illinois</option>
+      <option value="Cumberland County, Illinois">Cumberland County, Illinois</option>
+      <option value="De Witt County, Illinois">De Witt County, Illinois</option>
+      <option value="DeKalb County, Illinois">DeKalb County, Illinois</option>
+      <option value="Douglas County, Illinois">Douglas County, Illinois</option>
+      <option value="DuPage County, Illinois">DuPage County, Illinois</option>
+      <option value="Edgar County, Illinois">Edgar County, Illinois</option>
+      <option value="Edwards County, Illinois">Edwards County, Illinois</option>
+      <option value="Effingham County, Illinois">Effingham County, Illinois</option>
+      <option value="Fayette County, Illinois">Fayette County, Illinois</option>
+      <option value="Ford County, Illinois">Ford County, Illinois</option>
+      <option value="Franklin County, Illinois">Franklin County, Illinois</option>
+      <option value="Fulton County, Illinois">Fulton County, Illinois</option>
+      <option value="Gallatin County, Illinois">Gallatin County, Illinois</option>
+      <option value="Greene County, Illinois">Greene County, Illinois</option>
+      <option value="Grundy County, Illinois">Grundy County, Illinois</option>
+      <option value="Hamilton County, Illinois">Hamilton County, Illinois</option>
+      <option value="Hancock County, Illinois">Hancock County, Illinois</option>
+      <option value="Hardin County, Illinois">Hardin County, Illinois</option>
+      <option value="Henderson County, Illinois">Henderson County, Illinois</option>
+      <option value="Henry County, Illinois">Henry County, Illinois</option>
+      <option value="Iroquois County, Illinois">Iroquois County, Illinois</option>
+      <option value="Jackson County, Illinois">Jackson County, Illinois</option>
+      <option value="Jasper County, Illinois">Jasper County, Illinois</option>
+      <option value="Jefferson County, Illinois">Jefferson County, Illinois</option>
+      <option value="Jersey County, Illinois">Jersey County, Illinois</option>
+      <option value="Jo Daviess County, Illinois">Jo Daviess County, Illinois</option>
+      <option value="Johnson County, Illinois">Johnson County, Illinois</option>
+      <option value="Kane County, Illinois">Kane County, Illinois</option>
+      <option value="Kankakee County, Illinois">Kankakee County, Illinois</option>
+      <option value="Kendall County, Illinois">Kendall County, Illinois</option>
+      <option value="Knox County, Illinois">Knox County, Illinois</option>
+      <option value="Lake County, Illinois">Lake County, Illinois</option>
+      <option value="LaSalle County, Illinois">LaSalle County, Illinois</option>
+      <option value="Lawrence County, Illinois">Lawrence County, Illinois</option>
+      <option value="Lee County, Illinois">Lee County, Illinois</option>
+      <option value="Livingston County, Illinois">Livingston County, Illinois</option>
+      <option value="Logan County, Illinois">Logan County, Illinois</option>
+      <option value="Macon County, Illinois">Macon County, Illinois</option>
+      <option value="Macoupin County, Illinois">Macoupin County, Illinois</option>
+      <option value="Madison County, Illinois">Madison County, Illinois</option>
+      <option value="Marion County, Illinois">Marion County, Illinois</option>
+      <option value="Marshall County, Illinois">Marshall County, Illinois</option>
+      <option value="Mason County, Illinois">Mason County, Illinois</option>
+      <option value="Massac County, Illinois">Massac County, Illinois</option>
+      <option value="McDonough County, Illinois">McDonough County, Illinois</option>
+      <option value="McHenry County, Illinois">McHenry County, Illinois</option>
+      <option value="McLean County, Illinois">McLean County, Illinois</option>
+      <option value="Menard County, Illinois">Menard County, Illinois</option>
+      <option value="Mercer County, Illinois">Mercer County, Illinois</option>
+      <option value="Monroe County, Illinois">Monroe County, Illinois</option>
+      <option value="Montgomery County, Illinois">Montgomery County, Illinois</option>
+      <option value="Morgan County, Illinois">Morgan County, Illinois</option>
+      <option value="Moultrie County, Illinois">Moultrie County, Illinois</option>
+      <option value="Ogle County, Illinois">Ogle County, Illinois</option>
+      <option value="Peoria County, Illinois">Peoria County, Illinois</option>
+      <option value="Perry County, Illinois">Perry County, Illinois</option>
+      <option value="Piatt County, Illinois">Piatt County, Illinois</option>
+      <option value="Pike County, Illinois">Pike County, Illinois</option>
+      <option value="Pope County, Illinois">Pope County, Illinois</option>
+      <option value="Pulaski County, Illinois">Pulaski County, Illinois</option>
+      <option value="Putnam County, Illinois">Putnam County, Illinois</option>
+      <option value="Randolph County, Illinois">Randolph County, Illinois</option>
+      <option value="Richland County, Illinois">Richland County, Illinois</option>
+      <option value="Rock Island County, Illinois">Rock Island County, Illinois</option>
+      <option value="Saline County, Illinois">Saline County, Illinois</option>
+      <option value="Sangamon County, Illinois">Sangamon County, Illinois</option>
+      <option value="Schuyler County, Illinois">Schuyler County, Illinois</option>
+      <option value="Scott County, Illinois">Scott County, Illinois</option>
+      <option value="Shelby County, Illinois">Shelby County, Illinois</option>
+      <option value="St. Clair County, Illinois">St. Clair County, Illinois</option>
+      <option value="Stark County, Illinois">Stark County, Illinois</option>
+      <option value="Stephenson County, Illinois">Stephenson County, Illinois</option>
+      <option value="Tazewell County, Illinois">Tazewell County, Illinois</option>
+      <option value="Union County, Illinois">Union County, Illinois</option>
+      <option value="Vermilion County, Illinois">Vermilion County, Illinois</option>
+      <option value="Wabash County, Illinois">Wabash County, Illinois</option>
+      <option value="Warren County, Illinois">Warren County, Illinois</option>
+      <option value="Washington County, Illinois">Washington County, Illinois</option>
+      <option value="Wayne County, Illinois">Wayne County, Illinois</option>
+      <option value="White County, Illinois">White County, Illinois</option>
+      <option value="Whiteside County, Illinois">Whiteside County, Illinois</option>
+      <option value="Will County, Illinois">Will County, Illinois</option>
+      <option value="Williamson County, Illinois">Williamson County, Illinois</option>
+      <option value="Winnebago County, Illinois">Winnebago County, Illinois</option>
+      <option value="Woodford County, Illinois">Woodford County, Illinois</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>  const data = {"Statewide":{"Enrolled in College / Grad. School":41.4,"Not Enrolled":58.6},"Adams County, Illinois":{"Enrolled in College / Grad. School":39.9,"Not Enrolled":60.1},"Alexander County, Illinois":{"Enrolled in College / Grad. School":22.8,"Not Enrolled":77.2},"Bond County, Illinois":{"Enrolled in College / Grad. School":42.1,"Not Enrolled":57.9},"Boone County, Illinois":{"Enrolled in College / Grad. School":29.2,"Not Enrolled":70.8},"Brown County, Illinois":{"Enrolled in College / Grad. School":14.1,"Not Enrolled":85.9},"Bureau County, Illinois":{"Enrolled in College / Grad. School":25.3,"Not Enrolled":74.7},"Calhoun County, Illinois":{"Enrolled in College / Grad. School":50,"Not Enrolled":50},"Carroll County, Illinois":{"Enrolled in College / Grad. School":30.9,"Not Enrolled":69.1},"Cass County, Illinois":{"Enrolled in College / Grad. School":17,"Not Enrolled":83},"Champaign County, Illinois":{"Enrolled in College / Grad. School":73.5,"Not Enrolled":26.5},"Christian County, Illinois":{"Enrolled in College / Grad. School":30.1,"Not Enrolled":69.9},"Clark County, Illinois":{"Enrolled in College / Grad. School":26.7,"Not Enrolled":73.3},"Clay County, Illinois":{"Enrolled in College / Grad. School":32.6,"Not Enrolled":67.4},"Clinton County, Illinois":{"Enrolled in College / Grad. School":34.1,"Not Enrolled":65.9},"Coles County, Illinois":{"Enrolled in College / Grad. School":57.7,"Not Enrolled":42.3},"Cook County, Illinois":{"Enrolled in College / Grad. School":41,"Not Enrolled":59},"Crawford County, Illinois":{"Enrolled in College / Grad. School":31,"Not Enrolled":69},"Cumberland County, Illinois":{"Enrolled in College / Grad. School":33.7,"Not Enrolled":66.3},"DeKalb County, Illinois":{"Enrolled in College / Grad. School":59,"Not Enrolled":41},"De Witt County, Illinois":{"Enrolled in College / Grad. School":24.2,"Not Enrolled":75.8},"Douglas County, Illinois":{"Enrolled in College / Grad. School":27.6,"Not Enrolled":72.4},"DuPage County, Illinois":{"Enrolled in College / Grad. School":48.3,"Not Enrolled":51.7},"Edgar County, Illinois":{"Enrolled in College / Grad. School":32,"Not Enrolled":68},"Edwards County, Illinois":{"Enrolled in College / Grad. School":19.7,"Not Enrolled":80.3},"Effingham County, Illinois":{"Enrolled in College / Grad. School":23.1,"Not Enrolled":76.9},"Fayette County, Illinois":{"Enrolled in College / Grad. School":24.1,"Not Enrolled":75.9},"Ford County, Illinois":{"Enrolled in College / Grad. School":20.8,"Not Enrolled":79.2},"Franklin County, Illinois":{"Enrolled in College / Grad. School":28.9,"Not Enrolled":71.1},"Fulton County, Illinois":{"Enrolled in College / Grad. School":17.3,"Not Enrolled":82.7},"Gallatin County, Illinois":{"Enrolled in College / Grad. School":22.5,"Not Enrolled":77.5},"Greene County, Illinois":{"Enrolled in College / Grad. School":26.3,"Not Enrolled":73.7},"Grundy County, Illinois":{"Enrolled in College / Grad. School":35.8,"Not Enrolled":64.2},"Hamilton County, Illinois":{"Enrolled in College / Grad. School":33.6,"Not Enrolled":66.4},"Hancock County, Illinois":{"Enrolled in College / Grad. School":27.4,"Not Enrolled":72.6},"Hardin County, Illinois":{"Enrolled in College / Grad. School":21.5,"Not Enrolled":78.5},"Henderson County, Illinois":{"Enrolled in College / Grad. School":21.6,"Not Enrolled":78.4},"Henry County, Illinois":{"Enrolled in College / Grad. School":36.6,"Not Enrolled":63.4},"Iroquois County, Illinois":{"Enrolled in College / Grad. School":16.4,"Not Enrolled":83.6},"Jackson County, Illinois":{"Enrolled in College / Grad. School":64.8,"Not Enrolled":35.2},"Jasper County, Illinois":{"Enrolled in College / Grad. School":44.2,"Not Enrolled":55.8},"Jefferson County, Illinois":{"Enrolled in College / Grad. School":22,"Not Enrolled":78},"Jersey County, Illinois":{"Enrolled in College / Grad. School":53.3,"Not Enrolled":46.7},"Jo Daviess County, Illinois":{"Enrolled in College / Grad. School":17.2,"Not Enrolled":82.8},"Johnson County, Illinois":{"Enrolled in College / Grad. School":26,"Not Enrolled":74},"Kane County, Illinois":{"Enrolled in College / Grad. School":39.2,"Not Enrolled":60.8},"Kankakee County, Illinois":{"Enrolled in College / Grad. School":43.6,"Not Enrolled":56.4},"Kendall County, Illinois":{"Enrolled in College / Grad. School":39,"Not Enrolled":61},"Knox County, Illinois":{"Enrolled in College / Grad. School":46.7,"Not Enrolled":53.3},"Lake County, Illinois":{"Enrolled in College / Grad. School":34.6,"Not Enrolled":65.4},"LaSalle County, Illinois":{"Enrolled in College / Grad. School":21.1,"Not Enrolled":78.9},"Lawrence County, Illinois":{"Enrolled in College / Grad. School":15.9,"Not Enrolled":84.1},"Lee County, Illinois":{"Enrolled in College / Grad. School":29.3,"Not Enrolled":70.7},"Livingston County, Illinois":{"Enrolled in College / Grad. School":19.1,"Not Enrolled":80.9},"Logan County, Illinois":{"Enrolled in College / Grad. School":37.1,"Not Enrolled":62.9},"McDonough County, Illinois":{"Enrolled in College / Grad. School":66,"Not Enrolled":34},"McHenry County, Illinois":{"Enrolled in College / Grad. School":38.3,"Not Enrolled":61.7},"McLean County, Illinois":{"Enrolled in College / Grad. School":70.1,"Not Enrolled":29.9},"Macon County, Illinois":{"Enrolled in College / Grad. School":34.5,"Not Enrolled":65.5},"Macoupin County, Illinois":{"Enrolled in College / Grad. School":32.9,"Not Enrolled":67.1},"Madison County, Illinois":{"Enrolled in College / Grad. School":46.1,"Not Enrolled":53.9},"Marion County, Illinois":{"Enrolled in College / Grad. School":29.5,"Not Enrolled":70.5},"Marshall County, Illinois":{"Enrolled in College / Grad. School":22.1,"Not Enrolled":77.9},"Mason County, Illinois":{"Enrolled in College / Grad. School":18.2,"Not Enrolled":81.8},"Massac County, Illinois":{"Enrolled in College / Grad. School":29,"Not Enrolled":71},"Menard County, Illinois":{"Enrolled in College / Grad. School":20.8,"Not Enrolled":79.2},"Mercer County, Illinois":{"Enrolled in College / Grad. School":18.7,"Not Enrolled":81.3},"Monroe County, Illinois":{"Enrolled in College / Grad. School":30.8,"Not Enrolled":69.2},"Montgomery County, Illinois":{"Enrolled in College / Grad. School":15.3,"Not Enrolled":84.7},"Morgan County, Illinois":{"Enrolled in College / Grad. School":39.1,"Not Enrolled":60.9},"Moultrie County, Illinois":{"Enrolled in College / Grad. School":18.8,"Not Enrolled":81.2},"Ogle County, Illinois":{"Enrolled in College / Grad. School":28.6,"Not Enrolled":71.4},"Peoria County, Illinois":{"Enrolled in College / Grad. School":42.7,"Not Enrolled":57.3},"Perry County, Illinois":{"Enrolled in College / Grad. School":18,"Not Enrolled":82},"Piatt County, Illinois":{"Enrolled in College / Grad. School":24.4,"Not Enrolled":75.6},"Pike County, Illinois":{"Enrolled in College / Grad. School":25.3,"Not Enrolled":74.7},"Pope County, Illinois":{"Enrolled in College / Grad. School":33.2,"Not Enrolled":66.8},"Pulaski County, Illinois":{"Enrolled in College / Grad. School":39.2,"Not Enrolled":60.8},"Putnam County, Illinois":{"Enrolled in College / Grad. School":15.1,"Not Enrolled":84.9},"Randolph County, Illinois":{"Enrolled in College / Grad. School":21.1,"Not Enrolled":78.9},"Richland County, Illinois":{"Enrolled in College / Grad. School":26.2,"Not Enrolled":73.8},"Rock Island County, Illinois":{"Enrolled in College / Grad. School":37.2,"Not Enrolled":62.8},"St. Clair County, Illinois":{"Enrolled in College / Grad. School":31.4,"Not Enrolled":68.6},"Saline County, Illinois":{"Enrolled in College / Grad. School":24.5,"Not Enrolled":75.5},"Sangamon County, Illinois":{"Enrolled in College / Grad. School":33.8,"Not Enrolled":66.2},"Schuyler County, Illinois":{"Enrolled in College / Grad. School":15.2,"Not Enrolled":84.8},"Scott County, Illinois":{"Enrolled in College / Grad. School":20.7,"Not Enrolled":79.3},"Shelby County, Illinois":{"Enrolled in College / Grad. School":29.7,"Not Enrolled":70.3},"Stark County, Illinois":{"Enrolled in College / Grad. School":16.2,"Not Enrolled":83.8},"Stephenson County, Illinois":{"Enrolled in College / Grad. School":24.6,"Not Enrolled":75.4},"Tazewell County, Illinois":{"Enrolled in College / Grad. School":31.6,"Not Enrolled":68.4},"Union County, Illinois":{"Enrolled in College / Grad. School":36.3,"Not Enrolled":63.7},"Vermilion County, Illinois":{"Enrolled in College / Grad. School":19.7,"Not Enrolled":80.3},"Wabash County, Illinois":{"Enrolled in College / Grad. School":31.3,"Not Enrolled":68.7},"Warren County, Illinois":{"Enrolled in College / Grad. School":50.6,"Not Enrolled":49.4},"Washington County, Illinois":{"Enrolled in College / Grad. School":19.1,"Not Enrolled":80.9},"Wayne County, Illinois":{"Enrolled in College / Grad. School":28.9,"Not Enrolled":71.1},"White County, Illinois":{"Enrolled in College / Grad. School":31.2,"Not Enrolled":68.8},"Whiteside County, Illinois":{"Enrolled in College / Grad. School":22.3,"Not Enrolled":77.7},"Will County, Illinois":{"Enrolled in College / Grad. School":38.5,"Not Enrolled":61.5},"Williamson County, Illinois":{"Enrolled in College / Grad. School":29.8,"Not Enrolled":70.2},"Winnebago County, Illinois":{"Enrolled in College / Grad. School":28.1,"Not Enrolled":71.9},"Woodford County, Illinois":{"Enrolled in College / Grad. School":41.2,"Not Enrolled":58.8}};
+  const categories = ["Enrolled in College / Grad. School","Not Enrolled"];
+  const ctx = document.getElementById("barChart").getContext("2d");
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: categories,
+        datasets: [
+          {
+            label: "County/State",
+            data: values,
+            backgroundColor: ["#66c2a5", "#fc8d62"]
+          }
+        ]
+      },
+      options: {
+        indexAxis: "y",
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            ticks: {
+              callback: v => v + "%"
+            }
+          }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.dataset.label + ": " + ctx.raw + "%"
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById("countySelect").addEventListener("change", function() {
+    renderChart(Object.values(data[this.value]));
+  });
+
+  renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+
+</head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Median Earnings by Industry – 15</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background: white;
+    }
+    .layout {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1.5rem;
+    }
+    label {
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+    #countySelect {
+      font-size: 1rem;
+      padding: 0.4rem 0.8rem;
+      margin-bottom: 1rem;
+    }
+    canvas {
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <label for="countySelect">Median Earnings by Industry:</label>
+    <select id="countySelect"></select>
+    <canvas id="barChart"></canvas>
+  </div>
+
+  <script>
+    const data = {"Statewide":{"Agriculture & mining":40333,"Arts & food services":48240,"Construction":73356,"Education & health":65073,"Finance & real estate":65992,"Information":76506,"Manufacturing":72498,"Other services":49238,"Prof. & waste services":65524,"Public administration":78983,"Retail trade":44097,"Transport & utilities":66433,"Wholesale trade":53008},"Hawaii County":{"Agriculture & mining":37144,"Arts & food services":49100,"Construction":65380,"Education & health":57235,"Finance & real estate":65184,"Information":50750,"Manufacturing":67983,"Other services":46834,"Prof. & waste services":56753,"Public administration":70344,"Retail trade":40627,"Transport & utilities":59803,"Wholesale trade":43915},"Honolulu County":{"Agriculture & mining":41052,"Arts & food services":47584,"Construction":77832,"Education & health":67241,"Finance & real estate":67732,"Information":77265,"Manufacturing":74910,"Other services":48236,"Prof. & waste services":69398,"Public administration":80591,"Retail trade":45107,"Transport & utilities":69657,"Wholesale trade":52456},"Kalawao County":{"Agriculture & mining":0,"Arts & food services":0,"Construction":0,"Education & health":0,"Finance & real estate":0,"Information":0,"Manufacturing":0,"Other services":0,"Prof. & waste services":0,"Public administration":0,"Retail trade":0,"Transport & utilities":0,"Wholesale trade":0},"Kauai County":{"Agriculture & mining":42267,"Arts & food services":53558,"Construction":77238,"Education & health":58822,"Finance & real estate":59819,"Information":82000,"Manufacturing":50461,"Other services":47401,"Prof. & waste services":60638,"Public administration":81132,"Retail trade":35948,"Transport & utilities":62796,"Wholesale trade":51616},"Maui County":{"Agriculture & mining":58672,"Arts & food services":48252,"Construction":66222,"Education & health":64330,"Finance & real estate":60871,"Information":70066,"Manufacturing":64441,"Other services":55570,"Prof. & waste services":57863,"Public administration":71238,"Retail trade":46160,"Transport & utilities":63857,"Wholesale trade":82775}};
+    const colors = {
+  'Agriculture & mining': '#FFFF01',
+  'Arts & food services': '#00008B',
+  'Construction': '#7570B1',
+  'Education & health': '#66A61E',
+  'Finance & real estate': '#E6AB01',
+  'Information': '#379',
+  'Manufacturing': '#E41A1C',
+  'Other services': '#377EF1',
+  'Prof. & waste services': '#FF7F00',
+  'Public administration': '#1B9E77',
+  'Retail trade': '#A65011',
+  'Transport & utilities': '#F781BF',
+  'Wholesale trade': '#919'
+};
+
+    const ctx = document.getElementById("barChart").getContext("2d");
+    let chart;
+
+    function renderChart(county) {
+      const values = data[county];
+      const labels = Object.keys(values);
+      const earnings = Object.values(values);
+
+      if (chart) chart.destroy();
+
+      chart = new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels: labels,
+          datasets: [{
+            label: "Median Earnings ($)",
+            data: earnings,
+            backgroundColor: labels.map(label => colors[label] || "#ccc")
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: true,
+  aspectRatio: 1.5, 
+          indexAxis: "x",
+          scales: {
+            y: {
+              beginAtZero: true,
+              title: {
+                display: true,
+                text: "Median Earnings ($)"
+              },
+              ticks: {
+                callback: function(value) {
+                  return "$" + value.toLocaleString();
+                }
+              }
+            },
+            x: {
+              ticks: {
+                maxRotation: 45,
+                minRotation: 20,
+                autoSkip: false,
+                callback: function(value, index, ticks) {
+                  let label = this.getLabelForValue(value);
+                  return label.length > 25 ? label.slice(0, 25) + "…" : label;
+                }
+              }
+            }
+          },
+          plugins: {
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  return "$" + context.parsed.y.toLocaleString();
+                }
+              }
+            },
+            legend: {
+              display: false
+            }
+          }
+        }
+      });
+    }
+
+    const select = document.getElementById("countySelect");
+    Object.keys(data).forEach(county => {
+      const option = document.createElement("option");
+      option.value = county;
+      option.text = county;
+      select.appendChild(option);
+    });
+    select.value = "Statewide";
+    select.addEventListener("change", () => renderChart(select.value));
+    renderChart("Statewide");
+  </script>
+</body>
+</html>
+</html>

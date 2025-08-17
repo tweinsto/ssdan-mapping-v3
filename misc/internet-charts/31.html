@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Internet Access Over Time –  Nebraska</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+                      h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+                      select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; border-radius: 5px; border: 1px solid #999; }
+                      canvas { width: 100%; max-width: 850px; height: 450px; margin-top: 1rem; }</style>
+</head>
+<html>
+  <body>
+    <h2>Internet Access in  Nebraska (2013–2023)</h2>
+    <label>Select County: </label>
+    <select id="countySelect"><option value='Statewide'>Statewide</option>
+<option value='Adams County, Nebraska'>Adams County, Nebraska</option>
+<option value='Antelope County, Nebraska'>Antelope County, Nebraska</option>
+<option value='Arthur County, Nebraska'>Arthur County, Nebraska</option>
+<option value='Banner County, Nebraska'>Banner County, Nebraska</option>
+<option value='Blaine County, Nebraska'>Blaine County, Nebraska</option>
+<option value='Boone County, Nebraska'>Boone County, Nebraska</option>
+<option value='Box Butte County, Nebraska'>Box Butte County, Nebraska</option>
+<option value='Boyd County, Nebraska'>Boyd County, Nebraska</option>
+<option value='Brown County, Nebraska'>Brown County, Nebraska</option>
+<option value='Buffalo County, Nebraska'>Buffalo County, Nebraska</option>
+<option value='Burt County, Nebraska'>Burt County, Nebraska</option>
+<option value='Butler County, Nebraska'>Butler County, Nebraska</option>
+<option value='Cass County, Nebraska'>Cass County, Nebraska</option>
+<option value='Cedar County, Nebraska'>Cedar County, Nebraska</option>
+<option value='Chase County, Nebraska'>Chase County, Nebraska</option>
+<option value='Cherry County, Nebraska'>Cherry County, Nebraska</option>
+<option value='Cheyenne County, Nebraska'>Cheyenne County, Nebraska</option>
+<option value='Clay County, Nebraska'>Clay County, Nebraska</option>
+<option value='Colfax County, Nebraska'>Colfax County, Nebraska</option>
+<option value='Cuming County, Nebraska'>Cuming County, Nebraska</option>
+<option value='Custer County, Nebraska'>Custer County, Nebraska</option>
+<option value='Dakota County, Nebraska'>Dakota County, Nebraska</option>
+<option value='Dawes County, Nebraska'>Dawes County, Nebraska</option>
+<option value='Dawson County, Nebraska'>Dawson County, Nebraska</option>
+<option value='Deuel County, Nebraska'>Deuel County, Nebraska</option>
+<option value='Dixon County, Nebraska'>Dixon County, Nebraska</option>
+<option value='Dodge County, Nebraska'>Dodge County, Nebraska</option>
+<option value='Douglas County, Nebraska'>Douglas County, Nebraska</option>
+<option value='Dundy County, Nebraska'>Dundy County, Nebraska</option>
+<option value='Fillmore County, Nebraska'>Fillmore County, Nebraska</option>
+<option value='Franklin County, Nebraska'>Franklin County, Nebraska</option>
+<option value='Frontier County, Nebraska'>Frontier County, Nebraska</option>
+<option value='Furnas County, Nebraska'>Furnas County, Nebraska</option>
+<option value='Gage County, Nebraska'>Gage County, Nebraska</option>
+<option value='Garden County, Nebraska'>Garden County, Nebraska</option>
+<option value='Garfield County, Nebraska'>Garfield County, Nebraska</option>
+<option value='Gosper County, Nebraska'>Gosper County, Nebraska</option>
+<option value='Grant County, Nebraska'>Grant County, Nebraska</option>
+<option value='Greeley County, Nebraska'>Greeley County, Nebraska</option>
+<option value='Hall County, Nebraska'>Hall County, Nebraska</option>
+<option value='Hamilton County, Nebraska'>Hamilton County, Nebraska</option>
+<option value='Harlan County, Nebraska'>Harlan County, Nebraska</option>
+<option value='Hayes County, Nebraska'>Hayes County, Nebraska</option>
+<option value='Hitchcock County, Nebraska'>Hitchcock County, Nebraska</option>
+<option value='Holt County, Nebraska'>Holt County, Nebraska</option>
+<option value='Hooker County, Nebraska'>Hooker County, Nebraska</option>
+<option value='Howard County, Nebraska'>Howard County, Nebraska</option>
+<option value='Jefferson County, Nebraska'>Jefferson County, Nebraska</option>
+<option value='Johnson County, Nebraska'>Johnson County, Nebraska</option>
+<option value='Kearney County, Nebraska'>Kearney County, Nebraska</option>
+<option value='Keith County, Nebraska'>Keith County, Nebraska</option>
+<option value='Keya Paha County, Nebraska'>Keya Paha County, Nebraska</option>
+<option value='Kimball County, Nebraska'>Kimball County, Nebraska</option>
+<option value='Knox County, Nebraska'>Knox County, Nebraska</option>
+<option value='Lancaster County, Nebraska'>Lancaster County, Nebraska</option>
+<option value='Lincoln County, Nebraska'>Lincoln County, Nebraska</option>
+<option value='Logan County, Nebraska'>Logan County, Nebraska</option>
+<option value='Loup County, Nebraska'>Loup County, Nebraska</option>
+<option value='Madison County, Nebraska'>Madison County, Nebraska</option>
+<option value='McPherson County, Nebraska'>McPherson County, Nebraska</option>
+<option value='Merrick County, Nebraska'>Merrick County, Nebraska</option>
+<option value='Morrill County, Nebraska'>Morrill County, Nebraska</option>
+<option value='Nance County, Nebraska'>Nance County, Nebraska</option>
+<option value='Nemaha County, Nebraska'>Nemaha County, Nebraska</option>
+<option value='Nuckolls County, Nebraska'>Nuckolls County, Nebraska</option>
+<option value='Otoe County, Nebraska'>Otoe County, Nebraska</option>
+<option value='Pawnee County, Nebraska'>Pawnee County, Nebraska</option>
+<option value='Perkins County, Nebraska'>Perkins County, Nebraska</option>
+<option value='Phelps County, Nebraska'>Phelps County, Nebraska</option>
+<option value='Pierce County, Nebraska'>Pierce County, Nebraska</option>
+<option value='Platte County, Nebraska'>Platte County, Nebraska</option>
+<option value='Polk County, Nebraska'>Polk County, Nebraska</option>
+<option value='Red Willow County, Nebraska'>Red Willow County, Nebraska</option>
+<option value='Richardson County, Nebraska'>Richardson County, Nebraska</option>
+<option value='Rock County, Nebraska'>Rock County, Nebraska</option>
+<option value='Saline County, Nebraska'>Saline County, Nebraska</option>
+<option value='Sarpy County, Nebraska'>Sarpy County, Nebraska</option>
+<option value='Saunders County, Nebraska'>Saunders County, Nebraska</option>
+<option value='Scotts Bluff County, Nebraska'>Scotts Bluff County, Nebraska</option>
+<option value='Seward County, Nebraska'>Seward County, Nebraska</option>
+<option value='Sheridan County, Nebraska'>Sheridan County, Nebraska</option>
+<option value='Sherman County, Nebraska'>Sherman County, Nebraska</option>
+<option value='Sioux County, Nebraska'>Sioux County, Nebraska</option>
+<option value='Stanton County, Nebraska'>Stanton County, Nebraska</option>
+<option value='Thayer County, Nebraska'>Thayer County, Nebraska</option>
+<option value='Thomas County, Nebraska'>Thomas County, Nebraska</option>
+<option value='Thurston County, Nebraska'>Thurston County, Nebraska</option>
+<option value='Valley County, Nebraska'>Valley County, Nebraska</option>
+<option value='Washington County, Nebraska'>Washington County, Nebraska</option>
+<option value='Wayne County, Nebraska'>Wayne County, Nebraska</option>
+<option value='Webster County, Nebraska'>Webster County, Nebraska</option>
+<option value='Wheeler County, Nebraska'>Wheeler County, Nebraska</option>
+<option value='York County, Nebraska'>York County, Nebraska</option></select>
+    <canvas id="lineChart" width="850" height="450"></canvas>
+    <script>const internetData = {"Statewide":{"2017":82.4,"2018":84.5,"2019":86.6,"2020":88.6,"2021":90.1,"2022":91.4,"2023":92.5},"Adams County, Nebraska":{"2017":79.6,"2018":81.8,"2019":81.8,"2020":86.3,"2021":88.2,"2022":89.4,"2023":91.2},"Antelope County, Nebraska":{"2017":74.7,"2018":76.8,"2019":80.1,"2020":81.9,"2021":81.2,"2022":82.2,"2023":85.2},"Arthur County, Nebraska":{"2017":75.1,"2018":76.2,"2019":78.7,"2020":81.8,"2021":82.2,"2022":84.8,"2023":88.6},"Banner County, Nebraska":{"2017":89,"2018":83.5,"2019":84.1,"2020":86.3,"2021":77.4,"2022":77.1,"2023":83.7},"Blaine County, Nebraska":{"2017":81.5,"2018":83,"2019":90.6,"2020":92.4,"2021":90.6,"2022":84.6,"2023":81.2},"Boone County, Nebraska":{"2017":79,"2018":81.7,"2019":82.2,"2020":81.5,"2021":83.4,"2022":84.3,"2023":84.8},"Box Butte County, Nebraska":{"2017":79.3,"2018":80.5,"2019":84.4,"2020":89.6,"2021":90.5,"2022":91.7,"2023":95.1},"Boyd County, Nebraska":{"2017":70.8,"2018":73.1,"2019":75.8,"2020":76.6,"2021":82.4,"2022":84.8,"2023":90.2},"Brown County, Nebraska":{"2017":72.1,"2018":76.3,"2019":82.8,"2020":87.2,"2021":88.7,"2022":90.3,"2023":90.6},"Buffalo County, Nebraska":{"2017":84.4,"2018":85.7,"2019":87.6,"2020":89.9,"2021":91.4,"2022":93.1,"2023":94.2},"Burt County, Nebraska":{"2017":70.4,"2018":73.5,"2019":78,"2020":78.9,"2021":81.7,"2022":83.7,"2023":85.6},"Butler County, Nebraska":{"2017":76,"2018":79,"2019":82.2,"2020":85.8,"2021":87.4,"2022":88.1,"2023":88.9},"Cass County, Nebraska":{"2017":87.3,"2018":86.7,"2019":87.8,"2020":87.6,"2021":89.2,"2022":90.4,"2023":92.3},"Cedar County, Nebraska":{"2017":79.8,"2018":81.6,"2019":83.8,"2020":82.9,"2021":83.2,"2022":83.6,"2023":84.8},"Chase County, Nebraska":{"2017":76.1,"2018":82.1,"2019":84.3,"2020":88.7,"2021":87.1,"2022":90.4,"2023":90},"Cherry County, Nebraska":{"2017":79.1,"2018":78.8,"2019":81.5,"2020":85.6,"2021":86.6,"2022":85.8,"2023":88.4},"Cheyenne County, Nebraska":{"2017":78.7,"2018":79.8,"2019":82.6,"2020":84.7,"2021":87.9,"2022":89.4,"2023":93.5},"Clay County, Nebraska":{"2017":79.9,"2018":81.5,"2019":83.2,"2020":84.5,"2021":87.3,"2022":88,"2023":89.9},"Colfax County, Nebraska":{"2017":71.2,"2018":75.4,"2019":78.7,"2020":81.9,"2021":86.8,"2022":87.8,"2023":89.5},"Cuming County, Nebraska":{"2017":70.9,"2018":73.3,"2019":75,"2020":78.5,"2021":81.7,"2022":82.4,"2023":86.2},"Custer County, Nebraska":{"2017":70.1,"2018":74.7,"2019":79.2,"2020":83.3,"2021":84.4,"2022":85.9,"2023":84.9},"Dakota County, Nebraska":{"2017":75.8,"2018":78.6,"2019":79.6,"2020":79.9,"2021":81.4,"2022":82.3,"2023":85.2},"Dawes County, Nebraska":{"2017":75.9,"2018":83,"2019":87.1,"2020":89,"2021":90,"2022":88.9,"2023":85.8},"Dawson County, Nebraska":{"2017":77.3,"2018":80.2,"2019":82.7,"2020":86.3,"2021":85.6,"2022":86.9,"2023":86.8},"Deuel County, Nebraska":{"2017":77.1,"2018":75.6,"2019":77,"2020":85.3,"2021":86.4,"2022":89,"2023":89.1},"Dixon County, Nebraska":{"2017":74,"2018":76,"2019":76.9,"2020":78.8,"2021":81.1,"2022":82.6,"2023":85},"Dodge County, Nebraska":{"2017":79.9,"2018":81.4,"2019":83.4,"2020":86.4,"2021":86.8,"2022":89.3,"2023":91.2},"Douglas County, Nebraska":{"2017":83.6,"2018":85.8,"2019":88.2,"2020":90.2,"2021":91.8,"2022":93,"2023":94.1},"Dundy County, Nebraska":{"2017":75.1,"2018":74,"2019":73.7,"2020":78,"2021":79.4,"2022":81.9,"2023":85.1},"Fillmore County, Nebraska":{"2017":76.1,"2018":77.5,"2019":79.7,"2020":83.1,"2021":83.4,"2022":82.6,"2023":84.3},"Franklin County, Nebraska":{"2017":73.1,"2018":75.1,"2019":77.8,"2020":80.5,"2021":81.3,"2022":86.4,"2023":86.6},"Frontier County, Nebraska":{"2017":71.9,"2018":72,"2019":76.7,"2020":77.7,"2021":78.6,"2022":77.8,"2023":81.3},"Furnas County, Nebraska":{"2017":75,"2018":77.1,"2019":78.9,"2020":83,"2021":83.8,"2022":83.3,"2023":84.5},"Gage County, Nebraska":{"2017":78.5,"2018":80.7,"2019":82.9,"2020":85.2,"2021":86.3,"2022":88.2,"2023":88.9},"Garden County, Nebraska":{"2017":76.5,"2018":80.5,"2019":82.7,"2020":84.9,"2021":83.8,"2022":85.5,"2023":85.5},"Garfield County, Nebraska":{"2017":71.4,"2018":69.9,"2019":72.2,"2020":75.4,"2021":77.3,"2022":80.6,"2023":84.4},"Gosper County, Nebraska":{"2017":76.2,"2018":80.7,"2019":85.2,"2020":89.3,"2021":88.5,"2022":91.2,"2023":93.2},"Grant County, Nebraska":{"2017":73.4,"2018":74.4,"2019":79.2,"2020":78.1,"2021":81.3,"2022":82.9,"2023":83.4},"Greeley County, Nebraska":{"2017":73.2,"2018":76.2,"2019":80.3,"2020":80.4,"2021":80.9,"2022":84.6,"2023":87.2},"Hall County, Nebraska":{"2017":79.5,"2018":82.5,"2019":85.6,"2020":87.9,"2021":89.3,"2022":90,"2023":90.8},"Hamilton County, Nebraska":{"2017":83.9,"2018":87.5,"2019":89.1,"2020":91.2,"2021":91.4,"2022":91.4,"2023":93.1},"Harlan County, Nebraska":{"2017":76.5,"2018":79.5,"2019":80.9,"2020":80.7,"2021":85.7,"2022":86.7,"2023":86.1},"Hayes County, Nebraska":{"2017":76.1,"2018":78.7,"2019":82.4,"2020":82.8,"2021":85,"2022":82.1,"2023":82.1},"Hitchcock County, Nebraska":{"2017":69.5,"2018":73.4,"2019":74.9,"2020":76.7,"2021":77.1,"2022":78.5,"2023":80.4},"Holt County, Nebraska":{"2017":73.7,"2018":76.8,"2019":79.9,"2020":79.7,"2021":81.9,"2022":84,"2023":86.1},"Hooker County, Nebraska":{"2017":69.9,"2018":73,"2019":72,"2020":76.3,"2021":76.3,"2022":82.2,"2023":75.8},"Howard County, Nebraska":{"2017":75,"2018":77.5,"2019":78.8,"2020":81.5,"2021":83.4,"2022":83.5,"2023":85.3},"Jefferson County, Nebraska":{"2017":73.7,"2018":75.5,"2019":76.7,"2020":76.4,"2021":79,"2022":81.6,"2023":82.6},"Johnson County, Nebraska":{"2017":71.9,"2018":75.7,"2019":78.1,"2020":80.9,"2021":85,"2022":87.1,"2023":87.2},"Kearney County, Nebraska":{"2017":80.8,"2018":81.5,"2019":83.4,"2020":86.6,"2021":88,"2022":88.5,"2023":91},"Keith County, Nebraska":{"2017":80.3,"2018":81.7,"2019":84,"2020":84.8,"2021":85.3,"2022":88.7,"2023":89.5},"Keya Paha County, Nebraska":{"2017":85.6,"2018":82.5,"2019":82.6,"2020":85.4,"2021":84.2,"2022":88.2,"2023":89.6},"Kimball County, Nebraska":{"2017":74.5,"2018":71.3,"2019":76.6,"2020":77.6,"2021":83.2,"2022":83.3,"2023":87.5},"Knox County, Nebraska":{"2017":71.8,"2018":76.5,"2019":78.9,"2020":82.5,"2021":83.7,"2022":85.4,"2023":85.9},"Lancaster County, Nebraska":{"2017":87.5,"2018":89,"2019":90.5,"2020":92.5,"2021":93.5,"2022":94.4,"2023":95.4},"Lincoln County, Nebraska":{"2017":79.1,"2018":81.6,"2019":85.5,"2020":88.1,"2021":88.9,"2022":90,"2023":92.1},"Logan County, Nebraska":{"2017":71,"2018":73.6,"2019":75.8,"2020":84.3,"2021":88.4,"2022":85,"2023":91.3},"Loup County, Nebraska":{"2017":73.5,"2018":73.1,"2019":74.5,"2020":75,"2021":72,"2022":77.2,"2023":86.7},"Madison County, Nebraska":{"2017":79.8,"2018":82.1,"2019":82.7,"2020":85.2,"2021":87.8,"2022":89.2,"2023":89.8},"McPherson County, Nebraska":{"2017":64.1,"2018":69,"2019":71.2,"2020":79.4,"2021":87.1,"2022":92.2,"2023":95.9},"Merrick County, Nebraska":{"2017":73.6,"2018":76.4,"2019":77.9,"2020":82.3,"2021":85.4,"2022":86.8,"2023":89.4},"Morrill County, Nebraska":{"2017":75.8,"2018":77.5,"2019":78.6,"2020":78.8,"2021":80.1,"2022":83.7,"2023":83.5},"Nance County, Nebraska":{"2017":75.6,"2018":77.7,"2019":78.8,"2020":80.3,"2021":82.1,"2022":82.2,"2023":84.6},"Nemaha County, Nebraska":{"2017":78.6,"2018":82.4,"2019":82.8,"2020":84.1,"2021":85.3,"2022":84.3,"2023":85.8},"Nuckolls County, Nebraska":{"2017":77.8,"2018":76.4,"2019":76.3,"2020":78.4,"2021":79.1,"2022":82.3,"2023":85.3},"Otoe County, Nebraska":{"2017":76.8,"2018":80,"2019":82.5,"2020":85.7,"2021":87.9,"2022":91.3,"2023":93.6},"Pawnee County, Nebraska":{"2017":68.4,"2018":70.7,"2019":74.6,"2020":71.7,"2021":74.6,"2022":75,"2023":81.1},"Perkins County, Nebraska":{"2017":83.8,"2018":83.8,"2019":83.6,"2020":87.8,"2021":90.5,"2022":91,"2023":92.9},"Phelps County, Nebraska":{"2017":81.6,"2018":82.3,"2019":85.1,"2020":87.5,"2021":86.1,"2022":88,"2023":87.9},"Pierce County, Nebraska":{"2017":79,"2018":83,"2019":85.2,"2020":86.8,"2021":88.1,"2022":88.9,"2023":89.4},"Platte County, Nebraska":{"2017":79.3,"2018":81.3,"2019":82.3,"2020":84.9,"2021":86.6,"2022":89.1,"2023":89.7},"Polk County, Nebraska":{"2017":82.3,"2018":84.6,"2019":86.9,"2020":86.6,"2021":86.5,"2022":87.3,"2023":87.5},"Red Willow County, Nebraska":{"2017":74.1,"2018":76.1,"2019":80.5,"2020":85.2,"2021":85.3,"2022":87.1,"2023":87.8},"Richardson County, Nebraska":{"2017":75.7,"2018":79.5,"2019":81.8,"2020":83.4,"2021":81.3,"2022":82.6,"2023":84.6},"Rock County, Nebraska":{"2017":74.4,"2018":77.5,"2019":79.5,"2020":82.5,"2021":86.9,"2022":88,"2023":91.6},"Saline County, Nebraska":{"2017":76.6,"2018":78.9,"2019":81.8,"2020":82.7,"2021":86,"2022":88.4,"2023":87.7},"Sarpy County, Nebraska":{"2017":91.1,"2018":92.2,"2019":93.3,"2020":94.4,"2021":95.5,"2022":96.2,"2023":96.8},"Saunders County, Nebraska":{"2017":81.1,"2018":84.1,"2019":85.8,"2020":88,"2021":90.2,"2022":91.3,"2023":92.8},"Scotts Bluff County, Nebraska":{"2017":78.2,"2018":79.3,"2019":81.4,"2020":83.3,"2021":85.3,"2022":86.7,"2023":86.9},"Seward County, Nebraska":{"2017":82.1,"2018":84.6,"2019":86.6,"2020":89.1,"2021":90.1,"2022":91.7,"2023":92.4},"Sheridan County, Nebraska":{"2017":70.9,"2018":72.6,"2019":77.7,"2020":80.1,"2021":82.8,"2022":84.6,"2023":85.8},"Sherman County, Nebraska":{"2017":73.6,"2018":78,"2019":77.5,"2020":77.8,"2021":79.7,"2022":77.9,"2023":79.4},"Sioux County, Nebraska":{"2017":75.1,"2018":76,"2019":76.8,"2020":77.7,"2021":76,"2022":76.7,"2023":79.6},"Stanton County, Nebraska":{"2017":79.9,"2018":83.9,"2019":85.3,"2020":85.7,"2021":85.7,"2022":87.4,"2023":87.6},"Thayer County, Nebraska":{"2017":77.1,"2018":77.3,"2019":79.1,"2020":81.6,"2021":83.5,"2022":85.5,"2023":88},"Thomas County, Nebraska":{"2017":80.2,"2018":84.6,"2019":90.3,"2020":92,"2021":91.5,"2022":91.8,"2023":95.3},"Thurston County, Nebraska":{"2017":66.4,"2018":68.1,"2019":71.6,"2020":76.4,"2021":79.3,"2022":82.3,"2023":87.2},"Valley County, Nebraska":{"2017":72.2,"2018":75.2,"2019":77.2,"2020":76.2,"2021":80.1,"2022":82.6,"2023":85.1},"Washington County, Nebraska":{"2017":83.5,"2018":86.2,"2019":88.8,"2020":89.4,"2021":91,"2022":92.7,"2023":94.1},"Wayne County, Nebraska":{"2017":83.8,"2018":87.7,"2019":88.9,"2020":91.1,"2021":91.4,"2022":90,"2023":92.4},"Webster County, Nebraska":{"2017":76.1,"2018":78.7,"2019":80.5,"2020":86.4,"2021":89.2,"2022":89.7,"2023":93},"Wheeler County, Nebraska":{"2017":74.1,"2018":76.2,"2019":79.8,"2020":77.9,"2021":78,"2022":81.2,"2023":82.5},"York County, Nebraska":{"2017":83.8,"2018":85.2,"2019":88.3,"2020":90.7,"2021":92.3,"2022":94.3,"2023":94}};
+const ctx = document.getElementById('lineChart').getContext('2d');
+let chart;
+
+function renderChart(data) {
+  const labels = Object.keys(data);
+  const values = Object.values(data);
+
+  if (chart) chart.destroy();
+  chart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: labels,
+      datasets: [{
+        label: '% With Internet',
+        data: values,
+        fill: false,
+        borderColor: 'teal',
+        backgroundColor: 'teal',
+        tension: 0.3,
+        pointRadius: 4
+      }]
+    },
+    options: {
+      responsive: true,
+      scales: {
+        y: {
+          beginAtZero: true,
+          max: 100,
+          title: { display: true, text: '% With Internet' }
+        },
+        x: {
+          title: { display: true, text: 'Year' }
+        }
+      },
+      plugins: {
+        tooltip: {
+          callbacks: {
+            label: function(ctx) {
+              return ctx.parsed.y.toFixed(1) + '%';
+            }
+          }
+        }
+      }
+    }
+  });
+}
+
+document.getElementById('countySelect').addEventListener('change', function() {
+  renderChart(internetData[this.value]);
+});
+renderChart(internetData['Statewide']);</script>
+  </body>
+</html>
+</html>

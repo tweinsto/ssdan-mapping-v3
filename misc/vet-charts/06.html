@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Veteran Labor Force Status – California</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Labor Force Status of Veterans (Age 18–64) in California</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Alameda County, California">Alameda County, California</option>
+      <option value="Alpine County, California">Alpine County, California</option>
+      <option value="Amador County, California">Amador County, California</option>
+      <option value="Butte County, California">Butte County, California</option>
+      <option value="Calaveras County, California">Calaveras County, California</option>
+      <option value="Colusa County, California">Colusa County, California</option>
+      <option value="Contra Costa County, California">Contra Costa County, California</option>
+      <option value="Del Norte County, California">Del Norte County, California</option>
+      <option value="El Dorado County, California">El Dorado County, California</option>
+      <option value="Fresno County, California">Fresno County, California</option>
+      <option value="Glenn County, California">Glenn County, California</option>
+      <option value="Humboldt County, California">Humboldt County, California</option>
+      <option value="Imperial County, California">Imperial County, California</option>
+      <option value="Inyo County, California">Inyo County, California</option>
+      <option value="Kern County, California">Kern County, California</option>
+      <option value="Kings County, California">Kings County, California</option>
+      <option value="Lake County, California">Lake County, California</option>
+      <option value="Lassen County, California">Lassen County, California</option>
+      <option value="Los Angeles County, California">Los Angeles County, California</option>
+      <option value="Madera County, California">Madera County, California</option>
+      <option value="Marin County, California">Marin County, California</option>
+      <option value="Mariposa County, California">Mariposa County, California</option>
+      <option value="Mendocino County, California">Mendocino County, California</option>
+      <option value="Merced County, California">Merced County, California</option>
+      <option value="Modoc County, California">Modoc County, California</option>
+      <option value="Mono County, California">Mono County, California</option>
+      <option value="Monterey County, California">Monterey County, California</option>
+      <option value="Napa County, California">Napa County, California</option>
+      <option value="Nevada County, California">Nevada County, California</option>
+      <option value="Orange County, California">Orange County, California</option>
+      <option value="Placer County, California">Placer County, California</option>
+      <option value="Plumas County, California">Plumas County, California</option>
+      <option value="Riverside County, California">Riverside County, California</option>
+      <option value="Sacramento County, California">Sacramento County, California</option>
+      <option value="San Benito County, California">San Benito County, California</option>
+      <option value="San Bernardino County, California">San Bernardino County, California</option>
+      <option value="San Diego County, California">San Diego County, California</option>
+      <option value="San Francisco County, California">San Francisco County, California</option>
+      <option value="San Joaquin County, California">San Joaquin County, California</option>
+      <option value="San Luis Obispo County, California">San Luis Obispo County, California</option>
+      <option value="San Mateo County, California">San Mateo County, California</option>
+      <option value="Santa Barbara County, California">Santa Barbara County, California</option>
+      <option value="Santa Clara County, California">Santa Clara County, California</option>
+      <option value="Santa Cruz County, California">Santa Cruz County, California</option>
+      <option value="Shasta County, California">Shasta County, California</option>
+      <option value="Sierra County, California">Sierra County, California</option>
+      <option value="Siskiyou County, California">Siskiyou County, California</option>
+      <option value="Solano County, California">Solano County, California</option>
+      <option value="Sonoma County, California">Sonoma County, California</option>
+      <option value="Stanislaus County, California">Stanislaus County, California</option>
+      <option value="Sutter County, California">Sutter County, California</option>
+      <option value="Tehama County, California">Tehama County, California</option>
+      <option value="Trinity County, California">Trinity County, California</option>
+      <option value="Tulare County, California">Tulare County, California</option>
+      <option value="Tuolumne County, California">Tuolumne County, California</option>
+      <option value="Ventura County, California">Ventura County, California</option>
+      <option value="Yolo County, California">Yolo County, California</option>
+      <option value="Yuba County, California">Yuba County, California</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>        const data = {"Statewide":[72.2,4.3,23.5],"Alameda County, California":[75.2,3.5,21.3],"Alpine County, California":[95.8,4.2,0],"Amador County, California":[63.5,1.4,35.1],"Butte County, California":[61.7,5.9,32.4],"Calaveras County, California":[59.2,3.8,37],"Colusa County, California":[75.1,6.4,18.4],"Contra Costa County, California":[76.8,3.4,19.8],"Del Norte County, California":[49.6,8.8,41.6],"El Dorado County, California":[75.1,2.2,22.7],"Fresno County, California":[65.4,4.1,30.5],"Glenn County, California":[80.6,5.4,14],"Humboldt County, California":[58.9,5.3,35.8],"Imperial County, California":[70.5,5.1,24.4],"Inyo County, California":[67.7,0.8,31.5],"Kern County, California":[67.3,6.6,26.1],"Kings County, California":[62.8,4.9,32.3],"Lake County, California":[42.5,11.2,46.3],"Lassen County, California":[70.4,2.2,27.4],"Los Angeles County, California":[71,5.4,23.6],"Madera County, California":[66,6.9,27.1],"Marin County, California":[66.8,8.7,24.5],"Mariposa County, California":[72.1,10.9,16.9],"Mendocino County, California":[58.2,6.9,35],"Merced County, California":[68.6,6,25.4],"Modoc County, California":[38.2,0,61.8],"Mono County, California":[92.2,5.2,2.6],"Monterey County, California":[63.4,5.3,31.3],"Napa County, California":[78.2,1.8,20],"Nevada County, California":[62.6,3.7,33.7],"Orange County, California":[77.2,3.8,19],"Placer County, California":[79.9,2.1,18.1],"Plumas County, California":[84.6,6.6,8.9],"Riverside County, California":[73,4.2,22.8],"Sacramento County, California":[70.4,5.1,24.6],"San Benito County, California":[78.6,0.2,21.2],"San Bernardino County, California":[69.6,3.8,26.6],"San Diego County, California":[76.1,4,19.9],"San Francisco County, California":[65.9,3.4,30.7],"San Joaquin County, California":[73.2,3.5,23.3],"San Luis Obispo County, California":[73,3.4,23.6],"San Mateo County, California":[77.9,1.5,20.6],"Santa Barbara County, California":[71.5,2.2,26.3],"Santa Clara County, California":[73.2,3.8,23],"Santa Cruz County, California":[72.1,7.8,20.1],"Shasta County, California":[66.5,4,29.5],"Sierra County, California":[75.8,0,24.2],"Siskiyou County, California":[54.9,2.7,42.4],"Solano County, California":[71.7,3.3,25],"Sonoma County, California":[75.5,3,21.4],"Stanislaus County, California":[70,5.7,24.4],"Sutter County, California":[73.4,4,22.6],"Tehama County, California":[49.3,6.6,44.1],"Trinity County, California":[66.8,1.8,31.4],"Tulare County, California":[65.9,4.3,29.8],"Tuolumne County, California":[67,0.7,32.3],"Ventura County, California":[78.1,3.6,18.3],"Yolo County, California":[80,2.6,17.4],"Yuba County, California":[69.6,1.9,28.6]};
+        const nationalAvg = [73.9,23,3.2];
+        const categories = ["Employed","Unemployed","Not in Labor Force"];
+        const ctx = document.getElementById("barChart").getContext("2d");
+        let chart;
+
+        function renderChart(values) {
+          if (chart) chart.destroy();
+          chart = new Chart(ctx, {
+            type: "bar",
+            data: {
+              labels: categories,
+              datasets: [
+                {
+                  label: "County/State",
+                  data: values,
+                  backgroundColor: ["#66c2a5", "#fc8d62", "#8da0cb"]
+                },
+                {
+                  label: null,
+                  data: categories.map(c => nationalAvg[c]),
+                  type: "line",
+                  borderColor: "black",
+                  borderWidth: 2,
+                  pointRadius: 0,
+                  fill: false
+                }
+              ]
+            },
+            options: {
+              indexAxis: "y",
+              scales: {
+                x: {
+                  min: 0,
+                  max: 100,
+                  ticks: {
+                    callback: v => v + "%"
+                  }
+                }
+              },
+              plugins: {
+                legend: {
+  display: false
+},
+                tooltip: {
+                  callbacks: {
+                    label: ctx => ctx.dataset.label ? ctx.dataset.label + ": " + ctx.raw + "%" : null
+                  }
+                }
+              }
+            }
+          });
+        }
+
+        document.getElementById("countySelect").addEventListener("change", function() {
+          renderChart(Object.values(data[this.value]));
+        });
+
+        renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

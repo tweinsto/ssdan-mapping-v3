@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Age Pyramid –  Maryland</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+      body {
+        font-family: sans-serif;
+        margin: 1rem 2rem;
+        text-align: center;
+      }
+      h2 {
+        margin-bottom: 0.25rem;
+        font-size: 1.6rem;
+      }
+      select {
+        padding: 0.4rem;
+        font-size: 1rem;
+        margin: 1rem 0;
+        border-radius: 5px;
+        border: 1px solid #999;
+      }
+      canvas {
+        width: 100%;
+        max-width: 850px;
+        height: 500px;
+        margin-top: 1rem;
+      }
+    </style>
+</head>
+<html>
+  <body>
+    <h2>Age Distribution in  Maryland (2023)</h2>
+    <label>Select County:</label>
+          <select id="countySelect">
+        <option value='Statewide'>Statewide</option>
+<option value='Allegany County, Maryland'>Allegany County, Maryland</option>
+<option value='Anne Arundel County, Maryland'>Anne Arundel County, Maryland</option>
+<option value='Baltimore city, Maryland'>Baltimore city, Maryland</option>
+<option value='Baltimore County, Maryland'>Baltimore County, Maryland</option>
+<option value='Calvert County, Maryland'>Calvert County, Maryland</option>
+<option value='Caroline County, Maryland'>Caroline County, Maryland</option>
+<option value='Carroll County, Maryland'>Carroll County, Maryland</option>
+<option value='Cecil County, Maryland'>Cecil County, Maryland</option>
+<option value='Charles County, Maryland'>Charles County, Maryland</option>
+<option value='Dorchester County, Maryland'>Dorchester County, Maryland</option>
+<option value='Frederick County, Maryland'>Frederick County, Maryland</option>
+<option value='Garrett County, Maryland'>Garrett County, Maryland</option>
+<option value='Harford County, Maryland'>Harford County, Maryland</option>
+<option value='Howard County, Maryland'>Howard County, Maryland</option>
+<option value='Kent County, Maryland'>Kent County, Maryland</option>
+<option value='Montgomery County, Maryland'>Montgomery County, Maryland</option>
+<option value='Prince George's County, Maryland'>Prince George's County, Maryland</option>
+<option value='Queen Anne's County, Maryland'>Queen Anne's County, Maryland</option>
+<option value='Somerset County, Maryland'>Somerset County, Maryland</option>
+<option value='St. Mary's County, Maryland'>St. Mary's County, Maryland</option>
+<option value='Talbot County, Maryland'>Talbot County, Maryland</option>
+<option value='Washington County, Maryland'>Washington County, Maryland</option>
+<option value='Wicomico County, Maryland'>Wicomico County, Maryland</option>
+<option value='Worcester County, Maryland'>Worcester County, Maryland</option>
+      </select>
+    <canvas id="barChart" width="850" height="500"></canvas>
+    <script>  const ageData = {"Statewide":[-3,2.9,-3.3,3.1,-2,1.9,-3.1,3],"Allegany County, Maryland":[-2.3,2.2,-2.8,2.3,-2.5,2.5,-1.6,1.6],"Anne Arundel County, Maryland":[-3.1,3,-3.2,3.1,-3.4,3.2,-1.9,1.9],"Baltimore County, Maryland":[-2.9,2.9,-3.1,3.1,-3.2,3,-2,1.9],"Calvert County, Maryland":[-2.7,2.5,-3.7,3.2,-3.3,3.4,-2.2,2.2],"Caroline County, Maryland":[-3.1,3.1,-3.9,3.8,-2.8,2.7,-2.2,2.1],"Carroll County, Maryland":[-2.8,2.7,-3,3.1,-3.4,2.9,-2,2.1],"Cecil County, Maryland":[-2.7,3,-2.8,3.3,-3.6,3,-2.1,1.9],"Charles County, Maryland":[-2.9,2.9,-3.2,3.1,-3.8,3.6,-2.1,2.4],"Dorchester County, Maryland":[-2.6,2.8,-2.6,2.5,-3.2,3,-1.9,2.6],"Frederick County, Maryland":[-3,2.9,-3.2,3.2,-3.6,3.4,-2.1,2.1],"Garrett County, Maryland":[-2.5,2.1,-2.8,2.7,-2.2,2.1,-2,1.5],"Harford County, Maryland":[-2.8,2.7,-3.1,3,-3.5,3.3,-2.1,2],"Howard County, Maryland":[-2.9,2.7,-3.4,3,-3.8,3.8,-2.3,2.2],"Kent County, Maryland":[-2,2,-2.7,2.1,-1.7,1.7,-2.2,1.2],"Montgomery County, Maryland":[-3,2.8,-3.3,3,-3.4,3.3,-2.1,2],"Prince George's County, Maryland":[-3.2,3,-3.1,3.1,-3.2,3,-1.9,1.8],"Queen Anne's County, Maryland":[-2.6,2.5,-2.8,2.8,-3.2,3,-2.3,2],"St. Mary's County, Maryland":[-3.1,3,-4,3.1,-3,3.6,-2.3,2],"Somerset County, Maryland":[-2.3,2.4,-2.5,2.1,-2.4,2.9,-1.4,1.6],"Talbot County, Maryland":[-2.3,1.9,-3.1,2.8,-2.9,2.4,-1.6,1.6],"Washington County, Maryland":[-2.8,2.8,-3.1,3.2,-3.1,3,-2,1.9],"Wicomico County, Maryland":[-3.1,2.9,-3.2,3,-3.2,3.2,-2,1.8],"Worcester County, Maryland":[-2.2,1.9,-2.2,2.2,-3,2.6,-1.6,1.7],"Baltimore city, Maryland":[-3.1,3,-2.8,2.7,-3.1,2.9,-1.6,1.6]};
+  const ageBins = ["0–4","5–9","10–14","15–17"];
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(data) {
+    const maleData = data.filter((_, i) => i % 2 === 0);
+    const femaleData = data.filter((_, i) => i % 2 === 1);
+
+    const maxValue = Math.max(
+      ...maleData.map(Math.abs),
+      ...femaleData.map(Math.abs)
+    );
+    const padding = 1.0;
+    const xMax = +(maxValue + padding).toFixed(1);
+
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ageBins,
+        datasets: [
+          {
+            label: 'Male',
+            data: maleData,
+            backgroundColor: 'darkslategray'
+          },
+          {
+            label: 'Female',
+            data: femaleData,
+            backgroundColor: 'darkorange'
+          }
+        ]
+      },
+      options: {
+        indexAxis: 'y',
+        responsive: true,
+        scales: {
+          x: {
+            min: -xMax,
+            max: xMax,
+            ticks: {
+              callback: value => Math.abs(value).toFixed(1) + '%'
+            }
+          },
+          y: {
+            stacked: false
+          }
+        },
+        plugins: {
+          legend: {
+            position: 'top',
+            align: 'start',
+            labels: {
+              usePointStyle: true
+            }
+          },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.dataset.label + ': ' + Math.abs(ctx.parsed.x).toFixed(1) + '%'
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(Object.values(ageData[this.value]));
+  });
+
+  renderChart(Object.values(ageData['Statewide']));</script>
+  </body>
+</html>
+</html>

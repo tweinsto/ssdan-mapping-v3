@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <title>Industry Distribution – New York</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+        canvas { max-width: 600px; height: 500px; }
+        select { padding: 0.5rem; font-size: 1rem; margin: 1rem; }
+        .legend { max-width: 600px; margin: 1rem auto; display: flex; flex-wrap: wrap; justify-content: center; font-size: 0.9rem; }
+        .legend-item { display: flex; align-items: center; margin: 0.3rem 1rem; }
+        .legend-color { width: 12px; height: 12px; margin-right: 6px; border: 1px solid #444; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Industry Distribution in New York</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Albany County, New York">Albany County, New York</option>
+      <option value="Allegany County, New York">Allegany County, New York</option>
+      <option value="Bronx County, New York">Bronx County, New York</option>
+      <option value="Broome County, New York">Broome County, New York</option>
+      <option value="Cattaraugus County, New York">Cattaraugus County, New York</option>
+      <option value="Cayuga County, New York">Cayuga County, New York</option>
+      <option value="Chautauqua County, New York">Chautauqua County, New York</option>
+      <option value="Chemung County, New York">Chemung County, New York</option>
+      <option value="Chenango County, New York">Chenango County, New York</option>
+      <option value="Clinton County, New York">Clinton County, New York</option>
+      <option value="Columbia County, New York">Columbia County, New York</option>
+      <option value="Cortland County, New York">Cortland County, New York</option>
+      <option value="Delaware County, New York">Delaware County, New York</option>
+      <option value="Dutchess County, New York">Dutchess County, New York</option>
+      <option value="Erie County, New York">Erie County, New York</option>
+      <option value="Essex County, New York">Essex County, New York</option>
+      <option value="Franklin County, New York">Franklin County, New York</option>
+      <option value="Fulton County, New York">Fulton County, New York</option>
+      <option value="Genesee County, New York">Genesee County, New York</option>
+      <option value="Greene County, New York">Greene County, New York</option>
+      <option value="Hamilton County, New York">Hamilton County, New York</option>
+      <option value="Herkimer County, New York">Herkimer County, New York</option>
+      <option value="Jefferson County, New York">Jefferson County, New York</option>
+      <option value="Kings County, New York">Kings County, New York</option>
+      <option value="Lewis County, New York">Lewis County, New York</option>
+      <option value="Livingston County, New York">Livingston County, New York</option>
+      <option value="Madison County, New York">Madison County, New York</option>
+      <option value="Monroe County, New York">Monroe County, New York</option>
+      <option value="Montgomery County, New York">Montgomery County, New York</option>
+      <option value="Nassau County, New York">Nassau County, New York</option>
+      <option value="New York County, New York">New York County, New York</option>
+      <option value="Niagara County, New York">Niagara County, New York</option>
+      <option value="Oneida County, New York">Oneida County, New York</option>
+      <option value="Onondaga County, New York">Onondaga County, New York</option>
+      <option value="Ontario County, New York">Ontario County, New York</option>
+      <option value="Orange County, New York">Orange County, New York</option>
+      <option value="Orleans County, New York">Orleans County, New York</option>
+      <option value="Oswego County, New York">Oswego County, New York</option>
+      <option value="Otsego County, New York">Otsego County, New York</option>
+      <option value="Putnam County, New York">Putnam County, New York</option>
+      <option value="Queens County, New York">Queens County, New York</option>
+      <option value="Rensselaer County, New York">Rensselaer County, New York</option>
+      <option value="Richmond County, New York">Richmond County, New York</option>
+      <option value="Rockland County, New York">Rockland County, New York</option>
+      <option value="Saratoga County, New York">Saratoga County, New York</option>
+      <option value="Schenectady County, New York">Schenectady County, New York</option>
+      <option value="Schoharie County, New York">Schoharie County, New York</option>
+      <option value="Schuyler County, New York">Schuyler County, New York</option>
+      <option value="Seneca County, New York">Seneca County, New York</option>
+      <option value="St. Lawrence County, New York">St. Lawrence County, New York</option>
+      <option value="Steuben County, New York">Steuben County, New York</option>
+      <option value="Suffolk County, New York">Suffolk County, New York</option>
+      <option value="Sullivan County, New York">Sullivan County, New York</option>
+      <option value="Tioga County, New York">Tioga County, New York</option>
+      <option value="Tompkins County, New York">Tompkins County, New York</option>
+      <option value="Ulster County, New York">Ulster County, New York</option>
+      <option value="Warren County, New York">Warren County, New York</option>
+      <option value="Washington County, New York">Washington County, New York</option>
+      <option value="Wayne County, New York">Wayne County, New York</option>
+      <option value="Westchester County, New York">Westchester County, New York</option>
+      <option value="Wyoming County, New York">Wyoming County, New York</option>
+      <option value="Yates County, New York">Yates County, New York</option>
+    </select>
+    <canvas id="pieChart"></canvas>
+    <div class="legend">
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#66CC66;"></div>
+        <span>Agriculture, forestry, fishing, and hunting</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#996600;"></div>
+        <span>Mining</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FF6600;"></div>
+        <span>Utilities</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FFCC33;"></div>
+        <span>Construction</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FF0000;"></div>
+        <span>Manufacturing</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FF66FF;"></div>
+        <span>Wholesale trade</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#3399FF;"></div>
+        <span>Retail trade</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#00CC99;"></div>
+        <span>Transportation and warehousing</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#999966;"></div>
+        <span>Information</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#6666FF;"></div>
+        <span>Finance and insurance</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FF99CC;"></div>
+        <span>Professional, scientific, and technical services</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#66CCCC;"></div>
+        <span>Educational services</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FF9933;"></div>
+        <span>Healthcare and social assistance</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#CC99FF;"></div>
+        <span>Arts, entertainment, and recreation</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#FF9999;"></div>
+        <span>Accommodation and food services</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#CCCC00;"></div>
+        <span>Other services</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background-color:#663300;"></div>
+        <span>Public administration</span>
+      </div>
+    </div>
+    <script>const data = [];
+const colors = ["#66CC66","#996600","#FF6600","#FFCC33","#FF0000","#FF66FF","#3399FF","#00CC99","#999966","#6666FF","#FF99CC","#66CCCC","#FF9933","#CC99FF","#FF9999","#CCCC00","#663300"];
+let chart;
+function renderChart(region) {
+  const ctx = document.getElementById("pieChart").getContext("2d");
+  const labels = Object.keys(data[region]);
+  const values = Object.values(data[region]);
+  const backgroundColors = labels.map(l => colors[l] || "#999");
+  if (chart) chart.destroy();
+  chart = new Chart(ctx, {
+    type: "pie",
+    data: {
+      labels: labels,
+      datasets: [{
+        data: values,
+        backgroundColor: backgroundColors
+      }]
+    },
+    options: {
+      plugins: {
+        tooltip: {
+          callbacks: {
+            label: ctx => ctx.label + ": " + ctx.raw + "%"
+          }
+        }
+      }
+    }
+  });
+}
+document.getElementById("countySelect").addEventListener("change", function() {
+  renderChart(this.value);
+});
+renderChart("Statewide");</script>
+  </body>
+</html>
+</html>

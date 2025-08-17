@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Income Distribution – Ohio</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          text-align: center;
+          margin: 2rem;
+        }
+        select {
+          font-size: 1rem;
+          padding: 0.4rem;
+          margin-bottom: 1rem;
+        }
+        canvas {
+          width: 100%;
+          max-width: 700px;
+          height: 400px;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Income Share by Quintile – Ohio</h2>
+    <label>Select County, State:</label>
+    <select id="countySelect"><option value='Statewide'>Statewide</option>
+<option value='Adams, Ohio'>Adams, Ohio</option>
+<option value='Allen, Ohio'>Allen, Ohio</option>
+<option value='Ashland, Ohio'>Ashland, Ohio</option>
+<option value='Ashtabula, Ohio'>Ashtabula, Ohio</option>
+<option value='Athens, Ohio'>Athens, Ohio</option>
+<option value='Auglaize, Ohio'>Auglaize, Ohio</option>
+<option value='Belmont, Ohio'>Belmont, Ohio</option>
+<option value='Brown, Ohio'>Brown, Ohio</option>
+<option value='Butler, Ohio'>Butler, Ohio</option>
+<option value='Carroll, Ohio'>Carroll, Ohio</option>
+<option value='Champaign, Ohio'>Champaign, Ohio</option>
+<option value='Clark, Ohio'>Clark, Ohio</option>
+<option value='Clermont, Ohio'>Clermont, Ohio</option>
+<option value='Clinton, Ohio'>Clinton, Ohio</option>
+<option value='Columbiana, Ohio'>Columbiana, Ohio</option>
+<option value='Coshocton, Ohio'>Coshocton, Ohio</option>
+<option value='Crawford, Ohio'>Crawford, Ohio</option>
+<option value='Cuyahoga, Ohio'>Cuyahoga, Ohio</option>
+<option value='Darke, Ohio'>Darke, Ohio</option>
+<option value='Defiance, Ohio'>Defiance, Ohio</option>
+<option value='Delaware, Ohio'>Delaware, Ohio</option>
+<option value='Erie, Ohio'>Erie, Ohio</option>
+<option value='Fairfield, Ohio'>Fairfield, Ohio</option>
+<option value='Fayette, Ohio'>Fayette, Ohio</option>
+<option value='Franklin, Ohio'>Franklin, Ohio</option>
+<option value='Fulton, Ohio'>Fulton, Ohio</option>
+<option value='Gallia, Ohio'>Gallia, Ohio</option>
+<option value='Geauga, Ohio'>Geauga, Ohio</option>
+<option value='Greene, Ohio'>Greene, Ohio</option>
+<option value='Guernsey, Ohio'>Guernsey, Ohio</option>
+<option value='Hamilton, Ohio'>Hamilton, Ohio</option>
+<option value='Hancock, Ohio'>Hancock, Ohio</option>
+<option value='Hardin, Ohio'>Hardin, Ohio</option>
+<option value='Harrison, Ohio'>Harrison, Ohio</option>
+<option value='Henry, Ohio'>Henry, Ohio</option>
+<option value='Highland, Ohio'>Highland, Ohio</option>
+<option value='Hocking, Ohio'>Hocking, Ohio</option>
+<option value='Holmes, Ohio'>Holmes, Ohio</option>
+<option value='Huron, Ohio'>Huron, Ohio</option>
+<option value='Jackson, Ohio'>Jackson, Ohio</option>
+<option value='Jefferson, Ohio'>Jefferson, Ohio</option>
+<option value='Knox, Ohio'>Knox, Ohio</option>
+<option value='Lake, Ohio'>Lake, Ohio</option>
+<option value='Lawrence, Ohio'>Lawrence, Ohio</option>
+<option value='Licking, Ohio'>Licking, Ohio</option>
+<option value='Logan, Ohio'>Logan, Ohio</option>
+<option value='Lorain, Ohio'>Lorain, Ohio</option>
+<option value='Lucas, Ohio'>Lucas, Ohio</option>
+<option value='Madison, Ohio'>Madison, Ohio</option>
+<option value='Mahoning, Ohio'>Mahoning, Ohio</option>
+<option value='Marion, Ohio'>Marion, Ohio</option>
+<option value='Medina, Ohio'>Medina, Ohio</option>
+<option value='Meigs, Ohio'>Meigs, Ohio</option>
+<option value='Mercer, Ohio'>Mercer, Ohio</option>
+<option value='Miami, Ohio'>Miami, Ohio</option>
+<option value='Monroe, Ohio'>Monroe, Ohio</option>
+<option value='Montgomery, Ohio'>Montgomery, Ohio</option>
+<option value='Morgan, Ohio'>Morgan, Ohio</option>
+<option value='Morrow, Ohio'>Morrow, Ohio</option>
+<option value='Muskingum, Ohio'>Muskingum, Ohio</option>
+<option value='Noble, Ohio'>Noble, Ohio</option>
+<option value='Ottawa, Ohio'>Ottawa, Ohio</option>
+<option value='Paulding, Ohio'>Paulding, Ohio</option>
+<option value='Perry, Ohio'>Perry, Ohio</option>
+<option value='Pickaway, Ohio'>Pickaway, Ohio</option>
+<option value='Pike, Ohio'>Pike, Ohio</option>
+<option value='Portage, Ohio'>Portage, Ohio</option>
+<option value='Preble, Ohio'>Preble, Ohio</option>
+<option value='Putnam, Ohio'>Putnam, Ohio</option>
+<option value='Richland, Ohio'>Richland, Ohio</option>
+<option value='Ross, Ohio'>Ross, Ohio</option>
+<option value='Sandusky, Ohio'>Sandusky, Ohio</option>
+<option value='Scioto, Ohio'>Scioto, Ohio</option>
+<option value='Seneca, Ohio'>Seneca, Ohio</option>
+<option value='Shelby, Ohio'>Shelby, Ohio</option>
+<option value='Stark, Ohio'>Stark, Ohio</option>
+<option value='Summit, Ohio'>Summit, Ohio</option>
+<option value='Trumbull, Ohio'>Trumbull, Ohio</option>
+<option value='Tuscarawas, Ohio'>Tuscarawas, Ohio</option>
+<option value='Union, Ohio'>Union, Ohio</option>
+<option value='Van Wert, Ohio'>Van Wert, Ohio</option>
+<option value='Vinton, Ohio'>Vinton, Ohio</option>
+<option value='Warren, Ohio'>Warren, Ohio</option>
+<option value='Washington, Ohio'>Washington, Ohio</option>
+<option value='Wayne, Ohio'>Wayne, Ohio</option>
+<option value='Williams, Ohio'>Williams, Ohio</option>
+<option value='Wood, Ohio'>Wood, Ohio</option>
+<option value='Wyandot, Ohio'>Wyandot, Ohio</option></select>
+    <canvas id="barChart" width="700" height="400"></canvas>
+    <script>  const incomeData = {"Statewide":[5.4,8.8,13.4,26.9,45.4],"Adams, Ohio":[5.2,9.2,15.1,28.3,42.1],"Allen, Ohio":[5.5,9,13.6,27,44.9],"Ashland, Ohio":[5.9,9.5,13.7,25.9,45],"Ashtabula, Ohio":[5.2,8.5,13,26.9,46.4],"Athens, Ohio":[4.2,7.7,12.8,27.6,47.7],"Auglaize, Ohio":[6.7,10.2,14.6,26.9,41.5],"Belmont, Ohio":[5.4,8.8,13.6,27.2,45.1],"Brown, Ohio":[5.1,9.1,13.3,26.6,45.8],"Butler, Ohio":[5.4,9,13.8,27.2,44.6],"Carroll, Ohio":[5.7,9,13.2,27.1,45],"Champaign, Ohio":[6.7,10.5,14.8,26.6,41.4],"Clark, Ohio":[5.7,9.3,14.4,27.6,43],"Clermont, Ohio":[5.6,8.9,13.6,27.2,44.8],"Clinton, Ohio":[5.3,8.9,13.1,26.7,45.9],"Columbiana, Ohio":[5.1,8.7,13.3,26.8,46.1],"Coshocton, Ohio":[5.5,9.2,14.2,27.5,43.7],"Crawford, Ohio":[5.8,9,13.9,27,44.2],"Cuyahoga, Ohio":[4,7,11.3,27.3,50.4],"Darke, Ohio":[5.2,8.4,12.3,26.4,47.7],"Defiance, Ohio":[6.3,10.2,14.5,26.5,42.5],"Delaware, Ohio":[5.9,9.5,13.7,26.6,44.3],"Erie, Ohio":[4.9,8,12.2,26.1,48.7],"Fairfield, Ohio":[5.9,9.7,14.2,26.9,43.3],"Fayette, Ohio":[5.6,9.3,14.5,27.6,43],"Franklin, Ohio":[4.8,7.8,12.2,27,48.3],"Fulton, Ohio":[5.8,8.9,13.1,26.8,45.5],"Gallia, Ohio":[4.8,8,12.4,26.9,47.9],"Geauga, Ohio":[5.2,8.3,12.5,26.9,47.1],"Greene, Ohio":[5.6,9.3,14.4,27.7,43],"Guernsey, Ohio":[5.1,8.2,12.5,26.6,47.5],"Hamilton, Ohio":[4,7,11.3,27.1,50.6],"Hancock, Ohio":[5.2,8.4,12.9,27.1,46.3],"Hardin, Ohio":[6.2,9.3,14.8,27.3,42.5],"Harrison, Ohio":[5.2,8.4,13.7,27.1,45.6],"Henry, Ohio":[5.2,8.2,11.3,25,50.4],"Highland, Ohio":[5.9,9.5,14.1,26.8,43.7],"Hocking, Ohio":[5.8,9.6,14.8,26.9,42.9],"Holmes, Ohio":[5.9,8.6,13,26.8,45.7],"Huron, Ohio":[6.4,10.2,14.8,27.1,41.5],"Jackson, Ohio":[4.8,8.1,12.2,26.2,48.7],"Jefferson, Ohio":[5.2,9,13.8,27.1,44.9],"Knox, Ohio":[6.1,9.7,14.1,27,43.1],"Lake, Ohio":[5.5,9,13.3,26.7,45.5],"Lawrence, Ohio":[5,8.2,12.5,26.9,47.4],"Licking, Ohio":[5.1,8.3,12.6,26.6,47.4],"Logan, Ohio":[5.4,8.4,12.5,25.9,47.9],"Lorain, Ohio":[4.8,8,12.5,27.1,47.6],"Lucas, Ohio":[4.4,7.5,11.9,27,49.3],"Madison, Ohio":[6.4,10.4,15.2,27,41],"Mahoning, Ohio":[4.7,7.9,12.6,27.2,47.6],"Marion, Ohio":[4.9,8,12.6,26.8,47.7],"Medina, Ohio":[5.8,9.2,13.6,26.7,44.8],"Meigs, Ohio":[5.5,9.1,14.7,28.7,42.1],"Mercer, Ohio":[6.5,10.5,15.1,26,41.9],"Miami, Ohio":[6,9.3,13.8,26.7,44.2],"Monroe, Ohio":[4.7,7.5,11.7,26.7,49.3],"Montgomery, Ohio":[5,8.3,12.8,27.2,46.6],"Morgan, Ohio":[5.6,9.6,14.2,28.1,42.6],"Morrow, Ohio":[6.9,9.8,14.1,26.8,42.5],"Muskingum, Ohio":[5.1,8.9,13.8,27.5,44.7],"Noble, Ohio":[3.9,7.1,11.5,27,50.5],"Ottawa, Ohio":[4.6,7.4,11.2,25.7,51.1],"Paulding, Ohio":[5.5,8.9,12.9,26.2,46.5],"Perry, Ohio":[5.6,9.7,14.7,27.8,42.2],"Pickaway, Ohio":[6.2,9.5,14.4,27.2,42.7],"Pike, Ohio":[3.4,6.2,10.8,26.2,53.3],"Portage, Ohio":[5.2,8.8,13.5,27.1,45.4],"Preble, Ohio":[6.2,9.9,14.6,26.8,42.4],"Putnam, Ohio":[6.3,9.6,13.8,26.5,43.8],"Richland, Ohio":[5.6,9,13.7,26.8,45],"Ross, Ohio":[4.9,8.5,13.5,26.5,46.6],"Sandusky, Ohio":[5.5,8.6,13.4,26.9,45.7],"Scioto, Ohio":[4.7,8.6,14.3,28.5,43.9],"Seneca, Ohio":[6,9.6,14,26.6,43.9],"Shelby, Ohio":[6,9.3,13.8,26.8,44],"Stark, Ohio":[5.3,8.7,13.1,26.9,46],"Summit, Ohio":[4.4,7.5,11.7,26.9,49.5],"Trumbull, Ohio":[5.2,8.5,13,27.2,46.1],"Tuscarawas, Ohio":[5.8,9.7,14.5,26.9,43.1],"Union, Ohio":[5.9,9.1,12.7,26.4,45.9],"Van Wert, Ohio":[7.3,10.7,15.7,27.6,38.8],"Vinton, Ohio":[6.3,9.7,16,29.4,38.6],"Warren, Ohio":[5.3,8.2,12.1,26.4,47.9],"Washington, Ohio":[4.7,8,12,26.3,49],"Wayne, Ohio":[6,9.3,13.4,26.6,44.7],"Williams, Ohio":[5.8,9.2,13.3,25.9,45.7],"Wood, Ohio":[4.9,7.9,12.3,27,48],"Wyandot, Ohio":[6.5,10.5,14.5,26.3,42.2]};
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Bottom 20%', 'Second 20%', 'Middle 20%', 'Fourth 20%', 'Top 20%'],
+        datasets: [{
+          label: 'Share (%)',
+          data: values,
+          backgroundColor: '#4576a7'
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.parsed.y + '%'
+            }
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 100,
+            title: {
+              display: true,
+              text: 'Income Share (%)'
+            }
+          },
+          x: {
+            title: {
+              display: true,
+              text: 'Quintile'
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(Object.values(incomeData[this.value]));
+  });
+
+  renderChart(Object.values(incomeData['Statewide']));</script>
+  </body>
+</html>
+</html>

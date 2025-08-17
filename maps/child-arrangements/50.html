@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Living Arrangements of Children – Vermont</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Children’s Living Arrangements (Under 18) – Vermont</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Addison County, Vermont">Addison County, Vermont</option>
+      <option value="Bennington County, Vermont">Bennington County, Vermont</option>
+      <option value="Caledonia County, Vermont">Caledonia County, Vermont</option>
+      <option value="Chittenden County, Vermont">Chittenden County, Vermont</option>
+      <option value="Essex County, Vermont">Essex County, Vermont</option>
+      <option value="Franklin County, Vermont">Franklin County, Vermont</option>
+      <option value="Grand Isle County, Vermont">Grand Isle County, Vermont</option>
+      <option value="Lamoille County, Vermont">Lamoille County, Vermont</option>
+      <option value="Orange County, Vermont">Orange County, Vermont</option>
+      <option value="Orleans County, Vermont">Orleans County, Vermont</option>
+      <option value="Rutland County, Vermont">Rutland County, Vermont</option>
+      <option value="Washington County, Vermont">Washington County, Vermont</option>
+      <option value="Windham County, Vermont">Windham County, Vermont</option>
+      <option value="Windsor County, Vermont">Windsor County, Vermont</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>  const data = {"Statewide":{"Married Couple (%)":68.5,"Cohabiting Couple (%)":10.4,"Male Householder (%)":5.6,"Female Householder (%)":15.5},"Addison County, Vermont":{"Married Couple (%)":75.5,"Cohabiting Couple (%)":8.4,"Male Householder (%)":4.8,"Female Householder (%)":11.3},"Bennington County, Vermont":{"Married Couple (%)":64.1,"Cohabiting Couple (%)":11,"Male Householder (%)":4,"Female Householder (%)":20.9},"Caledonia County, Vermont":{"Married Couple (%)":64.1,"Cohabiting Couple (%)":13.6,"Male Householder (%)":5.2,"Female Householder (%)":17.1},"Chittenden County, Vermont":{"Married Couple (%)":73.8,"Cohabiting Couple (%)":6,"Male Householder (%)":6.5,"Female Householder (%)":13.7},"Essex County, Vermont":{"Married Couple (%)":55.6,"Cohabiting Couple (%)":15,"Male Householder (%)":4.2,"Female Householder (%)":25.2},"Franklin County, Vermont":{"Married Couple (%)":66.9,"Cohabiting Couple (%)":13.2,"Male Householder (%)":4.7,"Female Householder (%)":15.3},"Grand Isle County, Vermont":{"Married Couple (%)":80.3,"Cohabiting Couple (%)":6.8,"Male Householder (%)":4.1,"Female Householder (%)":8.8},"Lamoille County, Vermont":{"Married Couple (%)":64.8,"Cohabiting Couple (%)":12.6,"Male Householder (%)":5.4,"Female Householder (%)":17.2},"Orange County, Vermont":{"Married Couple (%)":66.2,"Cohabiting Couple (%)":11.4,"Male Householder (%)":7.7,"Female Householder (%)":14.7},"Orleans County, Vermont":{"Married Couple (%)":64.8,"Cohabiting Couple (%)":13.1,"Male Householder (%)":7.5,"Female Householder (%)":14.6},"Rutland County, Vermont":{"Married Couple (%)":68.5,"Cohabiting Couple (%)":10.1,"Male Householder (%)":4.1,"Female Householder (%)":17.3},"Washington County, Vermont":{"Married Couple (%)":63.2,"Cohabiting Couple (%)":14.2,"Male Householder (%)":6.8,"Female Householder (%)":15.9},"Windham County, Vermont":{"Married Couple (%)":57.8,"Cohabiting Couple (%)":17.2,"Male Householder (%)":7.1,"Female Householder (%)":18},"Windsor County, Vermont":{"Married Couple (%)":75.4,"Cohabiting Couple (%)":6.5,"Male Householder (%)":4,"Female Householder (%)":14.1}};
+  const categories = ["Married Couple (%)","Cohabiting Couple (%)","Male Householder (%)","Female Householder (%)"];
+  const ctx = document.getElementById("barChart").getContext("2d");
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: categories,
+        datasets: [{
+          label: "Share of Children (%)",
+          data: values,
+          backgroundColor: ["#5DA5DA","#FAA43A","#60BD68","#F17CB0"]
+        }]
+      },
+      options: {
+        indexAxis: "y",
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            ticks: { callback: v => v + "%" },
+            title: { display: true, text: "Percent of Children" }
+          }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.raw + "%"
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById("countySelect").addEventListener("change", function() {
+    renderChart(Object.values(data[this.value]));
+  });
+
+  renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Educational Enrollment – Mississippi</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Educational Enrollment (Age 18–24) in Mississippi</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Adams County, Mississippi">Adams County, Mississippi</option>
+      <option value="Alcorn County, Mississippi">Alcorn County, Mississippi</option>
+      <option value="Amite County, Mississippi">Amite County, Mississippi</option>
+      <option value="Attala County, Mississippi">Attala County, Mississippi</option>
+      <option value="Benton County, Mississippi">Benton County, Mississippi</option>
+      <option value="Bolivar County, Mississippi">Bolivar County, Mississippi</option>
+      <option value="Calhoun County, Mississippi">Calhoun County, Mississippi</option>
+      <option value="Carroll County, Mississippi">Carroll County, Mississippi</option>
+      <option value="Chickasaw County, Mississippi">Chickasaw County, Mississippi</option>
+      <option value="Choctaw County, Mississippi">Choctaw County, Mississippi</option>
+      <option value="Claiborne County, Mississippi">Claiborne County, Mississippi</option>
+      <option value="Clarke County, Mississippi">Clarke County, Mississippi</option>
+      <option value="Clay County, Mississippi">Clay County, Mississippi</option>
+      <option value="Coahoma County, Mississippi">Coahoma County, Mississippi</option>
+      <option value="Copiah County, Mississippi">Copiah County, Mississippi</option>
+      <option value="Covington County, Mississippi">Covington County, Mississippi</option>
+      <option value="DeSoto County, Mississippi">DeSoto County, Mississippi</option>
+      <option value="Forrest County, Mississippi">Forrest County, Mississippi</option>
+      <option value="Franklin County, Mississippi">Franklin County, Mississippi</option>
+      <option value="George County, Mississippi">George County, Mississippi</option>
+      <option value="Greene County, Mississippi">Greene County, Mississippi</option>
+      <option value="Grenada County, Mississippi">Grenada County, Mississippi</option>
+      <option value="Hancock County, Mississippi">Hancock County, Mississippi</option>
+      <option value="Harrison County, Mississippi">Harrison County, Mississippi</option>
+      <option value="Hinds County, Mississippi">Hinds County, Mississippi</option>
+      <option value="Holmes County, Mississippi">Holmes County, Mississippi</option>
+      <option value="Humphreys County, Mississippi">Humphreys County, Mississippi</option>
+      <option value="Issaquena County, Mississippi">Issaquena County, Mississippi</option>
+      <option value="Itawamba County, Mississippi">Itawamba County, Mississippi</option>
+      <option value="Jackson County, Mississippi">Jackson County, Mississippi</option>
+      <option value="Jasper County, Mississippi">Jasper County, Mississippi</option>
+      <option value="Jefferson County, Mississippi">Jefferson County, Mississippi</option>
+      <option value="Jefferson Davis County, Mississippi">Jefferson Davis County, Mississippi</option>
+      <option value="Jones County, Mississippi">Jones County, Mississippi</option>
+      <option value="Kemper County, Mississippi">Kemper County, Mississippi</option>
+      <option value="Lafayette County, Mississippi">Lafayette County, Mississippi</option>
+      <option value="Lamar County, Mississippi">Lamar County, Mississippi</option>
+      <option value="Lauderdale County, Mississippi">Lauderdale County, Mississippi</option>
+      <option value="Lawrence County, Mississippi">Lawrence County, Mississippi</option>
+      <option value="Leake County, Mississippi">Leake County, Mississippi</option>
+      <option value="Lee County, Mississippi">Lee County, Mississippi</option>
+      <option value="Leflore County, Mississippi">Leflore County, Mississippi</option>
+      <option value="Lincoln County, Mississippi">Lincoln County, Mississippi</option>
+      <option value="Lowndes County, Mississippi">Lowndes County, Mississippi</option>
+      <option value="Madison County, Mississippi">Madison County, Mississippi</option>
+      <option value="Marion County, Mississippi">Marion County, Mississippi</option>
+      <option value="Marshall County, Mississippi">Marshall County, Mississippi</option>
+      <option value="Monroe County, Mississippi">Monroe County, Mississippi</option>
+      <option value="Montgomery County, Mississippi">Montgomery County, Mississippi</option>
+      <option value="Neshoba County, Mississippi">Neshoba County, Mississippi</option>
+      <option value="Newton County, Mississippi">Newton County, Mississippi</option>
+      <option value="Noxubee County, Mississippi">Noxubee County, Mississippi</option>
+      <option value="Oktibbeha County, Mississippi">Oktibbeha County, Mississippi</option>
+      <option value="Panola County, Mississippi">Panola County, Mississippi</option>
+      <option value="Pearl River County, Mississippi">Pearl River County, Mississippi</option>
+      <option value="Perry County, Mississippi">Perry County, Mississippi</option>
+      <option value="Pike County, Mississippi">Pike County, Mississippi</option>
+      <option value="Pontotoc County, Mississippi">Pontotoc County, Mississippi</option>
+      <option value="Prentiss County, Mississippi">Prentiss County, Mississippi</option>
+      <option value="Quitman County, Mississippi">Quitman County, Mississippi</option>
+      <option value="Rankin County, Mississippi">Rankin County, Mississippi</option>
+      <option value="Scott County, Mississippi">Scott County, Mississippi</option>
+      <option value="Sharkey County, Mississippi">Sharkey County, Mississippi</option>
+      <option value="Simpson County, Mississippi">Simpson County, Mississippi</option>
+      <option value="Smith County, Mississippi">Smith County, Mississippi</option>
+      <option value="Stone County, Mississippi">Stone County, Mississippi</option>
+      <option value="Sunflower County, Mississippi">Sunflower County, Mississippi</option>
+      <option value="Tallahatchie County, Mississippi">Tallahatchie County, Mississippi</option>
+      <option value="Tate County, Mississippi">Tate County, Mississippi</option>
+      <option value="Tippah County, Mississippi">Tippah County, Mississippi</option>
+      <option value="Tishomingo County, Mississippi">Tishomingo County, Mississippi</option>
+      <option value="Tunica County, Mississippi">Tunica County, Mississippi</option>
+      <option value="Union County, Mississippi">Union County, Mississippi</option>
+      <option value="Walthall County, Mississippi">Walthall County, Mississippi</option>
+      <option value="Warren County, Mississippi">Warren County, Mississippi</option>
+      <option value="Washington County, Mississippi">Washington County, Mississippi</option>
+      <option value="Wayne County, Mississippi">Wayne County, Mississippi</option>
+      <option value="Webster County, Mississippi">Webster County, Mississippi</option>
+      <option value="Wilkinson County, Mississippi">Wilkinson County, Mississippi</option>
+      <option value="Winston County, Mississippi">Winston County, Mississippi</option>
+      <option value="Yalobusha County, Mississippi">Yalobusha County, Mississippi</option>
+      <option value="Yazoo County, Mississippi">Yazoo County, Mississippi</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>  const data = {"Statewide":{"Enrolled in College / Grad. School":40.8,"Not Enrolled":59.2},"Adams County, Mississippi":{"Enrolled in College / Grad. School":22.9,"Not Enrolled":77.1},"Alcorn County, Mississippi":{"Enrolled in College / Grad. School":26.5,"Not Enrolled":73.5},"Amite County, Mississippi":{"Enrolled in College / Grad. School":23,"Not Enrolled":77},"Attala County, Mississippi":{"Enrolled in College / Grad. School":15.9,"Not Enrolled":84.1},"Benton County, Mississippi":{"Enrolled in College / Grad. School":15.1,"Not Enrolled":84.9},"Bolivar County, Mississippi":{"Enrolled in College / Grad. School":55.4,"Not Enrolled":44.6},"Calhoun County, Mississippi":{"Enrolled in College / Grad. School":22.1,"Not Enrolled":77.9},"Carroll County, Mississippi":{"Enrolled in College / Grad. School":11.7,"Not Enrolled":88.3},"Chickasaw County, Mississippi":{"Enrolled in College / Grad. School":27.5,"Not Enrolled":72.5},"Choctaw County, Mississippi":{"Enrolled in College / Grad. School":33.3,"Not Enrolled":66.7},"Claiborne County, Mississippi":{"Enrolled in College / Grad. School":67.3,"Not Enrolled":32.7},"Clarke County, Mississippi":{"Enrolled in College / Grad. School":26.1,"Not Enrolled":73.9},"Clay County, Mississippi":{"Enrolled in College / Grad. School":16.4,"Not Enrolled":83.6},"Coahoma County, Mississippi":{"Enrolled in College / Grad. School":31.8,"Not Enrolled":68.2},"Copiah County, Mississippi":{"Enrolled in College / Grad. School":47.7,"Not Enrolled":52.3},"Covington County, Mississippi":{"Enrolled in College / Grad. School":35,"Not Enrolled":65},"DeSoto County, Mississippi":{"Enrolled in College / Grad. School":31.7,"Not Enrolled":68.3},"Forrest County, Mississippi":{"Enrolled in College / Grad. School":53.8,"Not Enrolled":46.2},"Franklin County, Mississippi":{"Enrolled in College / Grad. School":40.1,"Not Enrolled":59.9},"George County, Mississippi":{"Enrolled in College / Grad. School":14.6,"Not Enrolled":85.4},"Greene County, Mississippi":{"Enrolled in College / Grad. School":25.6,"Not Enrolled":74.4},"Grenada County, Mississippi":{"Enrolled in College / Grad. School":22.8,"Not Enrolled":77.2},"Hancock County, Mississippi":{"Enrolled in College / Grad. School":31.2,"Not Enrolled":68.8},"Harrison County, Mississippi":{"Enrolled in College / Grad. School":25.7,"Not Enrolled":74.3},"Hinds County, Mississippi":{"Enrolled in College / Grad. School":50.5,"Not Enrolled":49.5},"Holmes County, Mississippi":{"Enrolled in College / Grad. School":52.1,"Not Enrolled":47.9},"Humphreys County, Mississippi":{"Enrolled in College / Grad. School":26.2,"Not Enrolled":73.8},"Issaquena County, Mississippi":{"Enrolled in College / Grad. School":15.9,"Not Enrolled":84.1},"Itawamba County, Mississippi":{"Enrolled in College / Grad. School":46.9,"Not Enrolled":53.1},"Jackson County, Mississippi":{"Enrolled in College / Grad. School":30.3,"Not Enrolled":69.7},"Jasper County, Mississippi":{"Enrolled in College / Grad. School":47.3,"Not Enrolled":52.7},"Jefferson County, Mississippi":{"Enrolled in College / Grad. School":40.6,"Not Enrolled":59.4},"Jefferson Davis County, Mississippi":{"Enrolled in College / Grad. School":27.2,"Not Enrolled":72.8},"Jones County, Mississippi":{"Enrolled in College / Grad. School":32.6,"Not Enrolled":67.4},"Kemper County, Mississippi":{"Enrolled in College / Grad. School":71.1,"Not Enrolled":28.9},"Lafayette County, Mississippi":{"Enrolled in College / Grad. School":82.3,"Not Enrolled":17.7},"Lamar County, Mississippi":{"Enrolled in College / Grad. School":47.3,"Not Enrolled":52.7},"Lauderdale County, Mississippi":{"Enrolled in College / Grad. School":34.5,"Not Enrolled":65.5},"Lawrence County, Mississippi":{"Enrolled in College / Grad. School":43,"Not Enrolled":57},"Leake County, Mississippi":{"Enrolled in College / Grad. School":27.3,"Not Enrolled":72.7},"Lee County, Mississippi":{"Enrolled in College / Grad. School":36.5,"Not Enrolled":63.5},"Leflore County, Mississippi":{"Enrolled in College / Grad. School":44.6,"Not Enrolled":55.4},"Lincoln County, Mississippi":{"Enrolled in College / Grad. School":27.6,"Not Enrolled":72.4},"Lowndes County, Mississippi":{"Enrolled in College / Grad. School":41.3,"Not Enrolled":58.7},"Madison County, Mississippi":{"Enrolled in College / Grad. School":41.2,"Not Enrolled":58.8},"Marion County, Mississippi":{"Enrolled in College / Grad. School":32.3,"Not Enrolled":67.7},"Marshall County, Mississippi":{"Enrolled in College / Grad. School":33.1,"Not Enrolled":66.9},"Monroe County, Mississippi":{"Enrolled in College / Grad. School":26.4,"Not Enrolled":73.6},"Montgomery County, Mississippi":{"Enrolled in College / Grad. School":44.9,"Not Enrolled":55.1},"Neshoba County, Mississippi":{"Enrolled in College / Grad. School":24.6,"Not Enrolled":75.4},"Newton County, Mississippi":{"Enrolled in College / Grad. School":40.6,"Not Enrolled":59.4},"Noxubee County, Mississippi":{"Enrolled in College / Grad. School":32.7,"Not Enrolled":67.3},"Oktibbeha County, Mississippi":{"Enrolled in College / Grad. School":81.9,"Not Enrolled":18.1},"Panola County, Mississippi":{"Enrolled in College / Grad. School":29.4,"Not Enrolled":70.6},"Pearl River County, Mississippi":{"Enrolled in College / Grad. School":40.8,"Not Enrolled":59.2},"Perry County, Mississippi":{"Enrolled in College / Grad. School":16.3,"Not Enrolled":83.7},"Pike County, Mississippi":{"Enrolled in College / Grad. School":27.8,"Not Enrolled":72.2},"Pontotoc County, Mississippi":{"Enrolled in College / Grad. School":29.6,"Not Enrolled":70.4},"Prentiss County, Mississippi":{"Enrolled in College / Grad. School":57.2,"Not Enrolled":42.8},"Quitman County, Mississippi":{"Enrolled in College / Grad. School":20.6,"Not Enrolled":79.4},"Rankin County, Mississippi":{"Enrolled in College / Grad. School":40.1,"Not Enrolled":59.9},"Scott County, Mississippi":{"Enrolled in College / Grad. School":25.8,"Not Enrolled":74.2},"Sharkey County, Mississippi":{"Enrolled in College / Grad. School":31,"Not Enrolled":69},"Simpson County, Mississippi":{"Enrolled in College / Grad. School":28.8,"Not Enrolled":71.2},"Smith County, Mississippi":{"Enrolled in College / Grad. School":4.6,"Not Enrolled":95.4},"Stone County, Mississippi":{"Enrolled in College / Grad. School":47.7,"Not Enrolled":52.3},"Sunflower County, Mississippi":{"Enrolled in College / Grad. School":31.9,"Not Enrolled":68.1},"Tallahatchie County, Mississippi":{"Enrolled in College / Grad. School":33.7,"Not Enrolled":66.3},"Tate County, Mississippi":{"Enrolled in College / Grad. School":50.2,"Not Enrolled":49.8},"Tippah County, Mississippi":{"Enrolled in College / Grad. School":44.2,"Not Enrolled":55.8},"Tishomingo County, Mississippi":{"Enrolled in College / Grad. School":28.7,"Not Enrolled":71.3},"Tunica County, Mississippi":{"Enrolled in College / Grad. School":25.6,"Not Enrolled":74.4},"Union County, Mississippi":{"Enrolled in College / Grad. School":25.8,"Not Enrolled":74.2},"Walthall County, Mississippi":{"Enrolled in College / Grad. School":14.5,"Not Enrolled":85.5},"Warren County, Mississippi":{"Enrolled in College / Grad. School":32.8,"Not Enrolled":67.2},"Washington County, Mississippi":{"Enrolled in College / Grad. School":26.5,"Not Enrolled":73.5},"Wayne County, Mississippi":{"Enrolled in College / Grad. School":21,"Not Enrolled":79},"Webster County, Mississippi":{"Enrolled in College / Grad. School":24.3,"Not Enrolled":75.7},"Wilkinson County, Mississippi":{"Enrolled in College / Grad. School":8.6,"Not Enrolled":91.4},"Winston County, Mississippi":{"Enrolled in College / Grad. School":26.8,"Not Enrolled":73.2},"Yalobusha County, Mississippi":{"Enrolled in College / Grad. School":24.2,"Not Enrolled":75.8},"Yazoo County, Mississippi":{"Enrolled in College / Grad. School":8.5,"Not Enrolled":91.5}};
+  const categories = ["Enrolled in College / Grad. School","Not Enrolled"];
+  const ctx = document.getElementById("barChart").getContext("2d");
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: categories,
+        datasets: [
+          {
+            label: "County/State",
+            data: values,
+            backgroundColor: ["#66c2a5", "#fc8d62"]
+          }
+        ]
+      },
+      options: {
+        indexAxis: "y",
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            ticks: {
+              callback: v => v + "%"
+            }
+          }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.dataset.label + ": " + ctx.raw + "%"
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById("countySelect").addEventListener("change", function() {
+    renderChart(Object.values(data[this.value]));
+  });
+
+  renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

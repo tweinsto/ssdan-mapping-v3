@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Internet Access Over Time –  Vermont</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+                      h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+                      select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; border-radius: 5px; border: 1px solid #999; }
+                      canvas { width: 100%; max-width: 850px; height: 450px; margin-top: 1rem; }</style>
+</head>
+<html>
+  <body>
+    <h2>Internet Access in  Vermont (2013–2023)</h2>
+    <label>Select County: </label>
+    <select id="countySelect"><option value='Statewide'>Statewide</option>
+<option value='Addison County, Vermont'>Addison County, Vermont</option>
+<option value='Bennington County, Vermont'>Bennington County, Vermont</option>
+<option value='Caledonia County, Vermont'>Caledonia County, Vermont</option>
+<option value='Chittenden County, Vermont'>Chittenden County, Vermont</option>
+<option value='Essex County, Vermont'>Essex County, Vermont</option>
+<option value='Franklin County, Vermont'>Franklin County, Vermont</option>
+<option value='Grand Isle County, Vermont'>Grand Isle County, Vermont</option>
+<option value='Lamoille County, Vermont'>Lamoille County, Vermont</option>
+<option value='Orange County, Vermont'>Orange County, Vermont</option>
+<option value='Orleans County, Vermont'>Orleans County, Vermont</option>
+<option value='Rutland County, Vermont'>Rutland County, Vermont</option>
+<option value='Washington County, Vermont'>Washington County, Vermont</option>
+<option value='Windham County, Vermont'>Windham County, Vermont</option>
+<option value='Windsor County, Vermont'>Windsor County, Vermont</option></select>
+    <canvas id="lineChart" width="850" height="450"></canvas>
+    <script>const internetData = {"Statewide":{"2017":84,"2018":85.4,"2019":86.9,"2020":88.7,"2021":90.1,"2022":91.3,"2023":92.7},"Addison County, Vermont":{"2017":83.2,"2018":84.7,"2019":87.6,"2020":88.6,"2021":90.7,"2022":91.7,"2023":93.3},"Bennington County, Vermont":{"2017":82.6,"2018":83.8,"2019":86.7,"2020":88.9,"2021":88.8,"2022":89.4,"2023":90.7},"Caledonia County, Vermont":{"2017":77.1,"2018":79.9,"2019":81.3,"2020":84.3,"2021":84.7,"2022":86.3,"2023":87.6},"Chittenden County, Vermont":{"2017":89.3,"2018":90.2,"2019":90.8,"2020":92.5,"2021":93.5,"2022":94.6,"2023":96},"Essex County, Vermont":{"2017":71.8,"2018":73.5,"2019":75.8,"2020":80.2,"2021":80.8,"2022":83.8,"2023":87},"Franklin County, Vermont":{"2017":81.9,"2018":83.6,"2019":85.7,"2020":86.5,"2021":88.2,"2022":89.7,"2023":92},"Grand Isle County, Vermont":{"2017":85.3,"2018":87.7,"2019":88.6,"2020":90.9,"2021":91.2,"2022":94.3,"2023":95.1},"Lamoille County, Vermont":{"2017":85.8,"2018":87.3,"2019":88.6,"2020":90.4,"2021":91.3,"2022":92.6,"2023":93.1},"Orange County, Vermont":{"2017":79,"2018":81.6,"2019":83.3,"2020":85.5,"2021":87.6,"2022":88.9,"2023":91},"Orleans County, Vermont":{"2017":76.4,"2018":78.4,"2019":80.8,"2020":85.2,"2021":87.2,"2022":89.4,"2023":90},"Rutland County, Vermont":{"2017":81.1,"2018":82.2,"2019":83.6,"2020":85.5,"2021":87,"2022":87.3,"2023":88.9},"Washington County, Vermont":{"2017":84.7,"2018":85.9,"2019":87.6,"2020":88.7,"2021":91,"2022":92.4,"2023":93.3},"Windham County, Vermont":{"2017":83.5,"2018":85.4,"2019":87,"2020":88.4,"2021":90.3,"2022":91.5,"2023":92.6},"Windsor County, Vermont":{"2017":84.9,"2018":86.7,"2019":87.8,"2020":88.9,"2021":89.7,"2022":91.2,"2023":92.6}};
+const ctx = document.getElementById('lineChart').getContext('2d');
+let chart;
+
+function renderChart(data) {
+  const labels = Object.keys(data);
+  const values = Object.values(data);
+
+  if (chart) chart.destroy();
+  chart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: labels,
+      datasets: [{
+        label: '% With Internet',
+        data: values,
+        fill: false,
+        borderColor: 'teal',
+        backgroundColor: 'teal',
+        tension: 0.3,
+        pointRadius: 4
+      }]
+    },
+    options: {
+      responsive: true,
+      scales: {
+        y: {
+          beginAtZero: true,
+          max: 100,
+          title: { display: true, text: '% With Internet' }
+        },
+        x: {
+          title: { display: true, text: 'Year' }
+        }
+      },
+      plugins: {
+        tooltip: {
+          callbacks: {
+            label: function(ctx) {
+              return ctx.parsed.y.toFixed(1) + '%';
+            }
+          }
+        }
+      }
+    }
+  });
+}
+
+document.getElementById('countySelect').addEventListener('change', function() {
+  renderChart(internetData[this.value]);
+});
+renderChart(internetData['Statewide']);</script>
+  </body>
+</html>
+</html>

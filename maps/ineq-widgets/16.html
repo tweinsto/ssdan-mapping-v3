@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Income Distribution – Idaho</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          text-align: center;
+          margin: 2rem;
+        }
+        select {
+          font-size: 1rem;
+          padding: 0.4rem;
+          margin-bottom: 1rem;
+        }
+        canvas {
+          width: 100%;
+          max-width: 700px;
+          height: 400px;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Income Share by Quintile – Idaho</h2>
+    <label>Select County, State:</label>
+    <select id="countySelect"><option value='Statewide'>Statewide</option>
+<option value='Ada, Idaho'>Ada, Idaho</option>
+<option value='Adams, Idaho'>Adams, Idaho</option>
+<option value='Bannock, Idaho'>Bannock, Idaho</option>
+<option value='Bear Lake, Idaho'>Bear Lake, Idaho</option>
+<option value='Benewah, Idaho'>Benewah, Idaho</option>
+<option value='Bingham, Idaho'>Bingham, Idaho</option>
+<option value='Blaine, Idaho'>Blaine, Idaho</option>
+<option value='Boise, Idaho'>Boise, Idaho</option>
+<option value='Bonner, Idaho'>Bonner, Idaho</option>
+<option value='Bonneville, Idaho'>Bonneville, Idaho</option>
+<option value='Boundary, Idaho'>Boundary, Idaho</option>
+<option value='Butte, Idaho'>Butte, Idaho</option>
+<option value='Camas, Idaho'>Camas, Idaho</option>
+<option value='Canyon, Idaho'>Canyon, Idaho</option>
+<option value='Caribou, Idaho'>Caribou, Idaho</option>
+<option value='Cassia, Idaho'>Cassia, Idaho</option>
+<option value='Clark, Idaho'>Clark, Idaho</option>
+<option value='Clearwater, Idaho'>Clearwater, Idaho</option>
+<option value='Custer, Idaho'>Custer, Idaho</option>
+<option value='Elmore, Idaho'>Elmore, Idaho</option>
+<option value='Franklin, Idaho'>Franklin, Idaho</option>
+<option value='Fremont, Idaho'>Fremont, Idaho</option>
+<option value='Gem, Idaho'>Gem, Idaho</option>
+<option value='Gooding, Idaho'>Gooding, Idaho</option>
+<option value='Idaho, Idaho'>Idaho, Idaho</option>
+<option value='Jefferson, Idaho'>Jefferson, Idaho</option>
+<option value='Jerome, Idaho'>Jerome, Idaho</option>
+<option value='Kootenai, Idaho'>Kootenai, Idaho</option>
+<option value='Latah, Idaho'>Latah, Idaho</option>
+<option value='Lemhi, Idaho'>Lemhi, Idaho</option>
+<option value='Lewis, Idaho'>Lewis, Idaho</option>
+<option value='Lincoln, Idaho'>Lincoln, Idaho</option>
+<option value='Madison, Idaho'>Madison, Idaho</option>
+<option value='Minidoka, Idaho'>Minidoka, Idaho</option>
+<option value='Nez Perce, Idaho'>Nez Perce, Idaho</option>
+<option value='Oneida, Idaho'>Oneida, Idaho</option>
+<option value='Owyhee, Idaho'>Owyhee, Idaho</option>
+<option value='Payette, Idaho'>Payette, Idaho</option>
+<option value='Power, Idaho'>Power, Idaho</option>
+<option value='Shoshone, Idaho'>Shoshone, Idaho</option>
+<option value='Teton, Idaho'>Teton, Idaho</option>
+<option value='Twin Falls, Idaho'>Twin Falls, Idaho</option>
+<option value='Valley, Idaho'>Valley, Idaho</option>
+<option value='Washington, Idaho'>Washington, Idaho</option></select>
+    <canvas id="barChart" width="700" height="400"></canvas>
+    <script>  const incomeData = {"Statewide":[5.7,9,13.3,26.8,45.1],"Ada, Idaho":[5.1,7.9,11.7,26.6,48.7],"Adams, Idaho":[4.9,7.1,10.8,27.6,49.6],"Bannock, Idaho":[5.4,8.9,13.5,27.1,45.2],"Bear Lake, Idaho":[6.1,10.1,14.9,27.5,41.3],"Benewah, Idaho":[5,8,12.1,27,47.9],"Bingham, Idaho":[5.7,9,13.3,26.3,45.8],"Blaine, Idaho":[4.4,6.8,9.6,26.1,53.2],"Boise, Idaho":[7.3,11.3,15.7,26.5,39.1],"Bonner, Idaho":[4.6,7.4,11.3,26.6,50.2],"Bonneville, Idaho":[5.7,8.9,13.1,26.9,45.3],"Boundary, Idaho":[5.8,10.6,15.8,27.2,40.5],"Butte, Idaho":[4.8,7,12.2,26.7,49.3],"Camas, Idaho":[5.4,8.8,14.9,28.9,42],"Canyon, Idaho":[6.5,9.8,13.9,26.3,43.5],"Caribou, Idaho":[6.6,10.7,16.3,27.7,38.7],"Cassia, Idaho":[5.2,8.2,12,25.7,48.8],"Clark, Idaho":[8,12.2,15.7,26.8,37.3],"Clearwater, Idaho":[5.6,9.3,14.2,27.1,43.8],"Custer, Idaho":[6.3,11,15.4,27.3,40.1],"Elmore, Idaho":[5.8,9.2,14,27.4,43.5],"Franklin, Idaho":[6.2,8.7,13.9,27.3,43.8],"Fremont, Idaho":[5.8,8.6,12.1,25.3,48.1],"Gem, Idaho":[5.8,8.6,12.8,27.4,45.4],"Gooding, Idaho":[5,8.5,12,26.9,47.5],"Idaho, Idaho":[5.6,9,13.4,26.3,45.8],"Jefferson, Idaho":[7.2,10.7,14.7,26.4,40.9],"Jerome, Idaho":[5.5,8.6,11.7,26.2,48],"Kootenai, Idaho":[5.6,8.9,13.2,26.4,45.8],"Latah, Idaho":[5,8.1,11.9,26.4,48.6],"Lemhi, Idaho":[3.8,7.3,11.4,27,50.6],"Lewis, Idaho":[4.5,7.4,11.6,26.3,50.3],"Lincoln, Idaho":[7.2,10.6,14.6,27.2,40.5],"Madison, Idaho":[3.8,6,9.2,25.6,55.5],"Minidoka, Idaho":[5.7,9.2,13.5,26.7,44.9],"Nez Perce, Idaho":[4.8,8.6,13.2,26.7,46.7],"Oneida, Idaho":[6.8,11,15.4,27.9,38.8],"Owyhee, Idaho":[6.6,10.2,14.7,25.9,42.7],"Payette, Idaho":[6.8,10.1,14.9,27.4,40.7],"Power, Idaho":[7.8,11.5,17,27.9,35.9],"Shoshone, Idaho":[6.2,9.7,14.8,27.3,42],"Teton, Idaho":[6.2,9.1,14.3,26.6,43.8],"Twin Falls, Idaho":[5.3,8.3,12.6,26.4,47.3],"Valley, Idaho":[3.8,6.7,10.7,26.2,52.7],"Washington, Idaho":[5.5,8.9,13.2,27.6,44.7]};
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Bottom 20%', 'Second 20%', 'Middle 20%', 'Fourth 20%', 'Top 20%'],
+        datasets: [{
+          label: 'Share (%)',
+          data: values,
+          backgroundColor: '#4576a7'
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.parsed.y + '%'
+            }
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 100,
+            title: {
+              display: true,
+              text: 'Income Share (%)'
+            }
+          },
+          x: {
+            title: {
+              display: true,
+              text: 'Quintile'
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(Object.values(incomeData[this.value]));
+  });
+
+  renderChart(Object.values(incomeData['Statewide']));</script>
+  </body>
+</html>
+</html>

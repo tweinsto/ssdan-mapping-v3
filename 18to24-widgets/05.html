@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Educational Enrollment – Arkansas</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Educational Enrollment (Age 18–24) in Arkansas</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Arkansas County, Arkansas">Arkansas County, Arkansas</option>
+      <option value="Ashley County, Arkansas">Ashley County, Arkansas</option>
+      <option value="Baxter County, Arkansas">Baxter County, Arkansas</option>
+      <option value="Benton County, Arkansas">Benton County, Arkansas</option>
+      <option value="Boone County, Arkansas">Boone County, Arkansas</option>
+      <option value="Bradley County, Arkansas">Bradley County, Arkansas</option>
+      <option value="Calhoun County, Arkansas">Calhoun County, Arkansas</option>
+      <option value="Carroll County, Arkansas">Carroll County, Arkansas</option>
+      <option value="Chicot County, Arkansas">Chicot County, Arkansas</option>
+      <option value="Clark County, Arkansas">Clark County, Arkansas</option>
+      <option value="Clay County, Arkansas">Clay County, Arkansas</option>
+      <option value="Cleburne County, Arkansas">Cleburne County, Arkansas</option>
+      <option value="Cleveland County, Arkansas">Cleveland County, Arkansas</option>
+      <option value="Columbia County, Arkansas">Columbia County, Arkansas</option>
+      <option value="Conway County, Arkansas">Conway County, Arkansas</option>
+      <option value="Craighead County, Arkansas">Craighead County, Arkansas</option>
+      <option value="Crawford County, Arkansas">Crawford County, Arkansas</option>
+      <option value="Crittenden County, Arkansas">Crittenden County, Arkansas</option>
+      <option value="Cross County, Arkansas">Cross County, Arkansas</option>
+      <option value="Dallas County, Arkansas">Dallas County, Arkansas</option>
+      <option value="Desha County, Arkansas">Desha County, Arkansas</option>
+      <option value="Drew County, Arkansas">Drew County, Arkansas</option>
+      <option value="Faulkner County, Arkansas">Faulkner County, Arkansas</option>
+      <option value="Franklin County, Arkansas">Franklin County, Arkansas</option>
+      <option value="Fulton County, Arkansas">Fulton County, Arkansas</option>
+      <option value="Garland County, Arkansas">Garland County, Arkansas</option>
+      <option value="Grant County, Arkansas">Grant County, Arkansas</option>
+      <option value="Greene County, Arkansas">Greene County, Arkansas</option>
+      <option value="Hempstead County, Arkansas">Hempstead County, Arkansas</option>
+      <option value="Hot Spring County, Arkansas">Hot Spring County, Arkansas</option>
+      <option value="Howard County, Arkansas">Howard County, Arkansas</option>
+      <option value="Independence County, Arkansas">Independence County, Arkansas</option>
+      <option value="Izard County, Arkansas">Izard County, Arkansas</option>
+      <option value="Jackson County, Arkansas">Jackson County, Arkansas</option>
+      <option value="Jefferson County, Arkansas">Jefferson County, Arkansas</option>
+      <option value="Johnson County, Arkansas">Johnson County, Arkansas</option>
+      <option value="Lafayette County, Arkansas">Lafayette County, Arkansas</option>
+      <option value="Lawrence County, Arkansas">Lawrence County, Arkansas</option>
+      <option value="Lee County, Arkansas">Lee County, Arkansas</option>
+      <option value="Lincoln County, Arkansas">Lincoln County, Arkansas</option>
+      <option value="Little River County, Arkansas">Little River County, Arkansas</option>
+      <option value="Logan County, Arkansas">Logan County, Arkansas</option>
+      <option value="Lonoke County, Arkansas">Lonoke County, Arkansas</option>
+      <option value="Madison County, Arkansas">Madison County, Arkansas</option>
+      <option value="Marion County, Arkansas">Marion County, Arkansas</option>
+      <option value="Miller County, Arkansas">Miller County, Arkansas</option>
+      <option value="Mississippi County, Arkansas">Mississippi County, Arkansas</option>
+      <option value="Monroe County, Arkansas">Monroe County, Arkansas</option>
+      <option value="Montgomery County, Arkansas">Montgomery County, Arkansas</option>
+      <option value="Nevada County, Arkansas">Nevada County, Arkansas</option>
+      <option value="Newton County, Arkansas">Newton County, Arkansas</option>
+      <option value="Ouachita County, Arkansas">Ouachita County, Arkansas</option>
+      <option value="Perry County, Arkansas">Perry County, Arkansas</option>
+      <option value="Phillips County, Arkansas">Phillips County, Arkansas</option>
+      <option value="Pike County, Arkansas">Pike County, Arkansas</option>
+      <option value="Poinsett County, Arkansas">Poinsett County, Arkansas</option>
+      <option value="Polk County, Arkansas">Polk County, Arkansas</option>
+      <option value="Pope County, Arkansas">Pope County, Arkansas</option>
+      <option value="Prairie County, Arkansas">Prairie County, Arkansas</option>
+      <option value="Pulaski County, Arkansas">Pulaski County, Arkansas</option>
+      <option value="Randolph County, Arkansas">Randolph County, Arkansas</option>
+      <option value="Saline County, Arkansas">Saline County, Arkansas</option>
+      <option value="Scott County, Arkansas">Scott County, Arkansas</option>
+      <option value="Searcy County, Arkansas">Searcy County, Arkansas</option>
+      <option value="Sebastian County, Arkansas">Sebastian County, Arkansas</option>
+      <option value="Sevier County, Arkansas">Sevier County, Arkansas</option>
+      <option value="Sharp County, Arkansas">Sharp County, Arkansas</option>
+      <option value="St. Francis County, Arkansas">St. Francis County, Arkansas</option>
+      <option value="Stone County, Arkansas">Stone County, Arkansas</option>
+      <option value="Union County, Arkansas">Union County, Arkansas</option>
+      <option value="Van Buren County, Arkansas">Van Buren County, Arkansas</option>
+      <option value="Washington County, Arkansas">Washington County, Arkansas</option>
+      <option value="White County, Arkansas">White County, Arkansas</option>
+      <option value="Woodruff County, Arkansas">Woodruff County, Arkansas</option>
+      <option value="Yell County, Arkansas">Yell County, Arkansas</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>  const data = {"Statewide":{"Enrolled in College / Grad. School":34.8,"Not Enrolled":65.2},"Arkansas County, Arkansas":{"Enrolled in College / Grad. School":16.6,"Not Enrolled":83.4},"Ashley County, Arkansas":{"Enrolled in College / Grad. School":16.5,"Not Enrolled":83.5},"Baxter County, Arkansas":{"Enrolled in College / Grad. School":20.5,"Not Enrolled":79.5},"Benton County, Arkansas":{"Enrolled in College / Grad. School":31.2,"Not Enrolled":68.8},"Boone County, Arkansas":{"Enrolled in College / Grad. School":18.8,"Not Enrolled":81.2},"Bradley County, Arkansas":{"Enrolled in College / Grad. School":15.1,"Not Enrolled":84.9},"Calhoun County, Arkansas":{"Enrolled in College / Grad. School":40.6,"Not Enrolled":59.4},"Carroll County, Arkansas":{"Enrolled in College / Grad. School":24.6,"Not Enrolled":75.4},"Chicot County, Arkansas":{"Enrolled in College / Grad. School":7.4,"Not Enrolled":92.6},"Clark County, Arkansas":{"Enrolled in College / Grad. School":73.7,"Not Enrolled":26.3},"Clay County, Arkansas":{"Enrolled in College / Grad. School":20.5,"Not Enrolled":79.5},"Cleburne County, Arkansas":{"Enrolled in College / Grad. School":13.8,"Not Enrolled":86.2},"Cleveland County, Arkansas":{"Enrolled in College / Grad. School":45,"Not Enrolled":55},"Columbia County, Arkansas":{"Enrolled in College / Grad. School":69.1,"Not Enrolled":30.9},"Conway County, Arkansas":{"Enrolled in College / Grad. School":29.6,"Not Enrolled":70.4},"Craighead County, Arkansas":{"Enrolled in College / Grad. School":44.9,"Not Enrolled":55.1},"Crawford County, Arkansas":{"Enrolled in College / Grad. School":23.1,"Not Enrolled":76.9},"Crittenden County, Arkansas":{"Enrolled in College / Grad. School":24,"Not Enrolled":76},"Cross County, Arkansas":{"Enrolled in College / Grad. School":29.9,"Not Enrolled":70.1},"Dallas County, Arkansas":{"Enrolled in College / Grad. School":18.1,"Not Enrolled":81.9},"Desha County, Arkansas":{"Enrolled in College / Grad. School":28.3,"Not Enrolled":71.7},"Drew County, Arkansas":{"Enrolled in College / Grad. School":46.8,"Not Enrolled":53.2},"Faulkner County, Arkansas":{"Enrolled in College / Grad. School":53.9,"Not Enrolled":46.1},"Franklin County, Arkansas":{"Enrolled in College / Grad. School":16.1,"Not Enrolled":83.9},"Fulton County, Arkansas":{"Enrolled in College / Grad. School":26.2,"Not Enrolled":73.8},"Garland County, Arkansas":{"Enrolled in College / Grad. School":21,"Not Enrolled":79},"Grant County, Arkansas":{"Enrolled in College / Grad. School":18,"Not Enrolled":82},"Greene County, Arkansas":{"Enrolled in College / Grad. School":19.6,"Not Enrolled":80.4},"Hempstead County, Arkansas":{"Enrolled in College / Grad. School":27.3,"Not Enrolled":72.7},"Hot Spring County, Arkansas":{"Enrolled in College / Grad. School":19.5,"Not Enrolled":80.5},"Howard County, Arkansas":{"Enrolled in College / Grad. School":19.4,"Not Enrolled":80.6},"Independence County, Arkansas":{"Enrolled in College / Grad. School":39.8,"Not Enrolled":60.2},"Izard County, Arkansas":{"Enrolled in College / Grad. School":13.5,"Not Enrolled":86.5},"Jackson County, Arkansas":{"Enrolled in College / Grad. School":9.2,"Not Enrolled":90.8},"Jefferson County, Arkansas":{"Enrolled in College / Grad. School":35.7,"Not Enrolled":64.3},"Johnson County, Arkansas":{"Enrolled in College / Grad. School":39.9,"Not Enrolled":60.1},"Lafayette County, Arkansas":{"Enrolled in College / Grad. School":19,"Not Enrolled":81},"Lawrence County, Arkansas":{"Enrolled in College / Grad. School":37.9,"Not Enrolled":62.1},"Lee County, Arkansas":{"Enrolled in College / Grad. School":5.3,"Not Enrolled":94.7},"Lincoln County, Arkansas":{"Enrolled in College / Grad. School":9.5,"Not Enrolled":90.5},"Little River County, Arkansas":{"Enrolled in College / Grad. School":6.4,"Not Enrolled":93.6},"Logan County, Arkansas":{"Enrolled in College / Grad. School":25.4,"Not Enrolled":74.6},"Lonoke County, Arkansas":{"Enrolled in College / Grad. School":23.6,"Not Enrolled":76.4},"Madison County, Arkansas":{"Enrolled in College / Grad. School":14.7,"Not Enrolled":85.3},"Marion County, Arkansas":{"Enrolled in College / Grad. School":25.3,"Not Enrolled":74.7},"Miller County, Arkansas":{"Enrolled in College / Grad. School":15,"Not Enrolled":85},"Mississippi County, Arkansas":{"Enrolled in College / Grad. School":14.1,"Not Enrolled":85.9},"Monroe County, Arkansas":{"Enrolled in College / Grad. School":21.7,"Not Enrolled":78.3},"Montgomery County, Arkansas":{"Enrolled in College / Grad. School":28.4,"Not Enrolled":71.6},"Nevada County, Arkansas":{"Enrolled in College / Grad. School":27.9,"Not Enrolled":72.1},"Newton County, Arkansas":{"Enrolled in College / Grad. School":11.4,"Not Enrolled":88.6},"Ouachita County, Arkansas":{"Enrolled in College / Grad. School":27.9,"Not Enrolled":72.1},"Perry County, Arkansas":{"Enrolled in College / Grad. School":23.5,"Not Enrolled":76.5},"Phillips County, Arkansas":{"Enrolled in College / Grad. School":25,"Not Enrolled":75},"Pike County, Arkansas":{"Enrolled in College / Grad. School":40.4,"Not Enrolled":59.6},"Poinsett County, Arkansas":{"Enrolled in College / Grad. School":24.2,"Not Enrolled":75.8},"Polk County, Arkansas":{"Enrolled in College / Grad. School":9,"Not Enrolled":91},"Pope County, Arkansas":{"Enrolled in College / Grad. School":59.2,"Not Enrolled":40.8},"Prairie County, Arkansas":{"Enrolled in College / Grad. School":23.1,"Not Enrolled":76.9},"Pulaski County, Arkansas":{"Enrolled in College / Grad. School":28.2,"Not Enrolled":71.8},"Randolph County, Arkansas":{"Enrolled in College / Grad. School":27.4,"Not Enrolled":72.6},"St. Francis County, Arkansas":{"Enrolled in College / Grad. School":20,"Not Enrolled":80},"Saline County, Arkansas":{"Enrolled in College / Grad. School":21.4,"Not Enrolled":78.6},"Scott County, Arkansas":{"Enrolled in College / Grad. School":17,"Not Enrolled":83},"Searcy County, Arkansas":{"Enrolled in College / Grad. School":3.4,"Not Enrolled":96.6},"Sebastian County, Arkansas":{"Enrolled in College / Grad. School":26.5,"Not Enrolled":73.5},"Sevier County, Arkansas":{"Enrolled in College / Grad. School":22,"Not Enrolled":78},"Sharp County, Arkansas":{"Enrolled in College / Grad. School":23.8,"Not Enrolled":76.2},"Stone County, Arkansas":{"Enrolled in College / Grad. School":4.1,"Not Enrolled":95.9},"Union County, Arkansas":{"Enrolled in College / Grad. School":22.6,"Not Enrolled":77.4},"Van Buren County, Arkansas":{"Enrolled in College / Grad. School":16.3,"Not Enrolled":83.7},"Washington County, Arkansas":{"Enrolled in College / Grad. School":53.7,"Not Enrolled":46.3},"White County, Arkansas":{"Enrolled in College / Grad. School":50.1,"Not Enrolled":49.9},"Woodruff County, Arkansas":{"Enrolled in College / Grad. School":17,"Not Enrolled":83},"Yell County, Arkansas":{"Enrolled in College / Grad. School":20.3,"Not Enrolled":79.7}};
+  const categories = ["Enrolled in College / Grad. School","Not Enrolled"];
+  const ctx = document.getElementById("barChart").getContext("2d");
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: categories,
+        datasets: [
+          {
+            label: "County/State",
+            data: values,
+            backgroundColor: ["#66c2a5", "#fc8d62"]
+          }
+        ]
+      },
+      options: {
+        indexAxis: "y",
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            ticks: {
+              callback: v => v + "%"
+            }
+          }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.dataset.label + ": " + ctx.raw + "%"
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById("countySelect").addEventListener("change", function() {
+    renderChart(Object.values(data[this.value]));
+  });
+
+  renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

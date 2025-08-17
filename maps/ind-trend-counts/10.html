@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+
+</head>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Industry Composition – 10</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #fff;
+    }
+    .container {
+      width: 95%;
+      max-width: 1200px;
+      margin: auto;
+      text-align: center;
+    }
+    canvas {
+  max-width: 100%;
+}
+    #countySelect {
+      font-size: 1rem;
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Industry Composition (Percent)</h2>
+    <select id="countySelect"></select>
+    <canvas id="pieChart"></canvas>
+  </div>
+
+  <script>
+    const data = {"Statewide":{"Agriculture & mining":1,"Arts & food services":8.3,"Construction":7.1,"Education & health":24.7,"Finance & real estate":9.4,"Information":1.1,"Manufacturing":7.4,"Other services":4,"Prof. & waste services":11.6,"Public administration":5.8,"Retail trade":11.6,"Transport & utilities":6.4,"Wholesale trade":1.7},"Kent County":{"Agriculture & mining":0.9,"Arts & food services":8.9,"Construction":7.5,"Education & health":25.1,"Finance & real estate":5.8,"Information":0.7,"Manufacturing":8,"Other services":3.9,"Prof. & waste services":7.8,"Public administration":9.7,"Retail trade":13.7,"Transport & utilities":6.5,"Wholesale trade":1.5},"New Castle County":{"Agriculture & mining":0.6,"Arts & food services":7.8,"Construction":6,"Education & health":25.2,"Finance & real estate":11.8,"Information":1.2,"Manufacturing":6.9,"Other services":3.8,"Prof. & waste services":12.6,"Public administration":4.8,"Retail trade":10.8,"Transport & utilities":6.8,"Wholesale trade":1.8},"Sussex County":{"Agriculture & mining":2.1,"Arts & food services":9.1,"Construction":9.8,"Education & health":23.3,"Finance & real estate":5.9,"Information":1.2,"Manufacturing":8.4,"Other services":4.5,"Prof. & waste services":11.7,"Public administration":5.2,"Retail trade":12,"Transport & utilities":5.1,"Wholesale trade":1.8}};
+    const colors = {
+  'Agriculture & mining': '#FFFF01',
+  'Arts & food services': '#00008B',
+  'Construction': '#7570B1',
+  'Education & health': '#66A61E',
+  'Finance & real estate': '#E6AB01',
+  'Information': '#379',
+  'Manufacturing': '#E41A1C',
+  'Other services': '#377EF1',
+  'Prof. & waste services': '#FF7F00',
+  'Public administration': '#1B9E77',
+  'Retail trade': '#A65011',
+  'Transport & utilities': '#F781BF',
+  'Wholesale trade': '#919'
+};
+
+    const ctx = document.getElementById("pieChart").getContext("2d");
+    let chart;
+
+    function renderChart(county) {
+      const values = data[county];
+      const labels = Object.keys(values);
+      const percentages = Object.values(values);
+
+      if (chart) chart.destroy();
+
+      chart = new Chart(ctx, {
+        type: "pie",
+        data: {
+          labels: labels,
+          datasets: [{
+            data: percentages,
+            backgroundColor: labels.map(label => colors[label] || "#cccccc")
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: true,
+  aspectRatio: 1.5, // You can tweak this (e.g., 1.3, 1.5, 2)
+          plugins: {
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  return context.label + ": " + context.formattedValue + "%";
+                }
+              }
+            },
+            legend: {
+              position: "right",
+              labels: {
+                usePointStyle: true,
+                pointStyle: "rect"
+              }
+            }
+          }
+        }
+      });
+    }
+
+    const select = document.getElementById("countySelect");
+    Object.keys(data).forEach(county => {
+      const opt = document.createElement("option");
+      opt.value = county;
+      opt.text = county;
+      select.appendChild(opt);
+    });
+    select.value = "Statewide";
+    select.addEventListener("change", () => renderChart(select.value));
+    renderChart("Statewide");
+  </script>
+</body>
+</html>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+
+</head>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Industry Composition – 06</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #fff;
+    }
+    .container {
+      width: 95%;
+      max-width: 1200px;
+      margin: auto;
+      text-align: center;
+    }
+    canvas {
+  max-width: 100%;
+}
+    #countySelect {
+      font-size: 1rem;
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Industry Composition (Percent)</h2>
+    <select id="countySelect"></select>
+    <canvas id="pieChart"></canvas>
+  </div>
+
+  <script>
+    const data = {"Statewide":{"Agriculture & mining":2,"Arts & food services":9.5,"Construction":6.7,"Education & health":21.7,"Finance & real estate":5.7,"Information":2.9,"Manufacturing":8.9,"Other services":4.8,"Prof. & waste services":14.3,"Public administration":4.7,"Retail trade":10.1,"Transport & utilities":6,"Wholesale trade":2.5},"Alameda County":{"Agriculture & mining":0.3,"Arts & food services":7.4,"Construction":5.5,"Education & health":21.8,"Finance & real estate":5.8,"Information":3.9,"Manufacturing":10,"Other services":4.4,"Prof. & waste services":20.9,"Public administration":3.8,"Retail trade":8.6,"Transport & utilities":5.6,"Wholesale trade":2.1},"Alpine County":{"Agriculture & mining":6.9,"Arts & food services":18.8,"Construction":2.7,"Education & health":25.2,"Finance & real estate":3.9,"Information":1,"Manufacturing":5.5,"Other services":3.5,"Prof. & waste services":10.2,"Public administration":3.5,"Retail trade":9,"Transport & utilities":9.4,"Wholesale trade":0.4},"Amador County":{"Agriculture & mining":3.1,"Arts & food services":12.1,"Construction":10.3,"Education & health":13.8,"Finance & real estate":5.6,"Information":1.4,"Manufacturing":5.6,"Other services":8,"Prof. & waste services":11.3,"Public administration":11.1,"Retail trade":11.7,"Transport & utilities":4.3,"Wholesale trade":1.8},"Butte County":{"Agriculture & mining":3.5,"Arts & food services":11.9,"Construction":6.4,"Education & health":27.5,"Finance & real estate":5.3,"Information":2.1,"Manufacturing":6.1,"Other services":4.8,"Prof. & waste services":10.2,"Public administration":4.4,"Retail trade":11.3,"Transport & utilities":4.3,"Wholesale trade":2.2},"Calaveras County":{"Agriculture & mining":3.5,"Arts & food services":6.9,"Construction":12.5,"Education & health":17.8,"Finance & real estate":5.3,"Information":1.5,"Manufacturing":6.6,"Other services":4.5,"Prof. & waste services":11.1,"Public administration":9.4,"Retail trade":12.6,"Transport & utilities":6.2,"Wholesale trade":2.2},"Colusa County":{"Agriculture & mining":19.3,"Arts & food services":6.9,"Construction":6.1,"Education & health":15.9,"Finance & real estate":1.9,"Information":0.7,"Manufacturing":14,"Other services":4.8,"Prof. & waste services":4.3,"Public administration":8.2,"Retail trade":8.4,"Transport & utilities":7.3,"Wholesale trade":2.2},"Contra Costa County":{"Agriculture & mining":0.6,"Arts & food services":8.2,"Construction":7.8,"Education & health":22.7,"Finance & real estate":7.5,"Information":2.3,"Manufacturing":6.2,"Other services":4.6,"Prof. & waste services":17.8,"Public administration":4.3,"Retail trade":10.1,"Transport & utilities":5.8,"Wholesale trade":1.9},"Del Norte County":{"Agriculture & mining":5.1,"Arts & food services":9.6,"Construction":6.7,"Education & health":27.3,"Finance & real estate":2.3,"Information":1.4,"Manufacturing":5.5,"Other services":4,"Prof. & waste services":5.7,"Public administration":16.2,"Retail trade":11.4,"Transport & utilities":3.5,"Wholesale trade":1.1},"El Dorado County":{"Agriculture & mining":1.5,"Arts & food services":12.3,"Construction":8.6,"Education & health":21.3,"Finance & real estate":7.1,"Information":1.8,"Manufacturing":6.3,"Other services":4.8,"Prof. & waste services":13.5,"Public administration":7.1,"Retail trade":9.8,"Transport & utilities":4.1,"Wholesale trade":1.7},"Fresno County":{"Agriculture & mining":7.8,"Arts & food services":8.3,"Construction":6.2,"Education & health":25.9,"Finance & real estate":4.3,"Information":1.2,"Manufacturing":6.4,"Other services":4.7,"Prof. & waste services":9.4,"Public administration":6.2,"Retail trade":10.1,"Transport & utilities":6.8,"Wholesale trade":2.8},"Glenn County":{"Agriculture & mining":14,"Arts & food services":6.9,"Construction":7.7,"Education & health":20.5,"Finance & real estate":3,"Information":0.1,"Manufacturing":10.2,"Other services":7,"Prof. & waste services":5.1,"Public administration":6.2,"Retail trade":12.6,"Transport & utilities":5.8,"Wholesale trade":1},"Humboldt County":{"Agriculture & mining":4.5,"Arts & food services":11,"Construction":8.1,"Education & health":25.3,"Finance & real estate":3.8,"Information":1.5,"Manufacturing":4.8,"Other services":5.6,"Prof. & waste services":9.9,"Public administration":8.4,"Retail trade":11.7,"Transport & utilities":3.9,"Wholesale trade":1.5},"Imperial County":{"Agriculture & mining":9.8,"Arts & food services":9.3,"Construction":5.6,"Education & health":23.8,"Finance & real estate":3.2,"Information":0.8,"Manufacturing":4.1,"Other services":4.4,"Prof. & waste services":7.4,"Public administration":10.7,"Retail trade":11.7,"Transport & utilities":6.7,"Wholesale trade":2.5},"Inyo County":{"Agriculture & mining":3.1,"Arts & food services":12.7,"Construction":6.2,"Education & health":21.9,"Finance & real estate":3.6,"Information":1.9,"Manufacturing":3.2,"Other services":4.5,"Prof. & waste services":8.6,"Public administration":19.1,"Retail trade":7.4,"Transport & utilities":5.8,"Wholesale trade":2},"Kern County":{"Agriculture & mining":12.9,"Arts & food services":8.3,"Construction":7.3,"Education & health":22.1,"Finance & real estate":3.3,"Information":0.9,"Manufacturing":5.9,"Other services":4.4,"Prof. & waste services":8.1,"Public administration":6.4,"Retail trade":10.9,"Transport & utilities":7.3,"Wholesale trade":2.1},"Kings County":{"Agriculture & mining":15.5,"Arts & food services":8.6,"Construction":4.1,"Education & health":20.8,"Finance & real estate":2.2,"Information":0.8,"Manufacturing":9,"Other services":3.8,"Prof. & waste services":6.6,"Public administration":9.7,"Retail trade":10.5,"Transport & utilities":5.3,"Wholesale trade":3.1},"Lake County":{"Agriculture & mining":4.7,"Arts & food services":8.9,"Construction":10.6,"Education & health":24.1,"Finance & real estate":3.1,"Information":1.1,"Manufacturing":5.4,"Other services":4.1,"Prof. & waste services":9.3,"Public administration":9.1,"Retail trade":11.6,"Transport & utilities":5.9,"Wholesale trade":2.1},"Lassen County":{"Agriculture & mining":4.2,"Arts & food services":8.4,"Construction":7.6,"Education & health":18.2,"Finance & real estate":1.5,"Information":1.2,"Manufacturing":3.5,"Other services":4.3,"Prof. & waste services":5.4,"Public administration":28,"Retail trade":11.4,"Transport & utilities":5.6,"Wholesale trade":0.8},"Los Angeles County":{"Agriculture & mining":0.5,"Arts & food services":10.6,"Construction":6.2,"Education & health":21.7,"Finance & real estate":5.8,"Information":4.5,"Manufacturing":8.6,"Other services":5.4,"Prof. & waste services":13.8,"Public administration":3.6,"Retail trade":9.8,"Transport & utilities":6.6,"Wholesale trade":3},"Madera County":{"Agriculture & mining":13.2,"Arts & food services":7.5,"Construction":7.3,"Education & health":21.4,"Finance & real estate":4.4,"Information":1.4,"Manufacturing":9.4,"Other services":4.4,"Prof. & waste services":6.7,"Public administration":5.5,"Retail trade":9.8,"Transport & utilities":6.6,"Wholesale trade":2.4},"Marin County":{"Agriculture & mining":0.8,"Arts & food services":8.3,"Construction":6.4,"Education & health":20.8,"Finance & real estate":8.8,"Information":4.3,"Manufacturing":4.9,"Other services":5.4,"Prof. & waste services":21.9,"Public administration":3.5,"Retail trade":9.7,"Transport & utilities":3,"Wholesale trade":2},"Mariposa County":{"Agriculture & mining":5.6,"Arts & food services":18.1,"Construction":9.6,"Education & health":21.7,"Finance & real estate":2.7,"Information":0.5,"Manufacturing":2.4,"Other services":6.8,"Prof. & waste services":7.8,"Public administration":13.3,"Retail trade":6.3,"Transport & utilities":4,"Wholesale trade":1.2},"Mendocino County":{"Agriculture & mining":5.5,"Arts & food services":11.4,"Construction":7.4,"Education & health":23.6,"Finance & real estate":4.3,"Information":1,"Manufacturing":7.4,"Other services":4.6,"Prof. & waste services":9.3,"Public administration":6.2,"Retail trade":11.8,"Transport & utilities":5.5,"Wholesale trade":2.1},"Merced County":{"Agriculture & mining":10.5,"Arts & food services":7.9,"Construction":8.5,"Education & health":21.8,"Finance & real estate":3,"Information":0.8,"Manufacturing":10.5,"Other services":4.4,"Prof. & waste services":6.8,"Public administration":4.2,"Retail trade":10.7,"Transport & utilities":7.4,"Wholesale trade":3.4},"Modoc County":{"Agriculture & mining":15.2,"Arts & food services":6.8,"Construction":4.7,"Education & health":22.3,"Finance & real estate":4.3,"Information":1.5,"Manufacturing":1.1,"Other services":3.4,"Prof. & waste services":12.2,"Public administration":11,"Retail trade":5.8,"Transport & utilities":7.4,"Wholesale trade":4.2},"Mono County":{"Agriculture & mining":3.7,"Arts & food services":27.1,"Construction":7.5,"Education & health":19.5,"Finance & real estate":7.6,"Information":0.5,"Manufacturing":6.5,"Other services":4.5,"Prof. & waste services":8,"Public administration":4.8,"Retail trade":5.5,"Transport & utilities":4.4,"Wholesale trade":0.5},"Monterey County":{"Agriculture & mining":14.5,"Arts & food services":11,"Construction":7.6,"Education & health":21.2,"Finance & real estate":3.6,"Information":1.3,"Manufacturing":5,"Other services":4.3,"Prof. & waste services":10.4,"Public administration":5.5,"Retail trade":9.5,"Transport & utilities":3.8,"Wholesale trade":2.3},"Napa County":{"Agriculture & mining":5.2,"Arts & food services":12.1,"Construction":5.8,"Education & health":22.1,"Finance & real estate":4.6,"Information":1.3,"Manufacturing":12.6,"Other services":3.8,"Prof. & waste services":11.1,"Public administration":4.6,"Retail trade":10.1,"Transport & utilities":4,"Wholesale trade":2.7},"Nevada County":{"Agriculture & mining":2.1,"Arts & food services":10.3,"Construction":9.1,"Education & health":22.5,"Finance & real estate":5.8,"Information":1.6,"Manufacturing":5.8,"Other services":7.1,"Prof. & waste services":14.2,"Public administration":4.4,"Retail trade":11.9,"Transport & utilities":4.2,"Wholesale trade":1.1},"Orange County":{"Agriculture & mining":0.7,"Arts & food services":10.1,"Construction":6,"Education & health":21,"Finance & real estate":8.4,"Information":1.9,"Manufacturing":11.8,"Other services":4.8,"Prof. & waste services":14.9,"Public administration":3.2,"Retail trade":10.1,"Transport & utilities":4.2,"Wholesale trade":3.1},"Placer County":{"Agriculture & mining":0.6,"Arts & food services":8.7,"Construction":7.5,"Education & health":23.3,"Finance & real estate":8.5,"Information":1.8,"Manufacturing":6,"Other services":4.5,"Prof. & waste services":13.7,"Public administration":8.2,"Retail trade":10.1,"Transport & utilities":4.9,"Wholesale trade":2},"Plumas County":{"Agriculture & mining":7.8,"Arts & food services":9.6,"Construction":8.5,"Education & health":25.4,"Finance & real estate":2.9,"Information":1.3,"Manufacturing":10,"Other services":3,"Prof. & waste services":5.4,"Public administration":8.8,"Retail trade":9.5,"Transport & utilities":6.8,"Wholesale trade":1.1},"Riverside County":{"Agriculture & mining":1.3,"Arts & food services":10.7,"Construction":9.3,"Education & health":21.1,"Finance & real estate":4.9,"Information":1.5,"Manufacturing":8.1,"Other services":5,"Prof. & waste services":10.5,"Public administration":5.2,"Retail trade":12.1,"Transport & utilities":7.7,"Wholesale trade":2.7},"Sacramento County":{"Agriculture & mining":0.8,"Arts & food services":9,"Construction":7.2,"Education & health":22.1,"Finance & real estate":6.2,"Information":1.4,"Manufacturing":5.7,"Other services":4.9,"Prof. & waste services":12.4,"Public administration":10.8,"Retail trade":10.6,"Transport & utilities":6.6,"Wholesale trade":2.2},"San Benito County":{"Agriculture & mining":6.9,"Arts & food services":9.1,"Construction":10.4,"Education & health":18.6,"Finance & real estate":3.6,"Information":1.2,"Manufacturing":11.1,"Other services":3.5,"Prof. & waste services":11,"Public administration":5.1,"Retail trade":9.8,"Transport & utilities":6.1,"Wholesale trade":3.6},"San Bernardino County":{"Agriculture & mining":0.7,"Arts & food services":8.8,"Construction":8.1,"Education & health":22,"Finance & real estate":4.2,"Information":1.2,"Manufacturing":7.6,"Other services":5.1,"Prof. & waste services":9.6,"Public administration":5.4,"Retail trade":12.3,"Transport & utilities":12,"Wholesale trade":3},"San Diego County":{"Agriculture & mining":0.7,"Arts & food services":10.2,"Construction":6.4,"Education & health":21.9,"Finance & real estate":6.1,"Information":2,"Manufacturing":10,"Other services":4.8,"Prof. & waste services":16.5,"Public administration":5,"Retail trade":10,"Transport & utilities":4.5,"Wholesale trade":1.9},"San Francisco County":{"Agriculture & mining":0.2,"Arts & food services":8.4,"Construction":3.2,"Education & health":19.6,"Finance & real estate":8.6,"Information":6.3,"Manufacturing":5.1,"Other services":3.9,"Prof. & waste services":26.7,"Public administration":3.6,"Retail trade":8.1,"Transport & utilities":4.7,"Wholesale trade":1.5},"San Joaquin County":{"Agriculture & mining":4.4,"Arts & food services":7.9,"Construction":8.5,"Education & health":20.6,"Finance & real estate":4.3,"Information":1.4,"Manufacturing":9.8,"Other services":4.3,"Prof. & waste services":10.4,"Public administration":5.1,"Retail trade":11.7,"Transport & utilities":9,"Wholesale trade":2.5},"San Luis Obispo County":{"Agriculture & mining":3.3,"Arts & food services":12.7,"Construction":7.6,"Education & health":22.6,"Finance & real estate":4.4,"Information":1.7,"Manufacturing":8,"Other services":4.9,"Prof. & waste services":12,"Public administration":5.6,"Retail trade":10.8,"Transport & utilities":4.8,"Wholesale trade":1.5},"San Mateo County":{"Agriculture & mining":0.7,"Arts & food services":7.8,"Construction":5.5,"Education & health":21.1,"Finance & real estate":6.8,"Information":4.9,"Manufacturing":7.6,"Other services":4.7,"Prof. & waste services":21.5,"Public administration":3.4,"Retail trade":8.6,"Transport & utilities":5.8,"Wholesale trade":1.7},"Santa Barbara County":{"Agriculture & mining":8.1,"Arts & food services":11.2,"Construction":6.8,"Education & health":23,"Finance & real estate":4.5,"Information":1.9,"Manufacturing":7.1,"Other services":4.7,"Prof. & waste services":13,"Public administration":4.3,"Retail trade":9.6,"Transport & utilities":3.7,"Wholesale trade":1.9},"Santa Clara County":{"Agriculture & mining":0.5,"Arts & food services":7.2,"Construction":5,"Education & health":18.9,"Finance & real estate":4.3,"Information":6.2,"Manufacturing":16.5,"Other services":3.5,"Prof. & waste services":22.7,"Public administration":2.5,"Retail trade":8.1,"Transport & utilities":3.2,"Wholesale trade":1.5},"Santa Cruz County":{"Agriculture & mining":4.6,"Arts & food services":10.3,"Construction":7.2,"Education & health":25.1,"Finance & real estate":4.1,"Information":2.3,"Manufacturing":7.8,"Other services":4.6,"Prof. & waste services":14,"Public administration":3.9,"Retail trade":9.8,"Transport & utilities":4,"Wholesale trade":2.2},"Shasta County":{"Agriculture & mining":2.2,"Arts & food services":10.4,"Construction":7.9,"Education & health":24.6,"Finance & real estate":5.6,"Information":1.2,"Manufacturing":5.3,"Other services":5.8,"Prof. & waste services":9.7,"Public administration":7.2,"Retail trade":12.5,"Transport & utilities":5.5,"Wholesale trade":2},"Sierra County":{"Agriculture & mining":18,"Arts & food services":17.7,"Construction":13.9,"Education & health":14.9,"Finance & real estate":2.8,"Information":0,"Manufacturing":11.1,"Other services":1.2,"Prof. & waste services":4.7,"Public administration":6.5,"Retail trade":0.7,"Transport & utilities":8.4,"Wholesale trade":0},"Siskiyou County":{"Agriculture & mining":7.5,"Arts & food services":8.7,"Construction":7.8,"Education & health":27.1,"Finance & real estate":3.2,"Information":1.5,"Manufacturing":5.9,"Other services":4.3,"Prof. & waste services":6.8,"Public administration":8.9,"Retail trade":11.8,"Transport & utilities":4.6,"Wholesale trade":1.8},"Solano County":{"Agriculture & mining":1.1,"Arts & food services":8.5,"Construction":8.3,"Education & health":22.7,"Finance & real estate":5.5,"Information":1.7,"Manufacturing":8.6,"Other services":4.9,"Prof. & waste services":11,"Public administration":7.3,"Retail trade":11.7,"Transport & utilities":6.8,"Wholesale trade":1.9},"Sonoma County":{"Agriculture & mining":2.6,"Arts & food services":9.7,"Construction":9.3,"Education & health":22.5,"Finance & real estate":4.9,"Information":1.8,"Manufacturing":10.2,"Other services":5.1,"Prof. & waste services":12.7,"Public administration":4.4,"Retail trade":11,"Transport & utilities":3.8,"Wholesale trade":2.2},"Stanislaus County":{"Agriculture & mining":5,"Arts & food services":8.3,"Construction":8.9,"Education & health":21.9,"Finance & real estate":3.4,"Information":0.9,"Manufacturing":12.3,"Other services":4.9,"Prof. & waste services":8.4,"Public administration":4.1,"Retail trade":11.4,"Transport & utilities":7.6,"Wholesale trade":2.7},"Sutter County":{"Agriculture & mining":8.3,"Arts & food services":8.4,"Construction":9,"Education & health":22.3,"Finance & real estate":4,"Information":1,"Manufacturing":6.6,"Other services":5,"Prof. & waste services":8.3,"Public administration":5.4,"Retail trade":12.4,"Transport & utilities":6.5,"Wholesale trade":2.7},"Tehama County":{"Agriculture & mining":8.7,"Arts & food services":8.9,"Construction":6.9,"Education & health":23.8,"Finance & real estate":2.7,"Information":0.7,"Manufacturing":8.9,"Other services":3.8,"Prof. & waste services":7.4,"Public administration":8.3,"Retail trade":11.6,"Transport & utilities":7.3,"Wholesale trade":1},"Trinity County":{"Agriculture & mining":10.1,"Arts & food services":19.8,"Construction":15.6,"Education & health":15.8,"Finance & real estate":3,"Information":0.4,"Manufacturing":2.6,"Other services":2.3,"Prof. & waste services":6.1,"Public administration":6.6,"Retail trade":10.8,"Transport & utilities":6.6,"Wholesale trade":0.3},"Tulare County":{"Agriculture & mining":14.9,"Arts & food services":7.8,"Construction":6.6,"Education & health":22.6,"Finance & real estate":3,"Information":0.9,"Manufacturing":8.3,"Other services":4.4,"Prof. & waste services":6.8,"Public administration":6.1,"Retail trade":10.5,"Transport & utilities":5.7,"Wholesale trade":2.5},"Tuolumne County":{"Agriculture & mining":2.6,"Arts & food services":13.7,"Construction":9.3,"Education & health":24,"Finance & real estate":3.1,"Information":0.9,"Manufacturing":5.4,"Other services":5.2,"Prof. & waste services":10.7,"Public administration":7.9,"Retail trade":10.2,"Transport & utilities":5.8,"Wholesale trade":1.3},"Ventura County":{"Agriculture & mining":4.8,"Arts & food services":9.2,"Construction":6.4,"Education & health":20.8,"Finance & real estate":6.4,"Information":2.5,"Manufacturing":10.2,"Other services":4.7,"Prof. & waste services":12.8,"Public administration":5.4,"Retail trade":10.3,"Transport & utilities":4,"Wholesale trade":2.6},"Yolo County":{"Agriculture & mining":3.2,"Arts & food services":9.5,"Construction":5.8,"Education & health":29.6,"Finance & real estate":3.9,"Information":1.2,"Manufacturing":5.6,"Other services":3.8,"Prof. & waste services":12.3,"Public administration":8.6,"Retail trade":9.3,"Transport & utilities":5.3,"Wholesale trade":1.8},"Yuba County":{"Agriculture & mining":4.1,"Arts & food services":7.8,"Construction":7.6,"Education & health":22.6,"Finance & real estate":4.3,"Information":1.5,"Manufacturing":7.1,"Other services":5.4,"Prof. & waste services":8.9,"Public administration":9.7,"Retail trade":12,"Transport & utilities":6.6,"Wholesale trade":2.3}};
+    const colors = {
+  'Agriculture & mining': '#FFFF01',
+  'Arts & food services': '#00008B',
+  'Construction': '#7570B1',
+  'Education & health': '#66A61E',
+  'Finance & real estate': '#E6AB01',
+  'Information': '#379',
+  'Manufacturing': '#E41A1C',
+  'Other services': '#377EF1',
+  'Prof. & waste services': '#FF7F00',
+  'Public administration': '#1B9E77',
+  'Retail trade': '#A65011',
+  'Transport & utilities': '#F781BF',
+  'Wholesale trade': '#919'
+};
+
+    const ctx = document.getElementById("pieChart").getContext("2d");
+    let chart;
+
+    function renderChart(county) {
+      const values = data[county];
+      const labels = Object.keys(values);
+      const percentages = Object.values(values);
+
+      if (chart) chart.destroy();
+
+      chart = new Chart(ctx, {
+        type: "pie",
+        data: {
+          labels: labels,
+          datasets: [{
+            data: percentages,
+            backgroundColor: labels.map(label => colors[label] || "#cccccc")
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: true,
+  aspectRatio: 1.5, // You can tweak this (e.g., 1.3, 1.5, 2)
+          plugins: {
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  return context.label + ": " + context.formattedValue + "%";
+                }
+              }
+            },
+            legend: {
+              position: "right",
+              labels: {
+                usePointStyle: true,
+                pointStyle: "rect"
+              }
+            }
+          }
+        }
+      });
+    }
+
+    const select = document.getElementById("countySelect");
+    Object.keys(data).forEach(county => {
+      const opt = document.createElement("option");
+      opt.value = county;
+      opt.text = county;
+      select.appendChild(opt);
+    });
+    select.value = "Statewide";
+    select.addEventListener("change", () => renderChart(select.value));
+    renderChart("Statewide");
+  </script>
+</body>
+</html>
+</html>

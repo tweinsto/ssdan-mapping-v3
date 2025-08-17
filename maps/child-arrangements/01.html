@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Living Arrangements of Children – Alabama</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Children’s Living Arrangements (Under 18) – Alabama</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Autauga County, Alabama">Autauga County, Alabama</option>
+      <option value="Baldwin County, Alabama">Baldwin County, Alabama</option>
+      <option value="Barbour County, Alabama">Barbour County, Alabama</option>
+      <option value="Bibb County, Alabama">Bibb County, Alabama</option>
+      <option value="Blount County, Alabama">Blount County, Alabama</option>
+      <option value="Bullock County, Alabama">Bullock County, Alabama</option>
+      <option value="Butler County, Alabama">Butler County, Alabama</option>
+      <option value="Calhoun County, Alabama">Calhoun County, Alabama</option>
+      <option value="Chambers County, Alabama">Chambers County, Alabama</option>
+      <option value="Cherokee County, Alabama">Cherokee County, Alabama</option>
+      <option value="Chilton County, Alabama">Chilton County, Alabama</option>
+      <option value="Choctaw County, Alabama">Choctaw County, Alabama</option>
+      <option value="Clarke County, Alabama">Clarke County, Alabama</option>
+      <option value="Clay County, Alabama">Clay County, Alabama</option>
+      <option value="Cleburne County, Alabama">Cleburne County, Alabama</option>
+      <option value="Coffee County, Alabama">Coffee County, Alabama</option>
+      <option value="Colbert County, Alabama">Colbert County, Alabama</option>
+      <option value="Conecuh County, Alabama">Conecuh County, Alabama</option>
+      <option value="Coosa County, Alabama">Coosa County, Alabama</option>
+      <option value="Covington County, Alabama">Covington County, Alabama</option>
+      <option value="Crenshaw County, Alabama">Crenshaw County, Alabama</option>
+      <option value="Cullman County, Alabama">Cullman County, Alabama</option>
+      <option value="Dale County, Alabama">Dale County, Alabama</option>
+      <option value="Dallas County, Alabama">Dallas County, Alabama</option>
+      <option value="DeKalb County, Alabama">DeKalb County, Alabama</option>
+      <option value="Elmore County, Alabama">Elmore County, Alabama</option>
+      <option value="Escambia County, Alabama">Escambia County, Alabama</option>
+      <option value="Etowah County, Alabama">Etowah County, Alabama</option>
+      <option value="Fayette County, Alabama">Fayette County, Alabama</option>
+      <option value="Franklin County, Alabama">Franklin County, Alabama</option>
+      <option value="Geneva County, Alabama">Geneva County, Alabama</option>
+      <option value="Greene County, Alabama">Greene County, Alabama</option>
+      <option value="Hale County, Alabama">Hale County, Alabama</option>
+      <option value="Henry County, Alabama">Henry County, Alabama</option>
+      <option value="Houston County, Alabama">Houston County, Alabama</option>
+      <option value="Jackson County, Alabama">Jackson County, Alabama</option>
+      <option value="Jefferson County, Alabama">Jefferson County, Alabama</option>
+      <option value="Lamar County, Alabama">Lamar County, Alabama</option>
+      <option value="Lauderdale County, Alabama">Lauderdale County, Alabama</option>
+      <option value="Lawrence County, Alabama">Lawrence County, Alabama</option>
+      <option value="Lee County, Alabama">Lee County, Alabama</option>
+      <option value="Limestone County, Alabama">Limestone County, Alabama</option>
+      <option value="Lowndes County, Alabama">Lowndes County, Alabama</option>
+      <option value="Macon County, Alabama">Macon County, Alabama</option>
+      <option value="Madison County, Alabama">Madison County, Alabama</option>
+      <option value="Marengo County, Alabama">Marengo County, Alabama</option>
+      <option value="Marion County, Alabama">Marion County, Alabama</option>
+      <option value="Marshall County, Alabama">Marshall County, Alabama</option>
+      <option value="Mobile County, Alabama">Mobile County, Alabama</option>
+      <option value="Monroe County, Alabama">Monroe County, Alabama</option>
+      <option value="Montgomery County, Alabama">Montgomery County, Alabama</option>
+      <option value="Morgan County, Alabama">Morgan County, Alabama</option>
+      <option value="Perry County, Alabama">Perry County, Alabama</option>
+      <option value="Pickens County, Alabama">Pickens County, Alabama</option>
+      <option value="Pike County, Alabama">Pike County, Alabama</option>
+      <option value="Randolph County, Alabama">Randolph County, Alabama</option>
+      <option value="Russell County, Alabama">Russell County, Alabama</option>
+      <option value="Shelby County, Alabama">Shelby County, Alabama</option>
+      <option value="St. Clair County, Alabama">St. Clair County, Alabama</option>
+      <option value="Sumter County, Alabama">Sumter County, Alabama</option>
+      <option value="Talladega County, Alabama">Talladega County, Alabama</option>
+      <option value="Tallapoosa County, Alabama">Tallapoosa County, Alabama</option>
+      <option value="Tuscaloosa County, Alabama">Tuscaloosa County, Alabama</option>
+      <option value="Walker County, Alabama">Walker County, Alabama</option>
+      <option value="Washington County, Alabama">Washington County, Alabama</option>
+      <option value="Wilcox County, Alabama">Wilcox County, Alabama</option>
+      <option value="Winston County, Alabama">Winston County, Alabama</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>  const data = {"Statewide":{"Married Couple (%)":62.3,"Cohabiting Couple (%)":7,"Male Householder (%)":4.5,"Female Householder (%)":26.1},"Autauga County, Alabama":{"Married Couple (%)":73,"Cohabiting Couple (%)":4.7,"Male Householder (%)":6.4,"Female Householder (%)":15.9},"Baldwin County, Alabama":{"Married Couple (%)":74.4,"Cohabiting Couple (%)":6,"Male Householder (%)":3.4,"Female Householder (%)":16.2},"Barbour County, Alabama":{"Married Couple (%)":38.9,"Cohabiting Couple (%)":9.1,"Male Householder (%)":4.9,"Female Householder (%)":47},"Bibb County, Alabama":{"Married Couple (%)":60.5,"Cohabiting Couple (%)":8.3,"Male Householder (%)":6.3,"Female Householder (%)":24.9},"Blount County, Alabama":{"Married Couple (%)":70.4,"Cohabiting Couple (%)":7.1,"Male Householder (%)":5.7,"Female Householder (%)":16.8},"Bullock County, Alabama":{"Married Couple (%)":22.9,"Cohabiting Couple (%)":5.9,"Male Householder (%)":7.6,"Female Householder (%)":63.7},"Butler County, Alabama":{"Married Couple (%)":51.8,"Cohabiting Couple (%)":7.4,"Male Householder (%)":4.8,"Female Householder (%)":35.9},"Calhoun County, Alabama":{"Married Couple (%)":58.2,"Cohabiting Couple (%)":8.2,"Male Householder (%)":3.7,"Female Householder (%)":29.9},"Chambers County, Alabama":{"Married Couple (%)":53,"Cohabiting Couple (%)":13.7,"Male Householder (%)":6.2,"Female Householder (%)":27},"Cherokee County, Alabama":{"Married Couple (%)":64.8,"Cohabiting Couple (%)":3.7,"Male Householder (%)":13,"Female Householder (%)":18.5},"Chilton County, Alabama":{"Married Couple (%)":67.6,"Cohabiting Couple (%)":11.3,"Male Householder (%)":4.4,"Female Householder (%)":16.7},"Choctaw County, Alabama":{"Married Couple (%)":63.8,"Cohabiting Couple (%)":2.2,"Male Householder (%)":4.7,"Female Householder (%)":29.2},"Clarke County, Alabama":{"Married Couple (%)":48.3,"Cohabiting Couple (%)":10.7,"Male Householder (%)":6,"Female Householder (%)":35},"Clay County, Alabama":{"Married Couple (%)":72.4,"Cohabiting Couple (%)":5.2,"Male Householder (%)":3.9,"Female Householder (%)":18.6},"Cleburne County, Alabama":{"Married Couple (%)":67.9,"Cohabiting Couple (%)":5,"Male Householder (%)":6.2,"Female Householder (%)":20.8},"Coffee County, Alabama":{"Married Couple (%)":63.8,"Cohabiting Couple (%)":4.7,"Male Householder (%)":7.6,"Female Householder (%)":23.8},"Colbert County, Alabama":{"Married Couple (%)":57.8,"Cohabiting Couple (%)":8.5,"Male Householder (%)":3.5,"Female Householder (%)":30.2},"Conecuh County, Alabama":{"Married Couple (%)":42.3,"Cohabiting Couple (%)":9.9,"Male Householder (%)":9,"Female Householder (%)":38.8},"Coosa County, Alabama":{"Married Couple (%)":55.1,"Cohabiting Couple (%)":14.3,"Male Householder (%)":8.3,"Female Householder (%)":22.3},"Covington County, Alabama":{"Married Couple (%)":63.3,"Cohabiting Couple (%)":5.2,"Male Householder (%)":6.9,"Female Householder (%)":24.5},"Crenshaw County, Alabama":{"Married Couple (%)":67.5,"Cohabiting Couple (%)":6.6,"Male Householder (%)":7.8,"Female Householder (%)":18.1},"Cullman County, Alabama":{"Married Couple (%)":72,"Cohabiting Couple (%)":6.5,"Male Householder (%)":4.5,"Female Householder (%)":16.9},"Dale County, Alabama":{"Married Couple (%)":57.4,"Cohabiting Couple (%)":11,"Male Householder (%)":3.4,"Female Householder (%)":28.2},"Dallas County, Alabama":{"Married Couple (%)":39,"Cohabiting Couple (%)":7.3,"Male Householder (%)":3.2,"Female Householder (%)":50.6},"DeKalb County, Alabama":{"Married Couple (%)":73.3,"Cohabiting Couple (%)":7.6,"Male Householder (%)":5.5,"Female Householder (%)":13.6},"Elmore County, Alabama":{"Married Couple (%)":65.2,"Cohabiting Couple (%)":8.1,"Male Householder (%)":2.8,"Female Householder (%)":23.9},"Escambia County, Alabama":{"Married Couple (%)":59.3,"Cohabiting Couple (%)":5.6,"Male Householder (%)":1.9,"Female Householder (%)":33.2},"Etowah County, Alabama":{"Married Couple (%)":59.6,"Cohabiting Couple (%)":5.4,"Male Householder (%)":5.7,"Female Householder (%)":29.3},"Fayette County, Alabama":{"Married Couple (%)":68.4,"Cohabiting Couple (%)":5.4,"Male Householder (%)":0.9,"Female Householder (%)":25.3},"Franklin County, Alabama":{"Married Couple (%)":66.3,"Cohabiting Couple (%)":5.9,"Male Householder (%)":3.5,"Female Householder (%)":24.3},"Geneva County, Alabama":{"Married Couple (%)":64.8,"Cohabiting Couple (%)":7.9,"Male Householder (%)":2.8,"Female Householder (%)":24.5},"Greene County, Alabama":{"Married Couple (%)":23.1,"Cohabiting Couple (%)":8.9,"Male Householder (%)":2.7,"Female Householder (%)":65.4},"Hale County, Alabama":{"Married Couple (%)":48.7,"Cohabiting Couple (%)":7.5,"Male Householder (%)":3.1,"Female Householder (%)":40.7},"Henry County, Alabama":{"Married Couple (%)":65.1,"Cohabiting Couple (%)":1.7,"Male Householder (%)":6.3,"Female Householder (%)":26.9},"Houston County, Alabama":{"Married Couple (%)":56.6,"Cohabiting Couple (%)":9.8,"Male Householder (%)":4,"Female Householder (%)":29.7},"Jackson County, Alabama":{"Married Couple (%)":64.3,"Cohabiting Couple (%)":7.4,"Male Householder (%)":4.1,"Female Householder (%)":24.2},"Jefferson County, Alabama":{"Married Couple (%)":57.6,"Cohabiting Couple (%)":7.6,"Male Householder (%)":4.5,"Female Householder (%)":30.3},"Lamar County, Alabama":{"Married Couple (%)":72,"Cohabiting Couple (%)":6.5,"Male Householder (%)":1.2,"Female Householder (%)":20.3},"Lauderdale County, Alabama":{"Married Couple (%)":70.2,"Cohabiting Couple (%)":3.9,"Male Householder (%)":4.9,"Female Householder (%)":21},"Lawrence County, Alabama":{"Married Couple (%)":71.8,"Cohabiting Couple (%)":8.9,"Male Householder (%)":3.6,"Female Householder (%)":15.7},"Lee County, Alabama":{"Married Couple (%)":71.8,"Cohabiting Couple (%)":4,"Male Householder (%)":3.2,"Female Householder (%)":20.9},"Limestone County, Alabama":{"Married Couple (%)":74.9,"Cohabiting Couple (%)":9.2,"Male Householder (%)":3.5,"Female Householder (%)":12.3},"Lowndes County, Alabama":{"Married Couple (%)":33.8,"Cohabiting Couple (%)":3.7,"Male Householder (%)":2.4,"Female Householder (%)":60.1},"Macon County, Alabama":{"Married Couple (%)":31.6,"Cohabiting Couple (%)":6.8,"Male Householder (%)":6,"Female Householder (%)":55.7},"Madison County, Alabama":{"Married Couple (%)":68.7,"Cohabiting Couple (%)":5.1,"Male Householder (%)":4.5,"Female Householder (%)":21.7},"Marengo County, Alabama":{"Married Couple (%)":44.7,"Cohabiting Couple (%)":6.7,"Male Householder (%)":3.2,"Female Householder (%)":45.4},"Marion County, Alabama":{"Married Couple (%)":66.6,"Cohabiting Couple (%)":12,"Male Householder (%)":1.6,"Female Householder (%)":19.8},"Marshall County, Alabama":{"Married Couple (%)":67.4,"Cohabiting Couple (%)":5.9,"Male Householder (%)":7.9,"Female Householder (%)":18.8},"Mobile County, Alabama":{"Married Couple (%)":55.4,"Cohabiting Couple (%)":9,"Male Householder (%)":4.5,"Female Householder (%)":31.1},"Monroe County, Alabama":{"Married Couple (%)":49.1,"Cohabiting Couple (%)":11,"Male Householder (%)":11.5,"Female Householder (%)":28.4},"Montgomery County, Alabama":{"Married Couple (%)":45.6,"Cohabiting Couple (%)":8.9,"Male Householder (%)":5.6,"Female Householder (%)":39.9},"Morgan County, Alabama":{"Married Couple (%)":63.6,"Cohabiting Couple (%)":8.7,"Male Householder (%)":5.2,"Female Householder (%)":22.5},"Perry County, Alabama":{"Married Couple (%)":28,"Cohabiting Couple (%)":11.9,"Male Householder (%)":0,"Female Householder (%)":60.1},"Pickens County, Alabama":{"Married Couple (%)":50.3,"Cohabiting Couple (%)":4,"Male Householder (%)":1.9,"Female Householder (%)":43.8},"Pike County, Alabama":{"Married Couple (%)":51.1,"Cohabiting Couple (%)":5,"Male Householder (%)":5.1,"Female Householder (%)":38.9},"Randolph County, Alabama":{"Married Couple (%)":62.6,"Cohabiting Couple (%)":14.2,"Male Householder (%)":1.9,"Female Householder (%)":21.3},"Russell County, Alabama":{"Married Couple (%)":54.3,"Cohabiting Couple (%)":9.6,"Male Householder (%)":4.6,"Female Householder (%)":31.5},"Shelby County, Alabama":{"Married Couple (%)":78.9,"Cohabiting Couple (%)":3.6,"Male Householder (%)":3.8,"Female Householder (%)":13.7},"St. Clair County, Alabama":{"Married Couple (%)":74,"Cohabiting Couple (%)":4.8,"Male Householder (%)":2.8,"Female Householder (%)":18.4},"Sumter County, Alabama":{"Married Couple (%)":31.2,"Cohabiting Couple (%)":5.1,"Male Householder (%)":2.6,"Female Householder (%)":61.1},"Talladega County, Alabama":{"Married Couple (%)":53,"Cohabiting Couple (%)":10.1,"Male Householder (%)":4.2,"Female Householder (%)":32.7},"Tallapoosa County, Alabama":{"Married Couple (%)":56.8,"Cohabiting Couple (%)":6.4,"Male Householder (%)":5.9,"Female Householder (%)":31},"Tuscaloosa County, Alabama":{"Married Couple (%)":64.1,"Cohabiting Couple (%)":4.7,"Male Householder (%)":3.7,"Female Householder (%)":27.5},"Walker County, Alabama":{"Married Couple (%)":63.1,"Cohabiting Couple (%)":6.9,"Male Householder (%)":5,"Female Householder (%)":25.1},"Washington County, Alabama":{"Married Couple (%)":64.3,"Cohabiting Couple (%)":3.6,"Male Householder (%)":6.7,"Female Householder (%)":25.4},"Wilcox County, Alabama":{"Married Couple (%)":23.6,"Cohabiting Couple (%)":1,"Male Householder (%)":6,"Female Householder (%)":69.4},"Winston County, Alabama":{"Married Couple (%)":69.5,"Cohabiting Couple (%)":5.6,"Male Householder (%)":9.7,"Female Householder (%)":15.2}};
+  const categories = ["Married Couple (%)","Cohabiting Couple (%)","Male Householder (%)","Female Householder (%)"];
+  const ctx = document.getElementById("barChart").getContext("2d");
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: categories,
+        datasets: [{
+          label: "Share of Children (%)",
+          data: values,
+          backgroundColor: ["#5DA5DA","#FAA43A","#60BD68","#F17CB0"]
+        }]
+      },
+      options: {
+        indexAxis: "y",
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            ticks: { callback: v => v + "%" },
+            title: { display: true, text: "Percent of Children" }
+          }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.raw + "%"
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById("countySelect").addEventListener("change", function() {
+    renderChart(Object.values(data[this.value]));
+  });
+
+  renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Age Distribution Under 18 –  Michigan</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          margin: 1rem 2rem;
+          text-align: center;
+        }
+        h2 {
+          margin-bottom: 0.25rem;
+          font-size: 1.6rem;
+        }
+        select {
+          padding: 0.4rem;
+          font-size: 1rem;
+          margin: 1rem 0;
+          border-radius: 5px;
+          border: 1px solid #999;
+        }
+        canvas {
+          width: 100%;
+          max-width: 850px;
+          height: 500px;
+          margin-top: 1rem;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Age Distribution Under 18 in  Michigan (2023)</h2>
+    <label>Select County:</label>
+            <select id="countySelect">
+          <option value='Statewide'>Statewide</option>
+<option value='Alcona County, Michigan'>Alcona County, Michigan</option>
+<option value='Alger County, Michigan'>Alger County, Michigan</option>
+<option value='Allegan County, Michigan'>Allegan County, Michigan</option>
+<option value='Alpena County, Michigan'>Alpena County, Michigan</option>
+<option value='Antrim County, Michigan'>Antrim County, Michigan</option>
+<option value='Arenac County, Michigan'>Arenac County, Michigan</option>
+<option value='Baraga County, Michigan'>Baraga County, Michigan</option>
+<option value='Barry County, Michigan'>Barry County, Michigan</option>
+<option value='Bay County, Michigan'>Bay County, Michigan</option>
+<option value='Benzie County, Michigan'>Benzie County, Michigan</option>
+<option value='Berrien County, Michigan'>Berrien County, Michigan</option>
+<option value='Branch County, Michigan'>Branch County, Michigan</option>
+<option value='Calhoun County, Michigan'>Calhoun County, Michigan</option>
+<option value='Cass County, Michigan'>Cass County, Michigan</option>
+<option value='Charlevoix County, Michigan'>Charlevoix County, Michigan</option>
+<option value='Cheboygan County, Michigan'>Cheboygan County, Michigan</option>
+<option value='Chippewa County, Michigan'>Chippewa County, Michigan</option>
+<option value='Clare County, Michigan'>Clare County, Michigan</option>
+<option value='Clinton County, Michigan'>Clinton County, Michigan</option>
+<option value='Crawford County, Michigan'>Crawford County, Michigan</option>
+<option value='Delta County, Michigan'>Delta County, Michigan</option>
+<option value='Dickinson County, Michigan'>Dickinson County, Michigan</option>
+<option value='Eaton County, Michigan'>Eaton County, Michigan</option>
+<option value='Emmet County, Michigan'>Emmet County, Michigan</option>
+<option value='Genesee County, Michigan'>Genesee County, Michigan</option>
+<option value='Gladwin County, Michigan'>Gladwin County, Michigan</option>
+<option value='Gogebic County, Michigan'>Gogebic County, Michigan</option>
+<option value='Grand Traverse County, Michigan'>Grand Traverse County, Michigan</option>
+<option value='Gratiot County, Michigan'>Gratiot County, Michigan</option>
+<option value='Hillsdale County, Michigan'>Hillsdale County, Michigan</option>
+<option value='Houghton County, Michigan'>Houghton County, Michigan</option>
+<option value='Huron County, Michigan'>Huron County, Michigan</option>
+<option value='Ingham County, Michigan'>Ingham County, Michigan</option>
+<option value='Ionia County, Michigan'>Ionia County, Michigan</option>
+<option value='Iosco County, Michigan'>Iosco County, Michigan</option>
+<option value='Iron County, Michigan'>Iron County, Michigan</option>
+<option value='Isabella County, Michigan'>Isabella County, Michigan</option>
+<option value='Jackson County, Michigan'>Jackson County, Michigan</option>
+<option value='Kalamazoo County, Michigan'>Kalamazoo County, Michigan</option>
+<option value='Kalkaska County, Michigan'>Kalkaska County, Michigan</option>
+<option value='Kent County, Michigan'>Kent County, Michigan</option>
+<option value='Keweenaw County, Michigan'>Keweenaw County, Michigan</option>
+<option value='Lake County, Michigan'>Lake County, Michigan</option>
+<option value='Lapeer County, Michigan'>Lapeer County, Michigan</option>
+<option value='Leelanau County, Michigan'>Leelanau County, Michigan</option>
+<option value='Lenawee County, Michigan'>Lenawee County, Michigan</option>
+<option value='Livingston County, Michigan'>Livingston County, Michigan</option>
+<option value='Luce County, Michigan'>Luce County, Michigan</option>
+<option value='Mackinac County, Michigan'>Mackinac County, Michigan</option>
+<option value='Macomb County, Michigan'>Macomb County, Michigan</option>
+<option value='Manistee County, Michigan'>Manistee County, Michigan</option>
+<option value='Marquette County, Michigan'>Marquette County, Michigan</option>
+<option value='Mason County, Michigan'>Mason County, Michigan</option>
+<option value='Mecosta County, Michigan'>Mecosta County, Michigan</option>
+<option value='Menominee County, Michigan'>Menominee County, Michigan</option>
+<option value='Midland County, Michigan'>Midland County, Michigan</option>
+<option value='Missaukee County, Michigan'>Missaukee County, Michigan</option>
+<option value='Monroe County, Michigan'>Monroe County, Michigan</option>
+<option value='Montcalm County, Michigan'>Montcalm County, Michigan</option>
+<option value='Montmorency County, Michigan'>Montmorency County, Michigan</option>
+<option value='Muskegon County, Michigan'>Muskegon County, Michigan</option>
+<option value='Newaygo County, Michigan'>Newaygo County, Michigan</option>
+<option value='Oakland County, Michigan'>Oakland County, Michigan</option>
+<option value='Oceana County, Michigan'>Oceana County, Michigan</option>
+<option value='Ogemaw County, Michigan'>Ogemaw County, Michigan</option>
+<option value='Ontonagon County, Michigan'>Ontonagon County, Michigan</option>
+<option value='Osceola County, Michigan'>Osceola County, Michigan</option>
+<option value='Oscoda County, Michigan'>Oscoda County, Michigan</option>
+<option value='Otsego County, Michigan'>Otsego County, Michigan</option>
+<option value='Ottawa County, Michigan'>Ottawa County, Michigan</option>
+<option value='Presque Isle County, Michigan'>Presque Isle County, Michigan</option>
+<option value='Roscommon County, Michigan'>Roscommon County, Michigan</option>
+<option value='Saginaw County, Michigan'>Saginaw County, Michigan</option>
+<option value='Sanilac County, Michigan'>Sanilac County, Michigan</option>
+<option value='Schoolcraft County, Michigan'>Schoolcraft County, Michigan</option>
+<option value='Shiawassee County, Michigan'>Shiawassee County, Michigan</option>
+<option value='St. Clair County, Michigan'>St. Clair County, Michigan</option>
+<option value='St. Joseph County, Michigan'>St. Joseph County, Michigan</option>
+<option value='Tuscola County, Michigan'>Tuscola County, Michigan</option>
+<option value='Van Buren County, Michigan'>Van Buren County, Michigan</option>
+<option value='Washtenaw County, Michigan'>Washtenaw County, Michigan</option>
+<option value='Wayne County, Michigan'>Wayne County, Michigan</option>
+<option value='Wexford County, Michigan'>Wexford County, Michigan</option>
+        </select>
+    <canvas id="barChart" width="850" height="500"></canvas>
+    <script>  const ageData = {"Statewide":[-13.1,12.4,-14.8,14.2,-9.3,8.8,-14.1,13.2],"Alcona County, Michigan":[-12.8,13.9,-13.5,14.5,-13,14.1,-8.7,9.5],"Alger County, Michigan":[-11.3,12.1,-11.5,12.6,-16.1,13.9,-13.8,8.7],"Allegan County, Michigan":[-12.4,12,-14.4,13.3,-15.1,14.7,-9,9.1],"Alpena County, Michigan":[-12.2,12.3,-14.1,12.5,-14.5,15,-10.1,9.4],"Antrim County, Michigan":[-12,11.3,-14,12.5,-14.4,14.6,-9.9,11.2],"Arenac County, Michigan":[-13.2,11.9,-11.8,13.1,-18.2,12.5,-9.1,10.3],"Baraga County, Michigan":[-12.1,11.7,-15.4,12.1,-11.4,17.3,-10.4,9.6],"Barry County, Michigan":[-12.1,12,-13.9,14.4,-15.3,13.9,-9.4,9],"Bay County, Michigan":[-12.2,11.6,-15.6,12,-13.9,14.9,-10,9.7],"Benzie County, Michigan":[-14.4,10.5,-14.4,12.9,-15,13.9,-10.1,8.8],"Berrien County, Michigan":[-13,12,-15.1,13.6,-13.8,14.2,-9.3,8.9],"Branch County, Michigan":[-14,12.6,-15.2,11.4,-13.1,16.1,-8.6,8.9],"Calhoun County, Michigan":[-13,12.3,-14,13.8,-15.1,13.6,-9.9,8.3],"Cass County, Michigan":[-11.8,11.7,-12.5,12.1,-17.9,15,-9.2,9.8],"Charlevoix County, Michigan":[-12.7,11,-13,12.1,-15.5,15.4,-9.9,10.4],"Cheboygan County, Michigan":[-13.4,12.3,-14,13.5,-14.9,12.2,-10.3,9.3],"Chippewa County, Michigan":[-12.5,12.6,-12.7,14.1,-17,13,-9.7,8.5],"Clare County, Michigan":[-12.6,12.4,-13.1,13.1,-16.5,14.6,-9.4,8.3],"Clinton County, Michigan":[-12.3,11.7,-14,13.7,-14.5,14.4,-10.2,9.1],"Crawford County, Michigan":[-14.4,11.2,-14.7,14.7,-17.2,9.7,-9.7,8.5],"Delta County, Michigan":[-12.7,11.6,-12.7,10.9,-16.3,15.6,-11.4,8.8],"Dickinson County, Michigan":[-12,13.3,-15.4,13.4,-13.7,13.4,-10.2,8.6],"Eaton County, Michigan":[-12.7,12.6,-14.9,12.7,-14,15,-9.8,8.3],"Emmet County, Michigan":[-12.1,11.4,-13,13.6,-16.8,13.3,-10.1,9.8],"Genesee County, Michigan":[-12.9,12.4,-14.6,13.2,-14.4,14.3,-9.4,8.8],"Gladwin County, Michigan":[-13.5,12.4,-14.7,14.9,-15.2,10.6,-10.4,8.3],"Gogebic County, Michigan":[-12.5,11.2,-13.1,10,-16.9,17.4,-9.6,9.3],"Grand Traverse County, Michigan":[-12.8,11.3,-13.6,14.4,-15.4,13.8,-9.5,9.2],"Gratiot County, Michigan":[-13,11.9,-14.8,14.2,-14.1,13.9,-9.6,8.4],"Hillsdale County, Michigan":[-13.1,12.2,-12,13.4,-16.9,13.8,-9.3,9.3],"Houghton County, Michigan":[-12.8,11.4,-14.7,12,-15.5,14.5,-9.6,9.4],"Huron County, Michigan":[-11.6,12.8,-12.1,15.7,-17.3,11.8,-9.3,9.5],"Ingham County, Michigan":[-13.7,13.1,-14.8,14.3,-13.8,13.1,-8.8,8.4],"Ionia County, Michigan":[-12.9,11.7,-12.3,12.6,-17.1,15.2,-9.3,8.9],"Iosco County, Michigan":[-15.7,12.9,-12.8,12,-14.3,14.9,-9.2,8.3],"Iron County, Michigan":[-11.2,12.5,-12.5,17.4,-14.9,14.7,-9.1,7.7],"Isabella County, Michigan":[-12.9,12.8,-13.9,13.4,-15.3,13.9,-8.7,9.1],"Jackson County, Michigan":[-13.1,12.5,-16.2,11.3,-13.1,15.9,-9.3,8.6],"Kalamazoo County, Michigan":[-13.4,12.8,-14.4,13.6,-14.7,14,-8.9,8.4],"Kalkaska County, Michigan":[-12.1,12.1,-10.8,12.2,-18,17,-9.7,8.1],"Kent County, Michigan":[-13.7,12.9,-14.7,13.1,-14.2,14.2,-8.9,8.5],"Keweenaw County, Michigan":[-6.1,15.4,-18.9,10.6,-11.5,17.3,-6.1,14.1],"Lake County, Michigan":[-13.8,11.1,-12.8,15.2,-15,14.4,-9.7,8],"Lapeer County, Michigan":[-12.6,10.9,-14.1,12.9,-15.3,14.3,-10.4,9.5],"Leelanau County, Michigan":[-11.2,12.7,-11.2,11.4,-17.6,15.3,-10.3,10.2],"Lenawee County, Michigan":[-12.4,12,-13.5,13.5,-15.8,13.8,-10,9],"Livingston County, Michigan":[-12.2,11.4,-13.9,13.7,-15.2,13.9,-10.3,9.4],"Luce County, Michigan":[-14.9,12.9,-11.5,15.6,-17.5,11,-9.5,7.3],"Mackinac County, Michigan":[-13.3,12.8,-11.7,11.2,-15.4,15.8,-11.8,8.1],"Macomb County, Michigan":[-13.1,12.4,-13.5,13.1,-15.1,14.2,-9.5,9],"Manistee County, Michigan":[-11.4,11.7,-11.2,15.2,-15.4,15,-10.5,9.7],"Marquette County, Michigan":[-12.5,13.3,-13.5,11.5,-15.9,16,-8.7,8.5],"Mason County, Michigan":[-11.8,11.3,-14.7,13,-17.6,13.4,-9.1,9.1],"Mecosta County, Michigan":[-13.2,13.1,-13.4,14.5,-14.2,12.9,-9,9.7],"Menominee County, Michigan":[-12.1,10.2,-12.7,11.3,-17.6,15.5,-10.6,10],"Midland County, Michigan":[-13.2,12.1,-14.1,14,-15.8,12.4,-9.3,9.2],"Missaukee County, Michigan":[-12.8,12.3,-15.7,14.5,-14.2,13,-8.5,9],"Monroe County, Michigan":[-12.7,11.3,-14.5,12.1,-14.8,15.7,-9.3,9.5],"Montcalm County, Michigan":[-11.7,13,-12.9,12.8,-16.2,14.9,-9.6,8.8],"Montmorency County, Michigan":[-12.5,12.2,-12.2,13,-15.8,12.8,-12.9,8.5],"Muskegon County, Michigan":[-13,12.4,-14.6,14.3,-14.5,13.3,-9.2,8.7],"Newaygo County, Michigan":[-12,12.4,-14.5,13.7,-14.6,13.8,-9.7,9.4],"Oakland County, Michigan":[-13,12.3,-14.2,12.9,-14.4,14.5,-9.5,9.1],"Oceana County, Michigan":[-11.8,11.5,-15,14.7,-14.5,13.2,-10.1,9.2],"Ogemaw County, Michigan":[-12.4,12.5,-12.7,12.3,-15.8,15.1,-9.5,9.6],"Ontonagon County, Michigan":[-12.8,9.9,-10.2,11,-16.2,16.2,-12.1,11.6],"Osceola County, Michigan":[-12.4,11.3,-14.5,13.7,-15.3,12.9,-10.6,9.4],"Oscoda County, Michigan":[-13.5,13.2,-17.5,11.4,-12.8,15.2,-9,7.4],"Otsego County, Michigan":[-12.3,11.9,-17.6,11.5,-13,15,-9.1,9.7],"Ottawa County, Michigan":[-12.5,11.8,-14.8,13.9,-14.9,14.1,-9.2,8.9],"Presque Isle County, Michigan":[-13.8,12.1,-12.3,12.9,-14.1,15.8,-8.9,10],"Roscommon County, Michigan":[-12,12.7,-14.9,14.1,-14.7,13.4,-9.3,8.9],"Saginaw County, Michigan":[-13.3,12.8,-14.4,12.8,-14.6,14,-9.2,8.9],"St. Clair County, Michigan":[-12.1,11.8,-12.7,13.2,-16.4,14.3,-10,9.6],"St. Joseph County, Michigan":[-13,12.2,-15.9,13,-13.3,14.6,-9.3,8.8],"Sanilac County, Michigan":[-12.2,11.2,-15.2,14,-14.2,13.8,-9.8,9.5],"Schoolcraft County, Michigan":[-10.4,14.4,-16,10.4,-13,17.8,-10.7,7.2],"Shiawassee County, Michigan":[-13.1,12.2,-13.2,14.8,-15,12.5,-9.9,9.3],"Tuscola County, Michigan":[-13.1,11.5,-13.8,12.2,-15.6,14.5,-10.6,8.6],"Van Buren County, Michigan":[-12.6,12.3,-13.8,13.2,-15.3,15.2,-9.1,8.7],"Washtenaw County, Michigan":[-12.8,12.4,-13.6,12.4,-15.1,15,-9.6,9],"Wayne County, Michigan":[-13.7,13.1,-13.9,13.2,-14.9,14.1,-8.8,8.4],"Wexford County, Michigan":[-12.8,11.9,-16.2,15.1,-13,13,-8.6,9.4]};
+  const ageBins = ["0–4","5–9","10–14","15–17"];
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(data) {
+    const maleData = data.filter((_, i) => i % 2 === 0);
+    const femaleData = data.filter((_, i) => i % 2 === 1);
+
+    const maxValue = Math.max(
+      ...maleData.map(Math.abs),
+      ...femaleData.map(Math.abs)
+    );
+    const padding = 1.0;
+    const xMax = +(maxValue + padding).toFixed(1);
+
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ageBins,
+        datasets: [
+          {
+            label: 'Male',
+            data: maleData,
+            backgroundColor: 'dodgerblue'
+          },
+          {
+            label: 'Female',
+            data: femaleData,
+            backgroundColor: 'lightpink'
+          }
+        ]
+      },
+      options: {
+        indexAxis: 'y',
+        responsive: true,
+        scales: {
+          x: {
+            min: -xMax,
+            max: xMax,
+            ticks: {
+              callback: value => Math.abs(value).toFixed(1) + '%'
+            }
+          },
+          y: {
+            stacked: false
+          }
+        },
+        plugins: {
+          legend: {
+            position: 'top',
+            align: 'start',
+            labels: {
+              usePointStyle: true
+            }
+          },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.dataset.label + ': ' + Math.abs(ctx.parsed.x).toFixed(1) + '%'
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(Object.values(ageData[this.value]));
+  });
+
+  renderChart(Object.values(ageData['Statewide']));</script>
+  </body>
+</html>
+</html>

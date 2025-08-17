@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Educational Enrollment – Missouri</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Educational Enrollment (Age 18–24) in Missouri</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Adair County, Missouri">Adair County, Missouri</option>
+      <option value="Andrew County, Missouri">Andrew County, Missouri</option>
+      <option value="Atchison County, Missouri">Atchison County, Missouri</option>
+      <option value="Audrain County, Missouri">Audrain County, Missouri</option>
+      <option value="Barry County, Missouri">Barry County, Missouri</option>
+      <option value="Barton County, Missouri">Barton County, Missouri</option>
+      <option value="Bates County, Missouri">Bates County, Missouri</option>
+      <option value="Benton County, Missouri">Benton County, Missouri</option>
+      <option value="Bollinger County, Missouri">Bollinger County, Missouri</option>
+      <option value="Boone County, Missouri">Boone County, Missouri</option>
+      <option value="Buchanan County, Missouri">Buchanan County, Missouri</option>
+      <option value="Butler County, Missouri">Butler County, Missouri</option>
+      <option value="Caldwell County, Missouri">Caldwell County, Missouri</option>
+      <option value="Callaway County, Missouri">Callaway County, Missouri</option>
+      <option value="Camden County, Missouri">Camden County, Missouri</option>
+      <option value="Cape Girardeau County, Missouri">Cape Girardeau County, Missouri</option>
+      <option value="Carroll County, Missouri">Carroll County, Missouri</option>
+      <option value="Carter County, Missouri">Carter County, Missouri</option>
+      <option value="Cass County, Missouri">Cass County, Missouri</option>
+      <option value="Cedar County, Missouri">Cedar County, Missouri</option>
+      <option value="Chariton County, Missouri">Chariton County, Missouri</option>
+      <option value="Christian County, Missouri">Christian County, Missouri</option>
+      <option value="Clark County, Missouri">Clark County, Missouri</option>
+      <option value="Clay County, Missouri">Clay County, Missouri</option>
+      <option value="Clinton County, Missouri">Clinton County, Missouri</option>
+      <option value="Cole County, Missouri">Cole County, Missouri</option>
+      <option value="Cooper County, Missouri">Cooper County, Missouri</option>
+      <option value="Crawford County, Missouri">Crawford County, Missouri</option>
+      <option value="Dade County, Missouri">Dade County, Missouri</option>
+      <option value="Dallas County, Missouri">Dallas County, Missouri</option>
+      <option value="Daviess County, Missouri">Daviess County, Missouri</option>
+      <option value="DeKalb County, Missouri">DeKalb County, Missouri</option>
+      <option value="Dent County, Missouri">Dent County, Missouri</option>
+      <option value="Douglas County, Missouri">Douglas County, Missouri</option>
+      <option value="Dunklin County, Missouri">Dunklin County, Missouri</option>
+      <option value="Franklin County, Missouri">Franklin County, Missouri</option>
+      <option value="Gasconade County, Missouri">Gasconade County, Missouri</option>
+      <option value="Gentry County, Missouri">Gentry County, Missouri</option>
+      <option value="Greene County, Missouri">Greene County, Missouri</option>
+      <option value="Grundy County, Missouri">Grundy County, Missouri</option>
+      <option value="Harrison County, Missouri">Harrison County, Missouri</option>
+      <option value="Henry County, Missouri">Henry County, Missouri</option>
+      <option value="Hickory County, Missouri">Hickory County, Missouri</option>
+      <option value="Holt County, Missouri">Holt County, Missouri</option>
+      <option value="Howard County, Missouri">Howard County, Missouri</option>
+      <option value="Howell County, Missouri">Howell County, Missouri</option>
+      <option value="Iron County, Missouri">Iron County, Missouri</option>
+      <option value="Jackson County, Missouri">Jackson County, Missouri</option>
+      <option value="Jasper County, Missouri">Jasper County, Missouri</option>
+      <option value="Jefferson County, Missouri">Jefferson County, Missouri</option>
+      <option value="Johnson County, Missouri">Johnson County, Missouri</option>
+      <option value="Knox County, Missouri">Knox County, Missouri</option>
+      <option value="Laclede County, Missouri">Laclede County, Missouri</option>
+      <option value="Lafayette County, Missouri">Lafayette County, Missouri</option>
+      <option value="Lawrence County, Missouri">Lawrence County, Missouri</option>
+      <option value="Lewis County, Missouri">Lewis County, Missouri</option>
+      <option value="Lincoln County, Missouri">Lincoln County, Missouri</option>
+      <option value="Linn County, Missouri">Linn County, Missouri</option>
+      <option value="Livingston County, Missouri">Livingston County, Missouri</option>
+      <option value="Macon County, Missouri">Macon County, Missouri</option>
+      <option value="Madison County, Missouri">Madison County, Missouri</option>
+      <option value="Maries County, Missouri">Maries County, Missouri</option>
+      <option value="Marion County, Missouri">Marion County, Missouri</option>
+      <option value="McDonald County, Missouri">McDonald County, Missouri</option>
+      <option value="Mercer County, Missouri">Mercer County, Missouri</option>
+      <option value="Miller County, Missouri">Miller County, Missouri</option>
+      <option value="Mississippi County, Missouri">Mississippi County, Missouri</option>
+      <option value="Moniteau County, Missouri">Moniteau County, Missouri</option>
+      <option value="Monroe County, Missouri">Monroe County, Missouri</option>
+      <option value="Montgomery County, Missouri">Montgomery County, Missouri</option>
+      <option value="Morgan County, Missouri">Morgan County, Missouri</option>
+      <option value="New Madrid County, Missouri">New Madrid County, Missouri</option>
+      <option value="Newton County, Missouri">Newton County, Missouri</option>
+      <option value="Nodaway County, Missouri">Nodaway County, Missouri</option>
+      <option value="Oregon County, Missouri">Oregon County, Missouri</option>
+      <option value="Osage County, Missouri">Osage County, Missouri</option>
+      <option value="Ozark County, Missouri">Ozark County, Missouri</option>
+      <option value="Pemiscot County, Missouri">Pemiscot County, Missouri</option>
+      <option value="Perry County, Missouri">Perry County, Missouri</option>
+      <option value="Pettis County, Missouri">Pettis County, Missouri</option>
+      <option value="Phelps County, Missouri">Phelps County, Missouri</option>
+      <option value="Pike County, Missouri">Pike County, Missouri</option>
+      <option value="Platte County, Missouri">Platte County, Missouri</option>
+      <option value="Polk County, Missouri">Polk County, Missouri</option>
+      <option value="Pulaski County, Missouri">Pulaski County, Missouri</option>
+      <option value="Putnam County, Missouri">Putnam County, Missouri</option>
+      <option value="Ralls County, Missouri">Ralls County, Missouri</option>
+      <option value="Randolph County, Missouri">Randolph County, Missouri</option>
+      <option value="Ray County, Missouri">Ray County, Missouri</option>
+      <option value="Reynolds County, Missouri">Reynolds County, Missouri</option>
+      <option value="Ripley County, Missouri">Ripley County, Missouri</option>
+      <option value="Saline County, Missouri">Saline County, Missouri</option>
+      <option value="Schuyler County, Missouri">Schuyler County, Missouri</option>
+      <option value="Scotland County, Missouri">Scotland County, Missouri</option>
+      <option value="Scott County, Missouri">Scott County, Missouri</option>
+      <option value="Shannon County, Missouri">Shannon County, Missouri</option>
+      <option value="Shelby County, Missouri">Shelby County, Missouri</option>
+      <option value="St. Charles County, Missouri">St. Charles County, Missouri</option>
+      <option value="St. Clair County, Missouri">St. Clair County, Missouri</option>
+      <option value="St. Francois County, Missouri">St. Francois County, Missouri</option>
+      <option value="St. Louis city, Missouri">St. Louis city, Missouri</option>
+      <option value="St. Louis County, Missouri">St. Louis County, Missouri</option>
+      <option value="Ste. Genevieve County, Missouri">Ste. Genevieve County, Missouri</option>
+      <option value="Stoddard County, Missouri">Stoddard County, Missouri</option>
+      <option value="Stone County, Missouri">Stone County, Missouri</option>
+      <option value="Sullivan County, Missouri">Sullivan County, Missouri</option>
+      <option value="Taney County, Missouri">Taney County, Missouri</option>
+      <option value="Texas County, Missouri">Texas County, Missouri</option>
+      <option value="Vernon County, Missouri">Vernon County, Missouri</option>
+      <option value="Warren County, Missouri">Warren County, Missouri</option>
+      <option value="Washington County, Missouri">Washington County, Missouri</option>
+      <option value="Wayne County, Missouri">Wayne County, Missouri</option>
+      <option value="Webster County, Missouri">Webster County, Missouri</option>
+      <option value="Worth County, Missouri">Worth County, Missouri</option>
+      <option value="Wright County, Missouri">Wright County, Missouri</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>  const data = {"Statewide":{"Enrolled in College / Grad. School":38.8,"Not Enrolled":61.2},"Adair County, Missouri":{"Enrolled in College / Grad. School":70.5,"Not Enrolled":29.5},"Andrew County, Missouri":{"Enrolled in College / Grad. School":23.3,"Not Enrolled":76.7},"Atchison County, Missouri":{"Enrolled in College / Grad. School":27.1,"Not Enrolled":72.9},"Audrain County, Missouri":{"Enrolled in College / Grad. School":26.3,"Not Enrolled":73.7},"Barry County, Missouri":{"Enrolled in College / Grad. School":24.4,"Not Enrolled":75.6},"Barton County, Missouri":{"Enrolled in College / Grad. School":12.4,"Not Enrolled":87.6},"Bates County, Missouri":{"Enrolled in College / Grad. School":9.1,"Not Enrolled":90.9},"Benton County, Missouri":{"Enrolled in College / Grad. School":28.2,"Not Enrolled":71.8},"Bollinger County, Missouri":{"Enrolled in College / Grad. School":38,"Not Enrolled":62},"Boone County, Missouri":{"Enrolled in College / Grad. School":70.4,"Not Enrolled":29.6},"Buchanan County, Missouri":{"Enrolled in College / Grad. School":35.9,"Not Enrolled":64.1},"Butler County, Missouri":{"Enrolled in College / Grad. School":25.4,"Not Enrolled":74.6},"Caldwell County, Missouri":{"Enrolled in College / Grad. School":27.7,"Not Enrolled":72.3},"Callaway County, Missouri":{"Enrolled in College / Grad. School":47.6,"Not Enrolled":52.4},"Camden County, Missouri":{"Enrolled in College / Grad. School":29.6,"Not Enrolled":70.4},"Cape Girardeau County, Missouri":{"Enrolled in College / Grad. School":57.7,"Not Enrolled":42.3},"Carroll County, Missouri":{"Enrolled in College / Grad. School":22.2,"Not Enrolled":77.8},"Carter County, Missouri":{"Enrolled in College / Grad. School":33.4,"Not Enrolled":66.6},"Cass County, Missouri":{"Enrolled in College / Grad. School":28.1,"Not Enrolled":71.9},"Cedar County, Missouri":{"Enrolled in College / Grad. School":12.1,"Not Enrolled":87.9},"Chariton County, Missouri":{"Enrolled in College / Grad. School":31.1,"Not Enrolled":68.9},"Christian County, Missouri":{"Enrolled in College / Grad. School":38.8,"Not Enrolled":61.2},"Clark County, Missouri":{"Enrolled in College / Grad. School":36,"Not Enrolled":64},"Clay County, Missouri":{"Enrolled in College / Grad. School":33.7,"Not Enrolled":66.3},"Clinton County, Missouri":{"Enrolled in College / Grad. School":19,"Not Enrolled":81},"Cole County, Missouri":{"Enrolled in College / Grad. School":31.2,"Not Enrolled":68.8},"Cooper County, Missouri":{"Enrolled in College / Grad. School":26.6,"Not Enrolled":73.4},"Crawford County, Missouri":{"Enrolled in College / Grad. School":11.6,"Not Enrolled":88.4},"Dade County, Missouri":{"Enrolled in College / Grad. School":18,"Not Enrolled":82},"Dallas County, Missouri":{"Enrolled in College / Grad. School":19,"Not Enrolled":81},"Daviess County, Missouri":{"Enrolled in College / Grad. School":14.9,"Not Enrolled":85.1},"DeKalb County, Missouri":{"Enrolled in College / Grad. School":18.5,"Not Enrolled":81.5},"Dent County, Missouri":{"Enrolled in College / Grad. School":37.6,"Not Enrolled":62.4},"Douglas County, Missouri":{"Enrolled in College / Grad. School":12.2,"Not Enrolled":87.8},"Dunklin County, Missouri":{"Enrolled in College / Grad. School":15.3,"Not Enrolled":84.7},"Franklin County, Missouri":{"Enrolled in College / Grad. School":26.4,"Not Enrolled":73.6},"Gasconade County, Missouri":{"Enrolled in College / Grad. School":15.3,"Not Enrolled":84.7},"Gentry County, Missouri":{"Enrolled in College / Grad. School":15.2,"Not Enrolled":84.8},"Greene County, Missouri":{"Enrolled in College / Grad. School":49.8,"Not Enrolled":50.2},"Grundy County, Missouri":{"Enrolled in College / Grad. School":29.1,"Not Enrolled":70.9},"Harrison County, Missouri":{"Enrolled in College / Grad. School":23.3,"Not Enrolled":76.7},"Henry County, Missouri":{"Enrolled in College / Grad. School":9.5,"Not Enrolled":90.5},"Hickory County, Missouri":{"Enrolled in College / Grad. School":18.6,"Not Enrolled":81.4},"Holt County, Missouri":{"Enrolled in College / Grad. School":14,"Not Enrolled":86},"Howard County, Missouri":{"Enrolled in College / Grad. School":72.3,"Not Enrolled":27.7},"Howell County, Missouri":{"Enrolled in College / Grad. School":18,"Not Enrolled":82},"Iron County, Missouri":{"Enrolled in College / Grad. School":24.7,"Not Enrolled":75.3},"Jackson County, Missouri":{"Enrolled in College / Grad. School":31,"Not Enrolled":69},"Jasper County, Missouri":{"Enrolled in College / Grad. School":34.7,"Not Enrolled":65.3},"Jefferson County, Missouri":{"Enrolled in College / Grad. School":29.6,"Not Enrolled":70.4},"Johnson County, Missouri":{"Enrolled in College / Grad. School":55.9,"Not Enrolled":44.1},"Knox County, Missouri":{"Enrolled in College / Grad. School":38.6,"Not Enrolled":61.4},"Laclede County, Missouri":{"Enrolled in College / Grad. School":19,"Not Enrolled":81},"Lafayette County, Missouri":{"Enrolled in College / Grad. School":25.4,"Not Enrolled":74.6},"Lawrence County, Missouri":{"Enrolled in College / Grad. School":19,"Not Enrolled":81},"Lewis County, Missouri":{"Enrolled in College / Grad. School":46.9,"Not Enrolled":53.1},"Lincoln County, Missouri":{"Enrolled in College / Grad. School":25.1,"Not Enrolled":74.9},"Linn County, Missouri":{"Enrolled in College / Grad. School":15.3,"Not Enrolled":84.7},"Livingston County, Missouri":{"Enrolled in College / Grad. School":20.4,"Not Enrolled":79.6},"McDonald County, Missouri":{"Enrolled in College / Grad. School":10.1,"Not Enrolled":89.9},"Macon County, Missouri":{"Enrolled in College / Grad. School":30.9,"Not Enrolled":69.1},"Madison County, Missouri":{"Enrolled in College / Grad. School":20.5,"Not Enrolled":79.5},"Maries County, Missouri":{"Enrolled in College / Grad. School":17.3,"Not Enrolled":82.7},"Marion County, Missouri":{"Enrolled in College / Grad. School":36.6,"Not Enrolled":63.4},"Mercer County, Missouri":{"Enrolled in College / Grad. School":24.8,"Not Enrolled":75.2},"Miller County, Missouri":{"Enrolled in College / Grad. School":20.5,"Not Enrolled":79.5},"Mississippi County, Missouri":{"Enrolled in College / Grad. School":21.6,"Not Enrolled":78.4},"Moniteau County, Missouri":{"Enrolled in College / Grad. School":20.5,"Not Enrolled":79.5},"Monroe County, Missouri":{"Enrolled in College / Grad. School":18.8,"Not Enrolled":81.2},"Montgomery County, Missouri":{"Enrolled in College / Grad. School":25,"Not Enrolled":75},"Morgan County, Missouri":{"Enrolled in College / Grad. School":8.9,"Not Enrolled":91.1},"New Madrid County, Missouri":{"Enrolled in College / Grad. School":23.9,"Not Enrolled":76.1},"Newton County, Missouri":{"Enrolled in College / Grad. School":32.3,"Not Enrolled":67.7},"Nodaway County, Missouri":{"Enrolled in College / Grad. School":76.8,"Not Enrolled":23.2},"Oregon County, Missouri":{"Enrolled in College / Grad. School":7.8,"Not Enrolled":92.2},"Osage County, Missouri":{"Enrolled in College / Grad. School":55.5,"Not Enrolled":44.5},"Ozark County, Missouri":{"Enrolled in College / Grad. School":30.1,"Not Enrolled":69.9},"Pemiscot County, Missouri":{"Enrolled in College / Grad. School":23.7,"Not Enrolled":76.3},"Perry County, Missouri":{"Enrolled in College / Grad. School":30.6,"Not Enrolled":69.4},"Pettis County, Missouri":{"Enrolled in College / Grad. School":29.4,"Not Enrolled":70.6},"Phelps County, Missouri":{"Enrolled in College / Grad. School":72.8,"Not Enrolled":27.2},"Pike County, Missouri":{"Enrolled in College / Grad. School":10.2,"Not Enrolled":89.8},"Platte County, Missouri":{"Enrolled in College / Grad. School":36.7,"Not Enrolled":63.3},"Polk County, Missouri":{"Enrolled in College / Grad. School":45.3,"Not Enrolled":54.7},"Pulaski County, Missouri":{"Enrolled in College / Grad. School":16.9,"Not Enrolled":83.1},"Putnam County, Missouri":{"Enrolled in College / Grad. School":18.8,"Not Enrolled":81.2},"Ralls County, Missouri":{"Enrolled in College / Grad. School":32.4,"Not Enrolled":67.6},"Randolph County, Missouri":{"Enrolled in College / Grad. School":28.1,"Not Enrolled":71.9},"Ray County, Missouri":{"Enrolled in College / Grad. School":27.8,"Not Enrolled":72.2},"Reynolds County, Missouri":{"Enrolled in College / Grad. School":19.9,"Not Enrolled":80.1},"Ripley County, Missouri":{"Enrolled in College / Grad. School":19.2,"Not Enrolled":80.8},"St. Charles County, Missouri":{"Enrolled in College / Grad. School":43,"Not Enrolled":57},"St. Clair County, Missouri":{"Enrolled in College / Grad. School":10.1,"Not Enrolled":89.9},"Ste. Genevieve County, Missouri":{"Enrolled in College / Grad. School":32.7,"Not Enrolled":67.3},"St. Francois County, Missouri":{"Enrolled in College / Grad. School":19,"Not Enrolled":81},"St. Louis County, Missouri":{"Enrolled in College / Grad. School":40.9,"Not Enrolled":59.1},"Saline County, Missouri":{"Enrolled in College / Grad. School":57.7,"Not Enrolled":42.3},"Schuyler County, Missouri":{"Enrolled in College / Grad. School":35.3,"Not Enrolled":64.7},"Scotland County, Missouri":{"Enrolled in College / Grad. School":5.7,"Not Enrolled":94.3},"Scott County, Missouri":{"Enrolled in College / Grad. School":22.5,"Not Enrolled":77.5},"Shannon County, Missouri":{"Enrolled in College / Grad. School":13.3,"Not Enrolled":86.7},"Shelby County, Missouri":{"Enrolled in College / Grad. School":28.1,"Not Enrolled":71.9},"Stoddard County, Missouri":{"Enrolled in College / Grad. School":18.4,"Not Enrolled":81.6},"Stone County, Missouri":{"Enrolled in College / Grad. School":17.8,"Not Enrolled":82.2},"Sullivan County, Missouri":{"Enrolled in College / Grad. School":24.6,"Not Enrolled":75.4},"Taney County, Missouri":{"Enrolled in College / Grad. School":38.3,"Not Enrolled":61.7},"Texas County, Missouri":{"Enrolled in College / Grad. School":10.1,"Not Enrolled":89.9},"Vernon County, Missouri":{"Enrolled in College / Grad. School":34.5,"Not Enrolled":65.5},"Warren County, Missouri":{"Enrolled in College / Grad. School":20.7,"Not Enrolled":79.3},"Washington County, Missouri":{"Enrolled in College / Grad. School":19.3,"Not Enrolled":80.7},"Wayne County, Missouri":{"Enrolled in College / Grad. School":17.7,"Not Enrolled":82.3},"Webster County, Missouri":{"Enrolled in College / Grad. School":26,"Not Enrolled":74},"Worth County, Missouri":{"Enrolled in College / Grad. School":0,"Not Enrolled":100},"Wright County, Missouri":{"Enrolled in College / Grad. School":23.5,"Not Enrolled":76.5},"St. Louis city, Missouri":{"Enrolled in College / Grad. School":45.5,"Not Enrolled":54.5}};
+  const categories = ["Enrolled in College / Grad. School","Not Enrolled"];
+  const ctx = document.getElementById("barChart").getContext("2d");
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: categories,
+        datasets: [
+          {
+            label: "County/State",
+            data: values,
+            backgroundColor: ["#66c2a5", "#fc8d62"]
+          }
+        ]
+      },
+      options: {
+        indexAxis: "y",
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            ticks: {
+              callback: v => v + "%"
+            }
+          }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.dataset.label + ": " + ctx.raw + "%"
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById("countySelect").addEventListener("change", function() {
+    renderChart(Object.values(data[this.value]));
+  });
+
+  renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

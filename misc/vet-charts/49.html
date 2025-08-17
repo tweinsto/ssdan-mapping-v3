@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Veteran Labor Force Status – Utah</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Labor Force Status of Veterans (Age 18–64) in Utah</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Beaver County, Utah">Beaver County, Utah</option>
+      <option value="Box Elder County, Utah">Box Elder County, Utah</option>
+      <option value="Cache County, Utah">Cache County, Utah</option>
+      <option value="Carbon County, Utah">Carbon County, Utah</option>
+      <option value="Daggett County, Utah">Daggett County, Utah</option>
+      <option value="Davis County, Utah">Davis County, Utah</option>
+      <option value="Duchesne County, Utah">Duchesne County, Utah</option>
+      <option value="Emery County, Utah">Emery County, Utah</option>
+      <option value="Garfield County, Utah">Garfield County, Utah</option>
+      <option value="Grand County, Utah">Grand County, Utah</option>
+      <option value="Iron County, Utah">Iron County, Utah</option>
+      <option value="Juab County, Utah">Juab County, Utah</option>
+      <option value="Kane County, Utah">Kane County, Utah</option>
+      <option value="Millard County, Utah">Millard County, Utah</option>
+      <option value="Morgan County, Utah">Morgan County, Utah</option>
+      <option value="Piute County, Utah">Piute County, Utah</option>
+      <option value="Rich County, Utah">Rich County, Utah</option>
+      <option value="Salt Lake County, Utah">Salt Lake County, Utah</option>
+      <option value="San Juan County, Utah">San Juan County, Utah</option>
+      <option value="Sanpete County, Utah">Sanpete County, Utah</option>
+      <option value="Sevier County, Utah">Sevier County, Utah</option>
+      <option value="Summit County, Utah">Summit County, Utah</option>
+      <option value="Tooele County, Utah">Tooele County, Utah</option>
+      <option value="Uintah County, Utah">Uintah County, Utah</option>
+      <option value="Utah County, Utah">Utah County, Utah</option>
+      <option value="Wasatch County, Utah">Wasatch County, Utah</option>
+      <option value="Washington County, Utah">Washington County, Utah</option>
+      <option value="Wayne County, Utah">Wayne County, Utah</option>
+      <option value="Weber County, Utah">Weber County, Utah</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>        const data = {"Statewide":[78.6,2.4,19],"Beaver County, Utah":[32.4,0,67.6],"Box Elder County, Utah":[78.2,1.9,19.8],"Cache County, Utah":[79.8,1.1,19.2],"Carbon County, Utah":[58.9,0,41.1],"Daggett County, Utah":[50,0,50],"Davis County, Utah":[79.4,2.9,17.7],"Duchesne County, Utah":[80.4,1.2,18.4],"Emery County, Utah":[75.5,0,24.5],"Garfield County, Utah":[50,9.4,40.6],"Grand County, Utah":[69,0,31],"Iron County, Utah":[69.1,3.5,27.4],"Juab County, Utah":[74.6,0,25.4],"Kane County, Utah":[76.1,3.7,20.1],"Millard County, Utah":[85.9,0,14.1],"Morgan County, Utah":[85.5,0,14.5],"Piute County, Utah":[64.3,0,35.7],"Rich County, Utah":[56,0,44],"Salt Lake County, Utah":[80.6,2.3,17.1],"San Juan County, Utah":[77,4.7,18.4],"Sanpete County, Utah":[57.3,2.2,40.6],"Sevier County, Utah":[66.6,1.2,32.2],"Summit County, Utah":[88.5,1.5,10],"Tooele County, Utah":[80.6,1.6,17.8],"Uintah County, Utah":[58.8,1.1,40.1],"Utah County, Utah":[78.8,3.2,17.9],"Wasatch County, Utah":[84.4,0,15.6],"Washington County, Utah":[64.7,2.4,32.8],"Wayne County, Utah":[85.7,7.1,7.1],"Weber County, Utah":[81.6,2,16.4]};
+        const nationalAvg = [73.9,23,3.2];
+        const categories = ["Employed","Unemployed","Not in Labor Force"];
+        const ctx = document.getElementById("barChart").getContext("2d");
+        let chart;
+
+        function renderChart(values) {
+          if (chart) chart.destroy();
+          chart = new Chart(ctx, {
+            type: "bar",
+            data: {
+              labels: categories,
+              datasets: [
+                {
+                  label: "County/State",
+                  data: values,
+                  backgroundColor: ["#66c2a5", "#fc8d62", "#8da0cb"]
+                },
+                {
+                  label: null,
+                  data: categories.map(c => nationalAvg[c]),
+                  type: "line",
+                  borderColor: "black",
+                  borderWidth: 2,
+                  pointRadius: 0,
+                  fill: false
+                }
+              ]
+            },
+            options: {
+              indexAxis: "y",
+              scales: {
+                x: {
+                  min: 0,
+                  max: 100,
+                  ticks: {
+                    callback: v => v + "%"
+                  }
+                }
+              },
+              plugins: {
+                legend: {
+  display: false
+},
+                tooltip: {
+                  callbacks: {
+                    label: ctx => ctx.dataset.label ? ctx.dataset.label + ": " + ctx.raw + "%" : null
+                  }
+                }
+              }
+            }
+          });
+        }
+
+        document.getElementById("countySelect").addEventListener("change", function() {
+          renderChart(Object.values(data[this.value]));
+        });
+
+        renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

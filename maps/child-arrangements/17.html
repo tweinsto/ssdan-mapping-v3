@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Living Arrangements of Children – Illinois</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Children’s Living Arrangements (Under 18) – Illinois</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Adams County, Illinois">Adams County, Illinois</option>
+      <option value="Alexander County, Illinois">Alexander County, Illinois</option>
+      <option value="Bond County, Illinois">Bond County, Illinois</option>
+      <option value="Boone County, Illinois">Boone County, Illinois</option>
+      <option value="Brown County, Illinois">Brown County, Illinois</option>
+      <option value="Bureau County, Illinois">Bureau County, Illinois</option>
+      <option value="Calhoun County, Illinois">Calhoun County, Illinois</option>
+      <option value="Carroll County, Illinois">Carroll County, Illinois</option>
+      <option value="Cass County, Illinois">Cass County, Illinois</option>
+      <option value="Champaign County, Illinois">Champaign County, Illinois</option>
+      <option value="Christian County, Illinois">Christian County, Illinois</option>
+      <option value="Clark County, Illinois">Clark County, Illinois</option>
+      <option value="Clay County, Illinois">Clay County, Illinois</option>
+      <option value="Clinton County, Illinois">Clinton County, Illinois</option>
+      <option value="Coles County, Illinois">Coles County, Illinois</option>
+      <option value="Cook County, Illinois">Cook County, Illinois</option>
+      <option value="Crawford County, Illinois">Crawford County, Illinois</option>
+      <option value="Cumberland County, Illinois">Cumberland County, Illinois</option>
+      <option value="De Witt County, Illinois">De Witt County, Illinois</option>
+      <option value="DeKalb County, Illinois">DeKalb County, Illinois</option>
+      <option value="Douglas County, Illinois">Douglas County, Illinois</option>
+      <option value="DuPage County, Illinois">DuPage County, Illinois</option>
+      <option value="Edgar County, Illinois">Edgar County, Illinois</option>
+      <option value="Edwards County, Illinois">Edwards County, Illinois</option>
+      <option value="Effingham County, Illinois">Effingham County, Illinois</option>
+      <option value="Fayette County, Illinois">Fayette County, Illinois</option>
+      <option value="Ford County, Illinois">Ford County, Illinois</option>
+      <option value="Franklin County, Illinois">Franklin County, Illinois</option>
+      <option value="Fulton County, Illinois">Fulton County, Illinois</option>
+      <option value="Gallatin County, Illinois">Gallatin County, Illinois</option>
+      <option value="Greene County, Illinois">Greene County, Illinois</option>
+      <option value="Grundy County, Illinois">Grundy County, Illinois</option>
+      <option value="Hamilton County, Illinois">Hamilton County, Illinois</option>
+      <option value="Hancock County, Illinois">Hancock County, Illinois</option>
+      <option value="Hardin County, Illinois">Hardin County, Illinois</option>
+      <option value="Henderson County, Illinois">Henderson County, Illinois</option>
+      <option value="Henry County, Illinois">Henry County, Illinois</option>
+      <option value="Iroquois County, Illinois">Iroquois County, Illinois</option>
+      <option value="Jackson County, Illinois">Jackson County, Illinois</option>
+      <option value="Jasper County, Illinois">Jasper County, Illinois</option>
+      <option value="Jefferson County, Illinois">Jefferson County, Illinois</option>
+      <option value="Jersey County, Illinois">Jersey County, Illinois</option>
+      <option value="Jo Daviess County, Illinois">Jo Daviess County, Illinois</option>
+      <option value="Johnson County, Illinois">Johnson County, Illinois</option>
+      <option value="Kane County, Illinois">Kane County, Illinois</option>
+      <option value="Kankakee County, Illinois">Kankakee County, Illinois</option>
+      <option value="Kendall County, Illinois">Kendall County, Illinois</option>
+      <option value="Knox County, Illinois">Knox County, Illinois</option>
+      <option value="Lake County, Illinois">Lake County, Illinois</option>
+      <option value="LaSalle County, Illinois">LaSalle County, Illinois</option>
+      <option value="Lawrence County, Illinois">Lawrence County, Illinois</option>
+      <option value="Lee County, Illinois">Lee County, Illinois</option>
+      <option value="Livingston County, Illinois">Livingston County, Illinois</option>
+      <option value="Logan County, Illinois">Logan County, Illinois</option>
+      <option value="Macon County, Illinois">Macon County, Illinois</option>
+      <option value="Macoupin County, Illinois">Macoupin County, Illinois</option>
+      <option value="Madison County, Illinois">Madison County, Illinois</option>
+      <option value="Marion County, Illinois">Marion County, Illinois</option>
+      <option value="Marshall County, Illinois">Marshall County, Illinois</option>
+      <option value="Mason County, Illinois">Mason County, Illinois</option>
+      <option value="Massac County, Illinois">Massac County, Illinois</option>
+      <option value="McDonough County, Illinois">McDonough County, Illinois</option>
+      <option value="McHenry County, Illinois">McHenry County, Illinois</option>
+      <option value="McLean County, Illinois">McLean County, Illinois</option>
+      <option value="Menard County, Illinois">Menard County, Illinois</option>
+      <option value="Mercer County, Illinois">Mercer County, Illinois</option>
+      <option value="Monroe County, Illinois">Monroe County, Illinois</option>
+      <option value="Montgomery County, Illinois">Montgomery County, Illinois</option>
+      <option value="Morgan County, Illinois">Morgan County, Illinois</option>
+      <option value="Moultrie County, Illinois">Moultrie County, Illinois</option>
+      <option value="Ogle County, Illinois">Ogle County, Illinois</option>
+      <option value="Peoria County, Illinois">Peoria County, Illinois</option>
+      <option value="Perry County, Illinois">Perry County, Illinois</option>
+      <option value="Piatt County, Illinois">Piatt County, Illinois</option>
+      <option value="Pike County, Illinois">Pike County, Illinois</option>
+      <option value="Pope County, Illinois">Pope County, Illinois</option>
+      <option value="Pulaski County, Illinois">Pulaski County, Illinois</option>
+      <option value="Putnam County, Illinois">Putnam County, Illinois</option>
+      <option value="Randolph County, Illinois">Randolph County, Illinois</option>
+      <option value="Richland County, Illinois">Richland County, Illinois</option>
+      <option value="Rock Island County, Illinois">Rock Island County, Illinois</option>
+      <option value="Saline County, Illinois">Saline County, Illinois</option>
+      <option value="Sangamon County, Illinois">Sangamon County, Illinois</option>
+      <option value="Schuyler County, Illinois">Schuyler County, Illinois</option>
+      <option value="Scott County, Illinois">Scott County, Illinois</option>
+      <option value="Shelby County, Illinois">Shelby County, Illinois</option>
+      <option value="St. Clair County, Illinois">St. Clair County, Illinois</option>
+      <option value="Stark County, Illinois">Stark County, Illinois</option>
+      <option value="Stephenson County, Illinois">Stephenson County, Illinois</option>
+      <option value="Tazewell County, Illinois">Tazewell County, Illinois</option>
+      <option value="Union County, Illinois">Union County, Illinois</option>
+      <option value="Vermilion County, Illinois">Vermilion County, Illinois</option>
+      <option value="Wabash County, Illinois">Wabash County, Illinois</option>
+      <option value="Warren County, Illinois">Warren County, Illinois</option>
+      <option value="Washington County, Illinois">Washington County, Illinois</option>
+      <option value="Wayne County, Illinois">Wayne County, Illinois</option>
+      <option value="White County, Illinois">White County, Illinois</option>
+      <option value="Whiteside County, Illinois">Whiteside County, Illinois</option>
+      <option value="Will County, Illinois">Will County, Illinois</option>
+      <option value="Williamson County, Illinois">Williamson County, Illinois</option>
+      <option value="Winnebago County, Illinois">Winnebago County, Illinois</option>
+      <option value="Woodford County, Illinois">Woodford County, Illinois</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>  const data = {"Statewide":{"Married Couple (%)":66.9,"Cohabiting Couple (%)":8.2,"Male Householder (%)":4.5,"Female Householder (%)":20.4},"Adams County, Illinois":{"Married Couple (%)":68.5,"Cohabiting Couple (%)":11.2,"Male Householder (%)":4.1,"Female Householder (%)":16.2},"Alexander County, Illinois":{"Married Couple (%)":51.1,"Cohabiting Couple (%)":0.9,"Male Householder (%)":10.3,"Female Householder (%)":37.7},"Bond County, Illinois":{"Married Couple (%)":72.7,"Cohabiting Couple (%)":5.8,"Male Householder (%)":3.9,"Female Householder (%)":17.6},"Boone County, Illinois":{"Married Couple (%)":66.3,"Cohabiting Couple (%)":13.4,"Male Householder (%)":6.2,"Female Householder (%)":14.1},"Brown County, Illinois":{"Married Couple (%)":72.8,"Cohabiting Couple (%)":10.2,"Male Householder (%)":8.7,"Female Householder (%)":8.3},"Bureau County, Illinois":{"Married Couple (%)":67.9,"Cohabiting Couple (%)":12,"Male Householder (%)":2.6,"Female Householder (%)":17.5},"Calhoun County, Illinois":{"Married Couple (%)":87.7,"Cohabiting Couple (%)":2.8,"Male Householder (%)":0.1,"Female Householder (%)":9.4},"Carroll County, Illinois":{"Married Couple (%)":71.4,"Cohabiting Couple (%)":11.9,"Male Householder (%)":5.2,"Female Householder (%)":11.5},"Cass County, Illinois":{"Married Couple (%)":70.4,"Cohabiting Couple (%)":12.6,"Male Householder (%)":2.7,"Female Householder (%)":14.3},"Champaign County, Illinois":{"Married Couple (%)":64.4,"Cohabiting Couple (%)":7.7,"Male Householder (%)":4.2,"Female Householder (%)":23.8},"Christian County, Illinois":{"Married Couple (%)":69.9,"Cohabiting Couple (%)":7.3,"Male Householder (%)":4.7,"Female Householder (%)":18},"Clark County, Illinois":{"Married Couple (%)":65.4,"Cohabiting Couple (%)":9.6,"Male Householder (%)":8,"Female Householder (%)":17},"Clay County, Illinois":{"Married Couple (%)":66.5,"Cohabiting Couple (%)":14.6,"Male Householder (%)":6.1,"Female Householder (%)":12.8},"Clinton County, Illinois":{"Married Couple (%)":79.2,"Cohabiting Couple (%)":6.4,"Male Householder (%)":3.4,"Female Householder (%)":11.1},"Coles County, Illinois":{"Married Couple (%)":63,"Cohabiting Couple (%)":13.9,"Male Householder (%)":4.2,"Female Householder (%)":18.9},"Cook County, Illinois":{"Married Couple (%)":62.7,"Cohabiting Couple (%)":7.9,"Male Householder (%)":4.6,"Female Householder (%)":24.7},"Crawford County, Illinois":{"Married Couple (%)":75.2,"Cohabiting Couple (%)":7.3,"Male Householder (%)":4.6,"Female Householder (%)":12.9},"Cumberland County, Illinois":{"Married Couple (%)":78.2,"Cohabiting Couple (%)":8.1,"Male Householder (%)":1.8,"Female Householder (%)":11.8},"De Witt County, Illinois":{"Married Couple (%)":66.4,"Cohabiting Couple (%)":9,"Male Householder (%)":1.4,"Female Householder (%)":23.1},"DeKalb County, Illinois":{"Married Couple (%)":60.2,"Cohabiting Couple (%)":13.2,"Male Householder (%)":5.5,"Female Householder (%)":21.1},"Douglas County, Illinois":{"Married Couple (%)":78.6,"Cohabiting Couple (%)":8.4,"Male Householder (%)":2.3,"Female Householder (%)":10.8},"DuPage County, Illinois":{"Married Couple (%)":79.9,"Cohabiting Couple (%)":4.7,"Male Householder (%)":3.1,"Female Householder (%)":12.2},"Edgar County, Illinois":{"Married Couple (%)":69.2,"Cohabiting Couple (%)":10.4,"Male Householder (%)":3.5,"Female Householder (%)":16.9},"Edwards County, Illinois":{"Married Couple (%)":61.5,"Cohabiting Couple (%)":15.2,"Male Householder (%)":4,"Female Householder (%)":19.3},"Effingham County, Illinois":{"Married Couple (%)":74.6,"Cohabiting Couple (%)":8,"Male Householder (%)":5,"Female Householder (%)":12.4},"Fayette County, Illinois":{"Married Couple (%)":71.7,"Cohabiting Couple (%)":8.5,"Male Householder (%)":6.8,"Female Householder (%)":13.1},"Ford County, Illinois":{"Married Couple (%)":72.5,"Cohabiting Couple (%)":7.8,"Male Householder (%)":3.4,"Female Householder (%)":16.3},"Franklin County, Illinois":{"Married Couple (%)":68.5,"Cohabiting Couple (%)":5.7,"Male Householder (%)":6.7,"Female Householder (%)":19.1},"Fulton County, Illinois":{"Married Couple (%)":67.6,"Cohabiting Couple (%)":17.3,"Male Householder (%)":3.6,"Female Householder (%)":11.6},"Gallatin County, Illinois":{"Married Couple (%)":67.8,"Cohabiting Couple (%)":8,"Male Householder (%)":3.2,"Female Householder (%)":21},"Greene County, Illinois":{"Married Couple (%)":67.1,"Cohabiting Couple (%)":10.4,"Male Householder (%)":3.6,"Female Householder (%)":18.9},"Grundy County, Illinois":{"Married Couple (%)":75.4,"Cohabiting Couple (%)":5.4,"Male Householder (%)":5.5,"Female Householder (%)":13.6},"Hamilton County, Illinois":{"Married Couple (%)":73.3,"Cohabiting Couple (%)":10.2,"Male Householder (%)":12.6,"Female Householder (%)":3.8},"Hancock County, Illinois":{"Married Couple (%)":75.5,"Cohabiting Couple (%)":5.1,"Male Householder (%)":6.4,"Female Householder (%)":13.1},"Hardin County, Illinois":{"Married Couple (%)":56.6,"Cohabiting Couple (%)":20.6,"Male Householder (%)":1.6,"Female Householder (%)":21.2},"Henderson County, Illinois":{"Married Couple (%)":67.6,"Cohabiting Couple (%)":18.6,"Male Householder (%)":1.9,"Female Householder (%)":11.9},"Henry County, Illinois":{"Married Couple (%)":64.7,"Cohabiting Couple (%)":13.6,"Male Householder (%)":3.5,"Female Householder (%)":18.3},"Iroquois County, Illinois":{"Married Couple (%)":61.9,"Cohabiting Couple (%)":18.6,"Male Householder (%)":4.4,"Female Householder (%)":15.1},"Jackson County, Illinois":{"Married Couple (%)":61.2,"Cohabiting Couple (%)":9.7,"Male Householder (%)":3.7,"Female Householder (%)":25.4},"Jasper County, Illinois":{"Married Couple (%)":81.6,"Cohabiting Couple (%)":8.3,"Male Householder (%)":3.6,"Female Householder (%)":6.4},"Jefferson County, Illinois":{"Married Couple (%)":63.8,"Cohabiting Couple (%)":11,"Male Householder (%)":3.9,"Female Householder (%)":21.2},"Jersey County, Illinois":{"Married Couple (%)":67.2,"Cohabiting Couple (%)":14.1,"Male Householder (%)":5.1,"Female Householder (%)":13.5},"Jo Daviess County, Illinois":{"Married Couple (%)":71.5,"Cohabiting Couple (%)":8.8,"Male Householder (%)":2,"Female Householder (%)":17.8},"Johnson County, Illinois":{"Married Couple (%)":69,"Cohabiting Couple (%)":10.7,"Male Householder (%)":4.5,"Female Householder (%)":15.7},"Kane County, Illinois":{"Married Couple (%)":71.1,"Cohabiting Couple (%)":9.7,"Male Householder (%)":4.6,"Female Householder (%)":14.6},"Kankakee County, Illinois":{"Married Couple (%)":55.9,"Cohabiting Couple (%)":7.5,"Male Householder (%)":9,"Female Householder (%)":27.6},"Kendall County, Illinois":{"Married Couple (%)":74.7,"Cohabiting Couple (%)":8.9,"Male Householder (%)":4.4,"Female Householder (%)":12.1},"Knox County, Illinois":{"Married Couple (%)":58.7,"Cohabiting Couple (%)":16.7,"Male Householder (%)":3.5,"Female Householder (%)":21.1},"Lake County, Illinois":{"Married Couple (%)":74,"Cohabiting Couple (%)":6.8,"Male Householder (%)":4.1,"Female Householder (%)":15.1},"LaSalle County, Illinois":{"Married Couple (%)":62.9,"Cohabiting Couple (%)":14.3,"Male Householder (%)":4.4,"Female Householder (%)":18.5},"Lawrence County, Illinois":{"Married Couple (%)":67.5,"Cohabiting Couple (%)":11.1,"Male Householder (%)":2.7,"Female Householder (%)":18.8},"Lee County, Illinois":{"Married Couple (%)":63.9,"Cohabiting Couple (%)":12.4,"Male Householder (%)":4.1,"Female Householder (%)":19.6},"Livingston County, Illinois":{"Married Couple (%)":64.5,"Cohabiting Couple (%)":6.7,"Male Householder (%)":7.7,"Female Householder (%)":21},"Logan County, Illinois":{"Married Couple (%)":56.1,"Cohabiting Couple (%)":14.7,"Male Householder (%)":2.8,"Female Householder (%)":26.4},"Macon County, Illinois":{"Married Couple (%)":65.2,"Cohabiting Couple (%)":7.1,"Male Householder (%)":5.1,"Female Householder (%)":22.7},"Macoupin County, Illinois":{"Married Couple (%)":63,"Cohabiting Couple (%)":14.1,"Male Householder (%)":4,"Female Householder (%)":18.9},"Madison County, Illinois":{"Married Couple (%)":67.9,"Cohabiting Couple (%)":8.6,"Male Householder (%)":4.1,"Female Householder (%)":19.5},"Marion County, Illinois":{"Married Couple (%)":58.7,"Cohabiting Couple (%)":14.9,"Male Householder (%)":5,"Female Householder (%)":21.4},"Marshall County, Illinois":{"Married Couple (%)":65.6,"Cohabiting Couple (%)":16.1,"Male Householder (%)":2.9,"Female Householder (%)":15.5},"Mason County, Illinois":{"Married Couple (%)":68.3,"Cohabiting Couple (%)":18.8,"Male Householder (%)":3.7,"Female Householder (%)":9.2},"Massac County, Illinois":{"Married Couple (%)":64.9,"Cohabiting Couple (%)":10.9,"Male Householder (%)":5.5,"Female Householder (%)":18.7},"McDonough County, Illinois":{"Married Couple (%)":63.4,"Cohabiting Couple (%)":12.9,"Male Householder (%)":5.7,"Female Householder (%)":18.1},"McHenry County, Illinois":{"Married Couple (%)":77.1,"Cohabiting Couple (%)":7.4,"Male Householder (%)":3.4,"Female Householder (%)":12.1},"McLean County, Illinois":{"Married Couple (%)":72,"Cohabiting Couple (%)":5.7,"Male Householder (%)":3.5,"Female Householder (%)":18.9},"Menard County, Illinois":{"Married Couple (%)":74.5,"Cohabiting Couple (%)":10.1,"Male Householder (%)":3.9,"Female Householder (%)":11.5},"Mercer County, Illinois":{"Married Couple (%)":78.3,"Cohabiting Couple (%)":5.4,"Male Householder (%)":4.9,"Female Householder (%)":11.5},"Monroe County, Illinois":{"Married Couple (%)":82,"Cohabiting Couple (%)":5.3,"Male Householder (%)":2.1,"Female Householder (%)":10.6},"Montgomery County, Illinois":{"Married Couple (%)":73.7,"Cohabiting Couple (%)":7,"Male Householder (%)":6.1,"Female Householder (%)":13.2},"Morgan County, Illinois":{"Married Couple (%)":63.7,"Cohabiting Couple (%)":9.5,"Male Householder (%)":2.9,"Female Householder (%)":23.9},"Moultrie County, Illinois":{"Married Couple (%)":68.3,"Cohabiting Couple (%)":8.7,"Male Householder (%)":5,"Female Householder (%)":18},"Ogle County, Illinois":{"Married Couple (%)":71.7,"Cohabiting Couple (%)":9,"Male Householder (%)":3.7,"Female Householder (%)":15.6},"Peoria County, Illinois":{"Married Couple (%)":58.3,"Cohabiting Couple (%)":11.8,"Male Householder (%)":5.6,"Female Householder (%)":24.3},"Perry County, Illinois":{"Married Couple (%)":57.7,"Cohabiting Couple (%)":4.6,"Male Householder (%)":10.2,"Female Householder (%)":27.5},"Piatt County, Illinois":{"Married Couple (%)":76.4,"Cohabiting Couple (%)":9.3,"Male Householder (%)":5.9,"Female Householder (%)":8.4},"Pike County, Illinois":{"Married Couple (%)":59.3,"Cohabiting Couple (%)":9.6,"Male Householder (%)":7.6,"Female Householder (%)":23.5},"Pope County, Illinois":{"Married Couple (%)":69.8,"Cohabiting Couple (%)":9.7,"Male Householder (%)":4.1,"Female Householder (%)":16.5},"Pulaski County, Illinois":{"Married Couple (%)":43.7,"Cohabiting Couple (%)":9.1,"Male Householder (%)":5.1,"Female Householder (%)":42.1},"Putnam County, Illinois":{"Married Couple (%)":69.8,"Cohabiting Couple (%)":17.9,"Male Householder (%)":6.3,"Female Householder (%)":6},"Randolph County, Illinois":{"Married Couple (%)":63.2,"Cohabiting Couple (%)":11.8,"Male Householder (%)":6.5,"Female Householder (%)":18.5},"Richland County, Illinois":{"Married Couple (%)":69,"Cohabiting Couple (%)":13.6,"Male Householder (%)":5.7,"Female Householder (%)":11.7},"Rock Island County, Illinois":{"Married Couple (%)":60.8,"Cohabiting Couple (%)":10,"Male Householder (%)":4.9,"Female Householder (%)":24.4},"Saline County, Illinois":{"Married Couple (%)":62,"Cohabiting Couple (%)":10.6,"Male Householder (%)":3.2,"Female Householder (%)":24.2},"Sangamon County, Illinois":{"Married Couple (%)":61.3,"Cohabiting Couple (%)":7.8,"Male Householder (%)":4.7,"Female Householder (%)":26.2},"Schuyler County, Illinois":{"Married Couple (%)":70.8,"Cohabiting Couple (%)":11.1,"Male Householder (%)":8,"Female Householder (%)":10.1},"Scott County, Illinois":{"Married Couple (%)":67.1,"Cohabiting Couple (%)":6.6,"Male Householder (%)":1.7,"Female Householder (%)":24.6},"Shelby County, Illinois":{"Married Couple (%)":68.1,"Cohabiting Couple (%)":6.9,"Male Householder (%)":5.4,"Female Householder (%)":19.6},"St. Clair County, Illinois":{"Married Couple (%)":57.1,"Cohabiting Couple (%)":7.3,"Male Householder (%)":5.5,"Female Householder (%)":30},"Stark County, Illinois":{"Married Couple (%)":70.4,"Cohabiting Couple (%)":14.8,"Male Householder (%)":0.7,"Female Householder (%)":14.1},"Stephenson County, Illinois":{"Married Couple (%)":63.8,"Cohabiting Couple (%)":11.8,"Male Householder (%)":3.8,"Female Householder (%)":20.6},"Tazewell County, Illinois":{"Married Couple (%)":72.7,"Cohabiting Couple (%)":7.6,"Male Householder (%)":4.1,"Female Householder (%)":15.5},"Union County, Illinois":{"Married Couple (%)":71.3,"Cohabiting Couple (%)":11.5,"Male Householder (%)":7.5,"Female Householder (%)":9.7},"Vermilion County, Illinois":{"Married Couple (%)":50.5,"Cohabiting Couple (%)":11.9,"Male Householder (%)":5.9,"Female Householder (%)":31.6},"Wabash County, Illinois":{"Married Couple (%)":61.4,"Cohabiting Couple (%)":10.9,"Male Householder (%)":3.1,"Female Householder (%)":24.5},"Warren County, Illinois":{"Married Couple (%)":59.9,"Cohabiting Couple (%)":13.5,"Male Householder (%)":4.8,"Female Householder (%)":21.8},"Washington County, Illinois":{"Married Couple (%)":73.1,"Cohabiting Couple (%)":9,"Male Householder (%)":7,"Female Householder (%)":10.8},"Wayne County, Illinois":{"Married Couple (%)":77.3,"Cohabiting Couple (%)":7.3,"Male Householder (%)":3.4,"Female Householder (%)":11.9},"White County, Illinois":{"Married Couple (%)":57.3,"Cohabiting Couple (%)":12.2,"Male Householder (%)":6.6,"Female Householder (%)":23.8},"Whiteside County, Illinois":{"Married Couple (%)":60.3,"Cohabiting Couple (%)":14.5,"Male Householder (%)":7.5,"Female Householder (%)":17.6},"Will County, Illinois":{"Married Couple (%)":75.7,"Cohabiting Couple (%)":6.6,"Male Householder (%)":3.9,"Female Householder (%)":13.8},"Williamson County, Illinois":{"Married Couple (%)":62.3,"Cohabiting Couple (%)":10.9,"Male Householder (%)":6.6,"Female Householder (%)":20.1},"Winnebago County, Illinois":{"Married Couple (%)":56.1,"Cohabiting Couple (%)":10.2,"Male Householder (%)":5.2,"Female Householder (%)":28.5},"Woodford County, Illinois":{"Married Couple (%)":80,"Cohabiting Couple (%)":9.4,"Male Householder (%)":2.9,"Female Householder (%)":7.7}};
+  const categories = ["Married Couple (%)","Cohabiting Couple (%)","Male Householder (%)","Female Householder (%)"];
+  const ctx = document.getElementById("barChart").getContext("2d");
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: categories,
+        datasets: [{
+          label: "Share of Children (%)",
+          data: values,
+          backgroundColor: ["#5DA5DA","#FAA43A","#60BD68","#F17CB0"]
+        }]
+      },
+      options: {
+        indexAxis: "y",
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            ticks: { callback: v => v + "%" },
+            title: { display: true, text: "Percent of Children" }
+          }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.raw + "%"
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById("countySelect").addEventListener("change", function() {
+    renderChart(Object.values(data[this.value]));
+  });
+
+  renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

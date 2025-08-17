@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Internet Access Over Time –  Oklahoma</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+                      h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+                      select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; border-radius: 5px; border: 1px solid #999; }
+                      canvas { width: 100%; max-width: 850px; height: 450px; margin-top: 1rem; }</style>
+</head>
+<html>
+  <body>
+    <h2>Internet Access in  Oklahoma (2013–2023)</h2>
+    <label>Select County: </label>
+    <select id="countySelect"><option value='Statewide'>Statewide</option>
+<option value='Adair County, Oklahoma'>Adair County, Oklahoma</option>
+<option value='Alfalfa County, Oklahoma'>Alfalfa County, Oklahoma</option>
+<option value='Atoka County, Oklahoma'>Atoka County, Oklahoma</option>
+<option value='Beaver County, Oklahoma'>Beaver County, Oklahoma</option>
+<option value='Beckham County, Oklahoma'>Beckham County, Oklahoma</option>
+<option value='Blaine County, Oklahoma'>Blaine County, Oklahoma</option>
+<option value='Bryan County, Oklahoma'>Bryan County, Oklahoma</option>
+<option value='Caddo County, Oklahoma'>Caddo County, Oklahoma</option>
+<option value='Canadian County, Oklahoma'>Canadian County, Oklahoma</option>
+<option value='Carter County, Oklahoma'>Carter County, Oklahoma</option>
+<option value='Cherokee County, Oklahoma'>Cherokee County, Oklahoma</option>
+<option value='Choctaw County, Oklahoma'>Choctaw County, Oklahoma</option>
+<option value='Cimarron County, Oklahoma'>Cimarron County, Oklahoma</option>
+<option value='Cleveland County, Oklahoma'>Cleveland County, Oklahoma</option>
+<option value='Coal County, Oklahoma'>Coal County, Oklahoma</option>
+<option value='Comanche County, Oklahoma'>Comanche County, Oklahoma</option>
+<option value='Cotton County, Oklahoma'>Cotton County, Oklahoma</option>
+<option value='Craig County, Oklahoma'>Craig County, Oklahoma</option>
+<option value='Creek County, Oklahoma'>Creek County, Oklahoma</option>
+<option value='Custer County, Oklahoma'>Custer County, Oklahoma</option>
+<option value='Delaware County, Oklahoma'>Delaware County, Oklahoma</option>
+<option value='Dewey County, Oklahoma'>Dewey County, Oklahoma</option>
+<option value='Ellis County, Oklahoma'>Ellis County, Oklahoma</option>
+<option value='Garfield County, Oklahoma'>Garfield County, Oklahoma</option>
+<option value='Garvin County, Oklahoma'>Garvin County, Oklahoma</option>
+<option value='Grady County, Oklahoma'>Grady County, Oklahoma</option>
+<option value='Grant County, Oklahoma'>Grant County, Oklahoma</option>
+<option value='Greer County, Oklahoma'>Greer County, Oklahoma</option>
+<option value='Harmon County, Oklahoma'>Harmon County, Oklahoma</option>
+<option value='Harper County, Oklahoma'>Harper County, Oklahoma</option>
+<option value='Haskell County, Oklahoma'>Haskell County, Oklahoma</option>
+<option value='Hughes County, Oklahoma'>Hughes County, Oklahoma</option>
+<option value='Jackson County, Oklahoma'>Jackson County, Oklahoma</option>
+<option value='Jefferson County, Oklahoma'>Jefferson County, Oklahoma</option>
+<option value='Johnston County, Oklahoma'>Johnston County, Oklahoma</option>
+<option value='Kay County, Oklahoma'>Kay County, Oklahoma</option>
+<option value='Kingfisher County, Oklahoma'>Kingfisher County, Oklahoma</option>
+<option value='Kiowa County, Oklahoma'>Kiowa County, Oklahoma</option>
+<option value='Latimer County, Oklahoma'>Latimer County, Oklahoma</option>
+<option value='Le Flore County, Oklahoma'>Le Flore County, Oklahoma</option>
+<option value='Lincoln County, Oklahoma'>Lincoln County, Oklahoma</option>
+<option value='Logan County, Oklahoma'>Logan County, Oklahoma</option>
+<option value='Love County, Oklahoma'>Love County, Oklahoma</option>
+<option value='Major County, Oklahoma'>Major County, Oklahoma</option>
+<option value='Marshall County, Oklahoma'>Marshall County, Oklahoma</option>
+<option value='Mayes County, Oklahoma'>Mayes County, Oklahoma</option>
+<option value='McClain County, Oklahoma'>McClain County, Oklahoma</option>
+<option value='McCurtain County, Oklahoma'>McCurtain County, Oklahoma</option>
+<option value='McIntosh County, Oklahoma'>McIntosh County, Oklahoma</option>
+<option value='Murray County, Oklahoma'>Murray County, Oklahoma</option>
+<option value='Muskogee County, Oklahoma'>Muskogee County, Oklahoma</option>
+<option value='Noble County, Oklahoma'>Noble County, Oklahoma</option>
+<option value='Nowata County, Oklahoma'>Nowata County, Oklahoma</option>
+<option value='Okfuskee County, Oklahoma'>Okfuskee County, Oklahoma</option>
+<option value='Oklahoma County, Oklahoma'>Oklahoma County, Oklahoma</option>
+<option value='Okmulgee County, Oklahoma'>Okmulgee County, Oklahoma</option>
+<option value='Osage County, Oklahoma'>Osage County, Oklahoma</option>
+<option value='Ottawa County, Oklahoma'>Ottawa County, Oklahoma</option>
+<option value='Pawnee County, Oklahoma'>Pawnee County, Oklahoma</option>
+<option value='Payne County, Oklahoma'>Payne County, Oklahoma</option>
+<option value='Pittsburg County, Oklahoma'>Pittsburg County, Oklahoma</option>
+<option value='Pontotoc County, Oklahoma'>Pontotoc County, Oklahoma</option>
+<option value='Pottawatomie County, Oklahoma'>Pottawatomie County, Oklahoma</option>
+<option value='Pushmataha County, Oklahoma'>Pushmataha County, Oklahoma</option>
+<option value='Roger Mills County, Oklahoma'>Roger Mills County, Oklahoma</option>
+<option value='Rogers County, Oklahoma'>Rogers County, Oklahoma</option>
+<option value='Seminole County, Oklahoma'>Seminole County, Oklahoma</option>
+<option value='Sequoyah County, Oklahoma'>Sequoyah County, Oklahoma</option>
+<option value='Stephens County, Oklahoma'>Stephens County, Oklahoma</option>
+<option value='Texas County, Oklahoma'>Texas County, Oklahoma</option>
+<option value='Tillman County, Oklahoma'>Tillman County, Oklahoma</option>
+<option value='Tulsa County, Oklahoma'>Tulsa County, Oklahoma</option>
+<option value='Wagoner County, Oklahoma'>Wagoner County, Oklahoma</option>
+<option value='Washington County, Oklahoma'>Washington County, Oklahoma</option>
+<option value='Washita County, Oklahoma'>Washita County, Oklahoma</option>
+<option value='Woods County, Oklahoma'>Woods County, Oklahoma</option>
+<option value='Woodward County, Oklahoma'>Woodward County, Oklahoma</option></select>
+    <canvas id="lineChart" width="850" height="450"></canvas>
+    <script>const internetData = {"Statewide":{"2017":78,"2018":80.2,"2019":82.3,"2020":84.7,"2021":86.7,"2022":88.3,"2023":90},"Adair County, Oklahoma":{"2017":57.1,"2018":56,"2019":54.9,"2020":55.6,"2021":56.1,"2022":58,"2023":65.6},"Alfalfa County, Oklahoma":{"2017":78.1,"2018":78.9,"2019":79.5,"2020":83.2,"2021":84.1,"2022":86.6,"2023":87.4},"Atoka County, Oklahoma":{"2017":69.8,"2018":70.3,"2019":70.8,"2020":74.4,"2021":76.4,"2022":77.7,"2023":81},"Beaver County, Oklahoma":{"2017":72.5,"2018":75.5,"2019":78.9,"2020":84.7,"2021":88.9,"2022":89.8,"2023":90},"Beckham County, Oklahoma":{"2017":76,"2018":79.6,"2019":81.1,"2020":79.9,"2021":86.2,"2022":89.7,"2023":88.8},"Blaine County, Oklahoma":{"2017":66,"2018":70,"2019":74.8,"2020":76.2,"2021":80.8,"2022":84.3,"2023":85},"Bryan County, Oklahoma":{"2017":71.3,"2018":74.5,"2019":76.8,"2020":78.9,"2021":81.4,"2022":83.1,"2023":85.7},"Caddo County, Oklahoma":{"2017":62.7,"2018":66.6,"2019":71.7,"2020":75.5,"2021":78.1,"2022":82.9,"2023":84.9},"Canadian County, Oklahoma":{"2017":85.9,"2018":87.4,"2019":88.4,"2020":91.1,"2021":93.1,"2022":94,"2023":94.9},"Carter County, Oklahoma":{"2017":70.4,"2018":72.6,"2019":75.4,"2020":75.3,"2021":78.6,"2022":82.5,"2023":85.6},"Cherokee County, Oklahoma":{"2017":65.4,"2018":68.6,"2019":73.8,"2020":77.1,"2021":80.6,"2022":81.8,"2023":85.6},"Choctaw County, Oklahoma":{"2017":56.9,"2018":62.3,"2019":67.5,"2020":70.5,"2021":75.4,"2022":75.3,"2023":77.2},"Cimarron County, Oklahoma":{"2017":69.1,"2018":71.7,"2019":72.9,"2020":69.7,"2021":68.5,"2022":71.9,"2023":80.9},"Cleveland County, Oklahoma":{"2017":88,"2018":89.2,"2019":90.5,"2020":92.4,"2021":93.2,"2022":93.7,"2023":94.8},"Coal County, Oklahoma":{"2017":63.8,"2018":66.6,"2019":66.8,"2020":71,"2021":76.6,"2022":79.3,"2023":81.4},"Comanche County, Oklahoma":{"2017":82.2,"2018":84.8,"2019":87.5,"2020":88.7,"2021":89.9,"2022":90.7,"2023":91.4},"Cotton County, Oklahoma":{"2017":74.7,"2018":76.4,"2019":78.3,"2020":83.7,"2021":82.8,"2022":86.2,"2023":87.6},"Craig County, Oklahoma":{"2017":65.5,"2018":68.9,"2019":72.2,"2020":74.7,"2021":74.9,"2022":74.7,"2023":76.2},"Creek County, Oklahoma":{"2017":75.5,"2018":77.7,"2019":81,"2020":83.5,"2021":85.5,"2022":86.9,"2023":88.8},"Custer County, Oklahoma":{"2017":79.1,"2018":81.5,"2019":82.1,"2020":85.9,"2021":90.3,"2022":91.2,"2023":92.8},"Delaware County, Oklahoma":{"2017":71.8,"2018":72.8,"2019":73.3,"2020":76.1,"2021":78.6,"2022":81.3,"2023":84.8},"Dewey County, Oklahoma":{"2017":67.8,"2018":75.7,"2019":78.4,"2020":81.9,"2021":84.4,"2022":85.5,"2023":85.5},"Ellis County, Oklahoma":{"2017":69.4,"2018":73.7,"2019":74.8,"2020":77.2,"2021":81.2,"2022":84.8,"2023":85.8},"Garfield County, Oklahoma":{"2017":78.1,"2018":80.5,"2019":82,"2020":84,"2021":84.9,"2022":88.2,"2023":89.2},"Garvin County, Oklahoma":{"2017":70.9,"2018":74.8,"2019":79.2,"2020":81.9,"2021":85.7,"2022":86.7,"2023":88.2},"Grady County, Oklahoma":{"2017":77.5,"2018":79.8,"2019":82.2,"2020":83.3,"2021":85.2,"2022":86.9,"2023":88.4},"Grant County, Oklahoma":{"2017":75.1,"2018":76.9,"2019":75.6,"2020":75.6,"2021":74.1,"2022":75.8,"2023":78},"Greer County, Oklahoma":{"2017":72.4,"2018":71.9,"2019":74.5,"2020":77.1,"2021":79.6,"2022":79.8,"2023":81.7},"Harmon County, Oklahoma":{"2017":75.5,"2018":79.2,"2019":81,"2020":82,"2021":81,"2022":83.5,"2023":83.3},"Harper County, Oklahoma":{"2017":67.1,"2018":72.2,"2019":70.6,"2020":73.1,"2021":78.7,"2022":82.6,"2023":83},"Haskell County, Oklahoma":{"2017":66.2,"2018":69.2,"2019":72.4,"2020":75.3,"2021":77.2,"2022":79.3,"2023":82.1},"Hughes County, Oklahoma":{"2017":57,"2018":56.7,"2019":58.2,"2020":63.2,"2021":70.9,"2022":75.8,"2023":80.5},"Jackson County, Oklahoma":{"2017":79.7,"2018":82.6,"2019":85.9,"2020":88.1,"2021":88,"2022":90,"2023":90.4},"Jefferson County, Oklahoma":{"2017":61.7,"2018":65.9,"2019":70.5,"2020":70.3,"2021":72.2,"2022":75.3,"2023":78.8},"Johnston County, Oklahoma":{"2017":63.1,"2018":64.3,"2019":66.8,"2020":69.8,"2021":72.8,"2022":77.9,"2023":82.5},"Kay County, Oklahoma":{"2017":74.8,"2018":75.9,"2019":77.4,"2020":79.5,"2021":81.4,"2022":83.4,"2023":85.8},"Kingfisher County, Oklahoma":{"2017":72.5,"2018":75.4,"2019":77.9,"2020":85.7,"2021":87.1,"2022":87.8,"2023":90.9},"Kiowa County, Oklahoma":{"2017":71.3,"2018":72.5,"2019":74.7,"2020":78.4,"2021":81.7,"2022":82.9,"2023":87.2},"Latimer County, Oklahoma":{"2017":66.1,"2018":69.3,"2019":72.2,"2020":75.5,"2021":75.7,"2022":79.9,"2023":81.9},"Le Flore County, Oklahoma":{"2017":66.1,"2018":69.5,"2019":71.5,"2020":74.4,"2021":75.4,"2022":77.3,"2023":80.2},"Lincoln County, Oklahoma":{"2017":64.6,"2018":66.4,"2019":69.6,"2020":71.2,"2021":74.6,"2022":78.3,"2023":81.2},"Logan County, Oklahoma":{"2017":77.6,"2018":80.3,"2019":82.9,"2020":86.5,"2021":88.1,"2022":90.9,"2023":93},"Love County, Oklahoma":{"2017":69.9,"2018":72.8,"2019":75.8,"2020":78.5,"2021":81.6,"2022":83.2,"2023":86.7},"Major County, Oklahoma":{"2017":70.4,"2018":76.3,"2019":78.1,"2020":84.7,"2021":88.4,"2022":90.3,"2023":90.8},"Marshall County, Oklahoma":{"2017":68.6,"2018":70.2,"2019":68.5,"2020":71,"2021":73.9,"2022":80.6,"2023":83.4},"Mayes County, Oklahoma":{"2017":75.4,"2018":79.3,"2019":81.4,"2020":83.7,"2021":84.6,"2022":87.1,"2023":88.8},"McClain County, Oklahoma":{"2017":83,"2018":85.1,"2019":87.9,"2020":89.8,"2021":90.7,"2022":91.5,"2023":93.5},"McCurtain County, Oklahoma":{"2017":58,"2018":60.4,"2019":64,"2020":69.8,"2021":72.9,"2022":76.2,"2023":79.6},"McIntosh County, Oklahoma":{"2017":66,"2018":68.4,"2019":69.6,"2020":71.8,"2021":71.3,"2022":75.2,"2023":78.4},"Murray County, Oklahoma":{"2017":71.6,"2018":70.9,"2019":73.5,"2020":74.5,"2021":74,"2022":75.8,"2023":79.7},"Muskogee County, Oklahoma":{"2017":71,"2018":73.7,"2019":76.5,"2020":79.2,"2021":80.3,"2022":83.3,"2023":85.3},"Noble County, Oklahoma":{"2017":69.8,"2018":72.8,"2019":77,"2020":78.5,"2021":80.3,"2022":82.7,"2023":84.4},"Nowata County, Oklahoma":{"2017":64.7,"2018":66.2,"2019":66.8,"2020":68.4,"2021":68,"2022":69.9,"2023":72.4},"Okfuskee County, Oklahoma":{"2017":60.5,"2018":64.4,"2019":67.5,"2020":69.9,"2021":72.9,"2022":77.1,"2023":79.5},"Oklahoma County, Oklahoma":{"2017":81.7,"2018":83.4,"2019":85.4,"2020":88,"2021":89.7,"2022":91.3,"2023":92.7},"Okmulgee County, Oklahoma":{"2017":65.4,"2018":68.8,"2019":72.1,"2020":74.9,"2021":79,"2022":82,"2023":83.9},"Osage County, Oklahoma":{"2017":74.5,"2018":75.9,"2019":77.2,"2020":80.4,"2021":82.1,"2022":84.8,"2023":88.2},"Ottawa County, Oklahoma":{"2017":68.6,"2018":71.6,"2019":74.6,"2020":76.7,"2021":78.5,"2022":80.7,"2023":82.6},"Pawnee County, Oklahoma":{"2017":70.4,"2018":70.5,"2019":71.7,"2020":74.4,"2021":74.9,"2022":78.1,"2023":82.3},"Payne County, Oklahoma":{"2017":83.2,"2018":84.7,"2019":86.1,"2020":88.2,"2021":89.9,"2022":90.6,"2023":92},"Pittsburg County, Oklahoma":{"2017":72.9,"2018":75.8,"2019":78.7,"2020":81,"2021":83.3,"2022":85.2,"2023":87.2},"Pontotoc County, Oklahoma":{"2017":68.8,"2018":69,"2019":71.9,"2020":73.8,"2021":77.3,"2022":81,"2023":86},"Pottawatomie County, Oklahoma":{"2017":74.9,"2018":78.6,"2019":81.3,"2020":84,"2021":86.7,"2022":86.8,"2023":88.8},"Pushmataha County, Oklahoma":{"2017":63.1,"2018":65.9,"2019":67.1,"2020":70.5,"2021":71.4,"2022":71.4,"2023":74.1},"Roger Mills County, Oklahoma":{"2017":65.6,"2018":68.9,"2019":73.3,"2020":81.9,"2021":85.6,"2022":89.6,"2023":88.8},"Rogers County, Oklahoma":{"2017":80.2,"2018":82,"2019":83.7,"2020":86.2,"2021":87.7,"2022":89.3,"2023":90.7},"Seminole County, Oklahoma":{"2017":65.6,"2018":68.2,"2019":69.7,"2020":71.4,"2021":72.6,"2022":76,"2023":80.4},"Sequoyah County, Oklahoma":{"2017":69.3,"2018":72.1,"2019":75,"2020":76.7,"2021":78.7,"2022":79,"2023":81.7},"Stephens County, Oklahoma":{"2017":73.5,"2018":77.1,"2019":80.4,"2020":81.7,"2021":84,"2022":85,"2023":86.5},"Texas County, Oklahoma":{"2017":68.3,"2018":76,"2019":79.4,"2020":84.2,"2021":89.3,"2022":90.6,"2023":91.2},"Tillman County, Oklahoma":{"2017":70.6,"2018":73.8,"2019":75.5,"2020":76.3,"2021":77.6,"2022":78.1,"2023":80.7},"Tulsa County, Oklahoma":{"2017":82.6,"2018":85,"2019":86.9,"2020":89.2,"2021":90.5,"2022":91.7,"2023":92.9},"Wagoner County, Oklahoma":{"2017":85.2,"2018":87.7,"2019":88.9,"2020":89.8,"2021":90.8,"2022":92,"2023":93},"Washington County, Oklahoma":{"2017":78.4,"2018":79.6,"2019":81.8,"2020":82.7,"2021":84.8,"2022":87.1,"2023":88.8},"Washita County, Oklahoma":{"2017":71.7,"2018":73.3,"2019":77.3,"2020":81.2,"2021":84.5,"2022":84.6,"2023":86.8},"Woods County, Oklahoma":{"2017":77.6,"2018":80.4,"2019":80.9,"2020":82.9,"2021":85.8,"2022":84.9,"2023":84.6},"Woodward County, Oklahoma":{"2017":79.4,"2018":81.4,"2019":81.4,"2020":85,"2021":84.7,"2022":85.2,"2023":87.7}};
+const ctx = document.getElementById('lineChart').getContext('2d');
+let chart;
+
+function renderChart(data) {
+  const labels = Object.keys(data);
+  const values = Object.values(data);
+
+  if (chart) chart.destroy();
+  chart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: labels,
+      datasets: [{
+        label: '% With Internet',
+        data: values,
+        fill: false,
+        borderColor: 'teal',
+        backgroundColor: 'teal',
+        tension: 0.3,
+        pointRadius: 4
+      }]
+    },
+    options: {
+      responsive: true,
+      scales: {
+        y: {
+          beginAtZero: true,
+          max: 100,
+          title: { display: true, text: '% With Internet' }
+        },
+        x: {
+          title: { display: true, text: 'Year' }
+        }
+      },
+      plugins: {
+        tooltip: {
+          callbacks: {
+            label: function(ctx) {
+              return ctx.parsed.y.toFixed(1) + '%';
+            }
+          }
+        }
+      }
+    }
+  });
+}
+
+document.getElementById('countySelect').addEventListener('change', function() {
+  renderChart(internetData[this.value]);
+});
+renderChart(internetData['Statewide']);</script>
+  </body>
+</html>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+
+</head>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Industry Composition – 09</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #fff;
+    }
+    .container {
+      width: 95%;
+      max-width: 1200px;
+      margin: auto;
+      text-align: center;
+    }
+    canvas {
+  max-width: 100%;
+}
+    #countySelect {
+      font-size: 1rem;
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Industry Composition (Percent)</h2>
+    <select id="countySelect"></select>
+    <canvas id="pieChart"></canvas>
+  </div>
+
+  <script>
+    const data = {"Statewide":{"Agriculture & mining":0.4,"Arts & food services":7.9,"Construction":6.1,"Education & health":26.7,"Finance & real estate":8.9,"Information":2,"Manufacturing":10.6,"Other services":4.3,"Prof. & waste services":12.2,"Public administration":3.7,"Retail trade":10.5,"Transport & utilities":4.6,"Wholesale trade":2},"Capitol Planning Region":{"Agriculture & mining":0.4,"Arts & food services":7.4,"Construction":5.1,"Education & health":26.5,"Finance & real estate":10.5,"Information":1.6,"Manufacturing":10.8,"Other services":4,"Prof. & waste services":11.4,"Public administration":4.2,"Retail trade":10.5,"Transport & utilities":5.4,"Wholesale trade":2.2},"Greater Bridgeport Planning Region":{"Agriculture & mining":0.3,"Arts & food services":7.6,"Construction":7.1,"Education & health":25.8,"Finance & real estate":9,"Information":2.1,"Manufacturing":8.7,"Other services":4.5,"Prof. & waste services":13.7,"Public administration":2.9,"Retail trade":11.5,"Transport & utilities":4.7,"Wholesale trade":2.2},"Lower Connecticut River Valley Planning Region":{"Agriculture & mining":0.5,"Arts & food services":8.5,"Construction":6.7,"Education & health":26.8,"Finance & real estate":7.6,"Information":1.7,"Manufacturing":12.2,"Other services":3.8,"Prof. & waste services":11.8,"Public administration":4.1,"Retail trade":10,"Transport & utilities":4.4,"Wholesale trade":1.9},"Naugatuck Valley Planning Region":{"Agriculture & mining":0.3,"Arts & food services":7.1,"Construction":6.6,"Education & health":28.1,"Finance & real estate":7,"Information":1.8,"Manufacturing":12,"Other services":4.7,"Prof. & waste services":10.6,"Public administration":4.1,"Retail trade":11.2,"Transport & utilities":4.7,"Wholesale trade":1.9},"Northeastern Connecticut Planning Region":{"Agriculture & mining":1.6,"Arts & food services":7.4,"Construction":7,"Education & health":24.6,"Finance & real estate":5.9,"Information":1.3,"Manufacturing":15,"Other services":2.9,"Prof. & waste services":8.1,"Public administration":4.3,"Retail trade":13.2,"Transport & utilities":6.9,"Wholesale trade":1.7},"Northwest Hills Planning Region":{"Agriculture & mining":1.5,"Arts & food services":7,"Construction":9,"Education & health":27.1,"Finance & real estate":7.8,"Information":2.1,"Manufacturing":10.9,"Other services":4,"Prof. & waste services":11.8,"Public administration":3.3,"Retail trade":9.8,"Transport & utilities":3.7,"Wholesale trade":1.8},"South Central Connecticut Planning Region":{"Agriculture & mining":0.2,"Arts & food services":8,"Construction":5.6,"Education & health":33.3,"Finance & real estate":6.2,"Information":1.9,"Manufacturing":10.4,"Other services":4.2,"Prof. & waste services":10.4,"Public administration":3.7,"Retail trade":9.8,"Transport & utilities":4.5,"Wholesale trade":1.8},"Southeastern Connecticut Planning Region":{"Agriculture & mining":0.6,"Arts & food services":13,"Construction":6.2,"Education & health":26,"Finance & real estate":4.3,"Information":1.5,"Manufacturing":14.6,"Other services":3.9,"Prof. & waste services":9.3,"Public administration":4.8,"Retail trade":10.7,"Transport & utilities":3.8,"Wholesale trade":1.4},"Western Connecticut Planning Region":{"Agriculture & mining":0.2,"Arts & food services":7.4,"Construction":6.6,"Education & health":21.4,"Finance & real estate":13,"Information":3.1,"Manufacturing":7.9,"Other services":5,"Prof. & waste services":17.3,"Public administration":2.3,"Retail trade":9.9,"Transport & utilities":3.5,"Wholesale trade":2.4}};
+    const colors = {
+  'Agriculture & mining': '#FFFF01',
+  'Arts & food services': '#00008B',
+  'Construction': '#7570B1',
+  'Education & health': '#66A61E',
+  'Finance & real estate': '#E6AB01',
+  'Information': '#379',
+  'Manufacturing': '#E41A1C',
+  'Other services': '#377EF1',
+  'Prof. & waste services': '#FF7F00',
+  'Public administration': '#1B9E77',
+  'Retail trade': '#A65011',
+  'Transport & utilities': '#F781BF',
+  'Wholesale trade': '#919'
+};
+
+    const ctx = document.getElementById("pieChart").getContext("2d");
+    let chart;
+
+    function renderChart(county) {
+      const values = data[county];
+      const labels = Object.keys(values);
+      const percentages = Object.values(values);
+
+      if (chart) chart.destroy();
+
+      chart = new Chart(ctx, {
+        type: "pie",
+        data: {
+          labels: labels,
+          datasets: [{
+            data: percentages,
+            backgroundColor: labels.map(label => colors[label] || "#cccccc")
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: true,
+  aspectRatio: 1.5, // You can tweak this (e.g., 1.3, 1.5, 2)
+          plugins: {
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  return context.label + ": " + context.formattedValue + "%";
+                }
+              }
+            },
+            legend: {
+              position: "right",
+              labels: {
+                usePointStyle: true,
+                pointStyle: "rect"
+              }
+            }
+          }
+        }
+      });
+    }
+
+    const select = document.getElementById("countySelect");
+    Object.keys(data).forEach(county => {
+      const opt = document.createElement("option");
+      opt.value = county;
+      opt.text = county;
+      select.appendChild(opt);
+    });
+    select.value = "Statewide";
+    select.addEventListener("change", () => renderChart(select.value));
+    renderChart("Statewide");
+  </script>
+</body>
+</html>
+</html>

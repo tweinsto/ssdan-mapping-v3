@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Age Distribution Under 18 –  Nebraska</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          margin: 1rem 2rem;
+          text-align: center;
+        }
+        h2 {
+          margin-bottom: 0.25rem;
+          font-size: 1.6rem;
+        }
+        select {
+          padding: 0.4rem;
+          font-size: 1rem;
+          margin: 1rem 0;
+          border-radius: 5px;
+          border: 1px solid #999;
+        }
+        canvas {
+          width: 100%;
+          max-width: 850px;
+          height: 500px;
+          margin-top: 1rem;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Age Distribution Under 18 in  Nebraska (2023)</h2>
+    <label>Select County:</label>
+            <select id="countySelect">
+          <option value='Statewide'>Statewide</option>
+<option value='Adams County, Nebraska'>Adams County, Nebraska</option>
+<option value='Antelope County, Nebraska'>Antelope County, Nebraska</option>
+<option value='Arthur County, Nebraska'>Arthur County, Nebraska</option>
+<option value='Banner County, Nebraska'>Banner County, Nebraska</option>
+<option value='Blaine County, Nebraska'>Blaine County, Nebraska</option>
+<option value='Boone County, Nebraska'>Boone County, Nebraska</option>
+<option value='Box Butte County, Nebraska'>Box Butte County, Nebraska</option>
+<option value='Boyd County, Nebraska'>Boyd County, Nebraska</option>
+<option value='Brown County, Nebraska'>Brown County, Nebraska</option>
+<option value='Buffalo County, Nebraska'>Buffalo County, Nebraska</option>
+<option value='Burt County, Nebraska'>Burt County, Nebraska</option>
+<option value='Butler County, Nebraska'>Butler County, Nebraska</option>
+<option value='Cass County, Nebraska'>Cass County, Nebraska</option>
+<option value='Cedar County, Nebraska'>Cedar County, Nebraska</option>
+<option value='Chase County, Nebraska'>Chase County, Nebraska</option>
+<option value='Cherry County, Nebraska'>Cherry County, Nebraska</option>
+<option value='Cheyenne County, Nebraska'>Cheyenne County, Nebraska</option>
+<option value='Clay County, Nebraska'>Clay County, Nebraska</option>
+<option value='Colfax County, Nebraska'>Colfax County, Nebraska</option>
+<option value='Cuming County, Nebraska'>Cuming County, Nebraska</option>
+<option value='Custer County, Nebraska'>Custer County, Nebraska</option>
+<option value='Dakota County, Nebraska'>Dakota County, Nebraska</option>
+<option value='Dawes County, Nebraska'>Dawes County, Nebraska</option>
+<option value='Dawson County, Nebraska'>Dawson County, Nebraska</option>
+<option value='Deuel County, Nebraska'>Deuel County, Nebraska</option>
+<option value='Dixon County, Nebraska'>Dixon County, Nebraska</option>
+<option value='Dodge County, Nebraska'>Dodge County, Nebraska</option>
+<option value='Douglas County, Nebraska'>Douglas County, Nebraska</option>
+<option value='Dundy County, Nebraska'>Dundy County, Nebraska</option>
+<option value='Fillmore County, Nebraska'>Fillmore County, Nebraska</option>
+<option value='Franklin County, Nebraska'>Franklin County, Nebraska</option>
+<option value='Frontier County, Nebraska'>Frontier County, Nebraska</option>
+<option value='Furnas County, Nebraska'>Furnas County, Nebraska</option>
+<option value='Gage County, Nebraska'>Gage County, Nebraska</option>
+<option value='Garden County, Nebraska'>Garden County, Nebraska</option>
+<option value='Garfield County, Nebraska'>Garfield County, Nebraska</option>
+<option value='Gosper County, Nebraska'>Gosper County, Nebraska</option>
+<option value='Grant County, Nebraska'>Grant County, Nebraska</option>
+<option value='Greeley County, Nebraska'>Greeley County, Nebraska</option>
+<option value='Hall County, Nebraska'>Hall County, Nebraska</option>
+<option value='Hamilton County, Nebraska'>Hamilton County, Nebraska</option>
+<option value='Harlan County, Nebraska'>Harlan County, Nebraska</option>
+<option value='Hayes County, Nebraska'>Hayes County, Nebraska</option>
+<option value='Hitchcock County, Nebraska'>Hitchcock County, Nebraska</option>
+<option value='Holt County, Nebraska'>Holt County, Nebraska</option>
+<option value='Hooker County, Nebraska'>Hooker County, Nebraska</option>
+<option value='Howard County, Nebraska'>Howard County, Nebraska</option>
+<option value='Jefferson County, Nebraska'>Jefferson County, Nebraska</option>
+<option value='Johnson County, Nebraska'>Johnson County, Nebraska</option>
+<option value='Kearney County, Nebraska'>Kearney County, Nebraska</option>
+<option value='Keith County, Nebraska'>Keith County, Nebraska</option>
+<option value='Keya Paha County, Nebraska'>Keya Paha County, Nebraska</option>
+<option value='Kimball County, Nebraska'>Kimball County, Nebraska</option>
+<option value='Knox County, Nebraska'>Knox County, Nebraska</option>
+<option value='Lancaster County, Nebraska'>Lancaster County, Nebraska</option>
+<option value='Lincoln County, Nebraska'>Lincoln County, Nebraska</option>
+<option value='Logan County, Nebraska'>Logan County, Nebraska</option>
+<option value='Loup County, Nebraska'>Loup County, Nebraska</option>
+<option value='Madison County, Nebraska'>Madison County, Nebraska</option>
+<option value='McPherson County, Nebraska'>McPherson County, Nebraska</option>
+<option value='Merrick County, Nebraska'>Merrick County, Nebraska</option>
+<option value='Morrill County, Nebraska'>Morrill County, Nebraska</option>
+<option value='Nance County, Nebraska'>Nance County, Nebraska</option>
+<option value='Nemaha County, Nebraska'>Nemaha County, Nebraska</option>
+<option value='Nuckolls County, Nebraska'>Nuckolls County, Nebraska</option>
+<option value='Otoe County, Nebraska'>Otoe County, Nebraska</option>
+<option value='Pawnee County, Nebraska'>Pawnee County, Nebraska</option>
+<option value='Perkins County, Nebraska'>Perkins County, Nebraska</option>
+<option value='Phelps County, Nebraska'>Phelps County, Nebraska</option>
+<option value='Pierce County, Nebraska'>Pierce County, Nebraska</option>
+<option value='Platte County, Nebraska'>Platte County, Nebraska</option>
+<option value='Polk County, Nebraska'>Polk County, Nebraska</option>
+<option value='Red Willow County, Nebraska'>Red Willow County, Nebraska</option>
+<option value='Richardson County, Nebraska'>Richardson County, Nebraska</option>
+<option value='Rock County, Nebraska'>Rock County, Nebraska</option>
+<option value='Saline County, Nebraska'>Saline County, Nebraska</option>
+<option value='Sarpy County, Nebraska'>Sarpy County, Nebraska</option>
+<option value='Saunders County, Nebraska'>Saunders County, Nebraska</option>
+<option value='Scotts Bluff County, Nebraska'>Scotts Bluff County, Nebraska</option>
+<option value='Seward County, Nebraska'>Seward County, Nebraska</option>
+<option value='Sheridan County, Nebraska'>Sheridan County, Nebraska</option>
+<option value='Sherman County, Nebraska'>Sherman County, Nebraska</option>
+<option value='Sioux County, Nebraska'>Sioux County, Nebraska</option>
+<option value='Stanton County, Nebraska'>Stanton County, Nebraska</option>
+<option value='Thayer County, Nebraska'>Thayer County, Nebraska</option>
+<option value='Thomas County, Nebraska'>Thomas County, Nebraska</option>
+<option value='Thurston County, Nebraska'>Thurston County, Nebraska</option>
+<option value='Valley County, Nebraska'>Valley County, Nebraska</option>
+<option value='Washington County, Nebraska'>Washington County, Nebraska</option>
+<option value='Wayne County, Nebraska'>Wayne County, Nebraska</option>
+<option value='Webster County, Nebraska'>Webster County, Nebraska</option>
+<option value='Wheeler County, Nebraska'>Wheeler County, Nebraska</option>
+<option value='York County, Nebraska'>York County, Nebraska</option>
+        </select>
+    <canvas id="barChart" width="850" height="500"></canvas>
+    <script>  const ageData = {"Statewide":[-13.4,12.8,-15,13.9,-8.9,8.4,-14.1,13.5],"Adams County, Nebraska":[-13.3,13.6,-12.7,14.2,-15.5,13.1,-8.1,9.6],"Antelope County, Nebraska":[-14.2,12.8,-18.4,13.7,-10.8,13.6,-8,8.6],"Arthur County, Nebraska":[-12.2,5.9,-12.2,10.6,-20.2,9,-16,13.8],"Banner County, Nebraska":[-10.7,25.6,-17.4,11.6,-10.7,6.6,-8.3,9.1],"Blaine County, Nebraska":[-5.3,24,-26.7,5.3,-13.3,20,-5.3,0],"Boone County, Nebraska":[-11.7,12.6,-16.5,10.4,-11.6,18.3,-10.4,8.7],"Box Butte County, Nebraska":[-7.8,12.9,-17.5,9.7,-18.3,18,-9.7,6],"Boyd County, Nebraska":[-10.2,10.9,-6.5,17.7,-26.4,13.7,-6.2,8.4],"Brown County, Nebraska":[-8.1,22.4,-18.5,10.2,-14.8,8.6,-11.1,6.3],"Buffalo County, Nebraska":[-13.6,12.7,-14.9,12.7,-15,14.4,-8.9,7.8],"Burt County, Nebraska":[-13,9.3,-16.9,10.3,-13.2,17.8,-9.3,10.1],"Butler County, Nebraska":[-12.4,11.5,-12.8,15.5,-14.4,14.3,-8.9,10.4],"Cass County, Nebraska":[-12.2,10.9,-15,12.9,-16.1,14.5,-9.2,9.2],"Cedar County, Nebraska":[-12.4,12.2,-17,13.7,-14.1,12.4,-9.8,8.3],"Chase County, Nebraska":[-11.1,13.9,-15,19.1,-12.1,15.1,-5.3,8.4],"Cherry County, Nebraska":[-10.7,13.9,-16.9,18.1,-14.1,6.7,-9.8,9.8],"Cheyenne County, Nebraska":[-10.8,14.6,-16.5,10.5,-12.2,18.5,-9.1,7.8],"Clay County, Nebraska":[-11.9,14.3,-14.7,9.9,-14.3,17.9,-9.4,7.7],"Colfax County, Nebraska":[-11.7,14.8,-16.6,12.1,-9.9,18.9,-9.4,6.6],"Cuming County, Nebraska":[-17.1,13.8,-14.2,14.3,-10.9,12.4,-8,9.2],"Custer County, Nebraska":[-14.3,13.4,-14.4,9.3,-14.1,17.2,-8.7,8.7],"Dakota County, Nebraska":[-13,15.6,-14.7,14.2,-13.4,14.1,-8.6,6.4],"Dawes County, Nebraska":[-22,8.2,-10.4,10.8,-15.6,14.9,-8.3,9.8],"Dawson County, Nebraska":[-14.9,13.2,-15.3,13.4,-13.1,13.7,-9.5,6.9],"Deuel County, Nebraska":[-13.4,18.6,-11.5,7.9,-12.1,18.9,-11,6.6],"Dixon County, Nebraska":[-12.9,12,-15.3,12.7,-15.7,12.9,-10.6,7.9],"Dodge County, Nebraska":[-12.7,12.7,-15,11.5,-15.1,15.4,-9.2,8.3],"Douglas County, Nebraska":[-14,13.4,-13.7,13.9,-14.8,13.6,-8.5,8.2],"Dundy County, Nebraska":[-18.8,16.9,-14.5,17.5,-6.7,7.8,-13.2,4.6],"Fillmore County, Nebraska":[-14.9,15.7,-12.6,12.4,-13.7,14.9,-8.6,7.2],"Franklin County, Nebraska":[-13,14.1,-16.5,13.6,-15.1,11.3,-8.9,7.5],"Frontier County, Nebraska":[-14.6,11.1,-16.5,14,-17.6,8.3,-11.1,6.8],"Furnas County, Nebraska":[-14.3,11.7,-14.2,13.5,-15.4,11.3,-9.7,9.9],"Gage County, Nebraska":[-12.3,11.5,-12.9,13,-17.5,14.2,-10.4,8.3],"Garden County, Nebraska":[-6.6,10.3,-12.4,4.8,-20,27.2,-10,8.6],"Garfield County, Nebraska":[-12.9,9.3,-12.4,17.8,-19.1,11.6,-5.7,11.3],"Gosper County, Nebraska":[-11,13.5,-9.1,15.1,-19,12.4,-11.3,8.8],"Grant County, Nebraska":[-13.5,17.2,-3.7,9.8,-33.1,5.5,-11,6.1],"Greeley County, Nebraska":[-14.8,11.4,-11.9,14.5,-16.2,14.5,-11.8,5],"Hall County, Nebraska":[-14.7,12.6,-14,11.3,-14.7,15.7,-8.8,8.1],"Hamilton County, Nebraska":[-12.4,12.6,-11.6,14.6,-18.6,11.6,-9.4,9.1],"Harlan County, Nebraska":[-13,12,-22.9,10.4,-11.3,15.3,-8.9,6.3],"Hayes County, Nebraska":[-13.3,12.2,-11.7,24.5,-8.5,13.8,-6.4,9.6],"Hitchcock County, Nebraska":[-15.9,9.8,-5.8,13.8,-23.1,13.9,-9.5,8.3],"Holt County, Nebraska":[-12.9,12.9,-10.6,13.1,-19,14.7,-9,7.8],"Hooker County, Nebraska":[-25.5,0,-11.2,10.2,-0,16.3,-1,35.7],"Howard County, Nebraska":[-14.5,12.3,-15.7,8.1,-10.4,19.7,-11.1,8.1],"Jefferson County, Nebraska":[-10.7,15,-16.8,13.8,-10.4,16,-7.6,9.8],"Johnson County, Nebraska":[-12.5,11.9,-14.1,10.1,-22,12,-11.3,6],"Kearney County, Nebraska":[-13.9,10.3,-9,8.9,-18.8,18.1,-9.1,11.8],"Keith County, Nebraska":[-11.2,10.7,-16.2,16.4,-14.1,13.3,-10.3,7.7],"Keya Paha County, Nebraska":[-10.2,8.9,-12.8,14.5,-5.1,20,-10.2,18.3],"Kimball County, Nebraska":[-10.2,10.3,-17.7,19.6,-18.5,10.5,-6,7.2],"Knox County, Nebraska":[-12.8,12,-14.1,11.8,-14.9,16,-8.2,10.3],"Lancaster County, Nebraska":[-13.4,12.5,-13.6,13.6,-15.6,14,-9,8.4],"Lincoln County, Nebraska":[-12.4,11.9,-12.7,14.9,-16.5,12.3,-9.5,9.8],"Logan County, Nebraska":[-11.1,11.1,-20.9,6.2,-7.1,18.2,-17.8,7.6],"Loup County, Nebraska":[-10.9,10.1,-9.2,15.1,-21,5,-28.6,0],"McPherson County, Nebraska":[-8.4,5.3,-3.2,7.4,-52.6,2.1,-16.8,4.2],"Madison County, Nebraska":[-13.3,14.3,-14.1,15.4,-13.5,13.6,-8,7.8],"Merrick County, Nebraska":[-14.7,10.4,-15.1,11.6,-13.7,16.5,-10.9,7.2],"Morrill County, Nebraska":[-15.2,13,-10.9,11.5,-14.8,15.5,-11.5,7.5],"Nance County, Nebraska":[-11.5,12,-14.7,12.9,-16.1,14.2,-9.5,9.1],"Nemaha County, Nebraska":[-13.8,11.9,-7.8,14.3,-21.6,12.5,-9.3,8.7],"Nuckolls County, Nebraska":[-13.2,12.3,-15.2,13.3,-14.4,13.9,-9.3,8.5],"Otoe County, Nebraska":[-13.4,9.9,-15.2,11.6,-21,12.1,-7.8,9.1],"Pawnee County, Nebraska":[-13.9,14.9,-11.1,12.3,-16.8,15.5,-8.8,6.7],"Perkins County, Nebraska":[-11.8,9.7,-21.6,14.9,-10.8,15.3,-8,8],"Phelps County, Nebraska":[-14.1,12.4,-17.7,14.5,-12.7,12.8,-8.6,7.3],"Pierce County, Nebraska":[-13.6,14.3,-16.5,12.7,-10.1,14.9,-8.7,9.3],"Platte County, Nebraska":[-12.8,12.8,-15.2,13.2,-14,14.3,-9.2,8.4],"Polk County, Nebraska":[-12.6,10.4,-7.2,13.5,-18.2,16.2,-12,9.8],"Red Willow County, Nebraska":[-13.5,14.5,-11.5,15.5,-14.7,10.2,-8.7,11.3],"Richardson County, Nebraska":[-11.4,11.9,-15,12.4,-14.4,12.9,-13.9,8],"Rock County, Nebraska":[-14,12.3,-15.3,14.3,-12.7,9.7,-10.3,11.3],"Saline County, Nebraska":[-12.1,14,-9.7,14.1,-19.7,12.1,-8.3,10.1],"Sarpy County, Nebraska":[-12.8,12.2,-15.1,14.1,-14.8,13.6,-9,8.5],"Saunders County, Nebraska":[-12.9,12.1,-13.6,13.7,-16.7,13.3,-9.7,8],"Scotts Bluff County, Nebraska":[-12.8,13.2,-15.5,15.2,-13.2,12.3,-8.7,9.1],"Seward County, Nebraska":[-11.8,11.5,-13,13.1,-16.1,14.4,-10.1,10.1],"Sheridan County, Nebraska":[-16.5,11.9,-15.8,16.4,-13.7,6.9,-7.5,11.4],"Sherman County, Nebraska":[-14.9,11.5,-14.7,5.2,-15.1,18.1,-10.6,9.8],"Sioux County, Nebraska":[-18,17.7,-8.6,18.8,-15,1.5,-8.6,11.7],"Stanton County, Nebraska":[-11,12.5,-15.2,13.4,-12.4,15.6,-10.7,9.1],"Thayer County, Nebraska":[-11.2,12.1,-11.9,15.7,-16.2,14.2,-8.2,10.5],"Thomas County, Nebraska":[-2.9,15.4,-11.5,29.8,-10.6,18.3,-9.6,1.9],"Thurston County, Nebraska":[-12.7,14,-14.4,13.4,-13.9,14.4,-9.1,8.2],"Valley County, Nebraska":[-12.3,13.5,-12,17.8,-18.4,9.7,-8,8.3],"Washington County, Nebraska":[-12.2,10.4,-16.8,12.6,-12.8,16.1,-9,10],"Wayne County, Nebraska":[-12.8,11.7,-11,10.4,-20,16.6,-11.2,6.5],"Webster County, Nebraska":[-12.8,11,-15.7,11.5,-17.4,14,-7.7,9.9],"Wheeler County, Nebraska":[-21.5,36.2,-12.3,9.2,-5.4,7.7,-6.9,0.8],"York County, Nebraska":[-14.7,12.1,-16.8,13.8,-14.7,11.3,-8.9,7.7]};
+  const ageBins = ["0–4","5–9","10–14","15–17"];
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(data) {
+    const maleData = data.filter((_, i) => i % 2 === 0);
+    const femaleData = data.filter((_, i) => i % 2 === 1);
+
+    const maxValue = Math.max(
+      ...maleData.map(Math.abs),
+      ...femaleData.map(Math.abs)
+    );
+    const padding = 1.0;
+    const xMax = +(maxValue + padding).toFixed(1);
+
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ageBins,
+        datasets: [
+          {
+            label: 'Male',
+            data: maleData,
+            backgroundColor: 'dodgerblue'
+          },
+          {
+            label: 'Female',
+            data: femaleData,
+            backgroundColor: 'lightpink'
+          }
+        ]
+      },
+      options: {
+        indexAxis: 'y',
+        responsive: true,
+        scales: {
+          x: {
+            min: -xMax,
+            max: xMax,
+            ticks: {
+              callback: value => Math.abs(value).toFixed(1) + '%'
+            }
+          },
+          y: {
+            stacked: false
+          }
+        },
+        plugins: {
+          legend: {
+            position: 'top',
+            align: 'start',
+            labels: {
+              usePointStyle: true
+            }
+          },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.dataset.label + ': ' + Math.abs(ctx.parsed.x).toFixed(1) + '%'
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(Object.values(ageData[this.value]));
+  });
+
+  renderChart(Object.values(ageData['Statewide']));</script>
+  </body>
+</html>
+</html>

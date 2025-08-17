@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Age Distribution Under 18 –  Idaho</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          margin: 1rem 2rem;
+          text-align: center;
+        }
+        h2 {
+          margin-bottom: 0.25rem;
+          font-size: 1.6rem;
+        }
+        select {
+          padding: 0.4rem;
+          font-size: 1rem;
+          margin: 1rem 0;
+          border-radius: 5px;
+          border: 1px solid #999;
+        }
+        canvas {
+          width: 100%;
+          max-width: 850px;
+          height: 500px;
+          margin-top: 1rem;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Age Distribution Under 18 in  Idaho (2023)</h2>
+    <label>Select County:</label>
+            <select id="countySelect">
+          <option value='Statewide'>Statewide</option>
+<option value='Ada County, Idaho'>Ada County, Idaho</option>
+<option value='Adams County, Idaho'>Adams County, Idaho</option>
+<option value='Bannock County, Idaho'>Bannock County, Idaho</option>
+<option value='Bear Lake County, Idaho'>Bear Lake County, Idaho</option>
+<option value='Benewah County, Idaho'>Benewah County, Idaho</option>
+<option value='Bingham County, Idaho'>Bingham County, Idaho</option>
+<option value='Blaine County, Idaho'>Blaine County, Idaho</option>
+<option value='Boise County, Idaho'>Boise County, Idaho</option>
+<option value='Bonner County, Idaho'>Bonner County, Idaho</option>
+<option value='Bonneville County, Idaho'>Bonneville County, Idaho</option>
+<option value='Boundary County, Idaho'>Boundary County, Idaho</option>
+<option value='Butte County, Idaho'>Butte County, Idaho</option>
+<option value='Camas County, Idaho'>Camas County, Idaho</option>
+<option value='Canyon County, Idaho'>Canyon County, Idaho</option>
+<option value='Caribou County, Idaho'>Caribou County, Idaho</option>
+<option value='Cassia County, Idaho'>Cassia County, Idaho</option>
+<option value='Clark County, Idaho'>Clark County, Idaho</option>
+<option value='Clearwater County, Idaho'>Clearwater County, Idaho</option>
+<option value='Custer County, Idaho'>Custer County, Idaho</option>
+<option value='Elmore County, Idaho'>Elmore County, Idaho</option>
+<option value='Franklin County, Idaho'>Franklin County, Idaho</option>
+<option value='Fremont County, Idaho'>Fremont County, Idaho</option>
+<option value='Gem County, Idaho'>Gem County, Idaho</option>
+<option value='Gooding County, Idaho'>Gooding County, Idaho</option>
+<option value='Idaho County, Idaho'>Idaho County, Idaho</option>
+<option value='Jefferson County, Idaho'>Jefferson County, Idaho</option>
+<option value='Jerome County, Idaho'>Jerome County, Idaho</option>
+<option value='Kootenai County, Idaho'>Kootenai County, Idaho</option>
+<option value='Latah County, Idaho'>Latah County, Idaho</option>
+<option value='Lemhi County, Idaho'>Lemhi County, Idaho</option>
+<option value='Lewis County, Idaho'>Lewis County, Idaho</option>
+<option value='Lincoln County, Idaho'>Lincoln County, Idaho</option>
+<option value='Madison County, Idaho'>Madison County, Idaho</option>
+<option value='Minidoka County, Idaho'>Minidoka County, Idaho</option>
+<option value='Nez Perce County, Idaho'>Nez Perce County, Idaho</option>
+<option value='Oneida County, Idaho'>Oneida County, Idaho</option>
+<option value='Owyhee County, Idaho'>Owyhee County, Idaho</option>
+<option value='Payette County, Idaho'>Payette County, Idaho</option>
+<option value='Power County, Idaho'>Power County, Idaho</option>
+<option value='Shoshone County, Idaho'>Shoshone County, Idaho</option>
+<option value='Teton County, Idaho'>Teton County, Idaho</option>
+<option value='Twin Falls County, Idaho'>Twin Falls County, Idaho</option>
+<option value='Valley County, Idaho'>Valley County, Idaho</option>
+<option value='Washington County, Idaho'>Washington County, Idaho</option>
+        </select>
+    <canvas id="barChart" width="850" height="500"></canvas>
+    <script>  const ageData = {"Statewide":[-12.5,11.9,-15.3,14.5,-9.4,8.8,-14.2,13.5],"Ada County, Idaho":[-11.8,11.3,-13.3,13.3,-16.3,14.9,-9.8,9.3],"Adams County, Idaho":[-8.6,10.9,-17.9,9.4,-16.4,16.9,-4.1,15.9],"Bannock County, Idaho":[-12.8,11.9,-14.6,13.7,-15,14.3,-9.3,8.5],"Bear Lake County, Idaho":[-14.1,9.8,-15.4,15.5,-12,12.3,-11.3,9.5],"Benewah County, Idaho":[-12.5,11.3,-14.7,12.6,-15.4,15.2,-9.7,8.5],"Bingham County, Idaho":[-12.1,11.5,-13.2,12.9,-16.2,15.5,-9.3,9.3],"Blaine County, Idaho":[-9.4,6.6,-13.2,15.7,-22.3,12.4,-15,5.5],"Boise County, Idaho":[-7.7,17.2,-10.3,17.2,-18.9,9.5,-10.2,9.1],"Bonner County, Idaho":[-11.8,11,-17.3,13.5,-12.7,15.8,-9.4,8.3],"Bonneville County, Idaho":[-12.7,12.3,-14.5,13.5,-14.8,15.1,-8.5,8.5],"Boundary County, Idaho":[-13.6,14,-11.9,10,-17.1,15.5,-8.8,8.9],"Butte County, Idaho":[-8.2,9.9,-22.4,15,-14.3,12.6,-8.2,9.2],"Camas County, Idaho":[-17,9.7,-12.3,23.8,-5.2,11,-11,10.2],"Canyon County, Idaho":[-13,12.2,-13.9,14.5,-15.2,13.7,-9.1,8.4],"Caribou County, Idaho":[-11.1,12.1,-14.3,10,-14.9,17.3,-10.6,9.7],"Cassia County, Idaho":[-12.9,12.3,-15.8,11.9,-13,15.5,-9.5,9],"Clark County, Idaho":[-24.6,6.2,-11.2,25,-10.7,7.6,-12.1,2.7],"Clearwater County, Idaho":[-12.6,11.4,-12.7,9.1,-16.3,18.1,-11.5,8.4],"Custer County, Idaho":[-6.5,16.1,-19.8,7.1,-14.1,19.6,-6.7,10.2],"Elmore County, Idaho":[-17.4,14.1,-14.8,13.8,-13.8,11.5,-8.7,6],"Franklin County, Idaho":[-14.9,9.7,-15.7,13.4,-13.2,13.4,-10.5,9.3],"Fremont County, Idaho":[-12,13.3,-14.4,12.6,-13.6,14.4,-10.1,9.7],"Gem County, Idaho":[-11.7,11.8,-13.9,13,-18.2,13.4,-9.5,8.4],"Gooding County, Idaho":[-11.8,10.9,-14.8,9.7,-12.8,21,-9.6,9.5],"Idaho County, Idaho":[-15.1,12.1,-15.5,18.3,-12.1,7.7,-8.4,10.8],"Jefferson County, Idaho":[-11.4,11.2,-13.3,13.3,-16.7,15.6,-9.6,8.8],"Jerome County, Idaho":[-13.5,11.4,-12.7,12,-15.6,16.1,-9.6,9],"Kootenai County, Idaho":[-12.6,11.8,-16.2,12.8,-13.6,15.1,-9.4,8.5],"Latah County, Idaho":[-12.8,13.2,-12.4,15.6,-15.8,12.1,-9.6,8.5],"Lemhi County, Idaho":[-10.2,15.3,-12.8,12.8,-14.2,15.6,-11.6,7.4],"Lewis County, Idaho":[-9.6,12.2,-12.5,17.6,-17,12.7,-8.4,10.1],"Lincoln County, Idaho":[-14.3,9.5,-17.6,14.1,-11.2,16.7,-9,7.6],"Madison County, Idaho":[-17.9,15.5,-12.9,11.1,-12.9,11.9,-8.5,9.2],"Minidoka County, Idaho":[-12,12.3,-9.6,12.9,-20.8,15.3,-10.6,6.5],"Nez Perce County, Idaho":[-12.1,12.9,-15.9,13.1,-12.9,14.5,-9.7,8.8],"Oneida County, Idaho":[-12,11.8,-12.1,14.6,-15.8,15.9,-9.4,8.3],"Owyhee County, Idaho":[-14,9.9,-16.7,10,-12.7,16.7,-10.5,9.5],"Payette County, Idaho":[-11.2,13.7,-14.2,14.9,-16.3,11.6,-9.9,8.2],"Power County, Idaho":[-6,11.4,-13.3,12.9,-23.6,14.7,-8,10.1],"Shoshone County, Idaho":[-13.7,16.1,-16,10.7,-11.8,16.2,-7.8,7.9],"Teton County, Idaho":[-11.6,13.6,-19.2,18.4,-10.5,9.7,-4.4,12.6],"Twin Falls County, Idaho":[-12.3,11.8,-13.8,14.2,-16.2,13.8,-8.7,9.1],"Valley County, Idaho":[-9.9,15.9,-16.3,9.7,-16,16.3,-8.5,7.4],"Washington County, Idaho":[-11.7,11.1,-16.8,14.4,-13.5,16.1,-7.7,8.8]};
+  const ageBins = ["0–4","5–9","10–14","15–17"];
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(data) {
+    const maleData = data.filter((_, i) => i % 2 === 0);
+    const femaleData = data.filter((_, i) => i % 2 === 1);
+
+    const maxValue = Math.max(
+      ...maleData.map(Math.abs),
+      ...femaleData.map(Math.abs)
+    );
+    const padding = 1.0;
+    const xMax = +(maxValue + padding).toFixed(1);
+
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ageBins,
+        datasets: [
+          {
+            label: 'Male',
+            data: maleData,
+            backgroundColor: 'dodgerblue'
+          },
+          {
+            label: 'Female',
+            data: femaleData,
+            backgroundColor: 'lightpink'
+          }
+        ]
+      },
+      options: {
+        indexAxis: 'y',
+        responsive: true,
+        scales: {
+          x: {
+            min: -xMax,
+            max: xMax,
+            ticks: {
+              callback: value => Math.abs(value).toFixed(1) + '%'
+            }
+          },
+          y: {
+            stacked: false
+          }
+        },
+        plugins: {
+          legend: {
+            position: 'top',
+            align: 'start',
+            labels: {
+              usePointStyle: true
+            }
+          },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.dataset.label + ': ' + Math.abs(ctx.parsed.x).toFixed(1) + '%'
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(Object.values(ageData[this.value]));
+  });
+
+  renderChart(Object.values(ageData['Statewide']));</script>
+  </body>
+</html>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Living Arrangements of Children – Hawaii</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Children’s Living Arrangements (Under 18) – Hawaii</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Hawaii County, Hawaii">Hawaii County, Hawaii</option>
+      <option value="Honolulu County, Hawaii">Honolulu County, Hawaii</option>
+      <option value="Kalawao County, Hawaii">Kalawao County, Hawaii</option>
+      <option value="Kauai County, Hawaii">Kauai County, Hawaii</option>
+      <option value="Maui County, Hawaii">Maui County, Hawaii</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>  const data = {"Statewide":{"Married Couple (%)":69,"Cohabiting Couple (%)":9.1,"Male Householder (%)":5.8,"Female Householder (%)":16.1},"Hawaii County, Hawaii":{"Married Couple (%)":60.9,"Cohabiting Couple (%)":12.5,"Male Householder (%)":6.6,"Female Householder (%)":20},"Honolulu County, Hawaii":{"Married Couple (%)":71.5,"Cohabiting Couple (%)":7.7,"Male Householder (%)":5.4,"Female Householder (%)":15.4},"Kalawao County, Hawaii":{"Married Couple (%)":"NA","Cohabiting Couple (%)":"NA","Male Householder (%)":"NA","Female Householder (%)":"NA"},"Kauai County, Hawaii":{"Married Couple (%)":62.4,"Cohabiting Couple (%)":15.8,"Male Householder (%)":6.4,"Female Householder (%)":15.4},"Maui County, Hawaii":{"Married Couple (%)":66.8,"Cohabiting Couple (%)":10.6,"Male Householder (%)":7.1,"Female Householder (%)":15.6}};
+  const categories = ["Married Couple (%)","Cohabiting Couple (%)","Male Householder (%)","Female Householder (%)"];
+  const ctx = document.getElementById("barChart").getContext("2d");
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: categories,
+        datasets: [{
+          label: "Share of Children (%)",
+          data: values,
+          backgroundColor: ["#5DA5DA","#FAA43A","#60BD68","#F17CB0"]
+        }]
+      },
+      options: {
+        indexAxis: "y",
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            ticks: { callback: v => v + "%" },
+            title: { display: true, text: "Percent of Children" }
+          }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.raw + "%"
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById("countySelect").addEventListener("change", function() {
+    renderChart(Object.values(data[this.value]));
+  });
+
+  renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Internet Access Over Time –  Arkansas</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+                      h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+                      select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; border-radius: 5px; border: 1px solid #999; }
+                      canvas { width: 100%; max-width: 850px; height: 450px; margin-top: 1rem; }</style>
+</head>
+<html>
+  <body>
+    <h2>Internet Access in  Arkansas (2013–2023)</h2>
+    <label>Select County: </label>
+    <select id="countySelect"><option value='Statewide'>Statewide</option>
+<option value='Arkansas County, Arkansas'>Arkansas County, Arkansas</option>
+<option value='Ashley County, Arkansas'>Ashley County, Arkansas</option>
+<option value='Baxter County, Arkansas'>Baxter County, Arkansas</option>
+<option value='Benton County, Arkansas'>Benton County, Arkansas</option>
+<option value='Boone County, Arkansas'>Boone County, Arkansas</option>
+<option value='Bradley County, Arkansas'>Bradley County, Arkansas</option>
+<option value='Calhoun County, Arkansas'>Calhoun County, Arkansas</option>
+<option value='Carroll County, Arkansas'>Carroll County, Arkansas</option>
+<option value='Chicot County, Arkansas'>Chicot County, Arkansas</option>
+<option value='Clark County, Arkansas'>Clark County, Arkansas</option>
+<option value='Clay County, Arkansas'>Clay County, Arkansas</option>
+<option value='Cleburne County, Arkansas'>Cleburne County, Arkansas</option>
+<option value='Cleveland County, Arkansas'>Cleveland County, Arkansas</option>
+<option value='Columbia County, Arkansas'>Columbia County, Arkansas</option>
+<option value='Conway County, Arkansas'>Conway County, Arkansas</option>
+<option value='Craighead County, Arkansas'>Craighead County, Arkansas</option>
+<option value='Crawford County, Arkansas'>Crawford County, Arkansas</option>
+<option value='Crittenden County, Arkansas'>Crittenden County, Arkansas</option>
+<option value='Cross County, Arkansas'>Cross County, Arkansas</option>
+<option value='Dallas County, Arkansas'>Dallas County, Arkansas</option>
+<option value='Desha County, Arkansas'>Desha County, Arkansas</option>
+<option value='Drew County, Arkansas'>Drew County, Arkansas</option>
+<option value='Faulkner County, Arkansas'>Faulkner County, Arkansas</option>
+<option value='Franklin County, Arkansas'>Franklin County, Arkansas</option>
+<option value='Fulton County, Arkansas'>Fulton County, Arkansas</option>
+<option value='Garland County, Arkansas'>Garland County, Arkansas</option>
+<option value='Grant County, Arkansas'>Grant County, Arkansas</option>
+<option value='Greene County, Arkansas'>Greene County, Arkansas</option>
+<option value='Hempstead County, Arkansas'>Hempstead County, Arkansas</option>
+<option value='Hot Spring County, Arkansas'>Hot Spring County, Arkansas</option>
+<option value='Howard County, Arkansas'>Howard County, Arkansas</option>
+<option value='Independence County, Arkansas'>Independence County, Arkansas</option>
+<option value='Izard County, Arkansas'>Izard County, Arkansas</option>
+<option value='Jackson County, Arkansas'>Jackson County, Arkansas</option>
+<option value='Jefferson County, Arkansas'>Jefferson County, Arkansas</option>
+<option value='Johnson County, Arkansas'>Johnson County, Arkansas</option>
+<option value='Lafayette County, Arkansas'>Lafayette County, Arkansas</option>
+<option value='Lawrence County, Arkansas'>Lawrence County, Arkansas</option>
+<option value='Lee County, Arkansas'>Lee County, Arkansas</option>
+<option value='Lincoln County, Arkansas'>Lincoln County, Arkansas</option>
+<option value='Little River County, Arkansas'>Little River County, Arkansas</option>
+<option value='Logan County, Arkansas'>Logan County, Arkansas</option>
+<option value='Lonoke County, Arkansas'>Lonoke County, Arkansas</option>
+<option value='Madison County, Arkansas'>Madison County, Arkansas</option>
+<option value='Marion County, Arkansas'>Marion County, Arkansas</option>
+<option value='Miller County, Arkansas'>Miller County, Arkansas</option>
+<option value='Mississippi County, Arkansas'>Mississippi County, Arkansas</option>
+<option value='Monroe County, Arkansas'>Monroe County, Arkansas</option>
+<option value='Montgomery County, Arkansas'>Montgomery County, Arkansas</option>
+<option value='Nevada County, Arkansas'>Nevada County, Arkansas</option>
+<option value='Newton County, Arkansas'>Newton County, Arkansas</option>
+<option value='Ouachita County, Arkansas'>Ouachita County, Arkansas</option>
+<option value='Perry County, Arkansas'>Perry County, Arkansas</option>
+<option value='Phillips County, Arkansas'>Phillips County, Arkansas</option>
+<option value='Pike County, Arkansas'>Pike County, Arkansas</option>
+<option value='Poinsett County, Arkansas'>Poinsett County, Arkansas</option>
+<option value='Polk County, Arkansas'>Polk County, Arkansas</option>
+<option value='Pope County, Arkansas'>Pope County, Arkansas</option>
+<option value='Prairie County, Arkansas'>Prairie County, Arkansas</option>
+<option value='Pulaski County, Arkansas'>Pulaski County, Arkansas</option>
+<option value='Randolph County, Arkansas'>Randolph County, Arkansas</option>
+<option value='Saline County, Arkansas'>Saline County, Arkansas</option>
+<option value='Scott County, Arkansas'>Scott County, Arkansas</option>
+<option value='Searcy County, Arkansas'>Searcy County, Arkansas</option>
+<option value='Sebastian County, Arkansas'>Sebastian County, Arkansas</option>
+<option value='Sevier County, Arkansas'>Sevier County, Arkansas</option>
+<option value='Sharp County, Arkansas'>Sharp County, Arkansas</option>
+<option value='St. Francis County, Arkansas'>St. Francis County, Arkansas</option>
+<option value='Stone County, Arkansas'>Stone County, Arkansas</option>
+<option value='Union County, Arkansas'>Union County, Arkansas</option>
+<option value='Van Buren County, Arkansas'>Van Buren County, Arkansas</option>
+<option value='Washington County, Arkansas'>Washington County, Arkansas</option>
+<option value='White County, Arkansas'>White County, Arkansas</option>
+<option value='Woodruff County, Arkansas'>Woodruff County, Arkansas</option>
+<option value='Yell County, Arkansas'>Yell County, Arkansas</option></select>
+    <canvas id="lineChart" width="850" height="450"></canvas>
+    <script>const internetData = {"Statewide":{"2017":74.1,"2018":76.6,"2019":78.9,"2020":81.7,"2021":83.8,"2022":85.7,"2023":87.7},"Arkansas County, Arkansas":{"2017":68,"2018":68.8,"2019":72.1,"2020":74.9,"2021":74.5,"2022":78,"2023":83},"Ashley County, Arkansas":{"2017":65.6,"2018":65.3,"2019":65.8,"2020":67.7,"2021":73.9,"2022":76.4,"2023":80.8},"Baxter County, Arkansas":{"2017":76.3,"2018":78.3,"2019":81.3,"2020":83.5,"2021":83.9,"2022":85.2,"2023":88.2},"Benton County, Arkansas":{"2017":82.6,"2018":83.7,"2019":85.4,"2020":88.7,"2021":90.7,"2022":92.6,"2023":94.2},"Boone County, Arkansas":{"2017":77.9,"2018":80.8,"2019":83.4,"2020":85.6,"2021":87.7,"2022":87.7,"2023":90.3},"Bradley County, Arkansas":{"2017":61.8,"2018":69.3,"2019":72.5,"2020":73,"2021":74.7,"2022":75.7,"2023":79.3},"Calhoun County, Arkansas":{"2017":62.6,"2018":65.6,"2019":68.9,"2020":72.5,"2021":78.7,"2022":78.6,"2023":81.8},"Carroll County, Arkansas":{"2017":71.8,"2018":73.4,"2019":75,"2020":78.6,"2021":80.7,"2022":83.7,"2023":87.1},"Chicot County, Arkansas":{"2017":59.4,"2018":63.6,"2019":65.2,"2020":72.9,"2021":71.8,"2022":76.3,"2023":79.3},"Clark County, Arkansas":{"2017":68.3,"2018":74.2,"2019":74.6,"2020":76,"2021":79.8,"2022":81.3,"2023":83.6},"Clay County, Arkansas":{"2017":66,"2018":69,"2019":72.5,"2020":76,"2021":77.8,"2022":80.4,"2023":82.4},"Cleburne County, Arkansas":{"2017":71.4,"2018":75,"2019":78.9,"2020":81.8,"2021":83.6,"2022":83.4,"2023":84.6},"Cleveland County, Arkansas":{"2017":59.8,"2018":60.5,"2019":65.3,"2020":69.2,"2021":73,"2022":76.3,"2023":83.6},"Columbia County, Arkansas":{"2017":66.4,"2018":66.9,"2019":67.7,"2020":71.8,"2021":75.7,"2022":79,"2023":82.2},"Conway County, Arkansas":{"2017":60.4,"2018":65.5,"2019":70.1,"2020":74.7,"2021":78.1,"2022":79,"2023":81.6},"Craighead County, Arkansas":{"2017":82.7,"2018":84.6,"2019":86.8,"2020":87.6,"2021":88.6,"2022":91,"2023":91.9},"Crawford County, Arkansas":{"2017":73.2,"2018":75.4,"2019":77.6,"2020":81.1,"2021":83.2,"2022":85.5,"2023":88.7},"Crittenden County, Arkansas":{"2017":70.6,"2018":74.7,"2019":79.1,"2020":82.6,"2021":84,"2022":85.9,"2023":86.4},"Cross County, Arkansas":{"2017":65.9,"2018":70.2,"2019":75,"2020":78.4,"2021":80.2,"2022":81,"2023":83.1},"Dallas County, Arkansas":{"2017":61.4,"2018":65.2,"2019":64.3,"2020":63.4,"2021":67.5,"2022":70.9,"2023":72.2},"Desha County, Arkansas":{"2017":50.5,"2018":53.3,"2019":59.2,"2020":66.5,"2021":71.3,"2022":75.8,"2023":78.5},"Drew County, Arkansas":{"2017":71.2,"2018":73.1,"2019":75.8,"2020":75.2,"2021":79.7,"2022":80.7,"2023":83},"Faulkner County, Arkansas":{"2017":81.4,"2018":82.8,"2019":85.9,"2020":88.8,"2021":90.6,"2022":92.6,"2023":94.5},"Franklin County, Arkansas":{"2017":60,"2018":68.3,"2019":69.6,"2020":71.7,"2021":74.7,"2022":77.2,"2023":78.9},"Fulton County, Arkansas":{"2017":71.2,"2018":72.4,"2019":72.3,"2020":72,"2021":71.2,"2022":73.2,"2023":79.2},"Garland County, Arkansas":{"2017":77.8,"2018":79.7,"2019":81.7,"2020":83,"2021":83.7,"2022":84.6,"2023":85.8},"Grant County, Arkansas":{"2017":76,"2018":78.3,"2019":78.8,"2020":81.5,"2021":81.9,"2022":84.9,"2023":86.2},"Greene County, Arkansas":{"2017":77.7,"2018":80.1,"2019":81.3,"2020":85.5,"2021":86.2,"2022":88.5,"2023":90.5},"Hempstead County, Arkansas":{"2017":65.2,"2018":70.4,"2019":75.6,"2020":77.7,"2021":79.3,"2022":81.3,"2023":80.9},"Hot Spring County, Arkansas":{"2017":72,"2018":71.4,"2019":68.5,"2020":73,"2021":74.8,"2022":77.6,"2023":80.7},"Howard County, Arkansas":{"2017":66.9,"2018":69.1,"2019":72.1,"2020":77.4,"2021":79.6,"2022":78.3,"2023":80},"Independence County, Arkansas":{"2017":71,"2018":72.2,"2019":71.7,"2020":74.4,"2021":76.4,"2022":78.2,"2023":81.8},"Izard County, Arkansas":{"2017":69.9,"2018":75.1,"2019":75.1,"2020":75,"2021":76.8,"2022":80.2,"2023":81},"Jackson County, Arkansas":{"2017":62.2,"2018":66.8,"2019":70.3,"2020":75.8,"2021":78.4,"2022":78.2,"2023":80.1},"Jefferson County, Arkansas":{"2017":59.8,"2018":63.1,"2019":66.9,"2020":72.6,"2021":75.4,"2022":79.8,"2023":82.3},"Johnson County, Arkansas":{"2017":64.5,"2018":68.7,"2019":67.3,"2020":67.9,"2021":69.9,"2022":72,"2023":73.4},"Lafayette County, Arkansas":{"2017":54.7,"2018":59.4,"2019":65.8,"2020":67.3,"2021":69.7,"2022":73.4,"2023":74.6},"Lawrence County, Arkansas":{"2017":66.8,"2018":70.6,"2019":74.4,"2020":78.3,"2021":80.9,"2022":84.3,"2023":86},"Lee County, Arkansas":{"2017":50.6,"2018":56.9,"2019":61,"2020":68.8,"2021":74.9,"2022":77.5,"2023":81.4},"Lincoln County, Arkansas":{"2017":61.9,"2018":65.4,"2019":63.6,"2020":62.3,"2021":66.9,"2022":68.1,"2023":72.8},"Little River County, Arkansas":{"2017":67.7,"2018":68.6,"2019":71.6,"2020":75,"2021":74.9,"2022":77.9,"2023":82.5},"Logan County, Arkansas":{"2017":70.6,"2018":73.5,"2019":74.6,"2020":74.8,"2021":77.5,"2022":79,"2023":81.2},"Lonoke County, Arkansas":{"2017":78.9,"2018":81.3,"2019":83.4,"2020":85.6,"2021":87.5,"2022":88.7,"2023":90.3},"Madison County, Arkansas":{"2017":68.2,"2018":68.5,"2019":71.6,"2020":77.6,"2021":82.7,"2022":85.3,"2023":91.1},"Marion County, Arkansas":{"2017":73.6,"2018":76.5,"2019":79.4,"2020":81.9,"2021":85.8,"2022":88.7,"2023":89.7},"Miller County, Arkansas":{"2017":76.3,"2018":77.4,"2019":77.7,"2020":81.7,"2021":83.5,"2022":86,"2023":88.7},"Mississippi County, Arkansas":{"2017":70.2,"2018":75.5,"2019":79.1,"2020":82.2,"2021":83.9,"2022":86.1,"2023":87.2},"Monroe County, Arkansas":{"2017":53.5,"2018":58.6,"2019":59.8,"2020":69.7,"2021":70.4,"2022":75.9,"2023":78.6},"Montgomery County, Arkansas":{"2017":63,"2018":65.4,"2019":66.3,"2020":72.5,"2021":73.9,"2022":79.5,"2023":80.1},"Nevada County, Arkansas":{"2017":52.5,"2018":57.3,"2019":65.6,"2020":68.6,"2021":72.5,"2022":68.3,"2023":70.1},"Newton County, Arkansas":{"2017":62.4,"2018":64,"2019":65.2,"2020":70.9,"2021":74.3,"2022":78.2,"2023":83},"Ouachita County, Arkansas":{"2017":60.4,"2018":65.9,"2019":70.4,"2020":74.3,"2021":80.6,"2022":84.3,"2023":83.4},"Perry County, Arkansas":{"2017":67,"2018":68.8,"2019":69.9,"2020":75.6,"2021":77.2,"2022":80.3,"2023":82.5},"Phillips County, Arkansas":{"2017":60.3,"2018":64.1,"2019":67.7,"2020":72.5,"2021":71.8,"2022":78,"2023":81},"Pike County, Arkansas":{"2017":63,"2018":65.5,"2019":70.3,"2020":73.9,"2021":76.7,"2022":79.5,"2023":81.3},"Poinsett County, Arkansas":{"2017":69.5,"2018":74.6,"2019":77.9,"2020":79.3,"2021":79.7,"2022":81.1,"2023":82.8},"Polk County, Arkansas":{"2017":67.3,"2018":70.6,"2019":76.3,"2020":78.7,"2021":81.9,"2022":80.8,"2023":81.3},"Pope County, Arkansas":{"2017":71.7,"2018":75.1,"2019":78.5,"2020":83.4,"2021":84.6,"2022":86.8,"2023":86.5},"Prairie County, Arkansas":{"2017":58.4,"2018":63.4,"2019":65.1,"2020":72.2,"2021":71.7,"2022":73.9,"2023":73.4},"Pulaski County, Arkansas":{"2017":78.7,"2018":80.5,"2019":82.7,"2020":84.5,"2021":86.5,"2022":88.1,"2023":89.6},"Randolph County, Arkansas":{"2017":69.1,"2018":71.4,"2019":74.5,"2020":75.9,"2021":77.4,"2022":77.8,"2023":81.6},"Saline County, Arkansas":{"2017":82.2,"2018":84.2,"2019":86.2,"2020":88.1,"2021":89.4,"2022":89.5,"2023":90.1},"Scott County, Arkansas":{"2017":56.5,"2018":60.2,"2019":62.4,"2020":68.9,"2021":72.5,"2022":77.1,"2023":77.4},"Searcy County, Arkansas":{"2017":61.2,"2018":65.7,"2019":68,"2020":68.1,"2021":69.3,"2022":75,"2023":77.1},"Sebastian County, Arkansas":{"2017":74.4,"2018":77.7,"2019":79.9,"2020":82.4,"2021":83,"2022":84.4,"2023":86.6},"Sevier County, Arkansas":{"2017":70,"2018":74.9,"2019":79.1,"2020":80.2,"2021":83,"2022":82.7,"2023":84.6},"Sharp County, Arkansas":{"2017":66.2,"2018":68.7,"2019":70.1,"2020":74.5,"2021":74.6,"2022":79.4,"2023":82.2},"St. Francis County, Arkansas":{"2017":55.9,"2018":59.6,"2019":65.2,"2020":70.4,"2021":72.8,"2022":78.1,"2023":83.9},"Stone County, Arkansas":{"2017":65.5,"2018":69.3,"2019":71.9,"2020":72,"2021":72.6,"2022":78.8,"2023":80.4},"Union County, Arkansas":{"2017":66.5,"2018":66.8,"2019":69.6,"2020":73.9,"2021":75.7,"2022":81.2,"2023":84.5},"Van Buren County, Arkansas":{"2017":65.5,"2018":66.6,"2019":70.6,"2020":75,"2021":76.7,"2022":80.4,"2023":85},"Washington County, Arkansas":{"2017":83.9,"2018":85,"2019":86,"2020":87.3,"2021":89.2,"2022":90.8,"2023":92.8},"White County, Arkansas":{"2017":73.1,"2018":76.7,"2019":79.1,"2020":82,"2021":85,"2022":85.7,"2023":87.7},"Woodruff County, Arkansas":{"2017":54.2,"2018":56.9,"2019":54.9,"2020":59.6,"2021":61.7,"2022":63.4,"2023":63.8},"Yell County, Arkansas":{"2017":65.7,"2018":70.2,"2019":73.1,"2020":76.7,"2021":77.9,"2022":80.1,"2023":81.7}};
+const ctx = document.getElementById('lineChart').getContext('2d');
+let chart;
+
+function renderChart(data) {
+  const labels = Object.keys(data);
+  const values = Object.values(data);
+
+  if (chart) chart.destroy();
+  chart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: labels,
+      datasets: [{
+        label: '% With Internet',
+        data: values,
+        fill: false,
+        borderColor: 'teal',
+        backgroundColor: 'teal',
+        tension: 0.3,
+        pointRadius: 4
+      }]
+    },
+    options: {
+      responsive: true,
+      scales: {
+        y: {
+          beginAtZero: true,
+          max: 100,
+          title: { display: true, text: '% With Internet' }
+        },
+        x: {
+          title: { display: true, text: 'Year' }
+        }
+      },
+      plugins: {
+        tooltip: {
+          callbacks: {
+            label: function(ctx) {
+              return ctx.parsed.y.toFixed(1) + '%';
+            }
+          }
+        }
+      }
+    }
+  });
+}
+
+document.getElementById('countySelect').addEventListener('change', function() {
+  renderChart(internetData[this.value]);
+});
+renderChart(internetData['Statewide']);</script>
+  </body>
+</html>
+</html>

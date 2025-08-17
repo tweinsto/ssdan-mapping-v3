@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Language Spoken at Home – Hawaii</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          text-align: center;
+          margin: 2rem;
+        }
+        select {
+          font-size: 1rem;
+          padding: 0.4rem;
+          margin-bottom: 1rem;
+        }
+        canvas {
+          width: 100%;
+          max-width: 700px;
+          height: 800px;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Language Spoken at Home – Hawaii</h2>
+    <label>Select County, State:</label>
+    <select id="countySelect"><option value='Statewide'>Statewide</option>
+<option value='Hawaii County, Hawaii'>Hawaii County, Hawaii</option>
+<option value='Honolulu County, Hawaii'>Honolulu County, Hawaii</option>
+<option value='Kalawao County, Hawaii'>Kalawao County, Hawaii</option>
+<option value='Kauai County, Hawaii'>Kauai County, Hawaii</option>
+<option value='Maui County, Hawaii'>Maui County, Hawaii</option></select>
+    <canvas id="barChart" width="700" height="700"></canvas>
+    <script>  const languageData = {"Statewide":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":3.1,"English":68.1,"French, Haitian, or Cajun":0.5,"German or other West Germanic":0.6,"Korean":1.8,"Other Asian & Pacific":14.4,"Other Indo-European":0.7,"Other and Unspecified":1.7,"Russian, Polish, other Slavic":0.3,"Spanish":3,"Tagalog (incl. Filipino)":4.9,"Vietnamese":0.9},"Hawaii County, Hawaii":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0.9,"English":69.7,"French, Haitian, or Cajun":0.5,"German or other West Germanic":0.7,"Korean":0.4,"Other Asian & Pacific":15.4,"Other Indo-European":0.7,"Other and Unspecified":5.7,"Russian, Polish, other Slavic":0.6,"Spanish":3.4,"Tagalog (incl. Filipino)":1.8,"Vietnamese":0.3},"Honolulu County, Hawaii":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":4.2,"English":66.2,"French, Haitian, or Cajun":0.5,"German or other West Germanic":0.5,"Korean":2.4,"Other Asian & Pacific":14.7,"Other Indo-European":0.7,"Other and Unspecified":0.9,"Russian, Polish, other Slavic":0.3,"Spanish":3,"Tagalog (incl. Filipino)":5.6,"Vietnamese":1.1},"Kalawao County, Hawaii":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0,"English":100,"French, Haitian, or Cajun":0,"German or other West Germanic":0,"Korean":0,"Other Asian & Pacific":0,"Other Indo-European":0,"Other and Unspecified":0,"Russian, Polish, other Slavic":0,"Spanish":0,"Tagalog (incl. Filipino)":0,"Vietnamese":0},"Kauai County, Hawaii":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0.5,"English":76.6,"French, Haitian, or Cajun":0.8,"German or other West Germanic":0.6,"Korean":0.4,"Other Asian & Pacific":11.6,"Other Indo-European":0.8,"Other and Unspecified":1.7,"Russian, Polish, other Slavic":0.4,"Spanish":2,"Tagalog (incl. Filipino)":4.5,"Vietnamese":0.1},"Maui County, Hawaii":{"Arabic":0,"Chinese (incl. Mandarin, Cantonese)":0.5,"English":74.1,"French, Haitian, or Cajun":0.6,"German or other West Germanic":0.9,"Korean":0.6,"Other Asian & Pacific":12.2,"Other Indo-European":0.9,"Other and Unspecified":0.8,"Russian, Polish, other Slavic":0.3,"Spanish":3.5,"Tagalog (incl. Filipino)":5,"Vietnamese":0.6}};
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: Object.keys(values),
+        datasets: [{
+          label: 'Share (%)',
+          data: Object.values(values),
+          backgroundColor: '#4576a7'
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.parsed.y + '%'
+            }
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 100,
+            title: {
+              display: true,
+              text: 'Population Share (%)'
+            }
+          },
+          x: {
+            title: {
+              display: true,
+              text: 'Language Group'
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(languageData[this.value]);
+  });
+
+  renderChart(languageData['Statewide']);</script>
+  </body>
+</html>
+</html>

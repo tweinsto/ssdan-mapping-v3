@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Veteran Labor Force Status – New Mexico</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Labor Force Status of Veterans (Age 18–64) in New Mexico</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Bernalillo County, New Mexico">Bernalillo County, New Mexico</option>
+      <option value="Catron County, New Mexico">Catron County, New Mexico</option>
+      <option value="Chaves County, New Mexico">Chaves County, New Mexico</option>
+      <option value="Cibola County, New Mexico">Cibola County, New Mexico</option>
+      <option value="Colfax County, New Mexico">Colfax County, New Mexico</option>
+      <option value="Curry County, New Mexico">Curry County, New Mexico</option>
+      <option value="De Baca County, New Mexico">De Baca County, New Mexico</option>
+      <option value="Doña Ana County, New Mexico">Doña Ana County, New Mexico</option>
+      <option value="Eddy County, New Mexico">Eddy County, New Mexico</option>
+      <option value="Grant County, New Mexico">Grant County, New Mexico</option>
+      <option value="Guadalupe County, New Mexico">Guadalupe County, New Mexico</option>
+      <option value="Harding County, New Mexico">Harding County, New Mexico</option>
+      <option value="Hidalgo County, New Mexico">Hidalgo County, New Mexico</option>
+      <option value="Lea County, New Mexico">Lea County, New Mexico</option>
+      <option value="Lincoln County, New Mexico">Lincoln County, New Mexico</option>
+      <option value="Los Alamos County, New Mexico">Los Alamos County, New Mexico</option>
+      <option value="Luna County, New Mexico">Luna County, New Mexico</option>
+      <option value="McKinley County, New Mexico">McKinley County, New Mexico</option>
+      <option value="Mora County, New Mexico">Mora County, New Mexico</option>
+      <option value="Otero County, New Mexico">Otero County, New Mexico</option>
+      <option value="Quay County, New Mexico">Quay County, New Mexico</option>
+      <option value="Rio Arriba County, New Mexico">Rio Arriba County, New Mexico</option>
+      <option value="Roosevelt County, New Mexico">Roosevelt County, New Mexico</option>
+      <option value="San Juan County, New Mexico">San Juan County, New Mexico</option>
+      <option value="San Miguel County, New Mexico">San Miguel County, New Mexico</option>
+      <option value="Sandoval County, New Mexico">Sandoval County, New Mexico</option>
+      <option value="Santa Fe County, New Mexico">Santa Fe County, New Mexico</option>
+      <option value="Sierra County, New Mexico">Sierra County, New Mexico</option>
+      <option value="Socorro County, New Mexico">Socorro County, New Mexico</option>
+      <option value="Taos County, New Mexico">Taos County, New Mexico</option>
+      <option value="Torrance County, New Mexico">Torrance County, New Mexico</option>
+      <option value="Union County, New Mexico">Union County, New Mexico</option>
+      <option value="Valencia County, New Mexico">Valencia County, New Mexico</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>        const data = {"Statewide":[70.8,2.9,26.3],"Bernalillo County, New Mexico":[75.7,2.7,21.6],"Catron County, New Mexico":[92.4,0,7.6],"Chaves County, New Mexico":[66.2,1.3,32.4],"Cibola County, New Mexico":[58.7,14.2,27.1],"Colfax County, New Mexico":[37.2,4.6,58.2],"Curry County, New Mexico":[76.9,6.1,17],"De Baca County, New Mexico":[0,0,100],"Doña Ana County, New Mexico":[61.8,3,35.2],"Eddy County, New Mexico":[68,0,32],"Grant County, New Mexico":[66.8,0,33.2],"Guadalupe County, New Mexico":[83.8,0,16.2],"Harding County, New Mexico":[14.9,0,85.1],"Hidalgo County, New Mexico":[84,12,4],"Lea County, New Mexico":[81.6,6.2,12.2],"Lincoln County, New Mexico":[66.1,5.6,28.3],"Los Alamos County, New Mexico":[89.4,0,10.6],"Luna County, New Mexico":[55.3,0,44.7],"McKinley County, New Mexico":[61.3,3.5,35.1],"Mora County, New Mexico":[2.1,0,97.9],"Otero County, New Mexico":[70.1,1.8,28.1],"Quay County, New Mexico":[71.3,0,28.7],"Rio Arriba County, New Mexico":[57.1,4.1,38.8],"Roosevelt County, New Mexico":[73.8,13.9,12.3],"San Juan County, New Mexico":[70.6,2.4,27],"San Miguel County, New Mexico":[59,1.3,39.6],"Sandoval County, New Mexico":[74.5,1.6,23.9],"Santa Fe County, New Mexico":[67.6,2,30.4],"Sierra County, New Mexico":[55,0.7,44.3],"Socorro County, New Mexico":[73.3,0,26.7],"Taos County, New Mexico":[72.1,2.3,25.6],"Torrance County, New Mexico":[63.8,1.3,34.9],"Union County, New Mexico":[64.1,0,35.9],"Valencia County, New Mexico":[69.1,5.6,25.2]};
+        const nationalAvg = [73.9,23,3.2];
+        const categories = ["Employed","Unemployed","Not in Labor Force"];
+        const ctx = document.getElementById("barChart").getContext("2d");
+        let chart;
+
+        function renderChart(values) {
+          if (chart) chart.destroy();
+          chart = new Chart(ctx, {
+            type: "bar",
+            data: {
+              labels: categories,
+              datasets: [
+                {
+                  label: "County/State",
+                  data: values,
+                  backgroundColor: ["#66c2a5", "#fc8d62", "#8da0cb"]
+                },
+                {
+                  label: null,
+                  data: categories.map(c => nationalAvg[c]),
+                  type: "line",
+                  borderColor: "black",
+                  borderWidth: 2,
+                  pointRadius: 0,
+                  fill: false
+                }
+              ]
+            },
+            options: {
+              indexAxis: "y",
+              scales: {
+                x: {
+                  min: 0,
+                  max: 100,
+                  ticks: {
+                    callback: v => v + "%"
+                  }
+                }
+              },
+              plugins: {
+                legend: {
+  display: false
+},
+                tooltip: {
+                  callbacks: {
+                    label: ctx => ctx.dataset.label ? ctx.dataset.label + ": " + ctx.raw + "%" : null
+                  }
+                }
+              }
+            }
+          });
+        }
+
+        document.getElementById("countySelect").addEventListener("change", function() {
+          renderChart(Object.values(data[this.value]));
+        });
+
+        renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Income Distribution – Connecticut</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          text-align: center;
+          margin: 2rem;
+        }
+        select {
+          font-size: 1rem;
+          padding: 0.4rem;
+          margin-bottom: 1rem;
+        }
+        canvas {
+          width: 100%;
+          max-width: 700px;
+          height: 400px;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Income Share by Quintile – Connecticut</h2>
+    <label>Select County, State:</label>
+    <select id="countySelect"><option value='Statewide'>Statewide</option>
+<option value='Capitol Planning Region, Connecticut, Connecticut'>Capitol Planning Region, Connecticut, Connecticut</option>
+<option value='Greater Bridgeport Planning Region, Connecticut, Connecticut'>Greater Bridgeport Planning Region, Connecticut, Connecticut</option>
+<option value='Lower Connecticut River Valley Planning Region, Connecticut, Connecticut'>Lower Connecticut River Valley Planning Region, Connecticut, Connecticut</option>
+<option value='Naugatuck Valley Planning Region, Connecticut, Connecticut'>Naugatuck Valley Planning Region, Connecticut, Connecticut</option>
+<option value='Northeastern Connecticut Planning Region, Connecticut, Connecticut'>Northeastern Connecticut Planning Region, Connecticut, Connecticut</option>
+<option value='Northwest Hills Planning Region, Connecticut, Connecticut'>Northwest Hills Planning Region, Connecticut, Connecticut</option>
+<option value='South Central Connecticut Planning Region, Connecticut, Connecticut'>South Central Connecticut Planning Region, Connecticut, Connecticut</option>
+<option value='Southeastern Connecticut Planning Region, Connecticut, Connecticut'>Southeastern Connecticut Planning Region, Connecticut, Connecticut</option>
+<option value='Western Connecticut Planning Region, Connecticut, Connecticut'>Western Connecticut Planning Region, Connecticut, Connecticut</option></select>
+    <canvas id="barChart" width="700" height="400"></canvas>
+    <script>  const incomeData = {"Statewide":[4.7,7.9,12.4,27.3,47.6],"Capitol Planning Region, Connecticut, Connecticut":[4.8,8.2,12.9,27.2,46.9],"Greater Bridgeport Planning Region, Connecticut, Connecticut":[3.7,6.7,11.4,28.1,50.1],"Lower Connecticut River Valley Planning Region, Connecticut, Connecticut":[5,8.1,12.4,26.5,47.9],"Naugatuck Valley Planning Region, Connecticut, Connecticut":[4.9,8.5,13.1,27.2,46.3],"Northeastern Connecticut Planning Region, Connecticut, Connecticut":[6.5,10,14.4,27.3,41.7],"Northwest Hills Planning Region, Connecticut, Connecticut":[4.5,7.2,11.2,26.6,50.5],"South Central Connecticut Planning Region, Connecticut, Connecticut":[4.5,7.9,12.6,27.3,47.6],"Southeastern Connecticut Planning Region, Connecticut, Connecticut":[5.4,9,13.9,27.4,44.3],"Western Connecticut Planning Region, Connecticut, Connecticut":[3.4,5.8,9.8,27.9,53.2]};
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Bottom 20%', 'Second 20%', 'Middle 20%', 'Fourth 20%', 'Top 20%'],
+        datasets: [{
+          label: 'Share (%)',
+          data: values,
+          backgroundColor: '#4576a7'
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.parsed.y + '%'
+            }
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 100,
+            title: {
+              display: true,
+              text: 'Income Share (%)'
+            }
+          },
+          x: {
+            title: {
+              display: true,
+              text: 'Quintile'
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(Object.values(incomeData[this.value]));
+  });
+
+  renderChart(Object.values(incomeData['Statewide']));</script>
+  </body>
+</html>
+</html>

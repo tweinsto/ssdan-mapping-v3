@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Educational Enrollment – Massachusetts</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Educational Enrollment (Age 18–24) in Massachusetts</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Barnstable County, Massachusetts">Barnstable County, Massachusetts</option>
+      <option value="Berkshire County, Massachusetts">Berkshire County, Massachusetts</option>
+      <option value="Bristol County, Massachusetts">Bristol County, Massachusetts</option>
+      <option value="Dukes County, Massachusetts">Dukes County, Massachusetts</option>
+      <option value="Essex County, Massachusetts">Essex County, Massachusetts</option>
+      <option value="Franklin County, Massachusetts">Franklin County, Massachusetts</option>
+      <option value="Hampden County, Massachusetts">Hampden County, Massachusetts</option>
+      <option value="Hampshire County, Massachusetts">Hampshire County, Massachusetts</option>
+      <option value="Middlesex County, Massachusetts">Middlesex County, Massachusetts</option>
+      <option value="Nantucket County, Massachusetts">Nantucket County, Massachusetts</option>
+      <option value="Norfolk County, Massachusetts">Norfolk County, Massachusetts</option>
+      <option value="Plymouth County, Massachusetts">Plymouth County, Massachusetts</option>
+      <option value="Suffolk County, Massachusetts">Suffolk County, Massachusetts</option>
+      <option value="Worcester County, Massachusetts">Worcester County, Massachusetts</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>  const data = {"Statewide":{"Enrolled in College / Grad. School":50.3,"Not Enrolled":49.7},"Barnstable County, Massachusetts":{"Enrolled in College / Grad. School":35.1,"Not Enrolled":64.9},"Berkshire County, Massachusetts":{"Enrolled in College / Grad. School":47.1,"Not Enrolled":52.9},"Bristol County, Massachusetts":{"Enrolled in College / Grad. School":39.6,"Not Enrolled":60.4},"Dukes County, Massachusetts":{"Enrolled in College / Grad. School":33.1,"Not Enrolled":66.9},"Essex County, Massachusetts":{"Enrolled in College / Grad. School":40.8,"Not Enrolled":59.2},"Franklin County, Massachusetts":{"Enrolled in College / Grad. School":34.5,"Not Enrolled":65.5},"Hampden County, Massachusetts":{"Enrolled in College / Grad. School":40.2,"Not Enrolled":59.8},"Hampshire County, Massachusetts":{"Enrolled in College / Grad. School":81.6,"Not Enrolled":18.4},"Middlesex County, Massachusetts":{"Enrolled in College / Grad. School":52.7,"Not Enrolled":47.3},"Nantucket County, Massachusetts":{"Enrolled in College / Grad. School":23.5,"Not Enrolled":76.5},"Norfolk County, Massachusetts":{"Enrolled in College / Grad. School":47.8,"Not Enrolled":52.2},"Plymouth County, Massachusetts":{"Enrolled in College / Grad. School":39.7,"Not Enrolled":60.3},"Suffolk County, Massachusetts":{"Enrolled in College / Grad. School":63.7,"Not Enrolled":36.3},"Worcester County, Massachusetts":{"Enrolled in College / Grad. School":48.2,"Not Enrolled":51.8}};
+  const categories = ["Enrolled in College / Grad. School","Not Enrolled"];
+  const ctx = document.getElementById("barChart").getContext("2d");
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: categories,
+        datasets: [
+          {
+            label: "County/State",
+            data: values,
+            backgroundColor: ["#66c2a5", "#fc8d62"]
+          }
+        ]
+      },
+      options: {
+        indexAxis: "y",
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            ticks: {
+              callback: v => v + "%"
+            }
+          }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.dataset.label + ": " + ctx.raw + "%"
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById("countySelect").addEventListener("change", function() {
+    renderChart(Object.values(data[this.value]));
+  });
+
+  renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

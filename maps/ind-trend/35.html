@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+
+</head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Median Earnings by Industry – 35</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background: white;
+    }
+    .layout {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1.5rem;
+    }
+    label {
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+    #countySelect {
+      font-size: 1rem;
+      padding: 0.4rem 0.8rem;
+      margin-bottom: 1rem;
+    }
+    canvas {
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <label for="countySelect">Median Earnings by Industry:</label>
+    <select id="countySelect"></select>
+    <canvas id="barChart"></canvas>
+  </div>
+
+  <script>
+    const data = {"Statewide":{"Agriculture & mining":60204,"Arts & food services":31159,"Construction":49773,"Education & health":51920,"Finance & real estate":54134,"Information":57741,"Manufacturing":57725,"Other services":41451,"Prof. & waste services":76688,"Public administration":63562,"Retail trade":35035,"Transport & utilities":60710,"Wholesale trade":51407},"Bernalillo County":{"Agriculture & mining":57735,"Arts & food services":31066,"Construction":51478,"Education & health":56465,"Finance & real estate":58570,"Information":60015,"Manufacturing":61210,"Other services":42456,"Prof. & waste services":79743,"Public administration":73335,"Retail trade":38128,"Transport & utilities":59424,"Wholesale trade":53736},"Catron County":{"Agriculture & mining":102979,"Arts & food services":38958,"Construction":46136,"Education & health":34144,"Finance & real estate":0,"Information":0,"Manufacturing":0,"Other services":0,"Prof. & waste services":0,"Public administration":0,"Retail trade":0,"Transport & utilities":0,"Wholesale trade":0},"Chaves County":{"Agriculture & mining":42478,"Arts & food services":24941,"Construction":45427,"Education & health":46163,"Finance & real estate":35559,"Information":60625,"Manufacturing":85486,"Other services":37206,"Prof. & waste services":56449,"Public administration":60519,"Retail trade":29848,"Transport & utilities":51279,"Wholesale trade":57711},"Cibola County":{"Agriculture & mining":105057,"Arts & food services":31968,"Construction":42083,"Education & health":60694,"Finance & real estate":41818,"Information":78750,"Manufacturing":49410,"Other services":43917,"Prof. & waste services":88583,"Public administration":52303,"Retail trade":30066,"Transport & utilities":54697,"Wholesale trade":26979},"Colfax County":{"Agriculture & mining":43589,"Arts & food services":28750,"Construction":73651,"Education & health":51714,"Finance & real estate":42138,"Information":0,"Manufacturing":38068,"Other services":30268,"Prof. & waste services":78534,"Public administration":67772,"Retail trade":25200,"Transport & utilities":56420,"Wholesale trade":0},"Curry County":{"Agriculture & mining":48164,"Arts & food services":27141,"Construction":50948,"Education & health":42080,"Finance & real estate":50795,"Information":45455,"Manufacturing":50748,"Other services":34732,"Prof. & waste services":39896,"Public administration":54306,"Retail trade":36180,"Transport & utilities":69680,"Wholesale trade":39593},"De Baca County":{"Agriculture & mining":24524,"Arts & food services":0,"Construction":0,"Education & health":24375,"Finance & real estate":0,"Information":0,"Manufacturing":37434,"Other services":0,"Prof. & waste services":0,"Public administration":36111,"Retail trade":0,"Transport & utilities":83451,"Wholesale trade":0},"Doña Ana County":{"Agriculture & mining":41206,"Arts & food services":28867,"Construction":42171,"Education & health":51493,"Finance & real estate":47917,"Information":86875,"Manufacturing":45472,"Other services":33219,"Prof. & waste services":58632,"Public administration":76845,"Retail trade":32763,"Transport & utilities":57384,"Wholesale trade":43412},"Eddy County":{"Agriculture & mining":102240,"Arts & food services":34211,"Construction":61250,"Education & health":46725,"Finance & real estate":56671,"Information":52757,"Manufacturing":89833,"Other services":56565,"Prof. & waste services":85559,"Public administration":57465,"Retail trade":32774,"Transport & utilities":78587,"Wholesale trade":107586},"Grant County":{"Agriculture & mining":71110,"Arts & food services":24449,"Construction":50245,"Education & health":51231,"Finance & real estate":44405,"Information":75208,"Manufacturing":23264,"Other services":31875,"Prof. & waste services":30927,"Public administration":77237,"Retail trade":22551,"Transport & utilities":68580,"Wholesale trade":68862},"Guadalupe County":{"Agriculture & mining":36453,"Arts & food services":18704,"Construction":33000,"Education & health":60884,"Finance & real estate":0,"Information":0,"Manufacturing":0,"Other services":29441,"Prof. & waste services":0,"Public administration":59948,"Retail trade":29286,"Transport & utilities":52679,"Wholesale trade":0},"Harding County":{"Agriculture & mining":212750,"Arts & food services":0,"Construction":88438,"Education & health":71667,"Finance & real estate":0,"Information":0,"Manufacturing":0,"Other services":0,"Prof. & waste services":41875,"Public administration":57917,"Retail trade":41250,"Transport & utilities":0,"Wholesale trade":0},"Hidalgo County":{"Agriculture & mining":34184,"Arts & food services":24097,"Construction":41250,"Education & health":37428,"Finance & real estate":56964,"Information":0,"Manufacturing":0,"Other services":32396,"Prof. & waste services":0,"Public administration":107500,"Retail trade":29779,"Transport & utilities":74146,"Wholesale trade":0},"Lea County":{"Agriculture & mining":79147,"Arts & food services":24160,"Construction":60000,"Education & health":57963,"Finance & real estate":50625,"Information":40043,"Manufacturing":73246,"Other services":48313,"Prof. & waste services":62297,"Public administration":67941,"Retail trade":31110,"Transport & utilities":86614,"Wholesale trade":55371},"Lincoln County":{"Agriculture & mining":59583,"Arts & food services":33712,"Construction":38364,"Education & health":49432,"Finance & real estate":38004,"Information":36656,"Manufacturing":29597,"Other services":41150,"Prof. & waste services":46195,"Public administration":64435,"Retail trade":25595,"Transport & utilities":44180,"Wholesale trade":36538},"Los Alamos County":{"Agriculture & mining":0,"Arts & food services":61250,"Construction":62292,"Education & health":57254,"Finance & real estate":42955,"Information":53555,"Manufacturing":159741,"Other services":42315,"Prof. & waste services":132829,"Public administration":105237,"Retail trade":28849,"Transport & utilities":97917,"Wholesale trade":61964},"Luna County":{"Agriculture & mining":53270,"Arts & food services":16646,"Construction":68486,"Education & health":40714,"Finance & real estate":36648,"Information":0,"Manufacturing":33933,"Other services":31371,"Prof. & waste services":37442,"Public administration":72537,"Retail trade":26897,"Transport & utilities":47341,"Wholesale trade":0},"McKinley County":{"Agriculture & mining":71500,"Arts & food services":27125,"Construction":49401,"Education & health":44705,"Finance & real estate":42237,"Information":38934,"Manufacturing":46598,"Other services":34700,"Prof. & waste services":57350,"Public administration":54149,"Retail trade":32875,"Transport & utilities":34861,"Wholesale trade":33472},"Mora County":{"Agriculture & mining":34167,"Arts & food services":25673,"Construction":31705,"Education & health":61419,"Finance & real estate":30655,"Information":0,"Manufacturing":0,"Other services":16607,"Prof. & waste services":0,"Public administration":51643,"Retail trade":38438,"Transport & utilities":75857,"Wholesale trade":0},"Otero County":{"Agriculture & mining":40813,"Arts & food services":25731,"Construction":42314,"Education & health":50265,"Finance & real estate":51507,"Information":59075,"Manufacturing":54539,"Other services":33851,"Prof. & waste services":49044,"Public administration":54152,"Retail trade":35489,"Transport & utilities":77576,"Wholesale trade":41985},"Quay County":{"Agriculture & mining":33594,"Arts & food services":40479,"Construction":76117,"Education & health":42256,"Finance & real estate":49280,"Information":0,"Manufacturing":0,"Other services":40869,"Prof. & waste services":59583,"Public administration":50875,"Retail trade":25781,"Transport & utilities":62611,"Wholesale trade":28839},"Rio Arriba County":{"Agriculture & mining":72042,"Arts & food services":35857,"Construction":47424,"Education & health":43248,"Finance & real estate":41692,"Information":58859,"Manufacturing":70625,"Other services":45272,"Prof. & waste services":71321,"Public administration":49794,"Retail trade":37337,"Transport & utilities":45234,"Wholesale trade":50714},"Roosevelt County":{"Agriculture & mining":43805,"Arts & food services":36029,"Construction":36833,"Education & health":40139,"Finance & real estate":37045,"Information":31500,"Manufacturing":36073,"Other services":33044,"Prof. & waste services":58750,"Public administration":38799,"Retail trade":18125,"Transport & utilities":61391,"Wholesale trade":49056},"Sandoval County":{"Agriculture & mining":37292,"Arts & food services":33220,"Construction":62247,"Education & health":58010,"Finance & real estate":56886,"Information":76618,"Manufacturing":71769,"Other services":43750,"Prof. & waste services":79944,"Public administration":70950,"Retail trade":36417,"Transport & utilities":59313,"Wholesale trade":57283},"San Juan County":{"Agriculture & mining":59734,"Arts & food services":29975,"Construction":47382,"Education & health":45970,"Finance & real estate":47663,"Information":56827,"Manufacturing":53704,"Other services":41854,"Prof. & waste services":48402,"Public administration":60635,"Retail trade":35843,"Transport & utilities":52860,"Wholesale trade":38443},"San Miguel County":{"Agriculture & mining":43750,"Arts & food services":26988,"Construction":75526,"Education & health":43481,"Finance & real estate":53063,"Information":25673,"Manufacturing":40875,"Other services":34120,"Prof. & waste services":41810,"Public administration":52362,"Retail trade":27841,"Transport & utilities":40391,"Wholesale trade":50595},"Santa Fe County":{"Agriculture & mining":38917,"Arts & food services":40269,"Construction":44574,"Education & health":52785,"Finance & real estate":78652,"Information":68068,"Manufacturing":70089,"Other services":42037,"Prof. & waste services":93620,"Public administration":69652,"Retail trade":41781,"Transport & utilities":55104,"Wholesale trade":46983},"Sierra County":{"Agriculture & mining":62745,"Arts & food services":82854,"Construction":38125,"Education & health":29821,"Finance & real estate":86417,"Information":0,"Manufacturing":0,"Other services":22292,"Prof. & waste services":26744,"Public administration":55811,"Retail trade":25694,"Transport & utilities":41410,"Wholesale trade":0},"Socorro County":{"Agriculture & mining":48833,"Arts & food services":36355,"Construction":55398,"Education & health":39878,"Finance & real estate":39493,"Information":0,"Manufacturing":65321,"Other services":81165,"Prof. & waste services":49539,"Public administration":58529,"Retail trade":30437,"Transport & utilities":86818,"Wholesale trade":0},"Taos County":{"Agriculture & mining":80500,"Arts & food services":16276,"Construction":37289,"Education & health":56458,"Finance & real estate":68632,"Information":57120,"Manufacturing":113409,"Other services":45352,"Prof. & waste services":57328,"Public administration":57813,"Retail trade":31657,"Transport & utilities":77300,"Wholesale trade":58500},"Torrance County":{"Agriculture & mining":35568,"Arts & food services":24668,"Construction":41250,"Education & health":37464,"Finance & real estate":58162,"Information":0,"Manufacturing":43903,"Other services":45833,"Prof. & waste services":65227,"Public administration":67124,"Retail trade":31304,"Transport & utilities":29348,"Wholesale trade":37067},"Union County":{"Agriculture & mining":44803,"Arts & food services":30825,"Construction":70174,"Education & health":38125,"Finance & real estate":70156,"Information":0,"Manufacturing":27500,"Other services":0,"Prof. & waste services":96927,"Public administration":49940,"Retail trade":27885,"Transport & utilities":110568,"Wholesale trade":0},"Valencia County":{"Agriculture & mining":45893,"Arts & food services":30917,"Construction":40854,"Education & health":52500,"Finance & real estate":50893,"Information":56793,"Manufacturing":44817,"Other services":34040,"Prof. & waste services":63563,"Public administration":45411,"Retail trade":38590,"Transport & utilities":55658,"Wholesale trade":54167}};
+    const colors = {
+  'Agriculture & mining': '#FFFF01',
+  'Arts & food services': '#00008B',
+  'Construction': '#7570B1',
+  'Education & health': '#66A61E',
+  'Finance & real estate': '#E6AB01',
+  'Information': '#379',
+  'Manufacturing': '#E41A1C',
+  'Other services': '#377EF1',
+  'Prof. & waste services': '#FF7F00',
+  'Public administration': '#1B9E77',
+  'Retail trade': '#A65011',
+  'Transport & utilities': '#F781BF',
+  'Wholesale trade': '#919'
+};
+
+    const ctx = document.getElementById("barChart").getContext("2d");
+    let chart;
+
+    function renderChart(county) {
+      const values = data[county];
+      const labels = Object.keys(values);
+      const earnings = Object.values(values);
+
+      if (chart) chart.destroy();
+
+      chart = new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels: labels,
+          datasets: [{
+            label: "Median Earnings ($)",
+            data: earnings,
+            backgroundColor: labels.map(label => colors[label] || "#ccc")
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: true,
+  aspectRatio: 1.5, 
+          indexAxis: "x",
+          scales: {
+            y: {
+              beginAtZero: true,
+              title: {
+                display: true,
+                text: "Median Earnings ($)"
+              },
+              ticks: {
+                callback: function(value) {
+                  return "$" + value.toLocaleString();
+                }
+              }
+            },
+            x: {
+              ticks: {
+                maxRotation: 45,
+                minRotation: 20,
+                autoSkip: false,
+                callback: function(value, index, ticks) {
+                  let label = this.getLabelForValue(value);
+                  return label.length > 25 ? label.slice(0, 25) + "…" : label;
+                }
+              }
+            }
+          },
+          plugins: {
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  return "$" + context.parsed.y.toLocaleString();
+                }
+              }
+            },
+            legend: {
+              display: false
+            }
+          }
+        }
+      });
+    }
+
+    const select = document.getElementById("countySelect");
+    Object.keys(data).forEach(county => {
+      const option = document.createElement("option");
+      option.value = county;
+      option.text = county;
+      select.appendChild(option);
+    });
+    select.value = "Statewide";
+    select.addEventListener("change", () => renderChart(select.value));
+    renderChart("Statewide");
+  </script>
+</body>
+</html>
+</html>
