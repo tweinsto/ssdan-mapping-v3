@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Living Arrangements – Rhode Island</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Living Arrangements of Adults 65+ in Rhode Island</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Bristol County, Rhode Island">Bristol County, Rhode Island</option>
+      <option value="Kent County, Rhode Island">Kent County, Rhode Island</option>
+      <option value="Newport County, Rhode Island">Newport County, Rhode Island</option>
+      <option value="Providence County, Rhode Island">Providence County, Rhode Island</option>
+      <option value="Washington County, Rhode Island">Washington County, Rhode Island</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>  const data = {"Statewide":[30.2,0.3,2.1,13.1,51.3,3.1],"Bristol County, Rhode Island":[29.2,0.9,1.6,10.5,56.8,0.9],"Kent County, Rhode Island":[28.8,0.3,2.4,13.8,51.5,3.3],"Newport County, Rhode Island":[28.1,0.1,2.2,8.5,58.3,2.8],"Providence County, Rhode Island":[32.8,0.3,2.1,15.8,45.9,3.1],"Washington County, Rhode Island":[24.6,0,1.4,7,63.1,3.8]};
+  const nationalAvg = [27.3,0.3,2.3,14.5,53.2,2.4];
+  const categories = ["Lives alone","With child","With nonrelatives","With other relatives","With spouse only","With unmarried partner"];
+  const ctx = document.getElementById("barChart").getContext("2d");
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: categories,
+        datasets: [
+          {
+            label: "County/State",
+            data: values,
+            backgroundColor: [
+              "#e41a1c", "#ff7f00", "#4daf4a",
+              "#984ea3", "#377eb8", "#a65628"
+            ]
+          },
+          {
+            label: "",
+            data: categories.map(c => nationalAvg[c]),
+            type: "line",
+            borderColor: "gray",
+            borderWidth: 1,
+            borderDash: [4, 4],
+            pointRadius: 0,
+            fill: false
+          }
+        ]
+      },
+      options: {
+        indexAxis: "y",
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            ticks: {
+              callback: function(v) { return v + "%"; }
+            }
+          }
+        },
+        plugins: {
+          legend: {
+            labels: {
+              filter: function(item) { return item.text !== ""; }
+            }
+          },
+          tooltip: {
+            callbacks: {
+              label: function(ctx) {
+                return ctx.dataset.label !== "" ? ctx.dataset.label + ": " + ctx.raw + "%" : null;
+              }
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById("countySelect").addEventListener("change", function() {
+    renderChart(Object.values(data[this.value]));
+  });
+
+  renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

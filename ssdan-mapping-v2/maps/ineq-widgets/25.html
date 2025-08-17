@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Income Distribution – Massachusetts</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          text-align: center;
+          margin: 2rem;
+        }
+        select {
+          font-size: 1rem;
+          padding: 0.4rem;
+          margin-bottom: 1rem;
+        }
+        canvas {
+          width: 100%;
+          max-width: 700px;
+          height: 400px;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Income Share by Quintile – Massachusetts</h2>
+    <label>Select County, State:</label>
+    <select id="countySelect"><option value='Statewide'>Statewide</option>
+<option value='Barnstable, Massachusetts'>Barnstable, Massachusetts</option>
+<option value='Berkshire, Massachusetts'>Berkshire, Massachusetts</option>
+<option value='Bristol, Massachusetts'>Bristol, Massachusetts</option>
+<option value='Dukes, Massachusetts'>Dukes, Massachusetts</option>
+<option value='Essex, Massachusetts'>Essex, Massachusetts</option>
+<option value='Franklin, Massachusetts'>Franklin, Massachusetts</option>
+<option value='Hampden, Massachusetts'>Hampden, Massachusetts</option>
+<option value='Hampshire, Massachusetts'>Hampshire, Massachusetts</option>
+<option value='Middlesex, Massachusetts'>Middlesex, Massachusetts</option>
+<option value='Nantucket, Massachusetts'>Nantucket, Massachusetts</option>
+<option value='Norfolk, Massachusetts'>Norfolk, Massachusetts</option>
+<option value='Plymouth, Massachusetts'>Plymouth, Massachusetts</option>
+<option value='Suffolk, Massachusetts'>Suffolk, Massachusetts</option>
+<option value='Worcester, Massachusetts'>Worcester, Massachusetts</option></select>
+    <canvas id="barChart" width="700" height="400"></canvas>
+    <script>  const incomeData = {"Statewide":[4.5,7.7,12.2,27.1,48.4],"Barnstable, Massachusetts":[4.6,7.6,12,26.7,49],"Berkshire, Massachusetts":[4.2,7.1,11.2,27,50.6],"Bristol, Massachusetts":[4.9,8.8,13.9,27.6,44.6],"Dukes, Massachusetts":[3.1,5.2,8.2,25.6,57.9],"Essex, Massachusetts":[4.5,8,12.7,27.5,47.3],"Franklin, Massachusetts":[5.6,9.2,14.1,27.5,43.6],"Hampden, Massachusetts":[4.7,8.4,13.4,27.9,45.6],"Hampshire, Massachusetts":[4.8,8.4,12.9,27.1,46.8],"Middlesex, Massachusetts":[4.7,8.1,12.6,27.4,47.3],"Nantucket, Massachusetts":[4.6,6.3,10.7,26.3,52.1],"Norfolk, Massachusetts":[4.5,7.6,12,27.3,48.7],"Plymouth, Massachusetts":[4.7,8,12.3,26.9,48.1],"Suffolk, Massachusetts":[3.5,6.9,11.7,27.7,50.2],"Worcester, Massachusetts":[5,8.7,13.5,27.3,45.5]};
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Bottom 20%', 'Second 20%', 'Middle 20%', 'Fourth 20%', 'Top 20%'],
+        datasets: [{
+          label: 'Share (%)',
+          data: values,
+          backgroundColor: '#4576a7'
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.parsed.y + '%'
+            }
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 100,
+            title: {
+              display: true,
+              text: 'Income Share (%)'
+            }
+          },
+          x: {
+            title: {
+              display: true,
+              text: 'Quintile'
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(Object.values(incomeData[this.value]));
+  });
+
+  renderChart(Object.values(incomeData['Statewide']));</script>
+  </body>
+</html>
+</html>

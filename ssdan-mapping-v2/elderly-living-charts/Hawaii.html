@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Living Arrangements – Hawaii</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          margin: 1rem 2rem;
+          text-align: center;
+        }
+        h2 {
+          font-size: 1.5rem;
+          margin-bottom: 0.5rem;
+        }
+        select {
+          font-size: 1rem;
+          padding: 0.4rem;
+          margin: 1rem 0;
+          border: 1px solid #999;
+          border-radius: 5px;
+        }
+        canvas {
+          width: 100%;
+          max-width: 850px;
+          height: 600px;
+          margin-top: 1rem;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Living Arrangements of Adults 65+ in Hawaii</h2>
+    <label>Select County:</label>
+            <select id="countySelect">
+          <option value='Statewide'>Default</option>
+<option value='Hawaii County, Hawaii'>Hawaii County, Hawaii</option>
+<option value='Honolulu County, Hawaii'>Honolulu County, Hawaii</option>
+<option value='Kalawao County, Hawaii'>Kalawao County, Hawaii</option>
+<option value='Kauai County, Hawaii'>Kauai County, Hawaii</option>
+<option value='Maui County, Hawaii'>Maui County, Hawaii</option>
+        </select>
+    <canvas id="barChart"></canvas>
+    <script>  const chartData = {"Statewide":[0,0,0,0,0,0],"Hawaii County, Hawaii":[0,0,0,0,0,0],"Honolulu County, Hawaii":[0,0,0,0,0,0],"Kalawao County, Hawaii":[0,0,0,0,0,0],"Kauai County, Hawaii":[0,0,0,0,0,0],"Maui County, Hawaii":[0,0,0,0,0,0]};
+  const categories = ["With unmarried partner","With spouse only","With other relatives","With nonrelatives","With child","Lives alone"];
+  const usAverages = [27.3,0.3,2.3,14.5,53.2,2.4];
+
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(data) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: categories,
+        datasets: [
+          {
+            label: 'Percent (County/State)',
+            data: data,
+            backgroundColor: '#4576a7'
+          },
+          {
+            label: 'National Average',
+            data: categories.map(c => usAverages[c] || 0),
+            type: 'line',
+            borderColor: '#000',
+            borderWidth: 1,
+            pointRadius: 0,
+            fill: false
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        indexAxis: 'y',
+        scales: {
+          x: {
+            title: {
+              display: true,
+              text: 'Percent of 65+ Population'
+            },
+            min: 0,
+            max: 100,
+            ticks: {
+              callback: value => value + '%'
+            }
+          }
+        },
+        plugins: {
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.dataset.label + ': ' + ctx.parsed.x + '%'
+            }
+          },
+          legend: {
+            position: 'top',
+            align: 'start'
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(Object.values(chartData[this.value]));
+  });
+
+  renderChart(Object.values(chartData['Statewide']));</script>
+  </body>
+</html>
+</html>

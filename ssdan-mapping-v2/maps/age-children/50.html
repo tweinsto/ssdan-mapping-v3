@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Age Distribution Under 18 –  Vermont</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          margin: 1rem 2rem;
+          text-align: center;
+        }
+        h2 {
+          margin-bottom: 0.25rem;
+          font-size: 1.6rem;
+        }
+        select {
+          padding: 0.4rem;
+          font-size: 1rem;
+          margin: 1rem 0;
+          border-radius: 5px;
+          border: 1px solid #999;
+        }
+        canvas {
+          width: 100%;
+          max-width: 850px;
+          height: 500px;
+          margin-top: 1rem;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Age Distribution Under 18 in  Vermont (2023)</h2>
+    <label>Select County:</label>
+            <select id="countySelect">
+          <option value='Statewide'>Statewide</option>
+<option value='Addison County, Vermont'>Addison County, Vermont</option>
+<option value='Bennington County, Vermont'>Bennington County, Vermont</option>
+<option value='Caledonia County, Vermont'>Caledonia County, Vermont</option>
+<option value='Chittenden County, Vermont'>Chittenden County, Vermont</option>
+<option value='Essex County, Vermont'>Essex County, Vermont</option>
+<option value='Franklin County, Vermont'>Franklin County, Vermont</option>
+<option value='Grand Isle County, Vermont'>Grand Isle County, Vermont</option>
+<option value='Lamoille County, Vermont'>Lamoille County, Vermont</option>
+<option value='Orange County, Vermont'>Orange County, Vermont</option>
+<option value='Orleans County, Vermont'>Orleans County, Vermont</option>
+<option value='Rutland County, Vermont'>Rutland County, Vermont</option>
+<option value='Washington County, Vermont'>Washington County, Vermont</option>
+<option value='Windham County, Vermont'>Windham County, Vermont</option>
+<option value='Windsor County, Vermont'>Windsor County, Vermont</option>
+        </select>
+    <canvas id="barChart" width="850" height="500"></canvas>
+    <script>  const ageData = {"Statewide":[-12.2,11.7,-15.2,14.6,-9.9,9,-14.4,12.9],"Addison County, Vermont":[-12.2,12.6,-16.6,13.4,-12.9,13,-10.2,9.1],"Bennington County, Vermont":[-12.1,11.3,-14,10.8,-16.4,16.7,-10.3,8.5],"Caledonia County, Vermont":[-11.3,11,-14,11.9,-16,14.5,-11.6,9.6],"Chittenden County, Vermont":[-12.8,12.1,-14,13,-15.3,13.9,-10,8.9],"Essex County, Vermont":[-12.7,11.7,-11.5,13.4,-18.4,13.8,-9.2,9.4],"Franklin County, Vermont":[-12.8,12.7,-12.7,14,-16.2,14.2,-9.3,8.2],"Grand Isle County, Vermont":[-12.1,12.9,-16.4,16.4,-15.1,9.8,-15.3,2],"Lamoille County, Vermont":[-10.8,12.8,-15.6,12.9,-14.1,15.5,-9.3,9],"Orange County, Vermont":[-11.7,11.8,-15.7,12.1,-14.8,15.3,-9.4,9.2],"Orleans County, Vermont":[-12.6,11.6,-16.2,15.5,-12.3,12.7,-9.7,9.3],"Rutland County, Vermont":[-11.6,11.7,-14.3,12.6,-15.3,15.3,-10.1,9.2],"Washington County, Vermont":[-11.8,11.2,-15.5,12.1,-15.1,16,-9.3,9.1],"Windham County, Vermont":[-12.6,10.1,-11.4,13.8,-18.5,14.4,-9.7,9.5],"Windsor County, Vermont":[-12.3,11,-15.3,12.5,-14,15,-9.5,10.3]};
+  const ageBins = ["0–4","5–9","10–14","15–17"];
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(data) {
+    const maleData = data.filter((_, i) => i % 2 === 0);
+    const femaleData = data.filter((_, i) => i % 2 === 1);
+
+    const maxValue = Math.max(
+      ...maleData.map(Math.abs),
+      ...femaleData.map(Math.abs)
+    );
+    const padding = 1.0;
+    const xMax = +(maxValue + padding).toFixed(1);
+
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ageBins,
+        datasets: [
+          {
+            label: 'Male',
+            data: maleData,
+            backgroundColor: 'dodgerblue'
+          },
+          {
+            label: 'Female',
+            data: femaleData,
+            backgroundColor: 'lightpink'
+          }
+        ]
+      },
+      options: {
+        indexAxis: 'y',
+        responsive: true,
+        scales: {
+          x: {
+            min: -xMax,
+            max: xMax,
+            ticks: {
+              callback: value => Math.abs(value).toFixed(1) + '%'
+            }
+          },
+          y: {
+            stacked: false
+          }
+        },
+        plugins: {
+          legend: {
+            position: 'top',
+            align: 'start',
+            labels: {
+              usePointStyle: true
+            }
+          },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.dataset.label + ': ' + Math.abs(ctx.parsed.x).toFixed(1) + '%'
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(Object.values(ageData[this.value]));
+  });
+
+  renderChart(Object.values(ageData['Statewide']));</script>
+  </body>
+</html>
+</html>

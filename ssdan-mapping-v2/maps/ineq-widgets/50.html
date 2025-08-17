@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Income Distribution – Vermont</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          text-align: center;
+          margin: 2rem;
+        }
+        select {
+          font-size: 1rem;
+          padding: 0.4rem;
+          margin-bottom: 1rem;
+        }
+        canvas {
+          width: 100%;
+          max-width: 700px;
+          height: 400px;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Income Share by Quintile – Vermont</h2>
+    <label>Select County, State:</label>
+    <select id="countySelect"><option value='Statewide'>Statewide</option>
+<option value='Addison, Vermont'>Addison, Vermont</option>
+<option value='Bennington, Vermont'>Bennington, Vermont</option>
+<option value='Caledonia, Vermont'>Caledonia, Vermont</option>
+<option value='Chittenden, Vermont'>Chittenden, Vermont</option>
+<option value='Essex, Vermont'>Essex, Vermont</option>
+<option value='Franklin, Vermont'>Franklin, Vermont</option>
+<option value='Grand Isle, Vermont'>Grand Isle, Vermont</option>
+<option value='Lamoille, Vermont'>Lamoille, Vermont</option>
+<option value='Orange, Vermont'>Orange, Vermont</option>
+<option value='Orleans, Vermont'>Orleans, Vermont</option>
+<option value='Rutland, Vermont'>Rutland, Vermont</option>
+<option value='Washington, Vermont'>Washington, Vermont</option>
+<option value='Windham, Vermont'>Windham, Vermont</option>
+<option value='Windsor, Vermont'>Windsor, Vermont</option></select>
+    <canvas id="barChart" width="700" height="400"></canvas>
+    <script>  const incomeData = {"Statewide":[5.2,8.5,13,26.9,46.3],"Addison, Vermont":[6,9.7,14.2,27,43.2],"Bennington, Vermont":[4,7.3,11.7,26.9,50.1],"Caledonia, Vermont":[5.1,8.6,13.7,27.1,45.5],"Chittenden, Vermont":[5.3,8.9,13.4,27.3,45.1],"Essex, Vermont":[5.3,8.4,12.5,26.4,47.5],"Franklin, Vermont":[6.2,10,14.6,26.4,42.8],"Grand Isle, Vermont":[4.8,7.9,12.7,26.8,47.7],"Lamoille, Vermont":[4.8,7.2,11.7,26.4,49.9],"Orange, Vermont":[6.4,9.9,14.2,26.7,42.8],"Orleans, Vermont":[5.6,9.3,14,27.1,44.1],"Rutland, Vermont":[4.8,8.1,12.7,27.2,47.2],"Washington, Vermont":[5.4,8.8,13.3,26.8,45.7],"Windham, Vermont":[4.8,7.9,12,27.1,48.2],"Windsor, Vermont":[4.6,7.6,12.1,27,48.7]};
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Bottom 20%', 'Second 20%', 'Middle 20%', 'Fourth 20%', 'Top 20%'],
+        datasets: [{
+          label: 'Share (%)',
+          data: values,
+          backgroundColor: '#4576a7'
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.parsed.y + '%'
+            }
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 100,
+            title: {
+              display: true,
+              text: 'Income Share (%)'
+            }
+          },
+          x: {
+            title: {
+              display: true,
+              text: 'Quintile'
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(Object.values(incomeData[this.value]));
+  });
+
+  renderChart(Object.values(incomeData['Statewide']));</script>
+  </body>
+</html>
+</html>

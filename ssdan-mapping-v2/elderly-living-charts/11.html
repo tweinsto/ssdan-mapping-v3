@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Living Arrangements – District of Columbia</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Living Arrangements of Adults 65+ in District of Columbia</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="District of Columbia, District of Columbia">District of Columbia, District of Columbia</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>  const data = {"Statewide":[42.5,0.4,3.2,17.1,34.2,2.6],"District of Columbia, District of Columbia":[42.5,0.4,3.2,17.1,34.2,2.6]};
+  const nationalAvg = [27.3,0.3,2.3,14.5,53.2,2.4];
+  const categories = ["Lives alone","With child","With nonrelatives","With other relatives","With spouse only","With unmarried partner"];
+  const ctx = document.getElementById("barChart").getContext("2d");
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: categories,
+        datasets: [
+          {
+            label: "County/State",
+            data: values,
+            backgroundColor: [
+              "#e41a1c", "#ff7f00", "#4daf4a",
+              "#984ea3", "#377eb8", "#a65628"
+            ]
+          },
+          {
+            label: "",
+            data: categories.map(c => nationalAvg[c]),
+            type: "line",
+            borderColor: "gray",
+            borderWidth: 1,
+            borderDash: [4, 4],
+            pointRadius: 0,
+            fill: false
+          }
+        ]
+      },
+      options: {
+        indexAxis: "y",
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            ticks: {
+              callback: function(v) { return v + "%"; }
+            }
+          }
+        },
+        plugins: {
+          legend: {
+            labels: {
+              filter: function(item) { return item.text !== ""; }
+            }
+          },
+          tooltip: {
+            callbacks: {
+              label: function(ctx) {
+                return ctx.dataset.label !== "" ? ctx.dataset.label + ": " + ctx.raw + "%" : null;
+              }
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById("countySelect").addEventListener("change", function() {
+    renderChart(Object.values(data[this.value]));
+  });
+
+  renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

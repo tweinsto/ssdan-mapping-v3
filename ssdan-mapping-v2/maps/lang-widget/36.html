@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Language Spoken at Home – New York</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          text-align: center;
+          margin: 2rem;
+        }
+        select {
+          font-size: 1rem;
+          padding: 0.4rem;
+          margin-bottom: 1rem;
+        }
+        canvas {
+          width: 100%;
+          max-width: 700px;
+          height: 800px;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Language Spoken at Home – New York</h2>
+    <label>Select County, State:</label>
+    <select id="countySelect"><option value='Statewide'>Statewide</option>
+<option value='Albany County, New York'>Albany County, New York</option>
+<option value='Allegany County, New York'>Allegany County, New York</option>
+<option value='Bronx County, New York'>Bronx County, New York</option>
+<option value='Broome County, New York'>Broome County, New York</option>
+<option value='Cattaraugus County, New York'>Cattaraugus County, New York</option>
+<option value='Cayuga County, New York'>Cayuga County, New York</option>
+<option value='Chautauqua County, New York'>Chautauqua County, New York</option>
+<option value='Chemung County, New York'>Chemung County, New York</option>
+<option value='Chenango County, New York'>Chenango County, New York</option>
+<option value='Clinton County, New York'>Clinton County, New York</option>
+<option value='Columbia County, New York'>Columbia County, New York</option>
+<option value='Cortland County, New York'>Cortland County, New York</option>
+<option value='Delaware County, New York'>Delaware County, New York</option>
+<option value='Dutchess County, New York'>Dutchess County, New York</option>
+<option value='Erie County, New York'>Erie County, New York</option>
+<option value='Essex County, New York'>Essex County, New York</option>
+<option value='Franklin County, New York'>Franklin County, New York</option>
+<option value='Fulton County, New York'>Fulton County, New York</option>
+<option value='Genesee County, New York'>Genesee County, New York</option>
+<option value='Greene County, New York'>Greene County, New York</option>
+<option value='Hamilton County, New York'>Hamilton County, New York</option>
+<option value='Herkimer County, New York'>Herkimer County, New York</option>
+<option value='Jefferson County, New York'>Jefferson County, New York</option>
+<option value='Kings County, New York'>Kings County, New York</option>
+<option value='Lewis County, New York'>Lewis County, New York</option>
+<option value='Livingston County, New York'>Livingston County, New York</option>
+<option value='Madison County, New York'>Madison County, New York</option>
+<option value='Monroe County, New York'>Monroe County, New York</option>
+<option value='Montgomery County, New York'>Montgomery County, New York</option>
+<option value='Nassau County, New York'>Nassau County, New York</option>
+<option value='New York County, New York'>New York County, New York</option>
+<option value='Niagara County, New York'>Niagara County, New York</option>
+<option value='Oneida County, New York'>Oneida County, New York</option>
+<option value='Onondaga County, New York'>Onondaga County, New York</option>
+<option value='Ontario County, New York'>Ontario County, New York</option>
+<option value='Orange County, New York'>Orange County, New York</option>
+<option value='Orleans County, New York'>Orleans County, New York</option>
+<option value='Oswego County, New York'>Oswego County, New York</option>
+<option value='Otsego County, New York'>Otsego County, New York</option>
+<option value='Putnam County, New York'>Putnam County, New York</option>
+<option value='Queens County, New York'>Queens County, New York</option>
+<option value='Rensselaer County, New York'>Rensselaer County, New York</option>
+<option value='Richmond County, New York'>Richmond County, New York</option>
+<option value='Rockland County, New York'>Rockland County, New York</option>
+<option value='Saratoga County, New York'>Saratoga County, New York</option>
+<option value='Schenectady County, New York'>Schenectady County, New York</option>
+<option value='Schoharie County, New York'>Schoharie County, New York</option>
+<option value='Schuyler County, New York'>Schuyler County, New York</option>
+<option value='Seneca County, New York'>Seneca County, New York</option>
+<option value='St. Lawrence County, New York'>St. Lawrence County, New York</option>
+<option value='Steuben County, New York'>Steuben County, New York</option>
+<option value='Suffolk County, New York'>Suffolk County, New York</option>
+<option value='Sullivan County, New York'>Sullivan County, New York</option>
+<option value='Tioga County, New York'>Tioga County, New York</option>
+<option value='Tompkins County, New York'>Tompkins County, New York</option>
+<option value='Ulster County, New York'>Ulster County, New York</option>
+<option value='Warren County, New York'>Warren County, New York</option>
+<option value='Washington County, New York'>Washington County, New York</option>
+<option value='Wayne County, New York'>Wayne County, New York</option>
+<option value='Westchester County, New York'>Westchester County, New York</option>
+<option value='Wyoming County, New York'>Wyoming County, New York</option>
+<option value='Yates County, New York'>Yates County, New York</option></select>
+    <canvas id="barChart" width="700" height="700"></canvas>
+    <script>  const languageData = {"Statewide":{"Arabic":0.2,"Chinese":1.8,"English only":53.1,"French, Haitian, Cajun":1,"German or West Germanic":1.2,"Korean":0.4,"Other":14.8,"Other Asian/Pacific":0.6,"Other Indo-European":0.4,"Other/Unspecified":0.4,"Russian, Polish, Slavic":1.1,"Spanish":22.5,"Tagalog":1.9,"Vietnamese":0.5},"Albany County, New York":{"Arabic":1,"Chinese":2.4,"English only":72.6,"French, Haitian, Cajun":1.4,"German or West Germanic":0.7,"Korean":0.4,"Other Asian/Pacific":2.7,"Other Indo-European":6,"Other/Unspecified":1.7,"Russian, Polish, Slavic":2.2,"Spanish":7.4,"Tagalog":1,"Vietnamese":0.4},"Allegany County, New York":{"Arabic":0.2,"Chinese":0.8,"English only":92.8,"French, Haitian, Cajun":0.3,"German or West Germanic":2,"Korean":0,"Other Asian/Pacific":0.4,"Other Indo-European":0.7,"Other/Unspecified":0.2,"Russian, Polish, Slavic":0.1,"Spanish":2.1,"Tagalog":0.2,"Vietnamese":0.1},"Bronx County, New York":{"Arabic":0.6,"Chinese":0.5,"English only":23.4,"French, Haitian, Cajun":2.6,"German or West Germanic":0.1,"Korean":0.2,"Other Asian/Pacific":0.4,"Other Indo-European":3.9,"Other/Unspecified":5.4,"Russian, Polish, Slavic":0.7,"Spanish":61.4,"Tagalog":0.6,"Vietnamese":0.2},"Broome County, New York":{"Arabic":0.7,"Chinese":2.5,"English only":82.3,"French, Haitian, Cajun":1.6,"German or West Germanic":0.7,"Korean":0.6,"Other Asian/Pacific":1.1,"Other Indo-European":4.2,"Other/Unspecified":0.5,"Russian, Polish, Slavic":1.2,"Spanish":4.3,"Tagalog":0.1,"Vietnamese":0.2},"Cattaraugus County, New York":{"Arabic":0.3,"Chinese":0.2,"English only":90.6,"French, Haitian, Cajun":0.4,"German or West Germanic":3.3,"Korean":0.1,"Other Asian/Pacific":0.3,"Other Indo-European":1,"Other/Unspecified":1,"Russian, Polish, Slavic":0.3,"Spanish":2.3,"Tagalog":0.2,"Vietnamese":0},"Cayuga County, New York":{"Arabic":0,"Chinese":0.2,"English only":89,"French, Haitian, Cajun":0.7,"German or West Germanic":1.5,"Korean":0,"Other Asian/Pacific":0.2,"Other Indo-European":1.7,"Other/Unspecified":0.3,"Russian, Polish, Slavic":0.8,"Spanish":5.2,"Tagalog":0.2,"Vietnamese":0},"Chautauqua County, New York":{"Arabic":0,"Chinese":0.5,"English only":82,"French, Haitian, Cajun":0.5,"German or West Germanic":2.9,"Korean":0.1,"Other Asian/Pacific":0.1,"Other Indo-European":1.6,"Other/Unspecified":0.2,"Russian, Polish, Slavic":0.5,"Spanish":11.5,"Tagalog":0,"Vietnamese":0.1},"Chemung County, New York":{"Arabic":0.2,"Chinese":0.8,"English only":88.7,"French, Haitian, Cajun":0.7,"German or West Germanic":0.7,"Korean":0.2,"Other Asian/Pacific":1.1,"Other Indo-European":1.2,"Other/Unspecified":0.2,"Russian, Polish, Slavic":1.4,"Spanish":4.5,"Tagalog":0.3,"Vietnamese":0},"Chenango County, New York":{"Arabic":0,"Chinese":0,"English only":91.3,"French, Haitian, Cajun":0,"German or West Germanic":1.9,"Korean":0,"Other Asian/Pacific":0.4,"Other Indo-European":0.8,"Other/Unspecified":0.2,"Russian, Polish, Slavic":0.9,"Spanish":4.1,"Tagalog":0.3,"Vietnamese":0},"Clinton County, New York":{"Arabic":0.2,"Chinese":0.2,"English only":88.6,"French, Haitian, Cajun":3.6,"German or West Germanic":0.4,"Korean":0.1,"Other Asian/Pacific":0.2,"Other Indo-European":1.5,"Other/Unspecified":0.7,"Russian, Polish, Slavic":0.5,"Spanish":3.3,"Tagalog":0.4,"Vietnamese":0.3},"Columbia County, New York":{"Arabic":0.1,"Chinese":0.8,"English only":80.4,"French, Haitian, Cajun":1.6,"German or West Germanic":3.1,"Korean":0.1,"Other Asian/Pacific":0.9,"Other Indo-European":3.1,"Other/Unspecified":0.7,"Russian, Polish, Slavic":1.3,"Spanish":7.6,"Tagalog":0.2,"Vietnamese":0.1},"Cortland County, New York":{"Arabic":1.1,"Chinese":0.5,"English only":86.9,"French, Haitian, Cajun":1.6,"German or West Germanic":0.8,"Korean":0,"Other Asian/Pacific":0.4,"Other Indo-European":2.6,"Other/Unspecified":0.6,"Russian, Polish, Slavic":2.3,"Spanish":2.9,"Tagalog":0.3,"Vietnamese":0},"Delaware County, New York":{"Arabic":0,"Chinese":0.2,"English only":83.2,"French, Haitian, Cajun":1,"German or West Germanic":2.9,"Korean":0.2,"Other Asian/Pacific":1.2,"Other Indo-European":2.4,"Other/Unspecified":0.5,"Russian, Polish, Slavic":2.1,"Spanish":6.1,"Tagalog":0.1,"Vietnamese":0},"Dutchess County, New York":{"Arabic":0.8,"Chinese":1.5,"English only":68.3,"French, Haitian, Cajun":1,"German or West Germanic":1.5,"Korean":0.8,"Other Asian/Pacific":0.9,"Other Indo-European":4.8,"Other/Unspecified":1.6,"Russian, Polish, Slavic":1.3,"Spanish":16.9,"Tagalog":0.6,"Vietnamese":0.2},"Erie County, New York":{"Arabic":1.6,"Chinese":1,"English only":79,"French, Haitian, Cajun":1.1,"German or West Germanic":0.7,"Korean":0.3,"Other Asian/Pacific":1.3,"Other Indo-European":4,"Other/Unspecified":1.2,"Russian, Polish, Slavic":2,"Spanish":7.4,"Tagalog":0.2,"Vietnamese":0.2},"Essex County, New York":{"Arabic":0,"Chinese":0.2,"English only":87.3,"French, Haitian, Cajun":2.2,"German or West Germanic":1.5,"Korean":0.1,"Other Asian/Pacific":0.6,"Other Indo-European":3.2,"Other/Unspecified":0.4,"Russian, Polish, Slavic":2.3,"Spanish":2.2,"Tagalog":0,"Vietnamese":0},"Franklin County, New York":{"Arabic":0,"Chinese":0.4,"English only":87.1,"French, Haitian, Cajun":2.5,"German or West Germanic":2.2,"Korean":0,"Other Asian/Pacific":0.1,"Other Indo-European":0.8,"Other/Unspecified":4.9,"Russian, Polish, Slavic":0.1,"Spanish":1.3,"Tagalog":0.6,"Vietnamese":0},"Fulton County, New York":{"Arabic":0,"Chinese":0.6,"English only":91.4,"French, Haitian, Cajun":0.5,"German or West Germanic":1.1,"Korean":0.2,"Other Asian/Pacific":0.3,"Other Indo-European":1.7,"Other/Unspecified":0.1,"Russian, Polish, Slavic":0.4,"Spanish":3.5,"Tagalog":0.1,"Vietnamese":0.1},"Genesee County, New York":{"Arabic":0,"Chinese":0.7,"English only":92,"French, Haitian, Cajun":0.1,"German or West Germanic":1.1,"Korean":0,"Other Asian/Pacific":0.2,"Other Indo-European":0.6,"Other/Unspecified":0.1,"Russian, Polish, Slavic":0.3,"Spanish":4.7,"Tagalog":0.2,"Vietnamese":0.1},"Greene County, New York":{"Arabic":0.2,"Chinese":0.6,"English only":82.6,"French, Haitian, Cajun":1.6,"German or West Germanic":1.1,"Korean":0.2,"Other Asian/Pacific":0.3,"Other Indo-European":4,"Other/Unspecified":0.2,"Russian, Polish, Slavic":1.8,"Spanish":6.8,"Tagalog":0.2,"Vietnamese":0.2},"Hamilton County, New York":{"Arabic":0,"Chinese":0,"English only":96.8,"French, Haitian, Cajun":0,"German or West Germanic":0.8,"Korean":0,"Other Asian/Pacific":0,"Other Indo-European":0.8,"Other/Unspecified":0,"Russian, Polish, Slavic":0,"Spanish":1.5,"Tagalog":0,"Vietnamese":0},"Herkimer County, New York":{"Arabic":0,"Chinese":0.2,"English only":89.2,"French, Haitian, Cajun":1.1,"German or West Germanic":1.5,"Korean":0.3,"Other Asian/Pacific":0.3,"Other Indo-European":2.3,"Other/Unspecified":0.3,"Russian, Polish, Slavic":1.9,"Spanish":2.8,"Tagalog":0.1,"Vietnamese":0},"Jefferson County, New York":{"Arabic":0.1,"Chinese":0.2,"English only":81.9,"French, Haitian, Cajun":1.3,"German or West Germanic":1.6,"Korean":1.1,"Other Asian/Pacific":1,"Other Indo-European":1.4,"Other/Unspecified":1.3,"Russian, Polish, Slavic":0.5,"Spanish":8.2,"Tagalog":1.4,"Vietnamese":0},"Kings County, New York":{"Arabic":1.6,"Chinese":8.2,"English only":36.5,"French, Haitian, Cajun":5.5,"German or West Germanic":4.1,"Korean":0.5,"Other Asian/Pacific":1.6,"Other Indo-European":5.9,"Other/Unspecified":3.1,"Russian, Polish, Slavic":10.8,"Spanish":21.5,"Tagalog":0.4,"Vietnamese":0.2},"Lewis County, New York":{"Arabic":0,"Chinese":0,"English only":92.9,"French, Haitian, Cajun":0.3,"German or West Germanic":1.9,"Korean":0.2,"Other Asian/Pacific":0.1,"Other Indo-European":0.6,"Other/Unspecified":0.1,"Russian, Polish, Slavic":0.3,"Spanish":3.3,"Tagalog":0.3,"Vietnamese":0},"Livingston County, New York":{"Arabic":0.1,"Chinese":1.2,"English only":88.4,"French, Haitian, Cajun":0.7,"German or West Germanic":1.3,"Korean":0.1,"Other Asian/Pacific":1.1,"Other Indo-European":1.2,"Other/Unspecified":0.5,"Russian, Polish, Slavic":0.3,"Spanish":5.2,"Tagalog":0,"Vietnamese":0},"Madison County, New York":{"Arabic":0.4,"Chinese":0.4,"English only":90.3,"French, Haitian, Cajun":1.4,"German or West Germanic":1.7,"Korean":0.1,"Other Asian/Pacific":0.3,"Other Indo-European":0.9,"Other/Unspecified":0.2,"Russian, Polish, Slavic":1.4,"Spanish":2.6,"Tagalog":0.2,"Vietnamese":0.1},"Monroe County, New York":{"Arabic":0.7,"Chinese":1.4,"English only":74.4,"French, Haitian, Cajun":1,"German or West Germanic":1,"Korean":0.4,"Other Asian/Pacific":1.4,"Other Indo-European":3.9,"Other/Unspecified":1.1,"Russian, Polish, Slavic":2,"Spanish":12.1,"Tagalog":0.2,"Vietnamese":0.4},"Montgomery County, New York":{"Arabic":0.2,"Chinese":0.3,"English only":77.1,"French, Haitian, Cajun":0.6,"German or West Germanic":2.6,"Korean":0.1,"Other Asian/Pacific":0.2,"Other Indo-European":1.3,"Other/Unspecified":0,"Russian, Polish, Slavic":1.5,"Spanish":15.4,"Tagalog":0.4,"Vietnamese":0.4},"Nassau County, New York":{"Arabic":0.5,"Chinese":4.5,"English only":49.9,"French, Haitian, Cajun":3,"German or West Germanic":0.8,"Korean":1.4,"Other Asian/Pacific":1.7,"Other Indo-European":12.1,"Other/Unspecified":2.3,"Russian, Polish, Slavic":2.3,"Spanish":20.1,"Tagalog":1.1,"Vietnamese":0.1},"New York County, New York":{"Arabic":0.7,"Chinese":7.6,"English only":45.7,"French, Haitian, Cajun":3.8,"German or West Germanic":1.2,"Korean":1.3,"Other Asian/Pacific":2.1,"Other Indo-European":6.1,"Other/Unspecified":2.1,"Russian, Polish, Slavic":2.9,"Spanish":25.6,"Tagalog":0.6,"Vietnamese":0.2},"Niagara County, New York":{"Arabic":0.5,"Chinese":0.4,"English only":88.3,"French, Haitian, Cajun":0.7,"German or West Germanic":0.8,"Korean":0.3,"Other Asian/Pacific":0.2,"Other Indo-European":2.5,"Other/Unspecified":0.5,"Russian, Polish, Slavic":1.2,"Spanish":4.1,"Tagalog":0.1,"Vietnamese":0.3},"Oneida County, New York":{"Arabic":0.8,"Chinese":0.9,"English only":76,"French, Haitian, Cajun":0.8,"German or West Germanic":0.5,"Korean":0.4,"Other Asian/Pacific":3.6,"Other Indo-European":2.3,"Other/Unspecified":0.9,"Russian, Polish, Slavic":5.9,"Spanish":7.2,"Tagalog":0.2,"Vietnamese":0.5},"Onondaga County, New York":{"Arabic":1.1,"Chinese":1.3,"English only":78.1,"French, Haitian, Cajun":1.2,"German or West Germanic":1,"Korean":0.3,"Other Asian/Pacific":1.2,"Other Indo-European":3.3,"Other/Unspecified":1.9,"Russian, Polish, Slavic":2.3,"Spanish":7.4,"Tagalog":0.4,"Vietnamese":0.6},"Ontario County, New York":{"Arabic":0.4,"Chinese":0.4,"English only":84.6,"French, Haitian, Cajun":1.4,"German or West Germanic":1.8,"Korean":0.2,"Other Asian/Pacific":0.4,"Other Indo-European":2.9,"Other/Unspecified":0.1,"Russian, Polish, Slavic":0.2,"Spanish":7.2,"Tagalog":0.2,"Vietnamese":0},"Orange County, New York":{"Arabic":0.4,"Chinese":1.3,"English only":53.2,"French, Haitian, Cajun":1.8,"German or West Germanic":8.9,"Korean":0.2,"Other Asian/Pacific":0.9,"Other Indo-European":4.2,"Other/Unspecified":0.9,"Russian, Polish, Slavic":1.7,"Spanish":25.5,"Tagalog":0.7,"Vietnamese":0.2},"Orleans County, New York":{"Arabic":0,"Chinese":0.4,"English only":89.8,"French, Haitian, Cajun":0.3,"German or West Germanic":2.4,"Korean":0.1,"Other Asian/Pacific":0.2,"Other Indo-European":0.8,"Other/Unspecified":0.2,"Russian, Polish, Slavic":0.5,"Spanish":4.8,"Tagalog":0.5,"Vietnamese":0},"Oswego County, New York":{"Arabic":0.2,"Chinese":0.2,"English only":90.9,"French, Haitian, Cajun":0.7,"German or West Germanic":1.6,"Korean":0.1,"Other Asian/Pacific":0.6,"Other Indo-European":1,"Other/Unspecified":0.1,"Russian, Polish, Slavic":0.6,"Spanish":3.6,"Tagalog":0.3,"Vietnamese":0.1},"Otsego County, New York":{"Arabic":0.2,"Chinese":0.7,"English only":88.4,"French, Haitian, Cajun":0.6,"German or West Germanic":2.2,"Korean":0,"Other Asian/Pacific":0.6,"Other Indo-European":1.7,"Other/Unspecified":0.1,"Russian, Polish, Slavic":1.3,"Spanish":3.8,"Tagalog":0.4,"Vietnamese":0},"Putnam County, New York":{"Arabic":0.8,"Chinese":1.2,"English only":59.9,"French, Haitian, Cajun":1.4,"German or West Germanic":1,"Korean":0.4,"Other Asian/Pacific":1.1,"Other Indo-European":8.6,"Other/Unspecified":0.7,"Russian, Polish, Slavic":2,"Spanish":22.2,"Tagalog":0.6,"Vietnamese":0.1},"Queens County, New York":{"Arabic":1,"Chinese":12.8,"English only":26.4,"French, Haitian, Cajun":2.8,"German or West Germanic":0.7,"Korean":2.8,"Other Asian/Pacific":2.4,"Other Indo-European":12.9,"Other/Unspecified":1.7,"Russian, Polish, Slavic":5.1,"Spanish":29.1,"Tagalog":2,"Vietnamese":0.2},"Rensselaer County, New York":{"Arabic":1,"Chinese":1,"English only":82.2,"French, Haitian, Cajun":1.6,"German or West Germanic":1,"Korean":0,"Other Asian/Pacific":1.4,"Other Indo-European":2.7,"Other/Unspecified":1.2,"Russian, Polish, Slavic":1.6,"Spanish":6.1,"Tagalog":0.2,"Vietnamese":0.2},"Richmond County, New York":{"Arabic":3.3,"Chinese":7.8,"English only":43.5,"French, Haitian, Cajun":1.1,"German or West Germanic":0.6,"Korean":0.7,"Other Asian/Pacific":1.7,"Other Indo-European":10.7,"Other/Unspecified":2.2,"Russian, Polish, Slavic":8.7,"Spanish":18.3,"Tagalog":1,"Vietnamese":0.2},"Rockland County, New York":{"Arabic":0.4,"Chinese":1.2,"English only":39.3,"French, Haitian, Cajun":7,"German or West Germanic":14,"Korean":0.9,"Other Asian/Pacific":2.9,"Other Indo-European":5.2,"Other/Unspecified":3.3,"Russian, Polish, Slavic":2.5,"Spanish":21.5,"Tagalog":1.6,"Vietnamese":0.1},"Saratoga County, New York":{"Arabic":0.6,"Chinese":1.4,"English only":84.5,"French, Haitian, Cajun":1.5,"German or West Germanic":1.4,"Korean":0.6,"Other Asian/Pacific":1,"Other Indo-European":3,"Other/Unspecified":0.4,"Russian, Polish, Slavic":1.2,"Spanish":4,"Tagalog":0.5,"Vietnamese":0},"Schenectady County, New York":{"Arabic":0.4,"Chinese":1.4,"English only":79,"French, Haitian, Cajun":1,"German or West Germanic":1,"Korean":0.1,"Other Asian/Pacific":1.3,"Other Indo-European":4.3,"Other/Unspecified":0.9,"Russian, Polish, Slavic":1,"Spanish":8.5,"Tagalog":0.8,"Vietnamese":0.3},"Schoharie County, New York":{"Arabic":0,"Chinese":0,"English only":86.6,"French, Haitian, Cajun":0.8,"German or West Germanic":3,"Korean":0.4,"Other Asian/Pacific":0.3,"Other Indo-European":1.7,"Other/Unspecified":0.1,"Russian, Polish, Slavic":1.5,"Spanish":5.3,"Tagalog":0.3,"Vietnamese":0},"Schuyler County, New York":{"Arabic":0,"Chinese":0.3,"English only":91.5,"French, Haitian, Cajun":0.4,"German or West Germanic":1.7,"Korean":0,"Other Asian/Pacific":0.3,"Other Indo-European":0.3,"Other/Unspecified":0.4,"Russian, Polish, Slavic":0.2,"Spanish":4.4,"Tagalog":0,"Vietnamese":0.5},"Seneca County, New York":{"Arabic":0,"Chinese":0.2,"English only":86.2,"French, Haitian, Cajun":0.7,"German or West Germanic":4.6,"Korean":0,"Other Asian/Pacific":0.2,"Other Indo-European":2.9,"Other/Unspecified":0.6,"Russian, Polish, Slavic":0.5,"Spanish":3.8,"Tagalog":0.3,"Vietnamese":0},"St. Lawrence County, New York":{"Arabic":0.1,"Chinese":0.3,"English only":89.6,"French, Haitian, Cajun":1.4,"German or West Germanic":2.8,"Korean":0.3,"Other Asian/Pacific":0.3,"Other Indo-European":1.2,"Other/Unspecified":0.3,"Russian, Polish, Slavic":0.8,"Spanish":2.7,"Tagalog":0.3,"Vietnamese":0},"Steuben County, New York":{"Arabic":0.2,"Chinese":1.1,"English only":88.8,"French, Haitian, Cajun":1.2,"German or West Germanic":2.8,"Korean":0.3,"Other Asian/Pacific":1.1,"Other Indo-European":1.2,"Other/Unspecified":0.4,"Russian, Polish, Slavic":0.9,"Spanish":1.8,"Tagalog":0.2,"Vietnamese":0},"Suffolk County, New York":{"Arabic":0.4,"Chinese":1.4,"English only":59.8,"French, Haitian, Cajun":2,"German or West Germanic":1.2,"Korean":0.4,"Other Asian/Pacific":1.3,"Other Indo-European":6.6,"Other/Unspecified":0.9,"Russian, Polish, Slavic":2.2,"Spanish":23.1,"Tagalog":0.4,"Vietnamese":0.1},"Sullivan County, New York":{"Arabic":0.2,"Chinese":0.8,"English only":64.3,"French, Haitian, Cajun":1.3,"German or West Germanic":3.3,"Korean":0.3,"Other Asian/Pacific":0.7,"Other Indo-European":3.4,"Other/Unspecified":1.6,"Russian, Polish, Slavic":3.9,"Spanish":19.9,"Tagalog":0.2,"Vietnamese":0.2},"Tioga County, New York":{"Arabic":0,"Chinese":0.1,"English only":93.8,"French, Haitian, Cajun":0.4,"German or West Germanic":2.2,"Korean":0,"Other Asian/Pacific":0.5,"Other Indo-European":0.4,"Other/Unspecified":0.4,"Russian, Polish, Slavic":0.3,"Spanish":1.6,"Tagalog":0.1,"Vietnamese":0.2},"Tompkins County, New York":{"Arabic":0.4,"Chinese":5.7,"English only":70.1,"French, Haitian, Cajun":1,"German or West Germanic":2.3,"Korean":1.4,"Other Asian/Pacific":2.6,"Other Indo-European":4.6,"Other/Unspecified":0.8,"Russian, Polish, Slavic":2.6,"Spanish":8.1,"Tagalog":0.2,"Vietnamese":0.2},"Ulster County, New York":{"Arabic":0.3,"Chinese":0.8,"English only":75.3,"French, Haitian, Cajun":1.8,"German or West Germanic":1.4,"Korean":0.2,"Other Asian/Pacific":0.8,"Other Indo-European":3.7,"Other/Unspecified":0.8,"Russian, Polish, Slavic":1.7,"Spanish":12.6,"Tagalog":0.3,"Vietnamese":0.4},"Warren County, New York":{"Arabic":0.1,"Chinese":0.1,"English only":90.1,"French, Haitian, Cajun":1.9,"German or West Germanic":1.6,"Korean":0.1,"Other Asian/Pacific":0.1,"Other Indo-European":1.1,"Other/Unspecified":0.2,"Russian, Polish, Slavic":1.2,"Spanish":2.8,"Tagalog":0.7,"Vietnamese":0},"Washington County, New York":{"Arabic":0,"Chinese":0.3,"English only":91.7,"French, Haitian, Cajun":0.7,"German or West Germanic":1.4,"Korean":0,"Other Asian/Pacific":0.2,"Other Indo-European":1.3,"Other/Unspecified":0.3,"Russian, Polish, Slavic":0.5,"Spanish":3.3,"Tagalog":0.2,"Vietnamese":0.1},"Wayne County, New York":{"Arabic":0.3,"Chinese":0.5,"English only":87.8,"French, Haitian, Cajun":0.3,"German or West Germanic":1.9,"Korean":0.1,"Other Asian/Pacific":0.4,"Other Indo-European":1.4,"Other/Unspecified":0.1,"Russian, Polish, Slavic":1.3,"Spanish":5.7,"Tagalog":0.1,"Vietnamese":0.1},"Westchester County, New York":{"Arabic":0.8,"Chinese":1.8,"English only":44.4,"French, Haitian, Cajun":2.2,"German or West Germanic":1.2,"Korean":0.9,"Other Asian/Pacific":2.3,"Other Indo-European":9.9,"Other/Unspecified":2.2,"Russian, Polish, Slavic":2.4,"Spanish":30.9,"Tagalog":0.9,"Vietnamese":0.1},"Wyoming County, New York":{"Arabic":0,"Chinese":0.2,"English only":94.3,"French, Haitian, Cajun":0.2,"German or West Germanic":0.8,"Korean":0,"Other Asian/Pacific":0.3,"Other Indo-European":0.3,"Other/Unspecified":0.1,"Russian, Polish, Slavic":0.3,"Spanish":3.1,"Tagalog":0.2,"Vietnamese":0},"Yates County, New York":{"Arabic":1,"Chinese":0.8,"English only":77.6,"French, Haitian, Cajun":0.7,"German or West Germanic":16.4,"Korean":0.1,"Other Asian/Pacific":0.1,"Other Indo-European":0.4,"Other/Unspecified":0,"Russian, Polish, Slavic":0,"Spanish":2.9,"Tagalog":0.1,"Vietnamese":0}};
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: Object.keys(values),
+        datasets: [{
+          label: 'Share (%)',
+          data: Object.values(values),
+          backgroundColor: '#4576a7'
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.parsed.y + '%'
+            }
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 100,
+            title: {
+              display: true,
+              text: 'Population Share (%)'
+            }
+          },
+          x: {
+            title: {
+              display: true,
+              text: 'Language Group'
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(languageData[this.value]);
+  });
+
+  renderChart(languageData['Statewide']);</script>
+  </body>
+</html>
+</html>

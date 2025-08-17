@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+
+</head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Median Earnings by Industry – 11</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background: white;
+    }
+    .layout {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1.5rem;
+    }
+    label {
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+    #countySelect {
+      font-size: 1rem;
+      padding: 0.4rem 0.8rem;
+      margin-bottom: 1rem;
+    }
+    canvas {
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <label for="countySelect">Median Earnings by Industry:</label>
+    <select id="countySelect"></select>
+    <canvas id="barChart"></canvas>
+  </div>
+
+  <script>
+    const data = {"Statewide":{"Agriculture, forestry, fishing and hunting, and mining":65565,"Arts, entertainment, and recreation, and accommodation and food services":53656,"Construction":78254,"Educational services, and health care and social assistance":79136,"Finance and insurance, and real estate and rental and leasing":119746,"Information":103942,"Manufacturing":148188,"Other services, except public administration":93025,"Professional, scientific, and management, and administrative and waste management services":117691,"Public administration":123031,"Retail trade":51172,"Transportation and warehousing, and utilities":72963,"Wholesale trade":72050},"District of Columbia":{"Agriculture, forestry, fishing and hunting, and mining":65565,"Arts, entertainment, and recreation, and accommodation and food services":53656,"Construction":78254,"Educational services, and health care and social assistance":79136,"Finance and insurance, and real estate and rental and leasing":119746,"Information":103942,"Manufacturing":148188,"Other services, except public administration":93025,"Professional, scientific, and management, and administrative and waste management services":117691,"Public administration":123031,"Retail trade":51172,"Transportation and warehousing, and utilities":72963,"Wholesale trade":72050}};
+    const colors = {
+  'Agriculture, forestry, fishing and hunting, and mining': '#FFFF33',
+  'Arts, entertainment, and recreation, and accommodation and food services': '#D95F02',
+  'Construction': '#7570B3',
+  'Educational services, and health care and social assistance': '#66A61E',
+  'Finance and insurance, and real estate and rental and leasing': '#E6AB02',
+  'Information': '#A6761D',
+  'Manufacturing': '#E41A1C',
+  'Other services, except public administration': '#377EB8',
+  'Professional, scientific, and management, and administrative and waste management services': '#4DAF4A',
+  'Public administration': '#984EA3',
+  'Retail trade': '#FF7F00',
+  'Transportation and warehousing, and utilities': '#1B9E77',
+  'Wholesale trade': '#A65628'
+};
+
+    const ctx = document.getElementById("barChart").getContext("2d");
+    let chart;
+
+    function renderChart(county) {
+      const values = data[county];
+      const labels = Object.keys(values);
+      const earnings = Object.values(values);
+
+      if (chart) chart.destroy();
+
+      chart = new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels: labels,
+          datasets: [{
+            label: "Median Earnings ($)",
+            data: earnings,
+            backgroundColor: labels.map(label => colors[label] || "#ccc")
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: true,
+  aspectRatio: 1.5, 
+          indexAxis: "x",
+          scales: {
+            y: {
+              beginAtZero: true,
+              title: {
+                display: true,
+                text: "Median Earnings ($)"
+              },
+              ticks: {
+                callback: function(value) {
+                  return "$" + value.toLocaleString();
+                }
+              }
+            },
+            x: {
+              ticks: {
+                maxRotation: 45,
+                minRotation: 20,
+                autoSkip: false,
+                callback: function(value, index, ticks) {
+                  let label = this.getLabelForValue(value);
+                  return label.length > 25 ? label.slice(0, 25) + "…" : label;
+                }
+              }
+            }
+          },
+          plugins: {
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  return "$" + context.parsed.y.toLocaleString();
+                }
+              }
+            },
+            legend: {
+              display: false
+            }
+          }
+        }
+      });
+    }
+
+    const select = document.getElementById("countySelect");
+    Object.keys(data).forEach(county => {
+      const option = document.createElement("option");
+      option.value = county;
+      option.text = county;
+      select.appendChild(option);
+    });
+    select.value = "Statewide";
+    select.addEventListener("change", () => renderChart(select.value));
+    renderChart("Statewide");
+  </script>
+</body>
+</html>
+</html>

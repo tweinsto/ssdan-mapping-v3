@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Living Arrangements – Montana</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Living Arrangements of Adults 65+ in Montana</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Beaverhead County, Montana">Beaverhead County, Montana</option>
+      <option value="Big Horn County, Montana">Big Horn County, Montana</option>
+      <option value="Blaine County, Montana">Blaine County, Montana</option>
+      <option value="Broadwater County, Montana">Broadwater County, Montana</option>
+      <option value="Carbon County, Montana">Carbon County, Montana</option>
+      <option value="Carter County, Montana">Carter County, Montana</option>
+      <option value="Cascade County, Montana">Cascade County, Montana</option>
+      <option value="Chouteau County, Montana">Chouteau County, Montana</option>
+      <option value="Custer County, Montana">Custer County, Montana</option>
+      <option value="Daniels County, Montana">Daniels County, Montana</option>
+      <option value="Dawson County, Montana">Dawson County, Montana</option>
+      <option value="Deer Lodge County, Montana">Deer Lodge County, Montana</option>
+      <option value="Fallon County, Montana">Fallon County, Montana</option>
+      <option value="Fergus County, Montana">Fergus County, Montana</option>
+      <option value="Flathead County, Montana">Flathead County, Montana</option>
+      <option value="Gallatin County, Montana">Gallatin County, Montana</option>
+      <option value="Garfield County, Montana">Garfield County, Montana</option>
+      <option value="Glacier County, Montana">Glacier County, Montana</option>
+      <option value="Golden Valley County, Montana">Golden Valley County, Montana</option>
+      <option value="Granite County, Montana">Granite County, Montana</option>
+      <option value="Hill County, Montana">Hill County, Montana</option>
+      <option value="Jefferson County, Montana">Jefferson County, Montana</option>
+      <option value="Judith Basin County, Montana">Judith Basin County, Montana</option>
+      <option value="Lake County, Montana">Lake County, Montana</option>
+      <option value="Lewis and Clark County, Montana">Lewis and Clark County, Montana</option>
+      <option value="Liberty County, Montana">Liberty County, Montana</option>
+      <option value="Lincoln County, Montana">Lincoln County, Montana</option>
+      <option value="Madison County, Montana">Madison County, Montana</option>
+      <option value="McCone County, Montana">McCone County, Montana</option>
+      <option value="Meagher County, Montana">Meagher County, Montana</option>
+      <option value="Mineral County, Montana">Mineral County, Montana</option>
+      <option value="Missoula County, Montana">Missoula County, Montana</option>
+      <option value="Musselshell County, Montana">Musselshell County, Montana</option>
+      <option value="Park County, Montana">Park County, Montana</option>
+      <option value="Petroleum County, Montana">Petroleum County, Montana</option>
+      <option value="Phillips County, Montana">Phillips County, Montana</option>
+      <option value="Pondera County, Montana">Pondera County, Montana</option>
+      <option value="Powder River County, Montana">Powder River County, Montana</option>
+      <option value="Powell County, Montana">Powell County, Montana</option>
+      <option value="Prairie County, Montana">Prairie County, Montana</option>
+      <option value="Ravalli County, Montana">Ravalli County, Montana</option>
+      <option value="Richland County, Montana">Richland County, Montana</option>
+      <option value="Roosevelt County, Montana">Roosevelt County, Montana</option>
+      <option value="Rosebud County, Montana">Rosebud County, Montana</option>
+      <option value="Sanders County, Montana">Sanders County, Montana</option>
+      <option value="Sheridan County, Montana">Sheridan County, Montana</option>
+      <option value="Silver Bow County, Montana">Silver Bow County, Montana</option>
+      <option value="Stillwater County, Montana">Stillwater County, Montana</option>
+      <option value="Sweet Grass County, Montana">Sweet Grass County, Montana</option>
+      <option value="Teton County, Montana">Teton County, Montana</option>
+      <option value="Toole County, Montana">Toole County, Montana</option>
+      <option value="Treasure County, Montana">Treasure County, Montana</option>
+      <option value="Valley County, Montana">Valley County, Montana</option>
+      <option value="Wheatland County, Montana">Wheatland County, Montana</option>
+      <option value="Wibaux County, Montana">Wibaux County, Montana</option>
+      <option value="Yellowstone County, Montana">Yellowstone County, Montana</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>  const data = {"Statewide":[28.9,0.2,2.1,8.1,58.5,2.2],"Beaverhead County, Montana":[30.9,0.4,0.1,6.5,61.8,0.3],"Big Horn County, Montana":[23.4,0,5.5,17.5,52.9,0.7],"Blaine County, Montana":[28.2,0,4.2,17,50.3,0.4],"Broadwater County, Montana":[21.7,0,6,8.3,62.7,1.4],"Carbon County, Montana":[22.2,0,3.2,6.3,66.9,1.3],"Carter County, Montana":[26.9,0,0,3,69.5,0.5],"Cascade County, Montana":[33.1,0.1,1.6,9.2,53.8,2.2],"Chouteau County, Montana":[29.2,0,0.8,17.5,52.4,0.2],"Custer County, Montana":[32,0.3,4.5,5.9,54.6,2.6],"Daniels County, Montana":[42.6,1.2,0,4.8,49.3,2.1],"Dawson County, Montana":[32.9,0.2,1,5.4,60.1,0.4],"Deer Lodge County, Montana":[39.9,0,3,5.7,50.6,0.7],"Fallon County, Montana":[25.3,0.2,0,4.1,70.4,0],"Fergus County, Montana":[28.3,1.3,0.4,4.5,63.5,2.1],"Flathead County, Montana":[29.3,0.3,1.2,8.2,59.6,1.5],"Gallatin County, Montana":[24,0.1,1.9,7.3,64.1,2.5],"Garfield County, Montana":[27.1,0,0,2.4,66.9,3.6],"Glacier County, Montana":[23.3,1.1,8.1,16.5,45.9,5.2],"Golden Valley County, Montana":[34.2,0,4.6,2.5,55.3,3.4],"Granite County, Montana":[27.7,0,4.4,3.7,63.4,0.9],"Hill County, Montana":[37.1,0.2,0.5,11.1,49.7,1.4],"Jefferson County, Montana":[18.7,0,3.1,5.5,72.8,0],"Judith Basin County, Montana":[28.5,0,2.7,3.8,59.6,5.3],"Lake County, Montana":[24.4,0,4.2,11.1,57.1,3.2],"Lewis and Clark County, Montana":[30.7,0.5,3.8,6.9,54.7,3.4],"Liberty County, Montana":[41.1,0,0,8.6,49.2,1],"Lincoln County, Montana":[22.7,0.1,3.1,6.8,63.1,4.3],"Madison County, Montana":[26.5,0,0.3,7.1,63.9,2.3],"McCone County, Montana":[37.7,0,0.4,5.1,56.7,0],"Meagher County, Montana":[22.1,0,0,3.8,74.1,0],"Mineral County, Montana":[32.6,0,0.8,5.4,61.2,0.1],"Missoula County, Montana":[29,0.2,2.1,7.9,58.4,2.5],"Musselshell County, Montana":[26.7,0,5.2,11.9,56.2,0],"Park County, Montana":[27.4,0,4.4,4.5,61,2.6],"Petroleum County, Montana":[37.5,0,0,3.6,54.5,4.5],"Phillips County, Montana":[34.4,0.6,0.8,6.9,57,0.2],"Pondera County, Montana":[33.6,0,0.2,8.4,56.4,1.4],"Powder River County, Montana":[30.1,0,6.2,11.2,49.2,3.2],"Powell County, Montana":[24.1,0,4,10.5,59.7,1.8],"Prairie County, Montana":[25.9,0,16.2,10.7,47.1,0],"Ravalli County, Montana":[25,0.2,1.5,10.7,61.4,1.2],"Richland County, Montana":[29.5,0,0.8,12.4,56.7,0.5],"Roosevelt County, Montana":[36.3,0,0.1,21,40.4,2.2],"Rosebud County, Montana":[32.7,0,1.3,13.1,52.7,0.2],"Sanders County, Montana":[26.9,0.9,2.1,6.2,62.7,1.3],"Sheridan County, Montana":[38.7,0,1.3,9.1,44.4,6.6],"Silver Bow County, Montana":[39,0,2,5.8,51.4,1.8],"Stillwater County, Montana":[27.4,0.1,1.4,6.7,64.3,0.2],"Sweet Grass County, Montana":[32.2,0.2,0.5,1.2,63.9,2],"Teton County, Montana":[28.3,0,1.1,3.7,63.1,3.8],"Toole County, Montana":[36.8,0,9.2,2.5,48,3.6],"Treasure County, Montana":[29.7,0,0,2.3,62.8,5.2],"Valley County, Montana":[31.7,0.2,0.7,17,49.4,1.1],"Wheatland County, Montana":[39.5,0,3.4,4.7,52.4,0],"Wibaux County, Montana":[36,0,0,1.9,59.3,2.7],"Yellowstone County, Montana":[29.4,0.2,1.1,7.4,58.9,3]};
+  const nationalAvg = [27.3,0.3,2.3,14.5,53.2,2.4];
+  const categories = ["Lives alone","With child","With nonrelatives","With other relatives","With spouse only","With unmarried partner"];
+  const ctx = document.getElementById("barChart").getContext("2d");
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: categories,
+        datasets: [
+          {
+            label: "County/State",
+            data: values,
+            backgroundColor: [
+              "#e41a1c", "#ff7f00", "#4daf4a",
+              "#984ea3", "#377eb8", "#a65628"
+            ]
+          },
+          {
+            label: "",
+            data: categories.map(c => nationalAvg[c]),
+            type: "line",
+            borderColor: "gray",
+            borderWidth: 1,
+            borderDash: [4, 4],
+            pointRadius: 0,
+            fill: false
+          }
+        ]
+      },
+      options: {
+        indexAxis: "y",
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            ticks: {
+              callback: function(v) { return v + "%"; }
+            }
+          }
+        },
+        plugins: {
+          legend: {
+            labels: {
+              filter: function(item) { return item.text !== ""; }
+            }
+          },
+          tooltip: {
+            callbacks: {
+              label: function(ctx) {
+                return ctx.dataset.label !== "" ? ctx.dataset.label + ": " + ctx.raw + "%" : null;
+              }
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById("countySelect").addEventListener("change", function() {
+    renderChart(Object.values(data[this.value]));
+  });
+
+  renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

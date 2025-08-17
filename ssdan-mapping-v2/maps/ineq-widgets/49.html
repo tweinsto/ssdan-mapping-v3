@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Income Distribution – Utah</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          text-align: center;
+          margin: 2rem;
+        }
+        select {
+          font-size: 1rem;
+          padding: 0.4rem;
+          margin-bottom: 1rem;
+        }
+        canvas {
+          width: 100%;
+          max-width: 700px;
+          height: 400px;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Income Share by Quintile – Utah</h2>
+    <label>Select County, State:</label>
+    <select id="countySelect"><option value='Statewide'>Statewide</option>
+<option value='Beaver, Utah'>Beaver, Utah</option>
+<option value='Box Elder, Utah'>Box Elder, Utah</option>
+<option value='Cache, Utah'>Cache, Utah</option>
+<option value='Carbon, Utah'>Carbon, Utah</option>
+<option value='Daggett, Utah'>Daggett, Utah</option>
+<option value='Davis, Utah'>Davis, Utah</option>
+<option value='Duchesne, Utah'>Duchesne, Utah</option>
+<option value='Emery, Utah'>Emery, Utah</option>
+<option value='Garfield, Utah'>Garfield, Utah</option>
+<option value='Grand, Utah'>Grand, Utah</option>
+<option value='Iron, Utah'>Iron, Utah</option>
+<option value='Juab, Utah'>Juab, Utah</option>
+<option value='Kane, Utah'>Kane, Utah</option>
+<option value='Millard, Utah'>Millard, Utah</option>
+<option value='Morgan, Utah'>Morgan, Utah</option>
+<option value='Piute, Utah'>Piute, Utah</option>
+<option value='Rich, Utah'>Rich, Utah</option>
+<option value='Salt Lake, Utah'>Salt Lake, Utah</option>
+<option value='San Juan, Utah'>San Juan, Utah</option>
+<option value='Sanpete, Utah'>Sanpete, Utah</option>
+<option value='Sevier, Utah'>Sevier, Utah</option>
+<option value='Summit, Utah'>Summit, Utah</option>
+<option value='Tooele, Utah'>Tooele, Utah</option>
+<option value='Uintah, Utah'>Uintah, Utah</option>
+<option value='Utah, Utah'>Utah, Utah</option>
+<option value='Wasatch, Utah'>Wasatch, Utah</option>
+<option value='Washington, Utah'>Washington, Utah</option>
+<option value='Wayne, Utah'>Wayne, Utah</option>
+<option value='Weber, Utah'>Weber, Utah</option></select>
+    <canvas id="barChart" width="700" height="400"></canvas>
+    <script>  const incomeData = {"Statewide":[6,9.4,13.7,26.8,44],"Beaver, Utah":[8.6,12.9,17.9,27.4,33.2],"Box Elder, Utah":[6.7,9.9,14.1,26.3,42.9],"Cache, Utah":[5.4,8.5,12.2,26.2,47.8],"Carbon, Utah":[5.4,9.2,14.4,28.3,42.6],"Daggett, Utah":[6.3,9.5,14.9,27.1,42.2],"Davis, Utah":[6.6,9.9,13.8,26.2,43.5],"Duchesne, Utah":[5.6,9.4,13.7,26.7,44.6],"Emery, Utah":[7,11,15.9,27.4,38.7],"Garfield, Utah":[4.6,7.9,11.7,26.1,49.7],"Grand, Utah":[4.5,7.7,11.9,26.5,49.4],"Iron, Utah":[5.7,8.9,13.2,27.1,45],"Juab, Utah":[7.3,11.2,15.4,26.6,39.4],"Kane, Utah":[5.4,8.8,12.7,26.3,46.9],"Millard, Utah":[7.8,11.4,15.6,27.4,37.8],"Morgan, Utah":[7.3,10,13.2,26.1,43.3],"Piute, Utah":[4.5,9.5,15.9,31,39],"Rich, Utah":[7.4,11.7,15.9,28.2,36.8],"Salt Lake, Utah":[5.7,8.8,13,26.6,46],"San Juan, Utah":[5,8.2,12.4,26.4,48.1],"Sanpete, Utah":[6,9.4,14,26.9,43.7],"Sevier, Utah":[6.9,10.5,15.2,26.8,40.6],"Summit, Utah":[4.1,6.6,10.8,27.2,51.4],"Tooele, Utah":[6.6,9.7,13,25.3,45.4],"Uintah, Utah":[5.2,8.1,11.9,25.9,48.9],"Utah, Utah":[6,9.1,13.1,26.2,45.5],"Wasatch, Utah":[4.7,7.5,11,27,49.8],"Washington, Utah":[4.9,7.9,12,26.1,49],"Wayne, Utah":[6.2,10.4,15,25.8,42.6],"Weber, Utah":[6.5,9.9,14,26.5,43.1]};
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Bottom 20%', 'Second 20%', 'Middle 20%', 'Fourth 20%', 'Top 20%'],
+        datasets: [{
+          label: 'Share (%)',
+          data: values,
+          backgroundColor: '#4576a7'
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.parsed.y + '%'
+            }
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 100,
+            title: {
+              display: true,
+              text: 'Income Share (%)'
+            }
+          },
+          x: {
+            title: {
+              display: true,
+              text: 'Quintile'
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(Object.values(incomeData[this.value]));
+  });
+
+  renderChart(Object.values(incomeData['Statewide']));</script>
+  </body>
+</html>
+</html>

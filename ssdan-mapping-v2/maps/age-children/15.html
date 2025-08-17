@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Age Distribution Under 18 –  Hawaii</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          margin: 1rem 2rem;
+          text-align: center;
+        }
+        h2 {
+          margin-bottom: 0.25rem;
+          font-size: 1.6rem;
+        }
+        select {
+          padding: 0.4rem;
+          font-size: 1rem;
+          margin: 1rem 0;
+          border-radius: 5px;
+          border: 1px solid #999;
+        }
+        canvas {
+          width: 100%;
+          max-width: 850px;
+          height: 500px;
+          margin-top: 1rem;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Age Distribution Under 18 in  Hawaii (2023)</h2>
+    <label>Select County:</label>
+            <select id="countySelect">
+          <option value='Statewide'>Statewide</option>
+<option value='Hawaii County, Hawaii'>Hawaii County, Hawaii</option>
+<option value='Honolulu County, Hawaii'>Honolulu County, Hawaii</option>
+<option value='Kalawao County, Hawaii'>Kalawao County, Hawaii</option>
+<option value='Kauai County, Hawaii'>Kauai County, Hawaii</option>
+<option value='Maui County, Hawaii'>Maui County, Hawaii</option>
+        </select>
+    <canvas id="barChart" width="850" height="500"></canvas>
+    <script>  const ageData = {"Statewide":[-14,13.2,-14.9,14.2,-8.2,7.8,-14.4,13.2],"Hawaii County, Hawaii":[-13.1,12.2,-14.9,11.8,-14.8,16.4,-8.7,8.1],"Honolulu County, Hawaii":[-14.4,13.6,-14.4,13.4,-14.7,13.9,-8,7.6],"Kalawao County, Hawaii":[-0,0,-0,0,-0,0,-0,0],"Kauai County, Hawaii":[-12.8,12.5,-14.5,11.7,-15.7,16.2,-9.1,7.4],"Maui County, Hawaii":[-13.5,12.2,-13.7,14.8,-16.5,12.4,-8.4,8.5]};
+  const ageBins = ["0–4","5–9","10–14","15–17"];
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(data) {
+    const maleData = data.filter((_, i) => i % 2 === 0);
+    const femaleData = data.filter((_, i) => i % 2 === 1);
+
+    const maxValue = Math.max(
+      ...maleData.map(Math.abs),
+      ...femaleData.map(Math.abs)
+    );
+    const padding = 1.0;
+    const xMax = +(maxValue + padding).toFixed(1);
+
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ageBins,
+        datasets: [
+          {
+            label: 'Male',
+            data: maleData,
+            backgroundColor: 'dodgerblue'
+          },
+          {
+            label: 'Female',
+            data: femaleData,
+            backgroundColor: 'lightpink'
+          }
+        ]
+      },
+      options: {
+        indexAxis: 'y',
+        responsive: true,
+        scales: {
+          x: {
+            min: -xMax,
+            max: xMax,
+            ticks: {
+              callback: value => Math.abs(value).toFixed(1) + '%'
+            }
+          },
+          y: {
+            stacked: false
+          }
+        },
+        plugins: {
+          legend: {
+            position: 'top',
+            align: 'start',
+            labels: {
+              usePointStyle: true
+            }
+          },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.dataset.label + ': ' + Math.abs(ctx.parsed.x).toFixed(1) + '%'
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(Object.values(ageData[this.value]));
+  });
+
+  renderChart(Object.values(ageData['Statewide']));</script>
+  </body>
+</html>
+</html>

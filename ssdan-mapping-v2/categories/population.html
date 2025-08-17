@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Population Growth</title>
+  <link rel="stylesheet" href="../style.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background-color: #f2f2f2;
+    }
+
+    .top-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+    padding: 0.5rem 2rem;
+  margin-top: 1cm;
+  margin-bottom: -.5rem;
+  background-color: #fff;
+  border-bottom: 1px solid #ddd;
+}
+
+    .ranking-toggle {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+   .ranking-toggle button {
+  font-size: 1.2rem;           /* Larger text */
+  font-weight: 600;
+  padding: 2rem 1.5rem;     /* Bigger button size */
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  background-color: #f5f7fb;
+  color: #2a2a2a;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+  margin-top: -1.7rem;
+}
+
+.ranking-toggle {
+  display: flex;
+  gap: 1rem;                   /* More spacing between buttons */
+}
+
+.ranking-toggle button:hover {
+  background-color: #dee3f7;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+}
+
+.ranking-toggle button.active {
+  background-color: #3e49a8;
+  color: white;
+  border: none;
+  box-shadow: 0 3px 8px rgba(62, 73, 168, 0.4);
+}
+
+h1#mapTitle {
+  font-size: 2.4rem;
+  font-weight: 700;
+  margin: 1rem 2rem 0.5rem;
+    text-align: left;              /* Align text left */
+
+}
+
+h1#mapTitle span {
+  display: block;
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: #555;
+}
+
+    #bottom-left-label {
+      position: absolute;
+      bottom: 10px;
+      left: 20px;
+      font-size: 15px;
+      color: #444;
+    }
+
+   .link-list {
+  width: 500px;
+  background-color: #ffffff;
+  padding: 1rem;
+  border: 2px solid #3e49a8;          /* Add border with custom color */
+  border-radius: 10px;
+  background-color: #f4f6ff;          /* Light bluish background */
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+
+  font-size: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  margin-top: -2rem;     /* reduce top space */
+  margin-bottom: 3rem;     /* reduce top space */
+
+  padding-top: 0rem;     /* smaller internal space */
+
+}
+
+.link-list h4 {
+  font-size: 1.2rem;
+  margin-bottom: 0.75rem;
+  text-align: center;
+  color: #222;
+  border-bottom: 1px solid #ccc;   /* Add subtle line to separate heading */
+  padding-bottom: 0.5rem;
+}
+
+.link-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.link-buttons a {
+  flex: 1;
+  text-align: center;
+  padding: 0.6rem 0.8rem;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  text-decoration: none;
+  color: #2a5dab;
+  font-weight: bold;
+  transition: background-color 0.2s ease;
+}
+
+.link-buttons a:hover {
+  background-color: #e0e0ff;
+}
+
+    .main-wrapper {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      margin: 1rem;
+    }
+
+    .map-frame {
+      width: 60%;
+      height: 500px;
+      border: 2px solid #cccccc;
+      border-radius: 8px;
+      box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .rankings-section {
+      background-color: #ffffff;
+      padding: 1rem;
+      border-radius: 10px;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+      width: 600px;
+    }
+
+    iframe {
+      border: none;
+    }
+
+   
+  </style>
+</head>
+<body>
+  <div class="top-controls">
+    <!-- LEFT: Buttons -->
+    <div class="ranking-toggle">
+      
+      <button id="btnGrowth2000" class="active">Growth 2000–2023</button>
+      <button id="btnGrowth2018">Growth 2018–2023</button>
+      <button id="btnPop" >Population 2023</button>
+    </div>
+
+    <!-- RIGHT: Age-based menu -->
+    <div class="link-list">
+  <h4><strong>Explore Age-Based Population Data (2023)</strong></h4>
+  <div class="link-buttons">
+    <a href="median-age.html">Median Age</a>
+    <a href="male+female-18-24.html">Age 18–24</a>
+    <a href="seventy-plus.html">Age 65+</a>
+  </div>
+</div>
+  </div>
+
+  <!-- Title -->
+<h1 id="mapTitle">Population Growth in the United States (2000–2023)
+  <span style="font-size: 1rem; color: #3e49a8;">Click a state to explore further</span>
+</h1>
+
+  <!-- Main Content -->
+  <div class="main-wrapper">
+    <!-- LEFT: Map -->
+    <iframe id="mapFrame" class="map-frame" src="population_map.html" title="Population Map"></iframe>
+
+<!-- RIGHT: Rankings -->
+<div class="rankings-section">
+  <iframe id="rankingFrame" src="growth-rates.html" title="Population Rankings" width="100%" height="800"></iframe>
+</div>
+
+  </div>
+
+  <div id="bottom-left-label">
+    <strong>Source:</strong>
+    <a href="https://www.census.gov/programs-surveys/acs" target="_blank" style="color: #003366; text-decoration: underline;">
+      ACS 2023
+    </a>
+  </div>
+
+  <script>
+    
+    const btnGrowth2000 = document.getElementById('btnGrowth2000');
+    const btnGrowth2018 = document.getElementById('btnGrowth2018');
+    const btnPop = document.getElementById('btnPop');
+    const mapTitle = document.getElementById('mapTitle');
+    const mapFrame = document.getElementById('mapFrame');
+    const rankingFrame = document.getElementById('rankingFrame');
+
+    function activateButton(button, mapSrc, rankSrc, titleText) {
+      [btnPop, btnGrowth2000, btnGrowth2018].forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
+      mapFrame.src = mapSrc;
+      rankingFrame.src = rankSrc;
+      mapTitle.innerHTML = titleText + ' – <span style="font-size: 1rem; color: #3e49a8;">Click a state to explore further</span>';
+    }
+
+    btnGrowth2000.addEventListener('click', () =>
+      activateButton(btnGrowth2000, "population_map.html", "growth-rates.html", "Population Growth in the United States (2000–2023)")
+    );
+
+    btnGrowth2018.addEventListener('click', () =>
+      activateButton(btnGrowth2018, "population_map_18-23.html", "growth-2018-2023.html", "Population Growth in the United States (2018–2023)")
+    );
+
+    btnPop.addEventListener('click', () =>
+      activateButton(btnPop, "population_map_general.html", "pop-ranks.html", "Population in the United States (2023)")
+    );
+
+  </script>
+</body>
+</html>

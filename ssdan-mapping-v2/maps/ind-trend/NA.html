@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+          body { margin: 0; font-family: sans-serif; background: white; }
+          #pieChart { max-width: 100%; height: auto; margin: 1rem auto; display: block; }
+        </style>
+</head>
+<html>
+  <body>
+    <canvas id="pieChart" width="400" height="400"></canvas>
+    <script>  const ctx = document.getElementById('pieChart').getContext('2d');
+  new Chart(ctx, {
+    type: 'pie',
+    data: {"labels":["Public administration","Other services, except public administration","Educational services, and health care and social assistance","Construction","Agriculture, forestry, fishing and hunting, and mining","Manufacturing","Transportation and warehousing, and utilities","Retail trade","Finance and insurance, and real estate and rental and leasing","Professional, scientific, and management, and administrative and waste management services","Wholesale trade","Information","Arts, entertainment, and recreation, and accommodation and food services"],"datasets":[{"data":[250001,185000,125000,70645,70487,67250,67161,65078,52400,51900,47250,23773,19438],"backgroundColor":["#663300",null,null,"#FFCC33",null,"#FF0000",null,"#3399FF",null,null,"#FF66FF","#999966",null]}]},
+    options: {
+      plugins: {
+        legend: { position: 'bottom' },
+        tooltip: {
+          callbacks: {
+            label: function(context) {
+              const label = context.label || '';
+              const value = context.raw;
+              const total = context.chart._metasets[context.datasetIndex].total;
+              const pct = ((value / total) * 100).toFixed(1);
+              return label + ': ' + pct + '%';
+            }
+          }
+        }
+      }
+    }
+  });</script>
+  </body>
+</html>
+</html>

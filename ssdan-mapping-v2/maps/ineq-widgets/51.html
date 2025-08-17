@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Income Distribution – Virginia</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          text-align: center;
+          margin: 2rem;
+        }
+        select {
+          font-size: 1rem;
+          padding: 0.4rem;
+          margin-bottom: 1rem;
+        }
+        canvas {
+          width: 100%;
+          max-width: 700px;
+          height: 400px;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Income Share by Quintile – Virginia</h2>
+    <label>Select County, State:</label>
+    <select id="countySelect"><option value='Statewide'>Statewide</option>
+<option value='Accomack, Virginia'>Accomack, Virginia</option>
+<option value='Albemarle, Virginia'>Albemarle, Virginia</option>
+<option value='Alexandria city, Virginia, Virginia'>Alexandria city, Virginia, Virginia</option>
+<option value='Alleghany, Virginia'>Alleghany, Virginia</option>
+<option value='Amelia, Virginia'>Amelia, Virginia</option>
+<option value='Amherst, Virginia'>Amherst, Virginia</option>
+<option value='Appomattox, Virginia'>Appomattox, Virginia</option>
+<option value='Arlington, Virginia'>Arlington, Virginia</option>
+<option value='Augusta, Virginia'>Augusta, Virginia</option>
+<option value='Bath, Virginia'>Bath, Virginia</option>
+<option value='Bedford, Virginia'>Bedford, Virginia</option>
+<option value='Bland, Virginia'>Bland, Virginia</option>
+<option value='Botetourt, Virginia'>Botetourt, Virginia</option>
+<option value='Bristol city, Virginia, Virginia'>Bristol city, Virginia, Virginia</option>
+<option value='Brunswick, Virginia'>Brunswick, Virginia</option>
+<option value='Buchanan, Virginia'>Buchanan, Virginia</option>
+<option value='Buckingham, Virginia'>Buckingham, Virginia</option>
+<option value='Buena Vista city, Virginia, Virginia'>Buena Vista city, Virginia, Virginia</option>
+<option value='Campbell, Virginia'>Campbell, Virginia</option>
+<option value='Caroline, Virginia'>Caroline, Virginia</option>
+<option value='Carroll, Virginia'>Carroll, Virginia</option>
+<option value='Charles City, Virginia'>Charles City, Virginia</option>
+<option value='Charlotte, Virginia'>Charlotte, Virginia</option>
+<option value='Charlottesville city, Virginia, Virginia'>Charlottesville city, Virginia, Virginia</option>
+<option value='Chesapeake city, Virginia, Virginia'>Chesapeake city, Virginia, Virginia</option>
+<option value='Chesterfield, Virginia'>Chesterfield, Virginia</option>
+<option value='Clarke, Virginia'>Clarke, Virginia</option>
+<option value='Colonial Heights city, Virginia, Virginia'>Colonial Heights city, Virginia, Virginia</option>
+<option value='Covington city, Virginia, Virginia'>Covington city, Virginia, Virginia</option>
+<option value='Craig, Virginia'>Craig, Virginia</option>
+<option value='Culpeper, Virginia'>Culpeper, Virginia</option>
+<option value='Cumberland, Virginia'>Cumberland, Virginia</option>
+<option value='Danville city, Virginia, Virginia'>Danville city, Virginia, Virginia</option>
+<option value='Dickenson, Virginia'>Dickenson, Virginia</option>
+<option value='Dinwiddie, Virginia'>Dinwiddie, Virginia</option>
+<option value='Emporia city, Virginia, Virginia'>Emporia city, Virginia, Virginia</option>
+<option value='Essex, Virginia'>Essex, Virginia</option>
+<option value='Fairfax, Virginia'>Fairfax, Virginia</option>
+<option value='Fairfax city, Virginia, Virginia'>Fairfax city, Virginia, Virginia</option>
+<option value='Falls Church city, Virginia, Virginia'>Falls Church city, Virginia, Virginia</option>
+<option value='Fauquier, Virginia'>Fauquier, Virginia</option>
+<option value='Floyd, Virginia'>Floyd, Virginia</option>
+<option value='Fluvanna, Virginia'>Fluvanna, Virginia</option>
+<option value='Franklin, Virginia'>Franklin, Virginia</option>
+<option value='Franklin city, Virginia, Virginia'>Franklin city, Virginia, Virginia</option>
+<option value='Frederick, Virginia'>Frederick, Virginia</option>
+<option value='Fredericksburg city, Virginia, Virginia'>Fredericksburg city, Virginia, Virginia</option>
+<option value='Galax city, Virginia, Virginia'>Galax city, Virginia, Virginia</option>
+<option value='Giles, Virginia'>Giles, Virginia</option>
+<option value='Gloucester, Virginia'>Gloucester, Virginia</option>
+<option value='Goochland, Virginia'>Goochland, Virginia</option>
+<option value='Grayson, Virginia'>Grayson, Virginia</option>
+<option value='Greene, Virginia'>Greene, Virginia</option>
+<option value='Greensville, Virginia'>Greensville, Virginia</option>
+<option value='Halifax, Virginia'>Halifax, Virginia</option>
+<option value='Hampton city, Virginia, Virginia'>Hampton city, Virginia, Virginia</option>
+<option value='Hanover, Virginia'>Hanover, Virginia</option>
+<option value='Harrisonburg city, Virginia, Virginia'>Harrisonburg city, Virginia, Virginia</option>
+<option value='Henrico, Virginia'>Henrico, Virginia</option>
+<option value='Henry, Virginia'>Henry, Virginia</option>
+<option value='Highland, Virginia'>Highland, Virginia</option>
+<option value='Hopewell city, Virginia, Virginia'>Hopewell city, Virginia, Virginia</option>
+<option value='Isle of Wight, Virginia'>Isle of Wight, Virginia</option>
+<option value='James City, Virginia'>James City, Virginia</option>
+<option value='King and Queen, Virginia'>King and Queen, Virginia</option>
+<option value='King George, Virginia'>King George, Virginia</option>
+<option value='King William, Virginia'>King William, Virginia</option>
+<option value='Lancaster, Virginia'>Lancaster, Virginia</option>
+<option value='Lee, Virginia'>Lee, Virginia</option>
+<option value='Lexington city, Virginia, Virginia'>Lexington city, Virginia, Virginia</option>
+<option value='Loudoun, Virginia'>Loudoun, Virginia</option>
+<option value='Louisa, Virginia'>Louisa, Virginia</option>
+<option value='Lunenburg, Virginia'>Lunenburg, Virginia</option>
+<option value='Lynchburg city, Virginia, Virginia'>Lynchburg city, Virginia, Virginia</option>
+<option value='Madison, Virginia'>Madison, Virginia</option>
+<option value='Manassas city, Virginia, Virginia'>Manassas city, Virginia, Virginia</option>
+<option value='Manassas Park city, Virginia, Virginia'>Manassas Park city, Virginia, Virginia</option>
+<option value='Martinsville city, Virginia, Virginia'>Martinsville city, Virginia, Virginia</option>
+<option value='Mathews, Virginia'>Mathews, Virginia</option>
+<option value='Mecklenburg, Virginia'>Mecklenburg, Virginia</option>
+<option value='Middlesex, Virginia'>Middlesex, Virginia</option>
+<option value='Montgomery, Virginia'>Montgomery, Virginia</option>
+<option value='Nelson, Virginia'>Nelson, Virginia</option>
+<option value='New Kent, Virginia'>New Kent, Virginia</option>
+<option value='Newport News city, Virginia, Virginia'>Newport News city, Virginia, Virginia</option>
+<option value='Norfolk city, Virginia, Virginia'>Norfolk city, Virginia, Virginia</option>
+<option value='Northampton, Virginia'>Northampton, Virginia</option>
+<option value='Northumberland, Virginia'>Northumberland, Virginia</option>
+<option value='Norton city, Virginia, Virginia'>Norton city, Virginia, Virginia</option>
+<option value='Nottoway, Virginia'>Nottoway, Virginia</option>
+<option value='Orange, Virginia'>Orange, Virginia</option>
+<option value='Page, Virginia'>Page, Virginia</option>
+<option value='Patrick, Virginia'>Patrick, Virginia</option>
+<option value='Petersburg city, Virginia, Virginia'>Petersburg city, Virginia, Virginia</option>
+<option value='Pittsylvania, Virginia'>Pittsylvania, Virginia</option>
+<option value='Poquoson city, Virginia, Virginia'>Poquoson city, Virginia, Virginia</option>
+<option value='Portsmouth city, Virginia, Virginia'>Portsmouth city, Virginia, Virginia</option>
+<option value='Powhatan, Virginia'>Powhatan, Virginia</option>
+<option value='Prince Edward, Virginia'>Prince Edward, Virginia</option>
+<option value='Prince George, Virginia'>Prince George, Virginia</option>
+<option value='Prince William, Virginia'>Prince William, Virginia</option>
+<option value='Pulaski, Virginia'>Pulaski, Virginia</option>
+<option value='Radford city, Virginia, Virginia'>Radford city, Virginia, Virginia</option>
+<option value='Rappahannock, Virginia'>Rappahannock, Virginia</option>
+<option value='Richmond, Virginia'>Richmond, Virginia</option>
+<option value='Richmond city, Virginia, Virginia'>Richmond city, Virginia, Virginia</option>
+<option value='Roanoke, Virginia'>Roanoke, Virginia</option>
+<option value='Roanoke city, Virginia, Virginia'>Roanoke city, Virginia, Virginia</option>
+<option value='Rockbridge, Virginia'>Rockbridge, Virginia</option>
+<option value='Rockingham, Virginia'>Rockingham, Virginia</option>
+<option value='Russell, Virginia'>Russell, Virginia</option>
+<option value='Salem city, Virginia, Virginia'>Salem city, Virginia, Virginia</option>
+<option value='Scott, Virginia'>Scott, Virginia</option>
+<option value='Shenandoah, Virginia'>Shenandoah, Virginia</option>
+<option value='Smyth, Virginia'>Smyth, Virginia</option>
+<option value='Southampton, Virginia'>Southampton, Virginia</option>
+<option value='Spotsylvania, Virginia'>Spotsylvania, Virginia</option>
+<option value='Stafford, Virginia'>Stafford, Virginia</option>
+<option value='Staunton city, Virginia, Virginia'>Staunton city, Virginia, Virginia</option>
+<option value='Suffolk city, Virginia, Virginia'>Suffolk city, Virginia, Virginia</option>
+<option value='Surry, Virginia'>Surry, Virginia</option>
+<option value='Sussex, Virginia'>Sussex, Virginia</option>
+<option value='Tazewell, Virginia'>Tazewell, Virginia</option>
+<option value='Virginia Beach city, Virginia, Virginia'>Virginia Beach city, Virginia, Virginia</option>
+<option value='Warren, Virginia'>Warren, Virginia</option>
+<option value='Washington, Virginia'>Washington, Virginia</option>
+<option value='Waynesboro city, Virginia, Virginia'>Waynesboro city, Virginia, Virginia</option>
+<option value='Westmoreland, Virginia'>Westmoreland, Virginia</option>
+<option value='Williamsburg city, Virginia, Virginia'>Williamsburg city, Virginia, Virginia</option>
+<option value='Winchester city, Virginia, Virginia'>Winchester city, Virginia, Virginia</option>
+<option value='Wise, Virginia'>Wise, Virginia</option>
+<option value='Wythe, Virginia'>Wythe, Virginia</option>
+<option value='York, Virginia'>York, Virginia</option></select>
+    <canvas id="barChart" width="700" height="400"></canvas>
+    <script>  const incomeData = {"Statewide":[5.4,8.8,13.5,27.2,45.1],"Accomack, Virginia":[5.2,8.7,13.3,27.6,45.2],"Albemarle, Virginia":[4.5,7.5,11.5,26.6,49.8],"Alexandria city, Virginia, Virginia":[5,7.8,12.1,27.4,47.7],"Alleghany, Virginia":[5.3,9.3,14.2,27.9,43.3],"Amelia, Virginia":[6.2,9.4,13.3,26.2,44.8],"Amherst, Virginia":[4.7,8.3,13,26.6,47.5],"Appomattox, Virginia":[6,9.8,15.1,27.4,41.8],"Arlington, Virginia":[5.2,8.3,12.5,27.2,46.8],"Augusta, Virginia":[6.1,10.2,14.4,26.3,43],"Bath, Virginia":[4.6,8.6,14.2,28.4,44.2],"Bedford, Virginia":[5.4,8.5,12.8,26.6,46.7],"Bland, Virginia":[6.8,10.2,15.6,26.6,40.7],"Botetourt, Virginia":[6.1,9,13.1,26.3,45.5],"Bristol city, Virginia, Virginia":[5.2,8.6,14.4,29.1,42.6],"Brunswick, Virginia":[4.9,8.5,13.4,27.9,45.3],"Buchanan, Virginia":[4.4,7.3,11.2,26.9,50.1],"Buckingham, Virginia":[5.7,9.6,14.6,27.6,42.6],"Buena Vista city, Virginia, Virginia":[3.5,5.5,7.8,24.3,58.9],"Campbell, Virginia":[6.1,9.4,14.3,27.7,42.5],"Caroline, Virginia":[6.4,10.6,15.3,27.2,40.6],"Carroll, Virginia":[5.2,8.9,14,27,44.9],"Charles City, Virginia":[4.9,8,11.5,25.8,49.7],"Charlotte, Virginia":[4.3,8.3,14,27.8,45.6],"Charlottesville city, Virginia, Virginia":[3.4,6.6,11.5,28.5,50],"Chesapeake city, Virginia, Virginia":[6.1,9.6,14.5,27.1,42.7],"Chesterfield, Virginia":[5.9,9.2,13.4,26.7,44.8],"Clarke, Virginia":[5.6,9.2,13,26.6,45.6],"Colonial Heights city, Virginia, Virginia":[6.2,9.7,14.3,27.1,42.6],"Covington city, Virginia, Virginia":[6.3,10.1,16.2,30.3,37.2],"Craig, Virginia":[5.9,9,14.9,27.1,43.1],"Culpeper, Virginia":[5.9,9.6,13.8,26.5,44.1],"Cumberland, Virginia":[4.9,7.1,11,26.9,50],"Danville city, Virginia, Virginia":[4.3,7.6,12.5,28.5,47.2],"Dickenson, Virginia":[4.6,8,12.8,27.9,46.8],"Dinwiddie, Virginia":[5.8,9.3,13.5,26.8,44.7],"Emporia city, Virginia, Virginia":[6.1,10,16.6,28.9,38.4],"Essex, Virginia":[5.6,9.2,15,28.2,42.1],"Fairfax, Virginia":[5.7,9,13.3,26.7,45.4],"Fairfax city, Virginia, Virginia":[4.9,8.6,13,26.1,47.3],"Falls Church city, Virginia, Virginia":[5.3,8.7,13.3,27,45.7],"Fauquier, Virginia":[5.9,9.7,13.8,26.7,43.9],"Floyd, Virginia":[5,8.3,12.4,26.2,48.1],"Fluvanna, Virginia":[5.9,9.1,13,26.2,45.7],"Franklin, Virginia":[5,8.4,12.7,27,46.9],"Franklin city, Virginia, Virginia":[6.5,10,14.4,27,42.1],"Frederick, Virginia":[6.1,9.4,13.7,26.3,44.4],"Fredericksburg city, Virginia, Virginia":[5.1,8,13,27.4,46.4],"Galax city, Virginia, Virginia":[3.5,6.3,12.1,30.2,47.9],"Giles, Virginia":[6.4,10.3,14.3,27.4,41.7],"Gloucester, Virginia":[6.4,9.9,14.3,27.2,42.3],"Goochland, Virginia":[4.6,7,10.7,26.4,51.3],"Grayson, Virginia":[4.4,7.2,11.6,26.4,50.4],"Greene, Virginia":[5.9,8.5,12.4,26,47.2],"Greensville, Virginia":[5.5,8.8,13.6,28,44.1],"Halifax, Virginia":[4.9,8.8,14.9,28.2,43.2],"Hampton city, Virginia, Virginia":[5.5,9.1,13.6,27.1,44.6],"Hanover, Virginia":[5.7,9.2,13.2,26.1,45.8],"Harrisonburg city, Virginia, Virginia":[4.9,8.8,13.9,28.1,44.3],"Henrico, Virginia":[4.7,7.6,11.8,27.2,48.7],"Henry, Virginia":[5.3,8.6,13.6,27.5,45.1],"Highland, Virginia":[7.4,10.5,15.6,27,39.5],"Hopewell city, Virginia, Virginia":[5.1,8.7,14.2,27.1,44.9],"Isle of Wight, Virginia":[5.5,9.3,13.8,26.9,44.5],"James City, Virginia":[6,9.4,13.7,26.6,44.3],"King and Queen, Virginia":[5.8,9.8,14.8,27.4,42.2],"King George, Virginia":[7.3,11.3,15.9,26.9,38.7],"King William, Virginia":[7.3,11.6,16.9,27.6,36.7],"Lancaster, Virginia":[4.2,7.2,11.2,27.1,50.2],"Lee, Virginia":[4.1,7.6,12.9,27,48.5],"Lexington city, Virginia, Virginia":[5.2,10.2,13,25,46.7],"Loudoun, Virginia":[6.7,10.3,14.6,26.3,42.1],"Louisa, Virginia":[5.1,8.2,13,26.3,47.3],"Lunenburg, Virginia":[5.7,10.4,14.7,28.2,41],"Lynchburg city, Virginia, Virginia":[5.1,8.4,13,27.2,46.4],"Madison, Virginia":[5.6,9.7,14.4,26.9,43.4],"Manassas city, Virginia, Virginia":[6.9,10.2,14.3,26.6,42],"Manassas Park city, Virginia, Virginia":[7,10.1,14.4,27.3,41.2],"Martinsville city, Virginia, Virginia":[3.8,6.7,10.4,27.6,51.5],"Mathews, Virginia":[5.4,8.9,13.2,28,44.5],"Mecklenburg, Virginia":[4.2,7.7,13,27.9,47.2],"Middlesex, Virginia":[5.7,10,15.2,27.3,41.7],"Montgomery, Virginia":[4.2,8.1,13,28,46.7],"Nelson, Virginia":[4.6,7.6,12.6,27.9,47.4],"New Kent, Virginia":[7.4,11,15,27.1,39.5],"Newport News city, Virginia, Virginia":[5.1,8.2,12.3,26.3,48.2],"Norfolk city, Virginia, Virginia":[4.7,7.8,12.3,27.1,48.1],"Northampton, Virginia":[4,7.2,12,28.2,48.6],"Northumberland, Virginia":[4,6.8,10.6,26.4,52.1],"Norton city, Virginia, Virginia":[4,8.1,14,29.1,44.8],"Nottoway, Virginia":[6.1,10.8,16.5,27.8,38.8],"Orange, Virginia":[6.1,9.4,13.5,26.1,44.9],"Page, Virginia":[6.4,10.2,15.4,27.1,41],"Patrick, Virginia":[5.2,8.2,13.6,28.3,44.7],"Petersburg city, Virginia, Virginia":[5.3,9.3,13.8,27.1,44.5],"Pittsylvania, Virginia":[5.1,8.5,13.4,27.1,45.9],"Poquoson city, Virginia, Virginia":[7,11,14.9,26.4,40.7],"Portsmouth city, Virginia, Virginia":[5,8.4,13.1,27,46.5],"Powhatan, Virginia":[7,10.5,15.2,26.5,40.9],"Prince Edward, Virginia":[4.7,8.3,14.1,28.8,44.1],"Prince George, Virginia":[7.4,11.1,15.6,26.1,39.7],"Prince William, Virginia":[6.8,10.2,14.8,26.9,41.3],"Pulaski, Virginia":[4.8,8.1,12.1,26.7,48.2],"Radford city, Virginia, Virginia":[3.5,7.9,12.9,28.3,47.3],"Rappahannock, Virginia":[4.2,7.3,11.7,27.9,48.9],"Richmond, Virginia":[7.3,11.2,17.6,27.8,36.1],"Richmond city, Virginia, Virginia":[3.8,6.5,10.7,27.6,51.4],"Roanoke, Virginia":[5.3,8.5,12.7,27.1,46.5],"Roanoke city, Virginia, Virginia":[3.9,6.9,11,26.7,51.4],"Rockbridge, Virginia":[5.3,8.6,13.3,27.6,45.1],"Rockingham, Virginia":[5.4,8.7,12.6,26.6,46.6],"Russell, Virginia":[4.9,8.4,13.3,27.5,45.8],"Salem city, Virginia, Virginia":[4.9,7.8,12.3,26.8,48.3],"Scott, Virginia":[4.5,8.1,13.5,28.3,45.6],"Shenandoah, Virginia":[5.2,8.4,12.8,27,46.7],"Smyth, Virginia":[4.7,7.7,12.6,27.3,47.7],"Southampton, Virginia":[5.9,10,15.2,27.9,41],"Spotsylvania, Virginia":[6.3,10,14.2,26.4,43.1],"Stafford, Virginia":[6.9,10.7,15.3,26.5,40.7],"Staunton city, Virginia, Virginia":[5.4,8.9,14,26.9,44.8],"Suffolk city, Virginia, Virginia":[5.2,8.4,12.5,26.2,47.6],"Surry, Virginia":[5.3,10.1,15.6,28,41],"Sussex, Virginia":[5.9,9.5,14.9,27.4,42.4],"Tazewell, Virginia":[4.4,7.3,12.5,27.7,48],"Virginia Beach city, Virginia, Virginia":[5.5,8.6,12.7,26.7,46.4],"Warren, Virginia":[6.4,10.2,15.5,28.2,39.8],"Washington, Virginia":[3.9,6.8,10.5,25.8,53],"Waynesboro city, Virginia, Virginia":[5.8,9.3,15.1,28.1,41.6],"Westmoreland, Virginia":[4.9,7.8,12.2,26.2,48.9],"Williamsburg city, Virginia, Virginia":[3.5,6.1,9.7,26.5,54.2],"Winchester city, Virginia, Virginia":[5.3,8.6,12.9,28.1,45.1],"Wise, Virginia":[5.9,9.9,14.7,27.4,42.2],"Wythe, Virginia":[4.5,7.6,12,25.6,50.4],"York, Virginia":[6.4,9.8,14.1,26.7,43.1]};
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Bottom 20%', 'Second 20%', 'Middle 20%', 'Fourth 20%', 'Top 20%'],
+        datasets: [{
+          label: 'Share (%)',
+          data: values,
+          backgroundColor: '#4576a7'
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.parsed.y + '%'
+            }
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 100,
+            title: {
+              display: true,
+              text: 'Income Share (%)'
+            }
+          },
+          x: {
+            title: {
+              display: true,
+              text: 'Quintile'
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(Object.values(incomeData[this.value]));
+  });
+
+  renderChart(Object.values(incomeData['Statewide']));</script>
+  </body>
+</html>
+</html>

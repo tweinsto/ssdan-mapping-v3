@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Income Distribution – Louisiana</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          text-align: center;
+          margin: 2rem;
+        }
+        select {
+          font-size: 1rem;
+          padding: 0.4rem;
+          margin-bottom: 1rem;
+        }
+        canvas {
+          width: 100%;
+          max-width: 700px;
+          height: 400px;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Income Share by Quintile – Louisiana</h2>
+    <label>Select County, State:</label>
+    <select id="countySelect"><option value='Statewide'>Statewide</option>
+<option value='Acadia Parish, Louisiana, Louisiana'>Acadia Parish, Louisiana, Louisiana</option>
+<option value='Allen Parish, Louisiana, Louisiana'>Allen Parish, Louisiana, Louisiana</option>
+<option value='Ascension Parish, Louisiana, Louisiana'>Ascension Parish, Louisiana, Louisiana</option>
+<option value='Assumption Parish, Louisiana, Louisiana'>Assumption Parish, Louisiana, Louisiana</option>
+<option value='Avoyelles Parish, Louisiana, Louisiana'>Avoyelles Parish, Louisiana, Louisiana</option>
+<option value='Beauregard Parish, Louisiana, Louisiana'>Beauregard Parish, Louisiana, Louisiana</option>
+<option value='Bienville Parish, Louisiana, Louisiana'>Bienville Parish, Louisiana, Louisiana</option>
+<option value='Bossier Parish, Louisiana, Louisiana'>Bossier Parish, Louisiana, Louisiana</option>
+<option value='Caddo Parish, Louisiana, Louisiana'>Caddo Parish, Louisiana, Louisiana</option>
+<option value='Calcasieu Parish, Louisiana, Louisiana'>Calcasieu Parish, Louisiana, Louisiana</option>
+<option value='Caldwell Parish, Louisiana, Louisiana'>Caldwell Parish, Louisiana, Louisiana</option>
+<option value='Cameron Parish, Louisiana, Louisiana'>Cameron Parish, Louisiana, Louisiana</option>
+<option value='Catahoula Parish, Louisiana, Louisiana'>Catahoula Parish, Louisiana, Louisiana</option>
+<option value='Claiborne Parish, Louisiana, Louisiana'>Claiborne Parish, Louisiana, Louisiana</option>
+<option value='Concordia Parish, Louisiana, Louisiana'>Concordia Parish, Louisiana, Louisiana</option>
+<option value='De Soto Parish, Louisiana, Louisiana'>De Soto Parish, Louisiana, Louisiana</option>
+<option value='East Baton Rouge Parish, Louisiana, Louisiana'>East Baton Rouge Parish, Louisiana, Louisiana</option>
+<option value='East Carroll Parish, Louisiana, Louisiana'>East Carroll Parish, Louisiana, Louisiana</option>
+<option value='East Feliciana Parish, Louisiana, Louisiana'>East Feliciana Parish, Louisiana, Louisiana</option>
+<option value='Evangeline Parish, Louisiana, Louisiana'>Evangeline Parish, Louisiana, Louisiana</option>
+<option value='Franklin Parish, Louisiana, Louisiana'>Franklin Parish, Louisiana, Louisiana</option>
+<option value='Grant Parish, Louisiana, Louisiana'>Grant Parish, Louisiana, Louisiana</option>
+<option value='Iberia Parish, Louisiana, Louisiana'>Iberia Parish, Louisiana, Louisiana</option>
+<option value='Iberville Parish, Louisiana, Louisiana'>Iberville Parish, Louisiana, Louisiana</option>
+<option value='Jackson Parish, Louisiana, Louisiana'>Jackson Parish, Louisiana, Louisiana</option>
+<option value='Jefferson Davis Parish, Louisiana, Louisiana'>Jefferson Davis Parish, Louisiana, Louisiana</option>
+<option value='Jefferson Parish, Louisiana, Louisiana'>Jefferson Parish, Louisiana, Louisiana</option>
+<option value='Lafayette Parish, Louisiana, Louisiana'>Lafayette Parish, Louisiana, Louisiana</option>
+<option value='Lafourche Parish, Louisiana, Louisiana'>Lafourche Parish, Louisiana, Louisiana</option>
+<option value='LaSalle Parish, Louisiana, Louisiana'>LaSalle Parish, Louisiana, Louisiana</option>
+<option value='Lincoln Parish, Louisiana, Louisiana'>Lincoln Parish, Louisiana, Louisiana</option>
+<option value='Livingston Parish, Louisiana, Louisiana'>Livingston Parish, Louisiana, Louisiana</option>
+<option value='Madison Parish, Louisiana, Louisiana'>Madison Parish, Louisiana, Louisiana</option>
+<option value='Morehouse Parish, Louisiana, Louisiana'>Morehouse Parish, Louisiana, Louisiana</option>
+<option value='Natchitoches Parish, Louisiana, Louisiana'>Natchitoches Parish, Louisiana, Louisiana</option>
+<option value='Orleans Parish, Louisiana, Louisiana'>Orleans Parish, Louisiana, Louisiana</option>
+<option value='Ouachita Parish, Louisiana, Louisiana'>Ouachita Parish, Louisiana, Louisiana</option>
+<option value='Plaquemines Parish, Louisiana, Louisiana'>Plaquemines Parish, Louisiana, Louisiana</option>
+<option value='Pointe Coupee Parish, Louisiana, Louisiana'>Pointe Coupee Parish, Louisiana, Louisiana</option>
+<option value='Rapides Parish, Louisiana, Louisiana'>Rapides Parish, Louisiana, Louisiana</option>
+<option value='Red River Parish, Louisiana, Louisiana'>Red River Parish, Louisiana, Louisiana</option>
+<option value='Richland Parish, Louisiana, Louisiana'>Richland Parish, Louisiana, Louisiana</option>
+<option value='Sabine Parish, Louisiana, Louisiana'>Sabine Parish, Louisiana, Louisiana</option>
+<option value='St. Bernard Parish, Louisiana, Louisiana'>St. Bernard Parish, Louisiana, Louisiana</option>
+<option value='St. Charles Parish, Louisiana, Louisiana'>St. Charles Parish, Louisiana, Louisiana</option>
+<option value='St. Helena Parish, Louisiana, Louisiana'>St. Helena Parish, Louisiana, Louisiana</option>
+<option value='St. James Parish, Louisiana, Louisiana'>St. James Parish, Louisiana, Louisiana</option>
+<option value='St. John the Baptist Parish, Louisiana, Louisiana'>St. John the Baptist Parish, Louisiana, Louisiana</option>
+<option value='St. Landry Parish, Louisiana, Louisiana'>St. Landry Parish, Louisiana, Louisiana</option>
+<option value='St. Martin Parish, Louisiana, Louisiana'>St. Martin Parish, Louisiana, Louisiana</option>
+<option value='St. Mary Parish, Louisiana, Louisiana'>St. Mary Parish, Louisiana, Louisiana</option>
+<option value='St. Tammany Parish, Louisiana, Louisiana'>St. Tammany Parish, Louisiana, Louisiana</option>
+<option value='Tangipahoa Parish, Louisiana, Louisiana'>Tangipahoa Parish, Louisiana, Louisiana</option>
+<option value='Tensas Parish, Louisiana, Louisiana'>Tensas Parish, Louisiana, Louisiana</option>
+<option value='Terrebonne Parish, Louisiana, Louisiana'>Terrebonne Parish, Louisiana, Louisiana</option>
+<option value='Union Parish, Louisiana, Louisiana'>Union Parish, Louisiana, Louisiana</option>
+<option value='Vermilion Parish, Louisiana, Louisiana'>Vermilion Parish, Louisiana, Louisiana</option>
+<option value='Vernon Parish, Louisiana, Louisiana'>Vernon Parish, Louisiana, Louisiana</option>
+<option value='Washington Parish, Louisiana, Louisiana'>Washington Parish, Louisiana, Louisiana</option>
+<option value='Webster Parish, Louisiana, Louisiana'>Webster Parish, Louisiana, Louisiana</option>
+<option value='West Baton Rouge Parish, Louisiana, Louisiana'>West Baton Rouge Parish, Louisiana, Louisiana</option>
+<option value='West Carroll Parish, Louisiana, Louisiana'>West Carroll Parish, Louisiana, Louisiana</option>
+<option value='West Feliciana Parish, Louisiana, Louisiana'>West Feliciana Parish, Louisiana, Louisiana</option>
+<option value='Winn Parish, Louisiana, Louisiana'>Winn Parish, Louisiana, Louisiana</option></select>
+    <canvas id="barChart" width="700" height="400"></canvas>
+    <script>  const incomeData = {"Statewide":[4.5,8,13.2,27.9,46.3],"Acadia Parish, Louisiana, Louisiana":[4.5,7.8,13.8,28,45.9],"Allen Parish, Louisiana, Louisiana":[4.7,8.9,14,29,43.5],"Ascension Parish, Louisiana, Louisiana":[5.7,9.9,14.9,27.2,42.2],"Assumption Parish, Louisiana, Louisiana":[4.9,7.7,12.8,28.7,45.8],"Avoyelles Parish, Louisiana, Louisiana":[3.9,7.2,12.6,28,48.3],"Beauregard Parish, Louisiana, Louisiana":[5.5,9.4,15.6,28.2,41.3],"Bienville Parish, Louisiana, Louisiana":[3.4,5.6,10,27.1,53.9],"Bossier Parish, Louisiana, Louisiana":[4.7,7.9,12.3,27.1,48],"Caddo Parish, Louisiana, Louisiana":[3.5,6.4,10.7,27.2,52.2],"Calcasieu Parish, Louisiana, Louisiana":[4.4,7.8,12.5,27.5,47.8],"Caldwell Parish, Louisiana, Louisiana":[3.7,7.2,14.7,29.5,45],"Cameron Parish, Louisiana, Louisiana":[7.5,10.6,16.1,27.6,38.1],"Catahoula Parish, Louisiana, Louisiana":[4.9,8.7,14.5,28.2,43.7],"Claiborne Parish, Louisiana, Louisiana":[3.3,5.9,9.9,26.8,54.1],"Concordia Parish, Louisiana, Louisiana":[4,7.1,12,27.9,49],"De Soto Parish, Louisiana, Louisiana":[3.8,6.6,12.4,28.2,49],"East Baton Rouge Parish, Louisiana, Louisiana":[3.9,6.9,11.4,27.7,50.2],"East Carroll Parish, Louisiana, Louisiana":[3.1,6.2,12.3,30.5,47.9],"East Feliciana Parish, Louisiana, Louisiana":[4.4,7.4,11.6,26.9,49.6],"Evangeline Parish, Louisiana, Louisiana":[4.4,7.9,13.7,29.4,44.4],"Franklin Parish, Louisiana, Louisiana":[4,6.9,11.8,29.1,48.2],"Grant Parish, Louisiana, Louisiana":[5.8,9.7,15.3,28,41.1],"Iberia Parish, Louisiana, Louisiana":[4.3,7.9,12.4,26.9,48.5],"Iberville Parish, Louisiana, Louisiana":[5.3,8.8,14.8,28.2,43],"Jackson Parish, Louisiana, Louisiana":[5.1,8.2,13.6,28.4,44.8],"Jefferson Davis Parish, Louisiana, Louisiana":[4.8,9.3,15.4,29.5,41],"Jefferson Parish, Louisiana, Louisiana":[4.4,7.6,12.1,27.2,48.8],"Lafayette Parish, Louisiana, Louisiana":[4.2,7.5,12.2,27.3,48.9],"Lafourche Parish, Louisiana, Louisiana":[4.7,8.4,13.3,27.1,46.5],"LaSalle Parish, Louisiana, Louisiana":[5.7,9.9,14.5,28.6,41.3],"Lincoln Parish, Louisiana, Louisiana":[3.6,6.6,12.3,29,48.5],"Livingston Parish, Louisiana, Louisiana":[6.4,10.7,15.8,26.9,40.2],"Madison Parish, Louisiana, Louisiana":[4,7.2,11.8,28.5,48.5],"Morehouse Parish, Louisiana, Louisiana":[3.7,6.4,11.2,27.8,50.8],"Natchitoches Parish, Louisiana, Louisiana":[4.1,7.8,13.7,28.7,45.8],"Orleans Parish, Louisiana, Louisiana":[2.9,5.9,10.3,27.8,53],"Ouachita Parish, Louisiana, Louisiana":[3.6,6.9,11.7,27.7,50.1],"Plaquemines Parish, Louisiana, Louisiana":[5.2,9.2,13.5,26.2,45.9],"Pointe Coupee Parish, Louisiana, Louisiana":[4.9,9.1,15,28.9,42.1],"Rapides Parish, Louisiana, Louisiana":[4.4,7.6,12.5,27.6,47.9],"Red River Parish, Louisiana, Louisiana":[4.1,8.1,13.8,29.1,44.9],"Richland Parish, Louisiana, Louisiana":[4.7,8.7,13.6,28.2,44.7],"Sabine Parish, Louisiana, Louisiana":[4.4,8.1,13.2,28.4,45.9],"St. Bernard Parish, Louisiana, Louisiana":[4.5,8.3,13.2,28.1,45.9],"St. Charles Parish, Louisiana, Louisiana":[5.5,9.2,14.6,27.3,43.4],"St. Helena Parish, Louisiana, Louisiana":[3.8,8.9,13,27.6,46.8],"St. James Parish, Louisiana, Louisiana":[4.9,8.9,15,28.8,42.4],"St. John the Baptist Parish, Louisiana, Louisiana":[5.7,9.9,14.8,27.9,41.6],"St. Landry Parish, Louisiana, Louisiana":[4.2,7.9,12.9,27.8,47.1],"St. Martin Parish, Louisiana, Louisiana":[4.4,7.9,13.4,27.9,46.3],"St. Mary Parish, Louisiana, Louisiana":[4.5,8.3,13.5,27.4,46.3],"St. Tammany Parish, Louisiana, Louisiana":[5,8.2,12.9,27.2,46.7],"Tangipahoa Parish, Louisiana, Louisiana":[4.5,7.9,12.8,27.6,47.2],"Tensas Parish, Louisiana, Louisiana":[4.1,7.1,11.6,25.4,51.8],"Terrebonne Parish, Louisiana, Louisiana":[4.7,8.1,12.6,26.9,47.7],"Union Parish, Louisiana, Louisiana":[3.9,7.7,13.3,27.6,47.4],"Vermilion Parish, Louisiana, Louisiana":[4.6,8.7,14.3,27.5,44.9],"Vernon Parish, Louisiana, Louisiana":[5.1,8.7,13.4,27,45.8],"Washington Parish, Louisiana, Louisiana":[4.4,7.4,12.7,28.9,46.6],"Webster Parish, Louisiana, Louisiana":[4,6.6,11.1,27.8,50.5],"West Baton Rouge Parish, Louisiana, Louisiana":[5.8,10,14.1,26.2,43.8],"West Carroll Parish, Louisiana, Louisiana":[5.1,8.7,14.7,28.7,42.8],"West Feliciana Parish, Louisiana, Louisiana":[5.6,8.7,14.3,29,42.5],"Winn Parish, Louisiana, Louisiana":[4.1,7.2,12.3,28.3,48.1]};
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Bottom 20%', 'Second 20%', 'Middle 20%', 'Fourth 20%', 'Top 20%'],
+        datasets: [{
+          label: 'Share (%)',
+          data: values,
+          backgroundColor: '#4576a7'
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.parsed.y + '%'
+            }
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 100,
+            title: {
+              display: true,
+              text: 'Income Share (%)'
+            }
+          },
+          x: {
+            title: {
+              display: true,
+              text: 'Quintile'
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(Object.values(incomeData[this.value]));
+  });
+
+  renderChart(Object.values(incomeData['Statewide']));</script>
+  </body>
+</html>
+</html>

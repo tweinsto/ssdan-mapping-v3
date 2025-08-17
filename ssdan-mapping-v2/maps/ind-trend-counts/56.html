@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+
+</head>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Industry Composition – 56</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #fff;
+    }
+    .container {
+      width: 95%;
+      max-width: 1200px;
+      margin: auto;
+      text-align: center;
+    }
+    canvas {
+  max-width: 100%;
+}
+    #countySelect {
+      font-size: 1rem;
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Industry Composition (Percent) – 56</h2>
+    <select id="countySelect"></select>
+    <canvas id="pieChart"></canvas>
+  </div>
+
+  <script>
+    const data = {"Statewide":{"Agriculture, forestry, fishing and hunting, and mining":9.5,"Arts, entertainment, and recreation, and accommodation and food services":9.2,"Construction":8.7,"Educational services, and health care and social assistance":24.7,"Finance and insurance, and real estate and rental and leasing":4.7,"Information":1.5,"Manufacturing":4.4,"Other services, except public administration":4.8,"Professional, scientific, and management, and administrative and waste management services":7.3,"Public administration":6.5,"Retail trade":10.9,"Transportation and warehousing, and utilities":6.2,"Wholesale trade":1.7},"Albany County":{"Agriculture, forestry, fishing and hunting, and mining":3.1,"Arts, entertainment, and recreation, and accommodation and food services":8.9,"Construction":6,"Educational services, and health care and social assistance":41.3,"Finance and insurance, and real estate and rental and leasing":5.3,"Information":1.3,"Manufacturing":4.6,"Other services, except public administration":5.9,"Professional, scientific, and management, and administrative and waste management services":7.9,"Public administration":3.3,"Retail trade":8.8,"Transportation and warehousing, and utilities":2.6,"Wholesale trade":1},"Big Horn County":{"Agriculture, forestry, fishing and hunting, and mining":15.7,"Arts, entertainment, and recreation, and accommodation and food services":8.3,"Construction":14.9,"Educational services, and health care and social assistance":25,"Finance and insurance, and real estate and rental and leasing":1.7,"Information":1.8,"Manufacturing":5.2,"Other services, except public administration":3.4,"Professional, scientific, and management, and administrative and waste management services":6.7,"Public administration":3.2,"Retail trade":7.4,"Transportation and warehousing, and utilities":5.7,"Wholesale trade":1},"Campbell County":{"Agriculture, forestry, fishing and hunting, and mining":20.9,"Arts, entertainment, and recreation, and accommodation and food services":8.4,"Construction":8.7,"Educational services, and health care and social assistance":19.3,"Finance and insurance, and real estate and rental and leasing":2.7,"Information":1.2,"Manufacturing":5.1,"Other services, except public administration":5.2,"Professional, scientific, and management, and administrative and waste management services":5.3,"Public administration":5.9,"Retail trade":9.9,"Transportation and warehousing, and utilities":5.7,"Wholesale trade":1.8},"Carbon County":{"Agriculture, forestry, fishing and hunting, and mining":10.4,"Arts, entertainment, and recreation, and accommodation and food services":11.3,"Construction":10.1,"Educational services, and health care and social assistance":18.3,"Finance and insurance, and real estate and rental and leasing":1.7,"Information":1.3,"Manufacturing":9.4,"Other services, except public administration":2.7,"Professional, scientific, and management, and administrative and waste management services":4.5,"Public administration":10.8,"Retail trade":10.3,"Transportation and warehousing, and utilities":8.4,"Wholesale trade":1},"Converse County":{"Agriculture, forestry, fishing and hunting, and mining":21.1,"Arts, entertainment, and recreation, and accommodation and food services":7.2,"Construction":8.1,"Educational services, and health care and social assistance":24.7,"Finance and insurance, and real estate and rental and leasing":4,"Information":2.2,"Manufacturing":5.3,"Other services, except public administration":4.4,"Professional, scientific, and management, and administrative and waste management services":3.6,"Public administration":4.9,"Retail trade":5.1,"Transportation and warehousing, and utilities":8.8,"Wholesale trade":0.6},"Crook County":{"Agriculture, forestry, fishing and hunting, and mining":25.5,"Arts, entertainment, and recreation, and accommodation and food services":4.1,"Construction":11.5,"Educational services, and health care and social assistance":21.7,"Finance and insurance, and real estate and rental and leasing":3.6,"Information":0.5,"Manufacturing":5.2,"Other services, except public administration":5.9,"Professional, scientific, and management, and administrative and waste management services":3.4,"Public administration":4.2,"Retail trade":4.7,"Transportation and warehousing, and utilities":7.3,"Wholesale trade":2.4},"Fremont County":{"Agriculture, forestry, fishing and hunting, and mining":8.4,"Arts, entertainment, and recreation, and accommodation and food services":10.4,"Construction":7.4,"Educational services, and health care and social assistance":29.2,"Finance and insurance, and real estate and rental and leasing":2.5,"Information":1.5,"Manufacturing":3,"Other services, except public administration":5.6,"Professional, scientific, and management, and administrative and waste management services":6.6,"Public administration":7.7,"Retail trade":10.9,"Transportation and warehousing, and utilities":5.2,"Wholesale trade":1.6},"Goshen County":{"Agriculture, forestry, fishing and hunting, and mining":13.6,"Arts, entertainment, and recreation, and accommodation and food services":4.2,"Construction":5.4,"Educational services, and health care and social assistance":28.4,"Finance and insurance, and real estate and rental and leasing":3.7,"Information":0.8,"Manufacturing":3.6,"Other services, except public administration":5.4,"Professional, scientific, and management, and administrative and waste management services":6.7,"Public administration":6.8,"Retail trade":8.8,"Transportation and warehousing, and utilities":8.2,"Wholesale trade":4.4},"Hot Springs County":{"Agriculture, forestry, fishing and hunting, and mining":16.1,"Arts, entertainment, and recreation, and accommodation and food services":9.8,"Construction":9.6,"Educational services, and health care and social assistance":33.1,"Finance and insurance, and real estate and rental and leasing":3,"Information":1,"Manufacturing":2.8,"Other services, except public administration":6.1,"Professional, scientific, and management, and administrative and waste management services":4.7,"Public administration":7.3,"Retail trade":4.9,"Transportation and warehousing, and utilities":1.4,"Wholesale trade":0.3},"Johnson County":{"Agriculture, forestry, fishing and hunting, and mining":18.6,"Arts, entertainment, and recreation, and accommodation and food services":5.3,"Construction":9.5,"Educational services, and health care and social assistance":19.1,"Finance and insurance, and real estate and rental and leasing":6.2,"Information":1.5,"Manufacturing":3.2,"Other services, except public administration":8.2,"Professional, scientific, and management, and administrative and waste management services":10.5,"Public administration":6,"Retail trade":8.4,"Transportation and warehousing, and utilities":2.7,"Wholesale trade":0.9},"Laramie County":{"Agriculture, forestry, fishing and hunting, and mining":2.7,"Arts, entertainment, and recreation, and accommodation and food services":9.2,"Construction":8.3,"Educational services, and health care and social assistance":23.6,"Finance and insurance, and real estate and rental and leasing":5.1,"Information":1.9,"Manufacturing":3.2,"Other services, except public administration":4,"Professional, scientific, and management, and administrative and waste management services":7.7,"Public administration":11.3,"Retail trade":14.6,"Transportation and warehousing, and utilities":7,"Wholesale trade":1.5},"Lincoln County":{"Agriculture, forestry, fishing and hunting, and mining":7.1,"Arts, entertainment, and recreation, and accommodation and food services":6.2,"Construction":13.3,"Educational services, and health care and social assistance":21.3,"Finance and insurance, and real estate and rental and leasing":2.7,"Information":1.3,"Manufacturing":6.2,"Other services, except public administration":6.5,"Professional, scientific, and management, and administrative and waste management services":9.2,"Public administration":6,"Retail trade":12.7,"Transportation and warehousing, and utilities":6.1,"Wholesale trade":1.3},"Natrona County":{"Agriculture, forestry, fishing and hunting, and mining":7.8,"Arts, entertainment, and recreation, and accommodation and food services":8.6,"Construction":7.8,"Educational services, and health care and social assistance":25.8,"Finance and insurance, and real estate and rental and leasing":5.4,"Information":1,"Manufacturing":4.9,"Other services, except public administration":5,"Professional, scientific, and management, and administrative and waste management services":8.5,"Public administration":5.4,"Retail trade":10.5,"Transportation and warehousing, and utilities":6.2,"Wholesale trade":3},"Niobrara County":{"Agriculture, forestry, fishing and hunting, and mining":20.9,"Arts, entertainment, and recreation, and accommodation and food services":8.7,"Construction":9.4,"Educational services, and health care and social assistance":29.3,"Finance and insurance, and real estate and rental and leasing":3.1,"Information":2.5,"Manufacturing":0,"Other services, except public administration":7.1,"Professional, scientific, and management, and administrative and waste management services":8,"Public administration":4.8,"Retail trade":1.5,"Transportation and warehousing, and utilities":4.4,"Wholesale trade":0.3},"Park County":{"Agriculture, forestry, fishing and hunting, and mining":7.5,"Arts, entertainment, and recreation, and accommodation and food services":9.6,"Construction":8.1,"Educational services, and health care and social assistance":26,"Finance and insurance, and real estate and rental and leasing":5.3,"Information":0.9,"Manufacturing":5.9,"Other services, except public administration":4.1,"Professional, scientific, and management, and administrative and waste management services":8.2,"Public administration":5.1,"Retail trade":11.5,"Transportation and warehousing, and utilities":6.4,"Wholesale trade":1.3},"Platte County":{"Agriculture, forestry, fishing and hunting, and mining":6.7,"Arts, entertainment, and recreation, and accommodation and food services":12.8,"Construction":16.4,"Educational services, and health care and social assistance":15.9,"Finance and insurance, and real estate and rental and leasing":7.5,"Information":0.5,"Manufacturing":1.8,"Other services, except public administration":4.6,"Professional, scientific, and management, and administrative and waste management services":5.4,"Public administration":3.8,"Retail trade":10.8,"Transportation and warehousing, and utilities":11.4,"Wholesale trade":2.5},"Sheridan County":{"Agriculture, forestry, fishing and hunting, and mining":9,"Arts, entertainment, and recreation, and accommodation and food services":9.1,"Construction":11.4,"Educational services, and health care and social assistance":27.2,"Finance and insurance, and real estate and rental and leasing":4.2,"Information":1.6,"Manufacturing":3.8,"Other services, except public administration":4.6,"Professional, scientific, and management, and administrative and waste management services":8.3,"Public administration":6.8,"Retail trade":7.9,"Transportation and warehousing, and utilities":5.2,"Wholesale trade":0.7},"Sublette County":{"Agriculture, forestry, fishing and hunting, and mining":22.4,"Arts, entertainment, and recreation, and accommodation and food services":9.9,"Construction":6.7,"Educational services, and health care and social assistance":11.1,"Finance and insurance, and real estate and rental and leasing":12.7,"Information":1.6,"Manufacturing":1.6,"Other services, except public administration":4.2,"Professional, scientific, and management, and administrative and waste management services":6.6,"Public administration":6.1,"Retail trade":8.6,"Transportation and warehousing, and utilities":8.2,"Wholesale trade":0.3},"Sweetwater County":{"Agriculture, forestry, fishing and hunting, and mining":14.2,"Arts, entertainment, and recreation, and accommodation and food services":8,"Construction":6.1,"Educational services, and health care and social assistance":22.2,"Finance and insurance, and real estate and rental and leasing":4.4,"Information":1.4,"Manufacturing":5.6,"Other services, except public administration":4,"Professional, scientific, and management, and administrative and waste management services":5.4,"Public administration":5.9,"Retail trade":11.6,"Transportation and warehousing, and utilities":8.8,"Wholesale trade":2.3},"Teton County":{"Agriculture, forestry, fishing and hunting, and mining":2.3,"Arts, entertainment, and recreation, and accommodation and food services":18.4,"Construction":11.9,"Educational services, and health care and social assistance":15.7,"Finance and insurance, and real estate and rental and leasing":8.9,"Information":3.3,"Manufacturing":1.8,"Other services, except public administration":5.6,"Professional, scientific, and management, and administrative and waste management services":12.4,"Public administration":1.8,"Retail trade":14.1,"Transportation and warehousing, and utilities":2.8,"Wholesale trade":1.1},"Uinta County":{"Agriculture, forestry, fishing and hunting, and mining":9.5,"Arts, entertainment, and recreation, and accommodation and food services":10.8,"Construction":9,"Educational services, and health care and social assistance":27.3,"Finance and insurance, and real estate and rental and leasing":4.6,"Information":1.7,"Manufacturing":4.8,"Other services, except public administration":3.5,"Professional, scientific, and management, and administrative and waste management services":4.8,"Public administration":4.7,"Retail trade":10.8,"Transportation and warehousing, and utilities":6.9,"Wholesale trade":1.5},"Washakie County":{"Agriculture, forestry, fishing and hunting, and mining":11.9,"Arts, entertainment, and recreation, and accommodation and food services":4.8,"Construction":9.8,"Educational services, and health care and social assistance":22.3,"Finance and insurance, and real estate and rental and leasing":2.8,"Information":1.8,"Manufacturing":7.7,"Other services, except public administration":6.1,"Professional, scientific, and management, and administrative and waste management services":6.9,"Public administration":6.2,"Retail trade":10.3,"Transportation and warehousing, and utilities":8.2,"Wholesale trade":1.3},"Weston County":{"Agriculture, forestry, fishing and hunting, and mining":21.3,"Arts, entertainment, and recreation, and accommodation and food services":5.6,"Construction":9.6,"Educational services, and health care and social assistance":17.4,"Finance and insurance, and real estate and rental and leasing":3.7,"Information":1.2,"Manufacturing":5.8,"Other services, except public administration":4.5,"Professional, scientific, and management, and administrative and waste management services":5,"Public administration":7.3,"Retail trade":9.3,"Transportation and warehousing, and utilities":8,"Wholesale trade":1.3}};
+    const colors = {
+  'Agriculture, forestry, fishing and hunting, and mining': '#FFFF33',
+  'Arts, entertainment, and recreation, and accommodation and food services': '#D95F02',
+  'Construction': '#7570B3',
+  'Educational services, and health care and social assistance': '#66A61E',
+  'Finance and insurance, and real estate and rental and leasing': '#E6AB02',
+  'Information': '#A6761D',
+  'Manufacturing': '#E41A1C',
+  'Other services, except public administration': '#377EB8',
+  'Professional, scientific, and management, and administrative and waste management services': '#4DAF4A',
+  'Public administration': '#984EA3',
+  'Retail trade': '#FF7F00',
+  'Transportation and warehousing, and utilities': '#1B9E77',
+  'Wholesale trade': '#A65628'
+};
+
+    const ctx = document.getElementById("pieChart").getContext("2d");
+    let chart;
+
+    function renderChart(county) {
+      const values = data[county];
+      const labels = Object.keys(values);
+      const percentages = Object.values(values);
+
+      if (chart) chart.destroy();
+
+      chart = new Chart(ctx, {
+        type: "pie",
+        data: {
+          labels: labels,
+          datasets: [{
+            data: percentages,
+            backgroundColor: labels.map(label => colors[label] || "#cccccc")
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: true,
+  aspectRatio: 1.5, 
+          plugins: {
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  return context.label + ": " + context.formattedValue + "%";
+                }
+              }
+            },
+            legend: {
+              position: "right",
+              labels: {
+                usePointStyle: true,
+                pointStyle: "rect"
+              }
+            }
+          }
+        }
+      });
+    }
+
+    const select = document.getElementById("countySelect");
+    Object.keys(data).forEach(county => {
+      const opt = document.createElement("option");
+      opt.value = county;
+      opt.text = county;
+      select.appendChild(opt);
+    });
+    select.value = "Statewide";
+    select.addEventListener("change", () => renderChart(select.value));
+    renderChart("Statewide");
+  </script>
+</body>
+</html>
+</html>

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Educational Enrollment – Ohio</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Educational Enrollment (Age 18–24) in Ohio</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Adams County, Ohio">Adams County, Ohio</option>
+      <option value="Allen County, Ohio">Allen County, Ohio</option>
+      <option value="Ashland County, Ohio">Ashland County, Ohio</option>
+      <option value="Ashtabula County, Ohio">Ashtabula County, Ohio</option>
+      <option value="Athens County, Ohio">Athens County, Ohio</option>
+      <option value="Auglaize County, Ohio">Auglaize County, Ohio</option>
+      <option value="Belmont County, Ohio">Belmont County, Ohio</option>
+      <option value="Brown County, Ohio">Brown County, Ohio</option>
+      <option value="Butler County, Ohio">Butler County, Ohio</option>
+      <option value="Carroll County, Ohio">Carroll County, Ohio</option>
+      <option value="Champaign County, Ohio">Champaign County, Ohio</option>
+      <option value="Clark County, Ohio">Clark County, Ohio</option>
+      <option value="Clermont County, Ohio">Clermont County, Ohio</option>
+      <option value="Clinton County, Ohio">Clinton County, Ohio</option>
+      <option value="Columbiana County, Ohio">Columbiana County, Ohio</option>
+      <option value="Coshocton County, Ohio">Coshocton County, Ohio</option>
+      <option value="Crawford County, Ohio">Crawford County, Ohio</option>
+      <option value="Cuyahoga County, Ohio">Cuyahoga County, Ohio</option>
+      <option value="Darke County, Ohio">Darke County, Ohio</option>
+      <option value="Defiance County, Ohio">Defiance County, Ohio</option>
+      <option value="Delaware County, Ohio">Delaware County, Ohio</option>
+      <option value="Erie County, Ohio">Erie County, Ohio</option>
+      <option value="Fairfield County, Ohio">Fairfield County, Ohio</option>
+      <option value="Fayette County, Ohio">Fayette County, Ohio</option>
+      <option value="Franklin County, Ohio">Franklin County, Ohio</option>
+      <option value="Fulton County, Ohio">Fulton County, Ohio</option>
+      <option value="Gallia County, Ohio">Gallia County, Ohio</option>
+      <option value="Geauga County, Ohio">Geauga County, Ohio</option>
+      <option value="Greene County, Ohio">Greene County, Ohio</option>
+      <option value="Guernsey County, Ohio">Guernsey County, Ohio</option>
+      <option value="Hamilton County, Ohio">Hamilton County, Ohio</option>
+      <option value="Hancock County, Ohio">Hancock County, Ohio</option>
+      <option value="Hardin County, Ohio">Hardin County, Ohio</option>
+      <option value="Harrison County, Ohio">Harrison County, Ohio</option>
+      <option value="Henry County, Ohio">Henry County, Ohio</option>
+      <option value="Highland County, Ohio">Highland County, Ohio</option>
+      <option value="Hocking County, Ohio">Hocking County, Ohio</option>
+      <option value="Holmes County, Ohio">Holmes County, Ohio</option>
+      <option value="Huron County, Ohio">Huron County, Ohio</option>
+      <option value="Jackson County, Ohio">Jackson County, Ohio</option>
+      <option value="Jefferson County, Ohio">Jefferson County, Ohio</option>
+      <option value="Knox County, Ohio">Knox County, Ohio</option>
+      <option value="Lake County, Ohio">Lake County, Ohio</option>
+      <option value="Lawrence County, Ohio">Lawrence County, Ohio</option>
+      <option value="Licking County, Ohio">Licking County, Ohio</option>
+      <option value="Logan County, Ohio">Logan County, Ohio</option>
+      <option value="Lorain County, Ohio">Lorain County, Ohio</option>
+      <option value="Lucas County, Ohio">Lucas County, Ohio</option>
+      <option value="Madison County, Ohio">Madison County, Ohio</option>
+      <option value="Mahoning County, Ohio">Mahoning County, Ohio</option>
+      <option value="Marion County, Ohio">Marion County, Ohio</option>
+      <option value="Medina County, Ohio">Medina County, Ohio</option>
+      <option value="Meigs County, Ohio">Meigs County, Ohio</option>
+      <option value="Mercer County, Ohio">Mercer County, Ohio</option>
+      <option value="Miami County, Ohio">Miami County, Ohio</option>
+      <option value="Monroe County, Ohio">Monroe County, Ohio</option>
+      <option value="Montgomery County, Ohio">Montgomery County, Ohio</option>
+      <option value="Morgan County, Ohio">Morgan County, Ohio</option>
+      <option value="Morrow County, Ohio">Morrow County, Ohio</option>
+      <option value="Muskingum County, Ohio">Muskingum County, Ohio</option>
+      <option value="Noble County, Ohio">Noble County, Ohio</option>
+      <option value="Ottawa County, Ohio">Ottawa County, Ohio</option>
+      <option value="Paulding County, Ohio">Paulding County, Ohio</option>
+      <option value="Perry County, Ohio">Perry County, Ohio</option>
+      <option value="Pickaway County, Ohio">Pickaway County, Ohio</option>
+      <option value="Pike County, Ohio">Pike County, Ohio</option>
+      <option value="Portage County, Ohio">Portage County, Ohio</option>
+      <option value="Preble County, Ohio">Preble County, Ohio</option>
+      <option value="Putnam County, Ohio">Putnam County, Ohio</option>
+      <option value="Richland County, Ohio">Richland County, Ohio</option>
+      <option value="Ross County, Ohio">Ross County, Ohio</option>
+      <option value="Sandusky County, Ohio">Sandusky County, Ohio</option>
+      <option value="Scioto County, Ohio">Scioto County, Ohio</option>
+      <option value="Seneca County, Ohio">Seneca County, Ohio</option>
+      <option value="Shelby County, Ohio">Shelby County, Ohio</option>
+      <option value="Stark County, Ohio">Stark County, Ohio</option>
+      <option value="Summit County, Ohio">Summit County, Ohio</option>
+      <option value="Trumbull County, Ohio">Trumbull County, Ohio</option>
+      <option value="Tuscarawas County, Ohio">Tuscarawas County, Ohio</option>
+      <option value="Union County, Ohio">Union County, Ohio</option>
+      <option value="Van Wert County, Ohio">Van Wert County, Ohio</option>
+      <option value="Vinton County, Ohio">Vinton County, Ohio</option>
+      <option value="Warren County, Ohio">Warren County, Ohio</option>
+      <option value="Washington County, Ohio">Washington County, Ohio</option>
+      <option value="Wayne County, Ohio">Wayne County, Ohio</option>
+      <option value="Williams County, Ohio">Williams County, Ohio</option>
+      <option value="Wood County, Ohio">Wood County, Ohio</option>
+      <option value="Wyandot County, Ohio">Wyandot County, Ohio</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>  const data = {"Statewide":[47.2,15,37.8],"Adams County, Ohio":[47,15.3,37.7],"Allen County, Ohio":[47.1,15.8,37.1],"Ashland County, Ohio":[50,7.2,42.8],"Ashtabula County, Ohio":[44.2,22.1,33.7],"Athens County, Ohio":[48.7,7.1,44.2],"Auglaize County, Ohio":[49.8,14.6,35.6],"Belmont County, Ohio":[36.7,31.8,31.5],"Brown County, Ohio":[48.3,24.9,26.8],"Butler County, Ohio":[48.2,12.3,39.5],"Carroll County, Ohio":[46.1,19.8,34.1],"Champaign County, Ohio":[48.6,19.2,32.2],"Clark County, Ohio":[46,16.7,37.3],"Clermont County, Ohio":[46.8,19,34.2],"Clinton County, Ohio":[51.2,14.5,34.4],"Columbiana County, Ohio":[48.9,16,35.1],"Coshocton County, Ohio":[46.4,21.8,31.7],"Crawford County, Ohio":[47.5,16.3,36.2],"Cuyahoga County, Ohio":[46.9,14.2,38.9],"Darke County, Ohio":[46,18.6,35.4],"Defiance County, Ohio":[50.3,11.2,38.6],"Delaware County, Ohio":[50.3,7.6,42.2],"Erie County, Ohio":[40.6,26.2,33.3],"Fairfield County, Ohio":[49,11.8,39.2],"Fayette County, Ohio":[45.1,25.2,29.6],"Franklin County, Ohio":[47.2,13.6,39.2],"Fulton County, Ohio":[46.2,20.6,33.2],"Gallia County, Ohio":[47.2,12.4,40.5],"Geauga County, Ohio":[44.1,20.7,35.2],"Greene County, Ohio":[47.4,11.9,40.7],"Guernsey County, Ohio":[47.3,15,37.7],"Hamilton County, Ohio":[47.2,14.3,38.6],"Hancock County, Ohio":[48.9,12.4,38.7],"Hardin County, Ohio":[45.9,12.8,41.3],"Harrison County, Ohio":[42.3,17.6,40.1],"Henry County, Ohio":[47.4,18.3,34.2],"Highland County, Ohio":[41,29.5,29.5],"Hocking County, Ohio":[45.1,26.9,28],"Holmes County, Ohio":[46.9,40.9,12.2],"Huron County, Ohio":[46.1,21,32.9],"Jackson County, Ohio":[43.7,30.6,25.7],"Jefferson County, Ohio":[48,9.8,42.2],"Knox County, Ohio":[46.8,12.4,40.8],"Lake County, Ohio":[46,15.9,38.1],"Lawrence County, Ohio":[44.3,16.7,39],"Licking County, Ohio":[47.7,14.1,38.2],"Logan County, Ohio":[45.3,19.9,34.8],"Lorain County, Ohio":[47.7,15.1,37.3],"Lucas County, Ohio":[46.7,15.5,37.7],"Madison County, Ohio":[48,12.9,39.1],"Mahoning County, Ohio":[45.2,18.2,36.5],"Marion County, Ohio":[44.3,21,34.7],"Medina County, Ohio":[48.4,12.5,39.1],"Meigs County, Ohio":[47.6,12,40.3],"Mercer County, Ohio":[47,15.8,37.2],"Miami County, Ohio":[49,13.6,37.3],"Monroe County, Ohio":[37.8,29.7,32.4],"Montgomery County, Ohio":[47.6,12.7,39.7],"Morgan County, Ohio":[48.3,23.3,28.4],"Morrow County, Ohio":[49.4,18.4,32.2],"Muskingum County, Ohio":[50.2,16.7,33.1],"Noble County, Ohio":[48.8,15.1,36.1],"Ottawa County, Ohio":[52,7,41],"Paulding County, Ohio":[44.4,15.7,39.9],"Perry County, Ohio":[46.7,20.5,32.8],"Pickaway County, Ohio":[48.1,17.6,34.3],"Pike County, Ohio":[47,11.9,41],"Portage County, Ohio":[47.5,12.3,40.1],"Preble County, Ohio":[48.4,15.6,36.1],"Putnam County, Ohio":[46.7,12.2,41.1],"Richland County, Ohio":[43.6,22.3,34.1],"Ross County, Ohio":[49,13.2,37.9],"Sandusky County, Ohio":[52.1,12.9,35],"Scioto County, Ohio":[49.5,9.7,40.7],"Seneca County, Ohio":[48.4,8.5,43.1],"Shelby County, Ohio":[47.1,18.2,34.7],"Stark County, Ohio":[46.9,16.2,36.9],"Summit County, Ohio":[48.2,13.8,38],"Trumbull County, Ohio":[45.4,20.7,34],"Tuscarawas County, Ohio":[46.3,22.5,31.3],"Union County, Ohio":[48.9,12.9,38.2],"Van Wert County, Ohio":[44.5,19.7,35.8],"Vinton County, Ohio":[42.7,18.3,39],"Warren County, Ohio":[48.9,9.5,41.6],"Washington County, Ohio":[47,14.7,38.3],"Wayne County, Ohio":[45,22,33.1],"Williams County, Ohio":[44.7,18.6,36.7],"Wood County, Ohio":[49.6,10.6,39.8],"Wyandot County, Ohio":[43.5,22.4,34.2]};
+  const nationalAvg = [6.9,55,38.1];
+  const categories = ["Enrolled in College","Enrolled in Other School","Not Enrolled"];
+  const ctx = document.getElementById("barChart").getContext("2d");
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: categories,
+        datasets: [
+          {
+            label: "County/State",
+            data: values,
+            backgroundColor: ["#66c2a5", "#fc8d62", "#8da0cb"]
+          },
+          {
+            label: null,
+            data: categories.map(c => nationalAvg[c]),
+            type: "line",
+            borderColor: "black",
+            borderWidth: 2,
+            pointRadius: 0,
+            fill: false
+          }
+        ]
+      },
+      options: {
+        indexAxis: "y",
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            ticks: {
+              callback: v => v + "%"
+            }
+          }
+        },
+        plugins: {
+          legend: {
+            labels: {
+              filter: item => item.text !== null
+            }
+          },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.dataset.label ? ctx.dataset.label + ": " + ctx.raw + "%" : null
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById("countySelect").addEventListener("change", function() {
+    renderChart(Object.values(data[this.value]));
+  });
+
+  renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

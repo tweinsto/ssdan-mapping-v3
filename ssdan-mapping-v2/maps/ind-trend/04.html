@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+
+</head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Median Earnings by Industry – 04</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background: white;
+    }
+    .layout {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1.5rem;
+    }
+    label {
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+    #countySelect {
+      font-size: 1rem;
+      padding: 0.4rem 0.8rem;
+      margin-bottom: 1rem;
+    }
+    canvas {
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <label for="countySelect">Median Earnings by Industry:</label>
+    <select id="countySelect"></select>
+    <canvas id="barChart"></canvas>
+  </div>
+
+  <script>
+    const data = {"Statewide":{"Agriculture, forestry, fishing and hunting, and mining":57344,"Arts, entertainment, and recreation, and accommodation and food services":34155,"Construction":50426,"Educational services, and health care and social assistance":49224,"Finance and insurance, and real estate and rental and leasing":58384,"Information":49806,"Manufacturing":52804,"Other services, except public administration":42522,"Professional, scientific, and management, and administrative and waste management services":52793,"Public administration":60135,"Retail trade":37902,"Transportation and warehousing, and utilities":61530,"Wholesale trade":61959},"Apache County":{"Agriculture, forestry, fishing and hunting, and mining":46481,"Arts, entertainment, and recreation, and accommodation and food services":30723,"Construction":41976,"Educational services, and health care and social assistance":44727,"Finance and insurance, and real estate and rental and leasing":45694,"Information":79150,"Manufacturing":31458,"Other services, except public administration":32964,"Professional, scientific, and management, and administrative and waste management services":39330,"Public administration":49408,"Retail trade":33510,"Transportation and warehousing, and utilities":62106,"Wholesale trade":73370},"Cochise County":{"Agriculture, forestry, fishing and hunting, and mining":41991,"Arts, entertainment, and recreation, and accommodation and food services":30817,"Construction":52849,"Educational services, and health care and social assistance":46809,"Finance and insurance, and real estate and rental and leasing":47089,"Information":56509,"Manufacturing":50896,"Other services, except public administration":42522,"Professional, scientific, and management, and administrative and waste management services":61385,"Public administration":90422,"Retail trade":30819,"Transportation and warehousing, and utilities":62500,"Wholesale trade":75515},"Coconino County":{"Agriculture, forestry, fishing and hunting, and mining":49400,"Arts, entertainment, and recreation, and accommodation and food services":38896,"Construction":53729,"Educational services, and health care and social assistance":56034,"Finance and insurance, and real estate and rental and leasing":66429,"Information":49806,"Manufacturing":56967,"Other services, except public administration":49063,"Professional, scientific, and management, and administrative and waste management services":64697,"Public administration":62236,"Retail trade":38597,"Transportation and warehousing, and utilities":67500,"Wholesale trade":70034},"Gila County":{"Agriculture, forestry, fishing and hunting, and mining":77607,"Arts, entertainment, and recreation, and accommodation and food services":38486,"Construction":51659,"Educational services, and health care and social assistance":47545,"Finance and insurance, and real estate and rental and leasing":48500,"Information":41641,"Manufacturing":52804,"Other services, except public administration":66063,"Professional, scientific, and management, and administrative and waste management services":54006,"Public administration":59125,"Retail trade":34728,"Transportation and warehousing, and utilities":62591,"Wholesale trade":69861},"Graham County":{"Agriculture, forestry, fishing and hunting, and mining":78194,"Arts, entertainment, and recreation, and accommodation and food services":30913,"Construction":42815,"Educational services, and health care and social assistance":58001,"Finance and insurance, and real estate and rental and leasing":56429,"Information":29639,"Manufacturing":67022,"Other services, except public administration":41838,"Professional, scientific, and management, and administrative and waste management services":46600,"Public administration":58870,"Retail trade":37902,"Transportation and warehousing, and utilities":72594,"Wholesale trade":71563},"Greenlee County":{"Agriculture, forestry, fishing and hunting, and mining":77674,"Arts, entertainment, and recreation, and accommodation and food services":55056,"Construction":56354,"Educational services, and health care and social assistance":43336,"Finance and insurance, and real estate and rental and leasing":59066,"Information":0,"Manufacturing":40962,"Other services, except public administration":26189,"Professional, scientific, and management, and administrative and waste management services":51451,"Public administration":70469,"Retail trade":26728,"Transportation and warehousing, and utilities":60729,"Wholesale trade":148750},"La Paz County":{"Agriculture, forestry, fishing and hunting, and mining":43800,"Arts, entertainment, and recreation, and accommodation and food services":33672,"Construction":58587,"Educational services, and health care and social assistance":52375,"Finance and insurance, and real estate and rental and leasing":49497,"Information":34750,"Manufacturing":55769,"Other services, except public administration":41023,"Professional, scientific, and management, and administrative and waste management services":48192,"Public administration":47756,"Retail trade":45203,"Transportation and warehousing, and utilities":49514,"Wholesale trade":57102},"Maricopa County":{"Agriculture, forestry, fishing and hunting, and mining":55780,"Arts, entertainment, and recreation, and accommodation and food services":40953,"Construction":56380,"Educational services, and health care and social assistance":57788,"Finance and insurance, and real estate and rental and leasing":72394,"Information":70613,"Manufacturing":70261,"Other services, except public administration":47556,"Professional, scientific, and management, and administrative and waste management services":67322,"Public administration":70104,"Retail trade":45777,"Transportation and warehousing, and utilities":59770,"Wholesale trade":61959},"Mohave County":{"Agriculture, forestry, fishing and hunting, and mining":77762,"Arts, entertainment, and recreation, and accommodation and food services":34155,"Construction":48039,"Educational services, and health care and social assistance":49224,"Finance and insurance, and real estate and rental and leasing":60020,"Information":46832,"Manufacturing":49268,"Other services, except public administration":43911,"Professional, scientific, and management, and administrative and waste management services":52793,"Public administration":62908,"Retail trade":38816,"Transportation and warehousing, and utilities":61530,"Wholesale trade":42033},"Navajo County":{"Agriculture, forestry, fishing and hunting, and mining":57426,"Arts, entertainment, and recreation, and accommodation and food services":33750,"Construction":48532,"Educational services, and health care and social assistance":47864,"Finance and insurance, and real estate and rental and leasing":49518,"Information":38750,"Manufacturing":48891,"Other services, except public administration":63119,"Professional, scientific, and management, and administrative and waste management services":46597,"Public administration":48997,"Retail trade":35591,"Transportation and warehousing, and utilities":79568,"Wholesale trade":47833},"Pima County":{"Agriculture, forestry, fishing and hunting, and mining":67605,"Arts, entertainment, and recreation, and accommodation and food services":34230,"Construction":46919,"Educational services, and health care and social assistance":52762,"Finance and insurance, and real estate and rental and leasing":59480,"Information":55823,"Manufacturing":83201,"Other services, except public administration":45279,"Professional, scientific, and management, and administrative and waste management services":58486,"Public administration":67202,"Retail trade":38783,"Transportation and warehousing, and utilities":54670,"Wholesale trade":56384},"Pinal County":{"Agriculture, forestry, fishing and hunting, and mining":57344,"Arts, entertainment, and recreation, and accommodation and food services":36982,"Construction":61665,"Educational services, and health care and social assistance":50173,"Finance and insurance, and real estate and rental and leasing":59741,"Information":62099,"Manufacturing":61222,"Other services, except public administration":46620,"Professional, scientific, and management, and administrative and waste management services":56934,"Public administration":60332,"Retail trade":45225,"Transportation and warehousing, and utilities":61453,"Wholesale trade":50856},"Santa Cruz County":{"Agriculture, forestry, fishing and hunting, and mining":47472,"Arts, entertainment, and recreation, and accommodation and food services":29286,"Construction":42192,"Educational services, and health care and social assistance":41972,"Finance and insurance, and real estate and rental and leasing":49122,"Information":48818,"Manufacturing":38750,"Other services, except public administration":34886,"Professional, scientific, and management, and administrative and waste management services":46477,"Public administration":53971,"Retail trade":36821,"Transportation and warehousing, and utilities":46396,"Wholesale trade":57446},"Yavapai County":{"Agriculture, forestry, fishing and hunting, and mining":70587,"Arts, entertainment, and recreation, and accommodation and food services":36728,"Construction":50426,"Educational services, and health care and social assistance":52802,"Finance and insurance, and real estate and rental and leasing":75200,"Information":55179,"Manufacturing":56867,"Other services, except public administration":38951,"Professional, scientific, and management, and administrative and waste management services":56518,"Public administration":52422,"Retail trade":41161,"Transportation and warehousing, and utilities":64854,"Wholesale trade":79338},"Yuma County":{"Agriculture, forestry, fishing and hunting, and mining":40770,"Arts, entertainment, and recreation, and accommodation and food services":31792,"Construction":49766,"Educational services, and health care and social assistance":48121,"Finance and insurance, and real estate and rental and leasing":58384,"Information":58814,"Manufacturing":49134,"Other services, except public administration":41632,"Professional, scientific, and management, and administrative and waste management services":44754,"Public administration":60135,"Retail trade":36155,"Transportation and warehousing, and utilities":54951,"Wholesale trade":53579}};
+    const colors = {
+  'Agriculture, forestry, fishing and hunting, and mining': '#FFFF33',
+  'Arts, entertainment, and recreation, and accommodation and food services': '#D95F02',
+  'Construction': '#7570B3',
+  'Educational services, and health care and social assistance': '#66A61E',
+  'Finance and insurance, and real estate and rental and leasing': '#E6AB02',
+  'Information': '#A6761D',
+  'Manufacturing': '#E41A1C',
+  'Other services, except public administration': '#377EB8',
+  'Professional, scientific, and management, and administrative and waste management services': '#4DAF4A',
+  'Public administration': '#984EA3',
+  'Retail trade': '#FF7F00',
+  'Transportation and warehousing, and utilities': '#1B9E77',
+  'Wholesale trade': '#A65628'
+};
+
+    const ctx = document.getElementById("barChart").getContext("2d");
+    let chart;
+
+    function renderChart(county) {
+      const values = data[county];
+      const labels = Object.keys(values);
+      const earnings = Object.values(values);
+
+      if (chart) chart.destroy();
+
+      chart = new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels: labels,
+          datasets: [{
+            label: "Median Earnings ($)",
+            data: earnings,
+            backgroundColor: labels.map(label => colors[label] || "#ccc")
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: true,
+  aspectRatio: 1.5, 
+          indexAxis: "x",
+          scales: {
+            y: {
+              beginAtZero: true,
+              title: {
+                display: true,
+                text: "Median Earnings ($)"
+              },
+              ticks: {
+                callback: function(value) {
+                  return "$" + value.toLocaleString();
+                }
+              }
+            },
+            x: {
+              ticks: {
+                maxRotation: 45,
+                minRotation: 20,
+                autoSkip: false,
+                callback: function(value, index, ticks) {
+                  let label = this.getLabelForValue(value);
+                  return label.length > 25 ? label.slice(0, 25) + "…" : label;
+                }
+              }
+            }
+          },
+          plugins: {
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  return "$" + context.parsed.y.toLocaleString();
+                }
+              }
+            },
+            legend: {
+              display: false
+            }
+          }
+        }
+      });
+    }
+
+    const select = document.getElementById("countySelect");
+    Object.keys(data).forEach(county => {
+      const option = document.createElement("option");
+      option.value = county;
+      option.text = county;
+      select.appendChild(option);
+    });
+    select.value = "Statewide";
+    select.addEventListener("change", () => renderChart(select.value));
+    renderChart("Statewide");
+  </script>
+</body>
+</html>
+</html>

@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Living Arrangements – Georgia</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Living Arrangements of Adults 65+ in Georgia</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Appling County, Georgia">Appling County, Georgia</option>
+      <option value="Atkinson County, Georgia">Atkinson County, Georgia</option>
+      <option value="Bacon County, Georgia">Bacon County, Georgia</option>
+      <option value="Baker County, Georgia">Baker County, Georgia</option>
+      <option value="Baldwin County, Georgia">Baldwin County, Georgia</option>
+      <option value="Banks County, Georgia">Banks County, Georgia</option>
+      <option value="Barrow County, Georgia">Barrow County, Georgia</option>
+      <option value="Bartow County, Georgia">Bartow County, Georgia</option>
+      <option value="Ben Hill County, Georgia">Ben Hill County, Georgia</option>
+      <option value="Berrien County, Georgia">Berrien County, Georgia</option>
+      <option value="Bibb County, Georgia">Bibb County, Georgia</option>
+      <option value="Bleckley County, Georgia">Bleckley County, Georgia</option>
+      <option value="Brantley County, Georgia">Brantley County, Georgia</option>
+      <option value="Brooks County, Georgia">Brooks County, Georgia</option>
+      <option value="Bryan County, Georgia">Bryan County, Georgia</option>
+      <option value="Bulloch County, Georgia">Bulloch County, Georgia</option>
+      <option value="Burke County, Georgia">Burke County, Georgia</option>
+      <option value="Butts County, Georgia">Butts County, Georgia</option>
+      <option value="Calhoun County, Georgia">Calhoun County, Georgia</option>
+      <option value="Camden County, Georgia">Camden County, Georgia</option>
+      <option value="Candler County, Georgia">Candler County, Georgia</option>
+      <option value="Carroll County, Georgia">Carroll County, Georgia</option>
+      <option value="Catoosa County, Georgia">Catoosa County, Georgia</option>
+      <option value="Charlton County, Georgia">Charlton County, Georgia</option>
+      <option value="Chatham County, Georgia">Chatham County, Georgia</option>
+      <option value="Chattahoochee County, Georgia">Chattahoochee County, Georgia</option>
+      <option value="Chattooga County, Georgia">Chattooga County, Georgia</option>
+      <option value="Cherokee County, Georgia">Cherokee County, Georgia</option>
+      <option value="Clarke County, Georgia">Clarke County, Georgia</option>
+      <option value="Clay County, Georgia">Clay County, Georgia</option>
+      <option value="Clayton County, Georgia">Clayton County, Georgia</option>
+      <option value="Clinch County, Georgia">Clinch County, Georgia</option>
+      <option value="Cobb County, Georgia">Cobb County, Georgia</option>
+      <option value="Coffee County, Georgia">Coffee County, Georgia</option>
+      <option value="Colquitt County, Georgia">Colquitt County, Georgia</option>
+      <option value="Columbia County, Georgia">Columbia County, Georgia</option>
+      <option value="Cook County, Georgia">Cook County, Georgia</option>
+      <option value="Coweta County, Georgia">Coweta County, Georgia</option>
+      <option value="Crawford County, Georgia">Crawford County, Georgia</option>
+      <option value="Crisp County, Georgia">Crisp County, Georgia</option>
+      <option value="Dade County, Georgia">Dade County, Georgia</option>
+      <option value="Dawson County, Georgia">Dawson County, Georgia</option>
+      <option value="Decatur County, Georgia">Decatur County, Georgia</option>
+      <option value="DeKalb County, Georgia">DeKalb County, Georgia</option>
+      <option value="Dodge County, Georgia">Dodge County, Georgia</option>
+      <option value="Dooly County, Georgia">Dooly County, Georgia</option>
+      <option value="Dougherty County, Georgia">Dougherty County, Georgia</option>
+      <option value="Douglas County, Georgia">Douglas County, Georgia</option>
+      <option value="Early County, Georgia">Early County, Georgia</option>
+      <option value="Echols County, Georgia">Echols County, Georgia</option>
+      <option value="Effingham County, Georgia">Effingham County, Georgia</option>
+      <option value="Elbert County, Georgia">Elbert County, Georgia</option>
+      <option value="Emanuel County, Georgia">Emanuel County, Georgia</option>
+      <option value="Evans County, Georgia">Evans County, Georgia</option>
+      <option value="Fannin County, Georgia">Fannin County, Georgia</option>
+      <option value="Fayette County, Georgia">Fayette County, Georgia</option>
+      <option value="Floyd County, Georgia">Floyd County, Georgia</option>
+      <option value="Forsyth County, Georgia">Forsyth County, Georgia</option>
+      <option value="Franklin County, Georgia">Franklin County, Georgia</option>
+      <option value="Fulton County, Georgia">Fulton County, Georgia</option>
+      <option value="Gilmer County, Georgia">Gilmer County, Georgia</option>
+      <option value="Glascock County, Georgia">Glascock County, Georgia</option>
+      <option value="Glynn County, Georgia">Glynn County, Georgia</option>
+      <option value="Gordon County, Georgia">Gordon County, Georgia</option>
+      <option value="Grady County, Georgia">Grady County, Georgia</option>
+      <option value="Greene County, Georgia">Greene County, Georgia</option>
+      <option value="Gwinnett County, Georgia">Gwinnett County, Georgia</option>
+      <option value="Habersham County, Georgia">Habersham County, Georgia</option>
+      <option value="Hall County, Georgia">Hall County, Georgia</option>
+      <option value="Hancock County, Georgia">Hancock County, Georgia</option>
+      <option value="Haralson County, Georgia">Haralson County, Georgia</option>
+      <option value="Harris County, Georgia">Harris County, Georgia</option>
+      <option value="Hart County, Georgia">Hart County, Georgia</option>
+      <option value="Heard County, Georgia">Heard County, Georgia</option>
+      <option value="Henry County, Georgia">Henry County, Georgia</option>
+      <option value="Houston County, Georgia">Houston County, Georgia</option>
+      <option value="Irwin County, Georgia">Irwin County, Georgia</option>
+      <option value="Jackson County, Georgia">Jackson County, Georgia</option>
+      <option value="Jasper County, Georgia">Jasper County, Georgia</option>
+      <option value="Jeff Davis County, Georgia">Jeff Davis County, Georgia</option>
+      <option value="Jefferson County, Georgia">Jefferson County, Georgia</option>
+      <option value="Jenkins County, Georgia">Jenkins County, Georgia</option>
+      <option value="Johnson County, Georgia">Johnson County, Georgia</option>
+      <option value="Jones County, Georgia">Jones County, Georgia</option>
+      <option value="Lamar County, Georgia">Lamar County, Georgia</option>
+      <option value="Lanier County, Georgia">Lanier County, Georgia</option>
+      <option value="Laurens County, Georgia">Laurens County, Georgia</option>
+      <option value="Lee County, Georgia">Lee County, Georgia</option>
+      <option value="Liberty County, Georgia">Liberty County, Georgia</option>
+      <option value="Lincoln County, Georgia">Lincoln County, Georgia</option>
+      <option value="Long County, Georgia">Long County, Georgia</option>
+      <option value="Lowndes County, Georgia">Lowndes County, Georgia</option>
+      <option value="Lumpkin County, Georgia">Lumpkin County, Georgia</option>
+      <option value="Macon County, Georgia">Macon County, Georgia</option>
+      <option value="Madison County, Georgia">Madison County, Georgia</option>
+      <option value="Marion County, Georgia">Marion County, Georgia</option>
+      <option value="McDuffie County, Georgia">McDuffie County, Georgia</option>
+      <option value="McIntosh County, Georgia">McIntosh County, Georgia</option>
+      <option value="Meriwether County, Georgia">Meriwether County, Georgia</option>
+      <option value="Miller County, Georgia">Miller County, Georgia</option>
+      <option value="Mitchell County, Georgia">Mitchell County, Georgia</option>
+      <option value="Monroe County, Georgia">Monroe County, Georgia</option>
+      <option value="Montgomery County, Georgia">Montgomery County, Georgia</option>
+      <option value="Morgan County, Georgia">Morgan County, Georgia</option>
+      <option value="Murray County, Georgia">Murray County, Georgia</option>
+      <option value="Muscogee County, Georgia">Muscogee County, Georgia</option>
+      <option value="Newton County, Georgia">Newton County, Georgia</option>
+      <option value="Oconee County, Georgia">Oconee County, Georgia</option>
+      <option value="Oglethorpe County, Georgia">Oglethorpe County, Georgia</option>
+      <option value="Paulding County, Georgia">Paulding County, Georgia</option>
+      <option value="Peach County, Georgia">Peach County, Georgia</option>
+      <option value="Pickens County, Georgia">Pickens County, Georgia</option>
+      <option value="Pierce County, Georgia">Pierce County, Georgia</option>
+      <option value="Pike County, Georgia">Pike County, Georgia</option>
+      <option value="Polk County, Georgia">Polk County, Georgia</option>
+      <option value="Pulaski County, Georgia">Pulaski County, Georgia</option>
+      <option value="Putnam County, Georgia">Putnam County, Georgia</option>
+      <option value="Quitman County, Georgia">Quitman County, Georgia</option>
+      <option value="Rabun County, Georgia">Rabun County, Georgia</option>
+      <option value="Randolph County, Georgia">Randolph County, Georgia</option>
+      <option value="Richmond County, Georgia">Richmond County, Georgia</option>
+      <option value="Rockdale County, Georgia">Rockdale County, Georgia</option>
+      <option value="Schley County, Georgia">Schley County, Georgia</option>
+      <option value="Screven County, Georgia">Screven County, Georgia</option>
+      <option value="Seminole County, Georgia">Seminole County, Georgia</option>
+      <option value="Spalding County, Georgia">Spalding County, Georgia</option>
+      <option value="Stephens County, Georgia">Stephens County, Georgia</option>
+      <option value="Stewart County, Georgia">Stewart County, Georgia</option>
+      <option value="Sumter County, Georgia">Sumter County, Georgia</option>
+      <option value="Talbot County, Georgia">Talbot County, Georgia</option>
+      <option value="Taliaferro County, Georgia">Taliaferro County, Georgia</option>
+      <option value="Tattnall County, Georgia">Tattnall County, Georgia</option>
+      <option value="Taylor County, Georgia">Taylor County, Georgia</option>
+      <option value="Telfair County, Georgia">Telfair County, Georgia</option>
+      <option value="Terrell County, Georgia">Terrell County, Georgia</option>
+      <option value="Thomas County, Georgia">Thomas County, Georgia</option>
+      <option value="Tift County, Georgia">Tift County, Georgia</option>
+      <option value="Toombs County, Georgia">Toombs County, Georgia</option>
+      <option value="Towns County, Georgia">Towns County, Georgia</option>
+      <option value="Treutlen County, Georgia">Treutlen County, Georgia</option>
+      <option value="Troup County, Georgia">Troup County, Georgia</option>
+      <option value="Turner County, Georgia">Turner County, Georgia</option>
+      <option value="Twiggs County, Georgia">Twiggs County, Georgia</option>
+      <option value="Union County, Georgia">Union County, Georgia</option>
+      <option value="Upson County, Georgia">Upson County, Georgia</option>
+      <option value="Walker County, Georgia">Walker County, Georgia</option>
+      <option value="Walton County, Georgia">Walton County, Georgia</option>
+      <option value="Ware County, Georgia">Ware County, Georgia</option>
+      <option value="Warren County, Georgia">Warren County, Georgia</option>
+      <option value="Washington County, Georgia">Washington County, Georgia</option>
+      <option value="Wayne County, Georgia">Wayne County, Georgia</option>
+      <option value="Webster County, Georgia">Webster County, Georgia</option>
+      <option value="Wheeler County, Georgia">Wheeler County, Georgia</option>
+      <option value="White County, Georgia">White County, Georgia</option>
+      <option value="Whitfield County, Georgia">Whitfield County, Georgia</option>
+      <option value="Wilcox County, Georgia">Wilcox County, Georgia</option>
+      <option value="Wilkes County, Georgia">Wilkes County, Georgia</option>
+      <option value="Wilkinson County, Georgia">Wilkinson County, Georgia</option>
+      <option value="Worth County, Georgia">Worth County, Georgia</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>  const data = {"Statewide":[26,0.4,2.3,17.6,51.9,1.8],"Appling County, Georgia":[28.8,1.3,2.4,9.3,57.3,0.9],"Atkinson County, Georgia":[31,0,0.9,8.6,53.6,5.9],"Bacon County, Georgia":[36.6,0.6,3.2,13.3,46.4,0],"Baker County, Georgia":[27.2,0,0.7,13,59.1,0],"Baldwin County, Georgia":[29.3,0.1,1.2,14.2,52.3,2.9],"Banks County, Georgia":[25.7,0.2,0.2,19.6,53.3,1.1],"Barrow County, Georgia":[21.1,0.2,2.4,20,54.9,1.5],"Bartow County, Georgia":[22.2,0.4,2.7,21,51.6,2.1],"Ben Hill County, Georgia":[32.5,0,0.5,11.2,52.5,3.3],"Berrien County, Georgia":[25.6,0,2.6,16.2,55.3,0.3],"Bibb County, Georgia":[30.6,0.5,2.3,18.2,46.2,2.1],"Bleckley County, Georgia":[30.7,0,4.1,8.7,56,0.4],"Brantley County, Georgia":[36.4,0,1.6,11,47.5,3.5],"Brooks County, Georgia":[30.2,0,3.5,17.4,48.5,0.4],"Bryan County, Georgia":[17.1,0,3.5,18,58.1,3.3],"Bulloch County, Georgia":[31.9,0.3,1.3,15.4,49.7,1.4],"Burke County, Georgia":[34.7,0,0.7,20,42.6,2.1],"Butts County, Georgia":[24.8,0.7,0.5,23.3,50.5,0.2],"Calhoun County, Georgia":[33.3,0,7.5,14.6,42.6,2],"Camden County, Georgia":[18.8,0.1,1.8,13.7,63.5,2.1],"Candler County, Georgia":[32.4,0,0,10.5,55.5,1.7],"Carroll County, Georgia":[26.1,0.1,2.5,16.9,53.8,0.7],"Catoosa County, Georgia":[24.3,0.1,0.4,16.2,57.3,1.6],"Charlton County, Georgia":[22.4,0.6,6,24.8,44.9,1.4],"Chatham County, Georgia":[27,0.6,3.5,16.2,51,1.7],"Chattahoochee County, Georgia":[16.1,0,2.6,25.2,56.1,0],"Chattooga County, Georgia":[33.4,0,2.7,15.9,46.5,1.4],"Cherokee County, Georgia":[20,0.5,2.5,14.6,60.5,1.8],"Clarke County, Georgia":[35,0.4,3,13,46.7,1.8],"Clay County, Georgia":[34.6,0.2,2.3,13.8,48.6,0.5],"Clayton County, Georgia":[26.9,0.1,3.1,25.4,41.6,3],"Clinch County, Georgia":[21.9,0.3,0.9,13.9,61,2],"Cobb County, Georgia":[22.8,0.3,1.9,17.2,55.3,2.5],"Coffee County, Georgia":[28.6,0,1.1,17,51.2,2.2],"Colquitt County, Georgia":[31.4,1.6,4,15,46.5,1.6],"Columbia County, Georgia":[21.6,0.5,1.8,17.7,57.1,1.4],"Cook County, Georgia":[26.7,3.6,1.6,18.1,49.2,0.8],"Coweta County, Georgia":[22.7,0.7,0.9,16,58.8,0.9],"Crawford County, Georgia":[31.6,0,3.6,16.2,47.6,1.1],"Crisp County, Georgia":[31,0.8,0.4,22.3,43.9,1.5],"Dade County, Georgia":[23.6,0.5,1,11.1,63.6,0.2],"Dawson County, Georgia":[19.8,0,1.9,9.1,66.2,3],"DeKalb County, Georgia":[29.3,0.5,3.5,22.5,42,2.2],"Decatur County, Georgia":[28.6,0,1.4,18.5,48.8,2.6],"Dodge County, Georgia":[22.6,2.1,3.1,18.3,50,3.9],"Dooly County, Georgia":[24.2,0.6,2.1,18,55.2,0],"Dougherty County, Georgia":[35.7,0.3,3.3,20.7,38.2,1.7],"Douglas County, Georgia":[22.7,0.4,3.1,20.4,52.5,0.9],"Early County, Georgia":[32,1.1,2.5,14.8,48.9,0.7],"Echols County, Georgia":[25.9,5.8,0,19,49.4,0],"Effingham County, Georgia":[18.3,0.8,4.6,22.5,52.6,1.2],"Elbert County, Georgia":[33.2,0.2,0.6,13.2,51.1,1.7],"Emanuel County, Georgia":[33.5,0.6,3.4,16.8,45.1,0.6],"Evans County, Georgia":[28.3,0.3,2.1,8.3,59.1,2],"Fannin County, Georgia":[23.2,0.2,1.3,10.9,62.4,2.1],"Fayette County, Georgia":[19.6,0.2,0.8,14.8,64,0.6],"Floyd County, Georgia":[27.2,0.7,2,13.4,55.4,1.4],"Forsyth County, Georgia":[17.6,0,1.7,16.7,62.6,1.3],"Franklin County, Georgia":[23.4,0.8,2.1,15.6,55.6,2.4],"Fulton County, Georgia":[33.8,0.4,2.6,17.1,43.8,2.3],"Gilmer County, Georgia":[20.9,0,2.3,13.4,57.5,5.9],"Glascock County, Georgia":[29.5,0,0,6.7,63.8,0],"Glynn County, Georgia":[26.1,0.2,1.3,12.1,58.5,1.8],"Gordon County, Georgia":[26.6,0.3,2.1,16.3,52.9,1.9],"Grady County, Georgia":[27.4,1.3,1.6,17.5,51.8,0.4],"Greene County, Georgia":[21.4,0.1,0.9,11.3,64.6,1.6],"Gwinnett County, Georgia":[18.2,0.4,2.9,24.3,53.1,1.2],"Habersham County, Georgia":[22.7,0.3,2.8,19.5,53.2,1.5],"Hall County, Georgia":[21.1,0.5,1.7,15.6,59.4,1.7],"Hancock County, Georgia":[24.1,0.2,3.2,13.3,59.2,0],"Haralson County, Georgia":[26.3,0,1.3,16.6,55.2,0.7],"Harris County, Georgia":[17.3,1.1,1.5,17.3,62.4,0.3],"Hart County, Georgia":[26.9,0,2,11.9,56.5,2.8],"Heard County, Georgia":[30.2,0,1.8,15,51.8,1.2],"Henry County, Georgia":[25.3,0.6,1.7,21.7,48.3,2.4],"Houston County, Georgia":[24.2,0.1,1.4,18.1,55.4,0.9],"Irwin County, Georgia":[37.2,0,0.9,12.3,49.3,0.4],"Jackson County, Georgia":[18.5,0.1,0.5,16.8,61.9,2.1],"Jasper County, Georgia":[18.7,0,2,13.3,59,7],"Jeff Davis County, Georgia":[33.8,0,0,14.9,45.1,6.2],"Jefferson County, Georgia":[28.3,0.6,0.9,18.2,51.1,0.9],"Jenkins County, Georgia":[30.8,0,3.3,28,36.9,1],"Johnson County, Georgia":[32.9,2.5,4.6,13.8,45.8,0.5],"Jones County, Georgia":[28.7,0.3,3.7,12.6,54.6,0],"Lamar County, Georgia":[28.6,0.5,3.1,16.9,46.4,4.3],"Lanier County, Georgia":[26,0,0,24,48.2,1.8],"Laurens County, Georgia":[31.1,0,2.4,15.4,49.3,1.8],"Lee County, Georgia":[18.7,0,1.3,18.7,60.5,0.8],"Liberty County, Georgia":[25.4,0.3,1.2,17.3,51.8,4.1],"Lincoln County, Georgia":[24.2,4.5,5.7,17.5,48.1,0],"Long County, Georgia":[27.8,0,6.2,17.6,46,2.4],"Lowndes County, Georgia":[32.3,0,1.7,13.4,51,1.7],"Lumpkin County, Georgia":[21,0.1,1.3,12.9,62.3,2.4],"Macon County, Georgia":[31.4,0.6,1.1,25.6,39.4,1.9],"Madison County, Georgia":[18,0,8.5,16.8,55.1,1.6],"Marion County, Georgia":[24.8,0.1,6.5,9.7,57.8,1.1],"McDuffie County, Georgia":[19.4,0,0,19.1,56.6,4.9],"McIntosh County, Georgia":[19.2,2.9,1.4,14.6,60.8,1.2],"Meriwether County, Georgia":[28.5,0.7,0.9,23.2,43,3.6],"Miller County, Georgia":[35.5,0,0,13,49.8,1.7],"Mitchell County, Georgia":[31,0.1,1,14,51.3,2.5],"Monroe County, Georgia":[26.8,0.2,0.6,12.4,58,2.2],"Montgomery County, Georgia":[30.9,0,0.8,15.3,51.2,1.8],"Morgan County, Georgia":[18.6,0.7,1.7,13.2,64.9,0.9],"Murray County, Georgia":[24.4,0.2,1.1,19.4,53.4,1.6],"Muscogee County, Georgia":[35.2,0.4,3.6,15.2,43.7,1.9],"Newton County, Georgia":[22.1,0.2,1.6,21.4,53.1,1.6],"Oconee County, Georgia":[17.3,0.4,0.4,7.9,73.8,0.2],"Oglethorpe County, Georgia":[20.2,0.4,1.4,23.5,53.7,0.8],"Paulding County, Georgia":[21,0.1,2.1,19.9,54.9,1.8],"Peach County, Georgia":[35.3,0.1,0.8,19.1,42.6,2],"Pickens County, Georgia":[19.9,0.5,2.5,11.7,63.9,1.4],"Pierce County, Georgia":[26,0.6,4.6,12.3,55.4,1.1],"Pike County, Georgia":[25.2,0.2,1.9,15.2,55.7,1.8],"Polk County, Georgia":[29.5,1.5,2.7,15.3,49.7,1.2],"Pulaski County, Georgia":[22.6,0,3.7,20.9,50,2.8],"Putnam County, Georgia":[27.9,0.2,0.6,4.8,63.2,3.3],"Quitman County, Georgia":[37,0,0,18.9,44.1,0],"Rabun County, Georgia":[21.5,0,3.7,7.3,63.9,3.6],"Randolph County, Georgia":[43.3,3,0,8.4,43.2,2.1],"Richmond County, Georgia":[31.5,0.3,4.8,17.8,43.5,2.1],"Rockdale County, Georgia":[20.8,1.3,1.5,24.3,50.7,1.3],"Schley County, Georgia":[27.4,0,0,25.4,46.4,0.7],"Screven County, Georgia":[25,0.4,5.1,10.2,57.1,2.2],"Seminole County, Georgia":[24.1,0.4,3.4,17.1,50.3,4.7],"Spalding County, Georgia":[29.7,0.2,0.9,17.9,49.8,1.5],"Stephens County, Georgia":[26.6,0.4,4.2,13.1,54.7,1],"Stewart County, Georgia":[37.5,0,3.6,19.3,39.4,0.2],"Sumter County, Georgia":[28.5,0.4,1.6,22.2,46.8,0.5],"Talbot County, Georgia":[33.7,0,2.3,17,46,1],"Taliaferro County, Georgia":[22.7,2.1,3.4,31.8,39.1,0.9],"Tattnall County, Georgia":[32.6,0.5,1,19.4,41.6,4.9],"Taylor County, Georgia":[30.4,4.8,1.5,19.4,39.1,4.8],"Telfair County, Georgia":[26.4,4.5,7.4,14.5,46.6,0.7],"Terrell County, Georgia":[25.1,0.6,3.3,20.1,44.5,6.4],"Thomas County, Georgia":[27.2,0.4,2.6,14.1,52.9,2.8],"Tift County, Georgia":[35.3,0.4,1.5,14.8,47.4,0.5],"Toombs County, Georgia":[37.6,0.3,2.4,15.9,43.1,0.8],"Towns County, Georgia":[18.8,0,1.2,5.6,73.6,0.8],"Treutlen County, Georgia":[34.2,0,0,22.1,43.7,0],"Troup County, Georgia":[25.6,0.1,0.9,20.3,52.2,0.9],"Turner County, Georgia":[32.9,0.5,1.8,13.3,50.2,1.3],"Twiggs County, Georgia":[26.7,1.5,0,20.8,50.1,0.8],"Union County, Georgia":[26.6,0.2,1.2,5.4,63.9,2.8],"Upson County, Georgia":[34.5,0,3,15.1,45.6,1.8],"Walker County, Georgia":[28.1,0.7,0.9,13.7,55.5,1],"Walton County, Georgia":[23.2,0.1,1.4,17.6,55.7,2],"Ware County, Georgia":[31.7,0.1,3.3,18.2,45.9,0.7],"Warren County, Georgia":[28.8,1.7,1.4,15.6,48.3,4.2],"Washington County, Georgia":[35.3,0.1,1.3,18.5,44.3,0.4],"Wayne County, Georgia":[26.9,2.2,1.1,16.5,52.6,0.8],"Webster County, Georgia":[40.5,0,1.5,3.9,48.8,5.3],"Wheeler County, Georgia":[25.2,0,8.7,22.1,39.6,4.4],"White County, Georgia":[17.6,0.4,1.5,14.3,65,1.2],"Whitfield County, Georgia":[27.8,0.3,1.2,18.1,52.3,0.3],"Wilcox County, Georgia":[29.5,0,0.8,16.3,52.3,1.1],"Wilkes County, Georgia":[40.6,0,0.4,15.5,40.6,2.9],"Wilkinson County, Georgia":[33,0.4,3.2,18.4,43.9,1.1],"Worth County, Georgia":[31.5,0.3,1.5,17.8,44.4,4.6]};
+  const nationalAvg = [27.3,0.3,2.3,14.5,53.2,2.4];
+  const categories = ["Lives alone","With child","With nonrelatives","With other relatives","With spouse only","With unmarried partner"];
+  const ctx = document.getElementById("barChart").getContext("2d");
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: categories,
+        datasets: [
+          {
+            label: "County/State",
+            data: values,
+            backgroundColor: [
+              "#e41a1c", "#ff7f00", "#4daf4a",
+              "#984ea3", "#377eb8", "#a65628"
+            ]
+          },
+          {
+            label: "",
+            data: categories.map(c => nationalAvg[c]),
+            type: "line",
+            borderColor: "gray",
+            borderWidth: 1,
+            borderDash: [4, 4],
+            pointRadius: 0,
+            fill: false
+          }
+        ]
+      },
+      options: {
+        indexAxis: "y",
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            ticks: {
+              callback: function(v) { return v + "%"; }
+            }
+          }
+        },
+        plugins: {
+          legend: {
+            labels: {
+              filter: function(item) { return item.text !== ""; }
+            }
+          },
+          tooltip: {
+            callbacks: {
+              label: function(ctx) {
+                return ctx.dataset.label !== "" ? ctx.dataset.label + ": " + ctx.raw + "%" : null;
+              }
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById("countySelect").addEventListener("change", function() {
+    renderChart(Object.values(data[this.value]));
+  });
+
+  renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

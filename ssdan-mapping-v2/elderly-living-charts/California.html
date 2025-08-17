@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Living Arrangements – California</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          margin: 1rem 2rem;
+          text-align: center;
+        }
+        h2 {
+          font-size: 1.5rem;
+          margin-bottom: 0.5rem;
+        }
+        select {
+          font-size: 1rem;
+          padding: 0.4rem;
+          margin: 1rem 0;
+          border: 1px solid #999;
+          border-radius: 5px;
+        }
+        canvas {
+          width: 100%;
+          max-width: 850px;
+          height: 600px;
+          margin-top: 1rem;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Living Arrangements of Adults 65+ in California</h2>
+    <label>Select County:</label>
+            <select id="countySelect">
+          <option value='Statewide'>Default</option>
+<option value='Alameda County, California'>Alameda County, California</option>
+<option value='Alpine County, California'>Alpine County, California</option>
+<option value='Amador County, California'>Amador County, California</option>
+<option value='Butte County, California'>Butte County, California</option>
+<option value='Calaveras County, California'>Calaveras County, California</option>
+<option value='Colusa County, California'>Colusa County, California</option>
+<option value='Contra Costa County, California'>Contra Costa County, California</option>
+<option value='Del Norte County, California'>Del Norte County, California</option>
+<option value='El Dorado County, California'>El Dorado County, California</option>
+<option value='Fresno County, California'>Fresno County, California</option>
+<option value='Glenn County, California'>Glenn County, California</option>
+<option value='Humboldt County, California'>Humboldt County, California</option>
+<option value='Imperial County, California'>Imperial County, California</option>
+<option value='Inyo County, California'>Inyo County, California</option>
+<option value='Kern County, California'>Kern County, California</option>
+<option value='Kings County, California'>Kings County, California</option>
+<option value='Lake County, California'>Lake County, California</option>
+<option value='Lassen County, California'>Lassen County, California</option>
+<option value='Los Angeles County, California'>Los Angeles County, California</option>
+<option value='Madera County, California'>Madera County, California</option>
+<option value='Marin County, California'>Marin County, California</option>
+<option value='Mariposa County, California'>Mariposa County, California</option>
+<option value='Mendocino County, California'>Mendocino County, California</option>
+<option value='Merced County, California'>Merced County, California</option>
+<option value='Modoc County, California'>Modoc County, California</option>
+<option value='Mono County, California'>Mono County, California</option>
+<option value='Monterey County, California'>Monterey County, California</option>
+<option value='Napa County, California'>Napa County, California</option>
+<option value='Nevada County, California'>Nevada County, California</option>
+<option value='Orange County, California'>Orange County, California</option>
+<option value='Placer County, California'>Placer County, California</option>
+<option value='Plumas County, California'>Plumas County, California</option>
+<option value='Riverside County, California'>Riverside County, California</option>
+<option value='Sacramento County, California'>Sacramento County, California</option>
+<option value='San Benito County, California'>San Benito County, California</option>
+<option value='San Bernardino County, California'>San Bernardino County, California</option>
+<option value='San Diego County, California'>San Diego County, California</option>
+<option value='San Francisco County, California'>San Francisco County, California</option>
+<option value='San Joaquin County, California'>San Joaquin County, California</option>
+<option value='San Luis Obispo County, California'>San Luis Obispo County, California</option>
+<option value='San Mateo County, California'>San Mateo County, California</option>
+<option value='Santa Barbara County, California'>Santa Barbara County, California</option>
+<option value='Santa Clara County, California'>Santa Clara County, California</option>
+<option value='Santa Cruz County, California'>Santa Cruz County, California</option>
+<option value='Shasta County, California'>Shasta County, California</option>
+<option value='Sierra County, California'>Sierra County, California</option>
+<option value='Siskiyou County, California'>Siskiyou County, California</option>
+<option value='Solano County, California'>Solano County, California</option>
+<option value='Sonoma County, California'>Sonoma County, California</option>
+<option value='Stanislaus County, California'>Stanislaus County, California</option>
+<option value='Sutter County, California'>Sutter County, California</option>
+<option value='Tehama County, California'>Tehama County, California</option>
+<option value='Trinity County, California'>Trinity County, California</option>
+<option value='Tulare County, California'>Tulare County, California</option>
+<option value='Tuolumne County, California'>Tuolumne County, California</option>
+<option value='Ventura County, California'>Ventura County, California</option>
+<option value='Yolo County, California'>Yolo County, California</option>
+<option value='Yuba County, California'>Yuba County, California</option>
+        </select>
+    <canvas id="barChart"></canvas>
+    <script>  const chartData = {"Statewide":[0,0,0,0,0,0],"Alameda County, California":[0,0,0,0,0,0],"Alpine County, California":[0,0,0,0,0,0],"Amador County, California":[0,0,0,0,0,0],"Butte County, California":[0,0,0,0,0,0],"Calaveras County, California":[0,0,0,0,0,0],"Colusa County, California":[0,0,0,0,0,0],"Contra Costa County, California":[0,0,0,0,0,0],"Del Norte County, California":[0,0,0,0,0,0],"El Dorado County, California":[0,0,0,0,0,0],"Fresno County, California":[0,0,0,0,0,0],"Glenn County, California":[0,0,0,0,0,0],"Humboldt County, California":[0,0,0,0,0,0],"Imperial County, California":[0,0,0,0,0,0],"Inyo County, California":[0,0,0,0,0,0],"Kern County, California":[0,0,0,0,0,0],"Kings County, California":[0,0,0,0,0,0],"Lake County, California":[0,0,0,0,0,0],"Lassen County, California":[0,0,0,0,0,0],"Los Angeles County, California":[0,0,0,0,0,0],"Madera County, California":[0,0,0,0,0,0],"Marin County, California":[0,0,0,0,0,0],"Mariposa County, California":[0,0,0,0,0,0],"Mendocino County, California":[0,0,0,0,0,0],"Merced County, California":[0,0,0,0,0,0],"Modoc County, California":[0,0,0,0,0,0],"Mono County, California":[0,0,0,0,0,0],"Monterey County, California":[0,0,0,0,0,0],"Napa County, California":[0,0,0,0,0,0],"Nevada County, California":[0,0,0,0,0,0],"Orange County, California":[0,0,0,0,0,0],"Placer County, California":[0,0,0,0,0,0],"Plumas County, California":[0,0,0,0,0,0],"Riverside County, California":[0,0,0,0,0,0],"Sacramento County, California":[0,0,0,0,0,0],"San Benito County, California":[0,0,0,0,0,0],"San Bernardino County, California":[0,0,0,0,0,0],"San Diego County, California":[0,0,0,0,0,0],"San Francisco County, California":[0,0,0,0,0,0],"San Joaquin County, California":[0,0,0,0,0,0],"San Luis Obispo County, California":[0,0,0,0,0,0],"San Mateo County, California":[0,0,0,0,0,0],"Santa Barbara County, California":[0,0,0,0,0,0],"Santa Clara County, California":[0,0,0,0,0,0],"Santa Cruz County, California":[0,0,0,0,0,0],"Shasta County, California":[0,0,0,0,0,0],"Sierra County, California":[0,0,0,0,0,0],"Siskiyou County, California":[0,0,0,0,0,0],"Solano County, California":[0,0,0,0,0,0],"Sonoma County, California":[0,0,0,0,0,0],"Stanislaus County, California":[0,0,0,0,0,0],"Sutter County, California":[0,0,0,0,0,0],"Tehama County, California":[0,0,0,0,0,0],"Trinity County, California":[0,0,0,0,0,0],"Tulare County, California":[0,0,0,0,0,0],"Tuolumne County, California":[0,0,0,0,0,0],"Ventura County, California":[0,0,0,0,0,0],"Yolo County, California":[0,0,0,0,0,0],"Yuba County, California":[0,0,0,0,0,0]};
+  const categories = ["With unmarried partner","With spouse only","With other relatives","With nonrelatives","With child","Lives alone"];
+  const usAverages = [27.3,0.3,2.3,14.5,53.2,2.4];
+
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(data) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: categories,
+        datasets: [
+          {
+            label: 'Percent (County/State)',
+            data: data,
+            backgroundColor: '#4576a7'
+          },
+          {
+            label: 'National Average',
+            data: categories.map(c => usAverages[c] || 0),
+            type: 'line',
+            borderColor: '#000',
+            borderWidth: 1,
+            pointRadius: 0,
+            fill: false
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        indexAxis: 'y',
+        scales: {
+          x: {
+            title: {
+              display: true,
+              text: 'Percent of 65+ Population'
+            },
+            min: 0,
+            max: 100,
+            ticks: {
+              callback: value => value + '%'
+            }
+          }
+        },
+        plugins: {
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.dataset.label + ': ' + ctx.parsed.x + '%'
+            }
+          },
+          legend: {
+            position: 'top',
+            align: 'start'
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(Object.values(chartData[this.value]));
+  });
+
+  renderChart(Object.values(chartData['Statewide']));</script>
+  </body>
+</html>
+</html>

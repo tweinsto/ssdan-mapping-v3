@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Income Distribution – North Carolina</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          text-align: center;
+          margin: 2rem;
+        }
+        select {
+          font-size: 1rem;
+          padding: 0.4rem;
+          margin-bottom: 1rem;
+        }
+        canvas {
+          width: 100%;
+          max-width: 700px;
+          height: 400px;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Income Share by Quintile – North Carolina</h2>
+    <label>Select County, State:</label>
+    <select id="countySelect"><option value='Statewide'>Statewide</option>
+<option value='Alamance, North Carolina'>Alamance, North Carolina</option>
+<option value='Alexander, North Carolina'>Alexander, North Carolina</option>
+<option value='Alleghany, North Carolina'>Alleghany, North Carolina</option>
+<option value='Anson, North Carolina'>Anson, North Carolina</option>
+<option value='Ashe, North Carolina'>Ashe, North Carolina</option>
+<option value='Avery, North Carolina'>Avery, North Carolina</option>
+<option value='Beaufort, North Carolina'>Beaufort, North Carolina</option>
+<option value='Bertie, North Carolina'>Bertie, North Carolina</option>
+<option value='Bladen, North Carolina'>Bladen, North Carolina</option>
+<option value='Brunswick, North Carolina'>Brunswick, North Carolina</option>
+<option value='Buncombe, North Carolina'>Buncombe, North Carolina</option>
+<option value='Burke, North Carolina'>Burke, North Carolina</option>
+<option value='Cabarrus, North Carolina'>Cabarrus, North Carolina</option>
+<option value='Caldwell, North Carolina'>Caldwell, North Carolina</option>
+<option value='Camden, North Carolina'>Camden, North Carolina</option>
+<option value='Carteret, North Carolina'>Carteret, North Carolina</option>
+<option value='Caswell, North Carolina'>Caswell, North Carolina</option>
+<option value='Catawba, North Carolina'>Catawba, North Carolina</option>
+<option value='Chatham, North Carolina'>Chatham, North Carolina</option>
+<option value='Cherokee, North Carolina'>Cherokee, North Carolina</option>
+<option value='Chowan, North Carolina'>Chowan, North Carolina</option>
+<option value='Clay, North Carolina'>Clay, North Carolina</option>
+<option value='Cleveland, North Carolina'>Cleveland, North Carolina</option>
+<option value='Columbus, North Carolina'>Columbus, North Carolina</option>
+<option value='Craven, North Carolina'>Craven, North Carolina</option>
+<option value='Cumberland, North Carolina'>Cumberland, North Carolina</option>
+<option value='Currituck, North Carolina'>Currituck, North Carolina</option>
+<option value='Dare, North Carolina'>Dare, North Carolina</option>
+<option value='Davidson, North Carolina'>Davidson, North Carolina</option>
+<option value='Davie, North Carolina'>Davie, North Carolina</option>
+<option value='Duplin, North Carolina'>Duplin, North Carolina</option>
+<option value='Durham, North Carolina'>Durham, North Carolina</option>
+<option value='Edgecombe, North Carolina'>Edgecombe, North Carolina</option>
+<option value='Forsyth, North Carolina'>Forsyth, North Carolina</option>
+<option value='Franklin, North Carolina'>Franklin, North Carolina</option>
+<option value='Gaston, North Carolina'>Gaston, North Carolina</option>
+<option value='Gates, North Carolina'>Gates, North Carolina</option>
+<option value='Graham, North Carolina'>Graham, North Carolina</option>
+<option value='Granville, North Carolina'>Granville, North Carolina</option>
+<option value='Greene, North Carolina'>Greene, North Carolina</option>
+<option value='Guilford, North Carolina'>Guilford, North Carolina</option>
+<option value='Halifax, North Carolina'>Halifax, North Carolina</option>
+<option value='Harnett, North Carolina'>Harnett, North Carolina</option>
+<option value='Haywood, North Carolina'>Haywood, North Carolina</option>
+<option value='Henderson, North Carolina'>Henderson, North Carolina</option>
+<option value='Hertford, North Carolina'>Hertford, North Carolina</option>
+<option value='Hoke, North Carolina'>Hoke, North Carolina</option>
+<option value='Hyde, North Carolina'>Hyde, North Carolina</option>
+<option value='Iredell, North Carolina'>Iredell, North Carolina</option>
+<option value='Jackson, North Carolina'>Jackson, North Carolina</option>
+<option value='Johnston, North Carolina'>Johnston, North Carolina</option>
+<option value='Jones, North Carolina'>Jones, North Carolina</option>
+<option value='Lee, North Carolina'>Lee, North Carolina</option>
+<option value='Lenoir, North Carolina'>Lenoir, North Carolina</option>
+<option value='Lincoln, North Carolina'>Lincoln, North Carolina</option>
+<option value='Macon, North Carolina'>Macon, North Carolina</option>
+<option value='Madison, North Carolina'>Madison, North Carolina</option>
+<option value='Martin, North Carolina'>Martin, North Carolina</option>
+<option value='McDowell, North Carolina'>McDowell, North Carolina</option>
+<option value='Mecklenburg, North Carolina'>Mecklenburg, North Carolina</option>
+<option value='Mitchell, North Carolina'>Mitchell, North Carolina</option>
+<option value='Montgomery, North Carolina'>Montgomery, North Carolina</option>
+<option value='Moore, North Carolina'>Moore, North Carolina</option>
+<option value='Nash, North Carolina'>Nash, North Carolina</option>
+<option value='New Hanover, North Carolina'>New Hanover, North Carolina</option>
+<option value='Northampton, North Carolina'>Northampton, North Carolina</option>
+<option value='Onslow, North Carolina'>Onslow, North Carolina</option>
+<option value='Orange, North Carolina'>Orange, North Carolina</option>
+<option value='Pamlico, North Carolina'>Pamlico, North Carolina</option>
+<option value='Pasquotank, North Carolina'>Pasquotank, North Carolina</option>
+<option value='Pender, North Carolina'>Pender, North Carolina</option>
+<option value='Perquimans, North Carolina'>Perquimans, North Carolina</option>
+<option value='Person, North Carolina'>Person, North Carolina</option>
+<option value='Pitt, North Carolina'>Pitt, North Carolina</option>
+<option value='Polk, North Carolina'>Polk, North Carolina</option>
+<option value='Randolph, North Carolina'>Randolph, North Carolina</option>
+<option value='Richmond, North Carolina'>Richmond, North Carolina</option>
+<option value='Robeson, North Carolina'>Robeson, North Carolina</option>
+<option value='Rockingham, North Carolina'>Rockingham, North Carolina</option>
+<option value='Rowan, North Carolina'>Rowan, North Carolina</option>
+<option value='Rutherford, North Carolina'>Rutherford, North Carolina</option>
+<option value='Sampson, North Carolina'>Sampson, North Carolina</option>
+<option value='Scotland, North Carolina'>Scotland, North Carolina</option>
+<option value='Stanly, North Carolina'>Stanly, North Carolina</option>
+<option value='Stokes, North Carolina'>Stokes, North Carolina</option>
+<option value='Surry, North Carolina'>Surry, North Carolina</option>
+<option value='Swain, North Carolina'>Swain, North Carolina</option>
+<option value='Transylvania, North Carolina'>Transylvania, North Carolina</option>
+<option value='Tyrrell, North Carolina'>Tyrrell, North Carolina</option>
+<option value='Union, North Carolina'>Union, North Carolina</option>
+<option value='Vance, North Carolina'>Vance, North Carolina</option>
+<option value='Wake, North Carolina'>Wake, North Carolina</option>
+<option value='Warren, North Carolina'>Warren, North Carolina</option>
+<option value='Washington, North Carolina'>Washington, North Carolina</option>
+<option value='Watauga, North Carolina'>Watauga, North Carolina</option>
+<option value='Wayne, North Carolina'>Wayne, North Carolina</option>
+<option value='Wilkes, North Carolina'>Wilkes, North Carolina</option>
+<option value='Wilson, North Carolina'>Wilson, North Carolina</option>
+<option value='Yadkin, North Carolina'>Yadkin, North Carolina</option>
+<option value='Yancey, North Carolina'>Yancey, North Carolina</option></select>
+    <canvas id="barChart" width="700" height="400"></canvas>
+    <script>  const incomeData = {"Statewide":[5,8.4,13,27.2,46.4],"Alamance, North Carolina":[5.5,9.1,13.8,27.1,44.4],"Alexander, North Carolina":[5.3,8.6,11.8,26,48.3],"Alleghany, North Carolina":[3.9,6,9.8,25.9,54.4],"Anson, North Carolina":[5,8.6,14,27.7,44.7],"Ashe, North Carolina":[5.3,8.5,13.2,27.9,45.1],"Avery, North Carolina":[4.3,6.8,11,26.5,51.4],"Beaufort, North Carolina":[4.7,8.2,13.2,27.6,46.4],"Bertie, North Carolina":[4.1,7.3,11.8,27.7,49.2],"Bladen, North Carolina":[3.9,6.8,11.7,26.9,50.7],"Brunswick, North Carolina":[5.3,8.2,12.1,26.2,48.2],"Buncombe, North Carolina":[4.6,7.5,11.6,27,49.3],"Burke, North Carolina":[5.3,8.5,13.2,27.1,45.9],"Cabarrus, North Carolina":[5.5,8.9,13.6,27.7,44.2],"Caldwell, North Carolina":[5.6,9.1,14.4,27.7,43.2],"Camden, North Carolina":[7.1,10.3,14.1,26,42.5],"Carteret, North Carolina":[4.8,8.1,12.4,27.2,47.5],"Caswell, North Carolina":[5.7,10,14.9,27.5,42],"Catawba, North Carolina":[4.8,7.8,12,26.5,48.9],"Chatham, North Carolina":[4.1,7,11.5,27.4,49.9],"Cherokee, North Carolina":[5.6,8.9,13.7,27.7,44.1],"Chowan, North Carolina":[4.9,8.6,13.3,27.5,45.7],"Clay, North Carolina":[4.3,8.2,14.1,27.5,45.9],"Cleveland, North Carolina":[4.9,8.2,13.1,27.4,46.3],"Columbus, North Carolina":[4.6,8,13,27.6,46.9],"Craven, North Carolina":[4.7,7.9,12.4,26.5,48.5],"Cumberland, North Carolina":[5.4,8.7,13.3,27.3,45.3],"Currituck, North Carolina":[6.5,9.9,14.2,26.9,42.5],"Dare, North Carolina":[5.8,9.1,13.8,27.1,44.3],"Davidson, North Carolina":[5.5,9,13.7,27.4,44.4],"Davie, North Carolina":[5.9,9,13.8,27.1,44.1],"Duplin, North Carolina":[5.6,9.3,14.6,27.7,42.8],"Durham, North Carolina":[4.9,8,12.5,27.3,47.3],"Edgecombe, North Carolina":[5,8.6,14.5,28.2,43.6],"Forsyth, North Carolina":[4.6,7.7,12,27.1,48.6],"Franklin, North Carolina":[6,9.7,14.4,26.8,43.1],"Gaston, North Carolina":[4.9,8.1,12.8,27,47.2],"Gates, North Carolina":[6.5,10.2,14.6,26.6,42.1],"Graham, North Carolina":[6.1,9.2,14.6,29.5,40.7],"Granville, North Carolina":[5.5,9.5,14.4,27.5,43.1],"Greene, North Carolina":[6.9,10.6,15.5,27.5,39.5],"Guilford, North Carolina":[4.6,7.5,11.9,27,49],"Halifax, North Carolina":[4.1,7.9,12.8,28,47.2],"Harnett, North Carolina":[5.6,9.5,14,27.1,43.8],"Haywood, North Carolina":[5.6,9.2,14.6,27.4,43.1],"Henderson, North Carolina":[5.2,8.2,12.6,26.8,47.2],"Hertford, North Carolina":[4.3,7.4,12,26.5,49.9],"Hoke, North Carolina":[4.4,7.7,11.7,26.6,49.5],"Hyde, North Carolina":[6.2,10.9,15.9,27.1,39.9],"Iredell, North Carolina":[4.9,7.8,11.7,27,48.6],"Jackson, North Carolina":[4.3,7,10.7,25.8,52.1],"Johnston, North Carolina":[5.8,9.5,14.2,26.4,44],"Jones, North Carolina":[5.2,10,14.7,26.9,43.3],"Lee, North Carolina":[5.8,9.3,13.8,27.4,43.7],"Lenoir, North Carolina":[4.8,7.9,13.1,27.6,46.6],"Lincoln, North Carolina":[5,8.4,12.9,27.7,46],"Macon, North Carolina":[4.3,7.3,11.4,27,50],"Madison, North Carolina":[4.5,8,12.4,27.3,47.8],"Martin, North Carolina":[5.7,9.1,14.3,26.6,44.4],"McDowell, North Carolina":[5.8,9.1,13.7,27.2,44.2],"Mecklenburg, North Carolina":[4.2,6.8,10.8,27,51.1],"Mitchell, North Carolina":[4.9,8.3,12.6,26.8,47.4],"Montgomery, North Carolina":[4.5,7.4,11.4,26.7,50],"Moore, North Carolina":[5.1,8.6,12.4,26.9,47],"Nash, North Carolina":[5.2,8.4,12.7,26.7,47],"New Hanover, North Carolina":[4.6,7.5,11.8,27.1,49.1],"Northampton, North Carolina":[4,7.2,12.5,28.6,47.7],"Onslow, North Carolina":[6.1,9.4,13.8,26.9,43.7],"Orange, North Carolina":[3.9,6.9,11.6,28.1,49.5],"Pamlico, North Carolina":[5,8.9,14.7,28,43.4],"Pasquotank, North Carolina":[5.5,8.8,13.1,26.9,45.6],"Pender, North Carolina":[5.5,8.9,13.6,26.3,45.7],"Perquimans, North Carolina":[5.9,10.1,15.6,27.1,41.2],"Person, North Carolina":[4.4,7.9,12.7,27.1,47.9],"Pitt, North Carolina":[4.6,7.7,12.1,27,48.5],"Polk, North Carolina":[4.4,7.5,11.8,26.8,49.4],"Randolph, North Carolina":[6.1,9.7,14.5,27.4,42.4],"Richmond, North Carolina":[4.7,8.5,13.7,27.7,45.4],"Robeson, North Carolina":[3.9,6.9,11.6,27.2,50.5],"Rockingham, North Carolina":[5,8.5,13.3,27,46.1],"Rowan, North Carolina":[5.1,8.6,13,27.2,46.1],"Rutherford, North Carolina":[4.7,7.7,11.9,27,48.7],"Sampson, North Carolina":[5.1,8.7,13.8,27.3,45],"Scotland, North Carolina":[3.4,6.1,9.9,26.3,54.2],"Stanly, North Carolina":[5.2,8.8,13.8,27.1,45.1],"Stokes, North Carolina":[5.8,9.2,13.4,26.3,45.4],"Surry, North Carolina":[4.3,7.9,12.8,26.7,48.3],"Swain, North Carolina":[4.9,9,15.6,28,42.4],"Transylvania, North Carolina":[4.9,8.4,13,27.7,45.9],"Tyrrell, North Carolina":[5.6,9.5,14.4,27.1,43.4],"Union, North Carolina":[5.3,8.5,12.8,27.6,45.8],"Vance, North Carolina":[5.2,8,12.6,27.8,46.5],"Wake, North Carolina":[5.2,8.5,13.2,27.2,45.9],"Warren, North Carolina":[3.7,6.2,10.3,26.7,53.2],"Washington, North Carolina":[3.9,7.1,11.5,26.3,51.2],"Watauga, North Carolina":[3.7,6.8,12.1,27.6,49.7],"Wayne, North Carolina":[5.2,8.3,12.7,26.8,47],"Wilkes, North Carolina":[6,9.1,14.6,27.4,42.9],"Wilson, North Carolina":[4.4,7.8,12.7,27.6,47.4],"Yadkin, North Carolina":[4.7,7.9,12.1,27.5,47.7],"Yancey, North Carolina":[4.2,7.3,11.4,26.8,50.3]};
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Bottom 20%', 'Second 20%', 'Middle 20%', 'Fourth 20%', 'Top 20%'],
+        datasets: [{
+          label: 'Share (%)',
+          data: values,
+          backgroundColor: '#4576a7'
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.parsed.y + '%'
+            }
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 100,
+            title: {
+              display: true,
+              text: 'Income Share (%)'
+            }
+          },
+          x: {
+            title: {
+              display: true,
+              text: 'Quintile'
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(Object.values(incomeData[this.value]));
+  });
+
+  renderChart(Object.values(incomeData['Statewide']));</script>
+  </body>
+</html>
+</html>

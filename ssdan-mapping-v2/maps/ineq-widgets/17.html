@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Income Distribution – Illinois</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          text-align: center;
+          margin: 2rem;
+        }
+        select {
+          font-size: 1rem;
+          padding: 0.4rem;
+          margin-bottom: 1rem;
+        }
+        canvas {
+          width: 100%;
+          max-width: 700px;
+          height: 400px;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Income Share by Quintile – Illinois</h2>
+    <label>Select County, State:</label>
+    <select id="countySelect"><option value='Statewide'>Statewide</option>
+<option value='Adams, Illinois'>Adams, Illinois</option>
+<option value='Alexander, Illinois'>Alexander, Illinois</option>
+<option value='Bond, Illinois'>Bond, Illinois</option>
+<option value='Boone, Illinois'>Boone, Illinois</option>
+<option value='Brown, Illinois'>Brown, Illinois</option>
+<option value='Bureau, Illinois'>Bureau, Illinois</option>
+<option value='Calhoun, Illinois'>Calhoun, Illinois</option>
+<option value='Carroll, Illinois'>Carroll, Illinois</option>
+<option value='Cass, Illinois'>Cass, Illinois</option>
+<option value='Champaign, Illinois'>Champaign, Illinois</option>
+<option value='Christian, Illinois'>Christian, Illinois</option>
+<option value='Clark, Illinois'>Clark, Illinois</option>
+<option value='Clay, Illinois'>Clay, Illinois</option>
+<option value='Clinton, Illinois'>Clinton, Illinois</option>
+<option value='Coles, Illinois'>Coles, Illinois</option>
+<option value='Cook, Illinois'>Cook, Illinois</option>
+<option value='Crawford, Illinois'>Crawford, Illinois</option>
+<option value='Cumberland, Illinois'>Cumberland, Illinois</option>
+<option value='De Witt, Illinois'>De Witt, Illinois</option>
+<option value='DeKalb, Illinois'>DeKalb, Illinois</option>
+<option value='Douglas, Illinois'>Douglas, Illinois</option>
+<option value='DuPage, Illinois'>DuPage, Illinois</option>
+<option value='Edgar, Illinois'>Edgar, Illinois</option>
+<option value='Edwards, Illinois'>Edwards, Illinois</option>
+<option value='Effingham, Illinois'>Effingham, Illinois</option>
+<option value='Fayette, Illinois'>Fayette, Illinois</option>
+<option value='Ford, Illinois'>Ford, Illinois</option>
+<option value='Franklin, Illinois'>Franklin, Illinois</option>
+<option value='Fulton, Illinois'>Fulton, Illinois</option>
+<option value='Gallatin, Illinois'>Gallatin, Illinois</option>
+<option value='Greene, Illinois'>Greene, Illinois</option>
+<option value='Grundy, Illinois'>Grundy, Illinois</option>
+<option value='Hamilton, Illinois'>Hamilton, Illinois</option>
+<option value='Hancock, Illinois'>Hancock, Illinois</option>
+<option value='Hardin, Illinois'>Hardin, Illinois</option>
+<option value='Henderson, Illinois'>Henderson, Illinois</option>
+<option value='Henry, Illinois'>Henry, Illinois</option>
+<option value='Iroquois, Illinois'>Iroquois, Illinois</option>
+<option value='Jackson, Illinois'>Jackson, Illinois</option>
+<option value='Jasper, Illinois'>Jasper, Illinois</option>
+<option value='Jefferson, Illinois'>Jefferson, Illinois</option>
+<option value='Jersey, Illinois'>Jersey, Illinois</option>
+<option value='Jo Daviess, Illinois'>Jo Daviess, Illinois</option>
+<option value='Johnson, Illinois'>Johnson, Illinois</option>
+<option value='Kane, Illinois'>Kane, Illinois</option>
+<option value='Kankakee, Illinois'>Kankakee, Illinois</option>
+<option value='Kendall, Illinois'>Kendall, Illinois</option>
+<option value='Knox, Illinois'>Knox, Illinois</option>
+<option value='Lake, Illinois'>Lake, Illinois</option>
+<option value='LaSalle, Illinois'>LaSalle, Illinois</option>
+<option value='Lawrence, Illinois'>Lawrence, Illinois</option>
+<option value='Lee, Illinois'>Lee, Illinois</option>
+<option value='Livingston, Illinois'>Livingston, Illinois</option>
+<option value='Logan, Illinois'>Logan, Illinois</option>
+<option value='Macon, Illinois'>Macon, Illinois</option>
+<option value='Macoupin, Illinois'>Macoupin, Illinois</option>
+<option value='Madison, Illinois'>Madison, Illinois</option>
+<option value='Marion, Illinois'>Marion, Illinois</option>
+<option value='Marshall, Illinois'>Marshall, Illinois</option>
+<option value='Mason, Illinois'>Mason, Illinois</option>
+<option value='Massac, Illinois'>Massac, Illinois</option>
+<option value='McDonough, Illinois'>McDonough, Illinois</option>
+<option value='McHenry, Illinois'>McHenry, Illinois</option>
+<option value='McLean, Illinois'>McLean, Illinois</option>
+<option value='Menard, Illinois'>Menard, Illinois</option>
+<option value='Mercer, Illinois'>Mercer, Illinois</option>
+<option value='Monroe, Illinois'>Monroe, Illinois</option>
+<option value='Montgomery, Illinois'>Montgomery, Illinois</option>
+<option value='Morgan, Illinois'>Morgan, Illinois</option>
+<option value='Moultrie, Illinois'>Moultrie, Illinois</option>
+<option value='Ogle, Illinois'>Ogle, Illinois</option>
+<option value='Peoria, Illinois'>Peoria, Illinois</option>
+<option value='Perry, Illinois'>Perry, Illinois</option>
+<option value='Piatt, Illinois'>Piatt, Illinois</option>
+<option value='Pike, Illinois'>Pike, Illinois</option>
+<option value='Pope, Illinois'>Pope, Illinois</option>
+<option value='Pulaski, Illinois'>Pulaski, Illinois</option>
+<option value='Putnam, Illinois'>Putnam, Illinois</option>
+<option value='Randolph, Illinois'>Randolph, Illinois</option>
+<option value='Richland, Illinois'>Richland, Illinois</option>
+<option value='Rock Island, Illinois'>Rock Island, Illinois</option>
+<option value='Saline, Illinois'>Saline, Illinois</option>
+<option value='Sangamon, Illinois'>Sangamon, Illinois</option>
+<option value='Schuyler, Illinois'>Schuyler, Illinois</option>
+<option value='Scott, Illinois'>Scott, Illinois</option>
+<option value='Shelby, Illinois'>Shelby, Illinois</option>
+<option value='St. Clair, Illinois'>St. Clair, Illinois</option>
+<option value='Stark, Illinois'>Stark, Illinois</option>
+<option value='Stephenson, Illinois'>Stephenson, Illinois</option>
+<option value='Tazewell, Illinois'>Tazewell, Illinois</option>
+<option value='Union, Illinois'>Union, Illinois</option>
+<option value='Vermilion, Illinois'>Vermilion, Illinois</option>
+<option value='Wabash, Illinois'>Wabash, Illinois</option>
+<option value='Warren, Illinois'>Warren, Illinois</option>
+<option value='Washington, Illinois'>Washington, Illinois</option>
+<option value='Wayne, Illinois'>Wayne, Illinois</option>
+<option value='White, Illinois'>White, Illinois</option>
+<option value='Whiteside, Illinois'>Whiteside, Illinois</option>
+<option value='Will, Illinois'>Will, Illinois</option>
+<option value='Williamson, Illinois'>Williamson, Illinois</option>
+<option value='Winnebago, Illinois'>Winnebago, Illinois</option>
+<option value='Woodford, Illinois'>Woodford, Illinois</option></select>
+    <canvas id="barChart" width="700" height="400"></canvas>
+    <script>  const incomeData = {"Statewide":[5.5,9.1,13.8,27.1,44.4],"Adams, Illinois":[5.4,8.7,13.2,26.7,46],"Alexander, Illinois":[4.6,8.5,13.9,28.7,44.3],"Bond, Illinois":[5.7,8.6,14.4,27,44.3],"Boone, Illinois":[5.7,9.5,14.5,27.2,43.1],"Brown, Illinois":[5.9,10,14.1,26.1,43.9],"Bureau, Illinois":[5.4,8.7,13.4,26.7,45.7],"Calhoun, Illinois":[7.2,11.3,15.5,27.1,38.9],"Carroll, Illinois":[5.7,9,13.7,27.2,44.5],"Cass, Illinois":[6.2,10.1,14.8,27.4,41.4],"Champaign, Illinois":[4.2,7.6,12.5,27.8,48],"Christian, Illinois":[5.5,9.1,13.8,27.3,44.3],"Clark, Illinois":[6.5,10.4,15.2,26.6,41.3],"Clay, Illinois":[4.8,7.8,11.7,26.8,48.9],"Clinton, Illinois":[5.4,8.7,12.7,26.1,47.1],"Coles, Illinois":[4.7,7.9,12.8,27.1,47.5],"Cook, Illinois":[4,7.1,11.4,27.2,50.3],"Crawford, Illinois":[5.2,8.7,13.3,27,45.8],"Cumberland, Illinois":[5.6,9,13.5,26.2,45.6],"De Witt, Illinois":[5.7,9.3,14,26.5,44.6],"DeKalb, Illinois":[5.5,9.4,14.9,28,42.2],"Douglas, Illinois":[6.2,10,14.3,26.5,43],"DuPage, Illinois":[5,8,12.1,26.8,48.1],"Edgar, Illinois":[5.8,9.1,13.9,26.8,44.4],"Edwards, Illinois":[5.8,9.7,14.5,26.9,43],"Effingham, Illinois":[5.6,9,13.3,26.5,45.7],"Fayette, Illinois":[4.8,7.9,12.4,26.8,48],"Ford, Illinois":[5.7,9.5,15,27.9,42],"Franklin, Illinois":[5.1,8.9,13.8,27.9,44.2],"Fulton, Illinois":[5.2,8.2,12.9,26.7,47.1],"Gallatin, Illinois":[3.2,5.6,8.9,26,56.3],"Greene, Illinois":[5.5,8.9,14,27.8,43.7],"Grundy, Illinois":[6.2,10,14.5,27.6,41.7],"Hamilton, Illinois":[5,7.7,12.8,26.7,47.9],"Hancock, Illinois":[4.9,8.2,12.2,26.1,48.6],"Hardin, Illinois":[5.7,10,13.9,26.9,43.5],"Henderson, Illinois":[7.3,11.9,17.7,28,35.1],"Henry, Illinois":[5.7,8.9,13.8,26.9,44.7],"Iroquois, Illinois":[5.2,8.7,13.5,26.9,45.7],"Jackson, Illinois":[3.8,6.9,12,27.7,49.6],"Jasper, Illinois":[6.5,10.1,16.6,27.9,38.9],"Jefferson, Illinois":[5.7,9.1,13.6,27,44.7],"Jersey, Illinois":[5.7,9.4,14.3,27.1,43.4],"Jo Daviess, Illinois":[5.8,9.4,13.5,26.6,44.6],"Johnson, Illinois":[5.8,9.8,15.2,27.3,41.9],"Kane, Illinois":[5.6,8.8,13.1,26.7,45.8],"Kankakee, Illinois":[5.5,8.9,14.2,27.3,44.1],"Kendall, Illinois":[7.6,11,15.1,26.4,39.8],"Knox, Illinois":[5.1,8.9,14.1,27.5,44.4],"Lake, Illinois":[4.6,7.6,11.8,27.2,48.8],"LaSalle, Illinois":[5.5,9.2,13.6,27,44.6],"Lawrence, Illinois":[5.6,8.4,13.6,27.9,44.5],"Lee, Illinois":[5.7,8.9,13.2,26.8,45.4],"Livingston, Illinois":[5.8,9.7,14.5,26.9,43.1],"Logan, Illinois":[5.7,8.9,13.6,27.1,44.7],"Macon, Illinois":[5,8.1,12.5,27,47.4],"Macoupin, Illinois":[5.7,9.5,14.4,27.2,43.1],"Madison, Illinois":[5.4,8.7,13.4,27.2,45.3],"Marion, Illinois":[5.4,9,13.6,27,44.9],"Marshall, Illinois":[5.9,9.9,14.2,26.8,43.2],"Mason, Illinois":[5.9,9.4,14.1,27.3,43.3],"Massac, Illinois":[6.7,10.5,15.7,27.6,39.4],"McDonough, Illinois":[4.5,8.3,13.1,28.4,45.8],"McHenry, Illinois":[6.1,9.5,13.8,26.7,44],"McLean, Illinois":[4.6,8.2,12.8,27.3,47.1],"Menard, Illinois":[5.9,9.5,13.5,25.4,45.7],"Mercer, Illinois":[6.5,10.4,15.7,27.3,40.1],"Monroe, Illinois":[6.5,10.1,14.9,26.9,41.6],"Montgomery, Illinois":[5,8.8,14,27.2,45],"Morgan, Illinois":[5.2,8.7,13.3,26.8,46],"Moultrie, Illinois":[6.1,9.7,14,26.3,44],"Ogle, Illinois":[6.4,10.1,14.5,26.7,42.2],"Peoria, Illinois":[4.4,7.5,12.1,27.5,48.5],"Perry, Illinois":[6.1,10,15.2,27.5,41.2],"Piatt, Illinois":[6.1,9.2,12.9,25.8,46.1],"Pike, Illinois":[5.8,9.9,15.3,27.9,41],"Pope, Illinois":[5.8,10,15.6,28.7,39.9],"Pulaski, Illinois":[5.2,9.2,15.1,27.4,43.2],"Putnam, Illinois":[6.6,10.5,15,27.2,40.6],"Randolph, Illinois":[6.3,10.6,16,27.2,39.9],"Richland, Illinois":[6.1,9.7,14.4,26.7,43.1],"Rock Island, Illinois":[5.4,9.4,14.3,27.2,43.7],"Saline, Illinois":[3.9,6.6,10.4,26.1,52.9],"Sangamon, Illinois":[5,8.5,13.1,26.9,46.6],"Schuyler, Illinois":[5.5,9,13.1,25.8,46.7],"Scott, Illinois":[6,10,15,27,42],"Shelby, Illinois":[7,10.9,15.8,26.8,39.5],"St. Clair, Illinois":[5.1,8.6,13.6,27.8,44.9],"Stark, Illinois":[5.3,8.9,13.7,26.9,45.3],"Stephenson, Illinois":[5.6,9.4,14.3,27.3,43.4],"Tazewell, Illinois":[5.9,9.4,14.2,27.1,43.4],"Union, Illinois":[5,8.7,14.2,27.9,44.2],"Vermilion, Illinois":[5.4,8.7,13.9,27.4,44.6],"Wabash, Illinois":[4,7.1,12.1,27,49.9],"Warren, Illinois":[6.3,9.6,14,26.7,43.5],"Washington, Illinois":[6.6,10.4,15,26.7,41.3],"Wayne, Illinois":[4.8,8.3,13.3,27.4,46.2],"White, Illinois":[5.1,8.9,14,28.1,43.9],"Whiteside, Illinois":[5.1,8.4,13.2,26.3,47],"Will, Illinois":[6.1,9.7,14,26.6,43.7],"Williamson, Illinois":[5.3,8.8,14,27.4,44.5],"Winnebago, Illinois":[5.2,8.7,13.6,27.5,45],"Woodford, Illinois":[6.1,9.8,15.2,27.7,41.1]};
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Bottom 20%', 'Second 20%', 'Middle 20%', 'Fourth 20%', 'Top 20%'],
+        datasets: [{
+          label: 'Share (%)',
+          data: values,
+          backgroundColor: '#4576a7'
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.parsed.y + '%'
+            }
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 100,
+            title: {
+              display: true,
+              text: 'Income Share (%)'
+            }
+          },
+          x: {
+            title: {
+              display: true,
+              text: 'Quintile'
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(Object.values(incomeData[this.value]));
+  });
+
+  renderChart(Object.values(incomeData['Statewide']));</script>
+  </body>
+</html>
+</html>

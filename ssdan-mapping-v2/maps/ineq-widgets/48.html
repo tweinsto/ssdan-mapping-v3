@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Income Distribution – Texas</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          text-align: center;
+          margin: 2rem;
+        }
+        select {
+          font-size: 1rem;
+          padding: 0.4rem;
+          margin-bottom: 1rem;
+        }
+        canvas {
+          width: 100%;
+          max-width: 700px;
+          height: 400px;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Income Share by Quintile – Texas</h2>
+    <label>Select County, State:</label>
+    <select id="countySelect"><option value='Statewide'>Statewide</option>
+<option value='Anderson, Texas'>Anderson, Texas</option>
+<option value='Andrews, Texas'>Andrews, Texas</option>
+<option value='Angelina, Texas'>Angelina, Texas</option>
+<option value='Aransas, Texas'>Aransas, Texas</option>
+<option value='Archer, Texas'>Archer, Texas</option>
+<option value='Armstrong, Texas'>Armstrong, Texas</option>
+<option value='Atascosa, Texas'>Atascosa, Texas</option>
+<option value='Austin, Texas'>Austin, Texas</option>
+<option value='Bailey, Texas'>Bailey, Texas</option>
+<option value='Bandera, Texas'>Bandera, Texas</option>
+<option value='Bastrop, Texas'>Bastrop, Texas</option>
+<option value='Baylor, Texas'>Baylor, Texas</option>
+<option value='Bee, Texas'>Bee, Texas</option>
+<option value='Bell, Texas'>Bell, Texas</option>
+<option value='Bexar, Texas'>Bexar, Texas</option>
+<option value='Blanco, Texas'>Blanco, Texas</option>
+<option value='Borden, Texas'>Borden, Texas</option>
+<option value='Bosque, Texas'>Bosque, Texas</option>
+<option value='Bowie, Texas'>Bowie, Texas</option>
+<option value='Brazoria, Texas'>Brazoria, Texas</option>
+<option value='Brazos, Texas'>Brazos, Texas</option>
+<option value='Brewster, Texas'>Brewster, Texas</option>
+<option value='Briscoe, Texas'>Briscoe, Texas</option>
+<option value='Brooks, Texas'>Brooks, Texas</option>
+<option value='Brown, Texas'>Brown, Texas</option>
+<option value='Burleson, Texas'>Burleson, Texas</option>
+<option value='Burnet, Texas'>Burnet, Texas</option>
+<option value='Caldwell, Texas'>Caldwell, Texas</option>
+<option value='Calhoun, Texas'>Calhoun, Texas</option>
+<option value='Callahan, Texas'>Callahan, Texas</option>
+<option value='Cameron, Texas'>Cameron, Texas</option>
+<option value='Camp, Texas'>Camp, Texas</option>
+<option value='Carson, Texas'>Carson, Texas</option>
+<option value='Cass, Texas'>Cass, Texas</option>
+<option value='Castro, Texas'>Castro, Texas</option>
+<option value='Chambers, Texas'>Chambers, Texas</option>
+<option value='Cherokee, Texas'>Cherokee, Texas</option>
+<option value='Childress, Texas'>Childress, Texas</option>
+<option value='Clay, Texas'>Clay, Texas</option>
+<option value='Cochran, Texas'>Cochran, Texas</option>
+<option value='Coke, Texas'>Coke, Texas</option>
+<option value='Coleman, Texas'>Coleman, Texas</option>
+<option value='Collin, Texas'>Collin, Texas</option>
+<option value='Collingsworth, Texas'>Collingsworth, Texas</option>
+<option value='Colorado, Texas'>Colorado, Texas</option>
+<option value='Comal, Texas'>Comal, Texas</option>
+<option value='Comanche, Texas'>Comanche, Texas</option>
+<option value='Concho, Texas'>Concho, Texas</option>
+<option value='Cooke, Texas'>Cooke, Texas</option>
+<option value='Coryell, Texas'>Coryell, Texas</option>
+<option value='Cottle, Texas'>Cottle, Texas</option>
+<option value='Crane, Texas'>Crane, Texas</option>
+<option value='Crockett, Texas'>Crockett, Texas</option>
+<option value='Crosby, Texas'>Crosby, Texas</option>
+<option value='Culberson, Texas'>Culberson, Texas</option>
+<option value='Dallam, Texas'>Dallam, Texas</option>
+<option value='Dallas, Texas'>Dallas, Texas</option>
+<option value='Dawson, Texas'>Dawson, Texas</option>
+<option value='Deaf Smith, Texas'>Deaf Smith, Texas</option>
+<option value='Delta, Texas'>Delta, Texas</option>
+<option value='Denton, Texas'>Denton, Texas</option>
+<option value='DeWitt, Texas'>DeWitt, Texas</option>
+<option value='Dickens, Texas'>Dickens, Texas</option>
+<option value='Dimmit, Texas'>Dimmit, Texas</option>
+<option value='Donley, Texas'>Donley, Texas</option>
+<option value='Duval, Texas'>Duval, Texas</option>
+<option value='Eastland, Texas'>Eastland, Texas</option>
+<option value='Ector, Texas'>Ector, Texas</option>
+<option value='Edwards, Texas'>Edwards, Texas</option>
+<option value='El Paso, Texas'>El Paso, Texas</option>
+<option value='Ellis, Texas'>Ellis, Texas</option>
+<option value='Erath, Texas'>Erath, Texas</option>
+<option value='Falls, Texas'>Falls, Texas</option>
+<option value='Fannin, Texas'>Fannin, Texas</option>
+<option value='Fayette, Texas'>Fayette, Texas</option>
+<option value='Fisher, Texas'>Fisher, Texas</option>
+<option value='Floyd, Texas'>Floyd, Texas</option>
+<option value='Foard, Texas'>Foard, Texas</option>
+<option value='Fort Bend, Texas'>Fort Bend, Texas</option>
+<option value='Franklin, Texas'>Franklin, Texas</option>
+<option value='Freestone, Texas'>Freestone, Texas</option>
+<option value='Frio, Texas'>Frio, Texas</option>
+<option value='Gaines, Texas'>Gaines, Texas</option>
+<option value='Galveston, Texas'>Galveston, Texas</option>
+<option value='Garza, Texas'>Garza, Texas</option>
+<option value='Gillespie, Texas'>Gillespie, Texas</option>
+<option value='Glasscock, Texas'>Glasscock, Texas</option>
+<option value='Goliad, Texas'>Goliad, Texas</option>
+<option value='Gonzales, Texas'>Gonzales, Texas</option>
+<option value='Gray, Texas'>Gray, Texas</option>
+<option value='Grayson, Texas'>Grayson, Texas</option>
+<option value='Gregg, Texas'>Gregg, Texas</option>
+<option value='Grimes, Texas'>Grimes, Texas</option>
+<option value='Guadalupe, Texas'>Guadalupe, Texas</option>
+<option value='Hale, Texas'>Hale, Texas</option>
+<option value='Hall, Texas'>Hall, Texas</option>
+<option value='Hamilton, Texas'>Hamilton, Texas</option>
+<option value='Hansford, Texas'>Hansford, Texas</option>
+<option value='Hardeman, Texas'>Hardeman, Texas</option>
+<option value='Hardin, Texas'>Hardin, Texas</option>
+<option value='Harris, Texas'>Harris, Texas</option>
+<option value='Harrison, Texas'>Harrison, Texas</option>
+<option value='Hartley, Texas'>Hartley, Texas</option>
+<option value='Haskell, Texas'>Haskell, Texas</option>
+<option value='Hays, Texas'>Hays, Texas</option>
+<option value='Hemphill, Texas'>Hemphill, Texas</option>
+<option value='Henderson, Texas'>Henderson, Texas</option>
+<option value='Hidalgo, Texas'>Hidalgo, Texas</option>
+<option value='Hill, Texas'>Hill, Texas</option>
+<option value='Hockley, Texas'>Hockley, Texas</option>
+<option value='Hood, Texas'>Hood, Texas</option>
+<option value='Hopkins, Texas'>Hopkins, Texas</option>
+<option value='Houston, Texas'>Houston, Texas</option>
+<option value='Howard, Texas'>Howard, Texas</option>
+<option value='Hudspeth, Texas'>Hudspeth, Texas</option>
+<option value='Hunt, Texas'>Hunt, Texas</option>
+<option value='Hutchinson, Texas'>Hutchinson, Texas</option>
+<option value='Irion, Texas'>Irion, Texas</option>
+<option value='Jack, Texas'>Jack, Texas</option>
+<option value='Jackson, Texas'>Jackson, Texas</option>
+<option value='Jasper, Texas'>Jasper, Texas</option>
+<option value='Jeff Davis, Texas'>Jeff Davis, Texas</option>
+<option value='Jefferson, Texas'>Jefferson, Texas</option>
+<option value='Jim Hogg, Texas'>Jim Hogg, Texas</option>
+<option value='Jim Wells, Texas'>Jim Wells, Texas</option>
+<option value='Johnson, Texas'>Johnson, Texas</option>
+<option value='Jones, Texas'>Jones, Texas</option>
+<option value='Karnes, Texas'>Karnes, Texas</option>
+<option value='Kaufman, Texas'>Kaufman, Texas</option>
+<option value='Kendall, Texas'>Kendall, Texas</option>
+<option value='Kenedy, Texas'>Kenedy, Texas</option>
+<option value='Kent, Texas'>Kent, Texas</option>
+<option value='Kerr, Texas'>Kerr, Texas</option>
+<option value='Kimble, Texas'>Kimble, Texas</option>
+<option value='King, Texas'>King, Texas</option>
+<option value='Kinney, Texas'>Kinney, Texas</option>
+<option value='Kleberg, Texas'>Kleberg, Texas</option>
+<option value='Knox, Texas'>Knox, Texas</option>
+<option value='La Salle, Texas'>La Salle, Texas</option>
+<option value='Lamar, Texas'>Lamar, Texas</option>
+<option value='Lamb, Texas'>Lamb, Texas</option>
+<option value='Lampasas, Texas'>Lampasas, Texas</option>
+<option value='Lavaca, Texas'>Lavaca, Texas</option>
+<option value='Lee, Texas'>Lee, Texas</option>
+<option value='Leon, Texas'>Leon, Texas</option>
+<option value='Liberty, Texas'>Liberty, Texas</option>
+<option value='Limestone, Texas'>Limestone, Texas</option>
+<option value='Lipscomb, Texas'>Lipscomb, Texas</option>
+<option value='Live Oak, Texas'>Live Oak, Texas</option>
+<option value='Llano, Texas'>Llano, Texas</option>
+<option value='Loving, Texas'>Loving, Texas</option>
+<option value='Lubbock, Texas'>Lubbock, Texas</option>
+<option value='Lynn, Texas'>Lynn, Texas</option>
+<option value='Madison, Texas'>Madison, Texas</option>
+<option value='Marion, Texas'>Marion, Texas</option>
+<option value='Martin, Texas'>Martin, Texas</option>
+<option value='Mason, Texas'>Mason, Texas</option>
+<option value='Matagorda, Texas'>Matagorda, Texas</option>
+<option value='Maverick, Texas'>Maverick, Texas</option>
+<option value='McCulloch, Texas'>McCulloch, Texas</option>
+<option value='McLennan, Texas'>McLennan, Texas</option>
+<option value='McMullen, Texas'>McMullen, Texas</option>
+<option value='Medina, Texas'>Medina, Texas</option>
+<option value='Menard, Texas'>Menard, Texas</option>
+<option value='Midland, Texas'>Midland, Texas</option>
+<option value='Milam, Texas'>Milam, Texas</option>
+<option value='Mills, Texas'>Mills, Texas</option>
+<option value='Mitchell, Texas'>Mitchell, Texas</option>
+<option value='Montague, Texas'>Montague, Texas</option>
+<option value='Montgomery, Texas'>Montgomery, Texas</option>
+<option value='Moore, Texas'>Moore, Texas</option>
+<option value='Morris, Texas'>Morris, Texas</option>
+<option value='Motley, Texas'>Motley, Texas</option>
+<option value='Nacogdoches, Texas'>Nacogdoches, Texas</option>
+<option value='Navarro, Texas'>Navarro, Texas</option>
+<option value='Newton, Texas'>Newton, Texas</option>
+<option value='Nolan, Texas'>Nolan, Texas</option>
+<option value='Nueces, Texas'>Nueces, Texas</option>
+<option value='Ochiltree, Texas'>Ochiltree, Texas</option>
+<option value='Oldham, Texas'>Oldham, Texas</option>
+<option value='Orange, Texas'>Orange, Texas</option>
+<option value='Palo Pinto, Texas'>Palo Pinto, Texas</option>
+<option value='Panola, Texas'>Panola, Texas</option>
+<option value='Parker, Texas'>Parker, Texas</option>
+<option value='Parmer, Texas'>Parmer, Texas</option>
+<option value='Pecos, Texas'>Pecos, Texas</option>
+<option value='Polk, Texas'>Polk, Texas</option>
+<option value='Potter, Texas'>Potter, Texas</option>
+<option value='Presidio, Texas'>Presidio, Texas</option>
+<option value='Rains, Texas'>Rains, Texas</option>
+<option value='Randall, Texas'>Randall, Texas</option>
+<option value='Reagan, Texas'>Reagan, Texas</option>
+<option value='Real, Texas'>Real, Texas</option>
+<option value='Red River, Texas'>Red River, Texas</option>
+<option value='Reeves, Texas'>Reeves, Texas</option>
+<option value='Refugio, Texas'>Refugio, Texas</option>
+<option value='Roberts, Texas'>Roberts, Texas</option>
+<option value='Robertson, Texas'>Robertson, Texas</option>
+<option value='Rockwall, Texas'>Rockwall, Texas</option>
+<option value='Runnels, Texas'>Runnels, Texas</option>
+<option value='Rusk, Texas'>Rusk, Texas</option>
+<option value='Sabine, Texas'>Sabine, Texas</option>
+<option value='San Augustine, Texas'>San Augustine, Texas</option>
+<option value='San Jacinto, Texas'>San Jacinto, Texas</option>
+<option value='San Patricio, Texas'>San Patricio, Texas</option>
+<option value='San Saba, Texas'>San Saba, Texas</option>
+<option value='Schleicher, Texas'>Schleicher, Texas</option>
+<option value='Scurry, Texas'>Scurry, Texas</option>
+<option value='Shackelford, Texas'>Shackelford, Texas</option>
+<option value='Shelby, Texas'>Shelby, Texas</option>
+<option value='Sherman, Texas'>Sherman, Texas</option>
+<option value='Smith, Texas'>Smith, Texas</option>
+<option value='Somervell, Texas'>Somervell, Texas</option>
+<option value='Starr, Texas'>Starr, Texas</option>
+<option value='Stephens, Texas'>Stephens, Texas</option>
+<option value='Sterling, Texas'>Sterling, Texas</option>
+<option value='Stonewall, Texas'>Stonewall, Texas</option>
+<option value='Sutton, Texas'>Sutton, Texas</option>
+<option value='Swisher, Texas'>Swisher, Texas</option>
+<option value='Tarrant, Texas'>Tarrant, Texas</option>
+<option value='Taylor, Texas'>Taylor, Texas</option>
+<option value='Terrell, Texas'>Terrell, Texas</option>
+<option value='Terry, Texas'>Terry, Texas</option>
+<option value='Throckmorton, Texas'>Throckmorton, Texas</option>
+<option value='Titus, Texas'>Titus, Texas</option>
+<option value='Tom Green, Texas'>Tom Green, Texas</option>
+<option value='Travis, Texas'>Travis, Texas</option>
+<option value='Trinity, Texas'>Trinity, Texas</option>
+<option value='Tyler, Texas'>Tyler, Texas</option>
+<option value='Upshur, Texas'>Upshur, Texas</option>
+<option value='Upton, Texas'>Upton, Texas</option>
+<option value='Uvalde, Texas'>Uvalde, Texas</option>
+<option value='Val Verde, Texas'>Val Verde, Texas</option>
+<option value='Van Zandt, Texas'>Van Zandt, Texas</option>
+<option value='Victoria, Texas'>Victoria, Texas</option>
+<option value='Walker, Texas'>Walker, Texas</option>
+<option value='Waller, Texas'>Waller, Texas</option>
+<option value='Ward, Texas'>Ward, Texas</option>
+<option value='Washington, Texas'>Washington, Texas</option>
+<option value='Webb, Texas'>Webb, Texas</option>
+<option value='Wharton, Texas'>Wharton, Texas</option>
+<option value='Wheeler, Texas'>Wheeler, Texas</option>
+<option value='Wichita, Texas'>Wichita, Texas</option>
+<option value='Wilbarger, Texas'>Wilbarger, Texas</option>
+<option value='Willacy, Texas'>Willacy, Texas</option>
+<option value='Williamson, Texas'>Williamson, Texas</option>
+<option value='Wilson, Texas'>Wilson, Texas</option>
+<option value='Winkler, Texas'>Winkler, Texas</option>
+<option value='Wise, Texas'>Wise, Texas</option>
+<option value='Wood, Texas'>Wood, Texas</option>
+<option value='Yoakum, Texas'>Yoakum, Texas</option>
+<option value='Young, Texas'>Young, Texas</option>
+<option value='Zapata, Texas'>Zapata, Texas</option>
+<option value='Zavala, Texas'>Zavala, Texas</option></select>
+    <canvas id="barChart" width="700" height="400"></canvas>
+    <script>  const incomeData = {"Statewide":[5.1,8.5,13.3,27.2,45.8],"Anderson, Texas":[5.3,8.7,13.6,27,45.5],"Andrews, Texas":[5.1,8.3,13,26.6,46.9],"Angelina, Texas":[5.5,9.2,14.1,27.5,43.8],"Aransas, Texas":[4.2,7.1,10.9,27.3,50.5],"Archer, Texas":[4.5,7.5,11.5,26.2,50.3],"Armstrong, Texas":[7.7,11.6,17.7,26.5,36.5],"Atascosa, Texas":[5.4,9.8,15.2,27.5,42.2],"Austin, Texas":[5.3,9.3,14.5,27.9,43],"Bailey, Texas":[5.1,9.7,15.5,25.2,44.5],"Bandera, Texas":[4.6,8.2,12.2,26.6,48.5],"Bastrop, Texas":[6,10.1,15,26.8,42],"Baylor, Texas":[4.9,8,13.2,27.6,46.2],"Bee, Texas":[5.2,9.2,14,27.6,44.1],"Bell, Texas":[5,8.1,12.3,26.6,48],"Bexar, Texas":[4.9,8.1,12.6,27.2,47.1],"Blanco, Texas":[4.9,8.4,13.3,26.5,46.8],"Borden, Texas":[3.9,5.6,8.3,24.6,57.6],"Bosque, Texas":[5.6,8.8,12.9,26.4,46.3],"Bowie, Texas":[4.5,7.7,12,27.3,48.6],"Brazoria, Texas":[6,9.5,14.3,27.2,43],"Brazos, Texas":[3.7,6.8,11.5,27.6,50.4],"Brewster, Texas":[5.6,8.6,14.1,27.3,44.3],"Briscoe, Texas":[3.2,5.8,10,28.7,52.3],"Brooks, Texas":[2.8,6.3,11.9,29.3,49.7],"Brown, Texas":[4.5,7.6,12.1,26.9,49],"Burleson, Texas":[4.8,7.9,11.3,26.1,49.8],"Burnet, Texas":[4.8,7.3,11.1,26.3,50.5],"Caldwell, Texas":[5.8,9.3,13.5,27.5,44],"Calhoun, Texas":[6.1,9.4,13.5,26.1,44.8],"Callahan, Texas":[6.7,10.4,15,26.9,41.1],"Cameron, Texas":[4.7,8.2,13.2,27.7,46.3],"Camp, Texas":[4.2,7.2,11.6,26.3,50.6],"Carson, Texas":[6.5,10.5,16,27.6,39.5],"Cass, Texas":[5,8.5,13.3,27.7,45.6],"Castro, Texas":[5.5,9.3,14.2,27.7,43.3],"Chambers, Texas":[7.3,11.6,16.6,26.6,37.9],"Cherokee, Texas":[5.2,8.7,14.3,27.8,43.9],"Childress, Texas":[5.5,9.3,12.8,27.4,45],"Clay, Texas":[6.6,11.1,16,26.9,39.4],"Cochran, Texas":[5,8.3,13.4,29,44.4],"Coke, Texas":[5.2,8.5,13.7,28.8,43.7],"Coleman, Texas":[4.2,6.9,10.2,26,52.8],"Collin, Texas":[5.6,9,13.5,27,45],"Collingsworth, Texas":[5.6,8.2,12.3,27.8,46.1],"Colorado, Texas":[4.7,7.2,11.3,26.2,50.6],"Comal, Texas":[5.1,8.2,12.5,27.1,47.1],"Comanche, Texas":[5.3,9.1,14.2,27.2,44.3],"Concho, Texas":[6.7,10.7,16.3,26.7,39.5],"Cooke, Texas":[4.9,7.8,12.1,26.8,48.5],"Coryell, Texas":[6.2,9.6,13.6,26.9,43.7],"Cottle, Texas":[2.8,6.8,11,28.4,50.9],"Crane, Texas":[5.5,9.6,17,29.4,38.6],"Crockett, Texas":[9.8,14.4,20,25.8,30.1],"Crosby, Texas":[3.5,5.8,9,24.3,57.4],"Culberson, Texas":[7.3,11.2,16.8,27,37.7],"Dallam, Texas":[8.8,11.6,14.8,25.7,39.1],"Dallas, Texas":[4.3,6.9,10.7,26.7,51.4],"Dawson, Texas":[4.6,8.7,13.8,27.3,45.7],"Deaf Smith, Texas":[6.6,9.4,14.6,28.1,41.2],"Delta, Texas":[4.6,9,14.1,26.8,45.5],"Denton, Texas":[5.5,8.7,13.2,26.9,45.8],"DeWitt, Texas":[4.3,7.5,11.4,26.2,50.6],"Dickens, Texas":[5.1,8.1,13.5,30,43.3],"Dimmit, Texas":[3.5,6.7,14,30.4,45.3],"Donley, Texas":[6.2,9.5,13.7,26.3,44.3],"Duval, Texas":[5.8,10.2,15.3,28.3,40.4],"Eastland, Texas":[4.3,7.3,12.1,27.3,49],"Ector, Texas":[5.3,8.8,14,27.8,44.1],"Edwards, Texas":[4.6,7.9,11.6,28,48],"El Paso, Texas":[4.9,8.3,12.8,27.3,46.7],"Ellis, Texas":[6.3,10.1,14.8,26.4,42.4],"Erath, Texas":[4.7,8.1,12.5,26.6,48.1],"Falls, Texas":[4.3,7.9,12.1,26.7,49],"Fannin, Texas":[4.7,7.7,12.4,27.2,48.1],"Fayette, Texas":[4.4,7.5,10.9,25.8,51.4],"Fisher, Texas":[7.1,10.4,15.5,27.2,39.9],"Floyd, Texas":[3.6,6.5,10.4,27,52.5],"Foard, Texas":[3.7,6.3,10.9,27.7,51.4],"Fort Bend, Texas":[5.8,9.4,14,27.2,43.5],"Franklin, Texas":[4.7,7.2,12.4,29.1,46.5],"Freestone, Texas":[5.3,9.2,15,29,41.6],"Frio, Texas":[5.3,9.5,15.5,26.8,42.9],"Gaines, Texas":[5.8,10.1,15.7,27.9,40.5],"Galveston, Texas":[5.1,8.7,13.8,27.7,44.6],"Garza, Texas":[6.1,9.1,15.6,27.7,41.5],"Gillespie, Texas":[4.3,6.8,11.1,26.8,51],"Glasscock, Texas":[4.7,10.2,15.3,29.6,40.2],"Goliad, Texas":[3.6,6.3,10.4,26.8,52.9],"Gonzales, Texas":[4.4,7.8,11.7,26.7,49.3],"Gray, Texas":[4.2,7,11.2,26.5,51],"Grayson, Texas":[5.1,8.2,12.5,26.8,47.3],"Gregg, Texas":[4.9,8,12.5,26.7,47.9],"Grimes, Texas":[4.5,7.5,11.5,26.1,50.4],"Guadalupe, Texas":[6.5,10.4,15.1,26.6,41.5],"Hale, Texas":[5.5,9.1,13.7,27.5,44.1],"Hall, Texas":[5.6,8.8,13.7,28.1,43.6],"Hamilton, Texas":[3.2,5.4,8.9,25.4,57.1],"Hansford, Texas":[4.7,8.4,12.9,26.5,47.5],"Hardeman, Texas":[5.9,10.3,15,27.7,41.1],"Hardin, Texas":[5.8,9.6,15,27.9,41.7],"Harris, Texas":[4.1,6.9,11,27.1,50.9],"Harrison, Texas":[4.6,8.6,13.1,26.8,46.8],"Hartley, Texas":[6,9.2,13.5,26,45.4],"Haskell, Texas":[3.4,5.4,8.5,25.3,57.5],"Hays, Texas":[5.2,8.6,13,27.5,45.7],"Hemphill, Texas":[3.7,6.1,10.2,25,55.1],"Henderson, Texas":[4.8,8.1,12.7,26.7,47.8],"Hidalgo, Texas":[4.4,8,13,27.7,46.9],"Hill, Texas":[5.3,8.9,13.6,27,45.2],"Hockley, Texas":[5.4,8.9,15.3,28,42.4],"Hood, Texas":[4.8,8.3,12.1,26.5,48.3],"Hopkins, Texas":[4.9,7.9,12.2,26.5,48.5],"Houston, Texas":[4.7,8.2,13.6,27.9,45.5],"Howard, Texas":[5.3,9.2,13.9,27.7,43.8],"Hudspeth, Texas":[4.8,7.7,11.4,27.1,49],"Hunt, Texas":[5.6,9.2,13.5,27.2,44.4],"Hutchinson, Texas":[5.8,9.6,15.7,27.5,41.5],"Irion, Texas":[6,9,12.6,28.6,43.9],"Jack, Texas":[4.5,7.9,12.5,27.7,47.3],"Jackson, Texas":[5.3,8.9,14.6,27.8,43.4],"Jasper, Texas":[3.9,7.1,11.6,26.8,50.6],"Jeff Davis, Texas":[2.8,5.2,13.5,28.3,50.2],"Jefferson, Texas":[4.7,7.9,12.8,27.7,46.9],"Jim Hogg, Texas":[5.7,8.5,14,29.9,42],"Jim Wells, Texas":[4.8,8.2,14.2,28.2,44.5],"Johnson, Texas":[6.2,10,15,27.1,41.7],"Jones, Texas":[6,9.4,13.5,27.1,44],"Karnes, Texas":[3.3,6.5,10.9,27.4,52],"Kaufman, Texas":[6.8,10.7,15.7,26.8,40.1],"Kendall, Texas":[4.4,7.7,12.3,27.5,48],"Kenedy, Texas":[5.1,8.5,13.3,27.2,45.8],"Kent, Texas":[6.7,10,14.5,26,42.7],"Kerr, Texas":[4.8,7.5,12.1,26,49.7],"Kimble, Texas":[3.7,7.9,12.9,26.7,48.6],"King, Texas":[5.1,8.5,13.3,27.2,45.8],"Kinney, Texas":[5.1,8.5,13.3,27.2,45.8],"Kleberg, Texas":[5.1,9.8,16.2,28.5,40.5],"Knox, Texas":[6.3,9.4,14.1,27,43.1],"La Salle, Texas":[7.8,11.3,15.7,28.7,36.5],"Lamar, Texas":[4.4,8.7,13.6,27.8,45.4],"Lamb, Texas":[5.8,9.5,14.2,27.6,42.8],"Lampasas, Texas":[5.9,9.9,14.8,27.3,42.1],"Lavaca, Texas":[5.4,8.7,14.8,28.1,43],"Lee, Texas":[6.2,10.7,16,28.4,38.8],"Leon, Texas":[5.4,9,13.7,27.2,44.7],"Liberty, Texas":[5.6,9.2,14.5,28.2,42.4],"Limestone, Texas":[5.8,9.4,14.2,28.6,42.1],"Lipscomb, Texas":[5.4,8.9,12.8,26.9,46.1],"Live Oak, Texas":[4.3,8.2,13.1,28.5,45.9],"Llano, Texas":[3.5,5.5,9.3,26.7,55],"Loving, Texas":[5.1,8.5,13.3,27.2,45.8],"Lubbock, Texas":[4.5,7.6,12.1,27.3,48.4],"Lynn, Texas":[4.6,7.4,12.3,26.9,48.9],"Madison, Texas":[5.9,9.9,14.3,27.6,42.2],"Marion, Texas":[4.9,8.4,13.5,27.7,45.5],"Martin, Texas":[4.3,6.5,10.4,24.7,54.2],"Mason, Texas":[4.4,8.4,12.5,26.6,48.1],"Matagorda, Texas":[4.8,8.7,14.3,28,44.2],"Maverick, Texas":[5,9.3,15.2,28.2,42.4],"McCulloch, Texas":[4.7,8.1,12.7,27,47.6],"McLennan, Texas":[4.6,7.9,12.6,27.4,47.5],"McMullen, Texas":[5.1,7.1,12.7,28.9,46.2],"Medina, Texas":[5.7,9.2,14.2,26.9,44],"Menard, Texas":[4.5,7.9,12.5,29.6,45.5],"Midland, Texas":[4.6,7.9,12.4,26.7,48.4],"Milam, Texas":[4.5,7.4,11.3,26.3,50.5],"Mills, Texas":[5.5,8.7,12.9,27.5,45.4],"Mitchell, Texas":[4.3,7.8,13.9,28.4,45.6],"Montague, Texas":[6,9.7,15.1,27.3,41.9],"Montgomery, Texas":[4.8,7.9,12.4,27.2,47.6],"Moore, Texas":[6.1,9.4,14.4,27.4,42.8],"Morris, Texas":[6.6,10.7,16,28.4,38.3],"Motley, Texas":[5.8,10.7,16.4,26.9,40.1],"Nacogdoches, Texas":[3.9,6.9,11.3,26.7,51.2],"Navarro, Texas":[5,8.5,14,27.5,45],"Newton, Texas":[4.8,8.2,13.7,29.2,44.1],"Nolan, Texas":[4.8,7.5,12.3,28.5,47],"Nueces, Texas":[4.9,8.3,13,27.3,46.5],"Ochiltree, Texas":[5.7,9.3,13.9,25.5,45.6],"Oldham, Texas":[6.2,9.6,16.4,29,38.8],"Orange, Texas":[5.2,9.1,14.3,27.5,43.9],"Palo Pinto, Texas":[5.1,8.5,12.5,26.6,47.3],"Panola, Texas":[4.2,7.8,13.2,28.6,46.2],"Parker, Texas":[5.7,9.3,13.6,26.8,44.6],"Parmer, Texas":[6.6,10.2,14.8,26.9,41.6],"Pecos, Texas":[4,8.6,14.5,28.4,44.5],"Polk, Texas":[5.8,9.3,14.2,27.7,42.9],"Potter, Texas":[4.6,7.6,12.6,27.7,47.5],"Presidio, Texas":[3,5.1,8.3,26.3,57.2],"Rains, Texas":[4.2,7.1,11.8,26.8,50.2],"Randall, Texas":[5.2,8.4,12.5,26.3,47.7],"Reagan, Texas":[6.7,11,16.2,27.1,39],"Real, Texas":[3.5,6.3,9.8,26.5,53.9],"Red River, Texas":[4.9,8.5,12.8,28.4,45.4],"Reeves, Texas":[5.9,9.8,16.2,28.1,40],"Refugio, Texas":[5.3,10.2,15.2,26.6,42.7],"Roberts, Texas":[6.3,10.1,14,26.8,42.9],"Robertson, Texas":[5.4,9.6,14.5,27.7,42.8],"Rockwall, Texas":[5.9,8.7,12.3,25.8,47.3],"Runnels, Texas":[6.3,9.5,14,27.4,42.7],"Rusk, Texas":[4.3,7.4,11.3,26.3,50.7],"Sabine, Texas":[4.1,6.7,9.7,25.6,53.8],"San Augustine, Texas":[4.3,7.3,11.9,26.8,49.6],"San Jacinto, Texas":[5,8.3,13.6,27.9,45.2],"San Patricio, Texas":[4.9,8.7,13.7,27.6,45.1],"San Saba, Texas":[5.5,8.4,12.8,27.1,46.3],"Schleicher, Texas":[7.4,13.4,18.6,26.6,34],"Scurry, Texas":[6,9.1,15,28.1,41.7],"Shackelford, Texas":[6.3,10.2,15.6,28.6,39.4],"Shelby, Texas":[4.7,7.5,12.7,28,47.2],"Sherman, Texas":[2.2,3.6,5.2,23.3,65.7],"Smith, Texas":[5.1,8.3,12.6,27.1,47],"Somervell, Texas":[6.1,10.5,15,27,41.3],"Starr, Texas":[3.4,6.4,10.9,27.9,51.4],"Stephens, Texas":[4.8,8.7,13.3,28.2,45],"Sterling, Texas":[6.1,9.7,15.7,26.4,42.1],"Stonewall, Texas":[2.1,3.6,6,22.5,65.8],"Sutton, Texas":[7.6,12.6,17.9,27.2,34.7],"Swisher, Texas":[4.3,7.3,13.6,28.5,46.4],"Tarrant, Texas":[5,7.9,12.1,26.9,48],"Taylor, Texas":[5.2,8.5,12.9,26.4,47],"Terrell, Texas":[6.9,8.9,13.3,27.1,43.9],"Terry, Texas":[6.2,9.2,15.6,29.1,40],"Throckmorton, Texas":[4.9,8.7,12.8,27,46.6],"Titus, Texas":[5.1,8.9,13.8,27.4,45],"Tom Green, Texas":[5,8.2,12.5,26.5,47.8],"Travis, Texas":[4.5,7.4,11.7,27,49.3],"Trinity, Texas":[4.7,7.7,12.5,27.4,47.8],"Tyler, Texas":[2.9,4.9,8.6,25.1,58.5],"Upshur, Texas":[4.7,8.1,12.7,27.1,47.4],"Upton, Texas":[4.9,9.7,16.2,29.8,39.4],"Uvalde, Texas":[4,7.7,11.1,26.6,50.6],"Val Verde, Texas":[5.1,9.1,14.3,27.2,44.2],"Van Zandt, Texas":[4.9,8.1,12.6,26.5,47.8],"Victoria, Texas":[5.5,9.3,14,27.1,44],"Walker, Texas":[5,8.2,12.8,27.6,46.3],"Waller, Texas":[5.2,8.2,13.3,28.1,45.2],"Ward, Texas":[4.5,7.4,11.7,25.5,50.7],"Washington, Texas":[4.3,7.3,10.7,26.2,51.5],"Webb, Texas":[4.9,8.7,13.5,27,46],"Wharton, Texas":[4.3,7.8,12,26.9,49],"Wheeler, Texas":[6,10.6,15.4,27.1,40.9],"Wichita, Texas":[4.9,8,12.6,26.6,47.9],"Wilbarger, Texas":[5,9.1,14.6,27.5,43.8],"Willacy, Texas":[4.8,8.4,14.3,28.1,44.5],"Williamson, Texas":[6.1,9.5,13.9,26.8,43.7],"Wilson, Texas":[5.6,9.2,13.6,27,44.6],"Winkler, Texas":[7.5,13.6,18.8,26.3,33.8],"Wise, Texas":[6.2,9.8,14.5,27.4,42.1],"Wood, Texas":[4.6,7.6,11.9,26.5,49.4],"Yoakum, Texas":[7,9.9,13.4,28.5,41.2],"Young, Texas":[4.9,8.5,14.2,26.8,45.5],"Zapata, Texas":[3.7,7.2,13.8,31.5,43.9],"Zavala, Texas":[6,9.4,15.7,28,40.9]};
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Bottom 20%', 'Second 20%', 'Middle 20%', 'Fourth 20%', 'Top 20%'],
+        datasets: [{
+          label: 'Share (%)',
+          data: values,
+          backgroundColor: '#4576a7'
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.parsed.y + '%'
+            }
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 100,
+            title: {
+              display: true,
+              text: 'Income Share (%)'
+            }
+          },
+          x: {
+            title: {
+              display: true,
+              text: 'Quintile'
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(Object.values(incomeData[this.value]));
+  });
+
+  renderChart(Object.values(incomeData['Statewide']));</script>
+  </body>
+</html>
+</html>

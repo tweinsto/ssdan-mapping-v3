@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Language Spoken at Home – Oklahoma</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          text-align: center;
+          margin: 2rem;
+        }
+        select {
+          font-size: 1rem;
+          padding: 0.4rem;
+          margin-bottom: 1rem;
+        }
+        canvas {
+          width: 100%;
+          max-width: 700px;
+          height: 800px;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Language Spoken at Home – Oklahoma</h2>
+    <label>Select County, State:</label>
+    <select id="countySelect"><option value='Statewide'>Statewide</option>
+<option value='Adair County, Oklahoma'>Adair County, Oklahoma</option>
+<option value='Alfalfa County, Oklahoma'>Alfalfa County, Oklahoma</option>
+<option value='Atoka County, Oklahoma'>Atoka County, Oklahoma</option>
+<option value='Beaver County, Oklahoma'>Beaver County, Oklahoma</option>
+<option value='Beckham County, Oklahoma'>Beckham County, Oklahoma</option>
+<option value='Blaine County, Oklahoma'>Blaine County, Oklahoma</option>
+<option value='Bryan County, Oklahoma'>Bryan County, Oklahoma</option>
+<option value='Caddo County, Oklahoma'>Caddo County, Oklahoma</option>
+<option value='Canadian County, Oklahoma'>Canadian County, Oklahoma</option>
+<option value='Carter County, Oklahoma'>Carter County, Oklahoma</option>
+<option value='Cherokee County, Oklahoma'>Cherokee County, Oklahoma</option>
+<option value='Choctaw County, Oklahoma'>Choctaw County, Oklahoma</option>
+<option value='Cimarron County, Oklahoma'>Cimarron County, Oklahoma</option>
+<option value='Cleveland County, Oklahoma'>Cleveland County, Oklahoma</option>
+<option value='Coal County, Oklahoma'>Coal County, Oklahoma</option>
+<option value='Comanche County, Oklahoma'>Comanche County, Oklahoma</option>
+<option value='Cotton County, Oklahoma'>Cotton County, Oklahoma</option>
+<option value='Craig County, Oklahoma'>Craig County, Oklahoma</option>
+<option value='Creek County, Oklahoma'>Creek County, Oklahoma</option>
+<option value='Custer County, Oklahoma'>Custer County, Oklahoma</option>
+<option value='Delaware County, Oklahoma'>Delaware County, Oklahoma</option>
+<option value='Dewey County, Oklahoma'>Dewey County, Oklahoma</option>
+<option value='Ellis County, Oklahoma'>Ellis County, Oklahoma</option>
+<option value='Garfield County, Oklahoma'>Garfield County, Oklahoma</option>
+<option value='Garvin County, Oklahoma'>Garvin County, Oklahoma</option>
+<option value='Grady County, Oklahoma'>Grady County, Oklahoma</option>
+<option value='Grant County, Oklahoma'>Grant County, Oklahoma</option>
+<option value='Greer County, Oklahoma'>Greer County, Oklahoma</option>
+<option value='Harmon County, Oklahoma'>Harmon County, Oklahoma</option>
+<option value='Harper County, Oklahoma'>Harper County, Oklahoma</option>
+<option value='Haskell County, Oklahoma'>Haskell County, Oklahoma</option>
+<option value='Hughes County, Oklahoma'>Hughes County, Oklahoma</option>
+<option value='Jackson County, Oklahoma'>Jackson County, Oklahoma</option>
+<option value='Jefferson County, Oklahoma'>Jefferson County, Oklahoma</option>
+<option value='Johnston County, Oklahoma'>Johnston County, Oklahoma</option>
+<option value='Kay County, Oklahoma'>Kay County, Oklahoma</option>
+<option value='Kingfisher County, Oklahoma'>Kingfisher County, Oklahoma</option>
+<option value='Kiowa County, Oklahoma'>Kiowa County, Oklahoma</option>
+<option value='Latimer County, Oklahoma'>Latimer County, Oklahoma</option>
+<option value='Le Flore County, Oklahoma'>Le Flore County, Oklahoma</option>
+<option value='Lincoln County, Oklahoma'>Lincoln County, Oklahoma</option>
+<option value='Logan County, Oklahoma'>Logan County, Oklahoma</option>
+<option value='Love County, Oklahoma'>Love County, Oklahoma</option>
+<option value='Major County, Oklahoma'>Major County, Oklahoma</option>
+<option value='Marshall County, Oklahoma'>Marshall County, Oklahoma</option>
+<option value='Mayes County, Oklahoma'>Mayes County, Oklahoma</option>
+<option value='McClain County, Oklahoma'>McClain County, Oklahoma</option>
+<option value='McCurtain County, Oklahoma'>McCurtain County, Oklahoma</option>
+<option value='McIntosh County, Oklahoma'>McIntosh County, Oklahoma</option>
+<option value='Murray County, Oklahoma'>Murray County, Oklahoma</option>
+<option value='Muskogee County, Oklahoma'>Muskogee County, Oklahoma</option>
+<option value='Noble County, Oklahoma'>Noble County, Oklahoma</option>
+<option value='Nowata County, Oklahoma'>Nowata County, Oklahoma</option>
+<option value='Okfuskee County, Oklahoma'>Okfuskee County, Oklahoma</option>
+<option value='Oklahoma County, Oklahoma'>Oklahoma County, Oklahoma</option>
+<option value='Okmulgee County, Oklahoma'>Okmulgee County, Oklahoma</option>
+<option value='Osage County, Oklahoma'>Osage County, Oklahoma</option>
+<option value='Ottawa County, Oklahoma'>Ottawa County, Oklahoma</option>
+<option value='Pawnee County, Oklahoma'>Pawnee County, Oklahoma</option>
+<option value='Payne County, Oklahoma'>Payne County, Oklahoma</option>
+<option value='Pittsburg County, Oklahoma'>Pittsburg County, Oklahoma</option>
+<option value='Pontotoc County, Oklahoma'>Pontotoc County, Oklahoma</option>
+<option value='Pottawatomie County, Oklahoma'>Pottawatomie County, Oklahoma</option>
+<option value='Pushmataha County, Oklahoma'>Pushmataha County, Oklahoma</option>
+<option value='Roger Mills County, Oklahoma'>Roger Mills County, Oklahoma</option>
+<option value='Rogers County, Oklahoma'>Rogers County, Oklahoma</option>
+<option value='Seminole County, Oklahoma'>Seminole County, Oklahoma</option>
+<option value='Sequoyah County, Oklahoma'>Sequoyah County, Oklahoma</option>
+<option value='Stephens County, Oklahoma'>Stephens County, Oklahoma</option>
+<option value='Texas County, Oklahoma'>Texas County, Oklahoma</option>
+<option value='Tillman County, Oklahoma'>Tillman County, Oklahoma</option>
+<option value='Tulsa County, Oklahoma'>Tulsa County, Oklahoma</option>
+<option value='Wagoner County, Oklahoma'>Wagoner County, Oklahoma</option>
+<option value='Washington County, Oklahoma'>Washington County, Oklahoma</option>
+<option value='Washita County, Oklahoma'>Washita County, Oklahoma</option>
+<option value='Woods County, Oklahoma'>Woods County, Oklahoma</option>
+<option value='Woodward County, Oklahoma'>Woodward County, Oklahoma</option></select>
+    <canvas id="barChart" width="700" height="700"></canvas>
+    <script>  const languageData = {"Statewide":{"Arabic":0,"Chinese":0.1,"English only":79.7,"French, Haitian, Cajun":0.2,"German or West Germanic":0,"Korean":0.4,"Other":4.8,"Other Asian/Pacific":0,"Other Indo-European":0.1,"Other/Unspecified":0,"Russian, Polish, Slavic":0.1,"Spanish":14.3,"Tagalog":0.1,"Vietnamese":0},"Adair County, Oklahoma":{"Arabic":0,"Chinese":0.1,"English only":82.2,"French, Haitian, Cajun":0.6,"German or West Germanic":0.3,"Korean":0.1,"Other Asian/Pacific":0.8,"Other Indo-European":0,"Other/Unspecified":9.4,"Russian, Polish, Slavic":0,"Spanish":5.9,"Tagalog":0,"Vietnamese":0.4},"Alfalfa County, Oklahoma":{"Arabic":0,"Chinese":0,"English only":91.8,"French, Haitian, Cajun":1.4,"German or West Germanic":1.2,"Korean":0,"Other Asian/Pacific":0,"Other Indo-European":0.1,"Other/Unspecified":0.4,"Russian, Polish, Slavic":0,"Spanish":5.1,"Tagalog":0,"Vietnamese":0},"Atoka County, Oklahoma":{"Arabic":0,"Chinese":0,"English only":93.3,"French, Haitian, Cajun":0.1,"German or West Germanic":0.3,"Korean":0,"Other Asian/Pacific":1.4,"Other Indo-European":0,"Other/Unspecified":0.9,"Russian, Polish, Slavic":0.5,"Spanish":3.5,"Tagalog":0,"Vietnamese":0},"Beaver County, Oklahoma":{"Arabic":0,"Chinese":0,"English only":64.4,"French, Haitian, Cajun":0,"German or West Germanic":1.8,"Korean":0,"Other Asian/Pacific":0,"Other Indo-European":0,"Other/Unspecified":0,"Russian, Polish, Slavic":0,"Spanish":33.8,"Tagalog":0,"Vietnamese":0},"Beckham County, Oklahoma":{"Arabic":0,"Chinese":0.7,"English only":81.5,"French, Haitian, Cajun":0,"German or West Germanic":0.1,"Korean":0,"Other Asian/Pacific":0,"Other Indo-European":0,"Other/Unspecified":0,"Russian, Polish, Slavic":0,"Spanish":17.4,"Tagalog":0.3,"Vietnamese":0},"Blaine County, Oklahoma":{"Arabic":0,"Chinese":0,"English only":82.8,"French, Haitian, Cajun":0,"German or West Germanic":1.4,"Korean":0,"Other Asian/Pacific":0,"Other Indo-European":0.2,"Other/Unspecified":3.6,"Russian, Polish, Slavic":0,"Spanish":12.1,"Tagalog":0,"Vietnamese":0},"Bryan County, Oklahoma":{"Arabic":0,"Chinese":0.2,"English only":87.1,"French, Haitian, Cajun":0.3,"German or West Germanic":0.3,"Korean":0.1,"Other Asian/Pacific":0.6,"Other Indo-European":0.6,"Other/Unspecified":1.9,"Russian, Polish, Slavic":0.1,"Spanish":8.2,"Tagalog":0.4,"Vietnamese":0.2},"Caddo County, Oklahoma":{"Arabic":0,"Chinese":0,"English only":82.2,"French, Haitian, Cajun":0.5,"German or West Germanic":0.3,"Korean":0.3,"Other Asian/Pacific":0,"Other Indo-European":0,"Other/Unspecified":2.7,"Russian, Polish, Slavic":0.2,"Spanish":13.6,"Tagalog":0.1,"Vietnamese":0},"Canadian County, Oklahoma":{"Arabic":0.2,"Chinese":0.4,"English only":79,"French, Haitian, Cajun":0.1,"German or West Germanic":0.7,"Korean":0,"Other Asian/Pacific":1.5,"Other Indo-European":1,"Other/Unspecified":0.7,"Russian, Polish, Slavic":0.9,"Spanish":12.7,"Tagalog":0.7,"Vietnamese":2},"Carter County, Oklahoma":{"Arabic":0.2,"Chinese":0.7,"English only":83.6,"French, Haitian, Cajun":0.7,"German or West Germanic":1.2,"Korean":0.5,"Other Asian/Pacific":0.2,"Other Indo-European":0.7,"Other/Unspecified":1.1,"Russian, Polish, Slavic":0.3,"Spanish":10.6,"Tagalog":0.2,"Vietnamese":0.1},"Cherokee County, Oklahoma":{"Arabic":0,"Chinese":0,"English only":82.9,"French, Haitian, Cajun":0.4,"German or West Germanic":0.2,"Korean":0.4,"Other Asian/Pacific":0.8,"Other Indo-European":0.3,"Other/Unspecified":6.2,"Russian, Polish, Slavic":0.3,"Spanish":7.7,"Tagalog":0.6,"Vietnamese":0},"Choctaw County, Oklahoma":{"Arabic":0.1,"Chinese":0.2,"English only":86.5,"French, Haitian, Cajun":0.1,"German or West Germanic":0.2,"Korean":0.4,"Other Asian/Pacific":0.7,"Other Indo-European":0.3,"Other/Unspecified":3.7,"Russian, Polish, Slavic":0,"Spanish":7.8,"Tagalog":0,"Vietnamese":0},"Cimarron County, Oklahoma":{"Arabic":0,"Chinese":0,"English only":71.4,"French, Haitian, Cajun":0,"German or West Germanic":9.8,"Korean":0,"Other Asian/Pacific":0,"Other Indo-European":0.7,"Other/Unspecified":0.5,"Russian, Polish, Slavic":0,"Spanish":17.6,"Tagalog":0,"Vietnamese":0},"Cleveland County, Oklahoma":{"Arabic":0.2,"Chinese":1.8,"English only":76.9,"French, Haitian, Cajun":0.7,"German or West Germanic":0.7,"Korean":0.4,"Other Asian/Pacific":1.3,"Other Indo-European":1.8,"Other/Unspecified":1.3,"Russian, Polish, Slavic":0.4,"Spanish":12.1,"Tagalog":0.3,"Vietnamese":2.2},"Coal County, Oklahoma":{"Arabic":0,"Chinese":0,"English only":90.2,"French, Haitian, Cajun":0.4,"German or West Germanic":3.6,"Korean":0,"Other Asian/Pacific":0,"Other Indo-European":0,"Other/Unspecified":1.1,"Russian, Polish, Slavic":0.9,"Spanish":3.5,"Tagalog":0,"Vietnamese":0.4},"Comanche County, Oklahoma":{"Arabic":0.1,"Chinese":0.3,"English only":74.2,"French, Haitian, Cajun":0.6,"German or West Germanic":3.6,"Korean":1.7,"Other Asian/Pacific":1.2,"Other Indo-European":0.7,"Other/Unspecified":2,"Russian, Polish, Slavic":0.4,"Spanish":13.2,"Tagalog":1.3,"Vietnamese":0.6},"Cotton County, Oklahoma":{"Arabic":0,"Chinese":0.9,"English only":87,"French, Haitian, Cajun":0,"German or West Germanic":1,"Korean":0.3,"Other Asian/Pacific":0.2,"Other Indo-European":0,"Other/Unspecified":3.2,"Russian, Polish, Slavic":0,"Spanish":7.5,"Tagalog":0,"Vietnamese":0},"Craig County, Oklahoma":{"Arabic":0,"Chinese":0.9,"English only":88.9,"French, Haitian, Cajun":0,"German or West Germanic":0.1,"Korean":0,"Other Asian/Pacific":1.3,"Other Indo-European":0.1,"Other/Unspecified":0.8,"Russian, Polish, Slavic":0.2,"Spanish":6.6,"Tagalog":0,"Vietnamese":1.1},"Creek County, Oklahoma":{"Arabic":0,"Chinese":0.3,"English only":91.9,"French, Haitian, Cajun":0.2,"German or West Germanic":0.5,"Korean":0.1,"Other Asian/Pacific":0.2,"Other Indo-European":0.3,"Other/Unspecified":0.6,"Russian, Polish, Slavic":0.2,"Spanish":5.4,"Tagalog":0.3,"Vietnamese":0.1},"Custer County, Oklahoma":{"Arabic":0,"Chinese":0,"English only":75.4,"French, Haitian, Cajun":0.1,"German or West Germanic":1.1,"Korean":0,"Other Asian/Pacific":0.2,"Other Indo-European":0,"Other/Unspecified":0.3,"Russian, Polish, Slavic":0,"Spanish":21.8,"Tagalog":0.2,"Vietnamese":0.9},"Delaware County, Oklahoma":{"Arabic":0,"Chinese":0.2,"English only":89.6,"French, Haitian, Cajun":0,"German or West Germanic":0.2,"Korean":0.1,"Other Asian/Pacific":1.2,"Other Indo-European":0.3,"Other/Unspecified":2.5,"Russian, Polish, Slavic":0,"Spanish":4.9,"Tagalog":0.8,"Vietnamese":0.1},"Dewey County, Oklahoma":{"Arabic":0,"Chinese":0,"English only":91,"French, Haitian, Cajun":0,"German or West Germanic":1.7,"Korean":0.2,"Other Asian/Pacific":0,"Other Indo-European":0,"Other/Unspecified":2.8,"Russian, Polish, Slavic":0.4,"Spanish":4,"Tagalog":0,"Vietnamese":0},"Ellis County, Oklahoma":{"Arabic":0,"Chinese":0,"English only":87.9,"French, Haitian, Cajun":0.7,"German or West Germanic":0.1,"Korean":0,"Other Asian/Pacific":0,"Other Indo-European":2,"Other/Unspecified":0,"Russian, Polish, Slavic":0,"Spanish":9.2,"Tagalog":0.1,"Vietnamese":0},"Garfield County, Oklahoma":{"Arabic":0.1,"Chinese":1.6,"English only":76.2,"French, Haitian, Cajun":0.2,"German or West Germanic":1,"Korean":0.2,"Other Asian/Pacific":4.1,"Other Indo-European":0.6,"Other/Unspecified":0.3,"Russian, Polish, Slavic":0,"Spanish":15.3,"Tagalog":0.1,"Vietnamese":0.1},"Garvin County, Oklahoma":{"Arabic":0,"Chinese":0.5,"English only":84.7,"French, Haitian, Cajun":0,"German or West Germanic":0.7,"Korean":0,"Other Asian/Pacific":0.1,"Other Indo-European":0.2,"Other/Unspecified":0.3,"Russian, Polish, Slavic":0.2,"Spanish":13.3,"Tagalog":0,"Vietnamese":0},"Grady County, Oklahoma":{"Arabic":0,"Chinese":0.1,"English only":90.8,"French, Haitian, Cajun":0.1,"German or West Germanic":0.8,"Korean":0,"Other Asian/Pacific":0.3,"Other Indo-European":0.1,"Other/Unspecified":0.5,"Russian, Polish, Slavic":0,"Spanish":7.1,"Tagalog":0.2,"Vietnamese":0},"Grant County, Oklahoma":{"Arabic":0,"Chinese":0,"English only":94,"French, Haitian, Cajun":0,"German or West Germanic":1.6,"Korean":0,"Other Asian/Pacific":0,"Other Indo-European":0,"Other/Unspecified":0.5,"Russian, Polish, Slavic":0,"Spanish":3.1,"Tagalog":0.8,"Vietnamese":0},"Greer County, Oklahoma":{"Arabic":0,"Chinese":1.1,"English only":79.7,"French, Haitian, Cajun":0,"German or West Germanic":0,"Korean":0,"Other Asian/Pacific":0,"Other Indo-European":0,"Other/Unspecified":0,"Russian, Polish, Slavic":1.4,"Spanish":17.7,"Tagalog":0.2,"Vietnamese":0},"Harmon County, Oklahoma":{"Arabic":0,"Chinese":0,"English only":68.1,"French, Haitian, Cajun":0,"German or West Germanic":0.7,"Korean":0,"Other Asian/Pacific":0,"Other Indo-European":0,"Other/Unspecified":0,"Russian, Polish, Slavic":0,"Spanish":31.1,"Tagalog":0,"Vietnamese":0},"Harper County, Oklahoma":{"Arabic":0,"Chinese":0,"English only":64.7,"French, Haitian, Cajun":0,"German or West Germanic":1.4,"Korean":0,"Other Asian/Pacific":0,"Other Indo-European":0,"Other/Unspecified":0,"Russian, Polish, Slavic":0,"Spanish":33.9,"Tagalog":0,"Vietnamese":0},"Haskell County, Oklahoma":{"Arabic":0,"Chinese":0.2,"English only":91.2,"French, Haitian, Cajun":0,"German or West Germanic":0.4,"Korean":0,"Other Asian/Pacific":0.8,"Other Indo-European":0.2,"Other/Unspecified":0.5,"Russian, Polish, Slavic":0.6,"Spanish":6,"Tagalog":0,"Vietnamese":0},"Hughes County, Oklahoma":{"Arabic":0,"Chinese":0.4,"English only":83.3,"French, Haitian, Cajun":0,"German or West Germanic":0.6,"Korean":0,"Other Asian/Pacific":0.3,"Other Indo-European":0,"Other/Unspecified":11.3,"Russian, Polish, Slavic":0,"Spanish":4.1,"Tagalog":0,"Vietnamese":0},"Jackson County, Oklahoma":{"Arabic":0,"Chinese":0,"English only":64.1,"French, Haitian, Cajun":0.6,"German or West Germanic":2,"Korean":0,"Other Asian/Pacific":0.5,"Other Indo-European":0.7,"Other/Unspecified":0.5,"Russian, Polish, Slavic":0,"Spanish":30.1,"Tagalog":1.2,"Vietnamese":0.1},"Jefferson County, Oklahoma":{"Arabic":0,"Chinese":0,"English only":82.8,"French, Haitian, Cajun":0.2,"German or West Germanic":0.7,"Korean":0,"Other Asian/Pacific":0.2,"Other Indo-European":0.1,"Other/Unspecified":0.1,"Russian, Polish, Slavic":0,"Spanish":14.6,"Tagalog":1.4,"Vietnamese":0},"Johnston County, Oklahoma":{"Arabic":0,"Chinese":0,"English only":88.5,"French, Haitian, Cajun":0,"German or West Germanic":0,"Korean":0,"Other Asian/Pacific":0,"Other Indo-European":0.3,"Other/Unspecified":1.2,"Russian, Polish, Slavic":0,"Spanish":9.9,"Tagalog":0,"Vietnamese":0},"Kay County, Oklahoma":{"Arabic":0,"Chinese":0.1,"English only":86,"French, Haitian, Cajun":0.4,"German or West Germanic":0.4,"Korean":0,"Other Asian/Pacific":0.1,"Other Indo-European":0.6,"Other/Unspecified":1.1,"Russian, Polish, Slavic":0.2,"Spanish":10.8,"Tagalog":0.2,"Vietnamese":0},"Kingfisher County, Oklahoma":{"Arabic":0,"Chinese":0.5,"English only":71.6,"French, Haitian, Cajun":0,"German or West Germanic":3.4,"Korean":0,"Other Asian/Pacific":0,"Other Indo-European":2.9,"Other/Unspecified":0.2,"Russian, Polish, Slavic":0.1,"Spanish":21.3,"Tagalog":0,"Vietnamese":0},"Kiowa County, Oklahoma":{"Arabic":0,"Chinese":0,"English only":83.6,"French, Haitian, Cajun":0.1,"German or West Germanic":1.8,"Korean":0.2,"Other Asian/Pacific":0.2,"Other Indo-European":0.2,"Other/Unspecified":1.1,"Russian, Polish, Slavic":0,"Spanish":12.7,"Tagalog":0.1,"Vietnamese":0},"Latimer County, Oklahoma":{"Arabic":0,"Chinese":0,"English only":95.4,"French, Haitian, Cajun":0,"German or West Germanic":0.1,"Korean":0,"Other Asian/Pacific":0,"Other Indo-European":0.1,"Other/Unspecified":0.7,"Russian, Polish, Slavic":0.1,"Spanish":2.5,"Tagalog":0,"Vietnamese":1},"Le Flore County, Oklahoma":{"Arabic":0.1,"Chinese":0,"English only":88.5,"French, Haitian, Cajun":0.1,"German or West Germanic":0.3,"Korean":0.2,"Other Asian/Pacific":0.7,"Other Indo-European":0.2,"Other/Unspecified":0.9,"Russian, Polish, Slavic":0,"Spanish":8.4,"Tagalog":0.3,"Vietnamese":0.3},"Lincoln County, Oklahoma":{"Arabic":0,"Chinese":0.1,"English only":95,"French, Haitian, Cajun":0,"German or West Germanic":0.3,"Korean":0,"Other Asian/Pacific":0.4,"Other Indo-European":0.4,"Other/Unspecified":0.4,"Russian, Polish, Slavic":0,"Spanish":3.3,"Tagalog":0,"Vietnamese":0.1},"Logan County, Oklahoma":{"Arabic":0.1,"Chinese":0.3,"English only":87.5,"French, Haitian, Cajun":0,"German or West Germanic":0.5,"Korean":0.1,"Other Asian/Pacific":0.5,"Other Indo-European":0.1,"Other/Unspecified":0.8,"Russian, Polish, Slavic":0,"Spanish":9.9,"Tagalog":0.2,"Vietnamese":0},"Love County, Oklahoma":{"Arabic":0,"Chinese":0,"English only":77.8,"French, Haitian, Cajun":0.1,"German or West Germanic":0,"Korean":0.6,"Other Asian/Pacific":1.2,"Other Indo-European":0.6,"Other/Unspecified":0.5,"Russian, Polish, Slavic":0.1,"Spanish":18.3,"Tagalog":0.6,"Vietnamese":0.2},"Major County, Oklahoma":{"Arabic":0,"Chinese":0,"English only":83.6,"French, Haitian, Cajun":0,"German or West Germanic":0,"Korean":0,"Other Asian/Pacific":0,"Other Indo-European":0,"Other/Unspecified":0,"Russian, Polish, Slavic":0,"Spanish":16.4,"Tagalog":0,"Vietnamese":0},"Marshall County, Oklahoma":{"Arabic":0,"Chinese":0.1,"English only":74.7,"French, Haitian, Cajun":0,"German or West Germanic":4,"Korean":0,"Other Asian/Pacific":0.3,"Other Indo-European":0,"Other/Unspecified":1,"Russian, Polish, Slavic":0,"Spanish":20,"Tagalog":0,"Vietnamese":0},"Mayes County, Oklahoma":{"Arabic":0.2,"Chinese":0,"English only":87.2,"French, Haitian, Cajun":0.3,"German or West Germanic":1.9,"Korean":0.2,"Other Asian/Pacific":0.4,"Other Indo-European":0.3,"Other/Unspecified":4.8,"Russian, Polish, Slavic":0.1,"Spanish":4.1,"Tagalog":0.1,"Vietnamese":0.4},"McClain County, Oklahoma":{"Arabic":0,"Chinese":0.3,"English only":86.8,"French, Haitian, Cajun":0,"German or West Germanic":0.9,"Korean":0,"Other Asian/Pacific":0,"Other Indo-European":0.3,"Other/Unspecified":0.1,"Russian, Polish, Slavic":0.3,"Spanish":11,"Tagalog":0.1,"Vietnamese":0.1},"McCurtain County, Oklahoma":{"Arabic":0,"Chinese":0,"English only":83.9,"French, Haitian, Cajun":0.2,"German or West Germanic":0.4,"Korean":0.1,"Other Asian/Pacific":2.2,"Other Indo-European":0.2,"Other/Unspecified":4,"Russian, Polish, Slavic":0.3,"Spanish":7.9,"Tagalog":0.3,"Vietnamese":0.4},"McIntosh County, Oklahoma":{"Arabic":0,"Chinese":0,"English only":93.5,"French, Haitian, Cajun":0,"German or West Germanic":0.8,"Korean":0,"Other Asian/Pacific":0.4,"Other Indo-European":0.7,"Other/Unspecified":2.5,"Russian, Polish, Slavic":0,"Spanish":2,"Tagalog":0,"Vietnamese":0},"Murray County, Oklahoma":{"Arabic":0,"Chinese":0,"English only":87.6,"French, Haitian, Cajun":0.2,"German or West Germanic":1,"Korean":0,"Other Asian/Pacific":0,"Other Indo-European":0,"Other/Unspecified":4.3,"Russian, Polish, Slavic":0,"Spanish":6.9,"Tagalog":0,"Vietnamese":0},"Muskogee County, Oklahoma":{"Arabic":0,"Chinese":0.1,"English only":89.8,"French, Haitian, Cajun":0.5,"German or West Germanic":0.6,"Korean":0.2,"Other Asian/Pacific":0.5,"Other Indo-European":0.3,"Other/Unspecified":1,"Russian, Polish, Slavic":0,"Spanish":6.4,"Tagalog":0.1,"Vietnamese":0.5},"Noble County, Oklahoma":{"Arabic":0,"Chinese":0,"English only":92.4,"French, Haitian, Cajun":0,"German or West Germanic":0.3,"Korean":0.1,"Other Asian/Pacific":0,"Other Indo-European":0.1,"Other/Unspecified":1.5,"Russian, Polish, Slavic":0,"Spanish":5.4,"Tagalog":0,"Vietnamese":0},"Nowata County, Oklahoma":{"Arabic":0,"Chinese":0,"English only":93.9,"French, Haitian, Cajun":0,"German or West Germanic":0.2,"Korean":0,"Other Asian/Pacific":1,"Other Indo-European":0.6,"Other/Unspecified":0.4,"Russian, Polish, Slavic":0.4,"Spanish":2.6,"Tagalog":0,"Vietnamese":0.8},"Okfuskee County, Oklahoma":{"Arabic":0,"Chinese":0.4,"English only":84.7,"French, Haitian, Cajun":0.3,"German or West Germanic":2.9,"Korean":0,"Other Asian/Pacific":0.8,"Other Indo-European":0,"Other/Unspecified":5.6,"Russian, Polish, Slavic":0,"Spanish":5.2,"Tagalog":0,"Vietnamese":0.2},"Oklahoma County, Oklahoma":{"Arabic":0.5,"Chinese":0.7,"English only":69.4,"French, Haitian, Cajun":0.5,"German or West Germanic":0.6,"Korean":0.2,"Other Asian/Pacific":1.5,"Other Indo-European":1.6,"Other/Unspecified":1.5,"Russian, Polish, Slavic":0.3,"Spanish":21.5,"Tagalog":0.3,"Vietnamese":1.3},"Okmulgee County, Oklahoma":{"Arabic":0,"Chinese":0.4,"English only":90.8,"French, Haitian, Cajun":0.2,"German or West Germanic":0.2,"Korean":0.2,"Other Asian/Pacific":0.2,"Other Indo-European":0.2,"Other/Unspecified":3.3,"Russian, Polish, Slavic":0,"Spanish":3.9,"Tagalog":0.4,"Vietnamese":0},"Osage County, Oklahoma":{"Arabic":0,"Chinese":0.1,"English only":92,"French, Haitian, Cajun":0.1,"German or West Germanic":0.6,"Korean":0,"Other Asian/Pacific":0,"Other Indo-European":0.2,"Other/Unspecified":2,"Russian, Polish, Slavic":0.1,"Spanish":4.6,"Tagalog":0.2,"Vietnamese":0},"Ottawa County, Oklahoma":{"Arabic":0,"Chinese":0.5,"English only":89,"French, Haitian, Cajun":0.2,"German or West Germanic":0.4,"Korean":0,"Other Asian/Pacific":0.9,"Other Indo-European":0.3,"Other/Unspecified":1,"Russian, Polish, Slavic":0,"Spanish":7.2,"Tagalog":0.2,"Vietnamese":0.1},"Pawnee County, Oklahoma":{"Arabic":0.4,"Chinese":0,"English only":93.3,"French, Haitian, Cajun":0.3,"German or West Germanic":0.4,"Korean":0,"Other Asian/Pacific":1,"Other Indo-European":0,"Other/Unspecified":1.3,"Russian, Polish, Slavic":0.3,"Spanish":2.8,"Tagalog":0.2,"Vietnamese":0},"Payne County, Oklahoma":{"Arabic":1.3,"Chinese":3.4,"English only":81.3,"French, Haitian, Cajun":0.5,"German or West Germanic":0.7,"Korean":0.4,"Other Asian/Pacific":1.7,"Other Indo-European":3.2,"Other/Unspecified":0.9,"Russian, Polish, Slavic":0,"Spanish":6.6,"Tagalog":0,"Vietnamese":0},"Pittsburg County, Oklahoma":{"Arabic":0,"Chinese":0.2,"English only":91.1,"French, Haitian, Cajun":0,"German or West Germanic":0.6,"Korean":0.2,"Other Asian/Pacific":0.1,"Other Indo-European":0.5,"Other/Unspecified":1.1,"Russian, Polish, Slavic":0.2,"Spanish":5.6,"Tagalog":0.1,"Vietnamese":0.1},"Pontotoc County, Oklahoma":{"Arabic":0.3,"Chinese":0.2,"English only":91.5,"French, Haitian, Cajun":0.3,"German or West Germanic":0.1,"Korean":0.1,"Other Asian/Pacific":0.1,"Other Indo-European":0.1,"Other/Unspecified":1.9,"Russian, Polish, Slavic":0,"Spanish":4.7,"Tagalog":0.5,"Vietnamese":0.2},"Pottawatomie County, Oklahoma":{"Arabic":0.1,"Chinese":0.1,"English only":89.7,"French, Haitian, Cajun":0.1,"German or West Germanic":0.7,"Korean":0,"Other Asian/Pacific":0.8,"Other Indo-European":0.5,"Other/Unspecified":1.7,"Russian, Polish, Slavic":0.2,"Spanish":5.6,"Tagalog":0.2,"Vietnamese":0.1},"Pushmataha County, Oklahoma":{"Arabic":0,"Chinese":0,"English only":90.1,"French, Haitian, Cajun":1,"German or West Germanic":0.3,"Korean":0,"Other Asian/Pacific":0.6,"Other Indo-European":0,"Other/Unspecified":3.9,"Russian, Polish, Slavic":0,"Spanish":3.9,"Tagalog":0.3,"Vietnamese":0},"Roger Mills County, Oklahoma":{"Arabic":0,"Chinese":0,"English only":90.6,"French, Haitian, Cajun":0,"German or West Germanic":0.4,"Korean":0,"Other Asian/Pacific":1.6,"Other Indo-European":0,"Other/Unspecified":0.5,"Russian, Polish, Slavic":0,"Spanish":6.8,"Tagalog":0,"Vietnamese":0},"Rogers County, Oklahoma":{"Arabic":0.1,"Chinese":0,"English only":87.6,"French, Haitian, Cajun":0.2,"German or West Germanic":1,"Korean":0.1,"Other Asian/Pacific":1.7,"Other Indo-European":0.6,"Other/Unspecified":1.2,"Russian, Polish, Slavic":0.2,"Spanish":6.6,"Tagalog":0.3,"Vietnamese":0.3},"Seminole County, Oklahoma":{"Arabic":0,"Chinese":0.2,"English only":89.8,"French, Haitian, Cajun":0.1,"German or West Germanic":0.5,"Korean":0,"Other Asian/Pacific":0.2,"Other Indo-European":0.5,"Other/Unspecified":4,"Russian, Polish, Slavic":0,"Spanish":4.7,"Tagalog":0,"Vietnamese":0},"Sequoyah County, Oklahoma":{"Arabic":0.3,"Chinese":0.2,"English only":86.2,"French, Haitian, Cajun":0.1,"German or West Germanic":1.1,"Korean":0,"Other Asian/Pacific":0.6,"Other Indo-European":0.2,"Other/Unspecified":4.3,"Russian, Polish, Slavic":0,"Spanish":6.2,"Tagalog":0.6,"Vietnamese":0.2},"Stephens County, Oklahoma":{"Arabic":0,"Chinese":0.3,"English only":88.9,"French, Haitian, Cajun":0.2,"German or West Germanic":0.4,"Korean":0,"Other Asian/Pacific":0.4,"Other Indo-European":0.3,"Other/Unspecified":0.3,"Russian, Polish, Slavic":0.1,"Spanish":8.3,"Tagalog":0.3,"Vietnamese":0.4},"Texas County, Oklahoma":{"Arabic":1,"Chinese":0,"English only":37.7,"French, Haitian, Cajun":0.1,"German or West Germanic":0.3,"Korean":0,"Other Asian/Pacific":0,"Other Indo-European":0.1,"Other/Unspecified":2.8,"Russian, Polish, Slavic":0,"Spanish":56.3,"Tagalog":0.8,"Vietnamese":0.9},"Tillman County, Oklahoma":{"Arabic":0,"Chinese":0,"English only":69,"French, Haitian, Cajun":0.2,"German or West Germanic":0.7,"Korean":0,"Other Asian/Pacific":0,"Other Indo-European":0,"Other/Unspecified":0,"Russian, Polish, Slavic":0.9,"Spanish":29.2,"Tagalog":0,"Vietnamese":0},"Tulsa County, Oklahoma":{"Arabic":0.7,"Chinese":0.5,"English only":73.4,"French, Haitian, Cajun":0.5,"German or West Germanic":0.8,"Korean":0.2,"Other Asian/Pacific":2.2,"Other Indo-European":1.4,"Other/Unspecified":1.3,"Russian, Polish, Slavic":0.6,"Spanish":17.2,"Tagalog":0.4,"Vietnamese":0.9},"Wagoner County, Oklahoma":{"Arabic":0.2,"Chinese":0.1,"English only":84,"French, Haitian, Cajun":0.2,"German or West Germanic":0.8,"Korean":0.3,"Other Asian/Pacific":1.8,"Other Indo-European":0.4,"Other/Unspecified":0.8,"Russian, Polish, Slavic":1,"Spanish":9.9,"Tagalog":0.2,"Vietnamese":0.1},"Washington County, Oklahoma":{"Arabic":0,"Chinese":0.9,"English only":87.1,"French, Haitian, Cajun":0.4,"German or West Germanic":0.4,"Korean":0.1,"Other Asian/Pacific":0.8,"Other Indo-European":0.7,"Other/Unspecified":0.8,"Russian, Polish, Slavic":0.2,"Spanish":8,"Tagalog":0.2,"Vietnamese":0.4},"Washita County, Oklahoma":{"Arabic":0,"Chinese":0,"English only":87.8,"French, Haitian, Cajun":0,"German or West Germanic":1,"Korean":0,"Other Asian/Pacific":0.2,"Other Indo-European":0.2,"Other/Unspecified":0.1,"Russian, Polish, Slavic":0,"Spanish":10.7,"Tagalog":0,"Vietnamese":0},"Woods County, Oklahoma":{"Arabic":0,"Chinese":0,"English only":87.6,"French, Haitian, Cajun":0,"German or West Germanic":0.5,"Korean":0,"Other Asian/Pacific":0,"Other Indo-European":0.2,"Other/Unspecified":0,"Russian, Polish, Slavic":4.7,"Spanish":7,"Tagalog":0,"Vietnamese":0},"Woodward County, Oklahoma":{"Arabic":0,"Chinese":1,"English only":80.5,"French, Haitian, Cajun":0,"German or West Germanic":1,"Korean":0,"Other Asian/Pacific":0.3,"Other Indo-European":0.4,"Other/Unspecified":0,"Russian, Polish, Slavic":0,"Spanish":16.8,"Tagalog":0,"Vietnamese":0}};
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: Object.keys(values),
+        datasets: [{
+          label: 'Share (%)',
+          data: Object.values(values),
+          backgroundColor: '#4576a7'
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.parsed.y + '%'
+            }
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 100,
+            title: {
+              display: true,
+              text: 'Population Share (%)'
+            }
+          },
+          x: {
+            title: {
+              display: true,
+              text: 'Language Group'
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(languageData[this.value]);
+  });
+
+  renderChart(languageData['Statewide']);</script>
+  </body>
+</html>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Educational Enrollment – Alaska</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Educational Enrollment (Age 18–24) in Alaska</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Aleutians East Borough, Alaska">Aleutians East Borough, Alaska</option>
+      <option value="Aleutians West Census Area, Alaska">Aleutians West Census Area, Alaska</option>
+      <option value="Anchorage Municipality, Alaska">Anchorage Municipality, Alaska</option>
+      <option value="Bethel Census Area, Alaska">Bethel Census Area, Alaska</option>
+      <option value="Bristol Bay Borough, Alaska">Bristol Bay Borough, Alaska</option>
+      <option value="Chugach Census Area, Alaska">Chugach Census Area, Alaska</option>
+      <option value="Copper River Census Area, Alaska">Copper River Census Area, Alaska</option>
+      <option value="Denali Borough, Alaska">Denali Borough, Alaska</option>
+      <option value="Dillingham Census Area, Alaska">Dillingham Census Area, Alaska</option>
+      <option value="Fairbanks North Star Borough, Alaska">Fairbanks North Star Borough, Alaska</option>
+      <option value="Haines Borough, Alaska">Haines Borough, Alaska</option>
+      <option value="Hoonah-Angoon Census Area, Alaska">Hoonah-Angoon Census Area, Alaska</option>
+      <option value="Juneau City and Borough, Alaska">Juneau City and Borough, Alaska</option>
+      <option value="Kenai Peninsula Borough, Alaska">Kenai Peninsula Borough, Alaska</option>
+      <option value="Ketchikan Gateway Borough, Alaska">Ketchikan Gateway Borough, Alaska</option>
+      <option value="Kodiak Island Borough, Alaska">Kodiak Island Borough, Alaska</option>
+      <option value="Kusilvak Census Area, Alaska">Kusilvak Census Area, Alaska</option>
+      <option value="Lake and Peninsula Borough, Alaska">Lake and Peninsula Borough, Alaska</option>
+      <option value="Matanuska-Susitna Borough, Alaska">Matanuska-Susitna Borough, Alaska</option>
+      <option value="Nome Census Area, Alaska">Nome Census Area, Alaska</option>
+      <option value="North Slope Borough, Alaska">North Slope Borough, Alaska</option>
+      <option value="Northwest Arctic Borough, Alaska">Northwest Arctic Borough, Alaska</option>
+      <option value="Petersburg Borough, Alaska">Petersburg Borough, Alaska</option>
+      <option value="Prince of Wales-Hyder Census Area, Alaska">Prince of Wales-Hyder Census Area, Alaska</option>
+      <option value="Sitka City and Borough, Alaska">Sitka City and Borough, Alaska</option>
+      <option value="Skagway Municipality, Alaska">Skagway Municipality, Alaska</option>
+      <option value="Southeast Fairbanks Census Area, Alaska">Southeast Fairbanks Census Area, Alaska</option>
+      <option value="Wrangell City and Borough, Alaska">Wrangell City and Borough, Alaska</option>
+      <option value="Yakutat City and Borough, Alaska">Yakutat City and Borough, Alaska</option>
+      <option value="Yukon-Koyukuk Census Area, Alaska">Yukon-Koyukuk Census Area, Alaska</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>  const data = {"Statewide":[43.4,26,30.7],"Aleutians East Borough, Alaska":[37.2,28,34.8],"Aleutians West Census Area, Alaska":[38.8,48.8,12.5],"Anchorage Municipality, Alaska":[42.6,26.8,30.6],"Bethel Census Area, Alaska":[41.9,24.5,33.7],"Bristol Bay Borough, Alaska":[47.6,9.5,42.9],"Chugach Census Area, Alaska":[45.9,29.6,24.4],"Copper River Census Area, Alaska":[56.8,2.1,41.1],"Denali Borough, Alaska":[40,40,20],"Dillingham Census Area, Alaska":[42.1,26.5,31.4],"Fairbanks North Star Borough, Alaska":[41.9,31.6,26.5],"Haines Borough, Alaska":[50,0,50],"Hoonah-Angoon Census Area, Alaska":[56.2,6.2,37.5],"Juneau City and Borough, Alaska":[46.2,20.1,33.8],"Kenai Peninsula Borough, Alaska":[43.3,21.1,35.6],"Ketchikan Gateway Borough, Alaska":[50.2,17.9,31.9],"Kodiak Island Borough, Alaska":[29.2,50.7,20.2],"Kusilvak Census Area, Alaska":[40.9,29.2,29.9],"Lake and Peninsula Borough, Alaska":[54.6,14.4,30.9],"Matanuska-Susitna Borough, Alaska":[45.4,23.5,31.1],"Nome Census Area, Alaska":[44,24.9,31.1],"North Slope Borough, Alaska":[44.2,24.4,31.4],"Northwest Arctic Borough, Alaska":[44.4,24.3,31.3],"Petersburg Borough, Alaska":[48.3,17.4,34.3],"Prince of Wales-Hyder Census Area, Alaska":[49.5,25.4,25.1],"Sitka City and Borough, Alaska":[45.7,14.7,39.6],"Skagway Municipality, Alaska":[60,0,40],"Southeast Fairbanks Census Area, Alaska":[46.2,21.9,31.9],"Wrangell City and Borough, Alaska":[48.8,19,32.1],"Yakutat City and Borough, Alaska":[50,0,50],"Yukon-Koyukuk Census Area, Alaska":[51.7,12.8,35.6]};
+  const nationalAvg = [6.9,55,38.1];
+  const categories = ["Enrolled in College","Enrolled in Other School","Not Enrolled"];
+  const ctx = document.getElementById("barChart").getContext("2d");
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: categories,
+        datasets: [
+          {
+            label: "County/State",
+            data: values,
+            backgroundColor: ["#66c2a5", "#fc8d62", "#8da0cb"]
+          },
+          {
+            label: null,
+            data: categories.map(c => nationalAvg[c]),
+            type: "line",
+            borderColor: "black",
+            borderWidth: 2,
+            pointRadius: 0,
+            fill: false
+          }
+        ]
+      },
+      options: {
+        indexAxis: "y",
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            ticks: {
+              callback: v => v + "%"
+            }
+          }
+        },
+        plugins: {
+          legend: {
+            labels: {
+              filter: item => item.text !== null
+            }
+          },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.dataset.label ? ctx.dataset.label + ": " + ctx.raw + "%" : null
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById("countySelect").addEventListener("change", function() {
+    renderChart(Object.values(data[this.value]));
+  });
+
+  renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

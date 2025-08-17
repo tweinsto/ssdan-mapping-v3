@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Educational Enrollment – Mississippi</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Educational Enrollment (Age 18–24) in Mississippi</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Adams County, Mississippi">Adams County, Mississippi</option>
+      <option value="Alcorn County, Mississippi">Alcorn County, Mississippi</option>
+      <option value="Amite County, Mississippi">Amite County, Mississippi</option>
+      <option value="Attala County, Mississippi">Attala County, Mississippi</option>
+      <option value="Benton County, Mississippi">Benton County, Mississippi</option>
+      <option value="Bolivar County, Mississippi">Bolivar County, Mississippi</option>
+      <option value="Calhoun County, Mississippi">Calhoun County, Mississippi</option>
+      <option value="Carroll County, Mississippi">Carroll County, Mississippi</option>
+      <option value="Chickasaw County, Mississippi">Chickasaw County, Mississippi</option>
+      <option value="Choctaw County, Mississippi">Choctaw County, Mississippi</option>
+      <option value="Claiborne County, Mississippi">Claiborne County, Mississippi</option>
+      <option value="Clarke County, Mississippi">Clarke County, Mississippi</option>
+      <option value="Clay County, Mississippi">Clay County, Mississippi</option>
+      <option value="Coahoma County, Mississippi">Coahoma County, Mississippi</option>
+      <option value="Copiah County, Mississippi">Copiah County, Mississippi</option>
+      <option value="Covington County, Mississippi">Covington County, Mississippi</option>
+      <option value="DeSoto County, Mississippi">DeSoto County, Mississippi</option>
+      <option value="Forrest County, Mississippi">Forrest County, Mississippi</option>
+      <option value="Franklin County, Mississippi">Franklin County, Mississippi</option>
+      <option value="George County, Mississippi">George County, Mississippi</option>
+      <option value="Greene County, Mississippi">Greene County, Mississippi</option>
+      <option value="Grenada County, Mississippi">Grenada County, Mississippi</option>
+      <option value="Hancock County, Mississippi">Hancock County, Mississippi</option>
+      <option value="Harrison County, Mississippi">Harrison County, Mississippi</option>
+      <option value="Hinds County, Mississippi">Hinds County, Mississippi</option>
+      <option value="Holmes County, Mississippi">Holmes County, Mississippi</option>
+      <option value="Humphreys County, Mississippi">Humphreys County, Mississippi</option>
+      <option value="Issaquena County, Mississippi">Issaquena County, Mississippi</option>
+      <option value="Itawamba County, Mississippi">Itawamba County, Mississippi</option>
+      <option value="Jackson County, Mississippi">Jackson County, Mississippi</option>
+      <option value="Jasper County, Mississippi">Jasper County, Mississippi</option>
+      <option value="Jefferson County, Mississippi">Jefferson County, Mississippi</option>
+      <option value="Jefferson Davis County, Mississippi">Jefferson Davis County, Mississippi</option>
+      <option value="Jones County, Mississippi">Jones County, Mississippi</option>
+      <option value="Kemper County, Mississippi">Kemper County, Mississippi</option>
+      <option value="Lafayette County, Mississippi">Lafayette County, Mississippi</option>
+      <option value="Lamar County, Mississippi">Lamar County, Mississippi</option>
+      <option value="Lauderdale County, Mississippi">Lauderdale County, Mississippi</option>
+      <option value="Lawrence County, Mississippi">Lawrence County, Mississippi</option>
+      <option value="Leake County, Mississippi">Leake County, Mississippi</option>
+      <option value="Lee County, Mississippi">Lee County, Mississippi</option>
+      <option value="Leflore County, Mississippi">Leflore County, Mississippi</option>
+      <option value="Lincoln County, Mississippi">Lincoln County, Mississippi</option>
+      <option value="Lowndes County, Mississippi">Lowndes County, Mississippi</option>
+      <option value="Madison County, Mississippi">Madison County, Mississippi</option>
+      <option value="Marion County, Mississippi">Marion County, Mississippi</option>
+      <option value="Marshall County, Mississippi">Marshall County, Mississippi</option>
+      <option value="Monroe County, Mississippi">Monroe County, Mississippi</option>
+      <option value="Montgomery County, Mississippi">Montgomery County, Mississippi</option>
+      <option value="Neshoba County, Mississippi">Neshoba County, Mississippi</option>
+      <option value="Newton County, Mississippi">Newton County, Mississippi</option>
+      <option value="Noxubee County, Mississippi">Noxubee County, Mississippi</option>
+      <option value="Oktibbeha County, Mississippi">Oktibbeha County, Mississippi</option>
+      <option value="Panola County, Mississippi">Panola County, Mississippi</option>
+      <option value="Pearl River County, Mississippi">Pearl River County, Mississippi</option>
+      <option value="Perry County, Mississippi">Perry County, Mississippi</option>
+      <option value="Pike County, Mississippi">Pike County, Mississippi</option>
+      <option value="Pontotoc County, Mississippi">Pontotoc County, Mississippi</option>
+      <option value="Prentiss County, Mississippi">Prentiss County, Mississippi</option>
+      <option value="Quitman County, Mississippi">Quitman County, Mississippi</option>
+      <option value="Rankin County, Mississippi">Rankin County, Mississippi</option>
+      <option value="Scott County, Mississippi">Scott County, Mississippi</option>
+      <option value="Sharkey County, Mississippi">Sharkey County, Mississippi</option>
+      <option value="Simpson County, Mississippi">Simpson County, Mississippi</option>
+      <option value="Smith County, Mississippi">Smith County, Mississippi</option>
+      <option value="Stone County, Mississippi">Stone County, Mississippi</option>
+      <option value="Sunflower County, Mississippi">Sunflower County, Mississippi</option>
+      <option value="Tallahatchie County, Mississippi">Tallahatchie County, Mississippi</option>
+      <option value="Tate County, Mississippi">Tate County, Mississippi</option>
+      <option value="Tippah County, Mississippi">Tippah County, Mississippi</option>
+      <option value="Tishomingo County, Mississippi">Tishomingo County, Mississippi</option>
+      <option value="Tunica County, Mississippi">Tunica County, Mississippi</option>
+      <option value="Union County, Mississippi">Union County, Mississippi</option>
+      <option value="Walthall County, Mississippi">Walthall County, Mississippi</option>
+      <option value="Warren County, Mississippi">Warren County, Mississippi</option>
+      <option value="Washington County, Mississippi">Washington County, Mississippi</option>
+      <option value="Wayne County, Mississippi">Wayne County, Mississippi</option>
+      <option value="Webster County, Mississippi">Webster County, Mississippi</option>
+      <option value="Wilkinson County, Mississippi">Wilkinson County, Mississippi</option>
+      <option value="Winston County, Mississippi">Winston County, Mississippi</option>
+      <option value="Yalobusha County, Mississippi">Yalobusha County, Mississippi</option>
+      <option value="Yazoo County, Mississippi">Yazoo County, Mississippi</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>  const data = {"Statewide":[46.4,15.4,38.2],"Adams County, Mississippi":[43.8,19.2,37],"Alcorn County, Mississippi":[49.5,15.4,35.1],"Amite County, Mississippi":[58.6,7.4,34],"Attala County, Mississippi":[45,27.4,27.6],"Benton County, Mississippi":[44.4,19.6,36],"Bolivar County, Mississippi":[47,8.4,44.6],"Calhoun County, Mississippi":[45.4,12,42.6],"Carroll County, Mississippi":[32.7,46.4,20.9],"Chickasaw County, Mississippi":[51.2,3.6,45.2],"Choctaw County, Mississippi":[42.2,18,39.8],"Claiborne County, Mississippi":[49.5,9.9,40.6],"Clarke County, Mississippi":[54.6,8.7,36.7],"Clay County, Mississippi":[39.6,35.7,24.7],"Coahoma County, Mississippi":[45.5,17.2,37.3],"Copiah County, Mississippi":[47.4,12.5,40.1],"Covington County, Mississippi":[55.4,7,37.6],"DeSoto County, Mississippi":[47.3,13.4,39.3],"Forrest County, Mississippi":[48.9,8.7,42.4],"Franklin County, Mississippi":[48.8,2.9,48.2],"George County, Mississippi":[49,17.8,33.2],"Greene County, Mississippi":[39.5,27.5,33.1],"Grenada County, Mississippi":[47,10,43],"Hancock County, Mississippi":[48.8,24.7,26.6],"Harrison County, Mississippi":[45.4,22.8,31.8],"Hinds County, Mississippi":[45.7,14.2,40.1],"Holmes County, Mississippi":[50.2,3.1,46.7],"Humphreys County, Mississippi":[24,38.8,37.3],"Issaquena County, Mississippi":[18.2,63.6,18.2],"Itawamba County, Mississippi":[46.3,17.2,36.5],"Jackson County, Mississippi":[44.6,20.2,35.3],"Jasper County, Mississippi":[42,24.1,33.8],"Jefferson County, Mississippi":[46.4,8.1,45.6],"Jefferson Davis County, Mississippi":[27,41.1,31.8],"Jones County, Mississippi":[46.4,16,37.6],"Kemper County, Mississippi":[51.5,9.4,39.1],"Lafayette County, Mississippi":[48.2,7,44.8],"Lamar County, Mississippi":[49.5,15.6,34.9],"Lauderdale County, Mississippi":[48,14.9,37],"Lawrence County, Mississippi":[49.8,5.5,44.7],"Leake County, Mississippi":[49.2,10.7,40.1],"Lee County, Mississippi":[48,10.9,41.1],"Leflore County, Mississippi":[50.3,10.8,38.9],"Lincoln County, Mississippi":[43.3,21.2,35.4],"Lowndes County, Mississippi":[43.6,20,36.4],"Madison County, Mississippi":[48.9,9.9,41.2],"Marion County, Mississippi":[41.3,22,36.7],"Marshall County, Mississippi":[49,17.9,33.1],"Monroe County, Mississippi":[49.9,9.3,40.8],"Montgomery County, Mississippi":[45.6,11.8,42.6],"Neshoba County, Mississippi":[45.8,10.3,43.9],"Newton County, Mississippi":[48.1,7.2,44.7],"Noxubee County, Mississippi":[46.4,16.1,37.6],"Oktibbeha County, Mississippi":[49.8,3.1,47.1],"Panola County, Mississippi":[43.5,14.7,41.8],"Pearl River County, Mississippi":[48.4,17.4,34.1],"Perry County, Mississippi":[32.2,30.1,37.7],"Pike County, Mississippi":[42.9,23,34.2],"Pontotoc County, Mississippi":[44.9,21.4,33.7],"Prentiss County, Mississippi":[46.8,11.5,41.7],"Quitman County, Mississippi":[51.9,5.3,42.9],"Rankin County, Mississippi":[44.5,15.6,39.9],"Scott County, Mississippi":[38.7,31.3,30],"Sharkey County, Mississippi":[39.5,27.3,33.2],"Simpson County, Mississippi":[48.4,11.2,40.4],"Smith County, Mississippi":[54.6,19.3,26.1],"Stone County, Mississippi":[46.5,11.6,41.9],"Sunflower County, Mississippi":[53.8,10.5,35.7],"Tallahatchie County, Mississippi":[40.9,25.5,33.6],"Tate County, Mississippi":[45.3,15.3,39.5],"Tippah County, Mississippi":[46,15.9,38.1],"Tishomingo County, Mississippi":[53.5,11.9,34.6],"Tunica County, Mississippi":[59.4,0.9,39.6],"Union County, Mississippi":[48.3,16.9,34.8],"Walthall County, Mississippi":[45.5,18.3,36.3],"Warren County, Mississippi":[41.7,19.7,38.6],"Washington County, Mississippi":[44.9,13,42.1],"Wayne County, Mississippi":[43.1,26.3,30.6],"Webster County, Mississippi":[49.6,21,29.3],"Wilkinson County, Mississippi":[35.7,36.7,27.6],"Winston County, Mississippi":[47.8,11.6,40.7],"Yalobusha County, Mississippi":[51.7,14.8,33.5],"Yazoo County, Mississippi":[47.7,23.1,29.2]};
+  const nationalAvg = [6.9,55,38.1];
+  const categories = ["Enrolled in College","Enrolled in Other School","Not Enrolled"];
+  const ctx = document.getElementById("barChart").getContext("2d");
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: categories,
+        datasets: [
+          {
+            label: "County/State",
+            data: values,
+            backgroundColor: ["#66c2a5", "#fc8d62", "#8da0cb"]
+          },
+          {
+            label: null,
+            data: categories.map(c => nationalAvg[c]),
+            type: "line",
+            borderColor: "black",
+            borderWidth: 2,
+            pointRadius: 0,
+            fill: false
+          }
+        ]
+      },
+      options: {
+        indexAxis: "y",
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            ticks: {
+              callback: v => v + "%"
+            }
+          }
+        },
+        plugins: {
+          legend: {
+            labels: {
+              filter: item => item.text !== null
+            }
+          },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.dataset.label ? ctx.dataset.label + ": " + ctx.raw + "%" : null
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById("countySelect").addEventListener("change", function() {
+    renderChart(Object.values(data[this.value]));
+  });
+
+  renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Educational Enrollment – Iowa</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Educational Enrollment (Age 18–24) in Iowa</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Adair County, Iowa">Adair County, Iowa</option>
+      <option value="Adams County, Iowa">Adams County, Iowa</option>
+      <option value="Allamakee County, Iowa">Allamakee County, Iowa</option>
+      <option value="Appanoose County, Iowa">Appanoose County, Iowa</option>
+      <option value="Audubon County, Iowa">Audubon County, Iowa</option>
+      <option value="Benton County, Iowa">Benton County, Iowa</option>
+      <option value="Black Hawk County, Iowa">Black Hawk County, Iowa</option>
+      <option value="Boone County, Iowa">Boone County, Iowa</option>
+      <option value="Bremer County, Iowa">Bremer County, Iowa</option>
+      <option value="Buchanan County, Iowa">Buchanan County, Iowa</option>
+      <option value="Buena Vista County, Iowa">Buena Vista County, Iowa</option>
+      <option value="Butler County, Iowa">Butler County, Iowa</option>
+      <option value="Calhoun County, Iowa">Calhoun County, Iowa</option>
+      <option value="Carroll County, Iowa">Carroll County, Iowa</option>
+      <option value="Cass County, Iowa">Cass County, Iowa</option>
+      <option value="Cedar County, Iowa">Cedar County, Iowa</option>
+      <option value="Cerro Gordo County, Iowa">Cerro Gordo County, Iowa</option>
+      <option value="Cherokee County, Iowa">Cherokee County, Iowa</option>
+      <option value="Chickasaw County, Iowa">Chickasaw County, Iowa</option>
+      <option value="Clarke County, Iowa">Clarke County, Iowa</option>
+      <option value="Clay County, Iowa">Clay County, Iowa</option>
+      <option value="Clayton County, Iowa">Clayton County, Iowa</option>
+      <option value="Clinton County, Iowa">Clinton County, Iowa</option>
+      <option value="Crawford County, Iowa">Crawford County, Iowa</option>
+      <option value="Dallas County, Iowa">Dallas County, Iowa</option>
+      <option value="Davis County, Iowa">Davis County, Iowa</option>
+      <option value="Decatur County, Iowa">Decatur County, Iowa</option>
+      <option value="Delaware County, Iowa">Delaware County, Iowa</option>
+      <option value="Des Moines County, Iowa">Des Moines County, Iowa</option>
+      <option value="Dickinson County, Iowa">Dickinson County, Iowa</option>
+      <option value="Dubuque County, Iowa">Dubuque County, Iowa</option>
+      <option value="Emmet County, Iowa">Emmet County, Iowa</option>
+      <option value="Fayette County, Iowa">Fayette County, Iowa</option>
+      <option value="Floyd County, Iowa">Floyd County, Iowa</option>
+      <option value="Franklin County, Iowa">Franklin County, Iowa</option>
+      <option value="Fremont County, Iowa">Fremont County, Iowa</option>
+      <option value="Greene County, Iowa">Greene County, Iowa</option>
+      <option value="Grundy County, Iowa">Grundy County, Iowa</option>
+      <option value="Guthrie County, Iowa">Guthrie County, Iowa</option>
+      <option value="Hamilton County, Iowa">Hamilton County, Iowa</option>
+      <option value="Hancock County, Iowa">Hancock County, Iowa</option>
+      <option value="Hardin County, Iowa">Hardin County, Iowa</option>
+      <option value="Harrison County, Iowa">Harrison County, Iowa</option>
+      <option value="Henry County, Iowa">Henry County, Iowa</option>
+      <option value="Howard County, Iowa">Howard County, Iowa</option>
+      <option value="Humboldt County, Iowa">Humboldt County, Iowa</option>
+      <option value="Ida County, Iowa">Ida County, Iowa</option>
+      <option value="Iowa County, Iowa">Iowa County, Iowa</option>
+      <option value="Jackson County, Iowa">Jackson County, Iowa</option>
+      <option value="Jasper County, Iowa">Jasper County, Iowa</option>
+      <option value="Jefferson County, Iowa">Jefferson County, Iowa</option>
+      <option value="Johnson County, Iowa">Johnson County, Iowa</option>
+      <option value="Jones County, Iowa">Jones County, Iowa</option>
+      <option value="Keokuk County, Iowa">Keokuk County, Iowa</option>
+      <option value="Kossuth County, Iowa">Kossuth County, Iowa</option>
+      <option value="Lee County, Iowa">Lee County, Iowa</option>
+      <option value="Linn County, Iowa">Linn County, Iowa</option>
+      <option value="Louisa County, Iowa">Louisa County, Iowa</option>
+      <option value="Lucas County, Iowa">Lucas County, Iowa</option>
+      <option value="Lyon County, Iowa">Lyon County, Iowa</option>
+      <option value="Madison County, Iowa">Madison County, Iowa</option>
+      <option value="Mahaska County, Iowa">Mahaska County, Iowa</option>
+      <option value="Marion County, Iowa">Marion County, Iowa</option>
+      <option value="Marshall County, Iowa">Marshall County, Iowa</option>
+      <option value="Mills County, Iowa">Mills County, Iowa</option>
+      <option value="Mitchell County, Iowa">Mitchell County, Iowa</option>
+      <option value="Monona County, Iowa">Monona County, Iowa</option>
+      <option value="Monroe County, Iowa">Monroe County, Iowa</option>
+      <option value="Montgomery County, Iowa">Montgomery County, Iowa</option>
+      <option value="Muscatine County, Iowa">Muscatine County, Iowa</option>
+      <option value="O&#39;Brien County, Iowa">O'Brien County, Iowa</option>
+      <option value="Osceola County, Iowa">Osceola County, Iowa</option>
+      <option value="Page County, Iowa">Page County, Iowa</option>
+      <option value="Palo Alto County, Iowa">Palo Alto County, Iowa</option>
+      <option value="Plymouth County, Iowa">Plymouth County, Iowa</option>
+      <option value="Pocahontas County, Iowa">Pocahontas County, Iowa</option>
+      <option value="Polk County, Iowa">Polk County, Iowa</option>
+      <option value="Pottawattamie County, Iowa">Pottawattamie County, Iowa</option>
+      <option value="Poweshiek County, Iowa">Poweshiek County, Iowa</option>
+      <option value="Ringgold County, Iowa">Ringgold County, Iowa</option>
+      <option value="Sac County, Iowa">Sac County, Iowa</option>
+      <option value="Scott County, Iowa">Scott County, Iowa</option>
+      <option value="Shelby County, Iowa">Shelby County, Iowa</option>
+      <option value="Sioux County, Iowa">Sioux County, Iowa</option>
+      <option value="Story County, Iowa">Story County, Iowa</option>
+      <option value="Tama County, Iowa">Tama County, Iowa</option>
+      <option value="Taylor County, Iowa">Taylor County, Iowa</option>
+      <option value="Union County, Iowa">Union County, Iowa</option>
+      <option value="Van Buren County, Iowa">Van Buren County, Iowa</option>
+      <option value="Wapello County, Iowa">Wapello County, Iowa</option>
+      <option value="Warren County, Iowa">Warren County, Iowa</option>
+      <option value="Washington County, Iowa">Washington County, Iowa</option>
+      <option value="Wayne County, Iowa">Wayne County, Iowa</option>
+      <option value="Webster County, Iowa">Webster County, Iowa</option>
+      <option value="Winnebago County, Iowa">Winnebago County, Iowa</option>
+      <option value="Winneshiek County, Iowa">Winneshiek County, Iowa</option>
+      <option value="Woodbury County, Iowa">Woodbury County, Iowa</option>
+      <option value="Worth County, Iowa">Worth County, Iowa</option>
+      <option value="Wright County, Iowa">Wright County, Iowa</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>  const data = {"Statewide":[47.3,14.6,38.2],"Adair County, Iowa":[45.5,28.2,26.3],"Adams County, Iowa":[42.6,30.5,27],"Allamakee County, Iowa":[44.6,20.9,34.5],"Appanoose County, Iowa":[49.9,23.3,26.7],"Audubon County, Iowa":[26.3,46.4,27.2],"Benton County, Iowa":[48.9,15.8,35.3],"Black Hawk County, Iowa":[47.8,13,39.2],"Boone County, Iowa":[47.1,19,33.9],"Bremer County, Iowa":[50.2,3.8,46],"Buchanan County, Iowa":[43.3,18.1,38.6],"Buena Vista County, Iowa":[50.1,10.9,38.9],"Butler County, Iowa":[47.2,11.9,40.9],"Calhoun County, Iowa":[41.9,19.9,38.1],"Carroll County, Iowa":[50.1,7.7,42.1],"Cass County, Iowa":[50.2,19.5,30.3],"Cedar County, Iowa":[48.8,12.6,38.7],"Cerro Gordo County, Iowa":[47.8,16.1,36.1],"Cherokee County, Iowa":[45.6,17,37.4],"Chickasaw County, Iowa":[50.8,12.6,36.6],"Clarke County, Iowa":[37.2,38.2,24.6],"Clay County, Iowa":[51.6,9.5,38.9],"Clayton County, Iowa":[46.5,28.1,25.3],"Clinton County, Iowa":[47.6,11.4,41.1],"Crawford County, Iowa":[42.2,22.5,35.2],"Dallas County, Iowa":[48.5,11.9,39.6],"Davis County, Iowa":[43.3,41.3,15.4],"Decatur County, Iowa":[49.1,7.9,43],"Delaware County, Iowa":[44.8,22,33.2],"Des Moines County, Iowa":[43.7,23.8,32.5],"Dickinson County, Iowa":[49.4,25.1,25.5],"Dubuque County, Iowa":[46.8,14.8,38.3],"Emmet County, Iowa":[49.1,5.6,45.3],"Fayette County, Iowa":[49.2,10,40.8],"Floyd County, Iowa":[43.5,23.9,32.6],"Franklin County, Iowa":[43.8,26.2,30],"Fremont County, Iowa":[47.9,9.6,42.5],"Greene County, Iowa":[49.1,28.3,22.6],"Grundy County, Iowa":[47.6,16.7,35.7],"Guthrie County, Iowa":[41.8,24.5,33.8],"Hamilton County, Iowa":[38.2,31.2,30.6],"Hancock County, Iowa":[46,23.4,30.7],"Hardin County, Iowa":[52.2,5.8,42],"Harrison County, Iowa":[39.9,28.9,31.1],"Henry County, Iowa":[40.3,27.3,32.4],"Howard County, Iowa":[49.9,12.6,37.5],"Humboldt County, Iowa":[51.3,11.6,37.1],"Ida County, Iowa":[47.4,15.7,36.9],"Iowa County, Iowa":[48.2,12.8,39],"Jackson County, Iowa":[49.1,8.9,42.1],"Jasper County, Iowa":[46.7,19.2,34.1],"Jefferson County, Iowa":[46.8,20.9,32.3],"Johnson County, Iowa":[48.7,6.3,45],"Jones County, Iowa":[43.9,18.6,37.5],"Keokuk County, Iowa":[42.9,30.7,26.4],"Kossuth County, Iowa":[51.7,8.3,40.1],"Lee County, Iowa":[46.7,20.3,33],"Linn County, Iowa":[48,11.9,40.1],"Louisa County, Iowa":[42.8,21.2,36],"Lucas County, Iowa":[49.3,12.1,38.6],"Lyon County, Iowa":[46.5,14.8,38.7],"Madison County, Iowa":[48.4,21.4,30.2],"Mahaska County, Iowa":[44,28,28.1],"Marion County, Iowa":[49.2,9.7,41.1],"Marshall County, Iowa":[49,17.9,33.1],"Mills County, Iowa":[46.6,12.6,40.9],"Mitchell County, Iowa":[48.4,14.2,37.4],"Monona County, Iowa":[45.4,14.8,39.8],"Monroe County, Iowa":[50.6,6,43.4],"Montgomery County, Iowa":[45.7,14.4,39.9],"Muscatine County, Iowa":[45.4,21.8,32.9],"O'Brien County, Iowa":[46.5,14.6,38.8],"Osceola County, Iowa":[40.5,24.1,35.5],"Page County, Iowa":[54.9,4.1,41],"Palo Alto County, Iowa":[45.8,18.5,35.7],"Plymouth County, Iowa":[46.1,15,38.9],"Pocahontas County, Iowa":[45.6,18.9,35.5],"Polk County, Iowa":[46.3,16.5,37.2],"Pottawattamie County, Iowa":[49,13.7,37.3],"Poweshiek County, Iowa":[48.2,9.7,42.1],"Ringgold County, Iowa":[33.9,41.4,24.7],"Sac County, Iowa":[40.1,20.4,39.5],"Scott County, Iowa":[48.4,14.4,37.2],"Shelby County, Iowa":[48.9,14.8,36.3],"Sioux County, Iowa":[47.3,8.1,44.6],"Story County, Iowa":[49.3,4.3,46.4],"Tama County, Iowa":[47.3,24.3,28.4],"Taylor County, Iowa":[35.7,35.7,28.5],"Union County, Iowa":[51.1,8.4,40.5],"Van Buren County, Iowa":[45,22.6,32.4],"Wapello County, Iowa":[45.3,24.8,29.9],"Warren County, Iowa":[48,12.2,39.8],"Washington County, Iowa":[47.9,15.4,36.7],"Wayne County, Iowa":[42.9,28.2,28.9],"Webster County, Iowa":[46.4,20.5,33.1],"Winnebago County, Iowa":[48.6,9.8,41.6],"Winneshiek County, Iowa":[48.9,4.4,46.7],"Woodbury County, Iowa":[47.3,14.4,38.3],"Worth County, Iowa":[49.1,10,40.9],"Wright County, Iowa":[40.6,27.2,32.2]};
+  const nationalAvg = [6.9,55,38.1];
+  const categories = ["Enrolled in College","Enrolled in Other School","Not Enrolled"];
+  const ctx = document.getElementById("barChart").getContext("2d");
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: categories,
+        datasets: [
+          {
+            label: "County/State",
+            data: values,
+            backgroundColor: ["#66c2a5", "#fc8d62", "#8da0cb"]
+          },
+          {
+            label: null,
+            data: categories.map(c => nationalAvg[c]),
+            type: "line",
+            borderColor: "black",
+            borderWidth: 2,
+            pointRadius: 0,
+            fill: false
+          }
+        ]
+      },
+      options: {
+        indexAxis: "y",
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            ticks: {
+              callback: v => v + "%"
+            }
+          }
+        },
+        plugins: {
+          legend: {
+            labels: {
+              filter: item => item.text !== null
+            }
+          },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.dataset.label ? ctx.dataset.label + ": " + ctx.raw + "%" : null
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById("countySelect").addEventListener("change", function() {
+    renderChart(Object.values(data[this.value]));
+  });
+
+  renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

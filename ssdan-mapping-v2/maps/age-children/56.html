@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Age Distribution Under 18 –  Wyoming</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          margin: 1rem 2rem;
+          text-align: center;
+        }
+        h2 {
+          margin-bottom: 0.25rem;
+          font-size: 1.6rem;
+        }
+        select {
+          padding: 0.4rem;
+          font-size: 1rem;
+          margin: 1rem 0;
+          border-radius: 5px;
+          border: 1px solid #999;
+        }
+        canvas {
+          width: 100%;
+          max-width: 850px;
+          height: 500px;
+          margin-top: 1rem;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Age Distribution Under 18 in  Wyoming (2023)</h2>
+    <label>Select County:</label>
+            <select id="countySelect">
+          <option value='Statewide'>Statewide</option>
+<option value='Albany County, Wyoming'>Albany County, Wyoming</option>
+<option value='Big Horn County, Wyoming'>Big Horn County, Wyoming</option>
+<option value='Campbell County, Wyoming'>Campbell County, Wyoming</option>
+<option value='Carbon County, Wyoming'>Carbon County, Wyoming</option>
+<option value='Converse County, Wyoming'>Converse County, Wyoming</option>
+<option value='Crook County, Wyoming'>Crook County, Wyoming</option>
+<option value='Fremont County, Wyoming'>Fremont County, Wyoming</option>
+<option value='Goshen County, Wyoming'>Goshen County, Wyoming</option>
+<option value='Hot Springs County, Wyoming'>Hot Springs County, Wyoming</option>
+<option value='Johnson County, Wyoming'>Johnson County, Wyoming</option>
+<option value='Laramie County, Wyoming'>Laramie County, Wyoming</option>
+<option value='Lincoln County, Wyoming'>Lincoln County, Wyoming</option>
+<option value='Natrona County, Wyoming'>Natrona County, Wyoming</option>
+<option value='Niobrara County, Wyoming'>Niobrara County, Wyoming</option>
+<option value='Park County, Wyoming'>Park County, Wyoming</option>
+<option value='Platte County, Wyoming'>Platte County, Wyoming</option>
+<option value='Sheridan County, Wyoming'>Sheridan County, Wyoming</option>
+<option value='Sublette County, Wyoming'>Sublette County, Wyoming</option>
+<option value='Sweetwater County, Wyoming'>Sweetwater County, Wyoming</option>
+<option value='Teton County, Wyoming'>Teton County, Wyoming</option>
+<option value='Uinta County, Wyoming'>Uinta County, Wyoming</option>
+<option value='Washakie County, Wyoming'>Washakie County, Wyoming</option>
+<option value='Weston County, Wyoming'>Weston County, Wyoming</option>
+        </select>
+    <canvas id="barChart" width="850" height="500"></canvas>
+    <script>  const ageData = {"Statewide":[-12.4,11.8,-14.8,14.8,-9.5,8.5,-14.8,13.3],"Albany County, Wyoming":[-13.3,12.6,-14.9,13.8,-14.9,13.6,-8.1,8.7],"Big Horn County, Wyoming":[-11,10.7,-17.6,13.1,-13.4,15,-10.5,8.8],"Campbell County, Wyoming":[-13.3,10.8,-14.1,14.2,-15.6,14.4,-9.4,8.1],"Carbon County, Wyoming":[-15.2,9.6,-15.7,16.4,-12.3,14.4,-8.5,7.9],"Converse County, Wyoming":[-14.2,12,-16.2,13.4,-11.3,15.4,-8.6,8.8],"Crook County, Wyoming":[-12.9,13.7,-11,14.8,-18.9,12.6,-12.3,3.8],"Fremont County, Wyoming":[-12.6,11.5,-16,13.5,-14.2,14.5,-9.4,8.4],"Goshen County, Wyoming":[-16.4,14.7,-8.4,15.2,-15.4,12.8,-8.5,8.6],"Hot Springs County, Wyoming":[-12.2,13.9,-15.1,10,-18.9,16,-4.5,9.3],"Johnson County, Wyoming":[-11,11.9,-11.4,18.6,-19.8,7.8,-6,13.5],"Laramie County, Wyoming":[-12.7,12.9,-16.4,12.1,-12.9,15.4,-8.9,8.7],"Lincoln County, Wyoming":[-10.9,11.6,-16.1,15.1,-15.3,11.7,-9.5,9.9],"Natrona County, Wyoming":[-12.4,12.1,-13.6,13.1,-16.4,14.8,-9.7,7.9],"Niobrara County, Wyoming":[-9.9,6.2,-15.8,12.1,-7,16.3,-30.4,2.3],"Park County, Wyoming":[-13.1,11.6,-8.5,11.9,-20.9,15.4,-9.6,8.9],"Platte County, Wyoming":[-11.4,10.3,-11.6,13,-14.1,13,-16.4,10.2],"Sheridan County, Wyoming":[-11.1,10.8,-15,10.8,-14.4,19.3,-9.6,8.9],"Sublette County, Wyoming":[-11.8,10,-15.9,16.3,-16.7,10.8,-16.6,2],"Sweetwater County, Wyoming":[-10.2,12.1,-15.7,14.5,-14.7,14.5,-8.7,9.6],"Teton County, Wyoming":[-14.6,9.1,-16.8,9.4,-13.9,20,-9.6,6.6],"Uinta County, Wyoming":[-10.7,11.5,-18.5,15.9,-11.9,12.5,-9.6,9.5],"Washakie County, Wyoming":[-8.8,10.5,-10.4,10.5,-15.7,17.7,-14.2,12.2],"Weston County, Wyoming":[-10.6,12.1,-17.7,15.5,-9.5,12.2,-12.4,10]};
+  const ageBins = ["0–4","5–9","10–14","15–17"];
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(data) {
+    const maleData = data.filter((_, i) => i % 2 === 0);
+    const femaleData = data.filter((_, i) => i % 2 === 1);
+
+    const maxValue = Math.max(
+      ...maleData.map(Math.abs),
+      ...femaleData.map(Math.abs)
+    );
+    const padding = 1.0;
+    const xMax = +(maxValue + padding).toFixed(1);
+
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ageBins,
+        datasets: [
+          {
+            label: 'Male',
+            data: maleData,
+            backgroundColor: 'dodgerblue'
+          },
+          {
+            label: 'Female',
+            data: femaleData,
+            backgroundColor: 'lightpink'
+          }
+        ]
+      },
+      options: {
+        indexAxis: 'y',
+        responsive: true,
+        scales: {
+          x: {
+            min: -xMax,
+            max: xMax,
+            ticks: {
+              callback: value => Math.abs(value).toFixed(1) + '%'
+            }
+          },
+          y: {
+            stacked: false
+          }
+        },
+        plugins: {
+          legend: {
+            position: 'top',
+            align: 'start',
+            labels: {
+              usePointStyle: true
+            }
+          },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.dataset.label + ': ' + Math.abs(ctx.parsed.x).toFixed(1) + '%'
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(Object.values(ageData[this.value]));
+  });
+
+  renderChart(Object.values(ageData['Statewide']));</script>
+  </body>
+</html>
+</html>

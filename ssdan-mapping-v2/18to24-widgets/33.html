@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Educational Enrollment – New Hampshire</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Educational Enrollment (Age 18–24) in New Hampshire</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Belknap County, New Hampshire">Belknap County, New Hampshire</option>
+      <option value="Carroll County, New Hampshire">Carroll County, New Hampshire</option>
+      <option value="Cheshire County, New Hampshire">Cheshire County, New Hampshire</option>
+      <option value="Coos County, New Hampshire">Coos County, New Hampshire</option>
+      <option value="Grafton County, New Hampshire">Grafton County, New Hampshire</option>
+      <option value="Hillsborough County, New Hampshire">Hillsborough County, New Hampshire</option>
+      <option value="Merrimack County, New Hampshire">Merrimack County, New Hampshire</option>
+      <option value="Rockingham County, New Hampshire">Rockingham County, New Hampshire</option>
+      <option value="Strafford County, New Hampshire">Strafford County, New Hampshire</option>
+      <option value="Sullivan County, New Hampshire">Sullivan County, New Hampshire</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>  const data = {"Statewide":[47.2,14.1,38.7],"Belknap County, New Hampshire":[49.3,13.5,37.1],"Carroll County, New Hampshire":[44.6,19.8,35.7],"Cheshire County, New Hampshire":[46.7,12.2,41],"Coos County, New Hampshire":[42.2,20.1,37.7],"Grafton County, New Hampshire":[47.5,10.2,42.2],"Hillsborough County, New Hampshire":[46.5,14.4,39.1],"Merrimack County, New Hampshire":[47.7,16.1,36.2],"Rockingham County, New Hampshire":[47.8,16.1,36.1],"Strafford County, New Hampshire":[47.9,7.9,44.3],"Sullivan County, New Hampshire":[46.7,23,30.3]};
+  const nationalAvg = [6.9,55,38.1];
+  const categories = ["Enrolled in College","Enrolled in Other School","Not Enrolled"];
+  const ctx = document.getElementById("barChart").getContext("2d");
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: categories,
+        datasets: [
+          {
+            label: "County/State",
+            data: values,
+            backgroundColor: ["#66c2a5", "#fc8d62", "#8da0cb"]
+          },
+          {
+            label: null,
+            data: categories.map(c => nationalAvg[c]),
+            type: "line",
+            borderColor: "black",
+            borderWidth: 2,
+            pointRadius: 0,
+            fill: false
+          }
+        ]
+      },
+      options: {
+        indexAxis: "y",
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            ticks: {
+              callback: v => v + "%"
+            }
+          }
+        },
+        plugins: {
+          legend: {
+            labels: {
+              filter: item => item.text !== null
+            }
+          },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.dataset.label ? ctx.dataset.label + ": " + ctx.raw + "%" : null
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById("countySelect").addEventListener("change", function() {
+    renderChart(Object.values(data[this.value]));
+  });
+
+  renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

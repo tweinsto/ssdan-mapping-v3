@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Age Distribution Under 18 –  Connecticut</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          margin: 1rem 2rem;
+          text-align: center;
+        }
+        h2 {
+          margin-bottom: 0.25rem;
+          font-size: 1.6rem;
+        }
+        select {
+          padding: 0.4rem;
+          font-size: 1rem;
+          margin: 1rem 0;
+          border-radius: 5px;
+          border: 1px solid #999;
+        }
+        canvas {
+          width: 100%;
+          max-width: 850px;
+          height: 500px;
+          margin-top: 1rem;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Age Distribution Under 18 in  Connecticut (2023)</h2>
+    <label>Select County:</label>
+            <select id="countySelect">
+          <option value='Statewide'>Statewide</option>
+<option value='Capitol Planning Region, Connecticut'>Capitol Planning Region, Connecticut</option>
+<option value='Greater Bridgeport Planning Region, Connecticut'>Greater Bridgeport Planning Region, Connecticut</option>
+<option value='Lower Connecticut River Valley Planning Region, Connecticut'>Lower Connecticut River Valley Planning Region, Connecticut</option>
+<option value='Naugatuck Valley Planning Region, Connecticut'>Naugatuck Valley Planning Region, Connecticut</option>
+<option value='Northeastern Connecticut Planning Region, Connecticut'>Northeastern Connecticut Planning Region, Connecticut</option>
+<option value='Northwest Hills Planning Region, Connecticut'>Northwest Hills Planning Region, Connecticut</option>
+<option value='South Central Connecticut Planning Region, Connecticut'>South Central Connecticut Planning Region, Connecticut</option>
+<option value='Southeastern Connecticut Planning Region, Connecticut'>Southeastern Connecticut Planning Region, Connecticut</option>
+<option value='Western Connecticut Planning Region, Connecticut'>Western Connecticut Planning Region, Connecticut</option>
+        </select>
+    <canvas id="barChart" width="850" height="500"></canvas>
+    <script>  const ageData = {"Statewide":[-12.7,12,-15.2,14.4,-9.8,9.3,-13.4,13.2],"Capitol Planning Region, Connecticut":[-12.8,12.2,-12.9,13.7,-15.6,14,-9.5,9.2],"Greater Bridgeport Planning Region, Connecticut":[-12.3,11.9,-13.6,12.6,-15.1,15.3,-9.8,9.3],"Lower Connecticut River Valley Planning Region, Connecticut":[-12.8,11.3,-13.1,12.5,-15.3,14.6,-10.8,9.6],"Naugatuck Valley Planning Region, Connecticut":[-12.8,12.1,-14.2,13,-14.5,14.3,-9.7,9.3],"Northeastern Connecticut Planning Region, Connecticut":[-12.9,11.8,-14,14.9,-14.6,12.7,-10,9.1],"Northwest Hills Planning Region, Connecticut":[-12.9,10.6,-13.6,12.5,-15,14.8,-10.9,9.7],"South Central Connecticut Planning Region, Connecticut":[-12.9,12.4,-13.5,13,-15.1,14.3,-9.6,9.3],"Southeastern Connecticut Planning Region, Connecticut":[-12.6,12.1,-12.9,12.2,-16.1,15.2,-9.7,9.2],"Western Connecticut Planning Region, Connecticut":[-12.3,11.9,-13.7,13.4,-14.9,14.4,-9.8,9.5]};
+  const ageBins = ["0–4","5–9","10–14","15–17"];
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(data) {
+    const maleData = data.filter((_, i) => i % 2 === 0);
+    const femaleData = data.filter((_, i) => i % 2 === 1);
+
+    const maxValue = Math.max(
+      ...maleData.map(Math.abs),
+      ...femaleData.map(Math.abs)
+    );
+    const padding = 1.0;
+    const xMax = +(maxValue + padding).toFixed(1);
+
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ageBins,
+        datasets: [
+          {
+            label: 'Male',
+            data: maleData,
+            backgroundColor: 'dodgerblue'
+          },
+          {
+            label: 'Female',
+            data: femaleData,
+            backgroundColor: 'lightpink'
+          }
+        ]
+      },
+      options: {
+        indexAxis: 'y',
+        responsive: true,
+        scales: {
+          x: {
+            min: -xMax,
+            max: xMax,
+            ticks: {
+              callback: value => Math.abs(value).toFixed(1) + '%'
+            }
+          },
+          y: {
+            stacked: false
+          }
+        },
+        plugins: {
+          legend: {
+            position: 'top',
+            align: 'start',
+            labels: {
+              usePointStyle: true
+            }
+          },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.dataset.label + ': ' + Math.abs(ctx.parsed.x).toFixed(1) + '%'
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(Object.values(ageData[this.value]));
+  });
+
+  renderChart(Object.values(ageData['Statewide']));</script>
+  </body>
+</html>
+</html>

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Living Arrangements – Kansas</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Living Arrangements of Adults 65+ in Kansas</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Allen County, Kansas">Allen County, Kansas</option>
+      <option value="Anderson County, Kansas">Anderson County, Kansas</option>
+      <option value="Atchison County, Kansas">Atchison County, Kansas</option>
+      <option value="Barber County, Kansas">Barber County, Kansas</option>
+      <option value="Barton County, Kansas">Barton County, Kansas</option>
+      <option value="Bourbon County, Kansas">Bourbon County, Kansas</option>
+      <option value="Brown County, Kansas">Brown County, Kansas</option>
+      <option value="Butler County, Kansas">Butler County, Kansas</option>
+      <option value="Chase County, Kansas">Chase County, Kansas</option>
+      <option value="Chautauqua County, Kansas">Chautauqua County, Kansas</option>
+      <option value="Cherokee County, Kansas">Cherokee County, Kansas</option>
+      <option value="Cheyenne County, Kansas">Cheyenne County, Kansas</option>
+      <option value="Clark County, Kansas">Clark County, Kansas</option>
+      <option value="Clay County, Kansas">Clay County, Kansas</option>
+      <option value="Cloud County, Kansas">Cloud County, Kansas</option>
+      <option value="Coffey County, Kansas">Coffey County, Kansas</option>
+      <option value="Comanche County, Kansas">Comanche County, Kansas</option>
+      <option value="Cowley County, Kansas">Cowley County, Kansas</option>
+      <option value="Crawford County, Kansas">Crawford County, Kansas</option>
+      <option value="Decatur County, Kansas">Decatur County, Kansas</option>
+      <option value="Dickinson County, Kansas">Dickinson County, Kansas</option>
+      <option value="Doniphan County, Kansas">Doniphan County, Kansas</option>
+      <option value="Douglas County, Kansas">Douglas County, Kansas</option>
+      <option value="Edwards County, Kansas">Edwards County, Kansas</option>
+      <option value="Elk County, Kansas">Elk County, Kansas</option>
+      <option value="Ellis County, Kansas">Ellis County, Kansas</option>
+      <option value="Ellsworth County, Kansas">Ellsworth County, Kansas</option>
+      <option value="Finney County, Kansas">Finney County, Kansas</option>
+      <option value="Ford County, Kansas">Ford County, Kansas</option>
+      <option value="Franklin County, Kansas">Franklin County, Kansas</option>
+      <option value="Geary County, Kansas">Geary County, Kansas</option>
+      <option value="Gove County, Kansas">Gove County, Kansas</option>
+      <option value="Graham County, Kansas">Graham County, Kansas</option>
+      <option value="Grant County, Kansas">Grant County, Kansas</option>
+      <option value="Gray County, Kansas">Gray County, Kansas</option>
+      <option value="Greeley County, Kansas">Greeley County, Kansas</option>
+      <option value="Greenwood County, Kansas">Greenwood County, Kansas</option>
+      <option value="Hamilton County, Kansas">Hamilton County, Kansas</option>
+      <option value="Harper County, Kansas">Harper County, Kansas</option>
+      <option value="Harvey County, Kansas">Harvey County, Kansas</option>
+      <option value="Haskell County, Kansas">Haskell County, Kansas</option>
+      <option value="Hodgeman County, Kansas">Hodgeman County, Kansas</option>
+      <option value="Jackson County, Kansas">Jackson County, Kansas</option>
+      <option value="Jefferson County, Kansas">Jefferson County, Kansas</option>
+      <option value="Jewell County, Kansas">Jewell County, Kansas</option>
+      <option value="Johnson County, Kansas">Johnson County, Kansas</option>
+      <option value="Kearny County, Kansas">Kearny County, Kansas</option>
+      <option value="Kingman County, Kansas">Kingman County, Kansas</option>
+      <option value="Kiowa County, Kansas">Kiowa County, Kansas</option>
+      <option value="Labette County, Kansas">Labette County, Kansas</option>
+      <option value="Lane County, Kansas">Lane County, Kansas</option>
+      <option value="Leavenworth County, Kansas">Leavenworth County, Kansas</option>
+      <option value="Lincoln County, Kansas">Lincoln County, Kansas</option>
+      <option value="Linn County, Kansas">Linn County, Kansas</option>
+      <option value="Logan County, Kansas">Logan County, Kansas</option>
+      <option value="Lyon County, Kansas">Lyon County, Kansas</option>
+      <option value="Marion County, Kansas">Marion County, Kansas</option>
+      <option value="Marshall County, Kansas">Marshall County, Kansas</option>
+      <option value="McPherson County, Kansas">McPherson County, Kansas</option>
+      <option value="Meade County, Kansas">Meade County, Kansas</option>
+      <option value="Miami County, Kansas">Miami County, Kansas</option>
+      <option value="Mitchell County, Kansas">Mitchell County, Kansas</option>
+      <option value="Montgomery County, Kansas">Montgomery County, Kansas</option>
+      <option value="Morris County, Kansas">Morris County, Kansas</option>
+      <option value="Morton County, Kansas">Morton County, Kansas</option>
+      <option value="Nemaha County, Kansas">Nemaha County, Kansas</option>
+      <option value="Neosho County, Kansas">Neosho County, Kansas</option>
+      <option value="Ness County, Kansas">Ness County, Kansas</option>
+      <option value="Norton County, Kansas">Norton County, Kansas</option>
+      <option value="Osage County, Kansas">Osage County, Kansas</option>
+      <option value="Osborne County, Kansas">Osborne County, Kansas</option>
+      <option value="Ottawa County, Kansas">Ottawa County, Kansas</option>
+      <option value="Pawnee County, Kansas">Pawnee County, Kansas</option>
+      <option value="Phillips County, Kansas">Phillips County, Kansas</option>
+      <option value="Pottawatomie County, Kansas">Pottawatomie County, Kansas</option>
+      <option value="Pratt County, Kansas">Pratt County, Kansas</option>
+      <option value="Rawlins County, Kansas">Rawlins County, Kansas</option>
+      <option value="Reno County, Kansas">Reno County, Kansas</option>
+      <option value="Republic County, Kansas">Republic County, Kansas</option>
+      <option value="Rice County, Kansas">Rice County, Kansas</option>
+      <option value="Riley County, Kansas">Riley County, Kansas</option>
+      <option value="Rooks County, Kansas">Rooks County, Kansas</option>
+      <option value="Rush County, Kansas">Rush County, Kansas</option>
+      <option value="Russell County, Kansas">Russell County, Kansas</option>
+      <option value="Saline County, Kansas">Saline County, Kansas</option>
+      <option value="Scott County, Kansas">Scott County, Kansas</option>
+      <option value="Sedgwick County, Kansas">Sedgwick County, Kansas</option>
+      <option value="Seward County, Kansas">Seward County, Kansas</option>
+      <option value="Shawnee County, Kansas">Shawnee County, Kansas</option>
+      <option value="Sheridan County, Kansas">Sheridan County, Kansas</option>
+      <option value="Sherman County, Kansas">Sherman County, Kansas</option>
+      <option value="Smith County, Kansas">Smith County, Kansas</option>
+      <option value="Stafford County, Kansas">Stafford County, Kansas</option>
+      <option value="Stanton County, Kansas">Stanton County, Kansas</option>
+      <option value="Stevens County, Kansas">Stevens County, Kansas</option>
+      <option value="Sumner County, Kansas">Sumner County, Kansas</option>
+      <option value="Thomas County, Kansas">Thomas County, Kansas</option>
+      <option value="Trego County, Kansas">Trego County, Kansas</option>
+      <option value="Wabaunsee County, Kansas">Wabaunsee County, Kansas</option>
+      <option value="Wallace County, Kansas">Wallace County, Kansas</option>
+      <option value="Washington County, Kansas">Washington County, Kansas</option>
+      <option value="Wichita County, Kansas">Wichita County, Kansas</option>
+      <option value="Wilson County, Kansas">Wilson County, Kansas</option>
+      <option value="Woodson County, Kansas">Woodson County, Kansas</option>
+      <option value="Wyandotte County, Kansas">Wyandotte County, Kansas</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>  const data = {"Statewide":[30.2,0.3,1.5,9.1,56.9,2],"Allen County, Kansas":[31,0.3,0.2,7.5,60.4,0.7],"Anderson County, Kansas":[26,0.1,1.1,3.2,68.4,1],"Atchison County, Kansas":[34.2,0,0.6,9.9,52.3,3],"Barber County, Kansas":[28,0.1,1.4,2.6,67.6,0.4],"Barton County, Kansas":[30.7,0.4,4.2,11.6,52.2,0.9],"Bourbon County, Kansas":[31,0.3,0.3,4.8,59.4,4.3],"Brown County, Kansas":[32,0,0.6,7.1,58,2.4],"Butler County, Kansas":[26.7,0.2,1.1,10.7,59.3,2],"Chase County, Kansas":[35.7,0,0,4.9,55.8,3.7],"Chautauqua County, Kansas":[28.7,0.9,2.1,9,59.2,0],"Cherokee County, Kansas":[29.4,0.2,0.3,8.7,61.3,0.1],"Cheyenne County, Kansas":[43.4,0.3,0.2,5.4,50.7,0],"Clark County, Kansas":[27,0,4.5,4.9,62.7,0.9],"Clay County, Kansas":[25.3,0,1.4,4.3,65.5,3.5],"Cloud County, Kansas":[34.8,0.1,1.1,2.5,57.2,4.3],"Coffey County, Kansas":[28.9,0.1,2.5,6,61.1,1.5],"Comanche County, Kansas":[44.4,0.2,0,3.3,51.3,0.7],"Cowley County, Kansas":[34.3,0.3,2.1,7.1,55.1,1.1],"Crawford County, Kansas":[37.5,0.4,0.8,8.4,51.5,1.4],"Decatur County, Kansas":[43,0,0.1,4.3,52.2,0.4],"Dickinson County, Kansas":[30.2,0.3,0.4,6.8,60.6,1.6],"Doniphan County, Kansas":[29.3,0,3.3,7.4,59.5,0.5],"Douglas County, Kansas":[28.4,0.1,1,7,59.9,3.6],"Edwards County, Kansas":[35.1,0.5,0.7,8.2,55.5,0],"Elk County, Kansas":[28.8,0,0.4,6.6,61.8,2.3],"Ellis County, Kansas":[32.6,0.1,0.8,4.1,59.2,3.2],"Ellsworth County, Kansas":[33.5,0,0.9,3.8,61.1,0.7],"Finney County, Kansas":[25.8,0,1.8,16.1,55.4,1],"Ford County, Kansas":[34.6,0.4,1.5,15.2,46.1,2.2],"Franklin County, Kansas":[28,0,3.2,7.4,61.3,0],"Geary County, Kansas":[33.8,0,0.8,8.2,56.8,0.5],"Gove County, Kansas":[31.6,0,0.3,2.1,65.6,0.3],"Graham County, Kansas":[38.9,0,0.9,7.3,51,1.9],"Grant County, Kansas":[16,0,0,19.6,64.2,0.2],"Gray County, Kansas":[30.4,0,0.1,8.8,60.6,0],"Greeley County, Kansas":[28.1,0,0,3.2,68.7,0],"Greenwood County, Kansas":[31.8,0.3,3.5,5.1,59.4,0.1],"Hamilton County, Kansas":[37.3,0,0,4.8,57.3,0.6],"Harper County, Kansas":[31.6,0.4,1.2,7.4,56.3,3.1],"Harvey County, Kansas":[34.1,0.3,1.2,7,56.3,1],"Haskell County, Kansas":[28.1,0,0,5.1,66.8,0],"Hodgeman County, Kansas":[50.2,0,0.6,1.8,46.8,0.6],"Jackson County, Kansas":[25.6,0,4.3,10.7,57.8,1.5],"Jefferson County, Kansas":[29.3,0,1.8,8.8,58.8,1.2],"Jewell County, Kansas":[29.9,0,1.6,4.5,61.6,2.4],"Johnson County, Kansas":[26.6,0.3,1.3,8.6,61.2,2],"Kearny County, Kansas":[22.5,0,4.2,5.7,59.9,7.8],"Kingman County, Kansas":[37.3,0.2,0,1.2,61.1,0.1],"Kiowa County, Kansas":[28.5,0,1.2,3.2,65.5,1.6],"Labette County, Kansas":[42.1,0.4,1.1,7,47.7,1.6],"Lane County, Kansas":[47.3,0,2.3,0,47.6,2.9],"Leavenworth County, Kansas":[24.1,0.2,1.1,9.6,60.7,4.3],"Lincoln County, Kansas":[32.1,1.7,0.1,5.8,59.1,1.2],"Linn County, Kansas":[28.9,0,0.8,4,64.1,2.2],"Logan County, Kansas":[22.5,0.2,0.5,5.6,69.3,1.8],"Lyon County, Kansas":[27.9,0.1,2.3,5.7,56.8,7.2],"Marion County, Kansas":[32.8,0.2,1.4,8.2,56.8,0.6],"Marshall County, Kansas":[31.3,0,0.3,4.3,63.6,0.4],"McPherson County, Kansas":[26.5,0.3,1.6,4.1,67.4,0.1],"Meade County, Kansas":[41.1,0,0,8.2,47,3.6],"Miami County, Kansas":[28.4,0.2,2.3,9.1,57.4,2.5],"Mitchell County, Kansas":[25.2,0,0.3,2.6,70.4,1.5],"Montgomery County, Kansas":[36.2,0.3,1.3,13.9,46.4,1.9],"Morris County, Kansas":[33.3,0,0.6,1.4,64.2,0.5],"Morton County, Kansas":[35.4,0,5.1,20,39.5,0],"Nemaha County, Kansas":[31.8,0,0.7,3.4,62.9,1.3],"Neosho County, Kansas":[31.4,6,2.3,10.1,48.5,1.7],"Ness County, Kansas":[18.2,0,0,1.5,79.8,0.5],"Norton County, Kansas":[35.9,0,0,7.4,56.1,0.6],"Osage County, Kansas":[31,0.2,0.1,8.7,59,1.1],"Osborne County, Kansas":[39.4,0.1,0.5,7.7,49.8,2.5],"Ottawa County, Kansas":[25.5,0,1.1,9.8,62.7,0.9],"Pawnee County, Kansas":[39.9,1.2,1.8,7.3,45.2,4.6],"Phillips County, Kansas":[36.3,0.3,0.5,2.9,56.9,3.1],"Pottawatomie County, Kansas":[31,0.1,0.4,6.7,60.4,1.5],"Pratt County, Kansas":[37.4,0,2.8,7.3,52.1,0.4],"Rawlins County, Kansas":[23.9,1.1,0.8,3.5,70.9,0],"Reno County, Kansas":[36.5,0.2,1.4,8.2,52.3,1.4],"Republic County, Kansas":[32,0,3.3,4.7,59,1],"Rice County, Kansas":[36.4,0,1.6,3.5,57.6,0.9],"Riley County, Kansas":[26.7,0.2,0.9,4.3,65.3,2.6],"Rooks County, Kansas":[35,0.2,0,8.1,55.8,0.9],"Rush County, Kansas":[39.2,0.6,1.6,2.2,53.4,3.1],"Russell County, Kansas":[36.9,0,0,5.9,57.1,0],"Saline County, Kansas":[30.2,0,0.8,7.9,57.8,3.3],"Scott County, Kansas":[21.2,0,0,0,78.8,0],"Sedgwick County, Kansas":[30.6,0.2,1.6,11.2,54.6,1.8],"Seward County, Kansas":[33.7,0,0,15.9,48.7,1.6],"Shawnee County, Kansas":[33.3,0.2,1.4,11.3,52.2,1.6],"Sheridan County, Kansas":[31.2,0,0,12.1,47.6,9.1],"Sherman County, Kansas":[19.9,0,0.8,9.1,70.1,0],"Smith County, Kansas":[36.1,0,0.2,6.1,57.6,0],"Stafford County, Kansas":[31.7,0,5.9,4.9,55.6,1.9],"Stanton County, Kansas":[45.8,0,4.4,2.8,47,0],"Stevens County, Kansas":[20.8,0,0,23.4,51.4,4.4],"Sumner County, Kansas":[36.9,0.1,1.2,4.4,55.7,1.8],"Thomas County, Kansas":[30.7,0,0,7.9,58.8,2.5],"Trego County, Kansas":[20,0,0.9,1.6,75.9,1.6],"Wabaunsee County, Kansas":[28.7,0.6,1.8,8.4,59.6,0.9],"Wallace County, Kansas":[33.8,0,2,3.9,60.3,0],"Washington County, Kansas":[35,3.9,0.8,2.7,56.5,1.1],"Wichita County, Kansas":[17.3,0,15.4,7.3,60,0],"Wilson County, Kansas":[30.1,0.3,8.7,4.5,54.6,1.8],"Woodson County, Kansas":[23.5,0,1.4,14.7,59.3,1.2],"Wyandotte County, Kansas":[32.5,0.3,2.5,16.8,44.9,3]};
+  const nationalAvg = [27.3,0.3,2.3,14.5,53.2,2.4];
+  const categories = ["Lives alone","With child","With nonrelatives","With other relatives","With spouse only","With unmarried partner"];
+  const ctx = document.getElementById("barChart").getContext("2d");
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: categories,
+        datasets: [
+          {
+            label: "County/State",
+            data: values,
+            backgroundColor: [
+              "#e41a1c", "#ff7f00", "#4daf4a",
+              "#984ea3", "#377eb8", "#a65628"
+            ]
+          },
+          {
+            label: "",
+            data: categories.map(c => nationalAvg[c]),
+            type: "line",
+            borderColor: "gray",
+            borderWidth: 1,
+            borderDash: [4, 4],
+            pointRadius: 0,
+            fill: false
+          }
+        ]
+      },
+      options: {
+        indexAxis: "y",
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            ticks: {
+              callback: function(v) { return v + "%"; }
+            }
+          }
+        },
+        plugins: {
+          legend: {
+            labels: {
+              filter: function(item) { return item.text !== ""; }
+            }
+          },
+          tooltip: {
+            callbacks: {
+              label: function(ctx) {
+                return ctx.dataset.label !== "" ? ctx.dataset.label + ": " + ctx.raw + "%" : null;
+              }
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById("countySelect").addEventListener("change", function() {
+    renderChart(Object.values(data[this.value]));
+  });
+
+  renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

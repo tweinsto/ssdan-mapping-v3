@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Language Spoken at Home – Maine</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          text-align: center;
+          margin: 2rem;
+        }
+        select {
+          font-size: 1rem;
+          padding: 0.4rem;
+          margin-bottom: 1rem;
+        }
+        canvas {
+          width: 100%;
+          max-width: 700px;
+          height: 800px;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Language Spoken at Home – Maine</h2>
+    <label>Select County, State:</label>
+    <select id="countySelect"><option value='Statewide'>Statewide</option>
+<option value='Androscoggin County, Maine'>Androscoggin County, Maine</option>
+<option value='Aroostook County, Maine'>Aroostook County, Maine</option>
+<option value='Cumberland County, Maine'>Cumberland County, Maine</option>
+<option value='Franklin County, Maine'>Franklin County, Maine</option>
+<option value='Hancock County, Maine'>Hancock County, Maine</option>
+<option value='Kennebec County, Maine'>Kennebec County, Maine</option>
+<option value='Knox County, Maine'>Knox County, Maine</option>
+<option value='Lincoln County, Maine'>Lincoln County, Maine</option>
+<option value='Oxford County, Maine'>Oxford County, Maine</option>
+<option value='Penobscot County, Maine'>Penobscot County, Maine</option>
+<option value='Piscataquis County, Maine'>Piscataquis County, Maine</option>
+<option value='Sagadahoc County, Maine'>Sagadahoc County, Maine</option>
+<option value='Somerset County, Maine'>Somerset County, Maine</option>
+<option value='Waldo County, Maine'>Waldo County, Maine</option>
+<option value='Washington County, Maine'>Washington County, Maine</option>
+<option value='York County, Maine'>York County, Maine</option></select>
+    <canvas id="barChart" width="700" height="700"></canvas>
+    <script>  const languageData = {"Statewide":{"Arabic":0,"Chinese":0.2,"English only":88.7,"French, Haitian, Cajun":4.6,"German or West Germanic":0,"Korean":0.4,"Other":3.3,"Other Asian/Pacific":0.1,"Other Indo-European":0.3,"Other/Unspecified":0.1,"Russian, Polish, Slavic":0.2,"Spanish":1.8,"Tagalog":0.2,"Vietnamese":0.1},"Androscoggin County, Maine":{"Arabic":0.8,"Chinese":0.4,"English only":76.8,"French, Haitian, Cajun":15.3,"German or West Germanic":0.3,"Korean":0.1,"Other Asian/Pacific":0.4,"Other Indo-European":0.7,"Other/Unspecified":2.5,"Russian, Polish, Slavic":0.2,"Spanish":2.2,"Tagalog":0.2,"Vietnamese":0},"Aroostook County, Maine":{"Arabic":0.3,"Chinese":0.1,"English only":67.5,"French, Haitian, Cajun":28.5,"German or West Germanic":0.8,"Korean":0,"Other Asian/Pacific":0.5,"Other Indo-European":0.3,"Other/Unspecified":0.5,"Russian, Polish, Slavic":0.1,"Spanish":1.2,"Tagalog":0.1,"Vietnamese":0},"Cumberland County, Maine":{"Arabic":0.6,"Chinese":0.5,"English only":83.8,"French, Haitian, Cajun":4.8,"German or West Germanic":0.8,"Korean":0.2,"Other Asian/Pacific":1.1,"Other Indo-European":2.1,"Other/Unspecified":1.9,"Russian, Polish, Slavic":0.7,"Spanish":3,"Tagalog":0.3,"Vietnamese":0.2},"Franklin County, Maine":{"Arabic":0,"Chinese":0.4,"English only":91.5,"French, Haitian, Cajun":3.5,"German or West Germanic":0.7,"Korean":0.2,"Other Asian/Pacific":0.4,"Other Indo-European":0.4,"Other/Unspecified":0.2,"Russian, Polish, Slavic":0.1,"Spanish":1.7,"Tagalog":0.9,"Vietnamese":0},"Hancock County, Maine":{"Arabic":0,"Chinese":0.4,"English only":91.4,"French, Haitian, Cajun":1.8,"German or West Germanic":2,"Korean":0.2,"Other Asian/Pacific":0.3,"Other Indo-European":0.8,"Other/Unspecified":0.7,"Russian, Polish, Slavic":0.1,"Spanish":2,"Tagalog":0.5,"Vietnamese":0},"Kennebec County, Maine":{"Arabic":0.1,"Chinese":0.4,"English only":86.3,"French, Haitian, Cajun":7.4,"German or West Germanic":1.1,"Korean":0,"Other Asian/Pacific":0.2,"Other Indo-European":1.1,"Other/Unspecified":0.2,"Russian, Polish, Slavic":0.7,"Spanish":2.1,"Tagalog":0.1,"Vietnamese":0.1},"Knox County, Maine":{"Arabic":0,"Chinese":0.2,"English only":90.1,"French, Haitian, Cajun":2.7,"German or West Germanic":0.9,"Korean":0,"Other Asian/Pacific":0.8,"Other Indo-European":1,"Other/Unspecified":0.1,"Russian, Polish, Slavic":0.4,"Spanish":3.6,"Tagalog":0,"Vietnamese":0.1},"Lincoln County, Maine":{"Arabic":0.1,"Chinese":0.1,"English only":92.2,"French, Haitian, Cajun":2.2,"German or West Germanic":1.1,"Korean":0,"Other Asian/Pacific":0,"Other Indo-European":0.7,"Other/Unspecified":0.1,"Russian, Polish, Slavic":0.5,"Spanish":2.3,"Tagalog":0,"Vietnamese":0.6},"Oxford County, Maine":{"Arabic":0,"Chinese":0.1,"English only":94.2,"French, Haitian, Cajun":3.4,"German or West Germanic":0.4,"Korean":0,"Other Asian/Pacific":0.2,"Other Indo-European":0.3,"Other/Unspecified":0.2,"Russian, Polish, Slavic":0.3,"Spanish":0.6,"Tagalog":0.2,"Vietnamese":0},"Penobscot County, Maine":{"Arabic":0.1,"Chinese":0.5,"English only":89.4,"French, Haitian, Cajun":3.6,"German or West Germanic":0.6,"Korean":0,"Other Asian/Pacific":0.3,"Other Indo-European":1.2,"Other/Unspecified":1.2,"Russian, Polish, Slavic":0.3,"Spanish":2,"Tagalog":0.6,"Vietnamese":0.1},"Piscataquis County, Maine":{"Arabic":0,"Chinese":1.6,"English only":91.8,"French, Haitian, Cajun":1.2,"German or West Germanic":0.3,"Korean":0,"Other Asian/Pacific":1.2,"Other Indo-European":0.4,"Other/Unspecified":0.1,"Russian, Polish, Slavic":0.9,"Spanish":2.2,"Tagalog":0,"Vietnamese":0.2},"Sagadahoc County, Maine":{"Arabic":0,"Chinese":0.2,"English only":89.5,"French, Haitian, Cajun":4.8,"German or West Germanic":0.5,"Korean":0.2,"Other Asian/Pacific":0.3,"Other Indo-European":0,"Other/Unspecified":0.2,"Russian, Polish, Slavic":1,"Spanish":2.1,"Tagalog":1.2,"Vietnamese":0},"Somerset County, Maine":{"Arabic":0,"Chinese":0.2,"English only":92.2,"French, Haitian, Cajun":4.8,"German or West Germanic":0.4,"Korean":0,"Other Asian/Pacific":0.3,"Other Indo-European":0.1,"Other/Unspecified":0.1,"Russian, Polish, Slavic":0.6,"Spanish":1.3,"Tagalog":0,"Vietnamese":0},"Waldo County, Maine":{"Arabic":0,"Chinese":0.4,"English only":90.4,"French, Haitian, Cajun":3.2,"German or West Germanic":2,"Korean":0,"Other Asian/Pacific":0.2,"Other Indo-European":0.8,"Other/Unspecified":0.3,"Russian, Polish, Slavic":0.4,"Spanish":1.9,"Tagalog":0.3,"Vietnamese":0},"Washington County, Maine":{"Arabic":0,"Chinese":0,"English only":86.3,"French, Haitian, Cajun":2.3,"German or West Germanic":0.8,"Korean":0.1,"Other Asian/Pacific":0.1,"Other Indo-European":0.6,"Other/Unspecified":5.7,"Russian, Polish, Slavic":0.1,"Spanish":3.5,"Tagalog":0.4,"Vietnamese":0},"York County, Maine":{"Arabic":0.1,"Chinese":0.2,"English only":83.7,"French, Haitian, Cajun":8.1,"German or West Germanic":1.1,"Korean":0.2,"Other Asian/Pacific":0.5,"Other Indo-European":1.7,"Other/Unspecified":0.7,"Russian, Polish, Slavic":1,"Spanish":2.1,"Tagalog":0.3,"Vietnamese":0.2}};
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: Object.keys(values),
+        datasets: [{
+          label: 'Share (%)',
+          data: Object.values(values),
+          backgroundColor: '#4576a7'
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.parsed.y + '%'
+            }
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 100,
+            title: {
+              display: true,
+              text: 'Population Share (%)'
+            }
+          },
+          x: {
+            title: {
+              display: true,
+              text: 'Language Group'
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(languageData[this.value]);
+  });
+
+  renderChart(languageData['Statewide']);</script>
+  </body>
+</html>
+</html>

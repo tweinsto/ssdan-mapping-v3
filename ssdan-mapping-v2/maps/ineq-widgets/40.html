@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Income Distribution – Oklahoma</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          text-align: center;
+          margin: 2rem;
+        }
+        select {
+          font-size: 1rem;
+          padding: 0.4rem;
+          margin-bottom: 1rem;
+        }
+        canvas {
+          width: 100%;
+          max-width: 700px;
+          height: 400px;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Income Share by Quintile – Oklahoma</h2>
+    <label>Select County, State:</label>
+    <select id="countySelect"><option value='Statewide'>Statewide</option>
+<option value='Adair, Oklahoma'>Adair, Oklahoma</option>
+<option value='Alfalfa, Oklahoma'>Alfalfa, Oklahoma</option>
+<option value='Atoka, Oklahoma'>Atoka, Oklahoma</option>
+<option value='Beaver, Oklahoma'>Beaver, Oklahoma</option>
+<option value='Beckham, Oklahoma'>Beckham, Oklahoma</option>
+<option value='Blaine, Oklahoma'>Blaine, Oklahoma</option>
+<option value='Bryan, Oklahoma'>Bryan, Oklahoma</option>
+<option value='Caddo, Oklahoma'>Caddo, Oklahoma</option>
+<option value='Canadian, Oklahoma'>Canadian, Oklahoma</option>
+<option value='Carter, Oklahoma'>Carter, Oklahoma</option>
+<option value='Cherokee, Oklahoma'>Cherokee, Oklahoma</option>
+<option value='Choctaw, Oklahoma'>Choctaw, Oklahoma</option>
+<option value='Cimarron, Oklahoma'>Cimarron, Oklahoma</option>
+<option value='Cleveland, Oklahoma'>Cleveland, Oklahoma</option>
+<option value='Coal, Oklahoma'>Coal, Oklahoma</option>
+<option value='Comanche, Oklahoma'>Comanche, Oklahoma</option>
+<option value='Cotton, Oklahoma'>Cotton, Oklahoma</option>
+<option value='Craig, Oklahoma'>Craig, Oklahoma</option>
+<option value='Creek, Oklahoma'>Creek, Oklahoma</option>
+<option value='Custer, Oklahoma'>Custer, Oklahoma</option>
+<option value='Delaware, Oklahoma'>Delaware, Oklahoma</option>
+<option value='Dewey, Oklahoma'>Dewey, Oklahoma</option>
+<option value='Ellis, Oklahoma'>Ellis, Oklahoma</option>
+<option value='Garfield, Oklahoma'>Garfield, Oklahoma</option>
+<option value='Garvin, Oklahoma'>Garvin, Oklahoma</option>
+<option value='Grady, Oklahoma'>Grady, Oklahoma</option>
+<option value='Grant, Oklahoma'>Grant, Oklahoma</option>
+<option value='Greer, Oklahoma'>Greer, Oklahoma</option>
+<option value='Harmon, Oklahoma'>Harmon, Oklahoma</option>
+<option value='Harper, Oklahoma'>Harper, Oklahoma</option>
+<option value='Haskell, Oklahoma'>Haskell, Oklahoma</option>
+<option value='Hughes, Oklahoma'>Hughes, Oklahoma</option>
+<option value='Jackson, Oklahoma'>Jackson, Oklahoma</option>
+<option value='Jefferson, Oklahoma'>Jefferson, Oklahoma</option>
+<option value='Johnston, Oklahoma'>Johnston, Oklahoma</option>
+<option value='Kay, Oklahoma'>Kay, Oklahoma</option>
+<option value='Kingfisher, Oklahoma'>Kingfisher, Oklahoma</option>
+<option value='Kiowa, Oklahoma'>Kiowa, Oklahoma</option>
+<option value='Latimer, Oklahoma'>Latimer, Oklahoma</option>
+<option value='Le Flore, Oklahoma'>Le Flore, Oklahoma</option>
+<option value='Lincoln, Oklahoma'>Lincoln, Oklahoma</option>
+<option value='Logan, Oklahoma'>Logan, Oklahoma</option>
+<option value='Love, Oklahoma'>Love, Oklahoma</option>
+<option value='Major, Oklahoma'>Major, Oklahoma</option>
+<option value='Marshall, Oklahoma'>Marshall, Oklahoma</option>
+<option value='Mayes, Oklahoma'>Mayes, Oklahoma</option>
+<option value='McClain, Oklahoma'>McClain, Oklahoma</option>
+<option value='McCurtain, Oklahoma'>McCurtain, Oklahoma</option>
+<option value='McIntosh, Oklahoma'>McIntosh, Oklahoma</option>
+<option value='Murray, Oklahoma'>Murray, Oklahoma</option>
+<option value='Muskogee, Oklahoma'>Muskogee, Oklahoma</option>
+<option value='Noble, Oklahoma'>Noble, Oklahoma</option>
+<option value='Nowata, Oklahoma'>Nowata, Oklahoma</option>
+<option value='Okfuskee, Oklahoma'>Okfuskee, Oklahoma</option>
+<option value='Oklahoma, Oklahoma'>Oklahoma, Oklahoma</option>
+<option value='Okmulgee, Oklahoma'>Okmulgee, Oklahoma</option>
+<option value='Osage, Oklahoma'>Osage, Oklahoma</option>
+<option value='Ottawa, Oklahoma'>Ottawa, Oklahoma</option>
+<option value='Pawnee, Oklahoma'>Pawnee, Oklahoma</option>
+<option value='Payne, Oklahoma'>Payne, Oklahoma</option>
+<option value='Pittsburg, Oklahoma'>Pittsburg, Oklahoma</option>
+<option value='Pontotoc, Oklahoma'>Pontotoc, Oklahoma</option>
+<option value='Pottawatomie, Oklahoma'>Pottawatomie, Oklahoma</option>
+<option value='Pushmataha, Oklahoma'>Pushmataha, Oklahoma</option>
+<option value='Roger Mills, Oklahoma'>Roger Mills, Oklahoma</option>
+<option value='Rogers, Oklahoma'>Rogers, Oklahoma</option>
+<option value='Seminole, Oklahoma'>Seminole, Oklahoma</option>
+<option value='Sequoyah, Oklahoma'>Sequoyah, Oklahoma</option>
+<option value='Stephens, Oklahoma'>Stephens, Oklahoma</option>
+<option value='Texas, Oklahoma'>Texas, Oklahoma</option>
+<option value='Tillman, Oklahoma'>Tillman, Oklahoma</option>
+<option value='Tulsa, Oklahoma'>Tulsa, Oklahoma</option>
+<option value='Wagoner, Oklahoma'>Wagoner, Oklahoma</option>
+<option value='Washington, Oklahoma'>Washington, Oklahoma</option>
+<option value='Washita, Oklahoma'>Washita, Oklahoma</option>
+<option value='Woods, Oklahoma'>Woods, Oklahoma</option>
+<option value='Woodward, Oklahoma'>Woodward, Oklahoma</option></select>
+    <canvas id="barChart" width="700" height="400"></canvas>
+    <script>  const incomeData = {"Statewide":[5.2,8.6,13.3,27.3,45.5],"Adair, Oklahoma":[5.1,9,13.7,27.3,44.9],"Alfalfa, Oklahoma":[6.6,11,16.6,26.9,39.1],"Atoka, Oklahoma":[5.1,8.6,13.9,28,44.4],"Beaver, Oklahoma":[6.3,9.5,14.3,27.1,42.8],"Beckham, Oklahoma":[4.2,7.8,12.9,27.3,47.9],"Blaine, Oklahoma":[5.7,8.7,13.5,27.1,45.1],"Bryan, Oklahoma":[5.4,8.7,13.7,27.4,44.9],"Caddo, Oklahoma":[5.9,9.8,14.8,27.8,41.6],"Canadian, Oklahoma":[6.8,10.3,14.8,26.5,41.7],"Carter, Oklahoma":[5,8.2,13,27.5,46.4],"Cherokee, Oklahoma":[4.5,7.4,11.7,26.5,50],"Choctaw, Oklahoma":[4.7,8.3,13.6,28.3,45.1],"Cimarron, Oklahoma":[4.7,6.7,12.4,27.4,48.9],"Cleveland, Oklahoma":[5.4,8.7,13.1,26.7,46.1],"Coal, Oklahoma":[4.7,7.8,12.1,27.2,48.1],"Comanche, Oklahoma":[5.4,8.7,13.1,27.1,45.6],"Cotton, Oklahoma":[4.4,8.2,12.3,27.7,47.5],"Craig, Oklahoma":[5.3,8.3,12.6,26.8,47.1],"Creek, Oklahoma":[5.3,9,14.2,27.5,44],"Custer, Oklahoma":[4.5,7.5,11.5,27.3,49.1],"Delaware, Oklahoma":[4.8,8.1,12.4,27.3,47.4],"Dewey, Oklahoma":[6.2,9.7,15,27.9,41.2],"Ellis, Oklahoma":[5.4,9.3,14.4,27.5,43.4],"Garfield, Oklahoma":[5.3,8.8,12.9,26.7,46.2],"Garvin, Oklahoma":[5.7,8.9,14.1,27.6,43.7],"Grady, Oklahoma":[5.6,9.2,13.7,26.9,44.6],"Grant, Oklahoma":[5.5,9.3,13.9,27,44.3],"Greer, Oklahoma":[6.4,11.6,15.8,28.5,37.8],"Harmon, Oklahoma":[4.7,7.6,11.7,27.5,48.6],"Harper, Oklahoma":[6.8,11.3,16.2,27.8,37.9],"Haskell, Oklahoma":[5.2,8.4,13,28,45.4],"Hughes, Oklahoma":[5.9,10,15.1,27.5,41.5],"Jackson, Oklahoma":[5.5,9.3,14.3,27.3,43.6],"Jefferson, Oklahoma":[3.4,6.2,9.1,25.4,56],"Johnston, Oklahoma":[5.8,9.5,14.9,28,41.9],"Kay, Oklahoma":[5.1,8.1,12.4,26.8,47.6],"Kingfisher, Oklahoma":[4.8,7.5,11.4,25.7,50.6],"Kiowa, Oklahoma":[4.9,8.4,14.4,28.3,44],"Latimer, Oklahoma":[5.1,7.9,13.1,28.6,45.3],"Le Flore, Oklahoma":[5.4,9,13.7,27.2,44.7],"Lincoln, Oklahoma":[5.2,8.8,13.7,27.2,45.1],"Logan, Oklahoma":[4.7,7.8,12.2,27.2,48],"Love, Oklahoma":[5.5,8.5,13,26.5,46.4],"Major, Oklahoma":[5.6,9.3,13.4,26.9,44.7],"Marshall, Oklahoma":[6,9.8,14.9,28.4,40.8],"Mayes, Oklahoma":[5.1,8.9,14.4,27.4,44.3],"McClain, Oklahoma":[5.9,9.4,13.8,26.2,44.8],"McCurtain, Oklahoma":[4.9,8.3,13.1,27,46.7],"McIntosh, Oklahoma":[4.5,7.7,11.7,27.9,48.2],"Murray, Oklahoma":[4.6,7.6,11.5,25.9,50.5],"Muskogee, Oklahoma":[5,8.3,13.1,27.2,46.4],"Noble, Oklahoma":[6.4,10.1,15.6,27.9,40],"Nowata, Oklahoma":[4.8,7.9,12.3,27.7,47.2],"Okfuskee, Oklahoma":[4.9,8.3,14.1,28.8,43.9],"Oklahoma, Oklahoma":[4.4,7.2,11.4,27.1,50],"Okmulgee, Oklahoma":[4.6,7.7,12.3,26.7,48.6],"Osage, Oklahoma":[5.3,8.7,13.8,27.7,44.6],"Ottawa, Oklahoma":[5.4,9,13.5,27,45.1],"Pawnee, Oklahoma":[5.9,9.4,14.7,28.1,42],"Payne, Oklahoma":[4,7.1,11.7,27.3,50],"Pittsburg, Oklahoma":[4.7,8,12.6,27.1,47.7],"Pontotoc, Oklahoma":[5.6,9.2,13.9,27.2,44.1],"Pottawatomie, Oklahoma":[5.3,9.1,13.8,27.2,44.6],"Pushmataha, Oklahoma":[4.3,8,12.8,27.6,47.3],"Roger Mills, Oklahoma":[3.4,5.3,8,25.3,58.1],"Rogers, Oklahoma":[6,9.2,13.6,26.9,44.3],"Seminole, Oklahoma":[5.1,9.1,14.4,28.5,42.9],"Sequoyah, Oklahoma":[5.3,8.9,13.9,27.6,44.3],"Stephens, Oklahoma":[4.6,7.8,11.9,26.9,48.9],"Texas, Oklahoma":[6.3,11.1,16.7,27.4,38.5],"Tillman, Oklahoma":[4.8,8.2,12.5,27,47.4],"Tulsa, Oklahoma":[4.4,7.2,11.4,26.8,50.2],"Wagoner, Oklahoma":[6.1,9.6,14,26.5,43.9],"Washington, Oklahoma":[4.5,7.9,12.9,27.5,47.2],"Washita, Oklahoma":[5.9,9.7,14.5,26.9,42.9],"Woods, Oklahoma":[4.7,8,14.2,27.6,45.4],"Woodward, Oklahoma":[5.5,8.6,13.2,27,45.7]};
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Bottom 20%', 'Second 20%', 'Middle 20%', 'Fourth 20%', 'Top 20%'],
+        datasets: [{
+          label: 'Share (%)',
+          data: values,
+          backgroundColor: '#4576a7'
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.parsed.y + '%'
+            }
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 100,
+            title: {
+              display: true,
+              text: 'Income Share (%)'
+            }
+          },
+          x: {
+            title: {
+              display: true,
+              text: 'Quintile'
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(Object.values(incomeData[this.value]));
+  });
+
+  renderChart(Object.values(incomeData['Statewide']));</script>
+  </body>
+</html>
+</html>

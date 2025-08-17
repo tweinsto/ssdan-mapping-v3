@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Educational Enrollment – Nevada</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Educational Enrollment (Age 18–24) in Nevada</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Carson City, Nevada">Carson City, Nevada</option>
+      <option value="Churchill County, Nevada">Churchill County, Nevada</option>
+      <option value="Clark County, Nevada">Clark County, Nevada</option>
+      <option value="Douglas County, Nevada">Douglas County, Nevada</option>
+      <option value="Elko County, Nevada">Elko County, Nevada</option>
+      <option value="Esmeralda County, Nevada">Esmeralda County, Nevada</option>
+      <option value="Eureka County, Nevada">Eureka County, Nevada</option>
+      <option value="Humboldt County, Nevada">Humboldt County, Nevada</option>
+      <option value="Lander County, Nevada">Lander County, Nevada</option>
+      <option value="Lincoln County, Nevada">Lincoln County, Nevada</option>
+      <option value="Lyon County, Nevada">Lyon County, Nevada</option>
+      <option value="Mineral County, Nevada">Mineral County, Nevada</option>
+      <option value="Nye County, Nevada">Nye County, Nevada</option>
+      <option value="Pershing County, Nevada">Pershing County, Nevada</option>
+      <option value="Storey County, Nevada">Storey County, Nevada</option>
+      <option value="Washoe County, Nevada">Washoe County, Nevada</option>
+      <option value="White Pine County, Nevada">White Pine County, Nevada</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>  const data = {"Statewide":[46.2,19.7,34.1],"Carson City, Nevada":[47.9,18.6,33.5],"Churchill County, Nevada":[46.6,30.9,22.4],"Clark County, Nevada":[46.1,20.1,33.8],"Douglas County, Nevada":[45.9,11.4,42.6],"Elko County, Nevada":[44.3,19.4,36.3],"Esmeralda County, Nevada":[100,0,0],"Eureka County, Nevada":[16.7,66.7,16.7],"Humboldt County, Nevada":[39.7,32.4,27.9],"Lander County, Nevada":[38.7,36.8,24.4],"Lincoln County, Nevada":[50.4,16,33.5],"Lyon County, Nevada":[48.8,18.4,32.8],"Mineral County, Nevada":[64.7,6.5,28.8],"Nye County, Nevada":[43,30,26.9],"Pershing County, Nevada":[28,64.4,7.6],"Storey County, Nevada":[50,0,50],"Washoe County, Nevada":[47.2,16.4,36.4],"White Pine County, Nevada":[50.1,7.3,42.6]};
+  const nationalAvg = [6.9,55,38.1];
+  const categories = ["Enrolled in College","Enrolled in Other School","Not Enrolled"];
+  const ctx = document.getElementById("barChart").getContext("2d");
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: categories,
+        datasets: [
+          {
+            label: "County/State",
+            data: values,
+            backgroundColor: ["#66c2a5", "#fc8d62", "#8da0cb"]
+          },
+          {
+            label: null,
+            data: categories.map(c => nationalAvg[c]),
+            type: "line",
+            borderColor: "black",
+            borderWidth: 2,
+            pointRadius: 0,
+            fill: false
+          }
+        ]
+      },
+      options: {
+        indexAxis: "y",
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            ticks: {
+              callback: v => v + "%"
+            }
+          }
+        },
+        plugins: {
+          legend: {
+            labels: {
+              filter: item => item.text !== null
+            }
+          },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.dataset.label ? ctx.dataset.label + ": " + ctx.raw + "%" : null
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById("countySelect").addEventListener("change", function() {
+    renderChart(Object.values(data[this.value]));
+  });
+
+  renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

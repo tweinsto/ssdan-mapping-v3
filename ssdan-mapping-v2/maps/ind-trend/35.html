@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+
+</head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Median Earnings by Industry – 35</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background: white;
+    }
+    .layout {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1.5rem;
+    }
+    label {
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+    #countySelect {
+      font-size: 1rem;
+      padding: 0.4rem 0.8rem;
+      margin-bottom: 1rem;
+    }
+    canvas {
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <label for="countySelect">Median Earnings by Industry:</label>
+    <select id="countySelect"></select>
+    <canvas id="barChart"></canvas>
+  </div>
+
+  <script>
+    const data = {"Statewide":{"Agriculture, forestry, fishing and hunting, and mining":45893,"Arts, entertainment, and recreation, and accommodation and food services":28867,"Construction":47382,"Educational services, and health care and social assistance":46725,"Finance and insurance, and real estate and rental and leasing":47663,"Information":38934,"Manufacturing":44817,"Other services, except public administration":34700,"Professional, scientific, and management, and administrative and waste management services":57328,"Public administration":57917,"Retail trade":30437,"Transportation and warehousing, and utilities":57384,"Wholesale trade":38443},"Bernalillo County":{"Agriculture, forestry, fishing and hunting, and mining":57735,"Arts, entertainment, and recreation, and accommodation and food services":31066,"Construction":51478,"Educational services, and health care and social assistance":56465,"Finance and insurance, and real estate and rental and leasing":58570,"Information":60015,"Manufacturing":61210,"Other services, except public administration":42456,"Professional, scientific, and management, and administrative and waste management services":79743,"Public administration":73335,"Retail trade":38128,"Transportation and warehousing, and utilities":59424,"Wholesale trade":53736},"Catron County":{"Agriculture, forestry, fishing and hunting, and mining":102979,"Arts, entertainment, and recreation, and accommodation and food services":38958,"Construction":46136,"Educational services, and health care and social assistance":34144,"Finance and insurance, and real estate and rental and leasing":0,"Information":0,"Manufacturing":0,"Other services, except public administration":0,"Professional, scientific, and management, and administrative and waste management services":0,"Public administration":0,"Retail trade":0,"Transportation and warehousing, and utilities":0,"Wholesale trade":0},"Chaves County":{"Agriculture, forestry, fishing and hunting, and mining":42478,"Arts, entertainment, and recreation, and accommodation and food services":24941,"Construction":45427,"Educational services, and health care and social assistance":46163,"Finance and insurance, and real estate and rental and leasing":35559,"Information":60625,"Manufacturing":85486,"Other services, except public administration":37206,"Professional, scientific, and management, and administrative and waste management services":56449,"Public administration":60519,"Retail trade":29848,"Transportation and warehousing, and utilities":51279,"Wholesale trade":57711},"Cibola County":{"Agriculture, forestry, fishing and hunting, and mining":105057,"Arts, entertainment, and recreation, and accommodation and food services":31968,"Construction":42083,"Educational services, and health care and social assistance":60694,"Finance and insurance, and real estate and rental and leasing":41818,"Information":78750,"Manufacturing":49410,"Other services, except public administration":43917,"Professional, scientific, and management, and administrative and waste management services":88583,"Public administration":52303,"Retail trade":30066,"Transportation and warehousing, and utilities":54697,"Wholesale trade":26979},"Colfax County":{"Agriculture, forestry, fishing and hunting, and mining":43589,"Arts, entertainment, and recreation, and accommodation and food services":28750,"Construction":73651,"Educational services, and health care and social assistance":51714,"Finance and insurance, and real estate and rental and leasing":42138,"Information":0,"Manufacturing":38068,"Other services, except public administration":30268,"Professional, scientific, and management, and administrative and waste management services":78534,"Public administration":67772,"Retail trade":25200,"Transportation and warehousing, and utilities":56420,"Wholesale trade":0},"Curry County":{"Agriculture, forestry, fishing and hunting, and mining":48164,"Arts, entertainment, and recreation, and accommodation and food services":27141,"Construction":50948,"Educational services, and health care and social assistance":42080,"Finance and insurance, and real estate and rental and leasing":50795,"Information":45455,"Manufacturing":50748,"Other services, except public administration":34732,"Professional, scientific, and management, and administrative and waste management services":39896,"Public administration":54306,"Retail trade":36180,"Transportation and warehousing, and utilities":69680,"Wholesale trade":39593},"De Baca County":{"Agriculture, forestry, fishing and hunting, and mining":24524,"Arts, entertainment, and recreation, and accommodation and food services":0,"Construction":0,"Educational services, and health care and social assistance":24375,"Finance and insurance, and real estate and rental and leasing":0,"Information":0,"Manufacturing":37434,"Other services, except public administration":0,"Professional, scientific, and management, and administrative and waste management services":0,"Public administration":36111,"Retail trade":0,"Transportation and warehousing, and utilities":83451,"Wholesale trade":0},"Doña Ana County":{"Agriculture, forestry, fishing and hunting, and mining":41206,"Arts, entertainment, and recreation, and accommodation and food services":28867,"Construction":42171,"Educational services, and health care and social assistance":51493,"Finance and insurance, and real estate and rental and leasing":47917,"Information":86875,"Manufacturing":45472,"Other services, except public administration":33219,"Professional, scientific, and management, and administrative and waste management services":58632,"Public administration":76845,"Retail trade":32763,"Transportation and warehousing, and utilities":57384,"Wholesale trade":43412},"Eddy County":{"Agriculture, forestry, fishing and hunting, and mining":102240,"Arts, entertainment, and recreation, and accommodation and food services":34211,"Construction":61250,"Educational services, and health care and social assistance":46725,"Finance and insurance, and real estate and rental and leasing":56671,"Information":52757,"Manufacturing":89833,"Other services, except public administration":56565,"Professional, scientific, and management, and administrative and waste management services":85559,"Public administration":57465,"Retail trade":32774,"Transportation and warehousing, and utilities":78587,"Wholesale trade":107586},"Grant County":{"Agriculture, forestry, fishing and hunting, and mining":71110,"Arts, entertainment, and recreation, and accommodation and food services":24449,"Construction":50245,"Educational services, and health care and social assistance":51231,"Finance and insurance, and real estate and rental and leasing":44405,"Information":75208,"Manufacturing":23264,"Other services, except public administration":31875,"Professional, scientific, and management, and administrative and waste management services":30927,"Public administration":77237,"Retail trade":22551,"Transportation and warehousing, and utilities":68580,"Wholesale trade":68862},"Guadalupe County":{"Agriculture, forestry, fishing and hunting, and mining":36453,"Arts, entertainment, and recreation, and accommodation and food services":18704,"Construction":33000,"Educational services, and health care and social assistance":60884,"Finance and insurance, and real estate and rental and leasing":0,"Information":0,"Manufacturing":0,"Other services, except public administration":29441,"Professional, scientific, and management, and administrative and waste management services":0,"Public administration":59948,"Retail trade":29286,"Transportation and warehousing, and utilities":52679,"Wholesale trade":0},"Harding County":{"Agriculture, forestry, fishing and hunting, and mining":212750,"Arts, entertainment, and recreation, and accommodation and food services":0,"Construction":88438,"Educational services, and health care and social assistance":71667,"Finance and insurance, and real estate and rental and leasing":0,"Information":0,"Manufacturing":0,"Other services, except public administration":0,"Professional, scientific, and management, and administrative and waste management services":41875,"Public administration":57917,"Retail trade":41250,"Transportation and warehousing, and utilities":0,"Wholesale trade":0},"Hidalgo County":{"Agriculture, forestry, fishing and hunting, and mining":34184,"Arts, entertainment, and recreation, and accommodation and food services":24097,"Construction":41250,"Educational services, and health care and social assistance":37428,"Finance and insurance, and real estate and rental and leasing":56964,"Information":0,"Manufacturing":0,"Other services, except public administration":32396,"Professional, scientific, and management, and administrative and waste management services":0,"Public administration":107500,"Retail trade":29779,"Transportation and warehousing, and utilities":74146,"Wholesale trade":0},"Lea County":{"Agriculture, forestry, fishing and hunting, and mining":79147,"Arts, entertainment, and recreation, and accommodation and food services":24160,"Construction":60000,"Educational services, and health care and social assistance":57963,"Finance and insurance, and real estate and rental and leasing":50625,"Information":40043,"Manufacturing":73246,"Other services, except public administration":48313,"Professional, scientific, and management, and administrative and waste management services":62297,"Public administration":67941,"Retail trade":31110,"Transportation and warehousing, and utilities":86614,"Wholesale trade":55371},"Lincoln County":{"Agriculture, forestry, fishing and hunting, and mining":59583,"Arts, entertainment, and recreation, and accommodation and food services":33712,"Construction":38364,"Educational services, and health care and social assistance":49432,"Finance and insurance, and real estate and rental and leasing":38004,"Information":36656,"Manufacturing":29597,"Other services, except public administration":41150,"Professional, scientific, and management, and administrative and waste management services":46195,"Public administration":64435,"Retail trade":25595,"Transportation and warehousing, and utilities":44180,"Wholesale trade":36538},"Los Alamos County":{"Agriculture, forestry, fishing and hunting, and mining":0,"Arts, entertainment, and recreation, and accommodation and food services":61250,"Construction":62292,"Educational services, and health care and social assistance":57254,"Finance and insurance, and real estate and rental and leasing":42955,"Information":53555,"Manufacturing":159741,"Other services, except public administration":42315,"Professional, scientific, and management, and administrative and waste management services":132829,"Public administration":105237,"Retail trade":28849,"Transportation and warehousing, and utilities":97917,"Wholesale trade":61964},"Luna County":{"Agriculture, forestry, fishing and hunting, and mining":53270,"Arts, entertainment, and recreation, and accommodation and food services":16646,"Construction":68486,"Educational services, and health care and social assistance":40714,"Finance and insurance, and real estate and rental and leasing":36648,"Information":0,"Manufacturing":33933,"Other services, except public administration":31371,"Professional, scientific, and management, and administrative and waste management services":37442,"Public administration":72537,"Retail trade":26897,"Transportation and warehousing, and utilities":47341,"Wholesale trade":0},"McKinley County":{"Agriculture, forestry, fishing and hunting, and mining":71500,"Arts, entertainment, and recreation, and accommodation and food services":27125,"Construction":49401,"Educational services, and health care and social assistance":44705,"Finance and insurance, and real estate and rental and leasing":42237,"Information":38934,"Manufacturing":46598,"Other services, except public administration":34700,"Professional, scientific, and management, and administrative and waste management services":57350,"Public administration":54149,"Retail trade":32875,"Transportation and warehousing, and utilities":34861,"Wholesale trade":33472},"Mora County":{"Agriculture, forestry, fishing and hunting, and mining":34167,"Arts, entertainment, and recreation, and accommodation and food services":25673,"Construction":31705,"Educational services, and health care and social assistance":61419,"Finance and insurance, and real estate and rental and leasing":30655,"Information":0,"Manufacturing":0,"Other services, except public administration":16607,"Professional, scientific, and management, and administrative and waste management services":0,"Public administration":51643,"Retail trade":38438,"Transportation and warehousing, and utilities":75857,"Wholesale trade":0},"Otero County":{"Agriculture, forestry, fishing and hunting, and mining":40813,"Arts, entertainment, and recreation, and accommodation and food services":25731,"Construction":42314,"Educational services, and health care and social assistance":50265,"Finance and insurance, and real estate and rental and leasing":51507,"Information":59075,"Manufacturing":54539,"Other services, except public administration":33851,"Professional, scientific, and management, and administrative and waste management services":49044,"Public administration":54152,"Retail trade":35489,"Transportation and warehousing, and utilities":77576,"Wholesale trade":41985},"Quay County":{"Agriculture, forestry, fishing and hunting, and mining":33594,"Arts, entertainment, and recreation, and accommodation and food services":40479,"Construction":76117,"Educational services, and health care and social assistance":42256,"Finance and insurance, and real estate and rental and leasing":49280,"Information":0,"Manufacturing":0,"Other services, except public administration":40869,"Professional, scientific, and management, and administrative and waste management services":59583,"Public administration":50875,"Retail trade":25781,"Transportation and warehousing, and utilities":62611,"Wholesale trade":28839},"Rio Arriba County":{"Agriculture, forestry, fishing and hunting, and mining":72042,"Arts, entertainment, and recreation, and accommodation and food services":35857,"Construction":47424,"Educational services, and health care and social assistance":43248,"Finance and insurance, and real estate and rental and leasing":41692,"Information":58859,"Manufacturing":70625,"Other services, except public administration":45272,"Professional, scientific, and management, and administrative and waste management services":71321,"Public administration":49794,"Retail trade":37337,"Transportation and warehousing, and utilities":45234,"Wholesale trade":50714},"Roosevelt County":{"Agriculture, forestry, fishing and hunting, and mining":43805,"Arts, entertainment, and recreation, and accommodation and food services":36029,"Construction":36833,"Educational services, and health care and social assistance":40139,"Finance and insurance, and real estate and rental and leasing":37045,"Information":31500,"Manufacturing":36073,"Other services, except public administration":33044,"Professional, scientific, and management, and administrative and waste management services":58750,"Public administration":38799,"Retail trade":18125,"Transportation and warehousing, and utilities":61391,"Wholesale trade":49056},"Sandoval County":{"Agriculture, forestry, fishing and hunting, and mining":37292,"Arts, entertainment, and recreation, and accommodation and food services":33220,"Construction":62247,"Educational services, and health care and social assistance":58010,"Finance and insurance, and real estate and rental and leasing":56886,"Information":76618,"Manufacturing":71769,"Other services, except public administration":43750,"Professional, scientific, and management, and administrative and waste management services":79944,"Public administration":70950,"Retail trade":36417,"Transportation and warehousing, and utilities":59313,"Wholesale trade":57283},"San Juan County":{"Agriculture, forestry, fishing and hunting, and mining":59734,"Arts, entertainment, and recreation, and accommodation and food services":29975,"Construction":47382,"Educational services, and health care and social assistance":45970,"Finance and insurance, and real estate and rental and leasing":47663,"Information":56827,"Manufacturing":53704,"Other services, except public administration":41854,"Professional, scientific, and management, and administrative and waste management services":48402,"Public administration":60635,"Retail trade":35843,"Transportation and warehousing, and utilities":52860,"Wholesale trade":38443},"San Miguel County":{"Agriculture, forestry, fishing and hunting, and mining":43750,"Arts, entertainment, and recreation, and accommodation and food services":26988,"Construction":75526,"Educational services, and health care and social assistance":43481,"Finance and insurance, and real estate and rental and leasing":53063,"Information":25673,"Manufacturing":40875,"Other services, except public administration":34120,"Professional, scientific, and management, and administrative and waste management services":41810,"Public administration":52362,"Retail trade":27841,"Transportation and warehousing, and utilities":40391,"Wholesale trade":50595},"Santa Fe County":{"Agriculture, forestry, fishing and hunting, and mining":38917,"Arts, entertainment, and recreation, and accommodation and food services":40269,"Construction":44574,"Educational services, and health care and social assistance":52785,"Finance and insurance, and real estate and rental and leasing":78652,"Information":68068,"Manufacturing":70089,"Other services, except public administration":42037,"Professional, scientific, and management, and administrative and waste management services":93620,"Public administration":69652,"Retail trade":41781,"Transportation and warehousing, and utilities":55104,"Wholesale trade":46983},"Sierra County":{"Agriculture, forestry, fishing and hunting, and mining":62745,"Arts, entertainment, and recreation, and accommodation and food services":82854,"Construction":38125,"Educational services, and health care and social assistance":29821,"Finance and insurance, and real estate and rental and leasing":86417,"Information":0,"Manufacturing":0,"Other services, except public administration":22292,"Professional, scientific, and management, and administrative and waste management services":26744,"Public administration":55811,"Retail trade":25694,"Transportation and warehousing, and utilities":41410,"Wholesale trade":0},"Socorro County":{"Agriculture, forestry, fishing and hunting, and mining":48833,"Arts, entertainment, and recreation, and accommodation and food services":36355,"Construction":55398,"Educational services, and health care and social assistance":39878,"Finance and insurance, and real estate and rental and leasing":39493,"Information":0,"Manufacturing":65321,"Other services, except public administration":81165,"Professional, scientific, and management, and administrative and waste management services":49539,"Public administration":58529,"Retail trade":30437,"Transportation and warehousing, and utilities":86818,"Wholesale trade":0},"Taos County":{"Agriculture, forestry, fishing and hunting, and mining":80500,"Arts, entertainment, and recreation, and accommodation and food services":16276,"Construction":37289,"Educational services, and health care and social assistance":56458,"Finance and insurance, and real estate and rental and leasing":68632,"Information":57120,"Manufacturing":113409,"Other services, except public administration":45352,"Professional, scientific, and management, and administrative and waste management services":57328,"Public administration":57813,"Retail trade":31657,"Transportation and warehousing, and utilities":77300,"Wholesale trade":58500},"Torrance County":{"Agriculture, forestry, fishing and hunting, and mining":35568,"Arts, entertainment, and recreation, and accommodation and food services":24668,"Construction":41250,"Educational services, and health care and social assistance":37464,"Finance and insurance, and real estate and rental and leasing":58162,"Information":0,"Manufacturing":43903,"Other services, except public administration":45833,"Professional, scientific, and management, and administrative and waste management services":65227,"Public administration":67124,"Retail trade":31304,"Transportation and warehousing, and utilities":29348,"Wholesale trade":37067},"Union County":{"Agriculture, forestry, fishing and hunting, and mining":44803,"Arts, entertainment, and recreation, and accommodation and food services":30825,"Construction":70174,"Educational services, and health care and social assistance":38125,"Finance and insurance, and real estate and rental and leasing":70156,"Information":0,"Manufacturing":27500,"Other services, except public administration":0,"Professional, scientific, and management, and administrative and waste management services":96927,"Public administration":49940,"Retail trade":27885,"Transportation and warehousing, and utilities":110568,"Wholesale trade":0},"Valencia County":{"Agriculture, forestry, fishing and hunting, and mining":45893,"Arts, entertainment, and recreation, and accommodation and food services":30917,"Construction":40854,"Educational services, and health care and social assistance":52500,"Finance and insurance, and real estate and rental and leasing":50893,"Information":56793,"Manufacturing":44817,"Other services, except public administration":34040,"Professional, scientific, and management, and administrative and waste management services":63563,"Public administration":45411,"Retail trade":38590,"Transportation and warehousing, and utilities":55658,"Wholesale trade":54167}};
+    const colors = {
+  'Agriculture, forestry, fishing and hunting, and mining': '#FFFF33',
+  'Arts, entertainment, and recreation, and accommodation and food services': '#D95F02',
+  'Construction': '#7570B3',
+  'Educational services, and health care and social assistance': '#66A61E',
+  'Finance and insurance, and real estate and rental and leasing': '#E6AB02',
+  'Information': '#A6761D',
+  'Manufacturing': '#E41A1C',
+  'Other services, except public administration': '#377EB8',
+  'Professional, scientific, and management, and administrative and waste management services': '#4DAF4A',
+  'Public administration': '#984EA3',
+  'Retail trade': '#FF7F00',
+  'Transportation and warehousing, and utilities': '#1B9E77',
+  'Wholesale trade': '#A65628'
+};
+
+    const ctx = document.getElementById("barChart").getContext("2d");
+    let chart;
+
+    function renderChart(county) {
+      const values = data[county];
+      const labels = Object.keys(values);
+      const earnings = Object.values(values);
+
+      if (chart) chart.destroy();
+
+      chart = new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels: labels,
+          datasets: [{
+            label: "Median Earnings ($)",
+            data: earnings,
+            backgroundColor: labels.map(label => colors[label] || "#ccc")
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: true,
+  aspectRatio: 1.5, 
+          indexAxis: "x",
+          scales: {
+            y: {
+              beginAtZero: true,
+              title: {
+                display: true,
+                text: "Median Earnings ($)"
+              },
+              ticks: {
+                callback: function(value) {
+                  return "$" + value.toLocaleString();
+                }
+              }
+            },
+            x: {
+              ticks: {
+                maxRotation: 45,
+                minRotation: 20,
+                autoSkip: false,
+                callback: function(value, index, ticks) {
+                  let label = this.getLabelForValue(value);
+                  return label.length > 25 ? label.slice(0, 25) + "…" : label;
+                }
+              }
+            }
+          },
+          plugins: {
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  return "$" + context.parsed.y.toLocaleString();
+                }
+              }
+            },
+            legend: {
+              display: false
+            }
+          }
+        }
+      });
+    }
+
+    const select = document.getElementById("countySelect");
+    Object.keys(data).forEach(county => {
+      const option = document.createElement("option");
+      option.value = county;
+      option.text = county;
+      select.appendChild(option);
+    });
+    select.value = "Statewide";
+    select.addEventListener("change", () => renderChart(select.value));
+    renderChart("Statewide");
+  </script>
+</body>
+</html>
+</html>

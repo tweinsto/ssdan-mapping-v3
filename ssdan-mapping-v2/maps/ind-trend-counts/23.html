@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+
+</head>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Industry Composition – 23</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #fff;
+    }
+    .container {
+      width: 95%;
+      max-width: 1200px;
+      margin: auto;
+      text-align: center;
+    }
+    canvas {
+  max-width: 100%;
+}
+    #countySelect {
+      font-size: 1rem;
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Industry Composition (Percent) – 23</h2>
+    <select id="countySelect"></select>
+    <canvas id="pieChart"></canvas>
+  </div>
+
+  <script>
+    const data = {"Statewide":{"Agriculture, forestry, fishing and hunting, and mining":2.5,"Arts, entertainment, and recreation, and accommodation and food services":7.9,"Construction":7.7,"Educational services, and health care and social assistance":27.4,"Finance and insurance, and real estate and rental and leasing":6.3,"Information":1.7,"Manufacturing":9,"Other services, except public administration":4.4,"Professional, scientific, and management, and administrative and waste management services":10,"Public administration":4.5,"Retail trade":12.7,"Transportation and warehousing, and utilities":4.2,"Wholesale trade":1.8},"Androscoggin County":{"Agriculture, forestry, fishing and hunting, and mining":1.5,"Arts, entertainment, and recreation, and accommodation and food services":6.9,"Construction":7.7,"Educational services, and health care and social assistance":25.3,"Finance and insurance, and real estate and rental and leasing":7,"Information":1.9,"Manufacturing":10.9,"Other services, except public administration":4.5,"Professional, scientific, and management, and administrative and waste management services":9.3,"Public administration":4.4,"Retail trade":13.9,"Transportation and warehousing, and utilities":5.1,"Wholesale trade":1.7},"Aroostook County":{"Agriculture, forestry, fishing and hunting, and mining":6.2,"Arts, entertainment, and recreation, and accommodation and food services":5.5,"Construction":6.9,"Educational services, and health care and social assistance":29.8,"Finance and insurance, and real estate and rental and leasing":5.6,"Information":1.2,"Manufacturing":8.7,"Other services, except public administration":3.7,"Professional, scientific, and management, and administrative and waste management services":5.6,"Public administration":6.4,"Retail trade":11.7,"Transportation and warehousing, and utilities":7.4,"Wholesale trade":1.2},"Cumberland County":{"Agriculture, forestry, fishing and hunting, and mining":1.2,"Arts, entertainment, and recreation, and accommodation and food services":8.5,"Construction":5.8,"Educational services, and health care and social assistance":27.5,"Finance and insurance, and real estate and rental and leasing":8.9,"Information":2.1,"Manufacturing":8.1,"Other services, except public administration":4,"Professional, scientific, and management, and administrative and waste management services":13.8,"Public administration":2.9,"Retail trade":11.4,"Transportation and warehousing, and utilities":3.7,"Wholesale trade":2.1},"Franklin County":{"Agriculture, forestry, fishing and hunting, and mining":3.1,"Arts, entertainment, and recreation, and accommodation and food services":8,"Construction":7.7,"Educational services, and health care and social assistance":31.6,"Finance and insurance, and real estate and rental and leasing":4.3,"Information":1,"Manufacturing":11.6,"Other services, except public administration":4.3,"Professional, scientific, and management, and administrative and waste management services":7.4,"Public administration":4.7,"Retail trade":11.7,"Transportation and warehousing, and utilities":3.6,"Wholesale trade":1},"Hancock County":{"Agriculture, forestry, fishing and hunting, and mining":6,"Arts, entertainment, and recreation, and accommodation and food services":8.9,"Construction":8.3,"Educational services, and health care and social assistance":26.2,"Finance and insurance, and real estate and rental and leasing":4.9,"Information":1.2,"Manufacturing":5.5,"Other services, except public administration":4.9,"Professional, scientific, and management, and administrative and waste management services":12.9,"Public administration":3.6,"Retail trade":12,"Transportation and warehousing, and utilities":3.8,"Wholesale trade":1.9},"Kennebec County":{"Agriculture, forestry, fishing and hunting, and mining":2,"Arts, entertainment, and recreation, and accommodation and food services":6.9,"Construction":8.2,"Educational services, and health care and social assistance":29.5,"Finance and insurance, and real estate and rental and leasing":5.2,"Information":1.7,"Manufacturing":6.9,"Other services, except public administration":3.8,"Professional, scientific, and management, and administrative and waste management services":8.7,"Public administration":8.1,"Retail trade":13.1,"Transportation and warehousing, and utilities":4,"Wholesale trade":1.9},"Knox County":{"Agriculture, forestry, fishing and hunting, and mining":6.9,"Arts, entertainment, and recreation, and accommodation and food services":8.8,"Construction":8.4,"Educational services, and health care and social assistance":21,"Finance and insurance, and real estate and rental and leasing":5.2,"Information":1.4,"Manufacturing":9.2,"Other services, except public administration":6.6,"Professional, scientific, and management, and administrative and waste management services":10.6,"Public administration":4.3,"Retail trade":11.9,"Transportation and warehousing, and utilities":4.1,"Wholesale trade":1.5},"Lincoln County":{"Agriculture, forestry, fishing and hunting, and mining":3.4,"Arts, entertainment, and recreation, and accommodation and food services":8.2,"Construction":11.4,"Educational services, and health care and social assistance":23.6,"Finance and insurance, and real estate and rental and leasing":5,"Information":1.4,"Manufacturing":11.1,"Other services, except public administration":5.1,"Professional, scientific, and management, and administrative and waste management services":10.5,"Public administration":5.1,"Retail trade":11.5,"Transportation and warehousing, and utilities":2.4,"Wholesale trade":1.4},"Oxford County":{"Agriculture, forestry, fishing and hunting, and mining":3.3,"Arts, entertainment, and recreation, and accommodation and food services":10.2,"Construction":10.6,"Educational services, and health care and social assistance":25.3,"Finance and insurance, and real estate and rental and leasing":4.8,"Information":1,"Manufacturing":12,"Other services, except public administration":4.4,"Professional, scientific, and management, and administrative and waste management services":6.8,"Public administration":2.7,"Retail trade":13,"Transportation and warehousing, and utilities":4.8,"Wholesale trade":1.2},"Penobscot County":{"Agriculture, forestry, fishing and hunting, and mining":1.8,"Arts, entertainment, and recreation, and accommodation and food services":8.3,"Construction":8.4,"Educational services, and health care and social assistance":34.1,"Finance and insurance, and real estate and rental and leasing":4.4,"Information":1.3,"Manufacturing":4.8,"Other services, except public administration":5,"Professional, scientific, and management, and administrative and waste management services":6.4,"Public administration":5.1,"Retail trade":14.2,"Transportation and warehousing, and utilities":4.5,"Wholesale trade":1.7},"Piscataquis County":{"Agriculture, forestry, fishing and hunting, and mining":4,"Arts, entertainment, and recreation, and accommodation and food services":3.4,"Construction":11.7,"Educational services, and health care and social assistance":24.7,"Finance and insurance, and real estate and rental and leasing":1.8,"Information":2.2,"Manufacturing":12,"Other services, except public administration":2.7,"Professional, scientific, and management, and administrative and waste management services":6.4,"Public administration":7.6,"Retail trade":15.7,"Transportation and warehousing, and utilities":5.9,"Wholesale trade":2},"Sagadahoc County":{"Agriculture, forestry, fishing and hunting, and mining":1.4,"Arts, entertainment, and recreation, and accommodation and food services":8.1,"Construction":7.9,"Educational services, and health care and social assistance":26.9,"Finance and insurance, and real estate and rental and leasing":6.1,"Information":1.1,"Manufacturing":11.3,"Other services, except public administration":4.9,"Professional, scientific, and management, and administrative and waste management services":9.8,"Public administration":5.3,"Retail trade":11.7,"Transportation and warehousing, and utilities":3.5,"Wholesale trade":1.8},"Somerset County":{"Agriculture, forestry, fishing and hunting, and mining":3.3,"Arts, entertainment, and recreation, and accommodation and food services":8.2,"Construction":9.1,"Educational services, and health care and social assistance":24.3,"Finance and insurance, and real estate and rental and leasing":2.4,"Information":1.5,"Manufacturing":13.6,"Other services, except public administration":4.3,"Professional, scientific, and management, and administrative and waste management services":7.3,"Public administration":4.9,"Retail trade":13.9,"Transportation and warehousing, and utilities":6.1,"Wholesale trade":1.1},"Waldo County":{"Agriculture, forestry, fishing and hunting, and mining":3.8,"Arts, entertainment, and recreation, and accommodation and food services":6.5,"Construction":7.8,"Educational services, and health care and social assistance":26.5,"Finance and insurance, and real estate and rental and leasing":5.5,"Information":1.6,"Manufacturing":8.6,"Other services, except public administration":5.2,"Professional, scientific, and management, and administrative and waste management services":10.4,"Public administration":4.7,"Retail trade":13.5,"Transportation and warehousing, and utilities":3.3,"Wholesale trade":2.4},"Washington County":{"Agriculture, forestry, fishing and hunting, and mining":9.8,"Arts, entertainment, and recreation, and accommodation and food services":5.2,"Construction":6.7,"Educational services, and health care and social assistance":29.9,"Finance and insurance, and real estate and rental and leasing":3.6,"Information":1.3,"Manufacturing":8.1,"Other services, except public administration":4,"Professional, scientific, and management, and administrative and waste management services":6.5,"Public administration":7.1,"Retail trade":11.5,"Transportation and warehousing, and utilities":4.7,"Wholesale trade":1.7},"York County":{"Agriculture, forestry, fishing and hunting, and mining":1.5,"Arts, entertainment, and recreation, and accommodation and food services":8.3,"Construction":7.8,"Educational services, and health care and social assistance":24.7,"Finance and insurance, and real estate and rental and leasing":6.8,"Information":1.7,"Manufacturing":11.5,"Other services, except public administration":4.7,"Professional, scientific, and management, and administrative and waste management services":10,"Public administration":4.2,"Retail trade":13.2,"Transportation and warehousing, and utilities":3.7,"Wholesale trade":1.9}};
+    const colors = {
+  'Agriculture, forestry, fishing and hunting, and mining': '#FFFF33',
+  'Arts, entertainment, and recreation, and accommodation and food services': '#D95F02',
+  'Construction': '#7570B3',
+  'Educational services, and health care and social assistance': '#66A61E',
+  'Finance and insurance, and real estate and rental and leasing': '#E6AB02',
+  'Information': '#A6761D',
+  'Manufacturing': '#E41A1C',
+  'Other services, except public administration': '#377EB8',
+  'Professional, scientific, and management, and administrative and waste management services': '#4DAF4A',
+  'Public administration': '#984EA3',
+  'Retail trade': '#FF7F00',
+  'Transportation and warehousing, and utilities': '#1B9E77',
+  'Wholesale trade': '#A65628'
+};
+
+    const ctx = document.getElementById("pieChart").getContext("2d");
+    let chart;
+
+    function renderChart(county) {
+      const values = data[county];
+      const labels = Object.keys(values);
+      const percentages = Object.values(values);
+
+      if (chart) chart.destroy();
+
+      chart = new Chart(ctx, {
+        type: "pie",
+        data: {
+          labels: labels,
+          datasets: [{
+            data: percentages,
+            backgroundColor: labels.map(label => colors[label] || "#cccccc")
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: true,
+  aspectRatio: 1.5, 
+          plugins: {
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  return context.label + ": " + context.formattedValue + "%";
+                }
+              }
+            },
+            legend: {
+              position: "right",
+              labels: {
+                usePointStyle: true,
+                pointStyle: "rect"
+              }
+            }
+          }
+        }
+      });
+    }
+
+    const select = document.getElementById("countySelect");
+    Object.keys(data).forEach(county => {
+      const opt = document.createElement("option");
+      opt.value = county;
+      opt.text = county;
+      select.appendChild(opt);
+    });
+    select.value = "Statewide";
+    select.addEventListener("change", () => renderChart(select.value));
+    renderChart("Statewide");
+  </script>
+</body>
+</html>
+</html>

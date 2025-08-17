@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Living Arrangements – Nevada</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          margin: 1rem 2rem;
+          text-align: center;
+        }
+        h2 {
+          font-size: 1.5rem;
+          margin-bottom: 0.5rem;
+        }
+        select {
+          font-size: 1rem;
+          padding: 0.4rem;
+          margin: 1rem 0;
+          border: 1px solid #999;
+          border-radius: 5px;
+        }
+        canvas {
+          width: 100%;
+          max-width: 850px;
+          height: 600px;
+          margin-top: 1rem;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Living Arrangements of Adults 65+ in Nevada</h2>
+    <label>Select County:</label>
+            <select id="countySelect">
+          <option value='Statewide'>Default</option>
+<option value='Carson City, Nevada'>Carson City, Nevada</option>
+<option value='Churchill County, Nevada'>Churchill County, Nevada</option>
+<option value='Clark County, Nevada'>Clark County, Nevada</option>
+<option value='Douglas County, Nevada'>Douglas County, Nevada</option>
+<option value='Elko County, Nevada'>Elko County, Nevada</option>
+<option value='Esmeralda County, Nevada'>Esmeralda County, Nevada</option>
+<option value='Eureka County, Nevada'>Eureka County, Nevada</option>
+<option value='Humboldt County, Nevada'>Humboldt County, Nevada</option>
+<option value='Lander County, Nevada'>Lander County, Nevada</option>
+<option value='Lincoln County, Nevada'>Lincoln County, Nevada</option>
+<option value='Lyon County, Nevada'>Lyon County, Nevada</option>
+<option value='Mineral County, Nevada'>Mineral County, Nevada</option>
+<option value='Nye County, Nevada'>Nye County, Nevada</option>
+<option value='Pershing County, Nevada'>Pershing County, Nevada</option>
+<option value='Storey County, Nevada'>Storey County, Nevada</option>
+<option value='Washoe County, Nevada'>Washoe County, Nevada</option>
+<option value='White Pine County, Nevada'>White Pine County, Nevada</option>
+        </select>
+    <canvas id="barChart"></canvas>
+    <script>  const chartData = {"Statewide":[0,0,0,0,0,0],"Carson City, Nevada":[0,0,0,0,0,0],"Churchill County, Nevada":[0,0,0,0,0,0],"Clark County, Nevada":[0,0,0,0,0,0],"Douglas County, Nevada":[0,0,0,0,0,0],"Elko County, Nevada":[0,0,0,0,0,0],"Esmeralda County, Nevada":[0,0,0,0,0,0],"Eureka County, Nevada":[0,0,0,0,0,0],"Humboldt County, Nevada":[0,0,0,0,0,0],"Lander County, Nevada":[0,0,0,0,0,0],"Lincoln County, Nevada":[0,0,0,0,0,0],"Lyon County, Nevada":[0,0,0,0,0,0],"Mineral County, Nevada":[0,0,0,0,0,0],"Nye County, Nevada":[0,0,0,0,0,0],"Pershing County, Nevada":[0,0,0,0,0,0],"Storey County, Nevada":[0,0,0,0,0,0],"Washoe County, Nevada":[0,0,0,0,0,0],"White Pine County, Nevada":[0,0,0,0,0,0]};
+  const categories = ["With unmarried partner","With spouse only","With other relatives","With nonrelatives","With child","Lives alone"];
+  const usAverages = [27.3,0.3,2.3,14.5,53.2,2.4];
+
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(data) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: categories,
+        datasets: [
+          {
+            label: 'Percent (County/State)',
+            data: data,
+            backgroundColor: '#4576a7'
+          },
+          {
+            label: 'National Average',
+            data: categories.map(c => usAverages[c] || 0),
+            type: 'line',
+            borderColor: '#000',
+            borderWidth: 1,
+            pointRadius: 0,
+            fill: false
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        indexAxis: 'y',
+        scales: {
+          x: {
+            title: {
+              display: true,
+              text: 'Percent of 65+ Population'
+            },
+            min: 0,
+            max: 100,
+            ticks: {
+              callback: value => value + '%'
+            }
+          }
+        },
+        plugins: {
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.dataset.label + ': ' + ctx.parsed.x + '%'
+            }
+          },
+          legend: {
+            position: 'top',
+            align: 'start'
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(Object.values(chartData[this.value]));
+  });
+
+  renderChart(Object.values(chartData['Statewide']));</script>
+  </body>
+</html>
+</html>

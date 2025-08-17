@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+
+</head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Median Earnings by Industry – 09</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background: white;
+    }
+    .layout {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1.5rem;
+    }
+    label {
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+    #countySelect {
+      font-size: 1rem;
+      padding: 0.4rem 0.8rem;
+      margin-bottom: 1rem;
+    }
+    canvas {
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <label for="countySelect">Median Earnings by Industry:</label>
+    <select id="countySelect"></select>
+    <canvas id="barChart"></canvas>
+  </div>
+
+  <script>
+    const data = {"Statewide":{"Agriculture, forestry, fishing and hunting, and mining":60370,"Arts, entertainment, and recreation, and accommodation and food services":45383,"Construction":70507,"Educational services, and health care and social assistance":69441,"Finance and insurance, and real estate and rental and leasing":96637,"Information":90045,"Manufacturing":80264,"Other services, except public administration":53313,"Professional, scientific, and management, and administrative and waste management services":81648,"Public administration":91214,"Retail trade":49005,"Transportation and warehousing, and utilities":71556,"Wholesale trade":71492},"Capitol Planning Region":{"Agriculture, forestry, fishing and hunting, and mining":60370,"Arts, entertainment, and recreation, and accommodation and food services":40916,"Construction":65934,"Educational services, and health care and social assistance":70365,"Finance and insurance, and real estate and rental and leasing":102258,"Information":87014,"Manufacturing":82993,"Other services, except public administration":49009,"Professional, scientific, and management, and administrative and waste management services":84217,"Public administration":87829,"Retail trade":48032,"Transportation and warehousing, and utilities":60073,"Wholesale trade":67819},"Greater Bridgeport Planning Region":{"Agriculture, forestry, fishing and hunting, and mining":80764,"Arts, entertainment, and recreation, and accommodation and food services":49387,"Construction":60048,"Educational services, and health care and social assistance":69441,"Finance and insurance, and real estate and rental and leasing":108065,"Information":86991,"Manufacturing":80264,"Other services, except public administration":49884,"Professional, scientific, and management, and administrative and waste management services":91701,"Public administration":94669,"Retail trade":47404,"Transportation and warehousing, and utilities":61493,"Wholesale trade":81568},"Lower Connecticut River Valley Planning Region":{"Agriculture, forestry, fishing and hunting, and mining":66825,"Arts, entertainment, and recreation, and accommodation and food services":45703,"Construction":73426,"Educational services, and health care and social assistance":76084,"Finance and insurance, and real estate and rental and leasing":100982,"Information":107656,"Manufacturing":86659,"Other services, except public administration":53426,"Professional, scientific, and management, and administrative and waste management services":85725,"Public administration":98387,"Retail trade":49005,"Transportation and warehousing, and utilities":87520,"Wholesale trade":71536},"Naugatuck Valley Planning Region":{"Agriculture, forestry, fishing and hunting, and mining":61750,"Arts, entertainment, and recreation, and accommodation and food services":42791,"Construction":70610,"Educational services, and health care and social assistance":66798,"Finance and insurance, and real estate and rental and leasing":84933,"Information":90045,"Manufacturing":72906,"Other services, except public administration":53313,"Professional, scientific, and management, and administrative and waste management services":75237,"Public administration":77836,"Retail trade":49509,"Transportation and warehousing, and utilities":71556,"Wholesale trade":65456},"Northeastern Connecticut Planning Region":{"Agriculture, forestry, fishing and hunting, and mining":62045,"Arts, entertainment, and recreation, and accommodation and food services":48684,"Construction":70847,"Educational services, and health care and social assistance":66185,"Finance and insurance, and real estate and rental and leasing":77440,"Information":102143,"Manufacturing":65216,"Other services, except public administration":50547,"Professional, scientific, and management, and administrative and waste management services":68418,"Public administration":82943,"Retail trade":54182,"Transportation and warehousing, and utilities":62456,"Wholesale trade":63787},"Northwest Hills Planning Region":{"Agriculture, forestry, fishing and hunting, and mining":51543,"Arts, entertainment, and recreation, and accommodation and food services":40991,"Construction":70507,"Educational services, and health care and social assistance":69090,"Finance and insurance, and real estate and rental and leasing":96637,"Information":85625,"Manufacturing":68350,"Other services, except public administration":63406,"Professional, scientific, and management, and administrative and waste management services":79625,"Public administration":100822,"Retail trade":53880,"Transportation and warehousing, and utilities":63315,"Wholesale trade":74348},"South Central Connecticut Planning Region":{"Agriculture, forestry, fishing and hunting, and mining":33839,"Arts, entertainment, and recreation, and accommodation and food services":41692,"Construction":63445,"Educational services, and health care and social assistance":72110,"Finance and insurance, and real estate and rental and leasing":78691,"Information":91531,"Manufacturing":74933,"Other services, except public administration":52050,"Professional, scientific, and management, and administrative and waste management services":79565,"Public administration":89952,"Retail trade":48462,"Transportation and warehousing, and utilities":72334,"Wholesale trade":71492},"Southeastern Connecticut Planning Region":{"Agriculture, forestry, fishing and hunting, and mining":43520,"Arts, entertainment, and recreation, and accommodation and food services":45383,"Construction":70948,"Educational services, and health care and social assistance":60751,"Finance and insurance, and real estate and rental and leasing":83565,"Information":78347,"Manufacturing":85622,"Other services, except public administration":53673,"Professional, scientific, and management, and administrative and waste management services":81648,"Public administration":91214,"Retail trade":43465,"Transportation and warehousing, and utilities":85068,"Wholesale trade":65202},"Western Connecticut Planning Region":{"Agriculture, forestry, fishing and hunting, and mining":52216,"Arts, entertainment, and recreation, and accommodation and food services":51274,"Construction":66130,"Educational services, and health care and social assistance":76021,"Finance and insurance, and real estate and rental and leasing":179332,"Information":109856,"Manufacturing":98592,"Other services, except public administration":57666,"Professional, scientific, and management, and administrative and waste management services":113320,"Public administration":98608,"Retail trade":58140,"Transportation and warehousing, and utilities":74217,"Wholesale trade":105508}};
+    const colors = {
+  'Agriculture, forestry, fishing and hunting, and mining': '#FFFF33',
+  'Arts, entertainment, and recreation, and accommodation and food services': '#D95F02',
+  'Construction': '#7570B3',
+  'Educational services, and health care and social assistance': '#66A61E',
+  'Finance and insurance, and real estate and rental and leasing': '#E6AB02',
+  'Information': '#A6761D',
+  'Manufacturing': '#E41A1C',
+  'Other services, except public administration': '#377EB8',
+  'Professional, scientific, and management, and administrative and waste management services': '#4DAF4A',
+  'Public administration': '#984EA3',
+  'Retail trade': '#FF7F00',
+  'Transportation and warehousing, and utilities': '#1B9E77',
+  'Wholesale trade': '#A65628'
+};
+
+    const ctx = document.getElementById("barChart").getContext("2d");
+    let chart;
+
+    function renderChart(county) {
+      const values = data[county];
+      const labels = Object.keys(values);
+      const earnings = Object.values(values);
+
+      if (chart) chart.destroy();
+
+      chart = new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels: labels,
+          datasets: [{
+            label: "Median Earnings ($)",
+            data: earnings,
+            backgroundColor: labels.map(label => colors[label] || "#ccc")
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: true,
+  aspectRatio: 1.5, 
+          indexAxis: "x",
+          scales: {
+            y: {
+              beginAtZero: true,
+              title: {
+                display: true,
+                text: "Median Earnings ($)"
+              },
+              ticks: {
+                callback: function(value) {
+                  return "$" + value.toLocaleString();
+                }
+              }
+            },
+            x: {
+              ticks: {
+                maxRotation: 45,
+                minRotation: 20,
+                autoSkip: false,
+                callback: function(value, index, ticks) {
+                  let label = this.getLabelForValue(value);
+                  return label.length > 25 ? label.slice(0, 25) + "…" : label;
+                }
+              }
+            }
+          },
+          plugins: {
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  return "$" + context.parsed.y.toLocaleString();
+                }
+              }
+            },
+            legend: {
+              display: false
+            }
+          }
+        }
+      });
+    }
+
+    const select = document.getElementById("countySelect");
+    Object.keys(data).forEach(county => {
+      const option = document.createElement("option");
+      option.value = county;
+      option.text = county;
+      select.appendChild(option);
+    });
+    select.value = "Statewide";
+    select.addEventListener("change", () => renderChart(select.value));
+    renderChart("Statewide");
+  </script>
+</body>
+</html>
+</html>

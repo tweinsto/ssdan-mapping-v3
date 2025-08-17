@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Language Spoken at Home – Hawaii</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          text-align: center;
+          margin: 2rem;
+        }
+        select {
+          font-size: 1rem;
+          padding: 0.4rem;
+          margin-bottom: 1rem;
+        }
+        canvas {
+          width: 100%;
+          max-width: 700px;
+          height: 800px;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Language Spoken at Home – Hawaii</h2>
+    <label>Select County, State:</label>
+    <select id="countySelect"><option value='Statewide'>Statewide</option>
+<option value='Hawaii County, Hawaii'>Hawaii County, Hawaii</option>
+<option value='Honolulu County, Hawaii'>Honolulu County, Hawaii</option>
+<option value='Kalawao County, Hawaii'>Kalawao County, Hawaii</option>
+<option value='Kauai County, Hawaii'>Kauai County, Hawaii</option>
+<option value='Maui County, Hawaii'>Maui County, Hawaii</option></select>
+    <canvas id="barChart" width="700" height="700"></canvas>
+    <script>  const languageData = {"Statewide":{"Arabic":0,"Chinese":0.1,"English only":59.9,"French, Haitian, Cajun":0.4,"German or West Germanic":0,"Korean":0.4,"Other":35.3,"Other Asian/Pacific":0,"Other Indo-European":0.2,"Other/Unspecified":0.1,"Russian, Polish, Slavic":0.1,"Spanish":3.2,"Tagalog":0.2,"Vietnamese":0},"Hawaii County, Hawaii":{"Arabic":0,"Chinese":1.3,"English only":53.5,"French, Haitian, Cajun":0.8,"German or West Germanic":1.1,"Korean":0.6,"Other Asian/Pacific":23.7,"Other Indo-European":1.1,"Other/Unspecified":8.7,"Russian, Polish, Slavic":0.9,"Spanish":5.2,"Tagalog":2.7,"Vietnamese":0.4},"Honolulu County, Hawaii":{"Arabic":0.1,"Chinese":6.3,"English only":49.5,"French, Haitian, Cajun":0.7,"German or West Germanic":0.7,"Korean":3.5,"Other Asian/Pacific":22,"Other Indo-European":1,"Other/Unspecified":1.4,"Russian, Polish, Slavic":0.4,"Spanish":4.4,"Tagalog":8.3,"Vietnamese":1.7},"Kalawao County, Hawaii":{"Arabic":0,"Chinese":0,"English only":100,"French, Haitian, Cajun":0,"German or West Germanic":0,"Korean":0,"Other Asian/Pacific":0,"Other Indo-European":0,"Other/Unspecified":0,"Russian, Polish, Slavic":0,"Spanish":0,"Tagalog":0,"Vietnamese":0},"Kauai County, Hawaii":{"Arabic":0,"Chinese":0.9,"English only":62,"French, Haitian, Cajun":1.3,"German or West Germanic":1,"Korean":0.7,"Other Asian/Pacific":18.7,"Other Indo-European":1.2,"Other/Unspecified":2.8,"Russian, Polish, Slavic":0.6,"Spanish":3.2,"Tagalog":7.2,"Vietnamese":0.2},"Maui County, Hawaii":{"Arabic":0,"Chinese":0.8,"English only":58.8,"French, Haitian, Cajun":0.9,"German or West Germanic":1.5,"Korean":1,"Other Asian/Pacific":19.4,"Other Indo-European":1.4,"Other/Unspecified":1.2,"Russian, Polish, Slavic":0.5,"Spanish":5.6,"Tagalog":7.9,"Vietnamese":0.9}};
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: Object.keys(values),
+        datasets: [{
+          label: 'Share (%)',
+          data: Object.values(values),
+          backgroundColor: '#4576a7'
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.parsed.y + '%'
+            }
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 100,
+            title: {
+              display: true,
+              text: 'Population Share (%)'
+            }
+          },
+          x: {
+            title: {
+              display: true,
+              text: 'Language Group'
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(languageData[this.value]);
+  });
+
+  renderChart(languageData['Statewide']);</script>
+  </body>
+</html>
+</html>

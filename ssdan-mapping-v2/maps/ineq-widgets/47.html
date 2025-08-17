@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Income Distribution – Tennessee</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          text-align: center;
+          margin: 2rem;
+        }
+        select {
+          font-size: 1rem;
+          padding: 0.4rem;
+          margin-bottom: 1rem;
+        }
+        canvas {
+          width: 100%;
+          max-width: 700px;
+          height: 400px;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Income Share by Quintile – Tennessee</h2>
+    <label>Select County, State:</label>
+    <select id="countySelect"><option value='Statewide'>Statewide</option>
+<option value='Anderson, Tennessee'>Anderson, Tennessee</option>
+<option value='Bedford, Tennessee'>Bedford, Tennessee</option>
+<option value='Benton, Tennessee'>Benton, Tennessee</option>
+<option value='Bledsoe, Tennessee'>Bledsoe, Tennessee</option>
+<option value='Blount, Tennessee'>Blount, Tennessee</option>
+<option value='Bradley, Tennessee'>Bradley, Tennessee</option>
+<option value='Campbell, Tennessee'>Campbell, Tennessee</option>
+<option value='Cannon, Tennessee'>Cannon, Tennessee</option>
+<option value='Carroll, Tennessee'>Carroll, Tennessee</option>
+<option value='Carter, Tennessee'>Carter, Tennessee</option>
+<option value='Cheatham, Tennessee'>Cheatham, Tennessee</option>
+<option value='Chester, Tennessee'>Chester, Tennessee</option>
+<option value='Claiborne, Tennessee'>Claiborne, Tennessee</option>
+<option value='Clay, Tennessee'>Clay, Tennessee</option>
+<option value='Cocke, Tennessee'>Cocke, Tennessee</option>
+<option value='Coffee, Tennessee'>Coffee, Tennessee</option>
+<option value='Crockett, Tennessee'>Crockett, Tennessee</option>
+<option value='Cumberland, Tennessee'>Cumberland, Tennessee</option>
+<option value='Davidson, Tennessee'>Davidson, Tennessee</option>
+<option value='Decatur, Tennessee'>Decatur, Tennessee</option>
+<option value='DeKalb, Tennessee'>DeKalb, Tennessee</option>
+<option value='Dickson, Tennessee'>Dickson, Tennessee</option>
+<option value='Dyer, Tennessee'>Dyer, Tennessee</option>
+<option value='Fayette, Tennessee'>Fayette, Tennessee</option>
+<option value='Fentress, Tennessee'>Fentress, Tennessee</option>
+<option value='Franklin, Tennessee'>Franklin, Tennessee</option>
+<option value='Gibson, Tennessee'>Gibson, Tennessee</option>
+<option value='Giles, Tennessee'>Giles, Tennessee</option>
+<option value='Grainger, Tennessee'>Grainger, Tennessee</option>
+<option value='Greene, Tennessee'>Greene, Tennessee</option>
+<option value='Grundy, Tennessee'>Grundy, Tennessee</option>
+<option value='Hamblen, Tennessee'>Hamblen, Tennessee</option>
+<option value='Hamilton, Tennessee'>Hamilton, Tennessee</option>
+<option value='Hancock, Tennessee'>Hancock, Tennessee</option>
+<option value='Hardeman, Tennessee'>Hardeman, Tennessee</option>
+<option value='Hardin, Tennessee'>Hardin, Tennessee</option>
+<option value='Hawkins, Tennessee'>Hawkins, Tennessee</option>
+<option value='Haywood, Tennessee'>Haywood, Tennessee</option>
+<option value='Henderson, Tennessee'>Henderson, Tennessee</option>
+<option value='Henry, Tennessee'>Henry, Tennessee</option>
+<option value='Hickman, Tennessee'>Hickman, Tennessee</option>
+<option value='Houston, Tennessee'>Houston, Tennessee</option>
+<option value='Humphreys, Tennessee'>Humphreys, Tennessee</option>
+<option value='Jackson, Tennessee'>Jackson, Tennessee</option>
+<option value='Jefferson, Tennessee'>Jefferson, Tennessee</option>
+<option value='Johnson, Tennessee'>Johnson, Tennessee</option>
+<option value='Knox, Tennessee'>Knox, Tennessee</option>
+<option value='Lake, Tennessee'>Lake, Tennessee</option>
+<option value='Lauderdale, Tennessee'>Lauderdale, Tennessee</option>
+<option value='Lawrence, Tennessee'>Lawrence, Tennessee</option>
+<option value='Lewis, Tennessee'>Lewis, Tennessee</option>
+<option value='Lincoln, Tennessee'>Lincoln, Tennessee</option>
+<option value='Loudon, Tennessee'>Loudon, Tennessee</option>
+<option value='Macon, Tennessee'>Macon, Tennessee</option>
+<option value='Madison, Tennessee'>Madison, Tennessee</option>
+<option value='Marion, Tennessee'>Marion, Tennessee</option>
+<option value='Marshall, Tennessee'>Marshall, Tennessee</option>
+<option value='Maury, Tennessee'>Maury, Tennessee</option>
+<option value='McMinn, Tennessee'>McMinn, Tennessee</option>
+<option value='McNairy, Tennessee'>McNairy, Tennessee</option>
+<option value='Meigs, Tennessee'>Meigs, Tennessee</option>
+<option value='Monroe, Tennessee'>Monroe, Tennessee</option>
+<option value='Montgomery, Tennessee'>Montgomery, Tennessee</option>
+<option value='Moore, Tennessee'>Moore, Tennessee</option>
+<option value='Morgan, Tennessee'>Morgan, Tennessee</option>
+<option value='Obion, Tennessee'>Obion, Tennessee</option>
+<option value='Overton, Tennessee'>Overton, Tennessee</option>
+<option value='Perry, Tennessee'>Perry, Tennessee</option>
+<option value='Pickett, Tennessee'>Pickett, Tennessee</option>
+<option value='Polk, Tennessee'>Polk, Tennessee</option>
+<option value='Putnam, Tennessee'>Putnam, Tennessee</option>
+<option value='Rhea, Tennessee'>Rhea, Tennessee</option>
+<option value='Roane, Tennessee'>Roane, Tennessee</option>
+<option value='Robertson, Tennessee'>Robertson, Tennessee</option>
+<option value='Rutherford, Tennessee'>Rutherford, Tennessee</option>
+<option value='Scott, Tennessee'>Scott, Tennessee</option>
+<option value='Sequatchie, Tennessee'>Sequatchie, Tennessee</option>
+<option value='Sevier, Tennessee'>Sevier, Tennessee</option>
+<option value='Shelby, Tennessee'>Shelby, Tennessee</option>
+<option value='Smith, Tennessee'>Smith, Tennessee</option>
+<option value='Stewart, Tennessee'>Stewart, Tennessee</option>
+<option value='Sullivan, Tennessee'>Sullivan, Tennessee</option>
+<option value='Sumner, Tennessee'>Sumner, Tennessee</option>
+<option value='Tipton, Tennessee'>Tipton, Tennessee</option>
+<option value='Trousdale, Tennessee'>Trousdale, Tennessee</option>
+<option value='Unicoi, Tennessee'>Unicoi, Tennessee</option>
+<option value='Union, Tennessee'>Union, Tennessee</option>
+<option value='Van Buren, Tennessee'>Van Buren, Tennessee</option>
+<option value='Warren, Tennessee'>Warren, Tennessee</option>
+<option value='Washington, Tennessee'>Washington, Tennessee</option>
+<option value='Wayne, Tennessee'>Wayne, Tennessee</option>
+<option value='Weakley, Tennessee'>Weakley, Tennessee</option>
+<option value='White, Tennessee'>White, Tennessee</option>
+<option value='Williamson, Tennessee'>Williamson, Tennessee</option>
+<option value='Wilson, Tennessee'>Wilson, Tennessee</option></select>
+    <canvas id="barChart" width="700" height="400"></canvas>
+    <script>  const incomeData = {"Statewide":[5.2,8.6,13.2,27.1,45.9],"Anderson, Tennessee":[5,8.3,13.2,27.2,46.4],"Bedford, Tennessee":[6,9.2,13.3,26.7,44.8],"Benton, Tennessee":[5.9,9.5,14.2,27,43.3],"Bledsoe, Tennessee":[5.6,9.7,14.8,28.6,41.3],"Blount, Tennessee":[5.7,8.8,12.9,26.3,46.3],"Bradley, Tennessee":[5.3,8.8,13.3,26.7,45.9],"Campbell, Tennessee":[4.9,8.7,14.1,27.7,44.6],"Cannon, Tennessee":[5.2,9.2,14.3,27.3,44.1],"Carroll, Tennessee":[5.4,9.1,14.9,29,41.5],"Carter, Tennessee":[5,8.4,13.1,27.2,46.3],"Cheatham, Tennessee":[6.2,9.9,14,25.8,44.1],"Chester, Tennessee":[5.5,9.6,14,26.9,44],"Claiborne, Tennessee":[4.8,8.1,12.7,27.2,47.3],"Clay, Tennessee":[5.4,10.2,17.2,29.3,37.9],"Cocke, Tennessee":[4.8,8.1,12.3,26.4,48.4],"Coffee, Tennessee":[6.2,9.7,14.1,27.4,42.7],"Crockett, Tennessee":[4.8,8,12.5,26.2,48.5],"Cumberland, Tennessee":[5.9,9,13.1,26.1,45.8],"Davidson, Tennessee":[4.3,7,10.9,26.8,51],"Decatur, Tennessee":[5.1,8.3,13.3,26.9,46.6],"DeKalb, Tennessee":[5,8.7,13.9,28.1,44.4],"Dickson, Tennessee":[6.1,9,12.9,26.3,45.7],"Dyer, Tennessee":[3,5.1,7.7,24.6,59.6],"Fayette, Tennessee":[5.1,8.8,13.2,27,45.8],"Fentress, Tennessee":[5.7,10.1,14.4,26.2,43.6],"Franklin, Tennessee":[5.3,8.5,13.1,27.2,45.9],"Gibson, Tennessee":[5.7,9.6,14.7,27.3,42.8],"Giles, Tennessee":[5,8.1,13.1,27.5,46.3],"Grainger, Tennessee":[4.5,8.1,13.1,27,47.3],"Greene, Tennessee":[4.8,8.2,12.5,27,47.6],"Grundy, Tennessee":[5.3,8.5,12.7,27.7,45.8],"Hamblen, Tennessee":[4.7,7.7,12.5,26.9,48.2],"Hamilton, Tennessee":[4.4,7.3,11.3,26.7,50.3],"Hancock, Tennessee":[2.8,5.1,9.2,26.5,56.3],"Hardeman, Tennessee":[5.9,9.2,14.5,28.2,42],"Hardin, Tennessee":[4.8,8,12.3,26.7,48.1],"Hawkins, Tennessee":[5.2,9,13.4,27.4,45],"Haywood, Tennessee":[4.7,8.3,13.6,27.4,45.9],"Henderson, Tennessee":[5.2,9,14.3,28,43.5],"Henry, Tennessee":[4.9,7.8,12.4,27.8,47.1],"Hickman, Tennessee":[5.4,8.1,11.9,25.9,48.7],"Houston, Tennessee":[6.2,9.4,14.1,27.2,43],"Humphreys, Tennessee":[5.8,9.3,14.2,27.6,43.1],"Jackson, Tennessee":[4.3,7.4,12.7,28.1,47.5],"Jefferson, Tennessee":[4.8,7.7,11.9,26,49.7],"Johnson, Tennessee":[5.1,8.4,13.3,26.3,46.8],"Knox, Tennessee":[4.4,7.4,11.5,26.8,49.8],"Lake, Tennessee":[2.9,6.4,11.6,30.1,49],"Lauderdale, Tennessee":[5,8.6,13.9,27.6,45],"Lawrence, Tennessee":[5.3,8.9,13.7,27.3,44.8],"Lewis, Tennessee":[4.9,8,13.2,27.2,46.7],"Lincoln, Tennessee":[5.1,8.3,13.1,27.2,46.3],"Loudon, Tennessee":[5.1,8.6,12.7,26.9,46.7],"Macon, Tennessee":[5.6,8.9,13.9,27.3,44.4],"Madison, Tennessee":[4.7,8,12.8,26.9,47.6],"Marion, Tennessee":[5.4,9.2,14,27.4,44],"Marshall, Tennessee":[5.1,8.2,12,25.9,48.8],"Maury, Tennessee":[5.8,9.4,13.8,27.3,43.7],"McMinn, Tennessee":[5.7,9,13.5,27.5,44.3],"McNairy, Tennessee":[5.1,8.7,13.7,27.7,44.8],"Meigs, Tennessee":[4.7,8.5,12.7,27.6,46.6],"Monroe, Tennessee":[5.2,9.3,14.3,27.1,44.1],"Montgomery, Tennessee":[6.5,10,14.7,26.7,42],"Moore, Tennessee":[5.5,8.9,13.6,27.6,44.5],"Morgan, Tennessee":[4.8,7.6,11.6,25.7,50.3],"Obion, Tennessee":[4.5,7.6,11.5,25.9,50.5],"Overton, Tennessee":[3.8,6.6,11.3,27.8,50.6],"Perry, Tennessee":[5.6,9.2,14.1,27,44.1],"Pickett, Tennessee":[4.2,8.8,13.5,28.9,44.6],"Polk, Tennessee":[4.4,8,12.1,27.6,48],"Putnam, Tennessee":[4.9,8.5,13.1,27.6,45.9],"Rhea, Tennessee":[6.4,10,14.8,27.7,41.1],"Roane, Tennessee":[5.1,8.8,14,27.1,45],"Robertson, Tennessee":[6.2,9.7,14,26.5,43.6],"Rutherford, Tennessee":[6.3,9.7,14.1,26.5,43.4],"Scott, Tennessee":[5,8.4,12.7,27.5,46.4],"Sequatchie, Tennessee":[5,8.8,13.4,28.2,44.6],"Sevier, Tennessee":[5.1,8.4,12.5,26.9,47.1],"Shelby, Tennessee":[4,6.8,11.2,27.3,50.7],"Smith, Tennessee":[5.2,8.1,12.6,26.4,47.8],"Stewart, Tennessee":[6.3,10.3,15,26.6,41.8],"Sullivan, Tennessee":[4.7,7.7,12.2,27.2,48.2],"Sumner, Tennessee":[5.6,9,13,26.4,46],"Tipton, Tennessee":[6,9.8,14.9,27.1,42.2],"Trousdale, Tennessee":[6.7,10.6,16.7,27.3,38.6],"Unicoi, Tennessee":[5.2,9,14.4,28.6,42.7],"Union, Tennessee":[5.9,9.6,14.2,27.3,42.9],"Van Buren, Tennessee":[6.2,10.3,16.1,28.4,39],"Warren, Tennessee":[4.9,7.9,11.6,26.3,49.3],"Washington, Tennessee":[4.4,7.5,11.9,27.3,48.9],"Wayne, Tennessee":[4.1,7.1,11.5,26.9,50.4],"Weakley, Tennessee":[5.6,9.2,14.3,27.6,43.3],"White, Tennessee":[5.2,8.4,12.9,26,47.5],"Williamson, Tennessee":[5,8.1,12.3,27.1,47.5],"Wilson, Tennessee":[5.5,8.6,12.5,26.1,47.3]};
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Bottom 20%', 'Second 20%', 'Middle 20%', 'Fourth 20%', 'Top 20%'],
+        datasets: [{
+          label: 'Share (%)',
+          data: values,
+          backgroundColor: '#4576a7'
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.parsed.y + '%'
+            }
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 100,
+            title: {
+              display: true,
+              text: 'Income Share (%)'
+            }
+          },
+          x: {
+            title: {
+              display: true,
+              text: 'Quintile'
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(Object.values(incomeData[this.value]));
+  });
+
+  renderChart(Object.values(incomeData['Statewide']));</script>
+  </body>
+</html>
+</html>

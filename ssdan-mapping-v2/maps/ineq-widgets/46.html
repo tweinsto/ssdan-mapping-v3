@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Income Distribution – South Dakota</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          text-align: center;
+          margin: 2rem;
+        }
+        select {
+          font-size: 1rem;
+          padding: 0.4rem;
+          margin-bottom: 1rem;
+        }
+        canvas {
+          width: 100%;
+          max-width: 700px;
+          height: 400px;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Income Share by Quintile – South Dakota</h2>
+    <label>Select County, State:</label>
+    <select id="countySelect"><option value='Statewide'>Statewide</option>
+<option value='Aurora, South Dakota'>Aurora, South Dakota</option>
+<option value='Beadle, South Dakota'>Beadle, South Dakota</option>
+<option value='Bennett, South Dakota'>Bennett, South Dakota</option>
+<option value='Bon Homme, South Dakota'>Bon Homme, South Dakota</option>
+<option value='Brookings, South Dakota'>Brookings, South Dakota</option>
+<option value='Brown, South Dakota'>Brown, South Dakota</option>
+<option value='Brule, South Dakota'>Brule, South Dakota</option>
+<option value='Buffalo, South Dakota'>Buffalo, South Dakota</option>
+<option value='Butte, South Dakota'>Butte, South Dakota</option>
+<option value='Campbell, South Dakota'>Campbell, South Dakota</option>
+<option value='Charles Mix, South Dakota'>Charles Mix, South Dakota</option>
+<option value='Clark, South Dakota'>Clark, South Dakota</option>
+<option value='Clay, South Dakota'>Clay, South Dakota</option>
+<option value='Codington, South Dakota'>Codington, South Dakota</option>
+<option value='Corson, South Dakota'>Corson, South Dakota</option>
+<option value='Custer, South Dakota'>Custer, South Dakota</option>
+<option value='Davison, South Dakota'>Davison, South Dakota</option>
+<option value='Day, South Dakota'>Day, South Dakota</option>
+<option value='Deuel, South Dakota'>Deuel, South Dakota</option>
+<option value='Dewey, South Dakota'>Dewey, South Dakota</option>
+<option value='Douglas, South Dakota'>Douglas, South Dakota</option>
+<option value='Edmunds, South Dakota'>Edmunds, South Dakota</option>
+<option value='Fall River, South Dakota'>Fall River, South Dakota</option>
+<option value='Faulk, South Dakota'>Faulk, South Dakota</option>
+<option value='Grant, South Dakota'>Grant, South Dakota</option>
+<option value='Gregory, South Dakota'>Gregory, South Dakota</option>
+<option value='Haakon, South Dakota'>Haakon, South Dakota</option>
+<option value='Hamlin, South Dakota'>Hamlin, South Dakota</option>
+<option value='Hand, South Dakota'>Hand, South Dakota</option>
+<option value='Hanson, South Dakota'>Hanson, South Dakota</option>
+<option value='Harding, South Dakota'>Harding, South Dakota</option>
+<option value='Hughes, South Dakota'>Hughes, South Dakota</option>
+<option value='Hutchinson, South Dakota'>Hutchinson, South Dakota</option>
+<option value='Hyde, South Dakota'>Hyde, South Dakota</option>
+<option value='Jackson, South Dakota'>Jackson, South Dakota</option>
+<option value='Jerauld, South Dakota'>Jerauld, South Dakota</option>
+<option value='Jones, South Dakota'>Jones, South Dakota</option>
+<option value='Kingsbury, South Dakota'>Kingsbury, South Dakota</option>
+<option value='Lake, South Dakota'>Lake, South Dakota</option>
+<option value='Lawrence, South Dakota'>Lawrence, South Dakota</option>
+<option value='Lincoln, South Dakota'>Lincoln, South Dakota</option>
+<option value='Lyman, South Dakota'>Lyman, South Dakota</option>
+<option value='Marshall, South Dakota'>Marshall, South Dakota</option>
+<option value='McCook, South Dakota'>McCook, South Dakota</option>
+<option value='McPherson, South Dakota'>McPherson, South Dakota</option>
+<option value='Meade, South Dakota'>Meade, South Dakota</option>
+<option value='Mellette, South Dakota'>Mellette, South Dakota</option>
+<option value='Miner, South Dakota'>Miner, South Dakota</option>
+<option value='Minnehaha, South Dakota'>Minnehaha, South Dakota</option>
+<option value='Moody, South Dakota'>Moody, South Dakota</option>
+<option value='Oglala Lakota, South Dakota'>Oglala Lakota, South Dakota</option>
+<option value='Pennington, South Dakota'>Pennington, South Dakota</option>
+<option value='Perkins, South Dakota'>Perkins, South Dakota</option>
+<option value='Potter, South Dakota'>Potter, South Dakota</option>
+<option value='Roberts, South Dakota'>Roberts, South Dakota</option>
+<option value='Sanborn, South Dakota'>Sanborn, South Dakota</option>
+<option value='Spink, South Dakota'>Spink, South Dakota</option>
+<option value='Stanley, South Dakota'>Stanley, South Dakota</option>
+<option value='Sully, South Dakota'>Sully, South Dakota</option>
+<option value='Todd, South Dakota'>Todd, South Dakota</option>
+<option value='Tripp, South Dakota'>Tripp, South Dakota</option>
+<option value='Turner, South Dakota'>Turner, South Dakota</option>
+<option value='Union, South Dakota'>Union, South Dakota</option>
+<option value='Walworth, South Dakota'>Walworth, South Dakota</option>
+<option value='Yankton, South Dakota'>Yankton, South Dakota</option>
+<option value='Ziebach, South Dakota'>Ziebach, South Dakota</option></select>
+    <canvas id="barChart" width="700" height="400"></canvas>
+    <script>  const incomeData = {"Statewide":[5.2,8.6,13.1,26.9,46.2],"Aurora, South Dakota":[4.7,7,9.6,24.4,54.3],"Beadle, South Dakota":[5.4,9,13.9,27.4,44.4],"Bennett, South Dakota":[4,8.1,13.2,26.6,48],"Bon Homme, South Dakota":[5.7,9.3,13.8,26.5,44.6],"Brookings, South Dakota":[6.1,9.4,15,26.9,42.6],"Brown, South Dakota":[5.5,8.7,13,27.2,45.6],"Brule, South Dakota":[5.4,9.4,14.1,27.4,43.7],"Buffalo, South Dakota":[3.5,9.8,15.2,27.8,43.6],"Butte, South Dakota":[4.8,8.7,13.7,27.2,45.6],"Campbell, South Dakota":[5,7.5,12.2,26.7,48.6],"Charles Mix, South Dakota":[5.1,9,13.6,27.3,45],"Clark, South Dakota":[4.8,7.6,11.8,26.2,49.7],"Clay, South Dakota":[5,8.9,14.1,27.9,44.1],"Codington, South Dakota":[5.3,8.6,12.6,25.9,47.6],"Corson, South Dakota":[3.9,7.7,13.5,28.7,46.2],"Custer, South Dakota":[5.5,8.3,12.2,26.7,47.4],"Davison, South Dakota":[5.6,9,14.3,27.5,43.6],"Day, South Dakota":[5.3,8.5,13.6,27.6,45.1],"Deuel, South Dakota":[6.4,10.4,14.6,26.6,41.9],"Dewey, South Dakota":[5.6,10,15.1,28.2,41.1],"Douglas, South Dakota":[5.9,9.6,14.2,26.3,43.9],"Edmunds, South Dakota":[4.8,7.2,10.6,26.3,51.1],"Fall River, South Dakota":[4.9,9.1,14.1,27.7,44.2],"Faulk, South Dakota":[4.1,6.7,11.2,26.8,51.1],"Grant, South Dakota":[5.2,8.9,12.6,26.9,46.4],"Gregory, South Dakota":[5.6,9,14.4,28.8,42.3],"Haakon, South Dakota":[6,8.4,14.3,28.3,43],"Hamlin, South Dakota":[6,8.8,11.7,24.6,48.8],"Hand, South Dakota":[4,7.7,12,25.5,50.8],"Hanson, South Dakota":[6.6,10.3,14.4,25.4,43.3],"Harding, South Dakota":[5.1,6.8,9.2,26.2,52.8],"Hughes, South Dakota":[6.6,10.4,14.3,26.8,41.9],"Hutchinson, South Dakota":[5.9,9.2,13.6,26.5,44.9],"Hyde, South Dakota":[6.3,11.7,16.8,27.5,37.7],"Jackson, South Dakota":[4.1,7.1,13.7,30.5,44.5],"Jerauld, South Dakota":[3.7,6.4,8.7,24.2,57.1],"Jones, South Dakota":[6.3,9.8,13.7,27,43.2],"Kingsbury, South Dakota":[5.3,8.4,12.4,26,47.9],"Lake, South Dakota":[5,8,12.4,25.7,48.8],"Lawrence, South Dakota":[4.7,7.8,12,26.9,48.6],"Lincoln, South Dakota":[5.1,7.6,10.7,25.1,51.6],"Lyman, South Dakota":[5.2,8.3,12.2,26.7,47.6],"Marshall, South Dakota":[4.7,7.6,11.1,25.7,50.9],"McCook, South Dakota":[6.8,10.2,14,27.2,41.8],"McPherson, South Dakota":[3.5,6.4,9.8,25.5,54.9],"Meade, South Dakota":[6.5,10.1,15,27,41.4],"Mellette, South Dakota":[5.5,9.7,14.5,27.6,42.7],"Miner, South Dakota":[5.8,10.2,14.4,25.3,44.3],"Minnehaha, South Dakota":[5.4,8.5,12.8,26.6,46.7],"Moody, South Dakota":[6.3,10.2,15.4,27.9,40.2],"Oglala Lakota, South Dakota":[4.5,8.9,15.8,29,41.9],"Pennington, South Dakota":[4.7,7.7,11.4,26.4,49.7],"Perkins, South Dakota":[3.9,6.4,10.1,25.4,54.2],"Potter, South Dakota":[6.3,10,14.9,27.7,41.2],"Roberts, South Dakota":[6,9.5,14.3,27.2,43.1],"Sanborn, South Dakota":[5.9,9.8,14.3,26.6,43.3],"Spink, South Dakota":[5.4,8.8,13,26.8,46.1],"Stanley, South Dakota":[4.9,8.2,12.7,26.9,47.3],"Sully, South Dakota":[5.1,6.9,11.2,25.8,51],"Todd, South Dakota":[4.1,8.9,14.1,28.9,44.1],"Tripp, South Dakota":[5.4,9.4,14.4,27.2,43.6],"Turner, South Dakota":[5.7,9.7,13.5,26.2,44.8],"Union, South Dakota":[4.9,7.8,11.8,27.1,48.4],"Walworth, South Dakota":[5.1,7.9,12.4,25.9,48.7],"Yankton, South Dakota":[5.4,8.5,12.3,25.8,47.9],"Ziebach, South Dakota":[3.5,6.8,12.2,31.2,46.3]};
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Bottom 20%', 'Second 20%', 'Middle 20%', 'Fourth 20%', 'Top 20%'],
+        datasets: [{
+          label: 'Share (%)',
+          data: values,
+          backgroundColor: '#4576a7'
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.parsed.y + '%'
+            }
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 100,
+            title: {
+              display: true,
+              text: 'Income Share (%)'
+            }
+          },
+          x: {
+            title: {
+              display: true,
+              text: 'Quintile'
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(Object.values(incomeData[this.value]));
+  });
+
+  renderChart(Object.values(incomeData['Statewide']));</script>
+  </body>
+</html>
+</html>

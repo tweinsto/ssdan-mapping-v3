@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Language Spoken at Home – Louisiana</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          text-align: center;
+          margin: 2rem;
+        }
+        select {
+          font-size: 1rem;
+          padding: 0.4rem;
+          margin-bottom: 1rem;
+        }
+        canvas {
+          width: 100%;
+          max-width: 700px;
+          height: 800px;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Language Spoken at Home – Louisiana</h2>
+    <label>Select County, State:</label>
+    <select id="countySelect"><option value='Statewide'>Statewide</option>
+<option value='Acadia Parish, Louisiana'>Acadia Parish, Louisiana</option>
+<option value='Allen Parish, Louisiana'>Allen Parish, Louisiana</option>
+<option value='Ascension Parish, Louisiana'>Ascension Parish, Louisiana</option>
+<option value='Assumption Parish, Louisiana'>Assumption Parish, Louisiana</option>
+<option value='Avoyelles Parish, Louisiana'>Avoyelles Parish, Louisiana</option>
+<option value='Beauregard Parish, Louisiana'>Beauregard Parish, Louisiana</option>
+<option value='Bienville Parish, Louisiana'>Bienville Parish, Louisiana</option>
+<option value='Bossier Parish, Louisiana'>Bossier Parish, Louisiana</option>
+<option value='Caddo Parish, Louisiana'>Caddo Parish, Louisiana</option>
+<option value='Calcasieu Parish, Louisiana'>Calcasieu Parish, Louisiana</option>
+<option value='Caldwell Parish, Louisiana'>Caldwell Parish, Louisiana</option>
+<option value='Cameron Parish, Louisiana'>Cameron Parish, Louisiana</option>
+<option value='Catahoula Parish, Louisiana'>Catahoula Parish, Louisiana</option>
+<option value='Claiborne Parish, Louisiana'>Claiborne Parish, Louisiana</option>
+<option value='Concordia Parish, Louisiana'>Concordia Parish, Louisiana</option>
+<option value='De Soto Parish, Louisiana'>De Soto Parish, Louisiana</option>
+<option value='East Baton Rouge Parish, Louisiana'>East Baton Rouge Parish, Louisiana</option>
+<option value='East Carroll Parish, Louisiana'>East Carroll Parish, Louisiana</option>
+<option value='East Feliciana Parish, Louisiana'>East Feliciana Parish, Louisiana</option>
+<option value='Evangeline Parish, Louisiana'>Evangeline Parish, Louisiana</option>
+<option value='Franklin Parish, Louisiana'>Franklin Parish, Louisiana</option>
+<option value='Grant Parish, Louisiana'>Grant Parish, Louisiana</option>
+<option value='Iberia Parish, Louisiana'>Iberia Parish, Louisiana</option>
+<option value='Iberville Parish, Louisiana'>Iberville Parish, Louisiana</option>
+<option value='Jackson Parish, Louisiana'>Jackson Parish, Louisiana</option>
+<option value='Jefferson Davis Parish, Louisiana'>Jefferson Davis Parish, Louisiana</option>
+<option value='Jefferson Parish, Louisiana'>Jefferson Parish, Louisiana</option>
+<option value='Lafayette Parish, Louisiana'>Lafayette Parish, Louisiana</option>
+<option value='Lafourche Parish, Louisiana'>Lafourche Parish, Louisiana</option>
+<option value='LaSalle Parish, Louisiana'>LaSalle Parish, Louisiana</option>
+<option value='Lincoln Parish, Louisiana'>Lincoln Parish, Louisiana</option>
+<option value='Livingston Parish, Louisiana'>Livingston Parish, Louisiana</option>
+<option value='Madison Parish, Louisiana'>Madison Parish, Louisiana</option>
+<option value='Morehouse Parish, Louisiana'>Morehouse Parish, Louisiana</option>
+<option value='Natchitoches Parish, Louisiana'>Natchitoches Parish, Louisiana</option>
+<option value='Orleans Parish, Louisiana'>Orleans Parish, Louisiana</option>
+<option value='Ouachita Parish, Louisiana'>Ouachita Parish, Louisiana</option>
+<option value='Plaquemines Parish, Louisiana'>Plaquemines Parish, Louisiana</option>
+<option value='Pointe Coupee Parish, Louisiana'>Pointe Coupee Parish, Louisiana</option>
+<option value='Rapides Parish, Louisiana'>Rapides Parish, Louisiana</option>
+<option value='Red River Parish, Louisiana'>Red River Parish, Louisiana</option>
+<option value='Richland Parish, Louisiana'>Richland Parish, Louisiana</option>
+<option value='Sabine Parish, Louisiana'>Sabine Parish, Louisiana</option>
+<option value='St. Bernard Parish, Louisiana'>St. Bernard Parish, Louisiana</option>
+<option value='St. Charles Parish, Louisiana'>St. Charles Parish, Louisiana</option>
+<option value='St. Helena Parish, Louisiana'>St. Helena Parish, Louisiana</option>
+<option value='St. James Parish, Louisiana'>St. James Parish, Louisiana</option>
+<option value='St. John the Baptist Parish, Louisiana'>St. John the Baptist Parish, Louisiana</option>
+<option value='St. Landry Parish, Louisiana'>St. Landry Parish, Louisiana</option>
+<option value='St. Martin Parish, Louisiana'>St. Martin Parish, Louisiana</option>
+<option value='St. Mary Parish, Louisiana'>St. Mary Parish, Louisiana</option>
+<option value='St. Tammany Parish, Louisiana'>St. Tammany Parish, Louisiana</option>
+<option value='Tangipahoa Parish, Louisiana'>Tangipahoa Parish, Louisiana</option>
+<option value='Tensas Parish, Louisiana'>Tensas Parish, Louisiana</option>
+<option value='Terrebonne Parish, Louisiana'>Terrebonne Parish, Louisiana</option>
+<option value='Union Parish, Louisiana'>Union Parish, Louisiana</option>
+<option value='Vermilion Parish, Louisiana'>Vermilion Parish, Louisiana</option>
+<option value='Vernon Parish, Louisiana'>Vernon Parish, Louisiana</option>
+<option value='Washington Parish, Louisiana'>Washington Parish, Louisiana</option>
+<option value='Webster Parish, Louisiana'>Webster Parish, Louisiana</option>
+<option value='West Baton Rouge Parish, Louisiana'>West Baton Rouge Parish, Louisiana</option>
+<option value='West Carroll Parish, Louisiana'>West Carroll Parish, Louisiana</option>
+<option value='West Feliciana Parish, Louisiana'>West Feliciana Parish, Louisiana</option>
+<option value='Winn Parish, Louisiana'>Winn Parish, Louisiana</option></select>
+    <canvas id="barChart" width="700" height="700"></canvas>
+    <script>  const languageData = {"Statewide":{"Arabic":0,"Chinese":0,"English only":84.6,"French, Haitian, Cajun":2.7,"German or West Germanic":0.1,"Korean":0.2,"Other":3.6,"Other Asian/Pacific":0,"Other Indo-European":0.2,"Other/Unspecified":0,"Russian, Polish, Slavic":0.1,"Spanish":8.3,"Tagalog":0.1,"Vietnamese":0},"Acadia Parish, Louisiana":{"Arabic":0,"Chinese":0.1,"English only":77,"French, Haitian, Cajun":18.4,"German or West Germanic":0,"Korean":0,"Other Asian/Pacific":0.1,"Other Indo-European":0.2,"Other/Unspecified":0,"Russian, Polish, Slavic":0,"Spanish":4,"Tagalog":0.1,"Vietnamese":0},"Allen Parish, Louisiana":{"Arabic":0,"Chinese":0,"English only":80.5,"French, Haitian, Cajun":12.2,"German or West Germanic":0.1,"Korean":0,"Other Asian/Pacific":0,"Other Indo-European":0.8,"Other/Unspecified":1.7,"Russian, Polish, Slavic":0,"Spanish":4.6,"Tagalog":0,"Vietnamese":0},"Ascension Parish, Louisiana":{"Arabic":0.3,"Chinese":0,"English only":84.2,"French, Haitian, Cajun":2.6,"German or West Germanic":0.1,"Korean":0.1,"Other Asian/Pacific":0.5,"Other Indo-European":1.1,"Other/Unspecified":0.1,"Russian, Polish, Slavic":0,"Spanish":9.7,"Tagalog":0.7,"Vietnamese":0.5},"Assumption Parish, Louisiana":{"Arabic":0.8,"Chinese":0,"English only":74.4,"French, Haitian, Cajun":17.3,"German or West Germanic":0,"Korean":0.1,"Other Asian/Pacific":0,"Other Indo-European":0.8,"Other/Unspecified":0,"Russian, Polish, Slavic":0,"Spanish":5.4,"Tagalog":0,"Vietnamese":1.1},"Avoyelles Parish, Louisiana":{"Arabic":0.4,"Chinese":0.8,"English only":71.1,"French, Haitian, Cajun":21,"German or West Germanic":0.1,"Korean":0,"Other Asian/Pacific":0,"Other Indo-European":0.6,"Other/Unspecified":0.1,"Russian, Polish, Slavic":0.1,"Spanish":5.6,"Tagalog":0,"Vietnamese":0.2},"Beauregard Parish, Louisiana":{"Arabic":0.1,"Chinese":0,"English only":87.6,"French, Haitian, Cajun":3,"German or West Germanic":3.1,"Korean":0.1,"Other Asian/Pacific":0.2,"Other Indo-European":0.6,"Other/Unspecified":0.1,"Russian, Polish, Slavic":0.1,"Spanish":4.2,"Tagalog":0.7,"Vietnamese":0.1},"Bienville Parish, Louisiana":{"Arabic":0,"Chinese":0,"English only":94.8,"French, Haitian, Cajun":1,"German or West Germanic":0,"Korean":0,"Other Asian/Pacific":0,"Other Indo-European":0.6,"Other/Unspecified":0,"Russian, Polish, Slavic":0,"Spanish":3.5,"Tagalog":0.1,"Vietnamese":0},"Bossier Parish, Louisiana":{"Arabic":0.4,"Chinese":0,"English only":84.4,"French, Haitian, Cajun":1.1,"German or West Germanic":0.7,"Korean":0.2,"Other Asian/Pacific":0.5,"Other Indo-European":1.3,"Other/Unspecified":0.8,"Russian, Polish, Slavic":0.2,"Spanish":8.4,"Tagalog":0.9,"Vietnamese":1.1},"Caddo Parish, Louisiana":{"Arabic":0.2,"Chinese":0.4,"English only":91,"French, Haitian, Cajun":0.8,"German or West Germanic":0.3,"Korean":0,"Other Asian/Pacific":0.3,"Other Indo-European":1.1,"Other/Unspecified":0.4,"Russian, Polish, Slavic":0.1,"Spanish":4.7,"Tagalog":0.5,"Vietnamese":0.3},"Calcasieu Parish, Louisiana":{"Arabic":0.1,"Chinese":0.1,"English only":83.4,"French, Haitian, Cajun":5,"German or West Germanic":0.2,"Korean":0.1,"Other Asian/Pacific":2.2,"Other Indo-European":1.5,"Other/Unspecified":0.3,"Russian, Polish, Slavic":0,"Spanish":6.6,"Tagalog":0.4,"Vietnamese":0.2},"Caldwell Parish, Louisiana":{"Arabic":0,"Chinese":0,"English only":91.4,"French, Haitian, Cajun":0.8,"German or West Germanic":0.2,"Korean":0,"Other Asian/Pacific":0.5,"Other Indo-European":0,"Other/Unspecified":0.1,"Russian, Polish, Slavic":0,"Spanish":7,"Tagalog":0,"Vietnamese":0},"Cameron Parish, Louisiana":{"Arabic":0,"Chinese":0,"English only":81,"French, Haitian, Cajun":19,"German or West Germanic":0,"Korean":0,"Other Asian/Pacific":0,"Other Indo-European":0,"Other/Unspecified":0,"Russian, Polish, Slavic":0,"Spanish":0,"Tagalog":0,"Vietnamese":0},"Catahoula Parish, Louisiana":{"Arabic":0,"Chinese":0,"English only":95.6,"French, Haitian, Cajun":0.8,"German or West Germanic":0,"Korean":0.8,"Other Asian/Pacific":0,"Other Indo-European":0,"Other/Unspecified":0,"Russian, Polish, Slavic":0,"Spanish":2.5,"Tagalog":0.2,"Vietnamese":0},"Claiborne Parish, Louisiana":{"Arabic":0.2,"Chinese":0,"English only":96.8,"French, Haitian, Cajun":0.1,"German or West Germanic":0.3,"Korean":0.3,"Other Asian/Pacific":0.6,"Other Indo-European":0,"Other/Unspecified":0,"Russian, Polish, Slavic":0,"Spanish":1.7,"Tagalog":0,"Vietnamese":0},"Concordia Parish, Louisiana":{"Arabic":0.1,"Chinese":0,"English only":95.7,"French, Haitian, Cajun":1.2,"German or West Germanic":0,"Korean":0,"Other Asian/Pacific":0,"Other Indo-European":0,"Other/Unspecified":0,"Russian, Polish, Slavic":0,"Spanish":3.1,"Tagalog":0,"Vietnamese":0},"De Soto Parish, Louisiana":{"Arabic":0,"Chinese":0,"English only":95.8,"French, Haitian, Cajun":0.3,"German or West Germanic":0,"Korean":0,"Other Asian/Pacific":0,"Other Indo-European":0.3,"Other/Unspecified":0,"Russian, Polish, Slavic":0.1,"Spanish":3.5,"Tagalog":0,"Vietnamese":0},"East Baton Rouge Parish, Louisiana":{"Arabic":1.1,"Chinese":1.1,"English only":81.6,"French, Haitian, Cajun":1.6,"German or West Germanic":0.3,"Korean":0.3,"Other Asian/Pacific":0.6,"Other Indo-European":1.8,"Other/Unspecified":0.5,"Russian, Polish, Slavic":0.3,"Spanish":8.9,"Tagalog":0.4,"Vietnamese":1.4},"East Carroll Parish, Louisiana":{"Arabic":0,"Chinese":0,"English only":96.1,"French, Haitian, Cajun":0.7,"German or West Germanic":0,"Korean":0,"Other Asian/Pacific":0,"Other Indo-European":0,"Other/Unspecified":0,"Russian, Polish, Slavic":0,"Spanish":3.2,"Tagalog":0,"Vietnamese":0},"East Feliciana Parish, Louisiana":{"Arabic":0.2,"Chinese":0,"English only":96.8,"French, Haitian, Cajun":0.7,"German or West Germanic":0,"Korean":0.1,"Other Asian/Pacific":0,"Other Indo-European":0,"Other/Unspecified":0,"Russian, Polish, Slavic":0,"Spanish":1.8,"Tagalog":0.4,"Vietnamese":0},"Evangeline Parish, Louisiana":{"Arabic":0,"Chinese":0,"English only":58.7,"French, Haitian, Cajun":38.2,"German or West Germanic":0,"Korean":0,"Other Asian/Pacific":0.1,"Other Indo-European":0.5,"Other/Unspecified":0,"Russian, Polish, Slavic":0,"Spanish":2.5,"Tagalog":0,"Vietnamese":0},"Franklin Parish, Louisiana":{"Arabic":0,"Chinese":0,"English only":91.3,"French, Haitian, Cajun":2.4,"German or West Germanic":0,"Korean":0.3,"Other Asian/Pacific":0,"Other Indo-European":0.6,"Other/Unspecified":0,"Russian, Polish, Slavic":0.2,"Spanish":5,"Tagalog":0,"Vietnamese":0.2},"Grant Parish, Louisiana":{"Arabic":0,"Chinese":0.8,"English only":92,"French, Haitian, Cajun":1.3,"German or West Germanic":0.1,"Korean":0,"Other Asian/Pacific":0,"Other Indo-European":0,"Other/Unspecified":0,"Russian, Polish, Slavic":0,"Spanish":5.7,"Tagalog":0,"Vietnamese":0},"Iberia Parish, Louisiana":{"Arabic":0.2,"Chinese":0.2,"English only":74.8,"French, Haitian, Cajun":13.8,"German or West Germanic":0.4,"Korean":0.1,"Other Asian/Pacific":2.4,"Other Indo-European":0.6,"Other/Unspecified":0.1,"Russian, Polish, Slavic":0.1,"Spanish":6.6,"Tagalog":0.4,"Vietnamese":0.2},"Iberville Parish, Louisiana":{"Arabic":0,"Chinese":0,"English only":91.8,"French, Haitian, Cajun":2.7,"German or West Germanic":0,"Korean":0,"Other Asian/Pacific":0,"Other Indo-European":0,"Other/Unspecified":0,"Russian, Polish, Slavic":0,"Spanish":5.5,"Tagalog":0,"Vietnamese":0},"Jackson Parish, Louisiana":{"Arabic":0.9,"Chinese":0,"English only":89.9,"French, Haitian, Cajun":0.8,"German or West Germanic":0,"Korean":0,"Other Asian/Pacific":0,"Other Indo-European":0,"Other/Unspecified":0.3,"Russian, Polish, Slavic":0.4,"Spanish":7.5,"Tagalog":0.2,"Vietnamese":0},"Jefferson Davis Parish, Louisiana":{"Arabic":0,"Chinese":0,"English only":76,"French, Haitian, Cajun":19.6,"German or West Germanic":0.2,"Korean":0,"Other Asian/Pacific":0,"Other Indo-European":0.4,"Other/Unspecified":0,"Russian, Polish, Slavic":0,"Spanish":3.8,"Tagalog":0,"Vietnamese":0},"Jefferson Parish, Louisiana":{"Arabic":1.9,"Chinese":1.2,"English only":66.6,"French, Haitian, Cajun":2.2,"German or West Germanic":0.4,"Korean":0.1,"Other Asian/Pacific":0.7,"Other Indo-European":2.1,"Other/Unspecified":0.4,"Russian, Polish, Slavic":0.3,"Spanish":20.8,"Tagalog":0.6,"Vietnamese":2.6},"Lafayette Parish, Louisiana":{"Arabic":0.4,"Chinese":0.3,"English only":76.6,"French, Haitian, Cajun":10.2,"German or West Germanic":0.3,"Korean":0.1,"Other Asian/Pacific":0.8,"Other Indo-European":1.2,"Other/Unspecified":0.4,"Russian, Polish, Slavic":0.2,"Spanish":8.1,"Tagalog":0.6,"Vietnamese":0.9},"Lafourche Parish, Louisiana":{"Arabic":0,"Chinese":0,"English only":73.3,"French, Haitian, Cajun":19,"German or West Germanic":0.2,"Korean":0.2,"Other Asian/Pacific":0,"Other Indo-European":0.4,"Other/Unspecified":0.1,"Russian, Polish, Slavic":0,"Spanish":6.4,"Tagalog":0.1,"Vietnamese":0.3},"LaSalle Parish, Louisiana":{"Arabic":0,"Chinese":0.5,"English only":77,"French, Haitian, Cajun":0.9,"German or West Germanic":0.2,"Korean":0,"Other Asian/Pacific":0.9,"Other Indo-European":0.2,"Other/Unspecified":0,"Russian, Polish, Slavic":0,"Spanish":20.3,"Tagalog":0,"Vietnamese":0},"Lincoln Parish, Louisiana":{"Arabic":0.6,"Chinese":0.5,"English only":89.6,"French, Haitian, Cajun":0.7,"German or West Germanic":0.7,"Korean":0.3,"Other Asian/Pacific":0.1,"Other Indo-European":2.1,"Other/Unspecified":0.7,"Russian, Polish, Slavic":0,"Spanish":4.2,"Tagalog":0.1,"Vietnamese":0.6},"Livingston Parish, Louisiana":{"Arabic":0.3,"Chinese":0.4,"English only":89.4,"French, Haitian, Cajun":1.1,"German or West Germanic":0.5,"Korean":0.1,"Other Asian/Pacific":0.1,"Other Indo-European":0.7,"Other/Unspecified":0,"Russian, Polish, Slavic":0.2,"Spanish":6.6,"Tagalog":0.1,"Vietnamese":0.4},"Madison Parish, Louisiana":{"Arabic":0.7,"Chinese":0,"English only":95.5,"French, Haitian, Cajun":0.3,"German or West Germanic":0.4,"Korean":0,"Other Asian/Pacific":0,"Other Indo-European":0,"Other/Unspecified":0.1,"Russian, Polish, Slavic":0,"Spanish":2.3,"Tagalog":0,"Vietnamese":0.7},"Morehouse Parish, Louisiana":{"Arabic":0,"Chinese":0.1,"English only":96.4,"French, Haitian, Cajun":0.9,"German or West Germanic":0.2,"Korean":0.4,"Other Asian/Pacific":0.1,"Other Indo-European":0,"Other/Unspecified":0,"Russian, Polish, Slavic":0,"Spanish":1.8,"Tagalog":0,"Vietnamese":0},"Natchitoches Parish, Louisiana":{"Arabic":0.5,"Chinese":0.3,"English only":90.5,"French, Haitian, Cajun":1.6,"German or West Germanic":0.1,"Korean":0.1,"Other Asian/Pacific":0.1,"Other Indo-European":0.4,"Other/Unspecified":0.1,"Russian, Polish, Slavic":0.1,"Spanish":5.8,"Tagalog":0.2,"Vietnamese":0.1},"Orleans Parish, Louisiana":{"Arabic":0.2,"Chinese":0.7,"English only":79.9,"French, Haitian, Cajun":2.9,"German or West Germanic":0.6,"Korean":0.1,"Other Asian/Pacific":0.6,"Other Indo-European":1.5,"Other/Unspecified":0.8,"Russian, Polish, Slavic":0.3,"Spanish":10.6,"Tagalog":0.1,"Vietnamese":1.7},"Ouachita Parish, Louisiana":{"Arabic":0.4,"Chinese":0.2,"English only":90.9,"French, Haitian, Cajun":0.6,"German or West Germanic":0.2,"Korean":0.2,"Other Asian/Pacific":0.1,"Other Indo-European":1,"Other/Unspecified":0,"Russian, Polish, Slavic":0.2,"Spanish":5.7,"Tagalog":0.1,"Vietnamese":0.2},"Plaquemines Parish, Louisiana":{"Arabic":0,"Chinese":1.2,"English only":75,"French, Haitian, Cajun":2.9,"German or West Germanic":0.1,"Korean":0.2,"Other Asian/Pacific":2.8,"Other Indo-European":0.9,"Other/Unspecified":1.1,"Russian, Polish, Slavic":1.3,"Spanish":10.4,"Tagalog":0,"Vietnamese":4.1},"Pointe Coupee Parish, Louisiana":{"Arabic":0,"Chinese":0.1,"English only":89.1,"French, Haitian, Cajun":6.9,"German or West Germanic":0,"Korean":0.4,"Other Asian/Pacific":0,"Other Indo-European":0,"Other/Unspecified":0.3,"Russian, Polish, Slavic":0,"Spanish":2.9,"Tagalog":0,"Vietnamese":0.2},"Rapides Parish, Louisiana":{"Arabic":0.6,"Chinese":0.1,"English only":88,"French, Haitian, Cajun":1.9,"German or West Germanic":0.3,"Korean":0.1,"Other Asian/Pacific":0.8,"Other Indo-European":1,"Other/Unspecified":0.4,"Russian, Polish, Slavic":0.2,"Spanish":6,"Tagalog":0.5,"Vietnamese":0.2},"Red River Parish, Louisiana":{"Arabic":0,"Chinese":0,"English only":99.3,"French, Haitian, Cajun":0,"German or West Germanic":0,"Korean":0,"Other Asian/Pacific":0,"Other Indo-European":0,"Other/Unspecified":0,"Russian, Polish, Slavic":0,"Spanish":0.7,"Tagalog":0,"Vietnamese":0},"Richland Parish, Louisiana":{"Arabic":0.6,"Chinese":0,"English only":95.4,"French, Haitian, Cajun":0.9,"German or West Germanic":0.2,"Korean":0,"Other Asian/Pacific":0.2,"Other Indo-European":0,"Other/Unspecified":0,"Russian, Polish, Slavic":0,"Spanish":2.8,"Tagalog":0,"Vietnamese":0},"Sabine Parish, Louisiana":{"Arabic":0.2,"Chinese":0.1,"English only":91.5,"French, Haitian, Cajun":4.5,"German or West Germanic":0.2,"Korean":0.1,"Other Asian/Pacific":0.1,"Other Indo-European":0.3,"Other/Unspecified":0.2,"Russian, Polish, Slavic":0,"Spanish":2.7,"Tagalog":0,"Vietnamese":0.2},"St. Bernard Parish, Louisiana":{"Arabic":1,"Chinese":0.5,"English only":81.3,"French, Haitian, Cajun":0.5,"German or West Germanic":0.3,"Korean":0,"Other Asian/Pacific":0.5,"Other Indo-European":1,"Other/Unspecified":0.2,"Russian, Polish, Slavic":0,"Spanish":12.2,"Tagalog":0.6,"Vietnamese":2},"St. Charles Parish, Louisiana":{"Arabic":0.3,"Chinese":1.3,"English only":83.9,"French, Haitian, Cajun":3.8,"German or West Germanic":0.3,"Korean":0,"Other Asian/Pacific":0.4,"Other Indo-European":0.3,"Other/Unspecified":0,"Russian, Polish, Slavic":0,"Spanish":9.4,"Tagalog":0,"Vietnamese":0.2},"St. Helena Parish, Louisiana":{"Arabic":0,"Chinese":0.7,"English only":93.8,"French, Haitian, Cajun":1.2,"German or West Germanic":0.1,"Korean":0,"Other Asian/Pacific":0,"Other Indo-European":0,"Other/Unspecified":0,"Russian, Polish, Slavic":0,"Spanish":4.1,"Tagalog":0,"Vietnamese":0},"St. James Parish, Louisiana":{"Arabic":0,"Chinese":0,"English only":92.8,"French, Haitian, Cajun":4.3,"German or West Germanic":0.1,"Korean":0,"Other Asian/Pacific":0,"Other Indo-European":0,"Other/Unspecified":0,"Russian, Polish, Slavic":0,"Spanish":2.7,"Tagalog":0.2,"Vietnamese":0},"St. John the Baptist Parish, Louisiana":{"Arabic":0.1,"Chinese":0.2,"English only":86.3,"French, Haitian, Cajun":1.4,"German or West Germanic":0.1,"Korean":0,"Other Asian/Pacific":0,"Other Indo-European":0.6,"Other/Unspecified":1.1,"Russian, Polish, Slavic":0,"Spanish":9.2,"Tagalog":1,"Vietnamese":0},"St. Landry Parish, Louisiana":{"Arabic":0.1,"Chinese":0.1,"English only":76.8,"French, Haitian, Cajun":17.3,"German or West Germanic":0.4,"Korean":0,"Other Asian/Pacific":0.1,"Other Indo-European":0.3,"Other/Unspecified":0.2,"Russian, Polish, Slavic":0,"Spanish":4.6,"Tagalog":0,"Vietnamese":0.1},"St. Martin Parish, Louisiana":{"Arabic":0,"Chinese":0.3,"English only":67.8,"French, Haitian, Cajun":26.2,"German or West Germanic":0.1,"Korean":0,"Other Asian/Pacific":0.3,"Other Indo-European":0.1,"Other/Unspecified":0.2,"Russian, Polish, Slavic":0,"Spanish":4.3,"Tagalog":0.3,"Vietnamese":0.6},"St. Mary Parish, Louisiana":{"Arabic":0,"Chinese":0,"English only":77.6,"French, Haitian, Cajun":5.6,"German or West Germanic":0.1,"Korean":0,"Other Asian/Pacific":0,"Other Indo-European":0.4,"Other/Unspecified":0.3,"Russian, Polish, Slavic":0.3,"Spanish":13,"Tagalog":0.6,"Vietnamese":2.1},"St. Tammany Parish, Louisiana":{"Arabic":0.5,"Chinese":0.4,"English only":84.9,"French, Haitian, Cajun":1.9,"German or West Germanic":0.6,"Korean":0.1,"Other Asian/Pacific":0.4,"Other Indo-European":0.6,"Other/Unspecified":0.7,"Russian, Polish, Slavic":0.3,"Spanish":8.6,"Tagalog":0.2,"Vietnamese":0.7},"Tangipahoa Parish, Louisiana":{"Arabic":0.5,"Chinese":0.1,"English only":87.5,"French, Haitian, Cajun":1.8,"German or West Germanic":0.4,"Korean":0,"Other Asian/Pacific":1.3,"Other Indo-European":0.7,"Other/Unspecified":0.1,"Russian, Polish, Slavic":0.1,"Spanish":7,"Tagalog":0.1,"Vietnamese":0.4},"Tensas Parish, Louisiana":{"Arabic":0.8,"Chinese":0,"English only":95,"French, Haitian, Cajun":0,"German or West Germanic":0,"Korean":0,"Other Asian/Pacific":0.7,"Other Indo-European":0,"Other/Unspecified":0,"Russian, Polish, Slavic":0,"Spanish":3.5,"Tagalog":0,"Vietnamese":0},"Terrebonne Parish, Louisiana":{"Arabic":0.3,"Chinese":0.1,"English only":78,"French, Haitian, Cajun":11.5,"German or West Germanic":0.2,"Korean":0.1,"Other Asian/Pacific":1,"Other Indo-European":1.1,"Other/Unspecified":0.2,"Russian, Polish, Slavic":0.1,"Spanish":6.4,"Tagalog":0,"Vietnamese":1},"Union Parish, Louisiana":{"Arabic":0,"Chinese":0,"English only":91.5,"French, Haitian, Cajun":0.7,"German or West Germanic":0,"Korean":0.6,"Other Asian/Pacific":0,"Other Indo-European":0,"Other/Unspecified":0,"Russian, Polish, Slavic":0,"Spanish":6.2,"Tagalog":0.9,"Vietnamese":0.1},"Vermilion Parish, Louisiana":{"Arabic":0,"Chinese":0,"English only":71,"French, Haitian, Cajun":22.1,"German or West Germanic":0,"Korean":0,"Other Asian/Pacific":0.5,"Other Indo-European":0.5,"Other/Unspecified":0.4,"Russian, Polish, Slavic":0,"Spanish":2.7,"Tagalog":0,"Vietnamese":2.8},"Vernon Parish, Louisiana":{"Arabic":0.5,"Chinese":0.4,"English only":76.9,"French, Haitian, Cajun":2.2,"German or West Germanic":1.4,"Korean":1.1,"Other Asian/Pacific":0.7,"Other Indo-European":0.9,"Other/Unspecified":1.1,"Russian, Polish, Slavic":0.4,"Spanish":13.1,"Tagalog":0.8,"Vietnamese":0.4},"Washington Parish, Louisiana":{"Arabic":0,"Chinese":0,"English only":91.8,"French, Haitian, Cajun":2.8,"German or West Germanic":0.3,"Korean":0,"Other Asian/Pacific":0.7,"Other Indo-European":0.1,"Other/Unspecified":0,"Russian, Polish, Slavic":0.5,"Spanish":3.4,"Tagalog":0,"Vietnamese":0.3},"Webster Parish, Louisiana":{"Arabic":0,"Chinese":0,"English only":95.6,"French, Haitian, Cajun":1,"German or West Germanic":0.1,"Korean":0,"Other Asian/Pacific":0.7,"Other Indo-European":0.4,"Other/Unspecified":0,"Russian, Polish, Slavic":0,"Spanish":1.8,"Tagalog":0.3,"Vietnamese":0.1},"West Baton Rouge Parish, Louisiana":{"Arabic":0.3,"Chinese":0,"English only":85.1,"French, Haitian, Cajun":3.5,"German or West Germanic":1,"Korean":0,"Other Asian/Pacific":0,"Other Indo-European":0.4,"Other/Unspecified":0,"Russian, Polish, Slavic":0,"Spanish":9.7,"Tagalog":0,"Vietnamese":0},"West Carroll Parish, Louisiana":{"Arabic":0,"Chinese":0,"English only":95.1,"French, Haitian, Cajun":0,"German or West Germanic":0.2,"Korean":0,"Other Asian/Pacific":0,"Other Indo-European":0.2,"Other/Unspecified":0,"Russian, Polish, Slavic":0.1,"Spanish":4.3,"Tagalog":0,"Vietnamese":0},"West Feliciana Parish, Louisiana":{"Arabic":0,"Chinese":0,"English only":93.7,"French, Haitian, Cajun":0.2,"German or West Germanic":0,"Korean":0,"Other Asian/Pacific":0,"Other Indo-European":0.8,"Other/Unspecified":0,"Russian, Polish, Slavic":1.2,"Spanish":4.1,"Tagalog":0,"Vietnamese":0},"Winn Parish, Louisiana":{"Arabic":0,"Chinese":0,"English only":94.5,"French, Haitian, Cajun":0.6,"German or West Germanic":0.9,"Korean":0,"Other Asian/Pacific":1.7,"Other Indo-European":0.3,"Other/Unspecified":0,"Russian, Polish, Slavic":0,"Spanish":2,"Tagalog":0,"Vietnamese":0}};
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: Object.keys(values),
+        datasets: [{
+          label: 'Share (%)',
+          data: Object.values(values),
+          backgroundColor: '#4576a7'
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.parsed.y + '%'
+            }
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 100,
+            title: {
+              display: true,
+              text: 'Population Share (%)'
+            }
+          },
+          x: {
+            title: {
+              display: true,
+              text: 'Language Group'
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(languageData[this.value]);
+  });
+
+  renderChart(languageData['Statewide']);</script>
+  </body>
+</html>
+</html>

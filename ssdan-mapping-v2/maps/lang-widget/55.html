@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Language Spoken at Home – Wisconsin</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          text-align: center;
+          margin: 2rem;
+        }
+        select {
+          font-size: 1rem;
+          padding: 0.4rem;
+          margin-bottom: 1rem;
+        }
+        canvas {
+          width: 100%;
+          max-width: 700px;
+          height: 800px;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Language Spoken at Home – Wisconsin</h2>
+    <label>Select County, State:</label>
+    <select id="countySelect"><option value='Statewide'>Statewide</option>
+<option value='Adams County, Wisconsin'>Adams County, Wisconsin</option>
+<option value='Ashland County, Wisconsin'>Ashland County, Wisconsin</option>
+<option value='Barron County, Wisconsin'>Barron County, Wisconsin</option>
+<option value='Bayfield County, Wisconsin'>Bayfield County, Wisconsin</option>
+<option value='Brown County, Wisconsin'>Brown County, Wisconsin</option>
+<option value='Buffalo County, Wisconsin'>Buffalo County, Wisconsin</option>
+<option value='Burnett County, Wisconsin'>Burnett County, Wisconsin</option>
+<option value='Calumet County, Wisconsin'>Calumet County, Wisconsin</option>
+<option value='Chippewa County, Wisconsin'>Chippewa County, Wisconsin</option>
+<option value='Clark County, Wisconsin'>Clark County, Wisconsin</option>
+<option value='Columbia County, Wisconsin'>Columbia County, Wisconsin</option>
+<option value='Crawford County, Wisconsin'>Crawford County, Wisconsin</option>
+<option value='Dane County, Wisconsin'>Dane County, Wisconsin</option>
+<option value='Dodge County, Wisconsin'>Dodge County, Wisconsin</option>
+<option value='Door County, Wisconsin'>Door County, Wisconsin</option>
+<option value='Douglas County, Wisconsin'>Douglas County, Wisconsin</option>
+<option value='Dunn County, Wisconsin'>Dunn County, Wisconsin</option>
+<option value='Eau Claire County, Wisconsin'>Eau Claire County, Wisconsin</option>
+<option value='Florence County, Wisconsin'>Florence County, Wisconsin</option>
+<option value='Fond du Lac County, Wisconsin'>Fond du Lac County, Wisconsin</option>
+<option value='Forest County, Wisconsin'>Forest County, Wisconsin</option>
+<option value='Grant County, Wisconsin'>Grant County, Wisconsin</option>
+<option value='Green County, Wisconsin'>Green County, Wisconsin</option>
+<option value='Green Lake County, Wisconsin'>Green Lake County, Wisconsin</option>
+<option value='Iowa County, Wisconsin'>Iowa County, Wisconsin</option>
+<option value='Iron County, Wisconsin'>Iron County, Wisconsin</option>
+<option value='Jackson County, Wisconsin'>Jackson County, Wisconsin</option>
+<option value='Jefferson County, Wisconsin'>Jefferson County, Wisconsin</option>
+<option value='Juneau County, Wisconsin'>Juneau County, Wisconsin</option>
+<option value='Kenosha County, Wisconsin'>Kenosha County, Wisconsin</option>
+<option value='Kewaunee County, Wisconsin'>Kewaunee County, Wisconsin</option>
+<option value='La Crosse County, Wisconsin'>La Crosse County, Wisconsin</option>
+<option value='Lafayette County, Wisconsin'>Lafayette County, Wisconsin</option>
+<option value='Langlade County, Wisconsin'>Langlade County, Wisconsin</option>
+<option value='Lincoln County, Wisconsin'>Lincoln County, Wisconsin</option>
+<option value='Manitowoc County, Wisconsin'>Manitowoc County, Wisconsin</option>
+<option value='Marathon County, Wisconsin'>Marathon County, Wisconsin</option>
+<option value='Marinette County, Wisconsin'>Marinette County, Wisconsin</option>
+<option value='Marquette County, Wisconsin'>Marquette County, Wisconsin</option>
+<option value='Menominee County, Wisconsin'>Menominee County, Wisconsin</option>
+<option value='Milwaukee County, Wisconsin'>Milwaukee County, Wisconsin</option>
+<option value='Monroe County, Wisconsin'>Monroe County, Wisconsin</option>
+<option value='Oconto County, Wisconsin'>Oconto County, Wisconsin</option>
+<option value='Oneida County, Wisconsin'>Oneida County, Wisconsin</option>
+<option value='Outagamie County, Wisconsin'>Outagamie County, Wisconsin</option>
+<option value='Ozaukee County, Wisconsin'>Ozaukee County, Wisconsin</option>
+<option value='Pepin County, Wisconsin'>Pepin County, Wisconsin</option>
+<option value='Pierce County, Wisconsin'>Pierce County, Wisconsin</option>
+<option value='Polk County, Wisconsin'>Polk County, Wisconsin</option>
+<option value='Portage County, Wisconsin'>Portage County, Wisconsin</option>
+<option value='Price County, Wisconsin'>Price County, Wisconsin</option>
+<option value='Racine County, Wisconsin'>Racine County, Wisconsin</option>
+<option value='Richland County, Wisconsin'>Richland County, Wisconsin</option>
+<option value='Rock County, Wisconsin'>Rock County, Wisconsin</option>
+<option value='Rusk County, Wisconsin'>Rusk County, Wisconsin</option>
+<option value='Sauk County, Wisconsin'>Sauk County, Wisconsin</option>
+<option value='Sawyer County, Wisconsin'>Sawyer County, Wisconsin</option>
+<option value='Shawano County, Wisconsin'>Shawano County, Wisconsin</option>
+<option value='Sheboygan County, Wisconsin'>Sheboygan County, Wisconsin</option>
+<option value='St. Croix County, Wisconsin'>St. Croix County, Wisconsin</option>
+<option value='Taylor County, Wisconsin'>Taylor County, Wisconsin</option>
+<option value='Trempealeau County, Wisconsin'>Trempealeau County, Wisconsin</option>
+<option value='Vernon County, Wisconsin'>Vernon County, Wisconsin</option>
+<option value='Vilas County, Wisconsin'>Vilas County, Wisconsin</option>
+<option value='Walworth County, Wisconsin'>Walworth County, Wisconsin</option>
+<option value='Washburn County, Wisconsin'>Washburn County, Wisconsin</option>
+<option value='Washington County, Wisconsin'>Washington County, Wisconsin</option>
+<option value='Waukesha County, Wisconsin'>Waukesha County, Wisconsin</option>
+<option value='Waupaca County, Wisconsin'>Waupaca County, Wisconsin</option>
+<option value='Waushara County, Wisconsin'>Waushara County, Wisconsin</option>
+<option value='Winnebago County, Wisconsin'>Winnebago County, Wisconsin</option>
+<option value='Wood County, Wisconsin'>Wood County, Wisconsin</option></select>
+    <canvas id="barChart" width="700" height="700"></canvas>
+    <script>  const languageData = {"Statewide":{"Arabic":0.1,"Chinese":0.4,"English only":83.8,"French, Haitian, Cajun":0.3,"German or West Germanic":0,"Korean":0.9,"Other":4.9,"Other Asian/Pacific":0.2,"Other Indo-European":0.1,"Other/Unspecified":0.1,"Russian, Polish, Slavic":0.1,"Spanish":8.9,"Tagalog":0.2,"Vietnamese":0.1},"Adams County, Wisconsin":{"Arabic":0.4,"Chinese":0.1,"English only":90.1,"French, Haitian, Cajun":0.1,"German or West Germanic":0.8,"Korean":0,"Other Asian/Pacific":0.2,"Other Indo-European":0.8,"Other/Unspecified":0.1,"Russian, Polish, Slavic":3.9,"Spanish":3.3,"Tagalog":0.1,"Vietnamese":0},"Ashland County, Wisconsin":{"Arabic":0,"Chinese":0,"English only":92.8,"French, Haitian, Cajun":0.2,"German or West Germanic":0.5,"Korean":0,"Other Asian/Pacific":0.2,"Other Indo-European":0.9,"Other/Unspecified":2.1,"Russian, Polish, Slavic":1,"Spanish":2,"Tagalog":0.2,"Vietnamese":0},"Barron County, Wisconsin":{"Arabic":0.2,"Chinese":0,"English only":91.7,"French, Haitian, Cajun":0.4,"German or West Germanic":1.5,"Korean":0.1,"Other Asian/Pacific":0.3,"Other Indo-European":0.5,"Other/Unspecified":1.1,"Russian, Polish, Slavic":0.3,"Spanish":3.6,"Tagalog":0.4,"Vietnamese":0},"Bayfield County, Wisconsin":{"Arabic":0,"Chinese":0.1,"English only":90.7,"French, Haitian, Cajun":1.8,"German or West Germanic":1.3,"Korean":0,"Other Asian/Pacific":0.2,"Other Indo-European":0.3,"Other/Unspecified":3.1,"Russian, Polish, Slavic":0.5,"Spanish":1.8,"Tagalog":0.1,"Vietnamese":0},"Brown County, Wisconsin":{"Arabic":0.5,"Chinese":0.3,"English only":80.2,"French, Haitian, Cajun":0.5,"German or West Germanic":1.1,"Korean":0.1,"Other Asian/Pacific":2.5,"Other Indo-European":1.1,"Other/Unspecified":0.8,"Russian, Polish, Slavic":0.9,"Spanish":11.4,"Tagalog":0.5,"Vietnamese":0.2},"Buffalo County, Wisconsin":{"Arabic":0,"Chinese":0,"English only":92.8,"French, Haitian, Cajun":0.3,"German or West Germanic":1.9,"Korean":0.3,"Other Asian/Pacific":0,"Other Indo-European":0.3,"Other/Unspecified":0.2,"Russian, Polish, Slavic":0.2,"Spanish":4,"Tagalog":0,"Vietnamese":0},"Burnett County, Wisconsin":{"Arabic":0,"Chinese":0,"English only":94.5,"French, Haitian, Cajun":0.4,"German or West Germanic":1.4,"Korean":0,"Other Asian/Pacific":0.4,"Other Indo-European":0.6,"Other/Unspecified":1,"Russian, Polish, Slavic":0,"Spanish":1.6,"Tagalog":0,"Vietnamese":0},"Calumet County, Wisconsin":{"Arabic":0,"Chinese":0.1,"English only":88.2,"French, Haitian, Cajun":0.4,"German or West Germanic":0.5,"Korean":0.1,"Other Asian/Pacific":2,"Other Indo-European":0.6,"Other/Unspecified":0.5,"Russian, Polish, Slavic":0.8,"Spanish":6.2,"Tagalog":0.1,"Vietnamese":0.4},"Chippewa County, Wisconsin":{"Arabic":0,"Chinese":0.2,"English only":92,"French, Haitian, Cajun":0.1,"German or West Germanic":1.9,"Korean":0.2,"Other Asian/Pacific":0.7,"Other Indo-European":0.4,"Other/Unspecified":0.4,"Russian, Polish, Slavic":0.6,"Spanish":3.4,"Tagalog":0.2,"Vietnamese":0.1},"Clark County, Wisconsin":{"Arabic":0.1,"Chinese":0,"English only":76.6,"French, Haitian, Cajun":0.3,"German or West Germanic":14.2,"Korean":0.3,"Other Asian/Pacific":0.5,"Other Indo-European":0.3,"Other/Unspecified":0.1,"Russian, Polish, Slavic":0.3,"Spanish":7,"Tagalog":0.2,"Vietnamese":0},"Columbia County, Wisconsin":{"Arabic":0.1,"Chinese":0.2,"English only":90.4,"French, Haitian, Cajun":0.2,"German or West Germanic":1.9,"Korean":0,"Other Asian/Pacific":0.6,"Other Indo-European":0.4,"Other/Unspecified":0.7,"Russian, Polish, Slavic":0.6,"Spanish":4.3,"Tagalog":0.4,"Vietnamese":0.1},"Crawford County, Wisconsin":{"Arabic":0.1,"Chinese":0,"English only":93.8,"French, Haitian, Cajun":1.3,"German or West Germanic":1.9,"Korean":0.5,"Other Asian/Pacific":0.1,"Other Indo-European":0.6,"Other/Unspecified":0.1,"Russian, Polish, Slavic":0.6,"Spanish":1,"Tagalog":0.1,"Vietnamese":0},"Dane County, Wisconsin":{"Arabic":0.4,"Chinese":2.7,"English only":77.7,"French, Haitian, Cajun":0.8,"German or West Germanic":1,"Korean":0.6,"Other Asian/Pacific":2.7,"Other Indo-European":3,"Other/Unspecified":0.9,"Russian, Polish, Slavic":1.1,"Spanish":8.6,"Tagalog":0.3,"Vietnamese":0.2},"Dodge County, Wisconsin":{"Arabic":0.1,"Chinese":0,"English only":88.2,"French, Haitian, Cajun":0.5,"German or West Germanic":1.8,"Korean":0,"Other Asian/Pacific":0.2,"Other Indo-European":0.6,"Other/Unspecified":0.3,"Russian, Polish, Slavic":0.1,"Spanish":7.4,"Tagalog":0.6,"Vietnamese":0},"Door County, Wisconsin":{"Arabic":0,"Chinese":0.2,"English only":89.3,"French, Haitian, Cajun":0.7,"German or West Germanic":0.9,"Korean":0,"Other Asian/Pacific":0.5,"Other Indo-European":0.8,"Other/Unspecified":0.2,"Russian, Polish, Slavic":0.3,"Spanish":7,"Tagalog":0.2,"Vietnamese":0},"Douglas County, Wisconsin":{"Arabic":0,"Chinese":0.2,"English only":92.6,"French, Haitian, Cajun":0.2,"German or West Germanic":0.9,"Korean":0,"Other Asian/Pacific":0.5,"Other Indo-European":0.2,"Other/Unspecified":1.1,"Russian, Polish, Slavic":0.6,"Spanish":3.1,"Tagalog":0.1,"Vietnamese":0.5},"Dunn County, Wisconsin":{"Arabic":0,"Chinese":0.9,"English only":91.9,"French, Haitian, Cajun":0.2,"German or West Germanic":0.8,"Korean":0,"Other Asian/Pacific":1.7,"Other Indo-European":0.3,"Other/Unspecified":0.5,"Russian, Polish, Slavic":0.2,"Spanish":3.2,"Tagalog":0.1,"Vietnamese":0},"Eau Claire County, Wisconsin":{"Arabic":0,"Chinese":0.5,"English only":87.2,"French, Haitian, Cajun":0.2,"German or West Germanic":1.9,"Korean":0,"Other Asian/Pacific":3.3,"Other Indo-European":0.6,"Other/Unspecified":0.4,"Russian, Polish, Slavic":0.2,"Spanish":5.1,"Tagalog":0.4,"Vietnamese":0.2},"Florence County, Wisconsin":{"Arabic":0,"Chinese":0,"English only":95.3,"French, Haitian, Cajun":1.4,"German or West Germanic":0.7,"Korean":0,"Other Asian/Pacific":0.2,"Other Indo-European":0.2,"Other/Unspecified":0,"Russian, Polish, Slavic":0.2,"Spanish":2,"Tagalog":0,"Vietnamese":0},"Fond du Lac County, Wisconsin":{"Arabic":0,"Chinese":0.8,"English only":89.3,"French, Haitian, Cajun":0.2,"German or West Germanic":1.3,"Korean":0,"Other Asian/Pacific":1.4,"Other Indo-European":0.7,"Other/Unspecified":0.2,"Russian, Polish, Slavic":0.1,"Spanish":5.7,"Tagalog":0.3,"Vietnamese":0},"Forest County, Wisconsin":{"Arabic":0.1,"Chinese":0,"English only":91.5,"French, Haitian, Cajun":0.6,"German or West Germanic":1.7,"Korean":0,"Other Asian/Pacific":0,"Other Indo-European":0.1,"Other/Unspecified":3.9,"Russian, Polish, Slavic":0.3,"Spanish":1.7,"Tagalog":0,"Vietnamese":0},"Grant County, Wisconsin":{"Arabic":0,"Chinese":0.1,"English only":91.9,"French, Haitian, Cajun":0.8,"German or West Germanic":3.2,"Korean":0,"Other Asian/Pacific":0.8,"Other Indo-European":0.4,"Other/Unspecified":0,"Russian, Polish, Slavic":0.1,"Spanish":2.6,"Tagalog":0,"Vietnamese":0},"Green County, Wisconsin":{"Arabic":0,"Chinese":0.1,"English only":91.5,"French, Haitian, Cajun":0.4,"German or West Germanic":1.1,"Korean":0,"Other Asian/Pacific":0.3,"Other Indo-European":0.4,"Other/Unspecified":0.5,"Russian, Polish, Slavic":0.3,"Spanish":5.5,"Tagalog":0,"Vietnamese":0},"Green Lake County, Wisconsin":{"Arabic":0,"Chinese":0.2,"English only":87.7,"French, Haitian, Cajun":0.1,"German or West Germanic":5.4,"Korean":0,"Other Asian/Pacific":0,"Other Indo-European":0.4,"Other/Unspecified":0.1,"Russian, Polish, Slavic":0.2,"Spanish":5.9,"Tagalog":0,"Vietnamese":0},"Iowa County, Wisconsin":{"Arabic":0,"Chinese":0,"English only":94,"French, Haitian, Cajun":0.4,"German or West Germanic":1,"Korean":0,"Other Asian/Pacific":1.2,"Other Indo-European":0.6,"Other/Unspecified":0.1,"Russian, Polish, Slavic":0.2,"Spanish":2.4,"Tagalog":0.1,"Vietnamese":0.1},"Iron County, Wisconsin":{"Arabic":0,"Chinese":0,"English only":93.6,"French, Haitian, Cajun":0,"German or West Germanic":0.9,"Korean":0,"Other Asian/Pacific":0.3,"Other Indo-European":0.3,"Other/Unspecified":1.4,"Russian, Polish, Slavic":0.8,"Spanish":2.6,"Tagalog":0,"Vietnamese":0.1},"Jackson County, Wisconsin":{"Arabic":0,"Chinese":0,"English only":91.3,"French, Haitian, Cajun":0.1,"German or West Germanic":1.9,"Korean":0,"Other Asian/Pacific":0.5,"Other Indo-European":0.4,"Other/Unspecified":2.7,"Russian, Polish, Slavic":0.1,"Spanish":2.9,"Tagalog":0.1,"Vietnamese":0},"Jefferson County, Wisconsin":{"Arabic":0,"Chinese":0.1,"English only":88,"French, Haitian, Cajun":0.4,"German or West Germanic":1.1,"Korean":0.2,"Other Asian/Pacific":0.3,"Other Indo-European":0.9,"Other/Unspecified":0.2,"Russian, Polish, Slavic":0.2,"Spanish":8.2,"Tagalog":0.2,"Vietnamese":0.2},"Juneau County, Wisconsin":{"Arabic":0,"Chinese":0.1,"English only":90.2,"French, Haitian, Cajun":0.2,"German or West Germanic":2.4,"Korean":0,"Other Asian/Pacific":0.3,"Other Indo-European":0.5,"Other/Unspecified":0.5,"Russian, Polish, Slavic":3.2,"Spanish":2.1,"Tagalog":0.4,"Vietnamese":0},"Kenosha County, Wisconsin":{"Arabic":0.2,"Chinese":0.3,"English only":74.8,"French, Haitian, Cajun":0.3,"German or West Germanic":1.6,"Korean":0.1,"Other Asian/Pacific":1.1,"Other Indo-European":2.8,"Other/Unspecified":0.8,"Russian, Polish, Slavic":2.2,"Spanish":15.1,"Tagalog":0.5,"Vietnamese":0.2},"Kewaunee County, Wisconsin":{"Arabic":0,"Chinese":0.1,"English only":90,"French, Haitian, Cajun":0.3,"German or West Germanic":1.9,"Korean":0,"Other Asian/Pacific":0,"Other Indo-European":0.6,"Other/Unspecified":0,"Russian, Polish, Slavic":0.3,"Spanish":5.6,"Tagalog":1,"Vietnamese":0.2},"La Crosse County, Wisconsin":{"Arabic":0,"Chinese":0.4,"English only":87.1,"French, Haitian, Cajun":0.3,"German or West Germanic":1.2,"Korean":0,"Other Asian/Pacific":4.1,"Other Indo-European":1.2,"Other/Unspecified":0.1,"Russian, Polish, Slavic":0.3,"Spanish":5,"Tagalog":0.2,"Vietnamese":0.1},"Lafayette County, Wisconsin":{"Arabic":0,"Chinese":0.3,"English only":88.3,"French, Haitian, Cajun":0.3,"German or West Germanic":3.2,"Korean":0,"Other Asian/Pacific":0.3,"Other Indo-European":1.7,"Other/Unspecified":0,"Russian, Polish, Slavic":0.2,"Spanish":5.8,"Tagalog":0,"Vietnamese":0},"Langlade County, Wisconsin":{"Arabic":0,"Chinese":0,"English only":96.1,"French, Haitian, Cajun":0.1,"German or West Germanic":1.5,"Korean":0,"Other Asian/Pacific":0.1,"Other Indo-European":0.1,"Other/Unspecified":0.1,"Russian, Polish, Slavic":0.1,"Spanish":1.9,"Tagalog":0,"Vietnamese":0},"Lincoln County, Wisconsin":{"Arabic":0,"Chinese":0,"English only":92.9,"French, Haitian, Cajun":0.2,"German or West Germanic":2.3,"Korean":0,"Other Asian/Pacific":0.3,"Other Indo-European":0.2,"Other/Unspecified":0.3,"Russian, Polish, Slavic":0.8,"Spanish":2.5,"Tagalog":0.2,"Vietnamese":0.3},"Manitowoc County, Wisconsin":{"Arabic":0,"Chinese":0.4,"English only":87.6,"French, Haitian, Cajun":0.2,"German or West Germanic":1.4,"Korean":0,"Other Asian/Pacific":2.1,"Other Indo-European":0.7,"Other/Unspecified":0.2,"Russian, Polish, Slavic":0.2,"Spanish":6.7,"Tagalog":0.2,"Vietnamese":0},"Marathon County, Wisconsin":{"Arabic":0.2,"Chinese":0.3,"English only":87.5,"French, Haitian, Cajun":0.2,"German or West Germanic":1.7,"Korean":0,"Other Asian/Pacific":4.7,"Other Indo-European":0.9,"Other/Unspecified":0.1,"Russian, Polish, Slavic":0.4,"Spanish":3.6,"Tagalog":0.2,"Vietnamese":0.2},"Marinette County, Wisconsin":{"Arabic":0.2,"Chinese":0,"English only":90.5,"French, Haitian, Cajun":0.8,"German or West Germanic":0.9,"Korean":0,"Other Asian/Pacific":0.3,"Other Indo-European":0.4,"Other/Unspecified":0.2,"Russian, Polish, Slavic":0.8,"Spanish":5.6,"Tagalog":0.1,"Vietnamese":0},"Marquette County, Wisconsin":{"Arabic":0,"Chinese":0,"English only":93.8,"French, Haitian, Cajun":0,"German or West Germanic":1.6,"Korean":0.2,"Other Asian/Pacific":0.1,"Other Indo-European":0.4,"Other/Unspecified":0,"Russian, Polish, Slavic":0.7,"Spanish":3,"Tagalog":0.1,"Vietnamese":0.1},"Menominee County, Wisconsin":{"Arabic":0,"Chinese":0,"English only":82.9,"French, Haitian, Cajun":0,"German or West Germanic":0,"Korean":0,"Other Asian/Pacific":0,"Other Indo-European":0,"Other/Unspecified":15.2,"Russian, Polish, Slavic":0.7,"Spanish":1.2,"Tagalog":0,"Vietnamese":0},"Milwaukee County, Wisconsin":{"Arabic":0.9,"Chinese":0.7,"English only":69.8,"French, Haitian, Cajun":0.8,"German or West Germanic":1.2,"Korean":0.2,"Other Asian/Pacific":2.9,"Other Indo-European":2.4,"Other/Unspecified":1,"Russian, Polish, Slavic":1.4,"Spanish":18.2,"Tagalog":0.3,"Vietnamese":0.3},"Monroe County, Wisconsin":{"Arabic":0.2,"Chinese":0,"English only":86.6,"French, Haitian, Cajun":0.1,"German or West Germanic":4.3,"Korean":0.1,"Other Asian/Pacific":0.1,"Other Indo-European":0.9,"Other/Unspecified":0.5,"Russian, Polish, Slavic":0.4,"Spanish":6.5,"Tagalog":0.3,"Vietnamese":0},"Oconto County, Wisconsin":{"Arabic":0,"Chinese":0.2,"English only":95.2,"French, Haitian, Cajun":0.1,"German or West Germanic":0.9,"Korean":0,"Other Asian/Pacific":0.3,"Other Indo-European":0.3,"Other/Unspecified":0.2,"Russian, Polish, Slavic":0.1,"Spanish":2.2,"Tagalog":0.3,"Vietnamese":0},"Oneida County, Wisconsin":{"Arabic":0,"Chinese":0,"English only":94.8,"French, Haitian, Cajun":0.3,"German or West Germanic":1.2,"Korean":0,"Other Asian/Pacific":0.6,"Other Indo-European":0.2,"Other/Unspecified":0.1,"Russian, Polish, Slavic":0.7,"Spanish":2.1,"Tagalog":0,"Vietnamese":0.1},"Outagamie County, Wisconsin":{"Arabic":0.1,"Chinese":0.3,"English only":85.5,"French, Haitian, Cajun":0.5,"German or West Germanic":1.3,"Korean":0.1,"Other Asian/Pacific":3.3,"Other Indo-European":0.7,"Other/Unspecified":0.9,"Russian, Polish, Slavic":0.3,"Spanish":6.6,"Tagalog":0.4,"Vietnamese":0.1},"Ozaukee County, Wisconsin":{"Arabic":0.3,"Chinese":0.6,"English only":85.9,"French, Haitian, Cajun":0.6,"German or West Germanic":2.1,"Korean":0.2,"Other Asian/Pacific":0.8,"Other Indo-European":1.4,"Other/Unspecified":0.7,"Russian, Polish, Slavic":3,"Spanish":3.9,"Tagalog":0.5,"Vietnamese":0.2},"Pepin County, Wisconsin":{"Arabic":0.1,"Chinese":0,"English only":91.2,"French, Haitian, Cajun":0.3,"German or West Germanic":3.7,"Korean":0.1,"Other Asian/Pacific":0,"Other Indo-European":0.3,"Other/Unspecified":0.1,"Russian, Polish, Slavic":0.5,"Spanish":3.5,"Tagalog":0.2,"Vietnamese":0},"Pierce County, Wisconsin":{"Arabic":0.7,"Chinese":0.1,"English only":91.7,"French, Haitian, Cajun":0.3,"German or West Germanic":0.9,"Korean":0.1,"Other Asian/Pacific":1.2,"Other Indo-European":0.5,"Other/Unspecified":0.2,"Russian, Polish, Slavic":0.6,"Spanish":3.7,"Tagalog":0,"Vietnamese":0},"Polk County, Wisconsin":{"Arabic":0,"Chinese":0,"English only":94.1,"French, Haitian, Cajun":0.4,"German or West Germanic":1.2,"Korean":0.1,"Other Asian/Pacific":0.3,"Other Indo-European":0.5,"Other/Unspecified":0.4,"Russian, Polish, Slavic":0.1,"Spanish":2.2,"Tagalog":0.7,"Vietnamese":0.1},"Portage County, Wisconsin":{"Arabic":0,"Chinese":0.2,"English only":89.8,"French, Haitian, Cajun":0.3,"German or West Germanic":1.1,"Korean":0.1,"Other Asian/Pacific":2.1,"Other Indo-European":0.4,"Other/Unspecified":0.3,"Russian, Polish, Slavic":0.9,"Spanish":4.3,"Tagalog":0.1,"Vietnamese":0.2},"Price County, Wisconsin":{"Arabic":0.1,"Chinese":0.1,"English only":93.5,"French, Haitian, Cajun":0,"German or West Germanic":1.2,"Korean":0,"Other Asian/Pacific":1.4,"Other Indo-European":0.2,"Other/Unspecified":0.3,"Russian, Polish, Slavic":0.3,"Spanish":2.6,"Tagalog":0.3,"Vietnamese":0},"Racine County, Wisconsin":{"Arabic":0.1,"Chinese":0.2,"English only":81.1,"French, Haitian, Cajun":0.3,"German or West Germanic":1.2,"Korean":0.1,"Other Asian/Pacific":0.8,"Other Indo-European":1.2,"Other/Unspecified":0.2,"Russian, Polish, Slavic":0.8,"Spanish":13.5,"Tagalog":0.3,"Vietnamese":0.1},"Richland County, Wisconsin":{"Arabic":0,"Chinese":0.4,"English only":88.2,"French, Haitian, Cajun":0.3,"German or West Germanic":3.2,"Korean":0,"Other Asian/Pacific":0,"Other Indo-European":0.9,"Other/Unspecified":0.1,"Russian, Polish, Slavic":0.9,"Spanish":5.4,"Tagalog":0.3,"Vietnamese":0.2},"Rock County, Wisconsin":{"Arabic":0.1,"Chinese":0.3,"English only":85.9,"French, Haitian, Cajun":0.3,"German or West Germanic":1,"Korean":0,"Other Asian/Pacific":0.7,"Other Indo-European":0.6,"Other/Unspecified":0.3,"Russian, Polish, Slavic":0.5,"Spanish":10.1,"Tagalog":0.2,"Vietnamese":0.1},"Rusk County, Wisconsin":{"Arabic":0,"Chinese":0,"English only":95.6,"French, Haitian, Cajun":0.2,"German or West Germanic":1.2,"Korean":0,"Other Asian/Pacific":0.3,"Other Indo-European":0.3,"Other/Unspecified":0.1,"Russian, Polish, Slavic":0.6,"Spanish":1.6,"Tagalog":0.1,"Vietnamese":0},"Sauk County, Wisconsin":{"Arabic":0,"Chinese":0.6,"English only":83.7,"French, Haitian, Cajun":0.8,"German or West Germanic":2.3,"Korean":0,"Other Asian/Pacific":0.4,"Other Indo-European":0.8,"Other/Unspecified":0.5,"Russian, Polish, Slavic":1.2,"Spanish":9.7,"Tagalog":0,"Vietnamese":0},"Sawyer County, Wisconsin":{"Arabic":0,"Chinese":0.1,"English only":90,"French, Haitian, Cajun":0.2,"German or West Germanic":1,"Korean":0,"Other Asian/Pacific":0.3,"Other Indo-European":0.3,"Other/Unspecified":4.2,"Russian, Polish, Slavic":0.1,"Spanish":3.5,"Tagalog":0.4,"Vietnamese":0.1},"Shawano County, Wisconsin":{"Arabic":0,"Chinese":0.2,"English only":93.6,"French, Haitian, Cajun":0.4,"German or West Germanic":1.6,"Korean":0,"Other Asian/Pacific":0.1,"Other Indo-European":0.4,"Other/Unspecified":0.8,"Russian, Polish, Slavic":0.4,"Spanish":2.4,"Tagalog":0.2,"Vietnamese":0},"Sheboygan County, Wisconsin":{"Arabic":0.1,"Chinese":1,"English only":82.2,"French, Haitian, Cajun":0.1,"German or West Germanic":1.3,"Korean":0.1,"Other Asian/Pacific":4.7,"Other Indo-European":0.6,"Other/Unspecified":0,"Russian, Polish, Slavic":0.3,"Spanish":8.4,"Tagalog":0.9,"Vietnamese":0.2},"St. Croix County, Wisconsin":{"Arabic":0.1,"Chinese":0.1,"English only":91.4,"French, Haitian, Cajun":0.3,"German or West Germanic":1.7,"Korean":0,"Other Asian/Pacific":1.4,"Other Indo-European":0.6,"Other/Unspecified":0.1,"Russian, Polish, Slavic":0.6,"Spanish":3.6,"Tagalog":0.3,"Vietnamese":0},"Taylor County, Wisconsin":{"Arabic":0,"Chinese":0,"English only":89.3,"French, Haitian, Cajun":0,"German or West Germanic":4.6,"Korean":0,"Other Asian/Pacific":0.1,"Other Indo-European":0.1,"Other/Unspecified":0.1,"Russian, Polish, Slavic":1,"Spanish":4.6,"Tagalog":0.2,"Vietnamese":0},"Trempealeau County, Wisconsin":{"Arabic":0.2,"Chinese":0.1,"English only":84.6,"French, Haitian, Cajun":0.3,"German or West Germanic":1.7,"Korean":0,"Other Asian/Pacific":0.5,"Other Indo-European":0.4,"Other/Unspecified":0.1,"Russian, Polish, Slavic":0.4,"Spanish":11.4,"Tagalog":0.4,"Vietnamese":0},"Vernon County, Wisconsin":{"Arabic":0,"Chinese":0,"English only":86.3,"French, Haitian, Cajun":0.3,"German or West Germanic":8.9,"Korean":0,"Other Asian/Pacific":0.1,"Other Indo-European":1,"Other/Unspecified":0,"Russian, Polish, Slavic":0.5,"Spanish":2.7,"Tagalog":0.1,"Vietnamese":0},"Vilas County, Wisconsin":{"Arabic":0,"Chinese":0,"English only":93.6,"French, Haitian, Cajun":0.5,"German or West Germanic":1.3,"Korean":0.1,"Other Asian/Pacific":0.1,"Other Indo-European":0.4,"Other/Unspecified":0.8,"Russian, Polish, Slavic":0.4,"Spanish":2.8,"Tagalog":0.1,"Vietnamese":0},"Walworth County, Wisconsin":{"Arabic":0.1,"Chinese":0.1,"English only":81.1,"French, Haitian, Cajun":0.3,"German or West Germanic":1.6,"Korean":0,"Other Asian/Pacific":0.3,"Other Indo-European":0.7,"Other/Unspecified":0.1,"Russian, Polish, Slavic":1.8,"Spanish":13.4,"Tagalog":0.3,"Vietnamese":0},"Washburn County, Wisconsin":{"Arabic":0,"Chinese":0.1,"English only":92.5,"French, Haitian, Cajun":0.6,"German or West Germanic":1.6,"Korean":0.2,"Other Asian/Pacific":0.5,"Other Indo-European":0.8,"Other/Unspecified":0.4,"Russian, Polish, Slavic":0.4,"Spanish":2.7,"Tagalog":0.2,"Vietnamese":0},"Washington County, Wisconsin":{"Arabic":0.1,"Chinese":0.4,"English only":90.1,"French, Haitian, Cajun":0.2,"German or West Germanic":2.5,"Korean":0.3,"Other Asian/Pacific":0.9,"Other Indo-European":1.4,"Other/Unspecified":0.1,"Russian, Polish, Slavic":0.4,"Spanish":3.2,"Tagalog":0.3,"Vietnamese":0},"Waukesha County, Wisconsin":{"Arabic":0.2,"Chinese":1,"English only":83.1,"French, Haitian, Cajun":0.5,"German or West Germanic":2,"Korean":0.2,"Other Asian/Pacific":2.2,"Other Indo-European":2.7,"Other/Unspecified":0.2,"Russian, Polish, Slavic":1.2,"Spanish":6.2,"Tagalog":0.3,"Vietnamese":0.2},"Waupaca County, Wisconsin":{"Arabic":0,"Chinese":0,"English only":90.3,"French, Haitian, Cajun":0.2,"German or West Germanic":1.7,"Korean":0,"Other Asian/Pacific":0.6,"Other Indo-European":0.3,"Other/Unspecified":0,"Russian, Polish, Slavic":0.3,"Spanish":6.4,"Tagalog":0.1,"Vietnamese":0},"Waushara County, Wisconsin":{"Arabic":0,"Chinese":0.1,"English only":86.3,"French, Haitian, Cajun":0.2,"German or West Germanic":2.9,"Korean":0.1,"Other Asian/Pacific":0.1,"Other Indo-European":0.3,"Other/Unspecified":0,"Russian, Polish, Slavic":0.3,"Spanish":9.2,"Tagalog":0.3,"Vietnamese":0},"Winnebago County, Wisconsin":{"Arabic":0.2,"Chinese":0.8,"English only":88.2,"French, Haitian, Cajun":0.2,"German or West Germanic":1,"Korean":0,"Other Asian/Pacific":3,"Other Indo-European":0.8,"Other/Unspecified":0.3,"Russian, Polish, Slavic":0.6,"Spanish":4.6,"Tagalog":0.2,"Vietnamese":0.1},"Wood County, Wisconsin":{"Arabic":0.1,"Chinese":0.3,"English only":90.6,"French, Haitian, Cajun":0.6,"German or West Germanic":1.1,"Korean":0,"Other Asian/Pacific":1.8,"Other Indo-European":0.6,"Other/Unspecified":0.4,"Russian, Polish, Slavic":0.5,"Spanish":3.3,"Tagalog":0.4,"Vietnamese":0.1}};
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: Object.keys(values),
+        datasets: [{
+          label: 'Share (%)',
+          data: Object.values(values),
+          backgroundColor: '#4576a7'
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.parsed.y + '%'
+            }
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 100,
+            title: {
+              display: true,
+              text: 'Population Share (%)'
+            }
+          },
+          x: {
+            title: {
+              display: true,
+              text: 'Language Group'
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(languageData[this.value]);
+  });
+
+  renderChart(languageData['Statewide']);</script>
+  </body>
+</html>
+</html>

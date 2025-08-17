@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Age Pyramid –  Indiana</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+      body {
+        font-family: sans-serif;
+        margin: 1rem 2rem;
+        text-align: center;
+      }
+      h2 {
+        margin-bottom: 0.25rem;
+        font-size: 1.6rem;
+      }
+      select {
+        padding: 0.4rem;
+        font-size: 1rem;
+        margin: 1rem 0;
+        border-radius: 5px;
+        border: 1px solid #999;
+      }
+      canvas {
+        width: 100%;
+        max-width: 850px;
+        height: 500px;
+        margin-top: 1rem;
+      }
+    </style>
+</head>
+<html>
+  <body>
+    <h2>Age Distribution in  Indiana (2023)</h2>
+    <label>Select County:</label>
+          <select id="countySelect">
+        <option value='Statewide'>Statewide</option>
+<option value='Adams County, Indiana'>Adams County, Indiana</option>
+<option value='Allen County, Indiana'>Allen County, Indiana</option>
+<option value='Bartholomew County, Indiana'>Bartholomew County, Indiana</option>
+<option value='Benton County, Indiana'>Benton County, Indiana</option>
+<option value='Blackford County, Indiana'>Blackford County, Indiana</option>
+<option value='Boone County, Indiana'>Boone County, Indiana</option>
+<option value='Brown County, Indiana'>Brown County, Indiana</option>
+<option value='Carroll County, Indiana'>Carroll County, Indiana</option>
+<option value='Cass County, Indiana'>Cass County, Indiana</option>
+<option value='Clark County, Indiana'>Clark County, Indiana</option>
+<option value='Clay County, Indiana'>Clay County, Indiana</option>
+<option value='Clinton County, Indiana'>Clinton County, Indiana</option>
+<option value='Crawford County, Indiana'>Crawford County, Indiana</option>
+<option value='Daviess County, Indiana'>Daviess County, Indiana</option>
+<option value='Dearborn County, Indiana'>Dearborn County, Indiana</option>
+<option value='Decatur County, Indiana'>Decatur County, Indiana</option>
+<option value='DeKalb County, Indiana'>DeKalb County, Indiana</option>
+<option value='Delaware County, Indiana'>Delaware County, Indiana</option>
+<option value='Dubois County, Indiana'>Dubois County, Indiana</option>
+<option value='Elkhart County, Indiana'>Elkhart County, Indiana</option>
+<option value='Fayette County, Indiana'>Fayette County, Indiana</option>
+<option value='Floyd County, Indiana'>Floyd County, Indiana</option>
+<option value='Fountain County, Indiana'>Fountain County, Indiana</option>
+<option value='Franklin County, Indiana'>Franklin County, Indiana</option>
+<option value='Fulton County, Indiana'>Fulton County, Indiana</option>
+<option value='Gibson County, Indiana'>Gibson County, Indiana</option>
+<option value='Grant County, Indiana'>Grant County, Indiana</option>
+<option value='Greene County, Indiana'>Greene County, Indiana</option>
+<option value='Hamilton County, Indiana'>Hamilton County, Indiana</option>
+<option value='Hancock County, Indiana'>Hancock County, Indiana</option>
+<option value='Harrison County, Indiana'>Harrison County, Indiana</option>
+<option value='Hendricks County, Indiana'>Hendricks County, Indiana</option>
+<option value='Henry County, Indiana'>Henry County, Indiana</option>
+<option value='Howard County, Indiana'>Howard County, Indiana</option>
+<option value='Huntington County, Indiana'>Huntington County, Indiana</option>
+<option value='Jackson County, Indiana'>Jackson County, Indiana</option>
+<option value='Jasper County, Indiana'>Jasper County, Indiana</option>
+<option value='Jay County, Indiana'>Jay County, Indiana</option>
+<option value='Jefferson County, Indiana'>Jefferson County, Indiana</option>
+<option value='Jennings County, Indiana'>Jennings County, Indiana</option>
+<option value='Johnson County, Indiana'>Johnson County, Indiana</option>
+<option value='Knox County, Indiana'>Knox County, Indiana</option>
+<option value='Kosciusko County, Indiana'>Kosciusko County, Indiana</option>
+<option value='LaGrange County, Indiana'>LaGrange County, Indiana</option>
+<option value='Lake County, Indiana'>Lake County, Indiana</option>
+<option value='LaPorte County, Indiana'>LaPorte County, Indiana</option>
+<option value='Lawrence County, Indiana'>Lawrence County, Indiana</option>
+<option value='Madison County, Indiana'>Madison County, Indiana</option>
+<option value='Marion County, Indiana'>Marion County, Indiana</option>
+<option value='Marshall County, Indiana'>Marshall County, Indiana</option>
+<option value='Martin County, Indiana'>Martin County, Indiana</option>
+<option value='Miami County, Indiana'>Miami County, Indiana</option>
+<option value='Monroe County, Indiana'>Monroe County, Indiana</option>
+<option value='Montgomery County, Indiana'>Montgomery County, Indiana</option>
+<option value='Morgan County, Indiana'>Morgan County, Indiana</option>
+<option value='Newton County, Indiana'>Newton County, Indiana</option>
+<option value='Noble County, Indiana'>Noble County, Indiana</option>
+<option value='Ohio County, Indiana'>Ohio County, Indiana</option>
+<option value='Orange County, Indiana'>Orange County, Indiana</option>
+<option value='Owen County, Indiana'>Owen County, Indiana</option>
+<option value='Parke County, Indiana'>Parke County, Indiana</option>
+<option value='Perry County, Indiana'>Perry County, Indiana</option>
+<option value='Pike County, Indiana'>Pike County, Indiana</option>
+<option value='Porter County, Indiana'>Porter County, Indiana</option>
+<option value='Posey County, Indiana'>Posey County, Indiana</option>
+<option value='Pulaski County, Indiana'>Pulaski County, Indiana</option>
+<option value='Putnam County, Indiana'>Putnam County, Indiana</option>
+<option value='Randolph County, Indiana'>Randolph County, Indiana</option>
+<option value='Ripley County, Indiana'>Ripley County, Indiana</option>
+<option value='Rush County, Indiana'>Rush County, Indiana</option>
+<option value='Scott County, Indiana'>Scott County, Indiana</option>
+<option value='Shelby County, Indiana'>Shelby County, Indiana</option>
+<option value='Spencer County, Indiana'>Spencer County, Indiana</option>
+<option value='St. Joseph County, Indiana'>St. Joseph County, Indiana</option>
+<option value='Starke County, Indiana'>Starke County, Indiana</option>
+<option value='Steuben County, Indiana'>Steuben County, Indiana</option>
+<option value='Sullivan County, Indiana'>Sullivan County, Indiana</option>
+<option value='Switzerland County, Indiana'>Switzerland County, Indiana</option>
+<option value='Tippecanoe County, Indiana'>Tippecanoe County, Indiana</option>
+<option value='Tipton County, Indiana'>Tipton County, Indiana</option>
+<option value='Union County, Indiana'>Union County, Indiana</option>
+<option value='Vanderburgh County, Indiana'>Vanderburgh County, Indiana</option>
+<option value='Vermillion County, Indiana'>Vermillion County, Indiana</option>
+<option value='Vigo County, Indiana'>Vigo County, Indiana</option>
+<option value='Wabash County, Indiana'>Wabash County, Indiana</option>
+<option value='Warren County, Indiana'>Warren County, Indiana</option>
+<option value='Warrick County, Indiana'>Warrick County, Indiana</option>
+<option value='Washington County, Indiana'>Washington County, Indiana</option>
+<option value='Wayne County, Indiana'>Wayne County, Indiana</option>
+<option value='Wells County, Indiana'>Wells County, Indiana</option>
+<option value='White County, Indiana'>White County, Indiana</option>
+<option value='Whitley County, Indiana'>Whitley County, Indiana</option>
+      </select>
+    <canvas id="barChart" width="850" height="500"></canvas>
+    <script>  const ageData = {"Statewide":[-6.4,6.1,-5.6,5.4,-4.9,4.7,-3.3,3.2,-6.5,6.4,-6.1,6.1,-6.2,6.3,-5.7,6.1,-3.3,3.9,-0.8,1,-0.6,1.2],"Adams County, Indiana":[-8.6,8.1,-7.5,7.1,-4.5,4.5,-3.1,2.7,-5.4,5,-5.5,5.3,-5.6,5.2,-5.2,6.1,-2.9,2.9,-1.1,1.2,-0.9,1.9],"Allen County, Indiana":[-7.1,6.8,-6,5.7,-4.5,4.5,-3.6,3.6,-6.6,6.6,-6,6.1,-5.9,5.9,-5.2,5.7,-3,3.9,-0.6,0.9,-0.7,1.1],"Bartholomew County, Indiana":[-6.6,6.5,-5.9,5.3,-4.2,3.9,-3.9,3.4,-7.1,6.2,-6.5,6.2,-6.4,5.7,-4.9,5.7,-3.5,3.9,-1,1.3,-0.6,1.2],"Benton County, Indiana":[-7,6.6,-6,5.2,-4.2,3.4,-3,2.7,-6.2,5.3,-6.5,5.9,-7.8,6.4,-5.2,6.5,-3.6,4.2,-0.7,1.3,-1.2,1.1],"Blackford County, Indiana":[-5.2,5.4,-6.4,6,-3.7,3.2,-2.8,2.6,-4.6,5.1,-6,6,-7.3,7.5,-6.2,5.8,-5.1,6.3,-0.7,1.5,-1,1.7],"Boone County, Indiana":[-7.3,5.9,-6.1,6.5,-4,3.5,-2.7,2.8,-6.7,6.5,-7.1,7,-6.5,7,-5.4,5.4,-2.4,3.2,-1,1.3,-0.7,1],"Brown County, Indiana":[-3.4,4.1,-4.6,4.5,-3,2.7,-2.3,2.1,-4.9,5,-6.3,5.5,-7.9,7.2,-8.6,10.8,-7,5.4,-1.1,1.3,-0.9,1.4],"Carroll County, Indiana":[-5.3,5.7,-6.2,4.7,-3.8,3.7,-2.9,2.7,-6,5.1,-6.2,6.3,-6.5,6.3,-7.3,7,-4.7,4.9,-1.3,1.2,-0.7,1.5],"Cass County, Indiana":[-6,5.4,-6.2,5.7,-4,3.8,-3,3.3,-5.6,5.1,-6.3,6.8,-7.1,6.7,-6.9,6.4,-3.1,3.7,-1,1.4,-0.9,1.7],"Clark County, Indiana":[-6.4,5.6,-5,5.2,-4.1,3.8,-3.2,3.5,-6.7,6.8,-7,6.7,-6.7,6.6,-5.6,6.4,-3.2,4.3,-0.7,0.9,-0.6,1.1],"Clay County, Indiana":[-5.9,5.8,-5.8,5.7,-3.6,3.5,-3.1,2.8,-6.3,6.1,-6.4,6.3,-6.6,6.5,-7,7.4,-3.5,3.9,-0.6,1.1,-0.8,1.3],"Clinton County, Indiana":[-7.1,7.7,-6.9,5.3,-4.4,4,-2.9,3,-6.5,6,-5.6,5.9,-6.9,5.8,-5.1,6.4,-3.2,3.4,-0.6,1.3,-0.8,1.3],"Crawford County, Indiana":[-5.3,4.9,-5.2,5.9,-3.4,3.4,-2.4,2.8,-5.6,6,-6,5,-8.4,6.7,-7.8,8.3,-5.1,5,-0.9,1,-0.5,0.5],"Daviess County, Indiana":[-8.4,8.6,-6.4,6.3,-4.2,3.8,-3.3,2.9,-6.4,5.8,-5.7,5.6,-5.5,5.4,-5.3,5.8,-3.2,3.3,-0.7,0.9,-0.8,1.7],"Dearborn County, Indiana":[-6,5.4,-5.2,5.6,-4,3.6,-2.9,2.6,-6.4,6.4,-5.6,5.7,-7.3,7.3,-6.7,6.8,-4.1,4.6,-0.9,1,-0.7,1.1],"Decatur County, Indiana":[-6.9,5.9,-5.1,5.7,-4.3,3.7,-3,3,-6.1,5.8,-6.4,6.2,-7.5,6.3,-5.1,6.1,-4,4.7,-1.1,0.9,-0.5,1.6],"DeKalb County, Indiana":[-6.1,6.8,-6.2,5.3,-4.3,3.6,-3.2,3.1,-6.4,6.8,-5.8,5.5,-7,6.8,-6,6,-3.5,4.4,-0.7,1.1,-0.8,0.8],"Delaware County, Indiana":[-5.1,5,-4.3,3.9,-9,10.2,-3.1,3.1,-5.5,5.3,-5,5.4,-6,5.8,-5.4,6.1,-3.5,4.4,-0.8,1.2,-0.7,1.4],"Dubois County, Indiana":[-7.1,6.3,-5.4,5.7,-3.7,3.6,-3.1,2.8,-6,6.2,-6,4.8,-7,6.8,-6.6,6.2,-3.7,4.4,-0.8,1.7,-0.9,1.2],"Elkhart County, Indiana":[-7.4,7.1,-6.7,6.5,-4.7,4.4,-3.2,3.2,-6.3,5.9,-5.8,6.2,-6.1,5.8,-5,5.3,-3.2,3.5,-0.7,0.9,-0.6,1.5],"Fayette County, Indiana":[-4.8,5.8,-6.5,5.2,-4,3.9,-2.9,2.9,-4.7,4.6,-6.6,7,-7.3,6.6,-6.7,6.5,-4.1,5.5,-1,1.2,-0.7,1.1],"Floyd County, Indiana":[-5.9,5.9,-5.7,5,-4.2,4,-3,3.2,-6.3,6.6,-6.2,6.6,-6.4,7,-6.2,6.5,-3.4,3.9,-0.7,1.1,-0.6,1.5],"Fountain County, Indiana":[-6.3,5.5,-5.2,5.1,-3.9,3.6,-3.3,2.9,-5.8,5.3,-5.9,6.4,-6.4,7.6,-7.2,6.2,-4.2,4.6,-1.2,1.7,-0.7,0.9],"Franklin County, Indiana":[-6.2,5.5,-4.9,6,-4,3.5,-2.8,2.9,-5.8,5.8,-5.8,5.3,-7,6.8,-6.9,7.1,-4.7,5.1,-1,1,-0.6,1.3],"Fulton County, Indiana":[-7.1,6,-5.4,5.3,-3.7,3.5,-2.7,2.7,-6,5.4,-6.3,5.9,-6.7,7.1,-5.9,6,-5,4.9,-1.2,1.1,-0.7,1.5],"Gibson County, Indiana":[-7.4,6.1,-5.2,5.2,-4,3.7,-2.8,3,-6.1,5.4,-6.4,6.5,-7.1,6.2,-6.8,6.8,-3.2,3.9,-1,1,-0.7,1.4],"Grant County, Indiana":[-6.2,5.3,-4.5,5.3,-5.8,7,-2.9,2.8,-5.3,5.4,-5.2,5.5,-6.2,7,-6.4,6.4,-3.5,4.3,-1,1.6,-1,1.4],"Greene County, Indiana":[-5.7,5.5,-5.3,5.1,-4.3,3.2,-3,2.8,-6.5,5.6,-5.6,5.8,-7,6.5,-7.1,6.5,-5,5.9,-1,1.1,-0.5,1],"Hamilton County, Indiana":[-6.9,6.5,-6.3,6.2,-4,3.9,-2.7,2.8,-6.9,7,-7,7.5,-6.6,6.7,-4.8,5.4,-2.9,3.2,-0.5,0.7,-0.5,1],"Hancock County, Indiana":[-5.7,6,-6.6,5,-3.8,3.6,-2.7,2.9,-6.9,6.6,-6.4,6.7,-7.3,7.2,-5.4,5.8,-3.6,4.4,-1,1,-0.6,0.9],"Harrison County, Indiana":[-6.1,6.1,-5.6,4.5,-3.7,3.2,-2.6,2.7,-5.6,5.6,-6.8,7.2,-7.6,6.9,-6,6.2,-4.9,5.2,-0.9,0.9,-0.6,1.2],"Hendricks County, Indiana":[-6.2,6.1,-6.6,5.8,-4.2,3.7,-3.1,2.9,-6.7,7,-7.5,6.7,-6.9,6.6,-4.9,5.5,-3,3.8,-0.6,0.8,-0.6,0.9],"Henry County, Indiana":[-5.6,5.3,-4.9,4.5,-4.7,3.4,-3.7,2.7,-6.7,5.3,-7.4,5.6,-7.6,5.9,-6.4,7.4,-4.2,4.8,-0.8,1.3,-0.7,1.1],"Howard County, Indiana":[-6.5,6.1,-5.4,5,-3.9,3.9,-3.3,3.2,-5.5,5.9,-5.8,6,-6.4,6.5,-6,7.1,-4.1,4.7,-0.9,1.3,-0.8,1.8],"Huntington County, Indiana":[-6,5.5,-5.4,4.8,-4.9,4.3,-3.2,3,-5.9,6.1,-6.4,5.5,-6.9,6.3,-6.6,6.8,-3.2,4.4,-1,1.3,-0.7,1.6],"Jackson County, Indiana":[-7.8,6.2,-5.9,5.2,-4.6,3.3,-3.2,3.3,-5.8,6.1,-7.2,6.3,-6,6.5,-5.9,6,-3.2,3.7,-0.9,0.8,-0.5,1.6],"Jasper County, Indiana":[-5.7,5.9,-6.1,5.5,-3.9,3.9,-3,2.8,-6.1,5.3,-6.3,6.9,-6.6,6.6,-7.1,6.4,-2.9,4.5,-1.2,1.3,-0.9,1],"Jay County, Indiana":[-7.4,6.5,-5.8,6.1,-4.3,3.8,-3,2.6,-5.3,5.6,-6.2,5.7,-7.1,6.7,-5.1,5.8,-4.3,4,-0.8,1.4,-0.9,1.6],"Jefferson County, Indiana":[-5.4,5.7,-4.7,4.2,-4.7,5,-2.8,3.2,-5.8,6.7,-5.9,6.1,-6.9,6.6,-6.6,6.7,-3.6,5,-1.2,1.4,-0.4,1.2],"Jennings County, Indiana":[-6.2,5.8,-5.9,5.2,-4,3.7,-3.3,3.5,-5.9,6.2,-6.6,5.6,-7.3,6.5,-6.4,6.6,-3.8,4.2,-0.8,0.8,-0.5,1.1],"Johnson County, Indiana":[-6.3,6.2,-6.2,5.8,-4.3,4,-3.3,3.2,-6.9,6.8,-6.8,6.7,-6.1,6.2,-5.2,5.4,-3,4,-0.8,0.9,-0.7,1.2],"Knox County, Indiana":[-5.9,5.4,-5.3,5.1,-6.2,5,-2.9,2.7,-6.4,6.1,-6.2,5.3,-5.9,5.8,-7,6.9,-3.4,4.1,-1.1,1.2,-0.6,1.7],"Kosciusko County, Indiana":[-6,6.1,-5.9,5.7,-4.4,4.5,-3.4,3.1,-6.2,5.8,-6,5.8,-6.2,6.3,-6.5,6.7,-4,3.8,-0.7,1.2,-0.7,1.1],"LaGrange County, Indiana":[-9,8.3,-7.4,7.3,-4.9,4.4,-3.2,2.7,-5.3,5.5,-5.8,5.4,-5.7,5.4,-5.6,4.8,-2.6,3.7,-1.1,0.9,-0.2,0.8],"Lake County, Indiana":[-6.3,5.9,-5.7,5.5,-4.2,4.1,-3,3.1,-6.2,6.6,-6,6.4,-6.4,6.5,-6,6.7,-3.3,4.2,-0.8,1.3,-0.7,1.3],"LaPorte County, Indiana":[-6.1,5.5,-4.9,4.9,-4.5,3.5,-3.7,2.8,-7.1,5.9,-6.7,5.3,-6.2,6.2,-7.1,6.8,-4,4.6,-0.9,1.4,-0.7,1.3],"Lawrence County, Indiana":[-5.5,5.4,-5.2,5.2,-4.1,3.5,-3.1,2.8,-5.4,5.6,-6.4,6,-7.1,6.8,-6.5,7.4,-4.4,5,-1,1.3,-0.8,1.5],"Madison County, Indiana":[-5.8,5.3,-5.5,5.1,-4.3,3.9,-3.3,2.9,-6.7,6.1,-6.5,6,-6.6,6.6,-6.1,6.4,-4,4.6,-1.1,1.1,-0.7,1.5],"Marion County, Indiana":[-7.2,6.8,-5.6,5.4,-4.6,4.9,-4.1,4.3,-7.4,7.9,-5.8,6,-5.4,5.9,-4.9,5.5,-2.4,3.1,-0.5,0.8,-0.5,1],"Marshall County, Indiana":[-7.2,5.8,-5.9,5.9,-4.1,4.1,-3.4,2.6,-6.1,5.6,-5.7,5.5,-6.1,6.7,-6.8,6.3,-3.6,4,-0.8,1.2,-0.9,1.9],"Martin County, Indiana":[-6.8,6,-4.7,4.7,-4.7,3.5,-2.9,2.7,-4.8,5.2,-6.8,5.5,-6.2,6.1,-8.1,7.5,-4.4,5.1,-1,1.1,-1.1,1.1],"Miami County, Indiana":[-5.5,4.9,-5.6,5.1,-5.2,3.5,-3.9,2.5,-7.3,5.1,-7.8,5.7,-7.7,6.2,-5.8,6.5,-3.6,4.4,-1.2,1.1,-0.7,0.9],"Monroe County, Indiana":[-4.5,4.2,-3.8,3.4,-12.2,12.4,-4.1,3.6,-6.4,6,-5,4.8,-5,5.3,-4.6,4.8,-3,3.8,-0.6,0.9,-0.7,1],"Montgomery County, Indiana":[-6.8,5.7,-5.2,5.4,-5.4,3.4,-3,3.1,-5.9,6.2,-5.9,5.2,-6.6,6,-6.4,7.5,-4.1,3.8,-1.1,1.5,-0.6,1.3],"Morgan County, Indiana":[-5.7,5.3,-5.7,5.5,-4.1,3.6,-2.9,2.7,-5.9,6.3,-6.2,6,-7.8,7.5,-6.7,7,-3.7,4,-0.7,0.9,-0.5,1.3],"Newton County, Indiana":[-4.8,5.7,-5.8,4.7,-3.9,3.1,-3.1,2.7,-6,6.1,-5.9,5.5,-8,7.1,-8.2,7.3,-3.6,4.2,-1,1.1,-0.8,1.4],"Noble County, Indiana":[-6.9,6.7,-5.7,5.1,-4.2,4,-3.1,3.2,-6.2,5.4,-6.1,6.4,-7.3,6.4,-6.3,6.3,-3.3,4,-0.7,0.9,-0.7,1.1],"Ohio County, Indiana":[-5.2,7.4,-5.3,2.6,-3.2,2.9,-2.1,2.4,-6.5,5.9,-4.8,5.5,-6.7,6.7,-9.2,8.8,-4.7,4.5,-1.6,1.1,-0.4,2.6],"Orange County, Indiana":[-6.8,6.7,-5,4.4,-3.8,3.6,-2.7,2.8,-6,5.2,-6.1,5.9,-6.2,6.1,-7.4,7.2,-4.1,5.1,-1.2,1.4,-0.8,1.5],"Owen County, Indiana":[-5.4,5,-5,4.5,-3.7,3.3,-2.9,2.6,-6.5,6.3,-5.4,4.9,-8.2,7.4,-7.1,7.6,-4.6,4.7,-1,1.2,-0.8,1.7],"Parke County, Indiana":[-6.9,5.8,-4.7,4.9,-3.4,3.8,-2.5,3.4,-5.4,6.6,-5,6.3,-6.2,6.1,-7.6,7.4,-4.6,5.5,-1.2,0.9,-0.5,1.2],"Perry County, Indiana":[-5.9,4.7,-5.2,5.1,-4.3,3.1,-4,2.6,-8.7,5.1,-6.8,5.2,-7.3,6.9,-6.7,5.7,-4,4.3,-0.6,1.1,-1,1.4],"Pike County, Indiana":[-6.3,5.9,-4.8,5.2,-3.4,4.1,-2.9,2.6,-6,5.8,-5.7,5.3,-6.1,6,-8.6,7.4,-4.1,5.2,-1.1,1.5,-0.9,1.3],"Porter County, Indiana":[-5.5,5.5,-5.6,5,-4.5,4.3,-3,2.9,-6.3,6.8,-6.8,6.3,-6.4,6.4,-6.3,6.7,-3.7,4.3,-0.9,1.1,-0.6,1.2],"Posey County, Indiana":[-5.4,5.1,-5.8,5.8,-3.5,3.1,-3,2.5,-5.9,6.3,-5.9,5.6,-6.6,6.6,-7.6,7,-5,5.3,-0.9,1.1,-0.6,1.2],"Pulaski County, Indiana":[-5.9,5.2,-5.2,5.5,-3.9,4.2,-3,2.9,-6,5.7,-5.6,5.5,-6.1,7.3,-6.7,6.5,-5.8,5.3,-0.8,1.3,-0.8,0.8],"Putnam County, Indiana":[-4.8,4.8,-5.1,4.4,-6.3,6.2,-4.2,2.7,-7.5,5.6,-5.9,5.1,-6.9,5.8,-6.8,6.3,-3.1,4.2,-0.9,1.1,-1.1,1.1],"Randolph County, Indiana":[-6.6,4.9,-5.2,6,-3.9,3.6,-2.8,2.6,-6.2,5.4,-5.9,6.1,-6.8,6.6,-6.2,7.1,-4.2,4.7,-1,1.6,-1.1,1.4],"Ripley County, Indiana":[-6.5,5.4,-6.1,5.8,-4.4,3.6,-3,3,-5.7,5.7,-6,5.8,-7.2,7,-6.2,6.7,-3.4,4.2,-1.2,1.4,-0.5,1.4],"Rush County, Indiana":[-5.8,5.8,-5.8,5.1,-3.7,3.5,-3.2,2.8,-5.2,5.5,-6.3,6.4,-7.3,7.1,-6.4,6.4,-4.5,4.8,-0.9,1.3,-0.9,1.5],"St. Joseph County, Indiana":[-6.7,6,-5.3,5.3,-5.5,5.9,-3.4,3.4,-6.5,6.5,-5.6,5.7,-5.7,5.9,-5.6,6.3,-3.3,3.7,-0.8,1,-0.6,1.4],"Scott County, Indiana":[-5.7,5.2,-5.7,5.8,-4.2,3.7,-3.2,3.1,-5.5,6.2,-6.7,6.7,-8.2,6.5,-5.5,6.5,-3.5,4.6,-0.8,1,-0.4,1.1],"Shelby County, Indiana":[-6.4,6.6,-5,4.5,-3.8,3.5,-3.2,2.9,-6.7,6,-5.9,6.1,-7,6.8,-6.3,7.2,-3.7,3.7,-1.1,1.1,-0.6,1.9],"Spencer County, Indiana":[-5.5,5.6,-5.6,5.1,-3.7,3.3,-2.8,2.7,-6.2,5,-5.9,6.3,-7.2,6.6,-7.9,7.6,-4.6,4.2,-1.1,1.3,-0.7,1.3],"Starke County, Indiana":[-5.9,6,-5.9,5.1,-3.7,3.5,-2.9,2.9,-6,5.9,-5.4,5.8,-7,7.1,-7.7,7,-3.4,4.3,-1.4,0.8,-1,1.2],"Steuben County, Indiana":[-5.5,4.5,-5.3,4.7,-7.1,4.4,-2.6,2.5,-4.8,4.8,-5.6,5.5,-6.8,6.7,-7.3,7.3,-4.9,5.1,-1,1.3,-1,1.4],"Sullivan County, Indiana":[-5.3,4.8,-4.9,4.3,-4.7,3.2,-4.4,2.8,-8.1,5.5,-8.1,5.5,-7,5.7,-6.5,7.1,-4.3,4.1,-0.5,1.1,-0.7,1.3],"Switzerland County, Indiana":[-5.9,6.1,-6.6,5.3,-3.7,3.5,-2.7,2.3,-5.7,5.7,-6.1,7,-7.3,6.9,-7,6.1,-3.7,4,-1.2,1.1,-1.1,1.1],"Tippecanoe County, Indiana":[-5.5,5.5,-4.9,4.6,-13.2,10.4,-4,3.6,-6.2,5.9,-5.1,4.9,-4.4,4.6,-4.5,4.6,-2.3,2.9,-0.5,0.8,-0.6,0.9],"Tipton County, Indiana":[-6.3,5.3,-4,5,-4,3.4,-3.3,2.8,-6.2,5.6,-5.2,5.6,-7.1,7,-7.1,6.6,-4.8,5.8,-1.7,1.5,-0.5,1],"Union County, Indiana":[-5.5,4.5,-5,5.7,-3.9,3.9,-3.2,3.2,-5.5,5.3,-5.6,5.9,-7,8,-7.9,6.8,-3.3,5.1,-1.8,1.2,-0.7,1.1],"Vanderburgh County, Indiana":[-6,5.5,-5.1,5.1,-4.7,4.9,-3.5,3.5,-6.5,6.7,-5.9,5.8,-6,6.1,-6.1,6.7,-3.5,4.3,-0.7,1.3,-0.8,1.4],"Vermillion County, Indiana":[-6.1,4.6,-5.5,5.9,-4.3,3.4,-3.3,2.8,-5.8,5.1,-6.1,6.3,-6.7,8,-7,6.3,-4.2,4.8,-0.7,1,-0.7,1.4],"Vigo County, Indiana":[-6,5.3,-4.7,4.6,-7.8,7.2,-3.5,3.1,-6.8,5.4,-5.6,5.5,-5.7,5.6,-5.6,6.3,-3.5,3.6,-0.6,1.4,-0.6,1.5],"Wabash County, Indiana":[-5.1,5,-5.5,5.5,-4.7,4.2,-2.8,2.8,-5.1,5,-6.1,6.4,-6.4,7,-6.7,6.2,-4.6,5.3,-1.3,1.7,-0.8,1.9],"Warren County, Indiana":[-5.6,7,-5.3,4.2,-3.5,3,-2.6,2.6,-5.4,6.1,-6.1,5.8,-8.3,6.7,-6.6,6.5,-4.7,6,-1.2,1.1,-0.4,1.1],"Warrick County, Indiana":[-6.1,5.7,-5.5,6,-3.9,3.6,-2.8,2.8,-5.9,5.9,-6.8,6.7,-6.1,6.2,-6.5,7,-3.9,4.4,-1,1.3,-0.6,1.3],"Washington County, Indiana":[-6,5.9,-5.7,5.5,-3.8,3.4,-3,3,-6.1,6,-6,6,-7.4,7.3,-6.3,7.3,-4,3.7,-1,1.1,-0.5,1.1],"Wayne County, Indiana":[-6.8,6.1,-4.6,5,-4.4,4.7,-3.1,2.7,-5.7,5.3,-5.8,6.3,-6.1,6.4,-6.6,7,-4,4.5,-0.8,1.3,-0.9,1.6],"Wells County, Indiana":[-6.8,6.5,-5.6,5.7,-4.1,3.7,-3.1,3,-5.9,5.3,-6,6.2,-5.8,6.8,-6.7,5.9,-3.7,4.2,-0.7,1.1,-1,2.1],"White County, Indiana":[-6.7,7.1,-5.4,4.2,-4.1,3.7,-2.9,2.5,-5.1,5,-5.9,5.7,-7.4,6.2,-6.7,8,-3.9,4.4,-0.8,1.3,-1.5,1.4],"Whitley County, Indiana":[-6,6.7,-5.9,4.6,-4,3.4,-2.8,3.2,-6,5.7,-6.3,6.1,-6.3,6.6,-7.3,7,-4.5,4.4,-0.5,1,-0.6,1.4]};
+  const ageBins = ["0–9","10–17","18–24","25–29","30–39","40–49","50–59","60–69","70–79","80–84","85+"];
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(data) {
+    const maleData = data.filter((_, i) => i % 2 === 0);
+    const femaleData = data.filter((_, i) => i % 2 === 1);
+
+    const maxValue = Math.max(
+      ...maleData.map(Math.abs),
+      ...femaleData.map(Math.abs)
+    );
+    const padding = 1.0;
+    const xMax = +(maxValue + padding).toFixed(1);
+
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ageBins,
+        datasets: [
+          {
+            label: 'Male',
+            data: maleData,
+            backgroundColor: 'darkslategray'
+          },
+          {
+            label: 'Female',
+            data: femaleData,
+            backgroundColor: 'darkorange'
+          }
+        ]
+      },
+      options: {
+        indexAxis: 'y',
+        responsive: true,
+        scales: {
+          x: {
+            min: -xMax,
+            max: xMax,
+            ticks: {
+              callback: value => Math.abs(value).toFixed(1) + '%'
+            }
+          },
+          y: {
+            stacked: false
+          }
+        },
+        plugins: {
+          legend: {
+            position: 'top',
+            align: 'start',
+            labels: {
+              usePointStyle: true
+            }
+          },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.dataset.label + ': ' + Math.abs(ctx.parsed.x).toFixed(1) + '%'
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(Object.values(ageData[this.value]));
+  });
+
+  renderChart(Object.values(ageData['Statewide']));</script>
+  </body>
+</html>
+</html>

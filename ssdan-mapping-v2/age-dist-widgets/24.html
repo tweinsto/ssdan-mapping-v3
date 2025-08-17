@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Age Pyramid –  Maryland</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+      body {
+        font-family: sans-serif;
+        margin: 1rem 2rem;
+        text-align: center;
+      }
+      h2 {
+        margin-bottom: 0.25rem;
+        font-size: 1.6rem;
+      }
+      select {
+        padding: 0.4rem;
+        font-size: 1rem;
+        margin: 1rem 0;
+        border-radius: 5px;
+        border: 1px solid #999;
+      }
+      canvas {
+        width: 100%;
+        max-width: 850px;
+        height: 500px;
+        margin-top: 1rem;
+      }
+    </style>
+</head>
+<html>
+  <body>
+    <h2>Age Distribution in  Maryland (2023)</h2>
+    <label>Select County:</label>
+          <select id="countySelect">
+        <option value='Statewide'>Statewide</option>
+<option value='Allegany County, Maryland'>Allegany County, Maryland</option>
+<option value='Anne Arundel County, Maryland'>Anne Arundel County, Maryland</option>
+<option value='Baltimore city, Maryland'>Baltimore city, Maryland</option>
+<option value='Baltimore County, Maryland'>Baltimore County, Maryland</option>
+<option value='Calvert County, Maryland'>Calvert County, Maryland</option>
+<option value='Caroline County, Maryland'>Caroline County, Maryland</option>
+<option value='Carroll County, Maryland'>Carroll County, Maryland</option>
+<option value='Cecil County, Maryland'>Cecil County, Maryland</option>
+<option value='Charles County, Maryland'>Charles County, Maryland</option>
+<option value='Dorchester County, Maryland'>Dorchester County, Maryland</option>
+<option value='Frederick County, Maryland'>Frederick County, Maryland</option>
+<option value='Garrett County, Maryland'>Garrett County, Maryland</option>
+<option value='Harford County, Maryland'>Harford County, Maryland</option>
+<option value='Howard County, Maryland'>Howard County, Maryland</option>
+<option value='Kent County, Maryland'>Kent County, Maryland</option>
+<option value='Montgomery County, Maryland'>Montgomery County, Maryland</option>
+<option value='Prince George's County, Maryland'>Prince George's County, Maryland</option>
+<option value='Queen Anne's County, Maryland'>Queen Anne's County, Maryland</option>
+<option value='Somerset County, Maryland'>Somerset County, Maryland</option>
+<option value='St. Mary's County, Maryland'>St. Mary's County, Maryland</option>
+<option value='Talbot County, Maryland'>Talbot County, Maryland</option>
+<option value='Washington County, Maryland'>Washington County, Maryland</option>
+<option value='Wicomico County, Maryland'>Wicomico County, Maryland</option>
+<option value='Worcester County, Maryland'>Worcester County, Maryland</option>
+      </select>
+    <canvas id="barChart" width="850" height="500"></canvas>
+    <script>  const ageData = {"Statewide":[-6.1,5.9,-5.3,5.1,-4.3,4.2,-3.2,3.2,-6.8,7,-6.2,6.5,-6.5,6.9,-5.7,6.4,-3.2,4,-0.8,1.1,-0.7,1.2],"Allegany County, Maryland":[-5.1,4.6,-4.1,4,-6,5.4,-3.5,2.5,-7.1,5,-6.7,5.2,-6.5,6.3,-6.4,5.9,-4.5,5.4,-1.1,1.6,-1,2],"Anne Arundel County, Maryland":[-6.2,6,-5.3,5.1,-4.1,3.6,-3.3,3.1,-7.2,7.2,-6.6,6.6,-6.6,6.9,-5.4,6,-3.3,3.7,-0.8,1.1,-0.6,1],"Baltimore County, Maryland":[-6,6,-5.1,4.8,-4.3,4.5,-3,3.2,-6.4,7.1,-5.7,6.3,-6,6.7,-5.9,6.7,-3.4,4.3,-0.8,1.3,-0.8,1.5],"Calvert County, Maryland":[-6.4,5.7,-5.5,5.6,-4,3.8,-2.9,2.5,-6.6,6.5,-5.8,6.4,-7.4,7.4,-6.7,6.6,-3,4.2,-0.7,0.7,-0.7,1],"Caroline County, Maryland":[-7.1,6.8,-5,4.8,-4.2,3.8,-2.5,2.9,-6.7,6.7,-5.6,5.7,-6.6,6.6,-6.4,7,-3.8,4.2,-1,0.8,-0.5,1.5],"Carroll County, Maryland":[-5.8,5.7,-5.5,5,-4.3,4,-2.6,2.5,-6.8,6.2,-5.8,6,-7.3,7.5,-6.4,6.7,-3.5,4,-0.9,1.3,-0.9,1.3],"Cecil County, Maryland":[-5.5,6.2,-5.8,4.9,-4,3.8,-3,3,-6.6,6.4,-5.8,6.1,-7.1,7.5,-6.9,6.9,-3.5,3.7,-0.8,0.9,-0.6,1],"Charles County, Maryland":[-6.1,6,-6,5.9,-4.3,4,-3,3,-6.6,7,-6.1,7,-7.3,8.1,-5.3,5.7,-2.6,3.2,-0.5,0.9,-0.4,0.9],"Dorchester County, Maryland":[-5.2,5.3,-5.1,5.5,-3.6,3.3,-2.5,2.9,-5.3,6.4,-5.2,6.1,-6.3,7.1,-6.4,7.9,-5.2,6,-1.4,1.9,-0.5,1],"Frederick County, Maryland":[-6.2,6.1,-5.7,5.4,-4.2,4.1,-2.9,2.8,-7.2,7.2,-6.6,6.4,-7,6.9,-5.5,6.1,-2.9,3.4,-0.6,1,-0.7,1.1],"Garrett County, Maryland":[-5.3,4.8,-4.2,3.6,-3.8,3.4,-2.9,2.7,-6.2,5.9,-5.1,5.3,-6.9,7,-8.1,8.2,-5.4,5.6,-1.6,1,-0.9,2.1],"Harford County, Maryland":[-5.9,5.6,-5.6,5.3,-4,3.7,-3,2.9,-6.6,6.8,-6.1,6.3,-6.9,7.2,-6.4,6.7,-3.4,4.1,-0.7,1.1,-0.6,1.1],"Howard County, Maryland":[-6.2,5.7,-6.1,6,-4.1,3.8,-2.9,2.8,-6.6,6.8,-6.9,7.4,-6.8,7.2,-5.4,5.5,-2.9,3.7,-0.8,0.8,-0.6,1.1],"Kent County, Maryland":[-4.7,4.1,-3.9,2.9,-5.5,6.6,-2.7,2.8,-4.9,4.9,-4.2,4.6,-6.6,6.2,-7.7,9.3,-5.5,6.5,-1.3,1.7,-1.4,2],"Montgomery County, Maryland":[-6.3,5.8,-5.5,5.3,-3.9,3.8,-2.9,2.9,-6.5,6.9,-6.6,6.9,-6.7,7,-5.5,6.2,-3.2,3.9,-0.8,1.1,-0.8,1.4],"Prince George's County, Maryland":[-6.3,6.1,-5,4.8,-4.6,4.5,-3.4,3.5,-7,7,-6.5,6.7,-6.5,7.1,-5.3,6.4,-2.7,3.7,-0.6,0.9,-0.5,1],"Queen Anne's County, Maryland":[-5.5,5.3,-5.5,5,-3.6,3.2,-2.6,2.4,-6.1,5.7,-5.2,6,-7.6,8.5,-7.7,6.4,-4.2,5.3,-1.1,1.2,-0.7,1.2],"St. Mary's County, Maryland":[-7.2,6.1,-5.2,5.5,-4.6,4.3,-3.5,3.3,-7.6,6.9,-5.9,6.3,-6.8,6.7,-5.4,5.6,-3.1,3,-0.7,0.7,-0.6,1.1],"Somerset County, Maryland":[-4.8,4.5,-3.8,4.5,-7.2,6.5,-5.2,2.8,-9.2,3.6,-7.1,5.5,-6.3,5.3,-5.9,6.3,-3.9,3.9,-0.6,1.4,-0.7,1.2],"Talbot County, Maryland":[-5.4,4.8,-4.6,4,-2.9,2.8,-2.5,2.5,-4.5,5.2,-4.9,4.8,-6.3,7.2,-7.3,8.3,-6.4,7,-1.7,2.1,-1.7,3.3],"Washington County, Maryland":[-5.9,5.9,-5.2,4.9,-4.5,3.6,-3.4,2.9,-6.9,5.7,-6.6,6.2,-7.1,7,-6,6,-3.4,4.4,-1,1.2,-0.7,1.4],"Wicomico County, Maryland":[-6.3,5.9,-5.3,5,-6.5,7.6,-3.1,3.2,-5.3,5.9,-5.3,5.8,-5.8,6.8,-5.8,5.8,-3.2,4.1,-0.6,1,-0.7,1.1],"Worcester County, Maryland":[-4.4,4,-4.6,4.3,-3.3,3.3,-2.4,2.4,-4.5,5.5,-5.6,4.8,-6,7.4,-9.3,8.7,-5.6,6.6,-1.4,2.2,-1.5,2],"Baltimore city, Maryland":[-5.9,5.8,-4.7,4.5,-4.3,4.8,-4.2,4.7,-8.2,9.1,-5.1,5.9,-5.4,6.2,-5.2,6.5,-2.7,3.9,-0.6,0.9,-0.5,1.1]};
+  const ageBins = ["0–9","10–17","18–24","25–29","30–39","40–49","50–59","60–69","70–79","80–84","85+"];
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(data) {
+    const maleData = data.filter((_, i) => i % 2 === 0);
+    const femaleData = data.filter((_, i) => i % 2 === 1);
+
+    const maxValue = Math.max(
+      ...maleData.map(Math.abs),
+      ...femaleData.map(Math.abs)
+    );
+    const padding = 1.0;
+    const xMax = +(maxValue + padding).toFixed(1);
+
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ageBins,
+        datasets: [
+          {
+            label: 'Male',
+            data: maleData,
+            backgroundColor: 'darkslategray'
+          },
+          {
+            label: 'Female',
+            data: femaleData,
+            backgroundColor: 'darkorange'
+          }
+        ]
+      },
+      options: {
+        indexAxis: 'y',
+        responsive: true,
+        scales: {
+          x: {
+            min: -xMax,
+            max: xMax,
+            ticks: {
+              callback: value => Math.abs(value).toFixed(1) + '%'
+            }
+          },
+          y: {
+            stacked: false
+          }
+        },
+        plugins: {
+          legend: {
+            position: 'top',
+            align: 'start',
+            labels: {
+              usePointStyle: true
+            }
+          },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.dataset.label + ': ' + Math.abs(ctx.parsed.x).toFixed(1) + '%'
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(Object.values(ageData[this.value]));
+  });
+
+  renderChart(Object.values(ageData['Statewide']));</script>
+  </body>
+</html>
+</html>

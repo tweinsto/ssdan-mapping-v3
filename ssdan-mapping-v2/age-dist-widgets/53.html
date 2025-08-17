@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Age Pyramid –  Washington</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+      body {
+        font-family: sans-serif;
+        margin: 1rem 2rem;
+        text-align: center;
+      }
+      h2 {
+        margin-bottom: 0.25rem;
+        font-size: 1.6rem;
+      }
+      select {
+        padding: 0.4rem;
+        font-size: 1rem;
+        margin: 1rem 0;
+        border-radius: 5px;
+        border: 1px solid #999;
+      }
+      canvas {
+        width: 100%;
+        max-width: 850px;
+        height: 500px;
+        margin-top: 1rem;
+      }
+    </style>
+</head>
+<html>
+  <body>
+    <h2>Age Distribution in  Washington (2023)</h2>
+    <label>Select County:</label>
+          <select id="countySelect">
+        <option value='Statewide'>Statewide</option>
+<option value='Adams County, Washington'>Adams County, Washington</option>
+<option value='Asotin County, Washington'>Asotin County, Washington</option>
+<option value='Benton County, Washington'>Benton County, Washington</option>
+<option value='Chelan County, Washington'>Chelan County, Washington</option>
+<option value='Clallam County, Washington'>Clallam County, Washington</option>
+<option value='Clark County, Washington'>Clark County, Washington</option>
+<option value='Columbia County, Washington'>Columbia County, Washington</option>
+<option value='Cowlitz County, Washington'>Cowlitz County, Washington</option>
+<option value='Douglas County, Washington'>Douglas County, Washington</option>
+<option value='Ferry County, Washington'>Ferry County, Washington</option>
+<option value='Franklin County, Washington'>Franklin County, Washington</option>
+<option value='Garfield County, Washington'>Garfield County, Washington</option>
+<option value='Grant County, Washington'>Grant County, Washington</option>
+<option value='Grays Harbor County, Washington'>Grays Harbor County, Washington</option>
+<option value='Island County, Washington'>Island County, Washington</option>
+<option value='Jefferson County, Washington'>Jefferson County, Washington</option>
+<option value='King County, Washington'>King County, Washington</option>
+<option value='Kitsap County, Washington'>Kitsap County, Washington</option>
+<option value='Kittitas County, Washington'>Kittitas County, Washington</option>
+<option value='Klickitat County, Washington'>Klickitat County, Washington</option>
+<option value='Lewis County, Washington'>Lewis County, Washington</option>
+<option value='Lincoln County, Washington'>Lincoln County, Washington</option>
+<option value='Mason County, Washington'>Mason County, Washington</option>
+<option value='Okanogan County, Washington'>Okanogan County, Washington</option>
+<option value='Pacific County, Washington'>Pacific County, Washington</option>
+<option value='Pend Oreille County, Washington'>Pend Oreille County, Washington</option>
+<option value='Pierce County, Washington'>Pierce County, Washington</option>
+<option value='San Juan County, Washington'>San Juan County, Washington</option>
+<option value='Skagit County, Washington'>Skagit County, Washington</option>
+<option value='Skamania County, Washington'>Skamania County, Washington</option>
+<option value='Snohomish County, Washington'>Snohomish County, Washington</option>
+<option value='Spokane County, Washington'>Spokane County, Washington</option>
+<option value='Stevens County, Washington'>Stevens County, Washington</option>
+<option value='Thurston County, Washington'>Thurston County, Washington</option>
+<option value='Wahkiakum County, Washington'>Wahkiakum County, Washington</option>
+<option value='Walla Walla County, Washington'>Walla Walla County, Washington</option>
+<option value='Whatcom County, Washington'>Whatcom County, Washington</option>
+<option value='Whitman County, Washington'>Whitman County, Washington</option>
+<option value='Yakima County, Washington'>Yakima County, Washington</option>
+      </select>
+    <canvas id="barChart" width="850" height="500"></canvas>
+    <script>  const ageData = {"Statewide":[-6,5.7,-5.1,4.9,-4.4,4.1,-3.8,3.5,-7.8,7.3,-6.5,6.3,-6.1,6,-5.8,6,-3.4,3.9,-0.8,1,-0.7,1.1],"Adams County, Washington":[-9.5,7.8,-8.4,9.2,-5.5,4.7,-3.2,2.9,-5.7,5.9,-6.1,5.1,-5.2,4.3,-4.3,5.5,-2.4,1.8,-0.6,0.6,-0.3,0.9],"Asotin County, Washington":[-5.7,4.1,-4.7,5,-3.4,3.9,-3.1,2.5,-5.9,5.8,-5,5.4,-6.1,6.4,-7.9,7.9,-4.7,6.3,-1.7,1.3,-1.3,1.8],"Benton County, Washington":[-7.4,7,-6.2,5.8,-4.4,4,-3.3,3.2,-7.2,6.7,-5.9,5.9,-5.7,5.5,-5.6,6.1,-3.3,3.3,-0.7,0.9,-0.7,1.1],"Chelan County, Washington":[-6,5.7,-5.8,5.3,-4.1,3.7,-3.1,2.9,-6.5,6.4,-5.7,5.6,-6,5.7,-6.8,6.8,-4.4,4.6,-0.9,1.3,-1,1.7],"Clallam County, Washington":[-4.7,4.2,-3.8,3.7,-3.1,2.5,-2.6,2.2,-5.3,5.5,-5.5,4.9,-5.1,6,-9,9.9,-7.2,7.9,-1.7,2.3,-1.3,1.6],"Clark County, Washington":[-6.2,5.9,-5.6,5.4,-4.1,3.9,-3.4,3.3,-6.9,6.8,-6.6,6.7,-6.3,6.3,-5.9,6.1,-3.4,3.9,-0.8,1,-0.6,1],"Columbia County, Washington":[-5,4.8,-4.2,2.9,-2.1,3.5,-3.7,2,-3.4,4.4,-6.1,5.9,-8,7,-7.9,8.4,-7.1,6.9,-2.2,2.6,-0.7,1.4],"Cowlitz County, Washington":[-6.5,5.5,-5.3,5.3,-3.8,3.6,-3,3.1,-6.5,5.8,-6,6.5,-6.5,6.2,-6.1,6.6,-4.7,4.9,-1,1.2,-0.7,1.2],"Douglas County, Washington":[-6.8,5.8,-6.5,5.9,-4.5,3.8,-3.3,2.8,-6.6,5.7,-6.6,6,-6.5,6.1,-5.5,5.8,-3.7,4.2,-1,1,-0.9,1.2],"Ferry County, Washington":[-5.4,4.3,-3.7,3.5,-3.2,2.7,-2.1,1.5,-4.3,4.3,-5.8,5.6,-6.4,7.5,-9.6,10.9,-7.2,5.7,-2.4,1.7,-0.8,1.7],"Franklin County, Washington":[-8,8.4,-7.5,7.5,-5.3,4.8,-3.7,3.2,-8,6.4,-6.8,6.5,-5,4.6,-4.4,3.9,-1.9,2.5,-0.4,0.4,-0.4,0.5],"Garfield County, Washington":[-3.2,4.5,-5.9,3.5,-5.2,2.3,-1.4,1.3,-4,4.6,-4.9,6.7,-5,5.5,-14.4,8.3,-6.7,7.3,-2,1.4,-0.6,1.2],"Grant County, Washington":[-7.7,7.5,-6.9,6.6,-4.9,4.6,-3.7,3.2,-6.9,6.1,-5.7,5.5,-5.2,5.3,-5.2,4.6,-3.6,3.7,-0.6,0.7,-0.5,0.9],"Grays Harbor County, Washington":[-5.1,4.7,-5,5.2,-3.6,3.1,-3.1,2.5,-6.6,5.8,-6.3,5.2,-6.7,6.1,-7.6,8.2,-5.2,5.5,-1.3,1.3,-0.8,1.1],"Island County, Washington":[-5.1,4.5,-3.9,4.1,-5.1,3.5,-3.4,3.1,-6.3,6.3,-5.3,4.4,-5.5,5.5,-7.5,9,-5.9,6.2,-1.4,1.6,-1,1.3],"Jefferson County, Washington":[-2.7,2.9,-3.2,2.7,-1.9,1.8,-2.3,1.7,-4.8,4.2,-4.4,5,-6.7,6.8,-9.5,11.5,-10,10.9,-1.6,2.1,-1.6,1.7],"King County, Washington":[-5.6,5.2,-4.5,4.4,-4.1,4,-4.5,4.2,-9.5,8.5,-7.2,6.7,-6.3,6,-5.1,5.2,-2.7,3.2,-0.6,0.8,-0.6,1.1],"Kitsap County, Washington":[-5.6,5.3,-4.7,4.4,-5.4,3.6,-4,3.2,-7.2,6.7,-6.1,5.6,-6.2,6.2,-6.1,6.8,-4.4,4.8,-0.9,1,-0.7,1],"Kittitas County, Washington":[-4.6,4.6,-4.2,4.1,-8.1,8.9,-3.8,3,-5.9,5.7,-6,4.6,-5.3,6.1,-7,6.6,-3.8,4.3,-1,1,-0.5,0.8],"Klickitat County, Washington":[-4.9,4.2,-4.6,4.7,-3,3.2,-2.9,2.2,-6.2,5.6,-6.3,6.1,-6.4,6.6,-8.6,8.1,-6.6,5.7,-1,1.7,-0.5,1.1],"Lewis County, Washington":[-5.8,5.8,-5.3,4.7,-3.8,3.2,-3,2.9,-6.6,6.1,-5.6,5.7,-6.6,6,-6.9,7.7,-4.7,5.1,-1.1,1.2,-1,1.2],"Lincoln County, Washington":[-5.4,5.4,-6,5.1,-3.3,3.1,-2.3,1.8,-5.3,5.3,-4.9,5,-6.4,5.9,-8.8,8.6,-6.3,6.7,-1.1,1.4,-1,0.9],"Mason County, Washington":[-5.7,5.1,-4.5,4.3,-4,2.7,-3.3,2.5,-6.8,5.7,-5.8,5.1,-6.3,6.1,-8.5,8.3,-5.1,5.3,-1,1.5,-1.2,1.2],"Okanogan County, Washington":[-6.4,5.5,-5.2,5.3,-3.2,3,-3.5,2.6,-5.4,6,-6.3,5.1,-6.1,6,-7.7,8.2,-5.2,4.6,-1.2,1.5,-1.1,1.1],"Pacific County, Washington":[-3.8,3.7,-3.9,3.8,-3,2.6,-2.1,1.7,-4.3,5.3,-5.6,4.5,-6.8,6.9,-9.5,11.3,-7.7,7.7,-1.8,1.1,-1.2,1.9],"Pend Oreille County, Washington":[-4.7,5.2,-5.5,3.8,-4.5,2.9,-2,1.8,-4.4,5.1,-5.1,4.9,-8.2,6.8,-8.3,8.1,-7.2,6.3,-0.9,1.7,-0.9,1.6],"Pierce County, Washington":[-6.5,6.2,-5.4,5.1,-4.8,4,-4,3.6,-7.6,7.5,-6.5,6.4,-5.9,5.9,-5.5,5.8,-3,3.5,-0.7,0.9,-0.5,0.9],"San Juan County, Washington":[-2.9,2.7,-3.6,3.5,-2.3,2.2,-1.8,2.2,-5.2,5,-4.8,5.3,-6.7,6.9,-9.4,11.1,-9.1,8.6,-2,2,-1.2,1.3],"Skagit County, Washington":[-5.9,5.6,-4.9,4.8,-3.7,3.4,-3.1,3,-6.7,6.3,-5.8,5.6,-6,6,-6.7,7.4,-5.1,5.4,-1.2,1.4,-0.8,1.3],"Skamania County, Washington":[-4.3,5.2,-4.2,3.3,-3.4,2.6,-2.4,2.1,-6.4,6.6,-5.5,5.7,-7.5,7.3,-9.5,9.7,-5.4,4.2,-0.9,0.9,-1.1,1.6],"Snohomish County, Washington":[-6.4,6,-5.1,4.9,-3.8,3.5,-3.4,3.3,-8.2,7.8,-7.1,6.6,-6.5,6.3,-6,6.1,-2.8,3.3,-0.6,0.8,-0.5,1],"Spokane County, Washington":[-6.1,5.6,-5,5,-4.6,4.3,-3.8,3.6,-7.2,7.2,-6.3,5.8,-5.7,5.9,-6,6.4,-3.6,4,-0.9,1,-0.6,1.3],"Stevens County, Washington":[-5.6,5.1,-5.5,5.1,-3.2,3,-2.2,2.4,-5.2,5.4,-5.5,5.2,-6.1,6.3,-9.2,9.2,-5.4,5.4,-1.5,1.5,-0.7,1.1],"Thurston County, Washington":[-5.8,5.6,-5.1,4.5,-3.8,3.8,-3.6,3.4,-7.5,7.1,-6.4,6.7,-5.8,6,-5.8,6.8,-4,4.7,-0.8,1,-0.7,1.2],"Wahkiakum County, Washington":[-5.3,4.7,-5,3.5,-2.4,2.8,-1.6,1.9,-3.9,2.8,-6.2,4.5,-4.5,6.8,-10,11.8,-8.6,7.3,-1.4,2.4,-1.8,1],"Walla Walla County, Washington":[-5.2,5.3,-5.5,4.8,-6.6,6.6,-3.2,2.6,-6.5,5.5,-6.3,5.3,-5.6,5.3,-5.9,6.2,-3.8,4.6,-0.9,1.2,-1.3,1.8],"Whatcom County, Washington":[-5.2,5,-4.5,4.1,-6.4,6.7,-3.6,3.4,-6.9,6.4,-5.8,5.9,-5.5,5.7,-5.8,6.5,-4.2,4.6,-0.9,1,-0.7,1.1],"Whitman County, Washington":[-4.7,4.4,-3.3,3.3,-16.5,16,-3.9,3.6,-6.5,6,-4,3.8,-4.1,3.7,-4.2,4,-2.4,3.1,-0.6,0.7,-0.4,0.7],"Yakima County, Washington":[-7.9,7.4,-7,6.9,-4.9,4.6,-3.5,3.4,-6.5,6.2,-5.7,5.7,-5.4,5.3,-5,5,-2.9,3.4,-0.7,0.8,-0.7,1.1]};
+  const ageBins = ["0–9","10–17","18–24","25–29","30–39","40–49","50–59","60–69","70–79","80–84","85+"];
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(data) {
+    const maleData = data.filter((_, i) => i % 2 === 0);
+    const femaleData = data.filter((_, i) => i % 2 === 1);
+
+    const maxValue = Math.max(
+      ...maleData.map(Math.abs),
+      ...femaleData.map(Math.abs)
+    );
+    const padding = 1.0;
+    const xMax = +(maxValue + padding).toFixed(1);
+
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ageBins,
+        datasets: [
+          {
+            label: 'Male',
+            data: maleData,
+            backgroundColor: 'darkslategray'
+          },
+          {
+            label: 'Female',
+            data: femaleData,
+            backgroundColor: 'darkorange'
+          }
+        ]
+      },
+      options: {
+        indexAxis: 'y',
+        responsive: true,
+        scales: {
+          x: {
+            min: -xMax,
+            max: xMax,
+            ticks: {
+              callback: value => Math.abs(value).toFixed(1) + '%'
+            }
+          },
+          y: {
+            stacked: false
+          }
+        },
+        plugins: {
+          legend: {
+            position: 'top',
+            align: 'start',
+            labels: {
+              usePointStyle: true
+            }
+          },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.dataset.label + ': ' + Math.abs(ctx.parsed.x).toFixed(1) + '%'
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(Object.values(ageData[this.value]));
+  });
+
+  renderChart(Object.values(ageData['Statewide']));</script>
+  </body>
+</html>
+</html>

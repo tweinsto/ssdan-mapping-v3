@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+
+</head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Median Earnings by Industry – 44</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background: white;
+    }
+    .layout {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1.5rem;
+    }
+    label {
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+    #countySelect {
+      font-size: 1rem;
+      padding: 0.4rem 0.8rem;
+      margin-bottom: 1rem;
+    }
+    canvas {
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <label for="countySelect">Median Earnings by Industry:</label>
+    <select id="countySelect"></select>
+    <canvas id="barChart"></canvas>
+  </div>
+
+  <script>
+    const data = {"Statewide":{"Agriculture, forestry, fishing and hunting, and mining":37328,"Arts, entertainment, and recreation, and accommodation and food services":46444,"Construction":67054,"Educational services, and health care and social assistance":70361,"Finance and insurance, and real estate and rental and leasing":86825,"Information":76553,"Manufacturing":76165,"Other services, except public administration":53515,"Professional, scientific, and management, and administrative and waste management services":82522,"Public administration":91427,"Retail trade":52331,"Transportation and warehousing, and utilities":68531,"Wholesale trade":84265},"Bristol County":{"Agriculture, forestry, fishing and hunting, and mining":28906,"Arts, entertainment, and recreation, and accommodation and food services":44643,"Construction":90598,"Educational services, and health care and social assistance":83309,"Finance and insurance, and real estate and rental and leasing":93272,"Information":78438,"Manufacturing":76165,"Other services, except public administration":61081,"Professional, scientific, and management, and administrative and waste management services":102355,"Public administration":94799,"Retail trade":56400,"Transportation and warehousing, and utilities":83144,"Wholesale trade":112361},"Kent County":{"Agriculture, forestry, fishing and hunting, and mining":37094,"Arts, entertainment, and recreation, and accommodation and food services":46346,"Construction":67054,"Educational services, and health care and social assistance":67126,"Finance and insurance, and real estate and rental and leasing":82664,"Information":71411,"Manufacturing":73503,"Other services, except public administration":45932,"Professional, scientific, and management, and administrative and waste management services":74531,"Public administration":91427,"Retail trade":58476,"Transportation and warehousing, and utilities":68531,"Wholesale trade":74340},"Newport County":{"Agriculture, forestry, fishing and hunting, and mining":41301,"Arts, entertainment, and recreation, and accommodation and food services":49650,"Construction":62337,"Educational services, and health care and social assistance":70361,"Finance and insurance, and real estate and rental and leasing":100580,"Information":97813,"Manufacturing":77869,"Other services, except public administration":52321,"Professional, scientific, and management, and administrative and waste management services":95871,"Public administration":98423,"Retail trade":46866,"Transportation and warehousing, and utilities":66744,"Wholesale trade":84265},"Providence County":{"Agriculture, forestry, fishing and hunting, and mining":37328,"Arts, entertainment, and recreation, and accommodation and food services":46444,"Construction":55887,"Educational services, and health care and social assistance":63490,"Finance and insurance, and real estate and rental and leasing":71693,"Information":76553,"Manufacturing":52526,"Other services, except public administration":53515,"Professional, scientific, and management, and administrative and waste management services":68164,"Public administration":82719,"Retail trade":52331,"Transportation and warehousing, and utilities":60685,"Wholesale trade":59836},"Washington County":{"Agriculture, forestry, fishing and hunting, and mining":60256,"Arts, entertainment, and recreation, and accommodation and food services":49651,"Construction":72805,"Educational services, and health care and social assistance":74196,"Finance and insurance, and real estate and rental and leasing":86825,"Information":61048,"Manufacturing":80006,"Other services, except public administration":57917,"Professional, scientific, and management, and administrative and waste management services":82522,"Public administration":86060,"Retail trade":52090,"Transportation and warehousing, and utilities":70147,"Wholesale trade":95787}};
+    const colors = {
+  'Agriculture, forestry, fishing and hunting, and mining': '#FFFF33',
+  'Arts, entertainment, and recreation, and accommodation and food services': '#D95F02',
+  'Construction': '#7570B3',
+  'Educational services, and health care and social assistance': '#66A61E',
+  'Finance and insurance, and real estate and rental and leasing': '#E6AB02',
+  'Information': '#A6761D',
+  'Manufacturing': '#E41A1C',
+  'Other services, except public administration': '#377EB8',
+  'Professional, scientific, and management, and administrative and waste management services': '#4DAF4A',
+  'Public administration': '#984EA3',
+  'Retail trade': '#FF7F00',
+  'Transportation and warehousing, and utilities': '#1B9E77',
+  'Wholesale trade': '#A65628'
+};
+
+    const ctx = document.getElementById("barChart").getContext("2d");
+    let chart;
+
+    function renderChart(county) {
+      const values = data[county];
+      const labels = Object.keys(values);
+      const earnings = Object.values(values);
+
+      if (chart) chart.destroy();
+
+      chart = new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels: labels,
+          datasets: [{
+            label: "Median Earnings ($)",
+            data: earnings,
+            backgroundColor: labels.map(label => colors[label] || "#ccc")
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: true,
+  aspectRatio: 1.5, 
+          indexAxis: "x",
+          scales: {
+            y: {
+              beginAtZero: true,
+              title: {
+                display: true,
+                text: "Median Earnings ($)"
+              },
+              ticks: {
+                callback: function(value) {
+                  return "$" + value.toLocaleString();
+                }
+              }
+            },
+            x: {
+              ticks: {
+                maxRotation: 45,
+                minRotation: 20,
+                autoSkip: false,
+                callback: function(value, index, ticks) {
+                  let label = this.getLabelForValue(value);
+                  return label.length > 25 ? label.slice(0, 25) + "…" : label;
+                }
+              }
+            }
+          },
+          plugins: {
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  return "$" + context.parsed.y.toLocaleString();
+                }
+              }
+            },
+            legend: {
+              display: false
+            }
+          }
+        }
+      });
+    }
+
+    const select = document.getElementById("countySelect");
+    Object.keys(data).forEach(county => {
+      const option = document.createElement("option");
+      option.value = county;
+      option.text = county;
+      select.appendChild(option);
+    });
+    select.value = "Statewide";
+    select.addEventListener("change", () => renderChart(select.value));
+    renderChart("Statewide");
+  </script>
+</body>
+</html>
+</html>

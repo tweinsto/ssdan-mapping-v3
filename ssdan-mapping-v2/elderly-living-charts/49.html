@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Living Arrangements – Utah</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Living Arrangements of Adults 65+ in Utah</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Beaver County, Utah">Beaver County, Utah</option>
+      <option value="Box Elder County, Utah">Box Elder County, Utah</option>
+      <option value="Cache County, Utah">Cache County, Utah</option>
+      <option value="Carbon County, Utah">Carbon County, Utah</option>
+      <option value="Daggett County, Utah">Daggett County, Utah</option>
+      <option value="Davis County, Utah">Davis County, Utah</option>
+      <option value="Duchesne County, Utah">Duchesne County, Utah</option>
+      <option value="Emery County, Utah">Emery County, Utah</option>
+      <option value="Garfield County, Utah">Garfield County, Utah</option>
+      <option value="Grand County, Utah">Grand County, Utah</option>
+      <option value="Iron County, Utah">Iron County, Utah</option>
+      <option value="Juab County, Utah">Juab County, Utah</option>
+      <option value="Kane County, Utah">Kane County, Utah</option>
+      <option value="Millard County, Utah">Millard County, Utah</option>
+      <option value="Morgan County, Utah">Morgan County, Utah</option>
+      <option value="Piute County, Utah">Piute County, Utah</option>
+      <option value="Rich County, Utah">Rich County, Utah</option>
+      <option value="Salt Lake County, Utah">Salt Lake County, Utah</option>
+      <option value="San Juan County, Utah">San Juan County, Utah</option>
+      <option value="Sanpete County, Utah">Sanpete County, Utah</option>
+      <option value="Sevier County, Utah">Sevier County, Utah</option>
+      <option value="Summit County, Utah">Summit County, Utah</option>
+      <option value="Tooele County, Utah">Tooele County, Utah</option>
+      <option value="Uintah County, Utah">Uintah County, Utah</option>
+      <option value="Utah County, Utah">Utah County, Utah</option>
+      <option value="Wasatch County, Utah">Wasatch County, Utah</option>
+      <option value="Washington County, Utah">Washington County, Utah</option>
+      <option value="Wayne County, Utah">Wayne County, Utah</option>
+      <option value="Weber County, Utah">Weber County, Utah</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>  const data = {"Statewide":[22,0.2,1.9,12.6,62,1.2],"Beaver County, Utah":[23,0,0,3.2,73.8,0],"Box Elder County, Utah":[19.1,0.3,1.5,10.7,68,0.4],"Cache County, Utah":[18.4,0.7,1.2,9.3,69.8,0.6],"Carbon County, Utah":[36.3,0,2,7.4,52.1,2.2],"Daggett County, Utah":[27.4,0,0,7.4,65.2,0],"Davis County, Utah":[20.2,0.3,2.2,13.4,63.1,0.7],"Duchesne County, Utah":[19.4,0.1,0.4,12.7,65.3,2.2],"Emery County, Utah":[19.7,0.1,0,9.7,69.9,0.6],"Garfield County, Utah":[21.3,0,0,12,66.6,0.1],"Grand County, Utah":[40.1,0,3,6.9,43.2,6.8],"Iron County, Utah":[21.7,0.1,1.9,9.6,65.1,1.6],"Juab County, Utah":[18.8,0.1,0,12.1,69,0],"Kane County, Utah":[27.4,0,5.3,5.4,60,1.9],"Millard County, Utah":[23,0.2,0.2,14.5,61.7,0.5],"Morgan County, Utah":[10.6,0,0.7,9.7,78.7,0.4],"Piute County, Utah":[32.4,0,0,3.9,63.6,0],"Rich County, Utah":[12.2,0,8,11.3,65.7,2.7],"Salt Lake County, Utah":[24.6,0.3,2.2,14.6,56.8,1.4],"San Juan County, Utah":[17,1.1,0,14.9,60.1,6.8],"Sanpete County, Utah":[20,0.1,2.8,12,64.5,0.6],"Sevier County, Utah":[20.9,0.4,0.7,10.1,67.7,0.2],"Summit County, Utah":[17.7,0,1.3,10,68.6,2.5],"Tooele County, Utah":[22.6,0.2,2.2,17.3,56.7,0.9],"Uintah County, Utah":[23.7,0.4,0.2,11.5,61.9,2.3],"Utah County, Utah":[18.2,0.1,1.9,14.3,65.4,0.2],"Wasatch County, Utah":[16.1,0.2,0.9,7,74.2,1.6],"Washington County, Utah":[20,0.2,1.6,7.1,69.4,1.7],"Wayne County, Utah":[21.9,0,0.2,4.1,68.2,5.7],"Weber County, Utah":[24.6,0.1,1.7,13.1,59.1,1.4]};
+  const nationalAvg = [27.3,0.3,2.3,14.5,53.2,2.4];
+  const categories = ["Lives alone","With child","With nonrelatives","With other relatives","With spouse only","With unmarried partner"];
+  const ctx = document.getElementById("barChart").getContext("2d");
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: categories,
+        datasets: [
+          {
+            label: "County/State",
+            data: values,
+            backgroundColor: [
+              "#e41a1c", "#ff7f00", "#4daf4a",
+              "#984ea3", "#377eb8", "#a65628"
+            ]
+          },
+          {
+            label: "",
+            data: categories.map(c => nationalAvg[c]),
+            type: "line",
+            borderColor: "gray",
+            borderWidth: 1,
+            borderDash: [4, 4],
+            pointRadius: 0,
+            fill: false
+          }
+        ]
+      },
+      options: {
+        indexAxis: "y",
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            ticks: {
+              callback: function(v) { return v + "%"; }
+            }
+          }
+        },
+        plugins: {
+          legend: {
+            labels: {
+              filter: function(item) { return item.text !== ""; }
+            }
+          },
+          tooltip: {
+            callbacks: {
+              label: function(ctx) {
+                return ctx.dataset.label !== "" ? ctx.dataset.label + ": " + ctx.raw + "%" : null;
+              }
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById("countySelect").addEventListener("change", function() {
+    renderChart(Object.values(data[this.value]));
+  });
+
+  renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

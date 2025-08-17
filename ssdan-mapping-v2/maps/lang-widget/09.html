@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Language Spoken at Home – Connecticut</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          text-align: center;
+          margin: 2rem;
+        }
+        select {
+          font-size: 1rem;
+          padding: 0.4rem;
+          margin-bottom: 1rem;
+        }
+        canvas {
+          width: 100%;
+          max-width: 700px;
+          height: 800px;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Language Spoken at Home – Connecticut</h2>
+    <label>Select County, State:</label>
+    <select id="countySelect"><option value='Statewide'>Statewide</option>
+<option value='Capitol Planning Region, Connecticut'>Capitol Planning Region, Connecticut</option>
+<option value='Greater Bridgeport Planning Region, Connecticut'>Greater Bridgeport Planning Region, Connecticut</option>
+<option value='Lower Connecticut River Valley Planning Region, Connecticut'>Lower Connecticut River Valley Planning Region, Connecticut</option>
+<option value='Naugatuck Valley Planning Region, Connecticut'>Naugatuck Valley Planning Region, Connecticut</option>
+<option value='Northeastern Connecticut Planning Region, Connecticut'>Northeastern Connecticut Planning Region, Connecticut</option>
+<option value='Northwest Hills Planning Region, Connecticut'>Northwest Hills Planning Region, Connecticut</option>
+<option value='South Central Connecticut Planning Region, Connecticut'>South Central Connecticut Planning Region, Connecticut</option>
+<option value='Southeastern Connecticut Planning Region, Connecticut'>Southeastern Connecticut Planning Region, Connecticut</option>
+<option value='Western Connecticut Planning Region, Connecticut'>Western Connecticut Planning Region, Connecticut</option></select>
+    <canvas id="barChart" width="700" height="700"></canvas>
+    <script>  const languageData = {"Statewide":{"Arabic":0.3,"Chinese":0.1,"English only":62.6,"French, Haitian, Cajun":1,"German or West Germanic":0.8,"Korean":0.4,"Other":8.6,"Other Asian/Pacific":1.3,"Other Indo-European":2.1,"Other/Unspecified":0.3,"Russian, Polish, Slavic":1.1,"Spanish":20.4,"Tagalog":0.5,"Vietnamese":0.4},"Capitol Planning Region, Connecticut":{"Arabic":0.5,"Chinese":1.3,"English only":56.9,"French, Haitian, Cajun":2.1,"German or West Germanic":0.7,"Korean":0.3,"Other Asian/Pacific":2.1,"Other Indo-European":7.1,"Other/Unspecified":1.6,"Russian, Polish, Slavic":4.8,"Spanish":21.8,"Tagalog":0.3,"Vietnamese":0.5},"Greater Bridgeport Planning Region, Connecticut":{"Arabic":1,"Chinese":1,"English only":44.6,"French, Haitian, Cajun":2.8,"German or West Germanic":0.5,"Korean":0.2,"Other Asian/Pacific":1.4,"Other Indo-European":11.1,"Other/Unspecified":1.4,"Russian, Polish, Slavic":2.8,"Spanish":31.8,"Tagalog":0.7,"Vietnamese":0.7},"Lower Connecticut River Valley Planning Region, Connecticut":{"Arabic":0.4,"Chinese":0.8,"English only":75.2,"French, Haitian, Cajun":1.4,"German or West Germanic":0.6,"Korean":0.3,"Other Asian/Pacific":1.1,"Other Indo-European":5.6,"Other/Unspecified":2,"Russian, Polish, Slavic":2.4,"Spanish":9.7,"Tagalog":0.3,"Vietnamese":0.1},"Naugatuck Valley Planning Region, Connecticut":{"Arabic":0.6,"Chinese":1,"English only":58.4,"French, Haitian, Cajun":2.5,"German or West Germanic":0.6,"Korean":0.2,"Other Asian/Pacific":1.2,"Other Indo-European":8.6,"Other/Unspecified":1.4,"Russian, Polish, Slavic":2.3,"Spanish":22.4,"Tagalog":0.4,"Vietnamese":0.3},"Northeastern Connecticut Planning Region, Connecticut":{"Arabic":0,"Chinese":0.4,"English only":84.8,"French, Haitian, Cajun":2.1,"German or West Germanic":0.5,"Korean":0.3,"Other Asian/Pacific":0.5,"Other Indo-European":1.5,"Other/Unspecified":0.4,"Russian, Polish, Slavic":1.4,"Spanish":7.2,"Tagalog":0.8,"Vietnamese":0},"Northwest Hills Planning Region, Connecticut":{"Arabic":0.1,"Chinese":0.5,"English only":76.4,"French, Haitian, Cajun":3.4,"German or West Germanic":0.6,"Korean":0.7,"Other Asian/Pacific":0.8,"Other Indo-European":4.8,"Other/Unspecified":0.5,"Russian, Polish, Slavic":2.3,"Spanish":9.6,"Tagalog":0.2,"Vietnamese":0.2},"South Central Connecticut Planning Region, Connecticut":{"Arabic":0.7,"Chinese":2.2,"English only":61.4,"French, Haitian, Cajun":1.6,"German or West Germanic":0.7,"Korean":0.4,"Other Asian/Pacific":1.2,"Other Indo-European":4.8,"Other/Unspecified":1.5,"Russian, Polish, Slavic":1.6,"Spanish":22.9,"Tagalog":0.5,"Vietnamese":0.4},"Southeastern Connecticut Planning Region, Connecticut":{"Arabic":0.4,"Chinese":1.7,"English only":70.5,"French, Haitian, Cajun":2.7,"German or West Germanic":0.7,"Korean":0.1,"Other Asian/Pacific":1,"Other Indo-European":3.4,"Other/Unspecified":0.5,"Russian, Polish, Slavic":0.9,"Spanish":16.8,"Tagalog":1,"Vietnamese":0.2},"Western Connecticut Planning Region, Connecticut":{"Arabic":0.5,"Chinese":2,"English only":52.5,"French, Haitian, Cajun":3.8,"German or West Germanic":1.3,"Korean":0.4,"Other Asian/Pacific":1.6,"Other Indo-European":10.5,"Other/Unspecified":1.3,"Russian, Polish, Slavic":3,"Spanish":22.4,"Tagalog":0.6,"Vietnamese":0.2}};
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: Object.keys(values),
+        datasets: [{
+          label: 'Share (%)',
+          data: Object.values(values),
+          backgroundColor: '#4576a7'
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.parsed.y + '%'
+            }
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 100,
+            title: {
+              display: true,
+              text: 'Population Share (%)'
+            }
+          },
+          x: {
+            title: {
+              display: true,
+              text: 'Language Group'
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(languageData[this.value]);
+  });
+
+  renderChart(languageData['Statewide']);</script>
+  </body>
+</html>
+</html>

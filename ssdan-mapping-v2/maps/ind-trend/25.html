@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+
+</head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Median Earnings by Industry – 25</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background: white;
+    }
+    .layout {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1.5rem;
+    }
+    label {
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+    #countySelect {
+      font-size: 1rem;
+      padding: 0.4rem 0.8rem;
+      margin-bottom: 1rem;
+    }
+    canvas {
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <label for="countySelect">Median Earnings by Industry:</label>
+    <select id="countySelect"></select>
+    <canvas id="barChart"></canvas>
+  </div>
+
+  <script>
+    const data = {"Statewide":{"Agriculture, forestry, fishing and hunting, and mining":52696,"Arts, entertainment, and recreation, and accommodation and food services":47854,"Construction":71315,"Educational services, and health care and social assistance":71003,"Finance and insurance, and real estate and rental and leasing":93374,"Information":93713,"Manufacturing":75410,"Other services, except public administration":53427,"Professional, scientific, and management, and administrative and waste management services":94598,"Public administration":88012,"Retail trade":54050,"Transportation and warehousing, and utilities":69373,"Wholesale trade":71143},"Barnstable County":{"Agriculture, forestry, fishing and hunting, and mining":51514,"Arts, entertainment, and recreation, and accommodation and food services":55668,"Construction":65391,"Educational services, and health care and social assistance":72226,"Finance and insurance, and real estate and rental and leasing":87578,"Information":97419,"Manufacturing":78727,"Other services, except public administration":50488,"Professional, scientific, and management, and administrative and waste management services":93180,"Public administration":90195,"Retail trade":53180,"Transportation and warehousing, and utilities":77181,"Wholesale trade":70109},"Berkshire County":{"Agriculture, forestry, fishing and hunting, and mining":32375,"Arts, entertainment, and recreation, and accommodation and food services":45505,"Construction":70493,"Educational services, and health care and social assistance":64074,"Finance and insurance, and real estate and rental and leasing":70540,"Information":62056,"Manufacturing":66478,"Other services, except public administration":44154,"Professional, scientific, and management, and administrative and waste management services":80366,"Public administration":81680,"Retail trade":45424,"Transportation and warehousing, and utilities":63750,"Wholesale trade":72177},"Bristol County":{"Agriculture, forestry, fishing and hunting, and mining":45441,"Arts, entertainment, and recreation, and accommodation and food services":47485,"Construction":74411,"Educational services, and health care and social assistance":65889,"Finance and insurance, and real estate and rental and leasing":81413,"Information":84946,"Manufacturing":67188,"Other services, except public administration":51850,"Professional, scientific, and management, and administrative and waste management services":76038,"Public administration":82839,"Retail trade":53715,"Transportation and warehousing, and utilities":71520,"Wholesale trade":67669},"Dukes County":{"Agriculture, forestry, fishing and hunting, and mining":53879,"Arts, entertainment, and recreation, and accommodation and food services":73182,"Construction":66603,"Educational services, and health care and social assistance":72520,"Finance and insurance, and real estate and rental and leasing":250001,"Information":100123,"Manufacturing":65670,"Other services, except public administration":55476,"Professional, scientific, and management, and administrative and waste management services":96365,"Public administration":72396,"Retail trade":51304,"Transportation and warehousing, and utilities":14670,"Wholesale trade":32031},"Essex County":{"Agriculture, forestry, fishing and hunting, and mining":71635,"Arts, entertainment, and recreation, and accommodation and food services":48325,"Construction":73313,"Educational services, and health care and social assistance":70512,"Finance and insurance, and real estate and rental and leasing":97221,"Information":96474,"Manufacturing":79038,"Other services, except public administration":53572,"Professional, scientific, and management, and administrative and waste management services":95514,"Public administration":88077,"Retail trade":54646,"Transportation and warehousing, and utilities":65409,"Wholesale trade":75585},"Franklin County":{"Agriculture, forestry, fishing and hunting, and mining":47151,"Arts, entertainment, and recreation, and accommodation and food services":31419,"Construction":65370,"Educational services, and health care and social assistance":62172,"Finance and insurance, and real estate and rental and leasing":71510,"Information":75417,"Manufacturing":61946,"Other services, except public administration":52031,"Professional, scientific, and management, and administrative and waste management services":73049,"Public administration":83480,"Retail trade":42319,"Transportation and warehousing, and utilities":79792,"Wholesale trade":68438},"Hampden County":{"Agriculture, forestry, fishing and hunting, and mining":49609,"Arts, entertainment, and recreation, and accommodation and food services":38343,"Construction":66153,"Educational services, and health care and social assistance":60280,"Finance and insurance, and real estate and rental and leasing":76783,"Information":69942,"Manufacturing":65078,"Other services, except public administration":46600,"Professional, scientific, and management, and administrative and waste management services":66054,"Public administration":80364,"Retail trade":50937,"Transportation and warehousing, and utilities":67317,"Wholesale trade":61607},"Hampshire County":{"Agriculture, forestry, fishing and hunting, and mining":48971,"Arts, entertainment, and recreation, and accommodation and food services":38703,"Construction":75417,"Educational services, and health care and social assistance":74871,"Finance and insurance, and real estate and rental and leasing":84263,"Information":75341,"Manufacturing":72094,"Other services, except public administration":57515,"Professional, scientific, and management, and administrative and waste management services":88843,"Public administration":87768,"Retail trade":54754,"Transportation and warehousing, and utilities":73416,"Wholesale trade":68611},"Middlesex County":{"Agriculture, forestry, fishing and hunting, and mining":58581,"Arts, entertainment, and recreation, and accommodation and food services":48224,"Construction":71834,"Educational services, and health care and social assistance":80588,"Finance and insurance, and real estate and rental and leasing":112830,"Information":116638,"Manufacturing":109710,"Other services, except public administration":60510,"Professional, scientific, and management, and administrative and waste management services":120184,"Public administration":96733,"Retail trade":62584,"Transportation and warehousing, and utilities":71429,"Wholesale trade":89951},"Nantucket County":{"Agriculture, forestry, fishing and hunting, and mining":27313,"Arts, entertainment, and recreation, and accommodation and food services":71691,"Construction":93894,"Educational services, and health care and social assistance":77614,"Finance and insurance, and real estate and rental and leasing":105804,"Information":103365,"Manufacturing":66731,"Other services, except public administration":70739,"Professional, scientific, and management, and administrative and waste management services":108656,"Public administration":87946,"Retail trade":51486,"Transportation and warehousing, and utilities":54009,"Wholesale trade":108684},"Norfolk County":{"Agriculture, forestry, fishing and hunting, and mining":104615,"Arts, entertainment, and recreation, and accommodation and food services":53023,"Construction":87752,"Educational services, and health care and social assistance":85288,"Finance and insurance, and real estate and rental and leasing":117065,"Information":105080,"Manufacturing":103123,"Other services, except public administration":61880,"Professional, scientific, and management, and administrative and waste management services":117870,"Public administration":97745,"Retail trade":70727,"Transportation and warehousing, and utilities":83255,"Wholesale trade":88629},"Plymouth County":{"Agriculture, forestry, fishing and hunting, and mining":72088,"Arts, entertainment, and recreation, and accommodation and food services":52640,"Construction":79154,"Educational services, and health care and social assistance":70861,"Finance and insurance, and real estate and rental and leasing":103244,"Information":109734,"Manufacturing":92317,"Other services, except public administration":53282,"Professional, scientific, and management, and administrative and waste management services":102862,"Public administration":93223,"Retail trade":60075,"Transportation and warehousing, and utilities":77627,"Wholesale trade":75426},"Suffolk County":{"Agriculture, forestry, fishing and hunting, and mining":70729,"Arts, entertainment, and recreation, and accommodation and food services":46862,"Construction":70556,"Educational services, and health care and social assistance":71145,"Finance and insurance, and real estate and rental and leasing":102836,"Information":90732,"Manufacturing":92061,"Other services, except public administration":52888,"Professional, scientific, and management, and administrative and waste management services":100272,"Public administration":89630,"Retail trade":58266,"Transportation and warehousing, and utilities":60535,"Wholesale trade":75063},"Worcester County":{"Agriculture, forestry, fishing and hunting, and mining":54980,"Arts, entertainment, and recreation, and accommodation and food services":44337,"Construction":70796,"Educational services, and health care and social assistance":69000,"Finance and insurance, and real estate and rental and leasing":89528,"Information":90952,"Manufacturing":79839,"Other services, except public administration":54829,"Professional, scientific, and management, and administrative and waste management services":93681,"Public administration":89153,"Retail trade":54384,"Transportation and warehousing, and utilities":66891,"Wholesale trade":69759}};
+    const colors = {
+  'Agriculture, forestry, fishing and hunting, and mining': '#FFFF33',
+  'Arts, entertainment, and recreation, and accommodation and food services': '#D95F02',
+  'Construction': '#7570B3',
+  'Educational services, and health care and social assistance': '#66A61E',
+  'Finance and insurance, and real estate and rental and leasing': '#E6AB02',
+  'Information': '#A6761D',
+  'Manufacturing': '#E41A1C',
+  'Other services, except public administration': '#377EB8',
+  'Professional, scientific, and management, and administrative and waste management services': '#4DAF4A',
+  'Public administration': '#984EA3',
+  'Retail trade': '#FF7F00',
+  'Transportation and warehousing, and utilities': '#1B9E77',
+  'Wholesale trade': '#A65628'
+};
+
+    const ctx = document.getElementById("barChart").getContext("2d");
+    let chart;
+
+    function renderChart(county) {
+      const values = data[county];
+      const labels = Object.keys(values);
+      const earnings = Object.values(values);
+
+      if (chart) chart.destroy();
+
+      chart = new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels: labels,
+          datasets: [{
+            label: "Median Earnings ($)",
+            data: earnings,
+            backgroundColor: labels.map(label => colors[label] || "#ccc")
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: true,
+  aspectRatio: 1.5, 
+          indexAxis: "x",
+          scales: {
+            y: {
+              beginAtZero: true,
+              title: {
+                display: true,
+                text: "Median Earnings ($)"
+              },
+              ticks: {
+                callback: function(value) {
+                  return "$" + value.toLocaleString();
+                }
+              }
+            },
+            x: {
+              ticks: {
+                maxRotation: 45,
+                minRotation: 20,
+                autoSkip: false,
+                callback: function(value, index, ticks) {
+                  let label = this.getLabelForValue(value);
+                  return label.length > 25 ? label.slice(0, 25) + "…" : label;
+                }
+              }
+            }
+          },
+          plugins: {
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  return "$" + context.parsed.y.toLocaleString();
+                }
+              }
+            },
+            legend: {
+              display: false
+            }
+          }
+        }
+      });
+    }
+
+    const select = document.getElementById("countySelect");
+    Object.keys(data).forEach(county => {
+      const option = document.createElement("option");
+      option.value = county;
+      option.text = county;
+      select.appendChild(option);
+    });
+    select.value = "Statewide";
+    select.addEventListener("change", () => renderChart(select.value));
+    renderChart("Statewide");
+  </script>
+</body>
+</html>
+</html>

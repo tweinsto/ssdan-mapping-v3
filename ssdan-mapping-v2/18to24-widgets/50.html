@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Educational Enrollment – Vermont</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Educational Enrollment (Age 18–24) in Vermont</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Addison County, Vermont">Addison County, Vermont</option>
+      <option value="Bennington County, Vermont">Bennington County, Vermont</option>
+      <option value="Caledonia County, Vermont">Caledonia County, Vermont</option>
+      <option value="Chittenden County, Vermont">Chittenden County, Vermont</option>
+      <option value="Essex County, Vermont">Essex County, Vermont</option>
+      <option value="Franklin County, Vermont">Franklin County, Vermont</option>
+      <option value="Grand Isle County, Vermont">Grand Isle County, Vermont</option>
+      <option value="Lamoille County, Vermont">Lamoille County, Vermont</option>
+      <option value="Orange County, Vermont">Orange County, Vermont</option>
+      <option value="Orleans County, Vermont">Orleans County, Vermont</option>
+      <option value="Rutland County, Vermont">Rutland County, Vermont</option>
+      <option value="Washington County, Vermont">Washington County, Vermont</option>
+      <option value="Windham County, Vermont">Windham County, Vermont</option>
+      <option value="Windsor County, Vermont">Windsor County, Vermont</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>  const data = {"Statewide":[47,12.7,40.3],"Addison County, Vermont":[49.2,6.8,44],"Bennington County, Vermont":[48.2,11.7,40.1],"Caledonia County, Vermont":[48.4,12.7,39],"Chittenden County, Vermont":[47.8,9,43.2],"Essex County, Vermont":[50.2,14.8,34.9],"Franklin County, Vermont":[47.8,11.6,40.5],"Grand Isle County, Vermont":[44,24.6,31.4],"Lamoille County, Vermont":[48.9,15.3,35.8],"Orange County, Vermont":[47.2,16.1,36.7],"Orleans County, Vermont":[44.2,17.5,38.3],"Rutland County, Vermont":[46.1,14.5,39.5],"Washington County, Vermont":[40.4,23.6,35.9],"Windham County, Vermont":[45.3,15.9,38.8],"Windsor County, Vermont":[49.6,14.6,35.8]};
+  const nationalAvg = [6.9,55,38.1];
+  const categories = ["Enrolled in College","Enrolled in Other School","Not Enrolled"];
+  const ctx = document.getElementById("barChart").getContext("2d");
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: categories,
+        datasets: [
+          {
+            label: "County/State",
+            data: values,
+            backgroundColor: ["#66c2a5", "#fc8d62", "#8da0cb"]
+          },
+          {
+            label: null,
+            data: categories.map(c => nationalAvg[c]),
+            type: "line",
+            borderColor: "black",
+            borderWidth: 2,
+            pointRadius: 0,
+            fill: false
+          }
+        ]
+      },
+      options: {
+        indexAxis: "y",
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            ticks: {
+              callback: v => v + "%"
+            }
+          }
+        },
+        plugins: {
+          legend: {
+            labels: {
+              filter: item => item.text !== null
+            }
+          },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.dataset.label ? ctx.dataset.label + ": " + ctx.raw + "%" : null
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById("countySelect").addEventListener("change", function() {
+    renderChart(Object.values(data[this.value]));
+  });
+
+  renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

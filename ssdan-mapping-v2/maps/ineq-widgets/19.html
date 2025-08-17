@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Income Distribution – Iowa</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          text-align: center;
+          margin: 2rem;
+        }
+        select {
+          font-size: 1rem;
+          padding: 0.4rem;
+          margin-bottom: 1rem;
+        }
+        canvas {
+          width: 100%;
+          max-width: 700px;
+          height: 400px;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Income Share by Quintile – Iowa</h2>
+    <label>Select County, State:</label>
+    <select id="countySelect"><option value='Statewide'>Statewide</option>
+<option value='Adair, Iowa'>Adair, Iowa</option>
+<option value='Adams, Iowa'>Adams, Iowa</option>
+<option value='Allamakee, Iowa'>Allamakee, Iowa</option>
+<option value='Appanoose, Iowa'>Appanoose, Iowa</option>
+<option value='Audubon, Iowa'>Audubon, Iowa</option>
+<option value='Benton, Iowa'>Benton, Iowa</option>
+<option value='Black Hawk, Iowa'>Black Hawk, Iowa</option>
+<option value='Boone, Iowa'>Boone, Iowa</option>
+<option value='Bremer, Iowa'>Bremer, Iowa</option>
+<option value='Buchanan, Iowa'>Buchanan, Iowa</option>
+<option value='Buena Vista, Iowa'>Buena Vista, Iowa</option>
+<option value='Butler, Iowa'>Butler, Iowa</option>
+<option value='Calhoun, Iowa'>Calhoun, Iowa</option>
+<option value='Carroll, Iowa'>Carroll, Iowa</option>
+<option value='Cass, Iowa'>Cass, Iowa</option>
+<option value='Cedar, Iowa'>Cedar, Iowa</option>
+<option value='Cerro Gordo, Iowa'>Cerro Gordo, Iowa</option>
+<option value='Cherokee, Iowa'>Cherokee, Iowa</option>
+<option value='Chickasaw, Iowa'>Chickasaw, Iowa</option>
+<option value='Clarke, Iowa'>Clarke, Iowa</option>
+<option value='Clay, Iowa'>Clay, Iowa</option>
+<option value='Clayton, Iowa'>Clayton, Iowa</option>
+<option value='Clinton, Iowa'>Clinton, Iowa</option>
+<option value='Crawford, Iowa'>Crawford, Iowa</option>
+<option value='Dallas, Iowa'>Dallas, Iowa</option>
+<option value='Davis, Iowa'>Davis, Iowa</option>
+<option value='Decatur, Iowa'>Decatur, Iowa</option>
+<option value='Delaware, Iowa'>Delaware, Iowa</option>
+<option value='Des Moines, Iowa'>Des Moines, Iowa</option>
+<option value='Dickinson, Iowa'>Dickinson, Iowa</option>
+<option value='Dubuque, Iowa'>Dubuque, Iowa</option>
+<option value='Emmet, Iowa'>Emmet, Iowa</option>
+<option value='Fayette, Iowa'>Fayette, Iowa</option>
+<option value='Floyd, Iowa'>Floyd, Iowa</option>
+<option value='Franklin, Iowa'>Franklin, Iowa</option>
+<option value='Fremont, Iowa'>Fremont, Iowa</option>
+<option value='Greene, Iowa'>Greene, Iowa</option>
+<option value='Grundy, Iowa'>Grundy, Iowa</option>
+<option value='Guthrie, Iowa'>Guthrie, Iowa</option>
+<option value='Hamilton, Iowa'>Hamilton, Iowa</option>
+<option value='Hancock, Iowa'>Hancock, Iowa</option>
+<option value='Hardin, Iowa'>Hardin, Iowa</option>
+<option value='Harrison, Iowa'>Harrison, Iowa</option>
+<option value='Henry, Iowa'>Henry, Iowa</option>
+<option value='Howard, Iowa'>Howard, Iowa</option>
+<option value='Humboldt, Iowa'>Humboldt, Iowa</option>
+<option value='Ida, Iowa'>Ida, Iowa</option>
+<option value='Iowa, Iowa'>Iowa, Iowa</option>
+<option value='Jackson, Iowa'>Jackson, Iowa</option>
+<option value='Jasper, Iowa'>Jasper, Iowa</option>
+<option value='Jefferson, Iowa'>Jefferson, Iowa</option>
+<option value='Johnson, Iowa'>Johnson, Iowa</option>
+<option value='Jones, Iowa'>Jones, Iowa</option>
+<option value='Keokuk, Iowa'>Keokuk, Iowa</option>
+<option value='Kossuth, Iowa'>Kossuth, Iowa</option>
+<option value='Lee, Iowa'>Lee, Iowa</option>
+<option value='Linn, Iowa'>Linn, Iowa</option>
+<option value='Louisa, Iowa'>Louisa, Iowa</option>
+<option value='Lucas, Iowa'>Lucas, Iowa</option>
+<option value='Lyon, Iowa'>Lyon, Iowa</option>
+<option value='Madison, Iowa'>Madison, Iowa</option>
+<option value='Mahaska, Iowa'>Mahaska, Iowa</option>
+<option value='Marion, Iowa'>Marion, Iowa</option>
+<option value='Marshall, Iowa'>Marshall, Iowa</option>
+<option value='Mills, Iowa'>Mills, Iowa</option>
+<option value='Mitchell, Iowa'>Mitchell, Iowa</option>
+<option value='Monona, Iowa'>Monona, Iowa</option>
+<option value='Monroe, Iowa'>Monroe, Iowa</option>
+<option value='Montgomery, Iowa'>Montgomery, Iowa</option>
+<option value='Muscatine, Iowa'>Muscatine, Iowa</option>
+<option value='O'Brien, Iowa'>O'Brien, Iowa</option>
+<option value='Osceola, Iowa'>Osceola, Iowa</option>
+<option value='Page, Iowa'>Page, Iowa</option>
+<option value='Palo Alto, Iowa'>Palo Alto, Iowa</option>
+<option value='Plymouth, Iowa'>Plymouth, Iowa</option>
+<option value='Pocahontas, Iowa'>Pocahontas, Iowa</option>
+<option value='Polk, Iowa'>Polk, Iowa</option>
+<option value='Pottawattamie, Iowa'>Pottawattamie, Iowa</option>
+<option value='Poweshiek, Iowa'>Poweshiek, Iowa</option>
+<option value='Ringgold, Iowa'>Ringgold, Iowa</option>
+<option value='Sac, Iowa'>Sac, Iowa</option>
+<option value='Scott, Iowa'>Scott, Iowa</option>
+<option value='Shelby, Iowa'>Shelby, Iowa</option>
+<option value='Sioux, Iowa'>Sioux, Iowa</option>
+<option value='Story, Iowa'>Story, Iowa</option>
+<option value='Tama, Iowa'>Tama, Iowa</option>
+<option value='Taylor, Iowa'>Taylor, Iowa</option>
+<option value='Union, Iowa'>Union, Iowa</option>
+<option value='Van Buren, Iowa'>Van Buren, Iowa</option>
+<option value='Wapello, Iowa'>Wapello, Iowa</option>
+<option value='Warren, Iowa'>Warren, Iowa</option>
+<option value='Washington, Iowa'>Washington, Iowa</option>
+<option value='Wayne, Iowa'>Wayne, Iowa</option>
+<option value='Webster, Iowa'>Webster, Iowa</option>
+<option value='Winnebago, Iowa'>Winnebago, Iowa</option>
+<option value='Winneshiek, Iowa'>Winneshiek, Iowa</option>
+<option value='Woodbury, Iowa'>Woodbury, Iowa</option>
+<option value='Worth, Iowa'>Worth, Iowa</option>
+<option value='Wright, Iowa'>Wright, Iowa</option></select>
+    <canvas id="barChart" width="700" height="400"></canvas>
+    <script>  const incomeData = {"Statewide":[5.6,9,13.3,26.5,45.6],"Adair, Iowa":[5.1,8.1,12.5,26.7,47.6],"Adams, Iowa":[4.3,6.7,9.8,25.8,53.4],"Allamakee, Iowa":[5.8,8.8,12.8,26.4,46.1],"Appanoose, Iowa":[5.1,8.6,13.4,27.4,45.6],"Audubon, Iowa":[5.3,8.3,13.3,27.8,45.3],"Benton, Iowa":[6.8,10.6,15.4,26.8,40.4],"Black Hawk, Iowa":[4.9,7.8,12,26.8,48.6],"Boone, Iowa":[6.1,9.6,13.7,26,44.6],"Bremer, Iowa":[5.8,8.9,12.2,25.2,47.9],"Buchanan, Iowa":[6.2,9.8,13.7,26,44.3],"Buena Vista, Iowa":[5.9,8.5,12.9,26.6,46],"Butler, Iowa":[6.8,10.2,14.7,26.7,41.7],"Calhoun, Iowa":[5.2,8.2,12.2,26,48.4],"Carroll, Iowa":[5.6,9,13.6,26.4,45.3],"Cass, Iowa":[4.5,8.1,12.7,26.8,48],"Cedar, Iowa":[6.8,10.6,15.2,26.4,41],"Cerro Gordo, Iowa":[4.8,7.8,11.8,26.6,49],"Cherokee, Iowa":[5.3,8.8,13.4,27.1,45.5],"Chickasaw, Iowa":[6.2,9.9,13.8,26.7,43.4],"Clarke, Iowa":[5.7,9.3,14.3,26.4,44.4],"Clay, Iowa":[5.6,9,14.2,27.1,44],"Clayton, Iowa":[5.7,8.8,13.6,26.7,45.3],"Clinton, Iowa":[5.3,8.7,13.3,26.8,45.9],"Crawford, Iowa":[5.6,9.3,13.9,27.7,43.5],"Dallas, Iowa":[5.4,8.6,12.9,26.7,46.3],"Davis, Iowa":[6.1,9.6,13,26.2,45.1],"Decatur, Iowa":[5.4,8.9,12.6,26.3,46.8],"Delaware, Iowa":[5.3,8.5,12.1,26.3,47.7],"Des Moines, Iowa":[4.9,8,12.1,26.9,48],"Dickinson, Iowa":[5.4,8.6,12.6,26.7,46.7],"Dubuque, Iowa":[5.2,8.4,12.5,26.3,47.6],"Emmet, Iowa":[6,9.1,13,25.6,46.3],"Fayette, Iowa":[5.4,8.8,13.6,26.7,45.5],"Floyd, Iowa":[5.3,8.6,12.9,26.3,46.9],"Franklin, Iowa":[5.4,9,12.7,26.2,46.7],"Fremont, Iowa":[5.5,9,13,26.6,45.9],"Greene, Iowa":[5.8,8.8,13.8,27.1,44.5],"Grundy, Iowa":[7.3,11,15.3,26.5,39.8],"Guthrie, Iowa":[5.5,9.3,13.4,26.7,45.1],"Hamilton, Iowa":[5.5,9.1,13.1,26.8,45.5],"Hancock, Iowa":[6,9.2,13,25.6,46.1],"Hardin, Iowa":[6,10.2,14.9,26.5,42.3],"Harrison, Iowa":[5.7,8.9,12.7,25.9,46.8],"Henry, Iowa":[6.3,10.2,15.1,26.9,41.6],"Howard, Iowa":[5.9,9,12.7,25.5,47],"Humboldt, Iowa":[5.2,8.4,12.5,26.9,47],"Ida, Iowa":[6.2,9.2,13.9,26.6,44],"Iowa, Iowa":[5.6,8.7,12.7,26.3,46.7],"Jackson, Iowa":[5.5,8.9,13,26.5,46.2],"Jasper, Iowa":[5.4,8.4,12.7,26.4,47.1],"Jefferson, Iowa":[4.2,7.5,11.5,25.8,50.9],"Johnson, Iowa":[4,7,11.3,26.8,51],"Jones, Iowa":[6.8,10.7,15.1,27.2,40.3],"Keokuk, Iowa":[5.5,8.7,13.2,26.7,45.9],"Kossuth, Iowa":[5.6,8.7,13.2,26,46.4],"Lee, Iowa":[5.4,9.2,14.1,27,44.3],"Linn, Iowa":[5.2,8.3,12.5,26.8,47.2],"Louisa, Iowa":[6,9.3,12.8,25.5,46.4],"Lucas, Iowa":[5.5,10.3,14.5,27.3,42.4],"Lyon, Iowa":[6.5,10,14.3,26.7,42.5],"Madison, Iowa":[6.4,10.4,14.6,26.4,42.1],"Mahaska, Iowa":[5.6,9.2,13.4,26.3,45.4],"Marion, Iowa":[5.9,8.9,13.1,26.6,45.5],"Marshall, Iowa":[6.6,10.6,15.3,26.4,41],"Mills, Iowa":[6.1,9.1,13,26.4,45.4],"Mitchell, Iowa":[5.7,8.5,13.2,26.4,46.2],"Monona, Iowa":[6.2,10,14.7,26.8,42.3],"Monroe, Iowa":[7.2,11.2,15.8,26.6,39.2],"Montgomery, Iowa":[4.9,8.2,12.3,26.2,48.4],"Muscatine, Iowa":[6.1,9.5,14.6,26.6,43.2],"O'Brien, Iowa":[6.4,10.2,15,26.6,41.8],"Osceola, Iowa":[5.6,9.1,13.4,26.8,45.2],"Page, Iowa":[5.2,8.7,13.1,26.7,46.4],"Palo Alto, Iowa":[6.1,9.9,15,26.7,42.3],"Plymouth, Iowa":[6,8.9,12.8,26.4,46],"Pocahontas, Iowa":[6.2,9.5,14.2,26.9,43.3],"Polk, Iowa":[5.4,8.6,13.1,26.9,45.9],"Pottawattamie, Iowa":[5.5,9,13.6,26.8,45],"Poweshiek, Iowa":[4.9,8.3,12.9,27.2,46.8],"Ringgold, Iowa":[5.4,8.5,12.6,26.7,46.7],"Sac, Iowa":[5.4,8.4,12.2,25.7,48.3],"Scott, Iowa":[5.1,8.3,12.7,26.7,47.2],"Shelby, Iowa":[5.3,8.5,13.7,27.7,44.8],"Sioux, Iowa":[6.3,9.6,13.4,26.7,44],"Story, Iowa":[4.6,7.8,12.2,27,48.3],"Tama, Iowa":[5.7,8.9,13.1,26,46.3],"Taylor, Iowa":[5.8,9.2,13.5,26.7,44.9],"Union, Iowa":[5.7,9.2,14.1,27.5,43.4],"Van Buren, Iowa":[5.5,9.1,13.8,26.8,44.8],"Wapello, Iowa":[5.1,8.1,12.2,26.7,47.9],"Warren, Iowa":[6.4,10.1,14.5,26.3,42.6],"Washington, Iowa":[5.6,8.5,12.3,25.8,47.8],"Wayne, Iowa":[4.5,6.9,10.5,25.4,52.7],"Webster, Iowa":[5.3,9.1,13.2,26.6,45.8],"Winnebago, Iowa":[5.1,8.1,12.1,25.9,48.8],"Winneshiek, Iowa":[5.2,8.2,11.8,25.8,49.1],"Woodbury, Iowa":[5.4,9.2,14.3,27,44.1],"Worth, Iowa":[6.7,10.8,15.7,27.1,39.7],"Wright, Iowa":[4.9,7.8,11.6,26.5,49.1]};
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Bottom 20%', 'Second 20%', 'Middle 20%', 'Fourth 20%', 'Top 20%'],
+        datasets: [{
+          label: 'Share (%)',
+          data: values,
+          backgroundColor: '#4576a7'
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.parsed.y + '%'
+            }
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 100,
+            title: {
+              display: true,
+              text: 'Income Share (%)'
+            }
+          },
+          x: {
+            title: {
+              display: true,
+              text: 'Quintile'
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(Object.values(incomeData[this.value]));
+  });
+
+  renderChart(Object.values(incomeData['Statewide']));</script>
+  </body>
+</html>
+</html>

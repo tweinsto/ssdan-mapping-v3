@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Income Distribution – Missouri</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          text-align: center;
+          margin: 2rem;
+        }
+        select {
+          font-size: 1rem;
+          padding: 0.4rem;
+          margin-bottom: 1rem;
+        }
+        canvas {
+          width: 100%;
+          max-width: 700px;
+          height: 400px;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Income Share by Quintile – Missouri</h2>
+    <label>Select County, State:</label>
+    <select id="countySelect"><option value='Statewide'>Statewide</option>
+<option value='Adair, Missouri'>Adair, Missouri</option>
+<option value='Andrew, Missouri'>Andrew, Missouri</option>
+<option value='Atchison, Missouri'>Atchison, Missouri</option>
+<option value='Audrain, Missouri'>Audrain, Missouri</option>
+<option value='Barry, Missouri'>Barry, Missouri</option>
+<option value='Barton, Missouri'>Barton, Missouri</option>
+<option value='Bates, Missouri'>Bates, Missouri</option>
+<option value='Benton, Missouri'>Benton, Missouri</option>
+<option value='Bollinger, Missouri'>Bollinger, Missouri</option>
+<option value='Boone, Missouri'>Boone, Missouri</option>
+<option value='Buchanan, Missouri'>Buchanan, Missouri</option>
+<option value='Butler, Missouri'>Butler, Missouri</option>
+<option value='Caldwell, Missouri'>Caldwell, Missouri</option>
+<option value='Callaway, Missouri'>Callaway, Missouri</option>
+<option value='Camden, Missouri'>Camden, Missouri</option>
+<option value='Cape Girardeau, Missouri'>Cape Girardeau, Missouri</option>
+<option value='Carroll, Missouri'>Carroll, Missouri</option>
+<option value='Carter, Missouri'>Carter, Missouri</option>
+<option value='Cass, Missouri'>Cass, Missouri</option>
+<option value='Cedar, Missouri'>Cedar, Missouri</option>
+<option value='Chariton, Missouri'>Chariton, Missouri</option>
+<option value='Christian, Missouri'>Christian, Missouri</option>
+<option value='Clark, Missouri'>Clark, Missouri</option>
+<option value='Clay, Missouri'>Clay, Missouri</option>
+<option value='Clinton, Missouri'>Clinton, Missouri</option>
+<option value='Cole, Missouri'>Cole, Missouri</option>
+<option value='Cooper, Missouri'>Cooper, Missouri</option>
+<option value='Crawford, Missouri'>Crawford, Missouri</option>
+<option value='Dade, Missouri'>Dade, Missouri</option>
+<option value='Dallas, Missouri'>Dallas, Missouri</option>
+<option value='Daviess, Missouri'>Daviess, Missouri</option>
+<option value='DeKalb, Missouri'>DeKalb, Missouri</option>
+<option value='Dent, Missouri'>Dent, Missouri</option>
+<option value='Douglas, Missouri'>Douglas, Missouri</option>
+<option value='Dunklin, Missouri'>Dunklin, Missouri</option>
+<option value='Franklin, Missouri'>Franklin, Missouri</option>
+<option value='Gasconade, Missouri'>Gasconade, Missouri</option>
+<option value='Gentry, Missouri'>Gentry, Missouri</option>
+<option value='Greene, Missouri'>Greene, Missouri</option>
+<option value='Grundy, Missouri'>Grundy, Missouri</option>
+<option value='Harrison, Missouri'>Harrison, Missouri</option>
+<option value='Henry, Missouri'>Henry, Missouri</option>
+<option value='Hickory, Missouri'>Hickory, Missouri</option>
+<option value='Holt, Missouri'>Holt, Missouri</option>
+<option value='Howard, Missouri'>Howard, Missouri</option>
+<option value='Howell, Missouri'>Howell, Missouri</option>
+<option value='Iron, Missouri'>Iron, Missouri</option>
+<option value='Jackson, Missouri'>Jackson, Missouri</option>
+<option value='Jasper, Missouri'>Jasper, Missouri</option>
+<option value='Jefferson, Missouri'>Jefferson, Missouri</option>
+<option value='Johnson, Missouri'>Johnson, Missouri</option>
+<option value='Knox, Missouri'>Knox, Missouri</option>
+<option value='Laclede, Missouri'>Laclede, Missouri</option>
+<option value='Lafayette, Missouri'>Lafayette, Missouri</option>
+<option value='Lawrence, Missouri'>Lawrence, Missouri</option>
+<option value='Lewis, Missouri'>Lewis, Missouri</option>
+<option value='Lincoln, Missouri'>Lincoln, Missouri</option>
+<option value='Linn, Missouri'>Linn, Missouri</option>
+<option value='Livingston, Missouri'>Livingston, Missouri</option>
+<option value='Macon, Missouri'>Macon, Missouri</option>
+<option value='Madison, Missouri'>Madison, Missouri</option>
+<option value='Maries, Missouri'>Maries, Missouri</option>
+<option value='Marion, Missouri'>Marion, Missouri</option>
+<option value='McDonald, Missouri'>McDonald, Missouri</option>
+<option value='Mercer, Missouri'>Mercer, Missouri</option>
+<option value='Miller, Missouri'>Miller, Missouri</option>
+<option value='Mississippi, Missouri'>Mississippi, Missouri</option>
+<option value='Moniteau, Missouri'>Moniteau, Missouri</option>
+<option value='Monroe, Missouri'>Monroe, Missouri</option>
+<option value='Montgomery, Missouri'>Montgomery, Missouri</option>
+<option value='Morgan, Missouri'>Morgan, Missouri</option>
+<option value='New Madrid, Missouri'>New Madrid, Missouri</option>
+<option value='Newton, Missouri'>Newton, Missouri</option>
+<option value='Nodaway, Missouri'>Nodaway, Missouri</option>
+<option value='Oregon, Missouri'>Oregon, Missouri</option>
+<option value='Osage, Missouri'>Osage, Missouri</option>
+<option value='Ozark, Missouri'>Ozark, Missouri</option>
+<option value='Pemiscot, Missouri'>Pemiscot, Missouri</option>
+<option value='Perry, Missouri'>Perry, Missouri</option>
+<option value='Pettis, Missouri'>Pettis, Missouri</option>
+<option value='Phelps, Missouri'>Phelps, Missouri</option>
+<option value='Pike, Missouri'>Pike, Missouri</option>
+<option value='Platte, Missouri'>Platte, Missouri</option>
+<option value='Polk, Missouri'>Polk, Missouri</option>
+<option value='Pulaski, Missouri'>Pulaski, Missouri</option>
+<option value='Putnam, Missouri'>Putnam, Missouri</option>
+<option value='Ralls, Missouri'>Ralls, Missouri</option>
+<option value='Randolph, Missouri'>Randolph, Missouri</option>
+<option value='Ray, Missouri'>Ray, Missouri</option>
+<option value='Reynolds, Missouri'>Reynolds, Missouri</option>
+<option value='Ripley, Missouri'>Ripley, Missouri</option>
+<option value='Saline, Missouri'>Saline, Missouri</option>
+<option value='Schuyler, Missouri'>Schuyler, Missouri</option>
+<option value='Scotland, Missouri'>Scotland, Missouri</option>
+<option value='Scott, Missouri'>Scott, Missouri</option>
+<option value='Shannon, Missouri'>Shannon, Missouri</option>
+<option value='Shelby, Missouri'>Shelby, Missouri</option>
+<option value='St. Charles, Missouri'>St. Charles, Missouri</option>
+<option value='St. Clair, Missouri'>St. Clair, Missouri</option>
+<option value='St. Francois, Missouri'>St. Francois, Missouri</option>
+<option value='St. Louis, Missouri'>St. Louis, Missouri</option>
+<option value='St. Louis city, Missouri, Missouri'>St. Louis city, Missouri, Missouri</option>
+<option value='Ste. Genevieve, Missouri'>Ste. Genevieve, Missouri</option>
+<option value='Stoddard, Missouri'>Stoddard, Missouri</option>
+<option value='Stone, Missouri'>Stone, Missouri</option>
+<option value='Sullivan, Missouri'>Sullivan, Missouri</option>
+<option value='Taney, Missouri'>Taney, Missouri</option>
+<option value='Texas, Missouri'>Texas, Missouri</option>
+<option value='Vernon, Missouri'>Vernon, Missouri</option>
+<option value='Warren, Missouri'>Warren, Missouri</option>
+<option value='Washington, Missouri'>Washington, Missouri</option>
+<option value='Wayne, Missouri'>Wayne, Missouri</option>
+<option value='Webster, Missouri'>Webster, Missouri</option>
+<option value='Worth, Missouri'>Worth, Missouri</option>
+<option value='Wright, Missouri'>Wright, Missouri</option></select>
+    <canvas id="barChart" width="700" height="400"></canvas>
+    <script>  const incomeData = {"Statewide":[5.3,8.8,13.3,26.9,45.7],"Adair, Missouri":[2.8,5.2,8.1,25.3,58.6],"Andrew, Missouri":[6.2,9.9,14.6,27,42.3],"Atchison, Missouri":[5,8.6,12.9,26.6,46.9],"Audrain, Missouri":[5.5,9.1,14.1,27.2,44.2],"Barry, Missouri":[4.7,7.4,11.7,26.7,49.6],"Barton, Missouri":[5,8.7,14.2,28,44.2],"Bates, Missouri":[5.6,9.4,14.9,27.8,42.3],"Benton, Missouri":[4.7,8.5,13,26.8,47],"Bollinger, Missouri":[6.2,11.4,16.5,27.6,38.3],"Boone, Missouri":[4.7,8,12.4,27.4,47.4],"Buchanan, Missouri":[4.5,7.7,11.8,26.7,49.2],"Butler, Missouri":[4.8,8.3,13,27,46.9],"Caldwell, Missouri":[5.8,9.3,13.5,26.3,45],"Callaway, Missouri":[5.7,9.2,13.3,26.4,45.4],"Camden, Missouri":[5,8,12.5,27.4,47.1],"Cape Girardeau, Missouri":[4.8,8.3,12.4,26.4,48],"Carroll, Missouri":[5.1,8.3,11.9,25.7,49],"Carter, Missouri":[5.6,8.9,15.3,30,40.1],"Cass, Missouri":[6.2,9.9,14.4,26.5,43],"Cedar, Missouri":[3.5,5.7,9.4,25.4,56],"Chariton, Missouri":[5.8,9.2,13,25.9,46.1],"Christian, Missouri":[5.6,8.8,12.5,26,47.2],"Clark, Missouri":[5.2,8.4,13,27.2,46.2],"Clay, Missouri":[6.1,9.5,13.9,26.4,44.2],"Clinton, Missouri":[5.9,8.8,12.5,26,46.9],"Cole, Missouri":[5.9,9.5,14.2,26.8,43.7],"Cooper, Missouri":[5.9,10.3,15.1,26.9,41.8],"Crawford, Missouri":[4.8,7.6,11.4,25.6,50.7],"Dade, Missouri":[4.9,7.7,12.1,26.5,48.8],"Dallas, Missouri":[5,8.8,13.7,26.9,45.6],"Daviess, Missouri":[4.8,7.9,12.2,26.5,48.6],"DeKalb, Missouri":[6.7,11,15.5,26.9,39.9],"Dent, Missouri":[5.8,9.8,15.2,27.4,41.8],"Douglas, Missouri":[4,6.7,10.1,25.6,53.5],"Dunklin, Missouri":[4.4,7.6,11.9,26.5,49.6],"Franklin, Missouri":[6,9.5,14,27,43.5],"Gasconade, Missouri":[4.8,7.8,11.2,25.6,50.5],"Gentry, Missouri":[5.2,8.2,12.1,26.2,48.2],"Greene, Missouri":[4.6,7.5,11.7,26.6,49.6],"Grundy, Missouri":[3.8,6.8,10.9,25.6,53],"Harrison, Missouri":[5.9,10.4,16.5,28,39.2],"Henry, Missouri":[4.5,7.6,11.2,25.9,50.8],"Hickory, Missouri":[5.7,8.7,13.4,27.9,44.3],"Holt, Missouri":[4.8,7.5,11.1,26.3,50.2],"Howard, Missouri":[5.5,8.8,14,27.1,44.7],"Howell, Missouri":[4.8,8.3,12.8,27.1,47],"Iron, Missouri":[5.3,9.8,15.7,27,42.1],"Jackson, Missouri":[5,8.3,13.1,27.2,46.3],"Jasper, Missouri":[5.1,8.4,12.7,26.7,47.1],"Jefferson, Missouri":[6.5,10.3,15,26.8,41.4],"Johnson, Missouri":[6.2,9.6,14,26.6,43.6],"Knox, Missouri":[5.2,9.1,13.3,27,45.4],"Laclede, Missouri":[5.2,8.2,13,26.7,46.8],"Lafayette, Missouri":[6.8,10.8,15.2,26.5,40.6],"Lawrence, Missouri":[6,9.8,15.4,27.5,41.2],"Lewis, Missouri":[5.6,9,14.1,27.8,43.5],"Lincoln, Missouri":[6.6,10.8,14.6,26.3,41.6],"Linn, Missouri":[5.3,8.7,13.6,27.5,44.9],"Livingston, Missouri":[5,8.4,12.6,26.5,47.4],"Macon, Missouri":[6.1,9.9,14.7,26.4,42.9],"Madison, Missouri":[4.8,7.8,12,26.7,48.7],"Maries, Missouri":[5.6,9.3,13.7,26.2,45.2],"Marion, Missouri":[6,9.5,13.8,26.5,44.3],"McDonald, Missouri":[5.5,8.7,14.1,28.3,43.4],"Mercer, Missouri":[5.9,10.3,14.7,26.3,42.8],"Miller, Missouri":[4.9,8.4,13,27.3,46.3],"Mississippi, Missouri":[5.2,9.7,15.5,28.6,41],"Moniteau, Missouri":[6,9.5,14.2,25.7,44.6],"Monroe, Missouri":[5.6,9,15.4,28.6,41.4],"Montgomery, Missouri":[5.5,9.9,14.9,27.4,42.2],"Morgan, Missouri":[3.8,6.6,10.7,26.4,52.5],"New Madrid, Missouri":[4.7,7.6,12.2,27,48.4],"Newton, Missouri":[5.2,8,11.6,26.5,48.7],"Nodaway, Missouri":[5.4,9.3,14.6,27.1,43.5],"Oregon, Missouri":[5.2,9,13.8,28.1,43.8],"Osage, Missouri":[4.2,7,10.5,24.9,53.4],"Ozark, Missouri":[3.5,5.6,9.2,25.9,55.8],"Pemiscot, Missouri":[3.6,6.6,11.3,27.9,50.6],"Perry, Missouri":[5.9,9.1,13.9,27.4,43.7],"Pettis, Missouri":[5.7,8.8,13.1,26.6,45.8],"Phelps, Missouri":[4.9,8.6,13.3,27.7,45.5],"Pike, Missouri":[5.4,9.4,14.8,27.1,43.2],"Platte, Missouri":[5.5,8.8,13,26.6,46.1],"Polk, Missouri":[5.4,9.2,14.3,28.3,42.7],"Pulaski, Missouri":[6.7,10.7,15.5,26.9,40.1],"Putnam, Missouri":[5.4,9.1,13.4,26.9,45.2],"Ralls, Missouri":[5.9,9.6,14.8,26.9,42.8],"Randolph, Missouri":[5.7,9.1,13.6,27.3,44.4],"Ray, Missouri":[5.2,8.6,12.2,25.9,48.1],"Reynolds, Missouri":[5.7,8.8,13.9,27.6,44],"Ripley, Missouri":[4.8,9.1,14.1,28.4,43.6],"Saline, Missouri":[5.4,8.6,13.5,26.7,45.7],"Schuyler, Missouri":[7,10.9,15.8,27.1,39.2],"Scotland, Missouri":[5.7,8.7,12.4,26.5,46.6],"Scott, Missouri":[4.4,7.8,11.3,26.8,49.7],"Shannon, Missouri":[6.1,11.3,15.7,26.5,40.4],"Shelby, Missouri":[5.2,9,14.1,27.3,44.4],"St. Charles, Missouri":[6.1,9.5,13.6,26.3,44.5],"St. Clair, Missouri":[5.7,9,13.2,26.6,45.5],"St. Francois, Missouri":[5.4,8.8,14,27.7,44],"St. Louis, Missouri":[4.1,6.8,10.9,27.1,51],"St. Louis city, Missouri, Missouri":[4.2,7.6,12.2,27.7,48.3],"Ste. Genevieve, Missouri":[5.4,8.4,13.9,27.2,45.2],"Stoddard, Missouri":[6.2,9.9,15.2,27.3,41.5],"Stone, Missouri":[5.3,8.6,12.6,26.8,46.7],"Sullivan, Missouri":[6.1,9.4,13.8,26.4,44.3],"Taney, Missouri":[4.8,7.8,11.5,26.7,49.3],"Texas, Missouri":[5.2,9,13.9,27.2,44.7],"Vernon, Missouri":[6.7,10.4,15.6,27.5,39.9],"Warren, Missouri":[6.2,9.4,14,26.9,43.4],"Washington, Missouri":[4.2,6.9,10.8,25.8,52.3],"Wayne, Missouri":[5.2,8.9,13.5,28.9,43.5],"Webster, Missouri":[6.1,9.8,14,26.1,44],"Worth, Missouri":[5,7.9,13.7,27.4,46.1],"Wright, Missouri":[5.9,9.3,13.9,27.4,43.6]};
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Bottom 20%', 'Second 20%', 'Middle 20%', 'Fourth 20%', 'Top 20%'],
+        datasets: [{
+          label: 'Share (%)',
+          data: values,
+          backgroundColor: '#4576a7'
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.parsed.y + '%'
+            }
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 100,
+            title: {
+              display: true,
+              text: 'Income Share (%)'
+            }
+          },
+          x: {
+            title: {
+              display: true,
+              text: 'Quintile'
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(Object.values(incomeData[this.value]));
+  });
+
+  renderChart(Object.values(incomeData['Statewide']));</script>
+  </body>
+</html>
+</html>

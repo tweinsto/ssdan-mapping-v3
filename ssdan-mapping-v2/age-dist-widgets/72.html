@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Age Pyramid –  Puerto Rico</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+      body {
+        font-family: sans-serif;
+        margin: 1rem 2rem;
+        text-align: center;
+      }
+      h2 {
+        margin-bottom: 0.25rem;
+        font-size: 1.6rem;
+      }
+      select {
+        padding: 0.4rem;
+        font-size: 1rem;
+        margin: 1rem 0;
+        border-radius: 5px;
+        border: 1px solid #999;
+      }
+      canvas {
+        width: 100%;
+        max-width: 850px;
+        height: 500px;
+        margin-top: 1rem;
+      }
+    </style>
+</head>
+<html>
+  <body>
+    <h2>Age Distribution in  Puerto Rico (2023)</h2>
+    <label>Select County:</label>
+          <select id="countySelect">
+        <option value='Statewide'>Statewide</option>
+<option value='Adjuntas Municipio, Puerto Rico'>Adjuntas Municipio, Puerto Rico</option>
+<option value='Aguada Municipio, Puerto Rico'>Aguada Municipio, Puerto Rico</option>
+<option value='Aguadilla Municipio, Puerto Rico'>Aguadilla Municipio, Puerto Rico</option>
+<option value='Aguas Buenas Municipio, Puerto Rico'>Aguas Buenas Municipio, Puerto Rico</option>
+<option value='Aibonito Municipio, Puerto Rico'>Aibonito Municipio, Puerto Rico</option>
+<option value='Añasco Municipio, Puerto Rico'>Añasco Municipio, Puerto Rico</option>
+<option value='Arecibo Municipio, Puerto Rico'>Arecibo Municipio, Puerto Rico</option>
+<option value='Arroyo Municipio, Puerto Rico'>Arroyo Municipio, Puerto Rico</option>
+<option value='Barceloneta Municipio, Puerto Rico'>Barceloneta Municipio, Puerto Rico</option>
+<option value='Barranquitas Municipio, Puerto Rico'>Barranquitas Municipio, Puerto Rico</option>
+<option value='Bayamón Municipio, Puerto Rico'>Bayamón Municipio, Puerto Rico</option>
+<option value='Cabo Rojo Municipio, Puerto Rico'>Cabo Rojo Municipio, Puerto Rico</option>
+<option value='Caguas Municipio, Puerto Rico'>Caguas Municipio, Puerto Rico</option>
+<option value='Camuy Municipio, Puerto Rico'>Camuy Municipio, Puerto Rico</option>
+<option value='Canóvanas Municipio, Puerto Rico'>Canóvanas Municipio, Puerto Rico</option>
+<option value='Carolina Municipio, Puerto Rico'>Carolina Municipio, Puerto Rico</option>
+<option value='Cataño Municipio, Puerto Rico'>Cataño Municipio, Puerto Rico</option>
+<option value='Cayey Municipio, Puerto Rico'>Cayey Municipio, Puerto Rico</option>
+<option value='Ceiba Municipio, Puerto Rico'>Ceiba Municipio, Puerto Rico</option>
+<option value='Ciales Municipio, Puerto Rico'>Ciales Municipio, Puerto Rico</option>
+<option value='Cidra Municipio, Puerto Rico'>Cidra Municipio, Puerto Rico</option>
+<option value='Coamo Municipio, Puerto Rico'>Coamo Municipio, Puerto Rico</option>
+<option value='Comerío Municipio, Puerto Rico'>Comerío Municipio, Puerto Rico</option>
+<option value='Corozal Municipio, Puerto Rico'>Corozal Municipio, Puerto Rico</option>
+<option value='Culebra Municipio, Puerto Rico'>Culebra Municipio, Puerto Rico</option>
+<option value='Dorado Municipio, Puerto Rico'>Dorado Municipio, Puerto Rico</option>
+<option value='Fajardo Municipio, Puerto Rico'>Fajardo Municipio, Puerto Rico</option>
+<option value='Florida Municipio, Puerto Rico'>Florida Municipio, Puerto Rico</option>
+<option value='Guánica Municipio, Puerto Rico'>Guánica Municipio, Puerto Rico</option>
+<option value='Guayama Municipio, Puerto Rico'>Guayama Municipio, Puerto Rico</option>
+<option value='Guayanilla Municipio, Puerto Rico'>Guayanilla Municipio, Puerto Rico</option>
+<option value='Guaynabo Municipio, Puerto Rico'>Guaynabo Municipio, Puerto Rico</option>
+<option value='Gurabo Municipio, Puerto Rico'>Gurabo Municipio, Puerto Rico</option>
+<option value='Hatillo Municipio, Puerto Rico'>Hatillo Municipio, Puerto Rico</option>
+<option value='Hormigueros Municipio, Puerto Rico'>Hormigueros Municipio, Puerto Rico</option>
+<option value='Humacao Municipio, Puerto Rico'>Humacao Municipio, Puerto Rico</option>
+<option value='Isabela Municipio, Puerto Rico'>Isabela Municipio, Puerto Rico</option>
+<option value='Jayuya Municipio, Puerto Rico'>Jayuya Municipio, Puerto Rico</option>
+<option value='Juana Díaz Municipio, Puerto Rico'>Juana Díaz Municipio, Puerto Rico</option>
+<option value='Juncos Municipio, Puerto Rico'>Juncos Municipio, Puerto Rico</option>
+<option value='Lajas Municipio, Puerto Rico'>Lajas Municipio, Puerto Rico</option>
+<option value='Lares Municipio, Puerto Rico'>Lares Municipio, Puerto Rico</option>
+<option value='Las Marías Municipio, Puerto Rico'>Las Marías Municipio, Puerto Rico</option>
+<option value='Las Piedras Municipio, Puerto Rico'>Las Piedras Municipio, Puerto Rico</option>
+<option value='Loíza Municipio, Puerto Rico'>Loíza Municipio, Puerto Rico</option>
+<option value='Luquillo Municipio, Puerto Rico'>Luquillo Municipio, Puerto Rico</option>
+<option value='Manatí Municipio, Puerto Rico'>Manatí Municipio, Puerto Rico</option>
+<option value='Maricao Municipio, Puerto Rico'>Maricao Municipio, Puerto Rico</option>
+<option value='Maunabo Municipio, Puerto Rico'>Maunabo Municipio, Puerto Rico</option>
+<option value='Mayagüez Municipio, Puerto Rico'>Mayagüez Municipio, Puerto Rico</option>
+<option value='Moca Municipio, Puerto Rico'>Moca Municipio, Puerto Rico</option>
+<option value='Morovis Municipio, Puerto Rico'>Morovis Municipio, Puerto Rico</option>
+<option value='Naguabo Municipio, Puerto Rico'>Naguabo Municipio, Puerto Rico</option>
+<option value='Naranjito Municipio, Puerto Rico'>Naranjito Municipio, Puerto Rico</option>
+<option value='Orocovis Municipio, Puerto Rico'>Orocovis Municipio, Puerto Rico</option>
+<option value='Patillas Municipio, Puerto Rico'>Patillas Municipio, Puerto Rico</option>
+<option value='Peñuelas Municipio, Puerto Rico'>Peñuelas Municipio, Puerto Rico</option>
+<option value='Ponce Municipio, Puerto Rico'>Ponce Municipio, Puerto Rico</option>
+<option value='Quebradillas Municipio, Puerto Rico'>Quebradillas Municipio, Puerto Rico</option>
+<option value='Rincón Municipio, Puerto Rico'>Rincón Municipio, Puerto Rico</option>
+<option value='Río Grande Municipio, Puerto Rico'>Río Grande Municipio, Puerto Rico</option>
+<option value='Sabana Grande Municipio, Puerto Rico'>Sabana Grande Municipio, Puerto Rico</option>
+<option value='Salinas Municipio, Puerto Rico'>Salinas Municipio, Puerto Rico</option>
+<option value='San Germán Municipio, Puerto Rico'>San Germán Municipio, Puerto Rico</option>
+<option value='San Juan Municipio, Puerto Rico'>San Juan Municipio, Puerto Rico</option>
+<option value='San Lorenzo Municipio, Puerto Rico'>San Lorenzo Municipio, Puerto Rico</option>
+<option value='San Sebastián Municipio, Puerto Rico'>San Sebastián Municipio, Puerto Rico</option>
+<option value='Santa Isabel Municipio, Puerto Rico'>Santa Isabel Municipio, Puerto Rico</option>
+<option value='Toa Alta Municipio, Puerto Rico'>Toa Alta Municipio, Puerto Rico</option>
+<option value='Toa Baja Municipio, Puerto Rico'>Toa Baja Municipio, Puerto Rico</option>
+<option value='Trujillo Alto Municipio, Puerto Rico'>Trujillo Alto Municipio, Puerto Rico</option>
+<option value='Utuado Municipio, Puerto Rico'>Utuado Municipio, Puerto Rico</option>
+<option value='Vega Alta Municipio, Puerto Rico'>Vega Alta Municipio, Puerto Rico</option>
+<option value='Vega Baja Municipio, Puerto Rico'>Vega Baja Municipio, Puerto Rico</option>
+<option value='Vieques Municipio, Puerto Rico'>Vieques Municipio, Puerto Rico</option>
+<option value='Villalba Municipio, Puerto Rico'>Villalba Municipio, Puerto Rico</option>
+<option value='Yabucoa Municipio, Puerto Rico'>Yabucoa Municipio, Puerto Rico</option>
+<option value='Yauco Municipio, Puerto Rico'>Yauco Municipio, Puerto Rico</option>
+      </select>
+    <canvas id="barChart" width="850" height="500"></canvas>
+    <script>  const ageData = {"Statewide":[-3.9,3.7,-4.6,4.5,-4.7,4.5,-3.4,3.4,-5.8,6.2,-5.9,6.6,-6.1,7.1,-5.9,7,-4.5,5.8,-1.4,1.9,-1.2,1.8],"Adjuntas Municipio, Puerto Rico":[-3.9,3.9,-4.6,5.2,-4.4,4.2,-3.2,3.1,-5.9,5.6,-5.7,6.9,-6.7,6.9,-7.7,7.6,-4.2,5.4,-1.2,1.4,-0.9,1.3],"Aguada Municipio, Puerto Rico":[-3.5,2.9,-4.3,4.9,-4.3,4.1,-3.4,3.2,-4.9,5.7,-7.2,6.4,-6.7,7.5,-7.3,8,-4.9,5.3,-1.3,1.9,-0.9,1.3],"Aguadilla Municipio, Puerto Rico":[-3.7,3.6,-5.1,4.5,-5,4.2,-3.5,3.1,-5.1,6,-6.3,6.4,-5.7,6.7,-6.2,7.5,-5.6,6,-1.1,2,-1.1,1.4],"Aguas Buenas Municipio, Puerto Rico":[-3.5,2.9,-4.9,5.2,-4.8,4.5,-3.4,3.2,-5.6,5.4,-6.6,7.4,-6.4,6.8,-5.8,7.6,-4.6,5.3,-1.1,1.8,-1.4,1.7],"Aibonito Municipio, Puerto Rico":[-3.9,3.8,-4.4,4.4,-4.1,3.9,-3.1,3.1,-5.8,6.1,-5.4,5.7,-6,6.7,-7.3,8.4,-5.4,6,-1.2,2.3,-1.1,1.8],"Añasco Municipio, Puerto Rico":[-4,3.7,-4,4,-4.6,4.1,-3.6,3.3,-6.1,5.7,-6,6.8,-6.6,7.2,-6.4,7.6,-4,5.1,-1.9,2.8,-1,1.5],"Arecibo Municipio, Puerto Rico":[-3.6,4,-4.8,3.9,-4.8,4.3,-3.6,3.4,-5.5,6.1,-5.8,6.4,-6.6,7.5,-5.5,6.4,-4.5,6.3,-1.4,2.1,-1.4,2],"Arroyo Municipio, Puerto Rico":[-4,4.3,-5.5,4.8,-4.3,4.5,-3,3.6,-5.9,6.1,-5.4,8,-4.7,6.5,-6.3,7.4,-4.3,6,-1.8,1.1,-0.8,1.7],"Barceloneta Municipio, Puerto Rico":[-4,3.6,-4.7,4.8,-4.6,4.7,-3.4,4.1,-6.7,6.4,-5.7,7.9,-6.2,7.4,-4.3,4.5,-4.7,5.9,-1.3,2.2,-1.4,1.3],"Barranquitas Municipio, Puerto Rico":[-5.7,4.4,-4.5,5.4,-4.9,4.5,-3.7,3.6,-7.4,6.4,-4.7,6,-6.7,7.5,-5.8,6.1,-4.1,4.3,-0.8,1.4,-0.6,1.5],"Bayamón Municipio, Puerto Rico":[-4,3.8,-4.2,4,-4.8,4.4,-4.1,3.5,-6.2,6.2,-5.4,6.5,-5.8,6.9,-5.4,7.4,-4.1,5.9,-1.4,2.7,-1.5,2.1],"Cabo Rojo Municipio, Puerto Rico":[-3,3.4,-4.8,4.4,-4.3,4.4,-3.1,3.4,-4.9,5.6,-6.5,7.3,-6.8,7.9,-5.5,5.7,-5.1,7.3,-1.7,1.8,-1.3,1.6],"Caguas Municipio, Puerto Rico":[-4,3.9,-4.4,4.3,-4.6,4.5,-3.4,3.6,-5.7,6.4,-6.3,7.1,-6.1,7.1,-5.5,7.2,-4.2,5.8,-1.2,1.8,-1,2],"Camuy Municipio, Puerto Rico":[-3.5,3.7,-4.6,4.5,-4.5,4.3,-3.6,3.5,-5.7,5.5,-6.1,7.1,-6.4,7.8,-6.5,7.4,-4.4,5.1,-1.4,1.9,-0.8,1.7],"Canóvanas Municipio, Puerto Rico":[-4.7,3.7,-4.8,4.8,-4.8,4.1,-3.9,3.1,-6,7.3,-5.9,7.4,-6.6,7.9,-5.3,5.7,-3.8,5.4,-1.1,1.6,-0.9,1.2],"Carolina Municipio, Puerto Rico":[-3.9,3.7,-4.1,4.3,-4.5,4.6,-3.5,3.6,-5.6,6.1,-5.8,6.8,-5.9,7.1,-4.9,7,-4.3,6.8,-1.6,2.2,-1.3,2.2],"Cataño Municipio, Puerto Rico":[-4.7,4.3,-4.2,4.1,-4.4,4.6,-3.2,3.5,-6.5,6.4,-5.3,6.2,-5.8,6.5,-6.2,8,-4.2,5.7,-1.5,2.1,-0.9,1.7],"Cayey Municipio, Puerto Rico":[-3,3.7,-4.8,4.4,-4.5,4.5,-3.3,3.3,-5.4,6.3,-6,6.6,-6.7,7,-6.3,7.2,-4.6,5.8,-1.9,1.8,-1.2,1.7],"Ceiba Municipio, Puerto Rico":[-3.9,3.2,-4.1,4.2,-4.7,4.3,-3.6,3.6,-4.6,5.6,-6.2,7,-6.1,7.7,-5.3,6.2,-4.9,7.4,-2.7,2,-0.6,2.1],"Ciales Municipio, Puerto Rico":[-3.7,4.5,-4.7,4.5,-4,4,-3.1,3.3,-6.5,6.7,-4.6,5.2,-5.2,7.2,-9.3,7.6,-4.6,5.3,-1.7,1.8,-1,1.7],"Cidra Municipio, Puerto Rico":[-3.7,3.4,-5.2,5.2,-4.5,4.4,-3.3,3.3,-5.8,6.4,-6.2,6.9,-6.5,7.1,-6.9,7.3,-4.2,5,-1.1,1.6,-0.8,1.1],"Coamo Municipio, Puerto Rico":[-3.6,3.7,-5.2,4.6,-3.8,3.6,-2.8,2.8,-6.2,6.9,-6.3,7.4,-7.4,7,-6.5,8,-4.7,4.8,-1.1,1.2,-0.8,1.6],"Comerío Municipio, Puerto Rico":[-4.2,3.2,-5.3,4.8,-4.6,4.3,-3.8,3.4,-6.3,7.3,-6.7,5.2,-6.1,7.2,-6.6,5.7,-4,5.8,-0.6,1.8,-1.7,1.4],"Corozal Municipio, Puerto Rico":[-3.7,4.1,-5.8,4.9,-4.5,4.3,-3.5,3.5,-5.9,6.2,-6.3,6.6,-6.3,7.4,-6.1,6.5,-4.2,5.5,-1.2,1.3,-0.7,1.5],"Culebra Municipio, Puerto Rico":[-5.4,1.1,-5.2,4.3,-7.3,11.3,-2.3,5,-3,3,-8.8,9.3,-7.7,4.2,-4.6,3.9,-4.5,2.4,-2.6,1.6,-0.6,2],"Dorado Municipio, Puerto Rico":[-4.6,3.6,-5.8,4.4,-4.8,4.6,-3.1,3.2,-5.9,5.9,-6.7,8.3,-6.6,7.6,-5.2,5.4,-3.9,5.6,-1,1.7,-1,1.1],"Fajardo Municipio, Puerto Rico":[-3.9,4.2,-4.8,4.3,-4.6,4.5,-3.6,3.8,-5.6,6.3,-5.3,6.2,-5.8,6.9,-5.2,6.2,-4.7,7.1,-1.5,2.3,-1.5,1.7],"Florida Municipio, Puerto Rico":[-3.1,5.4,-5.3,3.9,-7.3,5.4,-1.1,3.1,-6.9,7,-4.9,6.3,-5,6.4,-6.5,7.5,-4.5,6.6,-1.3,0.9,-0.5,0.9],"Guánica Municipio, Puerto Rico":[-2.7,3.2,-6.9,4.8,-4.2,5.6,-3,1.7,-5.9,4.4,-5.1,7.8,-5.4,5.8,-6.7,7,-6,8.1,-2.3,1.5,-0.5,1.4],"Guayama Municipio, Puerto Rico":[-3.4,4.3,-5.4,4.2,-5.8,4.4,-5,3.3,-6.5,6.4,-5.9,6.4,-6.1,6.7,-5.2,6.7,-3.9,4.7,-1.4,2,-1.1,1.3],"Guayanilla Municipio, Puerto Rico":[-3.9,3.7,-4.7,5.5,-4.6,4.5,-2.9,3.3,-6,6.4,-5.8,6.1,-6.4,7.3,-5.7,7.4,-4.4,5.4,-1.5,2.1,-1.3,1.1],"Guaynabo Municipio, Puerto Rico":[-3.5,3.4,-3.8,3.6,-4.4,3.9,-3.7,3.3,-6,6,-6,6.4,-5.9,7.8,-6.6,8.1,-4.2,5.8,-1.4,2.3,-1.5,2.4],"Gurabo Municipio, Puerto Rico":[-3.6,3.7,-5.2,4.9,-4.6,4.8,-3.5,3.8,-6.6,6.6,-6.8,8.7,-5.8,7.4,-5.2,5.9,-4.2,4.7,-0.8,1.2,-0.8,1.4],"Hatillo Municipio, Puerto Rico":[-3.6,3.1,-4.5,4.5,-4.3,4.1,-3.3,3.2,-6.2,6.2,-6.1,7.2,-6,7.4,-6.8,6.3,-4.5,6.8,-1.8,2.6,-0.6,0.7],"Hormigueros Municipio, Puerto Rico":[-3.6,2.3,-3.8,4.4,-4.3,4.1,-2.8,3,-4.5,5.8,-5.9,5.9,-6.2,7.4,-5.4,7.9,-6.5,7.4,-1.9,2.6,-1.2,3.2],"Humacao Municipio, Puerto Rico":[-4,3.6,-4.3,4.4,-4.4,4.3,-2.8,3.2,-4.9,5.2,-6.4,7.2,-6.1,6.8,-6.4,7.7,-5.7,6.7,-1.2,2,-1,1.7],"Isabela Municipio, Puerto Rico":[-3.8,3.3,-4.5,4.5,-4.6,4.2,-3.6,3.2,-6,5.8,-6.6,7.2,-6.3,7.5,-6.5,6.6,-4.1,5.8,-1.5,1.9,-1.1,1.4],"Jayuya Municipio, Puerto Rico":[-3,5.6,-5.8,4.9,-4.9,4.2,-3.8,3.4,-5.1,5.6,-7.6,7.4,-6.4,6.5,-5.4,7,-4.6,4.6,-1.1,1.4,-0.7,1.2],"Juana Díaz Municipio, Puerto Rico":[-4.6,4,-4.9,5.1,-4.6,4.6,-3.5,3.6,-5.6,6.4,-5.7,7,-6.8,7.1,-5.6,6.6,-3.9,5.2,-1.1,1.4,-1,1.6],"Juncos Municipio, Puerto Rico":[-4,4.1,-5.2,5,-4.8,4.9,-3.7,4.1,-6,7.7,-7.1,7.1,-6,7.1,-4.9,5.8,-3.8,3.7,-0.5,1.8,-1.4,1.3],"Lajas Municipio, Puerto Rico":[-3.8,3.4,-3.7,4.7,-4.4,4,-3.5,3,-7.1,4.8,-4.2,6.4,-6.9,7.6,-5.6,7.7,-5.5,6.2,-1.3,3,-1.6,1.4],"Lares Municipio, Puerto Rico":[-4,3,-4.6,4.9,-4.3,4.1,-3.3,3.2,-5.8,6.3,-6.8,6.1,-6.2,6.7,-7.2,7.9,-4.5,4.8,-1.7,2.1,-1,1.8],"Las Marías Municipio, Puerto Rico":[-4.1,4.2,-5.2,4.9,-5.5,4,-2.2,3.4,-5.6,5.8,-6.2,5.8,-7.1,6.9,-6.1,6.8,-5.4,5.7,-1.3,1.4,-0.8,1.5],"Las Piedras Municipio, Puerto Rico":[-3.4,4,-5.6,4.2,-4.5,4.4,-3.2,3.6,-6,6.1,-6.6,8.4,-5.7,6.6,-6.1,6.7,-4.4,5.5,-1.1,1.4,-1.2,1.4],"Loíza Municipio, Puerto Rico":[-4,3.8,-4.9,4.9,-4.2,4.5,-3.2,3.8,-5.9,6.5,-5.5,6.9,-5.9,7,-6.4,7.9,-4.1,5.2,-1.4,1.8,-1.1,1.2],"Luquillo Municipio, Puerto Rico":[-3.7,3.9,-4.4,4.3,-4.4,4.9,-3.4,3.6,-5.6,6,-5,7.3,-6.2,7,-6.1,6.5,-5.3,6.1,-1,2.7,-1.6,1.1],"Manatí Municipio, Puerto Rico":[-4.6,4,-4.1,4.4,-4.5,4.4,-3.3,3.5,-5.6,6.8,-5.3,5.7,-5,6.5,-7.2,7.3,-4.2,6.5,-2.1,2.1,-0.7,2.2],"Maricao Municipio, Puerto Rico":[-3.8,4.3,-4.3,4.2,-5.1,2.3,-1,2.6,-4.4,6.6,-7.9,5.1,-6.3,6.2,-7.1,10,-5.3,4.9,-1.8,3,-2.3,1.5],"Maunabo Municipio, Puerto Rico":[-4.1,2.5,-4.9,4.7,-3.7,3.8,-3,3,-4,5.8,-7.5,5.3,-7.5,7,-6.6,7.8,-6.2,6.5,-1.6,1.5,-0.9,2.1],"Mayagüez Municipio, Puerto Rico":[-4.1,3.3,-4,4.3,-8.3,7.3,-3.3,2.8,-4.7,4.9,-5,5,-4.9,5.9,-5.8,6.8,-4.5,6.9,-1.8,2.4,-1.4,2.6],"Moca Municipio, Puerto Rico":[-4,4.4,-4.9,4.2,-4.8,4.9,-3.4,3.5,-6.2,7,-6,6,-6.8,6.8,-7,6.9,-3.6,5.3,-1.1,0.8,-0.9,1.5],"Morovis Municipio, Puerto Rico":[-3.8,3.7,-5.3,5.1,-4.6,4.7,-3.5,3.7,-6.4,6.9,-6.2,6.3,-6.7,7.4,-6.7,6.1,-4.2,4.5,-1.1,1,-0.9,1.1],"Naguabo Municipio, Puerto Rico":[-5.7,5.3,-4,4.3,-4.7,4.8,-3.3,4,-6.5,7.9,-5.4,7.2,-6,5.9,-4.2,6,-4.3,4.9,-0.8,1.5,-1.4,1.9],"Naranjito Municipio, Puerto Rico":[-4.3,3,-5.1,5.1,-4.4,4.4,-3.5,3.3,-6.8,6.3,-5.2,5.7,-6,6.8,-7.3,7.1,-4.1,5.4,-1.2,1.8,-1.4,1.5],"Orocovis Municipio, Puerto Rico":[-4.9,4.6,-4.8,4.4,-4.7,4.2,-3.7,3.6,-6.1,6.9,-5.9,5.3,-8,7.7,-5.5,6.8,-4,3.6,-1.3,1.3,-0.9,1.7],"Patillas Municipio, Puerto Rico":[-4.3,3.6,-3.6,4.3,-4.1,3.7,-3.2,3,-4.7,5.3,-6.3,6.1,-7.2,7.7,-7.6,7.2,-4.4,6.4,-1.3,2.2,-1.8,2.1],"Peñuelas Municipio, Puerto Rico":[-5.6,4.5,-4.3,5.3,-4.5,4.7,-3.3,3.3,-6.4,6.4,-5.6,6.4,-5.8,6.7,-7.6,7.9,-3.4,4.2,-0.9,1,-0.9,1.1],"Ponce Municipio, Puerto Rico":[-4.2,3.7,-4.8,4.9,-5,4.5,-3.7,3.2,-5.7,5.7,-5.3,5.9,-5.5,6.7,-5.8,7.3,-4.9,6.6,-1.5,1.9,-1.2,1.9],"Quebradillas Municipio, Puerto Rico":[-3.4,3.8,-5.4,4.4,-4.5,4.3,-3.4,3.3,-6.5,5.9,-5.5,6.8,-6.5,7.7,-6.6,6.7,-3.2,5.1,-2,2.2,-1.2,1.6],"Rincón Municipio, Puerto Rico":[-3.5,3.4,-2.4,4.9,-3.7,3.7,-2.5,2.9,-5.3,5.3,-6.1,6.7,-8.8,8.1,-4.8,5.5,-6.9,7.6,-1.5,2.8,-0.9,2.4],"Río Grande Municipio, Puerto Rico":[-3.5,3.3,-4.8,4.7,-4.7,4.5,-3.8,3.5,-6.4,6.5,-5.7,6.4,-6.5,7.7,-5.1,6.5,-5,6.1,-1.6,1.5,-0.7,1.7],"Sabana Grande Municipio, Puerto Rico":[-4,3.8,-4.6,4.7,-4.4,4.3,-3.3,3.5,-4.8,7.4,-6.1,4.9,-5.7,7.3,-5.8,7.5,-5.5,6,-1.3,2.4,-0.9,1.8],"Salinas Municipio, Puerto Rico":[-3.9,4.2,-5.7,4.7,-4.6,4.3,-3.4,3.4,-5.7,6.1,-6.2,6.7,-5.7,7.3,-6.2,6.5,-4.4,5.1,-1.1,1.7,-1.2,1.9],"San Germán Municipio, Puerto Rico":[-3.4,3.5,-5.3,4.6,-4.7,4.4,-3.2,3,-5,4.7,-5.6,6.2,-6.7,6.2,-5.1,7.2,-5.5,7.5,-2.4,2,-1.7,2],"San Juan Municipio, Puerto Rico":[-4,3.6,-3.9,4.2,-4.4,4.8,-3.3,3.5,-5.5,6.2,-5.5,6.4,-5.7,7,-6,7.4,-4.3,6.2,-1.5,2.2,-1.6,2.8],"San Lorenzo Municipio, Puerto Rico":[-4.3,3.7,-4,4.3,-4.4,4.3,-3.4,3.5,-5.7,6.5,-6.4,6.3,-6.8,7.5,-6.3,7.4,-5,4.6,-1.3,1.6,-1,1.6],"San Sebastián Municipio, Puerto Rico":[-4.2,2.8,-4.3,5.4,-4.3,3.9,-3,2.9,-5.1,4.5,-6.5,7.4,-5.9,6.8,-6.4,7.5,-5.8,6,-1.8,2.4,-1.2,1.7],"Santa Isabel Municipio, Puerto Rico":[-4.1,5.4,-5.2,3.8,-5,4.8,-3.5,4,-5.9,6.4,-7,8.5,-5.8,6.2,-5.2,6.1,-4.5,4,-0.8,1.4,-0.9,1.3],"Toa Alta Municipio, Puerto Rico":[-4.2,3.5,-4.6,5,-5,4.9,-3.8,4,-6.3,6.6,-6.8,7.6,-6.6,8.2,-5.6,6.1,-3.5,3.6,-0.5,1.3,-1,1.4],"Toa Baja Municipio, Puerto Rico":[-3.7,3.8,-4.7,4.5,-4.7,4.7,-3.4,3.6,-6.1,6.9,-6.1,6.8,-5.8,6.8,-5.3,7.2,-4.1,6,-1.4,1.8,-1,1.6],"Trujillo Alto Municipio, Puerto Rico":[-3.9,3.2,-4.7,4.8,-4.7,4.5,-3.5,3.6,-5.8,6.8,-6.4,6.8,-5.8,7.6,-5.7,6.6,-4.1,6.3,-1.2,1.6,-1,1.4],"Utuado Municipio, Puerto Rico":[-3,4.1,-5.5,4.3,-4.1,4.1,-3,3.1,-5.3,5.9,-5.6,6.2,-6.8,7.2,-7.1,7.1,-5.6,5.9,-1.1,1.9,-1,2.1],"Vega Alta Municipio, Puerto Rico":[-4.2,3.7,-5,5.3,-4.8,4.7,-3.5,3.6,-6,6.6,-6.2,6.6,-6,6.3,-5.7,6.6,-4.3,5.3,-1.5,1.5,-0.9,1.9],"Vega Baja Municipio, Puerto Rico":[-4.2,4.2,-4.4,3.9,-4.5,4.4,-3.5,3.4,-5.8,6.6,-5.9,6.3,-6.1,7.6,-5.8,6.3,-5.1,6,-1.2,1.7,-1.1,1.9],"Vieques Municipio, Puerto Rico":[-4.6,4,-4.8,4.1,-3.9,4.7,-2.1,1.4,-8.5,3.7,-5.6,7.7,-6.8,8.3,-6.9,5.6,-4.8,6.7,-2,2,-1.3,0.5],"Villalba Municipio, Puerto Rico":[-4.8,4.5,-4.9,4.7,-4.9,4.6,-3.3,3.4,-5.4,5.8,-5.3,6.2,-6.8,7.1,-6.5,7.5,-4.4,5.2,-1,1.5,-0.8,1.3],"Yabucoa Municipio, Puerto Rico":[-3.6,3.2,-4.7,4.6,-4.4,4.4,-3.1,3.3,-4.9,5,-6.1,6.9,-6.9,7,-6.4,8.2,-5.5,6,-1.3,1.9,-1.2,1.4],"Yauco Municipio, Puerto Rico":[-3.6,4.1,-4.9,3.8,-4.1,3.9,-2.9,3,-5.2,5.6,-6,6.6,-6.9,7.4,-6.9,8,-5.1,7,-1.4,2,-0.6,1.2]};
+  const ageBins = ["0–9","10–17","18–24","25–29","30–39","40–49","50–59","60–69","70–79","80–84","85+"];
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(data) {
+    const maleData = data.filter((_, i) => i % 2 === 0);
+    const femaleData = data.filter((_, i) => i % 2 === 1);
+
+    const maxValue = Math.max(
+      ...maleData.map(Math.abs),
+      ...femaleData.map(Math.abs)
+    );
+    const padding = 1.0;
+    const xMax = +(maxValue + padding).toFixed(1);
+
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ageBins,
+        datasets: [
+          {
+            label: 'Male',
+            data: maleData,
+            backgroundColor: 'darkslategray'
+          },
+          {
+            label: 'Female',
+            data: femaleData,
+            backgroundColor: 'darkorange'
+          }
+        ]
+      },
+      options: {
+        indexAxis: 'y',
+        responsive: true,
+        scales: {
+          x: {
+            min: -xMax,
+            max: xMax,
+            ticks: {
+              callback: value => Math.abs(value).toFixed(1) + '%'
+            }
+          },
+          y: {
+            stacked: false
+          }
+        },
+        plugins: {
+          legend: {
+            position: 'top',
+            align: 'start',
+            labels: {
+              usePointStyle: true
+            }
+          },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.dataset.label + ': ' + Math.abs(ctx.parsed.x).toFixed(1) + '%'
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(Object.values(ageData[this.value]));
+  });
+
+  renderChart(Object.values(ageData['Statewide']));</script>
+  </body>
+</html>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Language Spoken at Home – Delaware</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          text-align: center;
+          margin: 2rem;
+        }
+        select {
+          font-size: 1rem;
+          padding: 0.4rem;
+          margin-bottom: 1rem;
+        }
+        canvas {
+          width: 100%;
+          max-width: 700px;
+          height: 800px;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Language Spoken at Home – Delaware</h2>
+    <label>Select County, State:</label>
+    <select id="countySelect"><option value='Statewide'>Statewide</option>
+<option value='Kent County, Delaware'>Kent County, Delaware</option>
+<option value='New Castle County, Delaware'>New Castle County, Delaware</option>
+<option value='Sussex County, Delaware'>Sussex County, Delaware</option></select>
+    <canvas id="barChart" width="700" height="700"></canvas>
+    <script>  const languageData = {"Statewide":{"Arabic":0,"Chinese":0.4,"English only":74.3,"French, Haitian, Cajun":0.8,"German or West Germanic":1,"Korean":0.4,"Other":8.4,"Other Asian/Pacific":0.2,"Other Indo-European":0.1,"Other/Unspecified":0.2,"Russian, Polish, Slavic":0.2,"Spanish":13.5,"Tagalog":0.2,"Vietnamese":0.2},"Kent County, Delaware":{"Arabic":0.4,"Chinese":0.3,"English only":76.1,"French, Haitian, Cajun":2.8,"German or West Germanic":2.4,"Korean":0.7,"Other Asian/Pacific":1.1,"Other Indo-European":2,"Other/Unspecified":2.1,"Russian, Polish, Slavic":0.5,"Spanish":10.5,"Tagalog":0.9,"Vietnamese":0.2},"New Castle County, Delaware":{"Arabic":0.9,"Chinese":2.6,"English only":68.6,"French, Haitian, Cajun":1.7,"German or West Germanic":1,"Korean":0.3,"Other Asian/Pacific":2.1,"Other Indo-European":4.7,"Other/Unspecified":2.6,"Russian, Polish, Slavic":0.9,"Spanish":13.6,"Tagalog":0.8,"Vietnamese":0.4},"Sussex County, Delaware":{"Arabic":0.3,"Chinese":0.2,"English only":79.1,"French, Haitian, Cajun":2.2,"German or West Germanic":0.5,"Korean":0.2,"Other Asian/Pacific":0.5,"Other Indo-European":2,"Other/Unspecified":0.6,"Russian, Polish, Slavic":0.9,"Spanish":12.7,"Tagalog":0.4,"Vietnamese":0.3}};
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: Object.keys(values),
+        datasets: [{
+          label: 'Share (%)',
+          data: Object.values(values),
+          backgroundColor: '#4576a7'
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.parsed.y + '%'
+            }
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 100,
+            title: {
+              display: true,
+              text: 'Population Share (%)'
+            }
+          },
+          x: {
+            title: {
+              display: true,
+              text: 'Language Group'
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(languageData[this.value]);
+  });
+
+  renderChart(languageData['Statewide']);</script>
+  </body>
+</html>
+</html>

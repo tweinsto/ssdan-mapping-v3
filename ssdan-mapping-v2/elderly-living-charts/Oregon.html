@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Living Arrangements – Oregon</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          margin: 1rem 2rem;
+          text-align: center;
+        }
+        h2 {
+          font-size: 1.5rem;
+          margin-bottom: 0.5rem;
+        }
+        select {
+          font-size: 1rem;
+          padding: 0.4rem;
+          margin: 1rem 0;
+          border: 1px solid #999;
+          border-radius: 5px;
+        }
+        canvas {
+          width: 100%;
+          max-width: 850px;
+          height: 600px;
+          margin-top: 1rem;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Living Arrangements of Adults 65+ in Oregon</h2>
+    <label>Select County:</label>
+            <select id="countySelect">
+          <option value='Statewide'>Default</option>
+<option value='Baker County, Oregon'>Baker County, Oregon</option>
+<option value='Benton County, Oregon'>Benton County, Oregon</option>
+<option value='Clackamas County, Oregon'>Clackamas County, Oregon</option>
+<option value='Clatsop County, Oregon'>Clatsop County, Oregon</option>
+<option value='Columbia County, Oregon'>Columbia County, Oregon</option>
+<option value='Coos County, Oregon'>Coos County, Oregon</option>
+<option value='Crook County, Oregon'>Crook County, Oregon</option>
+<option value='Curry County, Oregon'>Curry County, Oregon</option>
+<option value='Deschutes County, Oregon'>Deschutes County, Oregon</option>
+<option value='Douglas County, Oregon'>Douglas County, Oregon</option>
+<option value='Gilliam County, Oregon'>Gilliam County, Oregon</option>
+<option value='Grant County, Oregon'>Grant County, Oregon</option>
+<option value='Harney County, Oregon'>Harney County, Oregon</option>
+<option value='Hood River County, Oregon'>Hood River County, Oregon</option>
+<option value='Jackson County, Oregon'>Jackson County, Oregon</option>
+<option value='Jefferson County, Oregon'>Jefferson County, Oregon</option>
+<option value='Josephine County, Oregon'>Josephine County, Oregon</option>
+<option value='Klamath County, Oregon'>Klamath County, Oregon</option>
+<option value='Lake County, Oregon'>Lake County, Oregon</option>
+<option value='Lane County, Oregon'>Lane County, Oregon</option>
+<option value='Lincoln County, Oregon'>Lincoln County, Oregon</option>
+<option value='Linn County, Oregon'>Linn County, Oregon</option>
+<option value='Malheur County, Oregon'>Malheur County, Oregon</option>
+<option value='Marion County, Oregon'>Marion County, Oregon</option>
+<option value='Morrow County, Oregon'>Morrow County, Oregon</option>
+<option value='Multnomah County, Oregon'>Multnomah County, Oregon</option>
+<option value='Polk County, Oregon'>Polk County, Oregon</option>
+<option value='Sherman County, Oregon'>Sherman County, Oregon</option>
+<option value='Tillamook County, Oregon'>Tillamook County, Oregon</option>
+<option value='Umatilla County, Oregon'>Umatilla County, Oregon</option>
+<option value='Union County, Oregon'>Union County, Oregon</option>
+<option value='Wallowa County, Oregon'>Wallowa County, Oregon</option>
+<option value='Wasco County, Oregon'>Wasco County, Oregon</option>
+<option value='Washington County, Oregon'>Washington County, Oregon</option>
+<option value='Wheeler County, Oregon'>Wheeler County, Oregon</option>
+<option value='Yamhill County, Oregon'>Yamhill County, Oregon</option>
+        </select>
+    <canvas id="barChart"></canvas>
+    <script>  const chartData = {"Statewide":[0,0,0,0,0,0],"Baker County, Oregon":[0,0,0,0,0,0],"Benton County, Oregon":[0,0,0,0,0,0],"Clackamas County, Oregon":[0,0,0,0,0,0],"Clatsop County, Oregon":[0,0,0,0,0,0],"Columbia County, Oregon":[0,0,0,0,0,0],"Coos County, Oregon":[0,0,0,0,0,0],"Crook County, Oregon":[0,0,0,0,0,0],"Curry County, Oregon":[0,0,0,0,0,0],"Deschutes County, Oregon":[0,0,0,0,0,0],"Douglas County, Oregon":[0,0,0,0,0,0],"Gilliam County, Oregon":[0,0,0,0,0,0],"Grant County, Oregon":[0,0,0,0,0,0],"Harney County, Oregon":[0,0,0,0,0,0],"Hood River County, Oregon":[0,0,0,0,0,0],"Jackson County, Oregon":[0,0,0,0,0,0],"Jefferson County, Oregon":[0,0,0,0,0,0],"Josephine County, Oregon":[0,0,0,0,0,0],"Klamath County, Oregon":[0,0,0,0,0,0],"Lake County, Oregon":[0,0,0,0,0,0],"Lane County, Oregon":[0,0,0,0,0,0],"Lincoln County, Oregon":[0,0,0,0,0,0],"Linn County, Oregon":[0,0,0,0,0,0],"Malheur County, Oregon":[0,0,0,0,0,0],"Marion County, Oregon":[0,0,0,0,0,0],"Morrow County, Oregon":[0,0,0,0,0,0],"Multnomah County, Oregon":[0,0,0,0,0,0],"Polk County, Oregon":[0,0,0,0,0,0],"Sherman County, Oregon":[0,0,0,0,0,0],"Tillamook County, Oregon":[0,0,0,0,0,0],"Umatilla County, Oregon":[0,0,0,0,0,0],"Union County, Oregon":[0,0,0,0,0,0],"Wallowa County, Oregon":[0,0,0,0,0,0],"Wasco County, Oregon":[0,0,0,0,0,0],"Washington County, Oregon":[0,0,0,0,0,0],"Wheeler County, Oregon":[0,0,0,0,0,0],"Yamhill County, Oregon":[0,0,0,0,0,0]};
+  const categories = ["With unmarried partner","With spouse only","With other relatives","With nonrelatives","With child","Lives alone"];
+  const usAverages = [27.3,0.3,2.3,14.5,53.2,2.4];
+
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(data) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: categories,
+        datasets: [
+          {
+            label: 'Percent (County/State)',
+            data: data,
+            backgroundColor: '#4576a7'
+          },
+          {
+            label: 'National Average',
+            data: categories.map(c => usAverages[c] || 0),
+            type: 'line',
+            borderColor: '#000',
+            borderWidth: 1,
+            pointRadius: 0,
+            fill: false
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        indexAxis: 'y',
+        scales: {
+          x: {
+            title: {
+              display: true,
+              text: 'Percent of 65+ Population'
+            },
+            min: 0,
+            max: 100,
+            ticks: {
+              callback: value => value + '%'
+            }
+          }
+        },
+        plugins: {
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.dataset.label + ': ' + ctx.parsed.x + '%'
+            }
+          },
+          legend: {
+            position: 'top',
+            align: 'start'
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(Object.values(chartData[this.value]));
+  });
+
+  renderChart(Object.values(chartData['Statewide']));</script>
+  </body>
+</html>
+</html>

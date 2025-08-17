@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Educational Enrollment – Montana</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Educational Enrollment (Age 18–24) in Montana</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Beaverhead County, Montana">Beaverhead County, Montana</option>
+      <option value="Big Horn County, Montana">Big Horn County, Montana</option>
+      <option value="Blaine County, Montana">Blaine County, Montana</option>
+      <option value="Broadwater County, Montana">Broadwater County, Montana</option>
+      <option value="Carbon County, Montana">Carbon County, Montana</option>
+      <option value="Carter County, Montana">Carter County, Montana</option>
+      <option value="Cascade County, Montana">Cascade County, Montana</option>
+      <option value="Chouteau County, Montana">Chouteau County, Montana</option>
+      <option value="Custer County, Montana">Custer County, Montana</option>
+      <option value="Daniels County, Montana">Daniels County, Montana</option>
+      <option value="Dawson County, Montana">Dawson County, Montana</option>
+      <option value="Deer Lodge County, Montana">Deer Lodge County, Montana</option>
+      <option value="Fallon County, Montana">Fallon County, Montana</option>
+      <option value="Fergus County, Montana">Fergus County, Montana</option>
+      <option value="Flathead County, Montana">Flathead County, Montana</option>
+      <option value="Gallatin County, Montana">Gallatin County, Montana</option>
+      <option value="Garfield County, Montana">Garfield County, Montana</option>
+      <option value="Glacier County, Montana">Glacier County, Montana</option>
+      <option value="Golden Valley County, Montana">Golden Valley County, Montana</option>
+      <option value="Granite County, Montana">Granite County, Montana</option>
+      <option value="Hill County, Montana">Hill County, Montana</option>
+      <option value="Jefferson County, Montana">Jefferson County, Montana</option>
+      <option value="Judith Basin County, Montana">Judith Basin County, Montana</option>
+      <option value="Lake County, Montana">Lake County, Montana</option>
+      <option value="Lewis and Clark County, Montana">Lewis and Clark County, Montana</option>
+      <option value="Liberty County, Montana">Liberty County, Montana</option>
+      <option value="Lincoln County, Montana">Lincoln County, Montana</option>
+      <option value="Madison County, Montana">Madison County, Montana</option>
+      <option value="McCone County, Montana">McCone County, Montana</option>
+      <option value="Meagher County, Montana">Meagher County, Montana</option>
+      <option value="Mineral County, Montana">Mineral County, Montana</option>
+      <option value="Missoula County, Montana">Missoula County, Montana</option>
+      <option value="Musselshell County, Montana">Musselshell County, Montana</option>
+      <option value="Park County, Montana">Park County, Montana</option>
+      <option value="Petroleum County, Montana">Petroleum County, Montana</option>
+      <option value="Phillips County, Montana">Phillips County, Montana</option>
+      <option value="Pondera County, Montana">Pondera County, Montana</option>
+      <option value="Powder River County, Montana">Powder River County, Montana</option>
+      <option value="Powell County, Montana">Powell County, Montana</option>
+      <option value="Prairie County, Montana">Prairie County, Montana</option>
+      <option value="Ravalli County, Montana">Ravalli County, Montana</option>
+      <option value="Richland County, Montana">Richland County, Montana</option>
+      <option value="Roosevelt County, Montana">Roosevelt County, Montana</option>
+      <option value="Rosebud County, Montana">Rosebud County, Montana</option>
+      <option value="Sanders County, Montana">Sanders County, Montana</option>
+      <option value="Sheridan County, Montana">Sheridan County, Montana</option>
+      <option value="Silver Bow County, Montana">Silver Bow County, Montana</option>
+      <option value="Stillwater County, Montana">Stillwater County, Montana</option>
+      <option value="Sweet Grass County, Montana">Sweet Grass County, Montana</option>
+      <option value="Teton County, Montana">Teton County, Montana</option>
+      <option value="Toole County, Montana">Toole County, Montana</option>
+      <option value="Treasure County, Montana">Treasure County, Montana</option>
+      <option value="Valley County, Montana">Valley County, Montana</option>
+      <option value="Wheatland County, Montana">Wheatland County, Montana</option>
+      <option value="Wibaux County, Montana">Wibaux County, Montana</option>
+      <option value="Yellowstone County, Montana">Yellowstone County, Montana</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>  const data = {"Statewide":[46.3,19.3,34.5],"Beaverhead County, Montana":[41.4,32.5,26],"Big Horn County, Montana":[46.5,20.8,32.7],"Blaine County, Montana":[45.2,29.7,25.1],"Broadwater County, Montana":[53.1,0.9,46],"Carbon County, Montana":[47.3,18.6,34.1],"Carter County, Montana":[46.8,36.2,17],"Cascade County, Montana":[47.9,20.6,31.4],"Chouteau County, Montana":[40.1,21.4,38.5],"Custer County, Montana":[45.5,17.7,36.8],"Daniels County, Montana":[46.4,14.5,39.1],"Dawson County, Montana":[49.3,5.7,44.9],"Deer Lodge County, Montana":[52.6,9.4,38],"Fallon County, Montana":[50,0,50],"Fergus County, Montana":[39.8,35.6,24.6],"Flathead County, Montana":[46.2,21.2,32.6],"Gallatin County, Montana":[47.7,13,39.3],"Garfield County, Montana":[51,0,49],"Glacier County, Montana":[49,28.4,22.6],"Golden Valley County, Montana":[47.6,20.6,31.7],"Granite County, Montana":[42.3,30.9,26.8],"Hill County, Montana":[44.2,23.7,32.1],"Jefferson County, Montana":[40,20.1,40],"Judith Basin County, Montana":[46.7,12.2,41.1],"Lake County, Montana":[45.6,20.9,33.5],"Lewis and Clark County, Montana":[47.7,16.4,35.9],"Liberty County, Montana":[16.2,73.5,10.3],"Lincoln County, Montana":[49.4,13,37.6],"Madison County, Montana":[51.5,7,41.5],"McCone County, Montana":[43.5,12.9,43.5],"Meagher County, Montana":[50,0,50],"Mineral County, Montana":[46.8,13.5,39.7],"Missoula County, Montana":[44.9,20.1,35],"Musselshell County, Montana":[36.7,41.7,21.6],"Park County, Montana":[43.2,28.4,28.4],"Petroleum County, Montana":["NaN","NaN","NaN"],"Phillips County, Montana":[35.2,57.6,7.2],"Pondera County, Montana":[35.1,32.4,32.4],"Powder River County, Montana":[16.3,53.1,30.6],"Powell County, Montana":[46.9,8.1,45],"Prairie County, Montana":["NaN","NaN","NaN"],"Ravalli County, Montana":[46.8,25.8,27.4],"Richland County, Montana":[48.5,5.4,46.1],"Roosevelt County, Montana":[49.1,13.4,37.5],"Rosebud County, Montana":[48.9,18.4,32.6],"Sanders County, Montana":[43.7,25.5,30.8],"Sheridan County, Montana":[29.8,41.7,28.5],"Silver Bow County, Montana":[38.8,28,33.2],"Stillwater County, Montana":[51.2,6.3,42.5],"Sweet Grass County, Montana":[53.6,3,43.5],"Teton County, Montana":[45.4,21.4,33.2],"Toole County, Montana":[43.4,20.2,36.4],"Treasure County, Montana":[25,50,25],"Valley County, Montana":[58.4,2.9,38.7],"Wheatland County, Montana":[55.2,6.2,38.5],"Wibaux County, Montana":[50,0,50],"Yellowstone County, Montana":[47,18.7,34.3]};
+  const nationalAvg = [6.9,55,38.1];
+  const categories = ["Enrolled in College","Enrolled in Other School","Not Enrolled"];
+  const ctx = document.getElementById("barChart").getContext("2d");
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: categories,
+        datasets: [
+          {
+            label: "County/State",
+            data: values,
+            backgroundColor: ["#66c2a5", "#fc8d62", "#8da0cb"]
+          },
+          {
+            label: null,
+            data: categories.map(c => nationalAvg[c]),
+            type: "line",
+            borderColor: "black",
+            borderWidth: 2,
+            pointRadius: 0,
+            fill: false
+          }
+        ]
+      },
+      options: {
+        indexAxis: "y",
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            ticks: {
+              callback: v => v + "%"
+            }
+          }
+        },
+        plugins: {
+          legend: {
+            labels: {
+              filter: item => item.text !== null
+            }
+          },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.dataset.label ? ctx.dataset.label + ": " + ctx.raw + "%" : null
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById("countySelect").addEventListener("change", function() {
+    renderChart(Object.values(data[this.value]));
+  });
+
+  renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

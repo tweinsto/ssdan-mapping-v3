@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Income Distribution – New York</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          text-align: center;
+          margin: 2rem;
+        }
+        select {
+          font-size: 1rem;
+          padding: 0.4rem;
+          margin-bottom: 1rem;
+        }
+        canvas {
+          width: 100%;
+          max-width: 700px;
+          height: 400px;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Income Share by Quintile – New York</h2>
+    <label>Select County, State:</label>
+    <select id="countySelect"><option value='Statewide'>Statewide</option>
+<option value='Albany, New York'>Albany, New York</option>
+<option value='Allegany, New York'>Allegany, New York</option>
+<option value='Bronx, New York'>Bronx, New York</option>
+<option value='Broome, New York'>Broome, New York</option>
+<option value='Cattaraugus, New York'>Cattaraugus, New York</option>
+<option value='Cayuga, New York'>Cayuga, New York</option>
+<option value='Chautauqua, New York'>Chautauqua, New York</option>
+<option value='Chemung, New York'>Chemung, New York</option>
+<option value='Chenango, New York'>Chenango, New York</option>
+<option value='Clinton, New York'>Clinton, New York</option>
+<option value='Columbia, New York'>Columbia, New York</option>
+<option value='Cortland, New York'>Cortland, New York</option>
+<option value='Delaware, New York'>Delaware, New York</option>
+<option value='Dutchess, New York'>Dutchess, New York</option>
+<option value='Erie, New York'>Erie, New York</option>
+<option value='Essex, New York'>Essex, New York</option>
+<option value='Franklin, New York'>Franklin, New York</option>
+<option value='Fulton, New York'>Fulton, New York</option>
+<option value='Genesee, New York'>Genesee, New York</option>
+<option value='Greene, New York'>Greene, New York</option>
+<option value='Hamilton, New York'>Hamilton, New York</option>
+<option value='Herkimer, New York'>Herkimer, New York</option>
+<option value='Jefferson, New York'>Jefferson, New York</option>
+<option value='Kings, New York'>Kings, New York</option>
+<option value='Lewis, New York'>Lewis, New York</option>
+<option value='Livingston, New York'>Livingston, New York</option>
+<option value='Madison, New York'>Madison, New York</option>
+<option value='Monroe, New York'>Monroe, New York</option>
+<option value='Montgomery, New York'>Montgomery, New York</option>
+<option value='Nassau, New York'>Nassau, New York</option>
+<option value='New York, New York'>New York, New York</option>
+<option value='Niagara, New York'>Niagara, New York</option>
+<option value='Oneida, New York'>Oneida, New York</option>
+<option value='Onondaga, New York'>Onondaga, New York</option>
+<option value='Ontario, New York'>Ontario, New York</option>
+<option value='Orange, New York'>Orange, New York</option>
+<option value='Orleans, New York'>Orleans, New York</option>
+<option value='Oswego, New York'>Oswego, New York</option>
+<option value='Otsego, New York'>Otsego, New York</option>
+<option value='Putnam, New York'>Putnam, New York</option>
+<option value='Queens, New York'>Queens, New York</option>
+<option value='Rensselaer, New York'>Rensselaer, New York</option>
+<option value='Richmond, New York'>Richmond, New York</option>
+<option value='Rockland, New York'>Rockland, New York</option>
+<option value='Saratoga, New York'>Saratoga, New York</option>
+<option value='Schenectady, New York'>Schenectady, New York</option>
+<option value='Schoharie, New York'>Schoharie, New York</option>
+<option value='Schuyler, New York'>Schuyler, New York</option>
+<option value='Seneca, New York'>Seneca, New York</option>
+<option value='St. Lawrence, New York'>St. Lawrence, New York</option>
+<option value='Steuben, New York'>Steuben, New York</option>
+<option value='Suffolk, New York'>Suffolk, New York</option>
+<option value='Sullivan, New York'>Sullivan, New York</option>
+<option value='Tioga, New York'>Tioga, New York</option>
+<option value='Tompkins, New York'>Tompkins, New York</option>
+<option value='Ulster, New York'>Ulster, New York</option>
+<option value='Warren, New York'>Warren, New York</option>
+<option value='Washington, New York'>Washington, New York</option>
+<option value='Wayne, New York'>Wayne, New York</option>
+<option value='Westchester, New York'>Westchester, New York</option>
+<option value='Wyoming, New York'>Wyoming, New York</option>
+<option value='Yates, New York'>Yates, New York</option></select>
+    <canvas id="barChart" width="700" height="400"></canvas>
+    <script>  const incomeData = {"Statewide":[5.2,8.7,13.3,27.1,45.7],"Albany, New York":[5.2,8.7,13.4,27.3,45.3],"Allegany, New York":[5.4,8.9,13.4,26.5,45.9],"Bronx, New York":[3.7,7.4,12.5,28.3,48.2],"Broome, New York":[4.6,7.9,12.6,27.3,47.5],"Cattaraugus, New York":[5.3,9.1,14.2,27.2,44.2],"Cayuga, New York":[5.2,8.7,13.4,27,45.7],"Chautauqua, New York":[5.3,8.9,14.1,27.7,44.1],"Chemung, New York":[5.1,8.3,12.8,26.6,47.2],"Chenango, New York":[6,9.8,14.9,27.3,41.9],"Clinton, New York":[5,8.6,13.2,26.8,46.4],"Columbia, New York":[4,6.9,11,26.8,51.2],"Cortland, New York":[6.2,10,15,27.9,40.9],"Delaware, New York":[5.1,8.5,13.2,27.9,45.3],"Dutchess, New York":[4.9,8.1,12.3,26.7,48],"Erie, New York":[4.8,8.3,13.1,27.4,46.4],"Essex, New York":[5.1,8.4,13,26.8,46.8],"Franklin, New York":[5.7,9.5,14.2,27,43.6],"Fulton, New York":[5.5,9,13.8,26.8,44.9],"Genesee, New York":[6.5,10.5,15.5,27.4,40.1],"Greene, New York":[4.6,8,12.3,27.2,47.8],"Hamilton, New York":[5.8,8.8,13.4,27,45.1],"Herkimer, New York":[5.5,9.4,14.1,26.6,44.3],"Jefferson, New York":[5.5,8.8,13.4,26.6,45.7],"Kings, New York":[3.4,6.5,11.1,27.7,51.3],"Lewis, New York":[6.8,10.8,15.6,27.3,39.6],"Livingston, New York":[5.7,9.1,13.8,26.8,44.5],"Madison, New York":[5.2,8.5,13.2,27.1,46],"Monroe, New York":[4.8,8.1,12.7,27.2,47.3],"Montgomery, New York":[5.8,9.8,15.2,27.9,41.3],"Nassau, New York":[5.2,8.5,12.7,26.9,46.7],"New York, New York":[2.4,5,9.2,28.2,55.2],"Niagara, New York":[5.5,9.2,14.4,28,42.9],"Oneida, New York":[5.3,8.8,13.5,27.1,45.3],"Onondaga, New York":[4.9,8.4,13.1,27.3,46.3],"Ontario, New York":[5.4,8.6,12.8,26.8,46.4],"Orange, New York":[5.3,9.1,13.8,27,44.7],"Orleans, New York":[5.7,9.3,14.2,27.4,43.5],"Oswego, New York":[5.2,8.9,13.7,26.8,45.3],"Otsego, New York":[4.9,8,12,26.3,48.9],"Putnam, New York":[6,9.8,14.1,26.6,43.5],"Queens, New York":[4.9,8.3,13,27.3,46.5],"Rensselaer, New York":[5.6,9.6,14.5,27,43.4],"Richmond, New York":[5.2,9,14.1,27.4,44.1],"Rockland, New York":[4.7,8.2,13.2,27.2,46.8],"Saratoga, New York":[5.3,8.7,13,26.5,46.5],"Schenectady, New York":[5.6,9.2,14,27.4,44],"Schoharie, New York":[5.5,9,13.4,27.1,44.9],"Schuyler, New York":[5.5,9.2,14.1,27.3,43.9],"Seneca, New York":[4.9,8,12.1,26.5,48.4],"St. Lawrence, New York":[5,9.2,14.4,27.7,43.7],"Steuben, New York":[5.1,8.5,13.3,27.1,45.9],"Suffolk, New York":[5.4,8.7,12.8,26.5,46.5],"Sullivan, New York":[4.1,7,11.2,27.2,50.6],"Tioga, New York":[4.9,8.2,12.4,26.6,47.9],"Tompkins, New York":[4.3,7.6,12.5,27.8,47.8],"Ulster, New York":[4.5,7.9,12.5,27.3,47.9],"Warren, New York":[5.3,8.9,13.7,27.4,44.7],"Washington, New York":[6.3,10,14.3,26.5,42.9],"Wayne, New York":[6.1,9.8,14.8,26.7,42.6],"Westchester, New York":[3.5,6.2,10.5,27.6,52.2],"Wyoming, New York":[6.4,9.9,14.4,26.6,42.6],"Yates, New York":[5.1,8.3,12.7,27.3,46.6]};
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Bottom 20%', 'Second 20%', 'Middle 20%', 'Fourth 20%', 'Top 20%'],
+        datasets: [{
+          label: 'Share (%)',
+          data: values,
+          backgroundColor: '#4576a7'
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.parsed.y + '%'
+            }
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 100,
+            title: {
+              display: true,
+              text: 'Income Share (%)'
+            }
+          },
+          x: {
+            title: {
+              display: true,
+              text: 'Quintile'
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(Object.values(incomeData[this.value]));
+  });
+
+  renderChart(Object.values(incomeData['Statewide']));</script>
+  </body>
+</html>
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Educational Enrollment – Arkansas</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Educational Enrollment (Age 18–24) in Arkansas</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Arkansas County, Arkansas">Arkansas County, Arkansas</option>
+      <option value="Ashley County, Arkansas">Ashley County, Arkansas</option>
+      <option value="Baxter County, Arkansas">Baxter County, Arkansas</option>
+      <option value="Benton County, Arkansas">Benton County, Arkansas</option>
+      <option value="Boone County, Arkansas">Boone County, Arkansas</option>
+      <option value="Bradley County, Arkansas">Bradley County, Arkansas</option>
+      <option value="Calhoun County, Arkansas">Calhoun County, Arkansas</option>
+      <option value="Carroll County, Arkansas">Carroll County, Arkansas</option>
+      <option value="Chicot County, Arkansas">Chicot County, Arkansas</option>
+      <option value="Clark County, Arkansas">Clark County, Arkansas</option>
+      <option value="Clay County, Arkansas">Clay County, Arkansas</option>
+      <option value="Cleburne County, Arkansas">Cleburne County, Arkansas</option>
+      <option value="Cleveland County, Arkansas">Cleveland County, Arkansas</option>
+      <option value="Columbia County, Arkansas">Columbia County, Arkansas</option>
+      <option value="Conway County, Arkansas">Conway County, Arkansas</option>
+      <option value="Craighead County, Arkansas">Craighead County, Arkansas</option>
+      <option value="Crawford County, Arkansas">Crawford County, Arkansas</option>
+      <option value="Crittenden County, Arkansas">Crittenden County, Arkansas</option>
+      <option value="Cross County, Arkansas">Cross County, Arkansas</option>
+      <option value="Dallas County, Arkansas">Dallas County, Arkansas</option>
+      <option value="Desha County, Arkansas">Desha County, Arkansas</option>
+      <option value="Drew County, Arkansas">Drew County, Arkansas</option>
+      <option value="Faulkner County, Arkansas">Faulkner County, Arkansas</option>
+      <option value="Franklin County, Arkansas">Franklin County, Arkansas</option>
+      <option value="Fulton County, Arkansas">Fulton County, Arkansas</option>
+      <option value="Garland County, Arkansas">Garland County, Arkansas</option>
+      <option value="Grant County, Arkansas">Grant County, Arkansas</option>
+      <option value="Greene County, Arkansas">Greene County, Arkansas</option>
+      <option value="Hempstead County, Arkansas">Hempstead County, Arkansas</option>
+      <option value="Hot Spring County, Arkansas">Hot Spring County, Arkansas</option>
+      <option value="Howard County, Arkansas">Howard County, Arkansas</option>
+      <option value="Independence County, Arkansas">Independence County, Arkansas</option>
+      <option value="Izard County, Arkansas">Izard County, Arkansas</option>
+      <option value="Jackson County, Arkansas">Jackson County, Arkansas</option>
+      <option value="Jefferson County, Arkansas">Jefferson County, Arkansas</option>
+      <option value="Johnson County, Arkansas">Johnson County, Arkansas</option>
+      <option value="Lafayette County, Arkansas">Lafayette County, Arkansas</option>
+      <option value="Lawrence County, Arkansas">Lawrence County, Arkansas</option>
+      <option value="Lee County, Arkansas">Lee County, Arkansas</option>
+      <option value="Lincoln County, Arkansas">Lincoln County, Arkansas</option>
+      <option value="Little River County, Arkansas">Little River County, Arkansas</option>
+      <option value="Logan County, Arkansas">Logan County, Arkansas</option>
+      <option value="Lonoke County, Arkansas">Lonoke County, Arkansas</option>
+      <option value="Madison County, Arkansas">Madison County, Arkansas</option>
+      <option value="Marion County, Arkansas">Marion County, Arkansas</option>
+      <option value="Miller County, Arkansas">Miller County, Arkansas</option>
+      <option value="Mississippi County, Arkansas">Mississippi County, Arkansas</option>
+      <option value="Monroe County, Arkansas">Monroe County, Arkansas</option>
+      <option value="Montgomery County, Arkansas">Montgomery County, Arkansas</option>
+      <option value="Nevada County, Arkansas">Nevada County, Arkansas</option>
+      <option value="Newton County, Arkansas">Newton County, Arkansas</option>
+      <option value="Ouachita County, Arkansas">Ouachita County, Arkansas</option>
+      <option value="Perry County, Arkansas">Perry County, Arkansas</option>
+      <option value="Phillips County, Arkansas">Phillips County, Arkansas</option>
+      <option value="Pike County, Arkansas">Pike County, Arkansas</option>
+      <option value="Poinsett County, Arkansas">Poinsett County, Arkansas</option>
+      <option value="Polk County, Arkansas">Polk County, Arkansas</option>
+      <option value="Pope County, Arkansas">Pope County, Arkansas</option>
+      <option value="Prairie County, Arkansas">Prairie County, Arkansas</option>
+      <option value="Pulaski County, Arkansas">Pulaski County, Arkansas</option>
+      <option value="Randolph County, Arkansas">Randolph County, Arkansas</option>
+      <option value="Saline County, Arkansas">Saline County, Arkansas</option>
+      <option value="Scott County, Arkansas">Scott County, Arkansas</option>
+      <option value="Searcy County, Arkansas">Searcy County, Arkansas</option>
+      <option value="Sebastian County, Arkansas">Sebastian County, Arkansas</option>
+      <option value="Sevier County, Arkansas">Sevier County, Arkansas</option>
+      <option value="Sharp County, Arkansas">Sharp County, Arkansas</option>
+      <option value="St. Francis County, Arkansas">St. Francis County, Arkansas</option>
+      <option value="Stone County, Arkansas">Stone County, Arkansas</option>
+      <option value="Union County, Arkansas">Union County, Arkansas</option>
+      <option value="Van Buren County, Arkansas">Van Buren County, Arkansas</option>
+      <option value="Washington County, Arkansas">Washington County, Arkansas</option>
+      <option value="White County, Arkansas">White County, Arkansas</option>
+      <option value="Woodruff County, Arkansas">Woodruff County, Arkansas</option>
+      <option value="Yell County, Arkansas">Yell County, Arkansas</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>  const data = {"Statewide":[45.8,18.4,35.8],"Arkansas County, Arkansas":[43.7,27.3,29],"Ashley County, Arkansas":[48.6,13.4,38],"Baxter County, Arkansas":[48.3,18.6,33.1],"Benton County, Arkansas":[46.9,16.8,36.3],"Boone County, Arkansas":[50.6,18.5,30.9],"Bradley County, Arkansas":[48.1,11.9,40],"Calhoun County, Arkansas":[43.9,28.3,27.8],"Carroll County, Arkansas":[38,30.2,31.8],"Chicot County, Arkansas":[35.5,28.9,35.5],"Clark County, Arkansas":[52.9,3.2,43.9],"Clay County, Arkansas":[41.7,25.9,32.4],"Cleburne County, Arkansas":[53.1,12.6,34.3],"Cleveland County, Arkansas":[46.5,13.1,40.4],"Columbia County, Arkansas":[51.9,4.6,43.4],"Conway County, Arkansas":[44.5,15.2,40.4],"Craighead County, Arkansas":[44.7,18.5,36.9],"Crawford County, Arkansas":[43.1,20.5,36.4],"Crittenden County, Arkansas":[44.2,21.9,33.9],"Cross County, Arkansas":[48,11.1,40.8],"Dallas County, Arkansas":[36.2,28.7,35.2],"Desha County, Arkansas":[38.5,30.3,31.2],"Drew County, Arkansas":[36.9,26,37.1],"Faulkner County, Arkansas":[46.7,13.6,39.7],"Franklin County, Arkansas":[54.5,16,29.6],"Fulton County, Arkansas":[50.5,12.5,36.9],"Garland County, Arkansas":[45.4,22.9,31.7],"Grant County, Arkansas":[50.8,23.1,26.1],"Greene County, Arkansas":[46.6,18.9,34.5],"Hempstead County, Arkansas":[49.4,3.9,46.7],"Hot Spring County, Arkansas":[44.5,20,35.5],"Howard County, Arkansas":[47.4,10.6,42.1],"Independence County, Arkansas":[45,21.1,33.9],"Izard County, Arkansas":[47.9,15.3,36.8],"Jackson County, Arkansas":[49.3,21.4,29.3],"Jefferson County, Arkansas":[41.8,19.4,38.8],"Johnson County, Arkansas":[44.8,20.2,35],"Lafayette County, Arkansas":[46.9,17.7,35.4],"Lawrence County, Arkansas":[49.2,20.2,30.6],"Lee County, Arkansas":[44.3,17.6,38],"Lincoln County, Arkansas":[32.7,39.5,27.8],"Little River County, Arkansas":[41.1,34.1,24.8],"Logan County, Arkansas":[46.9,19.4,33.7],"Lonoke County, Arkansas":[46,18,36],"Madison County, Arkansas":[46.6,13,40.4],"Marion County, Arkansas":[39.4,29.9,30.7],"Miller County, Arkansas":[42.9,27,30.1],"Mississippi County, Arkansas":[46.9,17.9,35.3],"Monroe County, Arkansas":[48.4,22.6,28.9],"Montgomery County, Arkansas":[39.6,30.8,29.6],"Nevada County, Arkansas":[39.5,43.8,16.7],"Newton County, Arkansas":[64.1,1.5,34.4],"Ouachita County, Arkansas":[46.4,19.6,34],"Perry County, Arkansas":[46.3,15.4,38.3],"Phillips County, Arkansas":[47,12.9,40.1],"Pike County, Arkansas":[45.4,21,33.6],"Poinsett County, Arkansas":[44.9,26.6,28.5],"Polk County, Arkansas":[46.3,27.5,26.2],"Pope County, Arkansas":[49.8,7.7,42.5],"Prairie County, Arkansas":[39.1,31.9,29.1],"Pulaski County, Arkansas":[45,21.5,33.5],"Randolph County, Arkansas":[44.5,20.3,35.3],"Saline County, Arkansas":[47,19.8,33.2],"Scott County, Arkansas":[33.4,37.9,28.6],"Searcy County, Arkansas":[43.6,20.8,35.7],"Sebastian County, Arkansas":[45.3,18.3,36.4],"Sevier County, Arkansas":[45,19.4,35.6],"Sharp County, Arkansas":[47.2,17.4,35.4],"St. Francis County, Arkansas":[47.7,24.9,27.4],"Stone County, Arkansas":[48.8,8.2,43.1],"Union County, Arkansas":[41.1,20.9,38],"Van Buren County, Arkansas":[44.3,31.1,24.6],"Washington County, Arkansas":[47.1,14.1,38.8],"White County, Arkansas":[46.6,11.2,42.2],"Woodruff County, Arkansas":[37.6,32.8,29.6],"Yell County, Arkansas":[47.7,19.8,32.5]};
+  const nationalAvg = [6.9,55,38.1];
+  const categories = ["Enrolled in College","Enrolled in Other School","Not Enrolled"];
+  const ctx = document.getElementById("barChart").getContext("2d");
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: categories,
+        datasets: [
+          {
+            label: "County/State",
+            data: values,
+            backgroundColor: ["#66c2a5", "#fc8d62", "#8da0cb"]
+          },
+          {
+            label: null,
+            data: categories.map(c => nationalAvg[c]),
+            type: "line",
+            borderColor: "black",
+            borderWidth: 2,
+            pointRadius: 0,
+            fill: false
+          }
+        ]
+      },
+      options: {
+        indexAxis: "y",
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            ticks: {
+              callback: v => v + "%"
+            }
+          }
+        },
+        plugins: {
+          legend: {
+            labels: {
+              filter: item => item.text !== null
+            }
+          },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.dataset.label ? ctx.dataset.label + ": " + ctx.raw + "%" : null
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById("countySelect").addEventListener("change", function() {
+    renderChart(Object.values(data[this.value]));
+  });
+
+  renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

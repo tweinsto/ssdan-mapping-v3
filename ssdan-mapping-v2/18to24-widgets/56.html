@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Educational Enrollment – Wyoming</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Educational Enrollment (Age 18–24) in Wyoming</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Albany County, Wyoming">Albany County, Wyoming</option>
+      <option value="Big Horn County, Wyoming">Big Horn County, Wyoming</option>
+      <option value="Campbell County, Wyoming">Campbell County, Wyoming</option>
+      <option value="Carbon County, Wyoming">Carbon County, Wyoming</option>
+      <option value="Converse County, Wyoming">Converse County, Wyoming</option>
+      <option value="Crook County, Wyoming">Crook County, Wyoming</option>
+      <option value="Fremont County, Wyoming">Fremont County, Wyoming</option>
+      <option value="Goshen County, Wyoming">Goshen County, Wyoming</option>
+      <option value="Hot Springs County, Wyoming">Hot Springs County, Wyoming</option>
+      <option value="Johnson County, Wyoming">Johnson County, Wyoming</option>
+      <option value="Laramie County, Wyoming">Laramie County, Wyoming</option>
+      <option value="Lincoln County, Wyoming">Lincoln County, Wyoming</option>
+      <option value="Natrona County, Wyoming">Natrona County, Wyoming</option>
+      <option value="Niobrara County, Wyoming">Niobrara County, Wyoming</option>
+      <option value="Park County, Wyoming">Park County, Wyoming</option>
+      <option value="Platte County, Wyoming">Platte County, Wyoming</option>
+      <option value="Sheridan County, Wyoming">Sheridan County, Wyoming</option>
+      <option value="Sublette County, Wyoming">Sublette County, Wyoming</option>
+      <option value="Sweetwater County, Wyoming">Sweetwater County, Wyoming</option>
+      <option value="Teton County, Wyoming">Teton County, Wyoming</option>
+      <option value="Uinta County, Wyoming">Uinta County, Wyoming</option>
+      <option value="Washakie County, Wyoming">Washakie County, Wyoming</option>
+      <option value="Weston County, Wyoming">Weston County, Wyoming</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>  const data = {"Statewide":[47.3,16.6,36.1],"Albany County, Wyoming":[50.9,0.6,48.5],"Big Horn County, Wyoming":[46.7,21.7,31.6],"Campbell County, Wyoming":[48.4,20.1,31.5],"Carbon County, Wyoming":[54.6,9.2,36.2],"Converse County, Wyoming":[45,15.7,39.2],"Crook County, Wyoming":[34.2,36.8,29.1],"Fremont County, Wyoming":[43.5,24.9,31.6],"Goshen County, Wyoming":[49.3,7,43.7],"Hot Springs County, Wyoming":[59,0,41],"Johnson County, Wyoming":[49.6,0.9,49.6],"Laramie County, Wyoming":[47.8,16,36.1],"Lincoln County, Wyoming":[51.5,11.3,37.3],"Natrona County, Wyoming":[47.1,22.7,30.1],"Niobrara County, Wyoming":[39.2,50.6,10.1],"Park County, Wyoming":[43,19.1,38],"Platte County, Wyoming":[49.9,0.6,49.6],"Sheridan County, Wyoming":[49.2,11.9,38.9],"Sublette County, Wyoming":[31.4,46.5,22.2],"Sweetwater County, Wyoming":[48.4,15,36.5],"Teton County, Wyoming":[40.3,30.5,29.2],"Uinta County, Wyoming":[43.2,25.9,30.9],"Washakie County, Wyoming":[53.3,6.7,40],"Weston County, Wyoming":[42.8,29,28.3]};
+  const nationalAvg = [6.9,55,38.1];
+  const categories = ["Enrolled in College","Enrolled in Other School","Not Enrolled"];
+  const ctx = document.getElementById("barChart").getContext("2d");
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: categories,
+        datasets: [
+          {
+            label: "County/State",
+            data: values,
+            backgroundColor: ["#66c2a5", "#fc8d62", "#8da0cb"]
+          },
+          {
+            label: null,
+            data: categories.map(c => nationalAvg[c]),
+            type: "line",
+            borderColor: "black",
+            borderWidth: 2,
+            pointRadius: 0,
+            fill: false
+          }
+        ]
+      },
+      options: {
+        indexAxis: "y",
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            ticks: {
+              callback: v => v + "%"
+            }
+          }
+        },
+        plugins: {
+          legend: {
+            labels: {
+              filter: item => item.text !== null
+            }
+          },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.dataset.label ? ctx.dataset.label + ": " + ctx.raw + "%" : null
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById("countySelect").addEventListener("change", function() {
+    renderChart(Object.values(data[this.value]));
+  });
+
+  renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

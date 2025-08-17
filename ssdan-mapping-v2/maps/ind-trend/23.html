@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+
+</head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Median Earnings by Industry – 23</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background: white;
+    }
+    .layout {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1.5rem;
+    }
+    label {
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+    #countySelect {
+      font-size: 1rem;
+      padding: 0.4rem 0.8rem;
+      margin-bottom: 1rem;
+    }
+    canvas {
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <label for="countySelect">Median Earnings by Industry:</label>
+    <select id="countySelect"></select>
+    <canvas id="barChart"></canvas>
+  </div>
+
+  <script>
+    const data = {"Statewide":{"Agriculture, forestry, fishing and hunting, and mining":46640,"Arts, entertainment, and recreation, and accommodation and food services":37634,"Construction":53789,"Educational services, and health care and social assistance":52922,"Finance and insurance, and real estate and rental and leasing":55164,"Information":60623,"Manufacturing":55175,"Other services, except public administration":46306,"Professional, scientific, and management, and administrative and waste management services":60546,"Public administration":61146,"Retail trade":45024,"Transportation and warehousing, and utilities":61839,"Wholesale trade":57383},"Androscoggin County":{"Agriculture, forestry, fishing and hunting, and mining":46797,"Arts, entertainment, and recreation, and accommodation and food services":42756,"Construction":52642,"Educational services, and health care and social assistance":51938,"Finance and insurance, and real estate and rental and leasing":55119,"Information":82875,"Manufacturing":57776,"Other services, except public administration":46538,"Professional, scientific, and management, and administrative and waste management services":56069,"Public administration":69835,"Retail trade":47148,"Transportation and warehousing, and utilities":56789,"Wholesale trade":58377},"Aroostook County":{"Agriculture, forestry, fishing and hunting, and mining":44881,"Arts, entertainment, and recreation, and accommodation and food services":40000,"Construction":52380,"Educational services, and health care and social assistance":48773,"Finance and insurance, and real estate and rental and leasing":58341,"Information":49375,"Manufacturing":55379,"Other services, except public administration":43455,"Professional, scientific, and management, and administrative and waste management services":57966,"Public administration":58906,"Retail trade":40446,"Transportation and warehousing, and utilities":59509,"Wholesale trade":59833},"Cumberland County":{"Agriculture, forestry, fishing and hunting, and mining":56420,"Arts, entertainment, and recreation, and accommodation and food services":48211,"Construction":62850,"Educational services, and health care and social assistance":63307,"Finance and insurance, and real estate and rental and leasing":78385,"Information":74884,"Manufacturing":70429,"Other services, except public administration":54114,"Professional, scientific, and management, and administrative and waste management services":86199,"Public administration":73587,"Retail trade":48598,"Transportation and warehousing, and utilities":70014,"Wholesale trade":71183},"Franklin County":{"Agriculture, forestry, fishing and hunting, and mining":44205,"Arts, entertainment, and recreation, and accommodation and food services":34688,"Construction":60492,"Educational services, and health care and social assistance":47614,"Finance and insurance, and real estate and rental and leasing":42563,"Information":54549,"Manufacturing":49122,"Other services, except public administration":54861,"Professional, scientific, and management, and administrative and waste management services":43641,"Public administration":57986,"Retail trade":44775,"Transportation and warehousing, and utilities":61453,"Wholesale trade":43750},"Hancock County":{"Agriculture, forestry, fishing and hunting, and mining":45563,"Arts, entertainment, and recreation, and accommodation and food services":39558,"Construction":50286,"Educational services, and health care and social assistance":50311,"Finance and insurance, and real estate and rental and leasing":51964,"Information":44063,"Manufacturing":54970,"Other services, except public administration":50455,"Professional, scientific, and management, and administrative and waste management services":71993,"Public administration":63148,"Retail trade":42618,"Transportation and warehousing, and utilities":59548,"Wholesale trade":66836},"Kennebec County":{"Agriculture, forestry, fishing and hunting, and mining":39076,"Arts, entertainment, and recreation, and accommodation and food services":30334,"Construction":51138,"Educational services, and health care and social assistance":53905,"Finance and insurance, and real estate and rental and leasing":59862,"Information":56188,"Manufacturing":60736,"Other services, except public administration":49551,"Professional, scientific, and management, and administrative and waste management services":62772,"Public administration":60248,"Retail trade":45273,"Transportation and warehousing, and utilities":67794,"Wholesale trade":47939},"Knox County":{"Agriculture, forestry, fishing and hunting, and mining":52879,"Arts, entertainment, and recreation, and accommodation and food services":37222,"Construction":53420,"Educational services, and health care and social assistance":57882,"Finance and insurance, and real estate and rental and leasing":47246,"Information":43750,"Manufacturing":54971,"Other services, except public administration":42413,"Professional, scientific, and management, and administrative and waste management services":61205,"Public administration":59620,"Retail trade":45563,"Transportation and warehousing, and utilities":58888,"Wholesale trade":70984},"Lincoln County":{"Agriculture, forestry, fishing and hunting, and mining":49464,"Arts, entertainment, and recreation, and accommodation and food services":33438,"Construction":49068,"Educational services, and health care and social assistance":58000,"Finance and insurance, and real estate and rental and leasing":53537,"Information":80625,"Manufacturing":53868,"Other services, except public administration":43250,"Professional, scientific, and management, and administrative and waste management services":67917,"Public administration":55673,"Retail trade":47222,"Transportation and warehousing, and utilities":78438,"Wholesale trade":41000},"Oxford County":{"Agriculture, forestry, fishing and hunting, and mining":53036,"Arts, entertainment, and recreation, and accommodation and food services":36273,"Construction":52415,"Educational services, and health care and social assistance":47840,"Finance and insurance, and real estate and rental and leasing":54366,"Information":81107,"Manufacturing":58883,"Other services, except public administration":44441,"Professional, scientific, and management, and administrative and waste management services":59075,"Public administration":62045,"Retail trade":42236,"Transportation and warehousing, and utilities":61818,"Wholesale trade":51897},"Penobscot County":{"Agriculture, forestry, fishing and hunting, and mining":52671,"Arts, entertainment, and recreation, and accommodation and food services":35233,"Construction":57060,"Educational services, and health care and social assistance":54375,"Finance and insurance, and real estate and rental and leasing":61675,"Information":60250,"Manufacturing":60189,"Other services, except public administration":43438,"Professional, scientific, and management, and administrative and waste management services":51970,"Public administration":65714,"Retail trade":41455,"Transportation and warehousing, and utilities":63182,"Wholesale trade":67069},"Piscataquis County":{"Agriculture, forestry, fishing and hunting, and mining":37091,"Arts, entertainment, and recreation, and accommodation and food services":45234,"Construction":56394,"Educational services, and health care and social assistance":43362,"Finance and insurance, and real estate and rental and leasing":65893,"Information":72708,"Manufacturing":50625,"Other services, except public administration":48750,"Professional, scientific, and management, and administrative and waste management services":51563,"Public administration":59259,"Retail trade":47125,"Transportation and warehousing, and utilities":76538,"Wholesale trade":64688},"Sagadahoc County":{"Agriculture, forestry, fishing and hunting, and mining":80455,"Arts, entertainment, and recreation, and accommodation and food services":44205,"Construction":63333,"Educational services, and health care and social assistance":57006,"Finance and insurance, and real estate and rental and leasing":55208,"Information":62298,"Manufacturing":59375,"Other services, except public administration":50556,"Professional, scientific, and management, and administrative and waste management services":70625,"Public administration":75139,"Retail trade":47279,"Transportation and warehousing, and utilities":75804,"Wholesale trade":56389},"Somerset County":{"Agriculture, forestry, fishing and hunting, and mining":42663,"Arts, entertainment, and recreation, and accommodation and food services":35813,"Construction":52736,"Educational services, and health care and social assistance":46078,"Finance and insurance, and real estate and rental and leasing":50776,"Information":60996,"Manufacturing":54758,"Other services, except public administration":36113,"Professional, scientific, and management, and administrative and waste management services":51503,"Public administration":58914,"Retail trade":39518,"Transportation and warehousing, and utilities":61860,"Wholesale trade":55313},"Waldo County":{"Agriculture, forestry, fishing and hunting, and mining":39647,"Arts, entertainment, and recreation, and accommodation and food services":38047,"Construction":54158,"Educational services, and health care and social assistance":56721,"Finance and insurance, and real estate and rental and leasing":77750,"Information":57155,"Manufacturing":48707,"Other services, except public administration":44224,"Professional, scientific, and management, and administrative and waste management services":65000,"Public administration":54089,"Retail trade":52616,"Transportation and warehousing, and utilities":58594,"Wholesale trade":41591},"Washington County":{"Agriculture, forestry, fishing and hunting, and mining":46484,"Arts, entertainment, and recreation, and accommodation and food services":34130,"Construction":54893,"Educational services, and health care and social assistance":42389,"Finance and insurance, and real estate and rental and leasing":51319,"Information":45500,"Manufacturing":53816,"Other services, except public administration":46985,"Professional, scientific, and management, and administrative and waste management services":59886,"Public administration":71836,"Retail trade":39074,"Transportation and warehousing, and utilities":60417,"Wholesale trade":48750},"York County":{"Agriculture, forestry, fishing and hunting, and mining":55327,"Arts, entertainment, and recreation, and accommodation and food services":48014,"Construction":59844,"Educational services, and health care and social assistance":55252,"Finance and insurance, and real estate and rental and leasing":70415,"Information":66719,"Manufacturing":71867,"Other services, except public administration":46074,"Professional, scientific, and management, and administrative and waste management services":69930,"Public administration":77406,"Retail trade":44028,"Transportation and warehousing, and utilities":64579,"Wholesale trade":62616}};
+    const colors = {
+  'Agriculture, forestry, fishing and hunting, and mining': '#FFFF33',
+  'Arts, entertainment, and recreation, and accommodation and food services': '#D95F02',
+  'Construction': '#7570B3',
+  'Educational services, and health care and social assistance': '#66A61E',
+  'Finance and insurance, and real estate and rental and leasing': '#E6AB02',
+  'Information': '#A6761D',
+  'Manufacturing': '#E41A1C',
+  'Other services, except public administration': '#377EB8',
+  'Professional, scientific, and management, and administrative and waste management services': '#4DAF4A',
+  'Public administration': '#984EA3',
+  'Retail trade': '#FF7F00',
+  'Transportation and warehousing, and utilities': '#1B9E77',
+  'Wholesale trade': '#A65628'
+};
+
+    const ctx = document.getElementById("barChart").getContext("2d");
+    let chart;
+
+    function renderChart(county) {
+      const values = data[county];
+      const labels = Object.keys(values);
+      const earnings = Object.values(values);
+
+      if (chart) chart.destroy();
+
+      chart = new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels: labels,
+          datasets: [{
+            label: "Median Earnings ($)",
+            data: earnings,
+            backgroundColor: labels.map(label => colors[label] || "#ccc")
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: true,
+  aspectRatio: 1.5, 
+          indexAxis: "x",
+          scales: {
+            y: {
+              beginAtZero: true,
+              title: {
+                display: true,
+                text: "Median Earnings ($)"
+              },
+              ticks: {
+                callback: function(value) {
+                  return "$" + value.toLocaleString();
+                }
+              }
+            },
+            x: {
+              ticks: {
+                maxRotation: 45,
+                minRotation: 20,
+                autoSkip: false,
+                callback: function(value, index, ticks) {
+                  let label = this.getLabelForValue(value);
+                  return label.length > 25 ? label.slice(0, 25) + "…" : label;
+                }
+              }
+            }
+          },
+          plugins: {
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  return "$" + context.parsed.y.toLocaleString();
+                }
+              }
+            },
+            legend: {
+              display: false
+            }
+          }
+        }
+      });
+    }
+
+    const select = document.getElementById("countySelect");
+    Object.keys(data).forEach(county => {
+      const option = document.createElement("option");
+      option.value = county;
+      option.text = county;
+      select.appendChild(option);
+    });
+    select.value = "Statewide";
+    select.addEventListener("change", () => renderChart(select.value));
+    renderChart("Statewide");
+  </script>
+</body>
+</html>
+</html>

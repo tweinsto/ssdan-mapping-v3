@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Living Arrangements – Pennsylvania</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          margin: 1rem 2rem;
+          text-align: center;
+        }
+        h2 {
+          font-size: 1.5rem;
+          margin-bottom: 0.5rem;
+        }
+        select {
+          font-size: 1rem;
+          padding: 0.4rem;
+          margin: 1rem 0;
+          border: 1px solid #999;
+          border-radius: 5px;
+        }
+        canvas {
+          width: 100%;
+          max-width: 850px;
+          height: 600px;
+          margin-top: 1rem;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Living Arrangements of Adults 65+ in Pennsylvania</h2>
+    <label>Select County:</label>
+            <select id="countySelect">
+          <option value='Statewide'>Default</option>
+<option value='Adams County, Pennsylvania'>Adams County, Pennsylvania</option>
+<option value='Allegheny County, Pennsylvania'>Allegheny County, Pennsylvania</option>
+<option value='Armstrong County, Pennsylvania'>Armstrong County, Pennsylvania</option>
+<option value='Beaver County, Pennsylvania'>Beaver County, Pennsylvania</option>
+<option value='Bedford County, Pennsylvania'>Bedford County, Pennsylvania</option>
+<option value='Berks County, Pennsylvania'>Berks County, Pennsylvania</option>
+<option value='Blair County, Pennsylvania'>Blair County, Pennsylvania</option>
+<option value='Bradford County, Pennsylvania'>Bradford County, Pennsylvania</option>
+<option value='Bucks County, Pennsylvania'>Bucks County, Pennsylvania</option>
+<option value='Butler County, Pennsylvania'>Butler County, Pennsylvania</option>
+<option value='Cambria County, Pennsylvania'>Cambria County, Pennsylvania</option>
+<option value='Cameron County, Pennsylvania'>Cameron County, Pennsylvania</option>
+<option value='Carbon County, Pennsylvania'>Carbon County, Pennsylvania</option>
+<option value='Centre County, Pennsylvania'>Centre County, Pennsylvania</option>
+<option value='Chester County, Pennsylvania'>Chester County, Pennsylvania</option>
+<option value='Clarion County, Pennsylvania'>Clarion County, Pennsylvania</option>
+<option value='Clearfield County, Pennsylvania'>Clearfield County, Pennsylvania</option>
+<option value='Clinton County, Pennsylvania'>Clinton County, Pennsylvania</option>
+<option value='Columbia County, Pennsylvania'>Columbia County, Pennsylvania</option>
+<option value='Crawford County, Pennsylvania'>Crawford County, Pennsylvania</option>
+<option value='Cumberland County, Pennsylvania'>Cumberland County, Pennsylvania</option>
+<option value='Dauphin County, Pennsylvania'>Dauphin County, Pennsylvania</option>
+<option value='Delaware County, Pennsylvania'>Delaware County, Pennsylvania</option>
+<option value='Elk County, Pennsylvania'>Elk County, Pennsylvania</option>
+<option value='Erie County, Pennsylvania'>Erie County, Pennsylvania</option>
+<option value='Fayette County, Pennsylvania'>Fayette County, Pennsylvania</option>
+<option value='Forest County, Pennsylvania'>Forest County, Pennsylvania</option>
+<option value='Franklin County, Pennsylvania'>Franklin County, Pennsylvania</option>
+<option value='Fulton County, Pennsylvania'>Fulton County, Pennsylvania</option>
+<option value='Greene County, Pennsylvania'>Greene County, Pennsylvania</option>
+<option value='Huntingdon County, Pennsylvania'>Huntingdon County, Pennsylvania</option>
+<option value='Indiana County, Pennsylvania'>Indiana County, Pennsylvania</option>
+<option value='Jefferson County, Pennsylvania'>Jefferson County, Pennsylvania</option>
+<option value='Juniata County, Pennsylvania'>Juniata County, Pennsylvania</option>
+<option value='Lackawanna County, Pennsylvania'>Lackawanna County, Pennsylvania</option>
+<option value='Lancaster County, Pennsylvania'>Lancaster County, Pennsylvania</option>
+<option value='Lawrence County, Pennsylvania'>Lawrence County, Pennsylvania</option>
+<option value='Lebanon County, Pennsylvania'>Lebanon County, Pennsylvania</option>
+<option value='Lehigh County, Pennsylvania'>Lehigh County, Pennsylvania</option>
+<option value='Luzerne County, Pennsylvania'>Luzerne County, Pennsylvania</option>
+<option value='Lycoming County, Pennsylvania'>Lycoming County, Pennsylvania</option>
+<option value='McKean County, Pennsylvania'>McKean County, Pennsylvania</option>
+<option value='Mercer County, Pennsylvania'>Mercer County, Pennsylvania</option>
+<option value='Mifflin County, Pennsylvania'>Mifflin County, Pennsylvania</option>
+<option value='Monroe County, Pennsylvania'>Monroe County, Pennsylvania</option>
+<option value='Montgomery County, Pennsylvania'>Montgomery County, Pennsylvania</option>
+<option value='Montour County, Pennsylvania'>Montour County, Pennsylvania</option>
+<option value='Northampton County, Pennsylvania'>Northampton County, Pennsylvania</option>
+<option value='Northumberland County, Pennsylvania'>Northumberland County, Pennsylvania</option>
+<option value='Perry County, Pennsylvania'>Perry County, Pennsylvania</option>
+<option value='Philadelphia County, Pennsylvania'>Philadelphia County, Pennsylvania</option>
+<option value='Pike County, Pennsylvania'>Pike County, Pennsylvania</option>
+<option value='Potter County, Pennsylvania'>Potter County, Pennsylvania</option>
+<option value='Schuylkill County, Pennsylvania'>Schuylkill County, Pennsylvania</option>
+<option value='Snyder County, Pennsylvania'>Snyder County, Pennsylvania</option>
+<option value='Somerset County, Pennsylvania'>Somerset County, Pennsylvania</option>
+<option value='Sullivan County, Pennsylvania'>Sullivan County, Pennsylvania</option>
+<option value='Susquehanna County, Pennsylvania'>Susquehanna County, Pennsylvania</option>
+<option value='Tioga County, Pennsylvania'>Tioga County, Pennsylvania</option>
+<option value='Union County, Pennsylvania'>Union County, Pennsylvania</option>
+<option value='Venango County, Pennsylvania'>Venango County, Pennsylvania</option>
+<option value='Warren County, Pennsylvania'>Warren County, Pennsylvania</option>
+<option value='Washington County, Pennsylvania'>Washington County, Pennsylvania</option>
+<option value='Wayne County, Pennsylvania'>Wayne County, Pennsylvania</option>
+<option value='Westmoreland County, Pennsylvania'>Westmoreland County, Pennsylvania</option>
+<option value='Wyoming County, Pennsylvania'>Wyoming County, Pennsylvania</option>
+<option value='York County, Pennsylvania'>York County, Pennsylvania</option>
+        </select>
+    <canvas id="barChart"></canvas>
+    <script>  const chartData = {"Statewide":[0,0,0,0,0,0],"Adams County, Pennsylvania":[0,0,0,0,0,0],"Allegheny County, Pennsylvania":[0,0,0,0,0,0],"Armstrong County, Pennsylvania":[0,0,0,0,0,0],"Beaver County, Pennsylvania":[0,0,0,0,0,0],"Bedford County, Pennsylvania":[0,0,0,0,0,0],"Berks County, Pennsylvania":[0,0,0,0,0,0],"Blair County, Pennsylvania":[0,0,0,0,0,0],"Bradford County, Pennsylvania":[0,0,0,0,0,0],"Bucks County, Pennsylvania":[0,0,0,0,0,0],"Butler County, Pennsylvania":[0,0,0,0,0,0],"Cambria County, Pennsylvania":[0,0,0,0,0,0],"Cameron County, Pennsylvania":[0,0,0,0,0,0],"Carbon County, Pennsylvania":[0,0,0,0,0,0],"Centre County, Pennsylvania":[0,0,0,0,0,0],"Chester County, Pennsylvania":[0,0,0,0,0,0],"Clarion County, Pennsylvania":[0,0,0,0,0,0],"Clearfield County, Pennsylvania":[0,0,0,0,0,0],"Clinton County, Pennsylvania":[0,0,0,0,0,0],"Columbia County, Pennsylvania":[0,0,0,0,0,0],"Crawford County, Pennsylvania":[0,0,0,0,0,0],"Cumberland County, Pennsylvania":[0,0,0,0,0,0],"Dauphin County, Pennsylvania":[0,0,0,0,0,0],"Delaware County, Pennsylvania":[0,0,0,0,0,0],"Elk County, Pennsylvania":[0,0,0,0,0,0],"Erie County, Pennsylvania":[0,0,0,0,0,0],"Fayette County, Pennsylvania":[0,0,0,0,0,0],"Forest County, Pennsylvania":[0,0,0,0,0,0],"Franklin County, Pennsylvania":[0,0,0,0,0,0],"Fulton County, Pennsylvania":[0,0,0,0,0,0],"Greene County, Pennsylvania":[0,0,0,0,0,0],"Huntingdon County, Pennsylvania":[0,0,0,0,0,0],"Indiana County, Pennsylvania":[0,0,0,0,0,0],"Jefferson County, Pennsylvania":[0,0,0,0,0,0],"Juniata County, Pennsylvania":[0,0,0,0,0,0],"Lackawanna County, Pennsylvania":[0,0,0,0,0,0],"Lancaster County, Pennsylvania":[0,0,0,0,0,0],"Lawrence County, Pennsylvania":[0,0,0,0,0,0],"Lebanon County, Pennsylvania":[0,0,0,0,0,0],"Lehigh County, Pennsylvania":[0,0,0,0,0,0],"Luzerne County, Pennsylvania":[0,0,0,0,0,0],"Lycoming County, Pennsylvania":[0,0,0,0,0,0],"McKean County, Pennsylvania":[0,0,0,0,0,0],"Mercer County, Pennsylvania":[0,0,0,0,0,0],"Mifflin County, Pennsylvania":[0,0,0,0,0,0],"Monroe County, Pennsylvania":[0,0,0,0,0,0],"Montgomery County, Pennsylvania":[0,0,0,0,0,0],"Montour County, Pennsylvania":[0,0,0,0,0,0],"Northampton County, Pennsylvania":[0,0,0,0,0,0],"Northumberland County, Pennsylvania":[0,0,0,0,0,0],"Perry County, Pennsylvania":[0,0,0,0,0,0],"Philadelphia County, Pennsylvania":[0,0,0,0,0,0],"Pike County, Pennsylvania":[0,0,0,0,0,0],"Potter County, Pennsylvania":[0,0,0,0,0,0],"Schuylkill County, Pennsylvania":[0,0,0,0,0,0],"Snyder County, Pennsylvania":[0,0,0,0,0,0],"Somerset County, Pennsylvania":[0,0,0,0,0,0],"Sullivan County, Pennsylvania":[0,0,0,0,0,0],"Susquehanna County, Pennsylvania":[0,0,0,0,0,0],"Tioga County, Pennsylvania":[0,0,0,0,0,0],"Union County, Pennsylvania":[0,0,0,0,0,0],"Venango County, Pennsylvania":[0,0,0,0,0,0],"Warren County, Pennsylvania":[0,0,0,0,0,0],"Washington County, Pennsylvania":[0,0,0,0,0,0],"Wayne County, Pennsylvania":[0,0,0,0,0,0],"Westmoreland County, Pennsylvania":[0,0,0,0,0,0],"Wyoming County, Pennsylvania":[0,0,0,0,0,0],"York County, Pennsylvania":[0,0,0,0,0,0]};
+  const categories = ["With unmarried partner","With spouse only","With other relatives","With nonrelatives","With child","Lives alone"];
+  const usAverages = [27.3,0.3,2.3,14.5,53.2,2.4];
+
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(data) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: categories,
+        datasets: [
+          {
+            label: 'Percent (County/State)',
+            data: data,
+            backgroundColor: '#4576a7'
+          },
+          {
+            label: 'National Average',
+            data: categories.map(c => usAverages[c] || 0),
+            type: 'line',
+            borderColor: '#000',
+            borderWidth: 1,
+            pointRadius: 0,
+            fill: false
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        indexAxis: 'y',
+        scales: {
+          x: {
+            title: {
+              display: true,
+              text: 'Percent of 65+ Population'
+            },
+            min: 0,
+            max: 100,
+            ticks: {
+              callback: value => value + '%'
+            }
+          }
+        },
+        plugins: {
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.dataset.label + ': ' + ctx.parsed.x + '%'
+            }
+          },
+          legend: {
+            position: 'top',
+            align: 'start'
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(Object.values(chartData[this.value]));
+  });
+
+  renderChart(Object.values(chartData['Statewide']));</script>
+  </body>
+</html>
+</html>

@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Age Distribution Under 18 –  Texas</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          margin: 1rem 2rem;
+          text-align: center;
+        }
+        h2 {
+          margin-bottom: 0.25rem;
+          font-size: 1.6rem;
+        }
+        select {
+          padding: 0.4rem;
+          font-size: 1rem;
+          margin: 1rem 0;
+          border-radius: 5px;
+          border: 1px solid #999;
+        }
+        canvas {
+          width: 100%;
+          max-width: 850px;
+          height: 500px;
+          margin-top: 1rem;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Age Distribution Under 18 in  Texas (2023)</h2>
+    <label>Select County:</label>
+            <select id="countySelect">
+          <option value='Statewide'>Statewide</option>
+<option value='Anderson County, Texas'>Anderson County, Texas</option>
+<option value='Andrews County, Texas'>Andrews County, Texas</option>
+<option value='Angelina County, Texas'>Angelina County, Texas</option>
+<option value='Aransas County, Texas'>Aransas County, Texas</option>
+<option value='Archer County, Texas'>Archer County, Texas</option>
+<option value='Armstrong County, Texas'>Armstrong County, Texas</option>
+<option value='Atascosa County, Texas'>Atascosa County, Texas</option>
+<option value='Austin County, Texas'>Austin County, Texas</option>
+<option value='Bailey County, Texas'>Bailey County, Texas</option>
+<option value='Bandera County, Texas'>Bandera County, Texas</option>
+<option value='Bastrop County, Texas'>Bastrop County, Texas</option>
+<option value='Baylor County, Texas'>Baylor County, Texas</option>
+<option value='Bee County, Texas'>Bee County, Texas</option>
+<option value='Bell County, Texas'>Bell County, Texas</option>
+<option value='Bexar County, Texas'>Bexar County, Texas</option>
+<option value='Blanco County, Texas'>Blanco County, Texas</option>
+<option value='Borden County, Texas'>Borden County, Texas</option>
+<option value='Bosque County, Texas'>Bosque County, Texas</option>
+<option value='Bowie County, Texas'>Bowie County, Texas</option>
+<option value='Brazoria County, Texas'>Brazoria County, Texas</option>
+<option value='Brazos County, Texas'>Brazos County, Texas</option>
+<option value='Brewster County, Texas'>Brewster County, Texas</option>
+<option value='Briscoe County, Texas'>Briscoe County, Texas</option>
+<option value='Brooks County, Texas'>Brooks County, Texas</option>
+<option value='Brown County, Texas'>Brown County, Texas</option>
+<option value='Burleson County, Texas'>Burleson County, Texas</option>
+<option value='Burnet County, Texas'>Burnet County, Texas</option>
+<option value='Caldwell County, Texas'>Caldwell County, Texas</option>
+<option value='Calhoun County, Texas'>Calhoun County, Texas</option>
+<option value='Callahan County, Texas'>Callahan County, Texas</option>
+<option value='Cameron County, Texas'>Cameron County, Texas</option>
+<option value='Camp County, Texas'>Camp County, Texas</option>
+<option value='Carson County, Texas'>Carson County, Texas</option>
+<option value='Cass County, Texas'>Cass County, Texas</option>
+<option value='Castro County, Texas'>Castro County, Texas</option>
+<option value='Chambers County, Texas'>Chambers County, Texas</option>
+<option value='Cherokee County, Texas'>Cherokee County, Texas</option>
+<option value='Childress County, Texas'>Childress County, Texas</option>
+<option value='Clay County, Texas'>Clay County, Texas</option>
+<option value='Cochran County, Texas'>Cochran County, Texas</option>
+<option value='Coke County, Texas'>Coke County, Texas</option>
+<option value='Coleman County, Texas'>Coleman County, Texas</option>
+<option value='Collin County, Texas'>Collin County, Texas</option>
+<option value='Collingsworth County, Texas'>Collingsworth County, Texas</option>
+<option value='Colorado County, Texas'>Colorado County, Texas</option>
+<option value='Comal County, Texas'>Comal County, Texas</option>
+<option value='Comanche County, Texas'>Comanche County, Texas</option>
+<option value='Concho County, Texas'>Concho County, Texas</option>
+<option value='Cooke County, Texas'>Cooke County, Texas</option>
+<option value='Coryell County, Texas'>Coryell County, Texas</option>
+<option value='Cottle County, Texas'>Cottle County, Texas</option>
+<option value='Crane County, Texas'>Crane County, Texas</option>
+<option value='Crockett County, Texas'>Crockett County, Texas</option>
+<option value='Crosby County, Texas'>Crosby County, Texas</option>
+<option value='Culberson County, Texas'>Culberson County, Texas</option>
+<option value='Dallam County, Texas'>Dallam County, Texas</option>
+<option value='Dallas County, Texas'>Dallas County, Texas</option>
+<option value='Dawson County, Texas'>Dawson County, Texas</option>
+<option value='Deaf Smith County, Texas'>Deaf Smith County, Texas</option>
+<option value='Delta County, Texas'>Delta County, Texas</option>
+<option value='Denton County, Texas'>Denton County, Texas</option>
+<option value='DeWitt County, Texas'>DeWitt County, Texas</option>
+<option value='Dickens County, Texas'>Dickens County, Texas</option>
+<option value='Dimmit County, Texas'>Dimmit County, Texas</option>
+<option value='Donley County, Texas'>Donley County, Texas</option>
+<option value='Duval County, Texas'>Duval County, Texas</option>
+<option value='Eastland County, Texas'>Eastland County, Texas</option>
+<option value='Ector County, Texas'>Ector County, Texas</option>
+<option value='Edwards County, Texas'>Edwards County, Texas</option>
+<option value='El Paso County, Texas'>El Paso County, Texas</option>
+<option value='Ellis County, Texas'>Ellis County, Texas</option>
+<option value='Erath County, Texas'>Erath County, Texas</option>
+<option value='Falls County, Texas'>Falls County, Texas</option>
+<option value='Fannin County, Texas'>Fannin County, Texas</option>
+<option value='Fayette County, Texas'>Fayette County, Texas</option>
+<option value='Fisher County, Texas'>Fisher County, Texas</option>
+<option value='Floyd County, Texas'>Floyd County, Texas</option>
+<option value='Foard County, Texas'>Foard County, Texas</option>
+<option value='Fort Bend County, Texas'>Fort Bend County, Texas</option>
+<option value='Franklin County, Texas'>Franklin County, Texas</option>
+<option value='Freestone County, Texas'>Freestone County, Texas</option>
+<option value='Frio County, Texas'>Frio County, Texas</option>
+<option value='Gaines County, Texas'>Gaines County, Texas</option>
+<option value='Galveston County, Texas'>Galveston County, Texas</option>
+<option value='Garza County, Texas'>Garza County, Texas</option>
+<option value='Gillespie County, Texas'>Gillespie County, Texas</option>
+<option value='Glasscock County, Texas'>Glasscock County, Texas</option>
+<option value='Goliad County, Texas'>Goliad County, Texas</option>
+<option value='Gonzales County, Texas'>Gonzales County, Texas</option>
+<option value='Gray County, Texas'>Gray County, Texas</option>
+<option value='Grayson County, Texas'>Grayson County, Texas</option>
+<option value='Gregg County, Texas'>Gregg County, Texas</option>
+<option value='Grimes County, Texas'>Grimes County, Texas</option>
+<option value='Guadalupe County, Texas'>Guadalupe County, Texas</option>
+<option value='Hale County, Texas'>Hale County, Texas</option>
+<option value='Hall County, Texas'>Hall County, Texas</option>
+<option value='Hamilton County, Texas'>Hamilton County, Texas</option>
+<option value='Hansford County, Texas'>Hansford County, Texas</option>
+<option value='Hardeman County, Texas'>Hardeman County, Texas</option>
+<option value='Hardin County, Texas'>Hardin County, Texas</option>
+<option value='Harris County, Texas'>Harris County, Texas</option>
+<option value='Harrison County, Texas'>Harrison County, Texas</option>
+<option value='Hartley County, Texas'>Hartley County, Texas</option>
+<option value='Haskell County, Texas'>Haskell County, Texas</option>
+<option value='Hays County, Texas'>Hays County, Texas</option>
+<option value='Hemphill County, Texas'>Hemphill County, Texas</option>
+<option value='Henderson County, Texas'>Henderson County, Texas</option>
+<option value='Hidalgo County, Texas'>Hidalgo County, Texas</option>
+<option value='Hill County, Texas'>Hill County, Texas</option>
+<option value='Hockley County, Texas'>Hockley County, Texas</option>
+<option value='Hood County, Texas'>Hood County, Texas</option>
+<option value='Hopkins County, Texas'>Hopkins County, Texas</option>
+<option value='Houston County, Texas'>Houston County, Texas</option>
+<option value='Howard County, Texas'>Howard County, Texas</option>
+<option value='Hudspeth County, Texas'>Hudspeth County, Texas</option>
+<option value='Hunt County, Texas'>Hunt County, Texas</option>
+<option value='Hutchinson County, Texas'>Hutchinson County, Texas</option>
+<option value='Irion County, Texas'>Irion County, Texas</option>
+<option value='Jack County, Texas'>Jack County, Texas</option>
+<option value='Jackson County, Texas'>Jackson County, Texas</option>
+<option value='Jasper County, Texas'>Jasper County, Texas</option>
+<option value='Jeff Davis County, Texas'>Jeff Davis County, Texas</option>
+<option value='Jefferson County, Texas'>Jefferson County, Texas</option>
+<option value='Jim Hogg County, Texas'>Jim Hogg County, Texas</option>
+<option value='Jim Wells County, Texas'>Jim Wells County, Texas</option>
+<option value='Johnson County, Texas'>Johnson County, Texas</option>
+<option value='Jones County, Texas'>Jones County, Texas</option>
+<option value='Karnes County, Texas'>Karnes County, Texas</option>
+<option value='Kaufman County, Texas'>Kaufman County, Texas</option>
+<option value='Kendall County, Texas'>Kendall County, Texas</option>
+<option value='Kenedy County, Texas'>Kenedy County, Texas</option>
+<option value='Kent County, Texas'>Kent County, Texas</option>
+<option value='Kerr County, Texas'>Kerr County, Texas</option>
+<option value='Kimble County, Texas'>Kimble County, Texas</option>
+<option value='King County, Texas'>King County, Texas</option>
+<option value='Kinney County, Texas'>Kinney County, Texas</option>
+<option value='Kleberg County, Texas'>Kleberg County, Texas</option>
+<option value='Knox County, Texas'>Knox County, Texas</option>
+<option value='La Salle County, Texas'>La Salle County, Texas</option>
+<option value='Lamar County, Texas'>Lamar County, Texas</option>
+<option value='Lamb County, Texas'>Lamb County, Texas</option>
+<option value='Lampasas County, Texas'>Lampasas County, Texas</option>
+<option value='Lavaca County, Texas'>Lavaca County, Texas</option>
+<option value='Lee County, Texas'>Lee County, Texas</option>
+<option value='Leon County, Texas'>Leon County, Texas</option>
+<option value='Liberty County, Texas'>Liberty County, Texas</option>
+<option value='Limestone County, Texas'>Limestone County, Texas</option>
+<option value='Lipscomb County, Texas'>Lipscomb County, Texas</option>
+<option value='Live Oak County, Texas'>Live Oak County, Texas</option>
+<option value='Llano County, Texas'>Llano County, Texas</option>
+<option value='Loving County, Texas'>Loving County, Texas</option>
+<option value='Lubbock County, Texas'>Lubbock County, Texas</option>
+<option value='Lynn County, Texas'>Lynn County, Texas</option>
+<option value='Madison County, Texas'>Madison County, Texas</option>
+<option value='Marion County, Texas'>Marion County, Texas</option>
+<option value='Martin County, Texas'>Martin County, Texas</option>
+<option value='Mason County, Texas'>Mason County, Texas</option>
+<option value='Matagorda County, Texas'>Matagorda County, Texas</option>
+<option value='Maverick County, Texas'>Maverick County, Texas</option>
+<option value='McCulloch County, Texas'>McCulloch County, Texas</option>
+<option value='McLennan County, Texas'>McLennan County, Texas</option>
+<option value='McMullen County, Texas'>McMullen County, Texas</option>
+<option value='Medina County, Texas'>Medina County, Texas</option>
+<option value='Menard County, Texas'>Menard County, Texas</option>
+<option value='Midland County, Texas'>Midland County, Texas</option>
+<option value='Milam County, Texas'>Milam County, Texas</option>
+<option value='Mills County, Texas'>Mills County, Texas</option>
+<option value='Mitchell County, Texas'>Mitchell County, Texas</option>
+<option value='Montague County, Texas'>Montague County, Texas</option>
+<option value='Montgomery County, Texas'>Montgomery County, Texas</option>
+<option value='Moore County, Texas'>Moore County, Texas</option>
+<option value='Morris County, Texas'>Morris County, Texas</option>
+<option value='Motley County, Texas'>Motley County, Texas</option>
+<option value='Nacogdoches County, Texas'>Nacogdoches County, Texas</option>
+<option value='Navarro County, Texas'>Navarro County, Texas</option>
+<option value='Newton County, Texas'>Newton County, Texas</option>
+<option value='Nolan County, Texas'>Nolan County, Texas</option>
+<option value='Nueces County, Texas'>Nueces County, Texas</option>
+<option value='Ochiltree County, Texas'>Ochiltree County, Texas</option>
+<option value='Oldham County, Texas'>Oldham County, Texas</option>
+<option value='Orange County, Texas'>Orange County, Texas</option>
+<option value='Palo Pinto County, Texas'>Palo Pinto County, Texas</option>
+<option value='Panola County, Texas'>Panola County, Texas</option>
+<option value='Parker County, Texas'>Parker County, Texas</option>
+<option value='Parmer County, Texas'>Parmer County, Texas</option>
+<option value='Pecos County, Texas'>Pecos County, Texas</option>
+<option value='Polk County, Texas'>Polk County, Texas</option>
+<option value='Potter County, Texas'>Potter County, Texas</option>
+<option value='Presidio County, Texas'>Presidio County, Texas</option>
+<option value='Rains County, Texas'>Rains County, Texas</option>
+<option value='Randall County, Texas'>Randall County, Texas</option>
+<option value='Reagan County, Texas'>Reagan County, Texas</option>
+<option value='Real County, Texas'>Real County, Texas</option>
+<option value='Red River County, Texas'>Red River County, Texas</option>
+<option value='Reeves County, Texas'>Reeves County, Texas</option>
+<option value='Refugio County, Texas'>Refugio County, Texas</option>
+<option value='Roberts County, Texas'>Roberts County, Texas</option>
+<option value='Robertson County, Texas'>Robertson County, Texas</option>
+<option value='Rockwall County, Texas'>Rockwall County, Texas</option>
+<option value='Runnels County, Texas'>Runnels County, Texas</option>
+<option value='Rusk County, Texas'>Rusk County, Texas</option>
+<option value='Sabine County, Texas'>Sabine County, Texas</option>
+<option value='San Augustine County, Texas'>San Augustine County, Texas</option>
+<option value='San Jacinto County, Texas'>San Jacinto County, Texas</option>
+<option value='San Patricio County, Texas'>San Patricio County, Texas</option>
+<option value='San Saba County, Texas'>San Saba County, Texas</option>
+<option value='Schleicher County, Texas'>Schleicher County, Texas</option>
+<option value='Scurry County, Texas'>Scurry County, Texas</option>
+<option value='Shackelford County, Texas'>Shackelford County, Texas</option>
+<option value='Shelby County, Texas'>Shelby County, Texas</option>
+<option value='Sherman County, Texas'>Sherman County, Texas</option>
+<option value='Smith County, Texas'>Smith County, Texas</option>
+<option value='Somervell County, Texas'>Somervell County, Texas</option>
+<option value='Starr County, Texas'>Starr County, Texas</option>
+<option value='Stephens County, Texas'>Stephens County, Texas</option>
+<option value='Sterling County, Texas'>Sterling County, Texas</option>
+<option value='Stonewall County, Texas'>Stonewall County, Texas</option>
+<option value='Sutton County, Texas'>Sutton County, Texas</option>
+<option value='Swisher County, Texas'>Swisher County, Texas</option>
+<option value='Tarrant County, Texas'>Tarrant County, Texas</option>
+<option value='Taylor County, Texas'>Taylor County, Texas</option>
+<option value='Terrell County, Texas'>Terrell County, Texas</option>
+<option value='Terry County, Texas'>Terry County, Texas</option>
+<option value='Throckmorton County, Texas'>Throckmorton County, Texas</option>
+<option value='Titus County, Texas'>Titus County, Texas</option>
+<option value='Tom Green County, Texas'>Tom Green County, Texas</option>
+<option value='Travis County, Texas'>Travis County, Texas</option>
+<option value='Trinity County, Texas'>Trinity County, Texas</option>
+<option value='Tyler County, Texas'>Tyler County, Texas</option>
+<option value='Upshur County, Texas'>Upshur County, Texas</option>
+<option value='Upton County, Texas'>Upton County, Texas</option>
+<option value='Uvalde County, Texas'>Uvalde County, Texas</option>
+<option value='Val Verde County, Texas'>Val Verde County, Texas</option>
+<option value='Van Zandt County, Texas'>Van Zandt County, Texas</option>
+<option value='Victoria County, Texas'>Victoria County, Texas</option>
+<option value='Walker County, Texas'>Walker County, Texas</option>
+<option value='Waller County, Texas'>Waller County, Texas</option>
+<option value='Ward County, Texas'>Ward County, Texas</option>
+<option value='Washington County, Texas'>Washington County, Texas</option>
+<option value='Webb County, Texas'>Webb County, Texas</option>
+<option value='Wharton County, Texas'>Wharton County, Texas</option>
+<option value='Wheeler County, Texas'>Wheeler County, Texas</option>
+<option value='Wichita County, Texas'>Wichita County, Texas</option>
+<option value='Wilbarger County, Texas'>Wilbarger County, Texas</option>
+<option value='Willacy County, Texas'>Willacy County, Texas</option>
+<option value='Williamson County, Texas'>Williamson County, Texas</option>
+<option value='Wilson County, Texas'>Wilson County, Texas</option>
+<option value='Winkler County, Texas'>Winkler County, Texas</option>
+<option value='Wise County, Texas'>Wise County, Texas</option>
+<option value='Wood County, Texas'>Wood County, Texas</option>
+<option value='Yoakum County, Texas'>Yoakum County, Texas</option>
+<option value='Young County, Texas'>Young County, Texas</option>
+<option value='Zapata County, Texas'>Zapata County, Texas</option>
+<option value='Zavala County, Texas'>Zavala County, Texas</option>
+        </select>
+    <canvas id="barChart" width="850" height="500"></canvas>
+    <script>  const ageData = {"Statewide":[-13.2,12.6,-14.9,14.4,-8.9,8.5,-14.1,13.4],"Anderson County, Texas":[-14.3,12.5,-14.7,14.3,-14,12.3,-10.3,7.5],"Andrews County, Texas":[-9.1,17.3,-13.8,13.8,-15.2,14.3,-8.6,7.8],"Angelina County, Texas":[-13.2,12.4,-11.7,14.1,-16.8,14,-8.9,8.9],"Aransas County, Texas":[-14.9,10.5,-9.3,7.8,-18.4,17.2,-14.5,7.4],"Archer County, Texas":[-10.8,10.1,-18,14.7,-12.3,14,-11.9,8.2],"Armstrong County, Texas":[-14.2,14.7,-5.4,13,-14.4,29.3,-7.1,2],"Atascosa County, Texas":[-13,12.3,-16.6,13.9,-11.9,14.8,-9.4,8.1],"Austin County, Texas":[-14.7,9.3,-12.2,11.3,-17.9,16.3,-9,9.3],"Bailey County, Texas":[-16.2,9.5,-11,4.2,-16.8,21.3,-7.2,13.7],"Bandera County, Texas":[-12.4,11.7,-15.3,16.4,-14.5,13.9,-7.5,8.4],"Bastrop County, Texas":[-12.2,12.9,-15.2,11.3,-13.2,17.7,-8.7,8.6],"Baylor County, Texas":[-7.7,8.9,-20.6,10.9,-14,16.5,-14.4,6.9],"Bee County, Texas":[-13.6,11.2,-14.9,11.2,-14,17.2,-9.8,8.3],"Bell County, Texas":[-14.6,13.9,-14.5,12.8,-13.9,14.8,-7.9,7.7],"Bexar County, Texas":[-13.3,12.9,-14.3,13.2,-14.6,14.5,-8.7,8.5],"Blanco County, Texas":[-9.9,13.9,-17.4,10.5,-10.2,20.1,-10.6,7.4],"Borden County, Texas":[-8.3,17.5,-16.2,27.9,-3.3,10.4,-6.2,10],"Bosque County, Texas":[-13.3,11.1,-15.2,13.7,-13.4,13.2,-8.4,11.8],"Bowie County, Texas":[-13,12.3,-14.6,14.1,-14.7,13.9,-8.9,8.6],"Brazoria County, Texas":[-12.7,11.9,-14.4,14,-15.2,14.1,-9,8.6],"Brazos County, Texas":[-14,13.6,-15.1,14.3,-13.2,13.4,-8.4,8.1],"Brewster County, Texas":[-10.8,13.3,-13.7,22.9,-8.5,22,-1.1,7.7],"Briscoe County, Texas":[-19.7,2.3,-8.3,24.8,-16.1,12.4,-8.3,8.3],"Brooks County, Texas":[-0,16.8,-16.7,17.9,-18.3,13,-13.6,3.8],"Brown County, Texas":[-13.1,11.8,-13.8,9.8,-15.8,16.1,-9.6,10],"Burleson County, Texas":[-7.6,16.6,-9.8,12.4,-19.1,18.3,-5.6,10.6],"Burnet County, Texas":[-12.4,11.6,-12.7,11.9,-17.3,15.9,-8.8,9.4],"Caldwell County, Texas":[-14,12.6,-8.6,13.3,-18.4,14.7,-10.5,7.9],"Calhoun County, Texas":[-12.5,12.4,-13.9,15.9,-14,13.1,-11.5,6.6],"Callahan County, Texas":[-12.5,11.9,-12.3,11.2,-18.1,15,-9.9,9],"Cameron County, Texas":[-12.7,12.2,-14.5,13.1,-14.7,14.7,-9.3,8.9],"Camp County, Texas":[-11.3,12.6,-16,13.5,-14.7,15.3,-8.8,7.7],"Carson County, Texas":[-11.8,9.8,-14.6,10,-15.5,18.3,-9.8,10.1],"Cass County, Texas":[-11.8,13.4,-15.1,11.9,-17,12.9,-8.9,9],"Castro County, Texas":[-12.4,14.2,-11.2,13.3,-18.9,13,-8,9.1],"Chambers County, Texas":[-13.1,11.2,-11.2,14.5,-20.4,13.5,-8.5,7.6],"Cherokee County, Texas":[-13.6,13.2,-14.3,11.8,-14.7,15.2,-8.3,8.8],"Childress County, Texas":[-11.5,18.5,-24.3,9.8,-3.1,16.1,-11.3,5.4],"Clay County, Texas":[-15.4,7.6,-12.9,11.3,-15.8,18.1,-10.1,8.8],"Cochran County, Texas":[-13.9,12.9,-13.5,12.3,-11.9,13.2,-13.5,8.8],"Coke County, Texas":[-9.2,11,-15.9,11,-20,13.1,-12.8,6.8],"Coleman County, Texas":[-9,8.9,-11.9,9.3,-19.5,18.8,-9,13.5],"Collin County, Texas":[-11.8,11.4,-14.3,13.6,-15.3,14.9,-9.6,9.2],"Collingsworth County, Texas":[-15.2,8.7,-16.7,10.3,-25,12.5,-4.1,7.5],"Colorado County, Texas":[-8.9,17.5,-15.4,16.5,-15.4,8.5,-11.9,5.9],"Comal County, Texas":[-12.4,11.6,-15,13,-14.5,15.3,-9.3,9],"Comanche County, Texas":[-12.3,12.2,-17.2,13,-12.4,13.8,-9.7,9.3],"Concho County, Texas":[-13.5,7.8,-16.6,10.7,-14,15.7,-9.7,11.9],"Cooke County, Texas":[-13.7,13.2,-12,17,-16.4,10.8,-9.5,7.5],"Coryell County, Texas":[-14.6,14,-14.3,15.5,-14.4,13.2,-7.2,6.8],"Cottle County, Texas":[-10.1,12.2,-10.5,11.8,-31.4,12.2,-2.8,9.1],"Crane County, Texas":[-6.5,19,-6.7,7.6,-8.1,29,-13.2,9.9],"Crockett County, Texas":[-11.8,3.9,-41.8,8.5,-0,9.1,-12,12.7],"Crosby County, Texas":[-12.2,11.2,-10.7,16.8,-19.1,9.1,-10.3,10.8],"Culberson County, Texas":[-0,21.9,-30.1,13.8,-6.8,15.1,-7.2,5.1],"Dallam County, Texas":[-15.2,14.4,-19.5,11.7,-9.6,14.6,-4.8,10.2],"Dallas County, Texas":[-13.9,13.3,-13.4,13.4,-15.1,13.9,-8.7,8.3],"Dawson County, Texas":[-13.8,13.6,-14.6,14.4,-15.3,12.4,-7.8,8],"Deaf Smith County, Texas":[-14.2,14.5,-16.5,12.9,-11.5,14.8,-11.2,4.4],"Delta County, Texas":[-10.4,22.9,-7.6,14,-15,14.5,-3,12.6],"Denton County, Texas":[-12.6,11.9,-14.2,13.4,-15,14.5,-9.4,9],"DeWitt County, Texas":[-14.7,14.1,-16.7,14.4,-10.7,14,-7,8.3],"Dickens County, Texas":[-5.6,22,-6.8,9.9,-7.9,21.4,-22,4.5],"Dimmit County, Texas":[-20.3,4.3,-9.5,13.4,-16.9,19.2,-8.1,8.3],"Donley County, Texas":[-17.1,4.4,-11.9,12.6,-27.3,11.4,-7.2,8],"Duval County, Texas":[-6.1,18.3,-16.9,16,-16.1,10.6,-6.6,9.5],"Eastland County, Texas":[-12.2,13.8,-15.6,15,-11.3,12.3,-9.7,10.1],"Ector County, Texas":[-14.8,13.7,-15.7,14.5,-12.9,13.2,-7.8,7.4],"Edwards County, Texas":[-0,9.4,-6.2,23.7,-14.7,7.1,-26.3,12.5],"Ellis County, Texas":[-12.6,11.9,-13.3,12.8,-16.2,15,-9.3,8.9],"El Paso County, Texas":[-13.1,12.6,-13.4,13.2,-15.6,14.6,-8.9,8.6],"Erath County, Texas":[-14.8,13.7,-14.4,12.1,-13.7,14.2,-8.6,8.4],"Falls County, Texas":[-9.4,16.3,-13.4,12.3,-16,15.8,-11.2,5.5],"Fannin County, Texas":[-12.3,11,-15.1,14.6,-14.8,13.6,-9.8,8.9],"Fayette County, Texas":[-14.4,10.2,-14.1,14.9,-15.3,12.9,-10.4,7.7],"Fisher County, Texas":[-17.7,12.9,-13.1,18.5,-13.5,11.3,-8.9,4.1],"Floyd County, Texas":[-12.3,11,-21,16.6,-10.6,12.9,-10.2,5.3],"Foard County, Texas":[-5.5,16.1,-5.9,3.9,-9.1,5.1,-2.8,51.6],"Fort Bend County, Texas":[-11.7,11.3,-13.6,14.2,-16.5,14.5,-9.3,8.9],"Franklin County, Texas":[-13.6,10.3,-15.5,10.4,-16.8,14.9,-10.7,7.9],"Freestone County, Texas":[-11.9,11,-17.9,14.7,-12.6,13.8,-9.5,8.7],"Frio County, Texas":[-12.5,12.5,-11.1,9.3,-17.5,14.5,-14.6,8],"Gaines County, Texas":[-15.7,12.2,-17.9,13.8,-9.3,13.8,-9.9,7.4],"Galveston County, Texas":[-12.5,11.9,-14.6,13.9,-14.6,14.3,-9.3,8.8],"Garza County, Texas":[-17.3,9.2,-9.7,14.3,-14.2,19.2,-7.9,8.2],"Gillespie County, Texas":[-13.5,10.1,-14.3,16.6,-14.8,11,-10.6,9.1],"Glasscock County, Texas":[-6.6,17.9,-23.7,8,-21.5,3.3,-16.1,2.9],"Goliad County, Texas":[-15.5,8.3,-13.4,21.1,-14.1,14.1,-8.8,4.6],"Gonzales County, Texas":[-12.4,13,-13.7,9.8,-16.5,15.9,-10.7,8.2],"Gray County, Texas":[-12.7,11.2,-16.7,12.7,-14.6,14.8,-9,8.4],"Grayson County, Texas":[-13.1,12.7,-13.6,15,-15.4,12.4,-8.7,9],"Gregg County, Texas":[-12.9,13,-12.7,12.9,-16.6,14.8,-9,8.1],"Grimes County, Texas":[-11.7,11.6,-14.4,14.5,-17.6,12.7,-9.8,7.8],"Guadalupe County, Texas":[-12.3,11.5,-15,13.7,-14.4,14.9,-10.2,8],"Hale County, Texas":[-12.2,12.1,-14.2,12.7,-14,15.8,-9.9,8.9],"Hall County, Texas":[-10.7,10.2,-15.7,21.8,-12,15.1,-7.8,6.7],"Hamilton County, Texas":[-9.3,12.9,-19.1,8.5,-13.9,18.9,-6.2,11.2],"Hansford County, Texas":[-10.3,14.1,-17.8,14.6,-11.8,10.9,-13.4,7.1],"Hardeman County, Texas":[-15.6,12,-14.5,13,-8.5,15.7,-10.9,9.9],"Hardin County, Texas":[-11.4,11.9,-16,15.7,-15,12.3,-8.2,9.5],"Harris County, Texas":[-13.5,13,-14.3,13.3,-14.4,14.4,-8.7,8.3],"Harrison County, Texas":[-10.5,13.2,-14.2,12.1,-15.1,16.3,-9.5,9.1],"Hartley County, Texas":[-12.7,13.3,-9.6,17.1,-19.4,16.9,-6.8,4.3],"Haskell County, Texas":[-11.6,12.1,-12.3,11,-16.4,13.9,-12.4,10.2],"Hays County, Texas":[-13.3,12.5,-14.5,14.3,-14.6,13.7,-8.7,8.3],"Hemphill County, Texas":[-11.2,8.9,-15.7,7.2,-16.1,15.3,-16.2,9.3],"Henderson County, Texas":[-13.8,11.9,-12.6,14.5,-16.4,12.4,-9.5,8.7],"Hidalgo County, Texas":[-12.9,12.4,-13.8,13,-15.5,15.1,-8.7,8.6],"Hill County, Texas":[-13,11.7,-13.2,11.8,-16.2,15.8,-9.2,9.1],"Hockley County, Texas":[-13,13.1,-12,14.2,-16.8,13,-9,8.8],"Hood County, Texas":[-10.4,14.3,-12.8,12.3,-17.2,14.5,-9,9.5],"Hopkins County, Texas":[-12.4,12.7,-15.6,13.6,-13.2,14.5,-9.4,8.5],"Houston County, Texas":[-12.9,12,-11.6,15.3,-16.5,13.4,-9.5,8.9],"Howard County, Texas":[-13.8,12.8,-16.2,14.9,-13.1,12.5,-9.3,7.4],"Hudspeth County, Texas":[-2.7,14,-10.7,13.5,-11.4,16.9,-20.1,10.7],"Hunt County, Texas":[-12.5,13.4,-15.1,13.1,-13.7,14.7,-9.5,8.1],"Hutchinson County, Texas":[-12,10.6,-12.4,14.6,-17.8,13.2,-10.7,8.7],"Irion County, Texas":[-7.3,8.5,-13.4,9.9,-21.6,24.8,-7.9,6.7],"Jack County, Texas":[-14.2,5,-11.6,11.5,-14.4,26,-8,9.3],"Jackson County, Texas":[-11.8,14.7,-6.2,15.6,-20.3,13.9,-10.7,6.9],"Jasper County, Texas":[-12.8,11.4,-12,12.8,-17.6,15.2,-9.2,9.1],"Jeff Davis County, Texas":[-24.5,19.7,-0,0,-24.8,18.7,-12.2,0],"Jefferson County, Texas":[-14,13.1,-14.3,13.7,-14.7,13.9,-8.3,8.1],"Jim Hogg County, Texas":[-33.9,25.4,-8.1,10,-13.2,3.9,-3.5,2],"Jim Wells County, Texas":[-12.5,11.8,-13.9,14.5,-15.8,14.2,-9.2,8],"Johnson County, Texas":[-12.4,12,-14,13.5,-15.6,14.2,-9.8,8.6],"Jones County, Texas":[-12.6,11.4,-14.7,9.5,-15,18.4,-9.7,8.7],"Karnes County, Texas":[-9.9,15.3,-12.5,14.9,-18.3,11.3,-6.8,11.1],"Kaufman County, Texas":[-13.4,12.2,-14.8,13.2,-14.2,15.1,-8.8,8.4],"Kendall County, Texas":[-10.2,9.3,-14.8,13.6,-15.2,16.8,-10.6,9.6],"Kenedy County, Texas":[-0,0,-66.7,33.3,-0,0,-0,0],"Kent County, Texas":[-6.3,3.1,-24.4,7.9,-39.4,5.5,-7.9,5.5],"Kerr County, Texas":[-13.4,12.8,-14.3,12.9,-14.7,14,-9.6,8.4],"Kimble County, Texas":[-8.8,20.6,-16.7,9,-12.5,8.8,-14.7,9],"King County, Texas":[-20,8.6,-20,0,-25.7,17.1,-0,8.6],"Kinney County, Texas":[-0,36.1,-29.6,0,-16.4,9.5,-0,8.4],"Kleberg County, Texas":[-13.8,13.9,-7.5,13.3,-21.9,14.4,-7.9,7.3],"Knox County, Texas":[-9.8,10.6,-21.6,18.1,-16.2,7.9,-2.9,12.9],"Lamar County, Texas":[-14.9,11.5,-16.1,14.7,-13.6,12.4,-9.3,7.4],"Lamb County, Texas":[-15.3,9.2,-16.6,12.5,-13.5,14.5,-9.4,8.9],"Lampasas County, Texas":[-12.5,9.8,-10.9,13.1,-17.4,17.1,-9.3,9.9],"La Salle County, Texas":[-7.2,2.7,-11.2,3.5,-18,31.2,-12.2,13.9],"Lavaca County, Texas":[-13.7,11.2,-14.4,12.7,-14.4,14.9,-9.2,9.6],"Lee County, Texas":[-11.7,18.8,-14.1,14.2,-12.2,13.6,-7.9,7.5],"Leon County, Texas":[-12.8,10.6,-11.3,12.7,-17.9,15.3,-6.4,12.9],"Liberty County, Texas":[-12.8,13,-13.8,13.9,-15.7,14,-8.9,7.7],"Limestone County, Texas":[-14.4,11.3,-15.8,15.1,-13.5,15.3,-8.3,6.4],"Lipscomb County, Texas":[-12.6,10.1,-13.3,10.1,-16.1,21.1,-7.1,9.7],"Live Oak County, Texas":[-13.5,16.9,-12.4,15.4,-15.2,11.6,-4.9,10],"Llano County, Texas":[-8.8,15,-5.6,13.2,-25.3,14.9,-9.1,8],"Loving County, Texas":[-0,0,-0,0,-0,0,-0,0],"Lubbock County, Texas":[-13.4,13.1,-14.6,13.3,-14.2,14.2,-8.6,8.5],"Lynn County, Texas":[-13.4,10,-16,13,-14.6,15.1,-10,7.9],"McCulloch County, Texas":[-12.7,12.5,-8.9,16.7,-22.9,9,-9.5,7.9],"McLennan County, Texas":[-13.7,13,-14.2,13.3,-14.7,13.9,-8.9,8.4],"McMullen County, Texas":[-5.1,17.7,-17.7,37.6,-6.3,12.7,-3,0],"Madison County, Texas":[-11.9,16.2,-15.3,11,-10.7,18.1,-9.2,7.5],"Marion County, Texas":[-7,14.8,-16.3,21.2,-12.2,14,-11,3.5],"Martin County, Texas":[-14.7,7.2,-18.3,8.1,-23.1,11.2,-11.8,5.5],"Mason County, Texas":[-25.3,8.5,-19.4,17.2,-8.6,5,-4.7,11.3],"Matagorda County, Texas":[-11.8,16.3,-13.2,11.7,-14.7,16,-8.7,7.5],"Maverick County, Texas":[-14.9,13.1,-11.7,16.1,-17,10.8,-8.3,8.1],"Medina County, Texas":[-12.7,11.9,-14.5,14,-14.4,14,-9.1,9.4],"Menard County, Texas":[-13.9,3.6,-15.2,11.2,-12,29.2,-13.5,1.3],"Midland County, Texas":[-15.1,13.7,-14.7,14.9,-14,12.6,-7.5,7.3],"Milam County, Texas":[-12,11.6,-14.2,11.8,-15.9,19,-9.5,6],"Mills County, Texas":[-6.8,5.6,-15.3,8.4,-19.9,17.3,-11.6,15.1],"Mitchell County, Texas":[-18.7,7.7,-13.1,17,-14.6,11.6,-12.9,4.3],"Montague County, Texas":[-10.6,12.3,-15.6,9.6,-13.8,19.4,-9.2,9.4],"Montgomery County, Texas":[-12.5,12.1,-14.1,13.3,-15.2,15,-9.2,8.7],"Moore County, Texas":[-14.1,14.7,-14.2,13.9,-16.3,11.4,-8,7.4],"Morris County, Texas":[-11.1,10.5,-17.2,15,-14.6,14,-7.5,10.1],"Motley County, Texas":[-27.1,14.5,-7.2,6.8,-14,9.5,-15.8,5],"Nacogdoches County, Texas":[-13.5,12.6,-14.1,12.3,-15.4,15.5,-8.7,7.9],"Navarro County, Texas":[-12.6,12.7,-14.1,15.8,-15.3,12,-8.5,8.9],"Newton County, Texas":[-13.8,8.6,-17.4,12.9,-13.2,15.9,-12.7,5.6],"Nolan County, Texas":[-12,12.4,-9.3,14.1,-20.7,13.7,-11.4,6.4],"Nueces County, Texas":[-13.5,12.4,-15.2,13.5,-13.7,14.1,-9.2,8.4],"Ochiltree County, Texas":[-12.5,12.4,-13,15.3,-15,13.9,-9.2,8.7],"Oldham County, Texas":[-7.9,8.8,-6.3,9.5,-12.1,5.5,-46.5,3.6],"Orange County, Texas":[-13.1,12.5,-13.5,16.2,-15.9,11.2,-8.6,9],"Palo Pinto County, Texas":[-13,12.7,-14.1,12.6,-17.4,13.5,-7.6,9.2],"Panola County, Texas":[-14.1,10.5,-15.1,13.9,-14.3,13.1,-10.2,8.8],"Parker County, Texas":[-12.7,11.4,-15.4,12.8,-14.8,15,-9,8.8],"Parmer County, Texas":[-13.5,12.6,-14.8,14.9,-15.1,11.7,-11.1,6.3],"Pecos County, Texas":[-12,10.8,-16.3,14.9,-15.6,14.7,-9.2,6.5],"Polk County, Texas":[-12.7,12.3,-14.6,10.8,-15.4,17,-8.6,8.5],"Potter County, Texas":[-13.4,12.2,-13.9,14.2,-15.5,13.9,-8.5,8.4],"Presidio County, Texas":[-21.5,4.9,-34.4,13.7,-0,11.4,-8.3,5.8],"Rains County, Texas":[-12.6,9.6,-17,13.3,-14.6,12.3,-12.6,8.1],"Randall County, Texas":[-12.7,12.3,-14,13.2,-15,14.9,-9.3,8.6],"Reagan County, Texas":[-9.4,21.2,-11.4,6.5,-15.8,14.4,-11.6,9.7],"Real County, Texas":[-14.4,6.8,-9.4,9.7,-23.4,12.1,-16.2,8],"Red River County, Texas":[-14.9,18.7,-8,8.5,-16.8,15.1,-10,8.1],"Reeves County, Texas":[-14.2,12.6,-11.7,9.5,-14.9,19.3,-13.2,4.6],"Refugio County, Texas":[-9.1,16.3,-9.8,13.7,-16.2,13.8,-8.3,12.8],"Roberts County, Texas":[-2.7,6.4,-31.4,21.4,-21.8,10.9,-0,5.5],"Robertson County, Texas":[-12.5,13.9,-12.4,12,-18.3,14.2,-8.5,8.3],"Rockwall County, Texas":[-11.4,11.1,-15.3,12.9,-14.6,15.6,-9.7,9.4],"Runnels County, Texas":[-12,12.5,-16.2,14.9,-13.2,14.5,-7.5,9.3],"Rusk County, Texas":[-12.8,11.5,-12.5,14.6,-16.8,14,-9.3,8.5],"Sabine County, Texas":[-15.7,15.3,-13.8,9.1,-15,15.2,-8,7.9],"San Augustine County, Texas":[-5.4,14.6,-19,11.4,-15.1,16.2,-5.2,13.1],"San Jacinto County, Texas":[-12.5,11.4,-15.1,16.6,-13.9,12.8,-7.6,10.2],"San Patricio County, Texas":[-13.4,12.3,-14.3,11.2,-16,15.3,-9.2,8.3],"San Saba County, Texas":[-9.3,14.9,-15.5,19.9,-11.6,8.4,-10.8,9.7],"Schleicher County, Texas":[-9.7,23.3,-5.9,15.5,-11.7,16.4,-11.4,6.2],"Scurry County, Texas":[-11.1,13.8,-14.5,10.2,-15.3,18.1,-9.5,7.5],"Shackelford County, Texas":[-7.4,16.5,-13.1,14.5,-12.6,11.7,-18.7,5.6],"Shelby County, Texas":[-14.6,12.1,-11.4,10.4,-17.1,17.1,-9,8.3],"Sherman County, Texas":[-4.9,20.9,-9.2,8.8,-14.3,7.3,-18.6,16],"Smith County, Texas":[-13.3,12.7,-15,13.6,-14.1,13.9,-8.8,8.5],"Somervell County, Texas":[-15.3,6,-12.3,6.1,-16.4,21,-8.8,14.1],"Starr County, Texas":[-14.5,13.6,-14.1,12.5,-14,15.5,-7.8,7.9],"Stephens County, Texas":[-14.8,10.6,-11.6,10.6,-19.3,15.1,-12,6],"Sterling County, Texas":[-18.4,6.8,-12.8,16.6,-24.4,12.6,-2.4,6],"Stonewall County, Texas":[-10.2,10.5,-9.3,8.1,-10.5,18.3,-14.4,18.9],"Sutton County, Texas":[-11.4,17.1,-17.1,19.4,-20.4,9.3,-3.1,2.1],"Swisher County, Texas":[-18,7.7,-13.2,11.8,-23.1,12.4,-7.1,6.7],"Tarrant County, Texas":[-12.9,12.4,-13.8,13.3,-15.2,14.6,-9.1,8.8],"Taylor County, Texas":[-14.2,13.7,-15.3,12.8,-13.1,14.6,-8.2,8],"Terrell County, Texas":[-5,0,-2.5,18.3,-48.3,8.3,-0,17.5],"Terry County, Texas":[-17.7,8.3,-15.6,14.5,-11.4,15.1,-8.9,8.5],"Throckmorton County, Texas":[-11.4,24.4,-16,4.8,-20.2,11.1,-1.8,10.2],"Titus County, Texas":[-13.9,10.9,-14.8,12.5,-14.8,14,-9.6,9.4],"Tom Green County, Texas":[-13.6,12.6,-13.5,14.5,-15.6,13.4,-8.4,8.4],"Travis County, Texas":[-14.1,13.5,-13.7,13.5,-14.8,13.5,-8.6,8.3],"Trinity County, Texas":[-11.4,12.7,-15,9.8,-16.7,17.1,-10,7.4],"Tyler County, Texas":[-10.4,10.5,-16.4,13.8,-15.8,14.9,-8.7,9.4],"Upshur County, Texas":[-11.8,11.4,-15.5,13.9,-15,13.6,-9.8,8.9],"Upton County, Texas":[-3.2,6.7,-13.3,11,-25.9,27,-5.5,7.4],"Uvalde County, Texas":[-14,13.2,-14.4,15,-14.6,12.2,-11.5,5.1],"Val Verde County, Texas":[-14.1,13.7,-14.9,14.4,-13,13.8,-8.3,7.8],"Van Zandt County, Texas":[-12.8,12.1,-15.8,13.3,-12.9,14.7,-9.1,9.2],"Victoria County, Texas":[-13.5,12.5,-12.7,16.2,-16.2,11.7,-8.6,8.7],"Walker County, Texas":[-16.7,10.3,-15.1,12.8,-14,14.1,-10,7],"Waller County, Texas":[-14.5,11.4,-11.5,13.5,-17.8,14.3,-8.5,8.4],"Ward County, Texas":[-13.1,12.9,-13.3,13.7,-14.6,14.7,-8.4,9.4],"Washington County, Texas":[-13.2,11,-15.9,15.2,-14.1,12.6,-9.7,8.3],"Webb County, Texas":[-13.3,12.8,-15.1,13.1,-13.9,14.9,-8.5,8.4],"Wharton County, Texas":[-12.8,13.7,-14.5,11.6,-14.8,14.5,-9.2,8.9],"Wheeler County, Texas":[-10.7,9.1,-19.1,11.2,-16.8,13.7,-6.5,13],"Wichita County, Texas":[-13.9,13.1,-13.2,15,-15.8,12.4,-8.6,7.9],"Wilbarger County, Texas":[-13.9,19.1,-12.1,12.5,-11.3,10.7,-13.6,6.8],"Willacy County, Texas":[-12,12.8,-10.9,14.6,-16.8,15.3,-8.4,9.3],"Williamson County, Texas":[-12.7,12.1,-14.6,13.4,-15.2,14.6,-9,8.5],"Wilson County, Texas":[-11.7,11.5,-13.9,14.8,-15.7,13.9,-9.6,9],"Winkler County, Texas":[-13.2,11.5,-12,13.3,-16.1,11.8,-16.6,5.6],"Wise County, Texas":[-12.4,11.5,-16.2,13,-13.7,15.3,-9.4,8.6],"Wood County, Texas":[-11.3,11.9,-14.7,13.6,-14.9,15,-9,9.7],"Yoakum County, Texas":[-18,10.2,-13.9,9.6,-14.3,17.5,-8.9,7.7],"Young County, Texas":[-14,9.5,-13.2,13.7,-15.5,17,-7.9,9.2],"Zapata County, Texas":[-12.3,12.2,-15.9,11,-15,16.5,-8.9,8.1],"Zavala County, Texas":[-13.9,10.5,-12.7,9.8,-16.4,17.1,-14.3,5.4]};
+  const ageBins = ["0–4","5–9","10–14","15–17"];
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(data) {
+    const maleData = data.filter((_, i) => i % 2 === 0);
+    const femaleData = data.filter((_, i) => i % 2 === 1);
+
+    const maxValue = Math.max(
+      ...maleData.map(Math.abs),
+      ...femaleData.map(Math.abs)
+    );
+    const padding = 1.0;
+    const xMax = +(maxValue + padding).toFixed(1);
+
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ageBins,
+        datasets: [
+          {
+            label: 'Male',
+            data: maleData,
+            backgroundColor: 'dodgerblue'
+          },
+          {
+            label: 'Female',
+            data: femaleData,
+            backgroundColor: 'lightpink'
+          }
+        ]
+      },
+      options: {
+        indexAxis: 'y',
+        responsive: true,
+        scales: {
+          x: {
+            min: -xMax,
+            max: xMax,
+            ticks: {
+              callback: value => Math.abs(value).toFixed(1) + '%'
+            }
+          },
+          y: {
+            stacked: false
+          }
+        },
+        plugins: {
+          legend: {
+            position: 'top',
+            align: 'start',
+            labels: {
+              usePointStyle: true
+            }
+          },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.dataset.label + ': ' + Math.abs(ctx.parsed.x).toFixed(1) + '%'
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(Object.values(ageData[this.value]));
+  });
+
+  renderChart(Object.values(ageData['Statewide']));</script>
+  </body>
+</html>
+</html>

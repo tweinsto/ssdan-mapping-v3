@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+
+</head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Median Earnings by Industry – 32</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background: white;
+    }
+    .layout {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1.5rem;
+    }
+    label {
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+    #countySelect {
+      font-size: 1rem;
+      padding: 0.4rem 0.8rem;
+      margin-bottom: 1rem;
+    }
+    canvas {
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <label for="countySelect">Median Earnings by Industry:</label>
+    <select id="countySelect"></select>
+    <canvas id="barChart"></canvas>
+  </div>
+
+  <script>
+    const data = {"Statewide":{"Agriculture, forestry, fishing and hunting, and mining":82154,"Arts, entertainment, and recreation, and accommodation and food services":37303,"Construction":58967,"Educational services, and health care and social assistance":58811,"Finance and insurance, and real estate and rental and leasing":54167,"Information":34474,"Manufacturing":57945,"Other services, except public administration":41513,"Professional, scientific, and management, and administrative and waste management services":58600,"Public administration":73906,"Retail trade":39622,"Transportation and warehousing, and utilities":69798,"Wholesale trade":55010},"Churchill County":{"Agriculture, forestry, fishing and hunting, and mining":82154,"Arts, entertainment, and recreation, and accommodation and food services":37303,"Construction":42112,"Educational services, and health care and social assistance":60638,"Finance and insurance, and real estate and rental and leasing":95893,"Information":91688,"Manufacturing":48980,"Other services, except public administration":41827,"Professional, scientific, and management, and administrative and waste management services":63700,"Public administration":66563,"Retail trade":41909,"Transportation and warehousing, and utilities":105962,"Wholesale trade":76818},"Clark County":{"Agriculture, forestry, fishing and hunting, and mining":70617,"Arts, entertainment, and recreation, and accommodation and food services":44182,"Construction":57669,"Educational services, and health care and social assistance":59536,"Finance and insurance, and real estate and rental and leasing":60947,"Information":72420,"Manufacturing":59065,"Other services, except public administration":43777,"Professional, scientific, and management, and administrative and waste management services":57422,"Public administration":81407,"Retail trade":40925,"Transportation and warehousing, and utilities":49583,"Wholesale trade":59219},"Douglas County":{"Agriculture, forestry, fishing and hunting, and mining":91483,"Arts, entertainment, and recreation, and accommodation and food services":50493,"Construction":61348,"Educational services, and health care and social assistance":58811,"Finance and insurance, and real estate and rental and leasing":73854,"Information":34474,"Manufacturing":77846,"Other services, except public administration":41513,"Professional, scientific, and management, and administrative and waste management services":75296,"Public administration":76200,"Retail trade":48250,"Transportation and warehousing, and utilities":79261,"Wholesale trade":74605},"Elko County":{"Agriculture, forestry, fishing and hunting, and mining":97461,"Arts, entertainment, and recreation, and accommodation and food services":32891,"Construction":54986,"Educational services, and health care and social assistance":51297,"Finance and insurance, and real estate and rental and leasing":52692,"Information":87889,"Manufacturing":87620,"Other services, except public administration":37255,"Professional, scientific, and management, and administrative and waste management services":64674,"Public administration":71098,"Retail trade":39622,"Transportation and warehousing, and utilities":78257,"Wholesale trade":66339},"Esmeralda County":{"Agriculture, forestry, fishing and hunting, and mining":93802,"Arts, entertainment, and recreation, and accommodation and food services":0,"Construction":0,"Educational services, and health care and social assistance":73625,"Finance and insurance, and real estate and rental and leasing":0,"Information":0,"Manufacturing":74028,"Other services, except public administration":0,"Professional, scientific, and management, and administrative and waste management services":0,"Public administration":0,"Retail trade":0,"Transportation and warehousing, and utilities":0,"Wholesale trade":0},"Eureka County":{"Agriculture, forestry, fishing and hunting, and mining":94033,"Arts, entertainment, and recreation, and accommodation and food services":0,"Construction":0,"Educational services, and health care and social assistance":0,"Finance and insurance, and real estate and rental and leasing":0,"Information":0,"Manufacturing":0,"Other services, except public administration":0,"Professional, scientific, and management, and administrative and waste management services":0,"Public administration":0,"Retail trade":0,"Transportation and warehousing, and utilities":94239,"Wholesale trade":0},"Humboldt County":{"Agriculture, forestry, fishing and hunting, and mining":90018,"Arts, entertainment, and recreation, and accommodation and food services":30397,"Construction":58967,"Educational services, and health care and social assistance":77375,"Finance and insurance, and real estate and rental and leasing":37765,"Information":43542,"Manufacturing":57583,"Other services, except public administration":48185,"Professional, scientific, and management, and administrative and waste management services":31470,"Public administration":83917,"Retail trade":30878,"Transportation and warehousing, and utilities":94293,"Wholesale trade":122194},"Lander County":{"Agriculture, forestry, fishing and hunting, and mining":104932,"Arts, entertainment, and recreation, and accommodation and food services":15556,"Construction":97778,"Educational services, and health care and social assistance":59813,"Finance and insurance, and real estate and rental and leasing":0,"Information":0,"Manufacturing":52468,"Other services, except public administration":0,"Professional, scientific, and management, and administrative and waste management services":46689,"Public administration":73906,"Retail trade":36667,"Transportation and warehousing, and utilities":93657,"Wholesale trade":0},"Lincoln County":{"Agriculture, forestry, fishing and hunting, and mining":0,"Arts, entertainment, and recreation, and accommodation and food services":155114,"Construction":105299,"Educational services, and health care and social assistance":52813,"Finance and insurance, and real estate and rental and leasing":0,"Information":0,"Manufacturing":0,"Other services, except public administration":0,"Professional, scientific, and management, and administrative and waste management services":87120,"Public administration":79833,"Retail trade":24781,"Transportation and warehousing, and utilities":117689,"Wholesale trade":0},"Lyon County":{"Agriculture, forestry, fishing and hunting, and mining":80341,"Arts, entertainment, and recreation, and accommodation and food services":42349,"Construction":62313,"Educational services, and health care and social assistance":56672,"Finance and insurance, and real estate and rental and leasing":65677,"Information":95580,"Manufacturing":59905,"Other services, except public administration":45612,"Professional, scientific, and management, and administrative and waste management services":61047,"Public administration":73139,"Retail trade":42088,"Transportation and warehousing, and utilities":56780,"Wholesale trade":60162},"Mineral County":{"Agriculture, forestry, fishing and hunting, and mining":40323,"Arts, entertainment, and recreation, and accommodation and food services":6042,"Construction":39076,"Educational services, and health care and social assistance":44839,"Finance and insurance, and real estate and rental and leasing":71094,"Information":0,"Manufacturing":62000,"Other services, except public administration":60819,"Professional, scientific, and management, and administrative and waste management services":68523,"Public administration":63415,"Retail trade":40313,"Transportation and warehousing, and utilities":46250,"Wholesale trade":0},"Nye County":{"Agriculture, forestry, fishing and hunting, and mining":77996,"Arts, entertainment, and recreation, and accommodation and food services":38560,"Construction":60495,"Educational services, and health care and social assistance":67730,"Finance and insurance, and real estate and rental and leasing":71150,"Information":61250,"Manufacturing":49013,"Other services, except public administration":66848,"Professional, scientific, and management, and administrative and waste management services":46649,"Public administration":75139,"Retail trade":37892,"Transportation and warehousing, and utilities":69798,"Wholesale trade":55010},"Pershing County":{"Agriculture, forestry, fishing and hunting, and mining":93889,"Arts, entertainment, and recreation, and accommodation and food services":38967,"Construction":79050,"Educational services, and health care and social assistance":29795,"Finance and insurance, and real estate and rental and leasing":0,"Information":0,"Manufacturing":53393,"Other services, except public administration":53993,"Professional, scientific, and management, and administrative and waste management services":0,"Public administration":104261,"Retail trade":27100,"Transportation and warehousing, and utilities":43214,"Wholesale trade":21838},"Storey County":{"Agriculture, forestry, fishing and hunting, and mining":0,"Arts, entertainment, and recreation, and accommodation and food services":36382,"Construction":51005,"Educational services, and health care and social assistance":80329,"Finance and insurance, and real estate and rental and leasing":80833,"Information":0,"Manufacturing":65114,"Other services, except public administration":0,"Professional, scientific, and management, and administrative and waste management services":86906,"Public administration":88750,"Retail trade":73564,"Transportation and warehousing, and utilities":0,"Wholesale trade":0},"Washoe County":{"Agriculture, forestry, fishing and hunting, and mining":91202,"Arts, entertainment, and recreation, and accommodation and food services":42714,"Construction":62419,"Educational services, and health care and social assistance":61487,"Finance and insurance, and real estate and rental and leasing":72190,"Information":67386,"Manufacturing":57945,"Other services, except public administration":46425,"Professional, scientific, and management, and administrative and waste management services":65619,"Public administration":80230,"Retail trade":42255,"Transportation and warehousing, and utilities":53859,"Wholesale trade":57958},"White Pine County":{"Agriculture, forestry, fishing and hunting, and mining":80982,"Arts, entertainment, and recreation, and accommodation and food services":45436,"Construction":68393,"Educational services, and health care and social assistance":58730,"Finance and insurance, and real estate and rental and leasing":36324,"Information":0,"Manufacturing":61799,"Other services, except public administration":18168,"Professional, scientific, and management, and administrative and waste management services":58600,"Public administration":71912,"Retail trade":34617,"Transportation and warehousing, and utilities":82585,"Wholesale trade":0},"Carson City":{"Agriculture, forestry, fishing and hunting, and mining":36563,"Arts, entertainment, and recreation, and accommodation and food services":36404,"Construction":51825,"Educational services, and health care and social assistance":52697,"Finance and insurance, and real estate and rental and leasing":54167,"Information":65137,"Manufacturing":52913,"Other services, except public administration":35042,"Professional, scientific, and management, and administrative and waste management services":45600,"Public administration":70089,"Retail trade":44814,"Transportation and warehousing, and utilities":55455,"Wholesale trade":65433}};
+    const colors = {
+  'Agriculture, forestry, fishing and hunting, and mining': '#FFFF33',
+  'Arts, entertainment, and recreation, and accommodation and food services': '#D95F02',
+  'Construction': '#7570B3',
+  'Educational services, and health care and social assistance': '#66A61E',
+  'Finance and insurance, and real estate and rental and leasing': '#E6AB02',
+  'Information': '#A6761D',
+  'Manufacturing': '#E41A1C',
+  'Other services, except public administration': '#377EB8',
+  'Professional, scientific, and management, and administrative and waste management services': '#4DAF4A',
+  'Public administration': '#984EA3',
+  'Retail trade': '#FF7F00',
+  'Transportation and warehousing, and utilities': '#1B9E77',
+  'Wholesale trade': '#A65628'
+};
+
+    const ctx = document.getElementById("barChart").getContext("2d");
+    let chart;
+
+    function renderChart(county) {
+      const values = data[county];
+      const labels = Object.keys(values);
+      const earnings = Object.values(values);
+
+      if (chart) chart.destroy();
+
+      chart = new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels: labels,
+          datasets: [{
+            label: "Median Earnings ($)",
+            data: earnings,
+            backgroundColor: labels.map(label => colors[label] || "#ccc")
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: true,
+  aspectRatio: 1.5, 
+          indexAxis: "x",
+          scales: {
+            y: {
+              beginAtZero: true,
+              title: {
+                display: true,
+                text: "Median Earnings ($)"
+              },
+              ticks: {
+                callback: function(value) {
+                  return "$" + value.toLocaleString();
+                }
+              }
+            },
+            x: {
+              ticks: {
+                maxRotation: 45,
+                minRotation: 20,
+                autoSkip: false,
+                callback: function(value, index, ticks) {
+                  let label = this.getLabelForValue(value);
+                  return label.length > 25 ? label.slice(0, 25) + "…" : label;
+                }
+              }
+            }
+          },
+          plugins: {
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  return "$" + context.parsed.y.toLocaleString();
+                }
+              }
+            },
+            legend: {
+              display: false
+            }
+          }
+        }
+      });
+    }
+
+    const select = document.getElementById("countySelect");
+    Object.keys(data).forEach(county => {
+      const option = document.createElement("option");
+      option.value = county;
+      option.text = county;
+      select.appendChild(option);
+    });
+    select.value = "Statewide";
+    select.addEventListener("change", () => renderChart(select.value));
+    renderChart("Statewide");
+  </script>
+</body>
+</html>
+</html>

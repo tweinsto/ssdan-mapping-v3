@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Educational Enrollment – Kentucky</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Educational Enrollment (Age 18–24) in Kentucky</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Adair County, Kentucky">Adair County, Kentucky</option>
+      <option value="Allen County, Kentucky">Allen County, Kentucky</option>
+      <option value="Anderson County, Kentucky">Anderson County, Kentucky</option>
+      <option value="Ballard County, Kentucky">Ballard County, Kentucky</option>
+      <option value="Barren County, Kentucky">Barren County, Kentucky</option>
+      <option value="Bath County, Kentucky">Bath County, Kentucky</option>
+      <option value="Bell County, Kentucky">Bell County, Kentucky</option>
+      <option value="Boone County, Kentucky">Boone County, Kentucky</option>
+      <option value="Bourbon County, Kentucky">Bourbon County, Kentucky</option>
+      <option value="Boyd County, Kentucky">Boyd County, Kentucky</option>
+      <option value="Boyle County, Kentucky">Boyle County, Kentucky</option>
+      <option value="Bracken County, Kentucky">Bracken County, Kentucky</option>
+      <option value="Breathitt County, Kentucky">Breathitt County, Kentucky</option>
+      <option value="Breckinridge County, Kentucky">Breckinridge County, Kentucky</option>
+      <option value="Bullitt County, Kentucky">Bullitt County, Kentucky</option>
+      <option value="Butler County, Kentucky">Butler County, Kentucky</option>
+      <option value="Caldwell County, Kentucky">Caldwell County, Kentucky</option>
+      <option value="Calloway County, Kentucky">Calloway County, Kentucky</option>
+      <option value="Campbell County, Kentucky">Campbell County, Kentucky</option>
+      <option value="Carlisle County, Kentucky">Carlisle County, Kentucky</option>
+      <option value="Carroll County, Kentucky">Carroll County, Kentucky</option>
+      <option value="Carter County, Kentucky">Carter County, Kentucky</option>
+      <option value="Casey County, Kentucky">Casey County, Kentucky</option>
+      <option value="Christian County, Kentucky">Christian County, Kentucky</option>
+      <option value="Clark County, Kentucky">Clark County, Kentucky</option>
+      <option value="Clay County, Kentucky">Clay County, Kentucky</option>
+      <option value="Clinton County, Kentucky">Clinton County, Kentucky</option>
+      <option value="Crittenden County, Kentucky">Crittenden County, Kentucky</option>
+      <option value="Cumberland County, Kentucky">Cumberland County, Kentucky</option>
+      <option value="Daviess County, Kentucky">Daviess County, Kentucky</option>
+      <option value="Edmonson County, Kentucky">Edmonson County, Kentucky</option>
+      <option value="Elliott County, Kentucky">Elliott County, Kentucky</option>
+      <option value="Estill County, Kentucky">Estill County, Kentucky</option>
+      <option value="Fayette County, Kentucky">Fayette County, Kentucky</option>
+      <option value="Fleming County, Kentucky">Fleming County, Kentucky</option>
+      <option value="Floyd County, Kentucky">Floyd County, Kentucky</option>
+      <option value="Franklin County, Kentucky">Franklin County, Kentucky</option>
+      <option value="Fulton County, Kentucky">Fulton County, Kentucky</option>
+      <option value="Gallatin County, Kentucky">Gallatin County, Kentucky</option>
+      <option value="Garrard County, Kentucky">Garrard County, Kentucky</option>
+      <option value="Grant County, Kentucky">Grant County, Kentucky</option>
+      <option value="Graves County, Kentucky">Graves County, Kentucky</option>
+      <option value="Grayson County, Kentucky">Grayson County, Kentucky</option>
+      <option value="Green County, Kentucky">Green County, Kentucky</option>
+      <option value="Greenup County, Kentucky">Greenup County, Kentucky</option>
+      <option value="Hancock County, Kentucky">Hancock County, Kentucky</option>
+      <option value="Hardin County, Kentucky">Hardin County, Kentucky</option>
+      <option value="Harlan County, Kentucky">Harlan County, Kentucky</option>
+      <option value="Harrison County, Kentucky">Harrison County, Kentucky</option>
+      <option value="Hart County, Kentucky">Hart County, Kentucky</option>
+      <option value="Henderson County, Kentucky">Henderson County, Kentucky</option>
+      <option value="Henry County, Kentucky">Henry County, Kentucky</option>
+      <option value="Hickman County, Kentucky">Hickman County, Kentucky</option>
+      <option value="Hopkins County, Kentucky">Hopkins County, Kentucky</option>
+      <option value="Jackson County, Kentucky">Jackson County, Kentucky</option>
+      <option value="Jefferson County, Kentucky">Jefferson County, Kentucky</option>
+      <option value="Jessamine County, Kentucky">Jessamine County, Kentucky</option>
+      <option value="Johnson County, Kentucky">Johnson County, Kentucky</option>
+      <option value="Kenton County, Kentucky">Kenton County, Kentucky</option>
+      <option value="Knott County, Kentucky">Knott County, Kentucky</option>
+      <option value="Knox County, Kentucky">Knox County, Kentucky</option>
+      <option value="Larue County, Kentucky">Larue County, Kentucky</option>
+      <option value="Laurel County, Kentucky">Laurel County, Kentucky</option>
+      <option value="Lawrence County, Kentucky">Lawrence County, Kentucky</option>
+      <option value="Lee County, Kentucky">Lee County, Kentucky</option>
+      <option value="Leslie County, Kentucky">Leslie County, Kentucky</option>
+      <option value="Letcher County, Kentucky">Letcher County, Kentucky</option>
+      <option value="Lewis County, Kentucky">Lewis County, Kentucky</option>
+      <option value="Lincoln County, Kentucky">Lincoln County, Kentucky</option>
+      <option value="Livingston County, Kentucky">Livingston County, Kentucky</option>
+      <option value="Logan County, Kentucky">Logan County, Kentucky</option>
+      <option value="Lyon County, Kentucky">Lyon County, Kentucky</option>
+      <option value="Madison County, Kentucky">Madison County, Kentucky</option>
+      <option value="Magoffin County, Kentucky">Magoffin County, Kentucky</option>
+      <option value="Marion County, Kentucky">Marion County, Kentucky</option>
+      <option value="Marshall County, Kentucky">Marshall County, Kentucky</option>
+      <option value="Martin County, Kentucky">Martin County, Kentucky</option>
+      <option value="Mason County, Kentucky">Mason County, Kentucky</option>
+      <option value="McCracken County, Kentucky">McCracken County, Kentucky</option>
+      <option value="McCreary County, Kentucky">McCreary County, Kentucky</option>
+      <option value="McLean County, Kentucky">McLean County, Kentucky</option>
+      <option value="Meade County, Kentucky">Meade County, Kentucky</option>
+      <option value="Menifee County, Kentucky">Menifee County, Kentucky</option>
+      <option value="Mercer County, Kentucky">Mercer County, Kentucky</option>
+      <option value="Metcalfe County, Kentucky">Metcalfe County, Kentucky</option>
+      <option value="Monroe County, Kentucky">Monroe County, Kentucky</option>
+      <option value="Montgomery County, Kentucky">Montgomery County, Kentucky</option>
+      <option value="Morgan County, Kentucky">Morgan County, Kentucky</option>
+      <option value="Muhlenberg County, Kentucky">Muhlenberg County, Kentucky</option>
+      <option value="Nelson County, Kentucky">Nelson County, Kentucky</option>
+      <option value="Nicholas County, Kentucky">Nicholas County, Kentucky</option>
+      <option value="Ohio County, Kentucky">Ohio County, Kentucky</option>
+      <option value="Oldham County, Kentucky">Oldham County, Kentucky</option>
+      <option value="Owen County, Kentucky">Owen County, Kentucky</option>
+      <option value="Owsley County, Kentucky">Owsley County, Kentucky</option>
+      <option value="Pendleton County, Kentucky">Pendleton County, Kentucky</option>
+      <option value="Perry County, Kentucky">Perry County, Kentucky</option>
+      <option value="Pike County, Kentucky">Pike County, Kentucky</option>
+      <option value="Powell County, Kentucky">Powell County, Kentucky</option>
+      <option value="Pulaski County, Kentucky">Pulaski County, Kentucky</option>
+      <option value="Robertson County, Kentucky">Robertson County, Kentucky</option>
+      <option value="Rockcastle County, Kentucky">Rockcastle County, Kentucky</option>
+      <option value="Rowan County, Kentucky">Rowan County, Kentucky</option>
+      <option value="Russell County, Kentucky">Russell County, Kentucky</option>
+      <option value="Scott County, Kentucky">Scott County, Kentucky</option>
+      <option value="Shelby County, Kentucky">Shelby County, Kentucky</option>
+      <option value="Simpson County, Kentucky">Simpson County, Kentucky</option>
+      <option value="Spencer County, Kentucky">Spencer County, Kentucky</option>
+      <option value="Taylor County, Kentucky">Taylor County, Kentucky</option>
+      <option value="Todd County, Kentucky">Todd County, Kentucky</option>
+      <option value="Trigg County, Kentucky">Trigg County, Kentucky</option>
+      <option value="Trimble County, Kentucky">Trimble County, Kentucky</option>
+      <option value="Union County, Kentucky">Union County, Kentucky</option>
+      <option value="Warren County, Kentucky">Warren County, Kentucky</option>
+      <option value="Washington County, Kentucky">Washington County, Kentucky</option>
+      <option value="Wayne County, Kentucky">Wayne County, Kentucky</option>
+      <option value="Webster County, Kentucky">Webster County, Kentucky</option>
+      <option value="Whitley County, Kentucky">Whitley County, Kentucky</option>
+      <option value="Wolfe County, Kentucky">Wolfe County, Kentucky</option>
+      <option value="Woodford County, Kentucky">Woodford County, Kentucky</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>  const data = {"Statewide":[47,17.3,35.7],"Adair County, Kentucky":[43.4,18.6,37.9],"Allen County, Kentucky":[49.6,16.6,33.8],"Anderson County, Kentucky":[49.2,7.8,42.9],"Ballard County, Kentucky":[47.5,17.5,35],"Barren County, Kentucky":[50.6,14.8,34.6],"Bath County, Kentucky":[46.3,24.5,29.2],"Bell County, Kentucky":[42.2,22.9,35],"Boone County, Kentucky":[46.2,16.9,36.9],"Bourbon County, Kentucky":[51.7,7.1,41.2],"Boyd County, Kentucky":[50.1,13,36.8],"Boyle County, Kentucky":[48.2,8.1,43.7],"Bracken County, Kentucky":[45,16.1,38.8],"Breathitt County, Kentucky":[49.1,8,43],"Breckinridge County, Kentucky":[48.7,13.5,37.8],"Bullitt County, Kentucky":[46.6,17.5,36],"Butler County, Kentucky":[48.1,21.4,30.5],"Caldwell County, Kentucky":[43.4,20.2,36.4],"Calloway County, Kentucky":[45.5,13,41.5],"Campbell County, Kentucky":[48.2,11.2,40.6],"Carlisle County, Kentucky":[46.4,9.3,44.3],"Carroll County, Kentucky":[49.4,7.2,43.4],"Carter County, Kentucky":[48.2,14.9,37],"Casey County, Kentucky":[40.3,34,25.7],"Christian County, Kentucky":[40.5,39.4,20],"Clark County, Kentucky":[44.9,19.5,35.6],"Clay County, Kentucky":[48.8,16.9,34.3],"Clinton County, Kentucky":[41.2,25.3,33.5],"Crittenden County, Kentucky":[41.9,32.9,25.2],"Cumberland County, Kentucky":[50.5,27.4,22.2],"Daviess County, Kentucky":[50.5,13.1,36.4],"Edmonson County, Kentucky":[52,11,37],"Elliott County, Kentucky":[40.9,47.9,11.2],"Estill County, Kentucky":[49,5.6,45.5],"Fayette County, Kentucky":[48.5,9.7,41.8],"Fleming County, Kentucky":[43,26.4,30.6],"Floyd County, Kentucky":[39.8,24.7,35.5],"Franklin County, Kentucky":[50.3,8.1,41.6],"Fulton County, Kentucky":[48.1,17.8,34.1],"Gallatin County, Kentucky":[45.8,31.6,22.6],"Garrard County, Kentucky":[45.3,19,35.7],"Grant County, Kentucky":[42.7,27.2,30.1],"Graves County, Kentucky":[46.7,22.5,30.8],"Grayson County, Kentucky":[46.5,22.9,30.6],"Green County, Kentucky":[43.9,22.5,33.6],"Greenup County, Kentucky":[46.7,13.4,39.9],"Hancock County, Kentucky":[48.6,18.4,33],"Hardin County, Kentucky":[42.3,24.4,33.3],"Harlan County, Kentucky":[47.6,27.7,24.7],"Harrison County, Kentucky":[43.3,22.8,33.9],"Hart County, Kentucky":[47.5,33.2,19.3],"Henderson County, Kentucky":[47.9,17.5,34.5],"Henry County, Kentucky":[40.7,26.8,32.5],"Hickman County, Kentucky":[57.3,1.7,41],"Hopkins County, Kentucky":[46.1,25,28.9],"Jackson County, Kentucky":[48,16.3,35.7],"Jefferson County, Kentucky":[48.1,17.2,34.8],"Jessamine County, Kentucky":[51.5,8.7,39.8],"Johnson County, Kentucky":[46.1,11.7,42.2],"Kenton County, Kentucky":[48.2,13.6,38.2],"Knott County, Kentucky":[45.6,15.5,38.9],"Knox County, Kentucky":[43.3,19,37.8],"Larue County, Kentucky":[41.6,32.8,25.6],"Laurel County, Kentucky":[45.5,24.3,30.2],"Lawrence County, Kentucky":[41.6,21.9,36.6],"Lee County, Kentucky":[40.2,32.4,27.4],"Leslie County, Kentucky":[43.4,22.5,34],"Letcher County, Kentucky":[51.6,20.9,27.5],"Lewis County, Kentucky":[43.5,28.2,28.2],"Lincoln County, Kentucky":[47.1,17.6,35.3],"Livingston County, Kentucky":[47.3,10.8,41.9],"Logan County, Kentucky":[46.5,20.4,33],"Lyon County, Kentucky":[50,8.9,41.1],"Madison County, Kentucky":[49,11.8,39.2],"Magoffin County, Kentucky":[42.7,28,29.3],"Marion County, Kentucky":[44.9,20.6,34.5],"Marshall County, Kentucky":[46.8,22.9,30.3],"Martin County, Kentucky":[47.3,9.7,43],"Mason County, Kentucky":[42.3,23.6,34],"McCracken County, Kentucky":[50.9,11.3,37.8],"McCreary County, Kentucky":[47.5,14.2,38.3],"McLean County, Kentucky":[51.5,9.9,38.7],"Meade County, Kentucky":[51.4,9.6,38.9],"Menifee County, Kentucky":[48.4,12.8,38.8],"Mercer County, Kentucky":[48.4,26,25.6],"Metcalfe County, Kentucky":[34.2,38.2,27.6],"Monroe County, Kentucky":[45.3,19,35.6],"Montgomery County, Kentucky":[43.5,22.1,34.3],"Morgan County, Kentucky":[39.9,29.3,30.8],"Muhlenberg County, Kentucky":[47.6,18.3,34.1],"Nelson County, Kentucky":[43.9,20.3,35.8],"Nicholas County, Kentucky":[53.8,17.4,28.7],"Ohio County, Kentucky":[48.8,14,37.2],"Oldham County, Kentucky":[45.5,14.5,39.9],"Owen County, Kentucky":[44.4,37.7,17.9],"Owsley County, Kentucky":[25.2,56.9,17.9],"Pendleton County, Kentucky":[47.8,17.4,34.8],"Perry County, Kentucky":[46,17.8,36.2],"Pike County, Kentucky":[47.1,13.6,39.3],"Powell County, Kentucky":[45.5,18.1,36.4],"Pulaski County, Kentucky":[48.4,14.6,37],"Robertson County, Kentucky":[54.3,0,45.7],"Rockcastle County, Kentucky":[46.7,21.3,32],"Rowan County, Kentucky":[47.2,10.8,42.1],"Russell County, Kentucky":[47.5,20.6,31.9],"Scott County, Kentucky":[48.6,11.9,39.5],"Shelby County, Kentucky":[50.2,12,37.8],"Simpson County, Kentucky":[29.6,46.1,24.3],"Spencer County, Kentucky":[42.7,24.4,32.9],"Taylor County, Kentucky":[50.5,9.2,40.4],"Todd County, Kentucky":[40.5,32.4,27.1],"Trigg County, Kentucky":[42.6,29.7,27.7],"Trimble County, Kentucky":[41.3,43.2,15.5],"Union County, Kentucky":[34.8,46,19.3],"Warren County, Kentucky":[48.2,13.5,38.3],"Washington County, Kentucky":[51.4,8.3,40.3],"Wayne County, Kentucky":[42.2,19,38.9],"Webster County, Kentucky":[43.9,32,24.1],"Whitley County, Kentucky":[50.8,11.4,37.8],"Wolfe County, Kentucky":[83.6,14.3,2.1],"Woodford County, Kentucky":[53.5,8.9,37.6]};
+  const nationalAvg = [6.9,55,38.1];
+  const categories = ["Enrolled in College","Enrolled in Other School","Not Enrolled"];
+  const ctx = document.getElementById("barChart").getContext("2d");
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: categories,
+        datasets: [
+          {
+            label: "County/State",
+            data: values,
+            backgroundColor: ["#66c2a5", "#fc8d62", "#8da0cb"]
+          },
+          {
+            label: null,
+            data: categories.map(c => nationalAvg[c]),
+            type: "line",
+            borderColor: "black",
+            borderWidth: 2,
+            pointRadius: 0,
+            fill: false
+          }
+        ]
+      },
+      options: {
+        indexAxis: "y",
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            ticks: {
+              callback: v => v + "%"
+            }
+          }
+        },
+        plugins: {
+          legend: {
+            labels: {
+              filter: item => item.text !== null
+            }
+          },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.dataset.label ? ctx.dataset.label + ": " + ctx.raw + "%" : null
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById("countySelect").addEventListener("change", function() {
+    renderChart(Object.values(data[this.value]));
+  });
+
+  renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

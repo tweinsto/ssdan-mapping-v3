@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+
+</head>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Industry Composition – 10</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #fff;
+    }
+    .container {
+      width: 95%;
+      max-width: 1200px;
+      margin: auto;
+      text-align: center;
+    }
+    canvas {
+  max-width: 100%;
+}
+    #countySelect {
+      font-size: 1rem;
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Industry Composition (Percent) – 10</h2>
+    <select id="countySelect"></select>
+    <canvas id="pieChart"></canvas>
+  </div>
+
+  <script>
+    const data = {"Statewide":{"Agriculture, forestry, fishing and hunting, and mining":1,"Arts, entertainment, and recreation, and accommodation and food services":8.3,"Construction":7.1,"Educational services, and health care and social assistance":24.7,"Finance and insurance, and real estate and rental and leasing":9.4,"Information":1.1,"Manufacturing":7.4,"Other services, except public administration":4,"Professional, scientific, and management, and administrative and waste management services":11.6,"Public administration":5.8,"Retail trade":11.6,"Transportation and warehousing, and utilities":6.4,"Wholesale trade":1.7},"Kent County":{"Agriculture, forestry, fishing and hunting, and mining":0.9,"Arts, entertainment, and recreation, and accommodation and food services":8.9,"Construction":7.5,"Educational services, and health care and social assistance":25.1,"Finance and insurance, and real estate and rental and leasing":5.8,"Information":0.7,"Manufacturing":8,"Other services, except public administration":3.9,"Professional, scientific, and management, and administrative and waste management services":7.8,"Public administration":9.7,"Retail trade":13.7,"Transportation and warehousing, and utilities":6.5,"Wholesale trade":1.5},"New Castle County":{"Agriculture, forestry, fishing and hunting, and mining":0.6,"Arts, entertainment, and recreation, and accommodation and food services":7.8,"Construction":6,"Educational services, and health care and social assistance":25.2,"Finance and insurance, and real estate and rental and leasing":11.8,"Information":1.2,"Manufacturing":6.9,"Other services, except public administration":3.8,"Professional, scientific, and management, and administrative and waste management services":12.6,"Public administration":4.8,"Retail trade":10.8,"Transportation and warehousing, and utilities":6.8,"Wholesale trade":1.8},"Sussex County":{"Agriculture, forestry, fishing and hunting, and mining":2.1,"Arts, entertainment, and recreation, and accommodation and food services":9.1,"Construction":9.8,"Educational services, and health care and social assistance":23.3,"Finance and insurance, and real estate and rental and leasing":5.9,"Information":1.2,"Manufacturing":8.4,"Other services, except public administration":4.5,"Professional, scientific, and management, and administrative and waste management services":11.7,"Public administration":5.2,"Retail trade":12,"Transportation and warehousing, and utilities":5.1,"Wholesale trade":1.8}};
+    const colors = {
+  'Agriculture, forestry, fishing and hunting, and mining': '#FFFF33',
+  'Arts, entertainment, and recreation, and accommodation and food services': '#D95F02',
+  'Construction': '#7570B3',
+  'Educational services, and health care and social assistance': '#66A61E',
+  'Finance and insurance, and real estate and rental and leasing': '#E6AB02',
+  'Information': '#A6761D',
+  'Manufacturing': '#E41A1C',
+  'Other services, except public administration': '#377EB8',
+  'Professional, scientific, and management, and administrative and waste management services': '#4DAF4A',
+  'Public administration': '#984EA3',
+  'Retail trade': '#FF7F00',
+  'Transportation and warehousing, and utilities': '#1B9E77',
+  'Wholesale trade': '#A65628'
+};
+
+    const ctx = document.getElementById("pieChart").getContext("2d");
+    let chart;
+
+    function renderChart(county) {
+      const values = data[county];
+      const labels = Object.keys(values);
+      const percentages = Object.values(values);
+
+      if (chart) chart.destroy();
+
+      chart = new Chart(ctx, {
+        type: "pie",
+        data: {
+          labels: labels,
+          datasets: [{
+            data: percentages,
+            backgroundColor: labels.map(label => colors[label] || "#cccccc")
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: true,
+  aspectRatio: 1.5, 
+          plugins: {
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  return context.label + ": " + context.formattedValue + "%";
+                }
+              }
+            },
+            legend: {
+              position: "right",
+              labels: {
+                usePointStyle: true,
+                pointStyle: "rect"
+              }
+            }
+          }
+        }
+      });
+    }
+
+    const select = document.getElementById("countySelect");
+    Object.keys(data).forEach(county => {
+      const opt = document.createElement("option");
+      opt.value = county;
+      opt.text = county;
+      select.appendChild(opt);
+    });
+    select.value = "Statewide";
+    select.addEventListener("change", () => renderChart(select.value));
+    renderChart("Statewide");
+  </script>
+</body>
+</html>
+</html>

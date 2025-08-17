@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Income Distribution – Kentucky</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          text-align: center;
+          margin: 2rem;
+        }
+        select {
+          font-size: 1rem;
+          padding: 0.4rem;
+          margin-bottom: 1rem;
+        }
+        canvas {
+          width: 100%;
+          max-width: 700px;
+          height: 400px;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Income Share by Quintile – Kentucky</h2>
+    <label>Select County, State:</label>
+    <select id="countySelect"><option value='Statewide'>Statewide</option>
+<option value='Adair, Kentucky'>Adair, Kentucky</option>
+<option value='Allen, Kentucky'>Allen, Kentucky</option>
+<option value='Anderson, Kentucky'>Anderson, Kentucky</option>
+<option value='Ballard, Kentucky'>Ballard, Kentucky</option>
+<option value='Barren, Kentucky'>Barren, Kentucky</option>
+<option value='Bath, Kentucky'>Bath, Kentucky</option>
+<option value='Bell, Kentucky'>Bell, Kentucky</option>
+<option value='Boone, Kentucky'>Boone, Kentucky</option>
+<option value='Bourbon, Kentucky'>Bourbon, Kentucky</option>
+<option value='Boyd, Kentucky'>Boyd, Kentucky</option>
+<option value='Boyle, Kentucky'>Boyle, Kentucky</option>
+<option value='Bracken, Kentucky'>Bracken, Kentucky</option>
+<option value='Breathitt, Kentucky'>Breathitt, Kentucky</option>
+<option value='Breckinridge, Kentucky'>Breckinridge, Kentucky</option>
+<option value='Bullitt, Kentucky'>Bullitt, Kentucky</option>
+<option value='Butler, Kentucky'>Butler, Kentucky</option>
+<option value='Caldwell, Kentucky'>Caldwell, Kentucky</option>
+<option value='Calloway, Kentucky'>Calloway, Kentucky</option>
+<option value='Campbell, Kentucky'>Campbell, Kentucky</option>
+<option value='Carlisle, Kentucky'>Carlisle, Kentucky</option>
+<option value='Carroll, Kentucky'>Carroll, Kentucky</option>
+<option value='Carter, Kentucky'>Carter, Kentucky</option>
+<option value='Casey, Kentucky'>Casey, Kentucky</option>
+<option value='Christian, Kentucky'>Christian, Kentucky</option>
+<option value='Clark, Kentucky'>Clark, Kentucky</option>
+<option value='Clay, Kentucky'>Clay, Kentucky</option>
+<option value='Clinton, Kentucky'>Clinton, Kentucky</option>
+<option value='Crittenden, Kentucky'>Crittenden, Kentucky</option>
+<option value='Cumberland, Kentucky'>Cumberland, Kentucky</option>
+<option value='Daviess, Kentucky'>Daviess, Kentucky</option>
+<option value='Edmonson, Kentucky'>Edmonson, Kentucky</option>
+<option value='Elliott, Kentucky'>Elliott, Kentucky</option>
+<option value='Estill, Kentucky'>Estill, Kentucky</option>
+<option value='Fayette, Kentucky'>Fayette, Kentucky</option>
+<option value='Fleming, Kentucky'>Fleming, Kentucky</option>
+<option value='Floyd, Kentucky'>Floyd, Kentucky</option>
+<option value='Franklin, Kentucky'>Franklin, Kentucky</option>
+<option value='Fulton, Kentucky'>Fulton, Kentucky</option>
+<option value='Gallatin, Kentucky'>Gallatin, Kentucky</option>
+<option value='Garrard, Kentucky'>Garrard, Kentucky</option>
+<option value='Grant, Kentucky'>Grant, Kentucky</option>
+<option value='Graves, Kentucky'>Graves, Kentucky</option>
+<option value='Grayson, Kentucky'>Grayson, Kentucky</option>
+<option value='Green, Kentucky'>Green, Kentucky</option>
+<option value='Greenup, Kentucky'>Greenup, Kentucky</option>
+<option value='Hancock, Kentucky'>Hancock, Kentucky</option>
+<option value='Hardin, Kentucky'>Hardin, Kentucky</option>
+<option value='Harlan, Kentucky'>Harlan, Kentucky</option>
+<option value='Harrison, Kentucky'>Harrison, Kentucky</option>
+<option value='Hart, Kentucky'>Hart, Kentucky</option>
+<option value='Henderson, Kentucky'>Henderson, Kentucky</option>
+<option value='Henry, Kentucky'>Henry, Kentucky</option>
+<option value='Hickman, Kentucky'>Hickman, Kentucky</option>
+<option value='Hopkins, Kentucky'>Hopkins, Kentucky</option>
+<option value='Jackson, Kentucky'>Jackson, Kentucky</option>
+<option value='Jefferson, Kentucky'>Jefferson, Kentucky</option>
+<option value='Jessamine, Kentucky'>Jessamine, Kentucky</option>
+<option value='Johnson, Kentucky'>Johnson, Kentucky</option>
+<option value='Kenton, Kentucky'>Kenton, Kentucky</option>
+<option value='Knott, Kentucky'>Knott, Kentucky</option>
+<option value='Knox, Kentucky'>Knox, Kentucky</option>
+<option value='Larue, Kentucky'>Larue, Kentucky</option>
+<option value='Laurel, Kentucky'>Laurel, Kentucky</option>
+<option value='Lawrence, Kentucky'>Lawrence, Kentucky</option>
+<option value='Lee, Kentucky'>Lee, Kentucky</option>
+<option value='Leslie, Kentucky'>Leslie, Kentucky</option>
+<option value='Letcher, Kentucky'>Letcher, Kentucky</option>
+<option value='Lewis, Kentucky'>Lewis, Kentucky</option>
+<option value='Lincoln, Kentucky'>Lincoln, Kentucky</option>
+<option value='Livingston, Kentucky'>Livingston, Kentucky</option>
+<option value='Logan, Kentucky'>Logan, Kentucky</option>
+<option value='Lyon, Kentucky'>Lyon, Kentucky</option>
+<option value='Madison, Kentucky'>Madison, Kentucky</option>
+<option value='Magoffin, Kentucky'>Magoffin, Kentucky</option>
+<option value='Marion, Kentucky'>Marion, Kentucky</option>
+<option value='Marshall, Kentucky'>Marshall, Kentucky</option>
+<option value='Martin, Kentucky'>Martin, Kentucky</option>
+<option value='Mason, Kentucky'>Mason, Kentucky</option>
+<option value='McCracken, Kentucky'>McCracken, Kentucky</option>
+<option value='McCreary, Kentucky'>McCreary, Kentucky</option>
+<option value='McLean, Kentucky'>McLean, Kentucky</option>
+<option value='Meade, Kentucky'>Meade, Kentucky</option>
+<option value='Menifee, Kentucky'>Menifee, Kentucky</option>
+<option value='Mercer, Kentucky'>Mercer, Kentucky</option>
+<option value='Metcalfe, Kentucky'>Metcalfe, Kentucky</option>
+<option value='Monroe, Kentucky'>Monroe, Kentucky</option>
+<option value='Montgomery, Kentucky'>Montgomery, Kentucky</option>
+<option value='Morgan, Kentucky'>Morgan, Kentucky</option>
+<option value='Muhlenberg, Kentucky'>Muhlenberg, Kentucky</option>
+<option value='Nelson, Kentucky'>Nelson, Kentucky</option>
+<option value='Nicholas, Kentucky'>Nicholas, Kentucky</option>
+<option value='Ohio, Kentucky'>Ohio, Kentucky</option>
+<option value='Oldham, Kentucky'>Oldham, Kentucky</option>
+<option value='Owen, Kentucky'>Owen, Kentucky</option>
+<option value='Owsley, Kentucky'>Owsley, Kentucky</option>
+<option value='Pendleton, Kentucky'>Pendleton, Kentucky</option>
+<option value='Perry, Kentucky'>Perry, Kentucky</option>
+<option value='Pike, Kentucky'>Pike, Kentucky</option>
+<option value='Powell, Kentucky'>Powell, Kentucky</option>
+<option value='Pulaski, Kentucky'>Pulaski, Kentucky</option>
+<option value='Robertson, Kentucky'>Robertson, Kentucky</option>
+<option value='Rockcastle, Kentucky'>Rockcastle, Kentucky</option>
+<option value='Rowan, Kentucky'>Rowan, Kentucky</option>
+<option value='Russell, Kentucky'>Russell, Kentucky</option>
+<option value='Scott, Kentucky'>Scott, Kentucky</option>
+<option value='Shelby, Kentucky'>Shelby, Kentucky</option>
+<option value='Simpson, Kentucky'>Simpson, Kentucky</option>
+<option value='Spencer, Kentucky'>Spencer, Kentucky</option>
+<option value='Taylor, Kentucky'>Taylor, Kentucky</option>
+<option value='Todd, Kentucky'>Todd, Kentucky</option>
+<option value='Trigg, Kentucky'>Trigg, Kentucky</option>
+<option value='Trimble, Kentucky'>Trimble, Kentucky</option>
+<option value='Union, Kentucky'>Union, Kentucky</option>
+<option value='Warren, Kentucky'>Warren, Kentucky</option>
+<option value='Washington, Kentucky'>Washington, Kentucky</option>
+<option value='Wayne, Kentucky'>Wayne, Kentucky</option>
+<option value='Webster, Kentucky'>Webster, Kentucky</option>
+<option value='Whitley, Kentucky'>Whitley, Kentucky</option>
+<option value='Wolfe, Kentucky'>Wolfe, Kentucky</option>
+<option value='Woodford, Kentucky'>Woodford, Kentucky</option></select>
+    <canvas id="barChart" width="700" height="400"></canvas>
+    <script>  const incomeData = {"Statewide":[4.9,8.5,13.3,27.3,46],"Adair, Kentucky":[4.1,7.6,11.4,25.9,51],"Allen, Kentucky":[4.6,8.2,12.2,25.9,49.1],"Anderson, Kentucky":[6,9.6,14.4,26.8,43.2],"Ballard, Kentucky":[5.1,8.6,12.9,27.4,46.1],"Barren, Kentucky":[4.6,7.6,12.4,27.4,48],"Bath, Kentucky":[3.3,6.1,9.9,25.5,55.2],"Bell, Kentucky":[4.2,7.4,12.7,28,47.7],"Boone, Kentucky":[6.2,9.7,13.7,26.7,43.7],"Bourbon, Kentucky":[4.7,8.2,13.7,27.8,45.6],"Boyd, Kentucky":[5,9.2,14.2,27.4,44.2],"Boyle, Kentucky":[4.8,8.2,12.8,26.7,47.4],"Bracken, Kentucky":[5.2,9.3,15.5,27.6,42.5],"Breathitt, Kentucky":[4.9,9.3,15.4,28.4,42.1],"Breckinridge, Kentucky":[4.6,7.9,13.2,27.1,47.1],"Bullitt, Kentucky":[6.8,10.5,15.3,27.2,40.2],"Butler, Kentucky":[5.8,10.3,16.3,28,39.6],"Caldwell, Kentucky":[5.3,9.8,15.5,28.8,40.6],"Calloway, Kentucky":[4.5,7.5,12.1,26.8,49.1],"Campbell, Kentucky":[4.6,7.9,12.3,27.3,48.1],"Carlisle, Kentucky":[3.8,6.9,10.7,25.3,53.3],"Carroll, Kentucky":[4.7,8.7,14.3,27.9,44.4],"Carter, Kentucky":[4.2,7.5,12.2,27.3,48.8],"Casey, Kentucky":[4.2,7.1,11.5,26.8,50.4],"Christian, Kentucky":[5.5,9.1,13.3,27,45.2],"Clark, Kentucky":[4.2,7,10.6,25.3,52.9],"Clay, Kentucky":[4.5,8,14,28.5,45],"Clinton, Kentucky":[6.2,9.5,16,29,39.4],"Crittenden, Kentucky":[4.7,8,13.6,26.9,46.7],"Cumberland, Kentucky":[5,9.8,15.4,29.6,40.2],"Daviess, Kentucky":[4.7,8,12.4,26.6,48.4],"Edmonson, Kentucky":[5.7,9.5,14.8,27,43],"Elliott, Kentucky":[5.6,9.3,15.7,29.7,39.7],"Estill, Kentucky":[5.2,9,14.9,27.5,43.3],"Fayette, Kentucky":[4.3,7.3,11.8,27.4,49.3],"Fleming, Kentucky":[4.7,8.4,13.1,27,46.9],"Floyd, Kentucky":[3.8,6.9,12,27.1,50.2],"Franklin, Kentucky":[4.7,7.7,11.9,25.9,49.7],"Fulton, Kentucky":[5.9,9.6,14.1,29.4,41],"Gallatin, Kentucky":[6.1,9.8,15,27,42.1],"Garrard, Kentucky":[5.3,9.1,13.9,27.1,44.7],"Grant, Kentucky":[6,10.1,14.8,27.4,41.7],"Graves, Kentucky":[4.2,7.2,11.5,26.5,50.6],"Grayson, Kentucky":[5,8.2,13.1,28.4,45.3],"Green, Kentucky":[4.7,8.2,13.7,28.4,45],"Greenup, Kentucky":[4.6,7.7,11.5,27,49.2],"Hancock, Kentucky":[5.9,10.9,16.4,27.5,39.4],"Hardin, Kentucky":[4.9,7.6,11.6,26.3,49.5],"Harlan, Kentucky":[4.3,7.7,12.5,27.6,47.8],"Harrison, Kentucky":[4.7,8.3,12.7,26.7,47.7],"Hart, Kentucky":[4.8,8.5,13.3,27,46.3],"Henderson, Kentucky":[5.3,8.7,13.6,27.9,44.5],"Henry, Kentucky":[5.2,8.6,13.1,26.7,46.3],"Hickman, Kentucky":[5.2,9.7,13.7,27.7,43.6],"Hopkins, Kentucky":[5.7,9.7,14.7,27.5,42.4],"Jackson, Kentucky":[5.3,9.9,15.6,29.6,39.5],"Jefferson, Kentucky":[4.5,7.4,11.7,26.9,49.6],"Jessamine, Kentucky":[3.8,6.2,9.3,24.8,55.9],"Johnson, Kentucky":[4.2,7.6,12.8,27.4,48],"Kenton, Kentucky":[5.2,8.4,12.8,26.8,46.8],"Knott, Kentucky":[4.8,8.2,14.3,28.7,43.9],"Knox, Kentucky":[3,6,11.2,27.4,52.4],"Larue, Kentucky":[5.2,10,14.7,27.4,42.6],"Laurel, Kentucky":[5,9.1,14.2,27.2,44.5],"Lawrence, Kentucky":[4.7,8.2,12.9,27.3,46.8],"Lee, Kentucky":[4.1,7.1,11,27.8,50],"Leslie, Kentucky":[5.5,9.4,15.3,29.6,40.3],"Letcher, Kentucky":[4.3,7.4,12.7,27.2,48.3],"Lewis, Kentucky":[4.7,8,13,27.2,47.1],"Lincoln, Kentucky":[5.1,8.5,13.1,28.1,45.2],"Livingston, Kentucky":[6.2,9.9,14.7,27.2,42],"Logan, Kentucky":[5.9,9.9,14.3,26.6,43.4],"Lyon, Kentucky":[5.6,9.4,13.9,28.8,42.4],"Madison, Kentucky":[5.4,8.9,14,27.6,44.1],"Magoffin, Kentucky":[4.1,7.2,12.4,27.4,48.9],"Marion, Kentucky":[5.3,9.4,13.9,27.4,44.1],"Marshall, Kentucky":[5.8,9.4,13.9,27.7,43.2],"Martin, Kentucky":[2.8,5.7,10.4,26.9,54.1],"Mason, Kentucky":[3.6,6.5,10.9,27.1,51.9],"McCracken, Kentucky":[3.7,6.6,10.5,26.2,53],"McCreary, Kentucky":[3.9,8.4,13.1,27.1,47.4],"McLean, Kentucky":[5.4,9.7,15.7,27,42.2],"Meade, Kentucky":[5.9,9,13.7,27.4,43.9],"Menifee, Kentucky":[4.6,8.4,14.5,28,44.5],"Mercer, Kentucky":[5.8,9.3,13.8,27.4,43.7],"Metcalfe, Kentucky":[5.8,9.9,15.7,28.1,40.5],"Monroe, Kentucky":[4.7,8.7,13.9,28.2,44.4],"Montgomery, Kentucky":[6.1,9.7,14.7,26.7,42.8],"Morgan, Kentucky":[4.1,6.9,11,27.1,50.8],"Muhlenberg, Kentucky":[4.4,7.3,11.5,27.1,49.8],"Nelson, Kentucky":[5.9,9.5,14,27.4,43.2],"Nicholas, Kentucky":[6,11.1,17.5,27.1,38.3],"Ohio, Kentucky":[5.9,9.1,13.6,26.9,44.5],"Oldham, Kentucky":[5.3,8.2,12,26.5,48],"Owen, Kentucky":[5.9,10.2,14.9,28.1,40.9],"Owsley, Kentucky":[3.8,6.5,11.4,27.2,51.1],"Pendleton, Kentucky":[5.4,9.8,15.2,26.9,42.6],"Perry, Kentucky":[3.1,5.3,9.2,25.4,56.9],"Pike, Kentucky":[3.9,7.4,12.7,27.7,48.3],"Powell, Kentucky":[4.4,8,15.8,28.6,43.2],"Pulaski, Kentucky":[3.8,6.6,10.7,26.3,52.6],"Robertson, Kentucky":[4.7,8.1,12.6,25.7,48.9],"Rockcastle, Kentucky":[3.8,7,11.1,25.6,52.5],"Rowan, Kentucky":[3.6,6.8,10.6,27.1,51.9],"Russell, Kentucky":[4.3,7.8,12.9,27.3,47.7],"Scott, Kentucky":[6.4,9.9,14.5,26.7,42.4],"Shelby, Kentucky":[5.8,9.4,13.5,26.8,44.5],"Simpson, Kentucky":[5.9,9.9,14.7,28,41.6],"Spencer, Kentucky":[6.6,10.9,14.9,26.1,41.5],"Taylor, Kentucky":[5.8,9.8,14.3,26.4,43.8],"Todd, Kentucky":[4.4,7.4,11.5,26.2,50.5],"Trigg, Kentucky":[4.9,8.2,12.9,28.1,45.9],"Trimble, Kentucky":[5.4,9.7,13.8,27.1,44],"Union, Kentucky":[5.4,8.9,13.4,26.7,45.6],"Warren, Kentucky":[4.5,7.6,11.7,26.4,49.8],"Washington, Kentucky":[5.1,9.1,14,27.6,44.2],"Wayne, Kentucky":[3.5,6.4,10.8,26.2,53.2],"Webster, Kentucky":[6.3,10.2,15,27.7,40.8],"Whitley, Kentucky":[4.4,7.3,12.2,27.5,48.6],"Wolfe, Kentucky":[5.6,9.5,15.8,28.1,41],"Woodford, Kentucky":[5.2,8.9,13.9,27.2,44.8]};
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Bottom 20%', 'Second 20%', 'Middle 20%', 'Fourth 20%', 'Top 20%'],
+        datasets: [{
+          label: 'Share (%)',
+          data: values,
+          backgroundColor: '#4576a7'
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.parsed.y + '%'
+            }
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 100,
+            title: {
+              display: true,
+              text: 'Income Share (%)'
+            }
+          },
+          x: {
+            title: {
+              display: true,
+              text: 'Quintile'
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(Object.values(incomeData[this.value]));
+  });
+
+  renderChart(Object.values(incomeData['Statewide']));</script>
+  </body>
+</html>
+</html>

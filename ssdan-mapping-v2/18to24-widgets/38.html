@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Educational Enrollment – North Dakota</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Educational Enrollment (Age 18–24) in North Dakota</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Adams County, North Dakota">Adams County, North Dakota</option>
+      <option value="Barnes County, North Dakota">Barnes County, North Dakota</option>
+      <option value="Benson County, North Dakota">Benson County, North Dakota</option>
+      <option value="Billings County, North Dakota">Billings County, North Dakota</option>
+      <option value="Bottineau County, North Dakota">Bottineau County, North Dakota</option>
+      <option value="Bowman County, North Dakota">Bowman County, North Dakota</option>
+      <option value="Burke County, North Dakota">Burke County, North Dakota</option>
+      <option value="Burleigh County, North Dakota">Burleigh County, North Dakota</option>
+      <option value="Cass County, North Dakota">Cass County, North Dakota</option>
+      <option value="Cavalier County, North Dakota">Cavalier County, North Dakota</option>
+      <option value="Dickey County, North Dakota">Dickey County, North Dakota</option>
+      <option value="Divide County, North Dakota">Divide County, North Dakota</option>
+      <option value="Dunn County, North Dakota">Dunn County, North Dakota</option>
+      <option value="Eddy County, North Dakota">Eddy County, North Dakota</option>
+      <option value="Emmons County, North Dakota">Emmons County, North Dakota</option>
+      <option value="Foster County, North Dakota">Foster County, North Dakota</option>
+      <option value="Golden Valley County, North Dakota">Golden Valley County, North Dakota</option>
+      <option value="Grand Forks County, North Dakota">Grand Forks County, North Dakota</option>
+      <option value="Grant County, North Dakota">Grant County, North Dakota</option>
+      <option value="Griggs County, North Dakota">Griggs County, North Dakota</option>
+      <option value="Hettinger County, North Dakota">Hettinger County, North Dakota</option>
+      <option value="Kidder County, North Dakota">Kidder County, North Dakota</option>
+      <option value="LaMoure County, North Dakota">LaMoure County, North Dakota</option>
+      <option value="Logan County, North Dakota">Logan County, North Dakota</option>
+      <option value="McHenry County, North Dakota">McHenry County, North Dakota</option>
+      <option value="McIntosh County, North Dakota">McIntosh County, North Dakota</option>
+      <option value="McKenzie County, North Dakota">McKenzie County, North Dakota</option>
+      <option value="McLean County, North Dakota">McLean County, North Dakota</option>
+      <option value="Mercer County, North Dakota">Mercer County, North Dakota</option>
+      <option value="Morton County, North Dakota">Morton County, North Dakota</option>
+      <option value="Mountrail County, North Dakota">Mountrail County, North Dakota</option>
+      <option value="Nelson County, North Dakota">Nelson County, North Dakota</option>
+      <option value="Oliver County, North Dakota">Oliver County, North Dakota</option>
+      <option value="Pembina County, North Dakota">Pembina County, North Dakota</option>
+      <option value="Pierce County, North Dakota">Pierce County, North Dakota</option>
+      <option value="Ramsey County, North Dakota">Ramsey County, North Dakota</option>
+      <option value="Ransom County, North Dakota">Ransom County, North Dakota</option>
+      <option value="Renville County, North Dakota">Renville County, North Dakota</option>
+      <option value="Richland County, North Dakota">Richland County, North Dakota</option>
+      <option value="Rolette County, North Dakota">Rolette County, North Dakota</option>
+      <option value="Sargent County, North Dakota">Sargent County, North Dakota</option>
+      <option value="Sheridan County, North Dakota">Sheridan County, North Dakota</option>
+      <option value="Sioux County, North Dakota">Sioux County, North Dakota</option>
+      <option value="Slope County, North Dakota">Slope County, North Dakota</option>
+      <option value="Stark County, North Dakota">Stark County, North Dakota</option>
+      <option value="Steele County, North Dakota">Steele County, North Dakota</option>
+      <option value="Stutsman County, North Dakota">Stutsman County, North Dakota</option>
+      <option value="Towner County, North Dakota">Towner County, North Dakota</option>
+      <option value="Traill County, North Dakota">Traill County, North Dakota</option>
+      <option value="Walsh County, North Dakota">Walsh County, North Dakota</option>
+      <option value="Ward County, North Dakota">Ward County, North Dakota</option>
+      <option value="Wells County, North Dakota">Wells County, North Dakota</option>
+      <option value="Williams County, North Dakota">Williams County, North Dakota</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>  const data = {"Statewide":[47.9,12.8,39.3],"Adams County, North Dakota":[43.4,14.5,42.2],"Barnes County, North Dakota":[53.2,2.6,44.2],"Benson County, North Dakota":[42.3,27.9,29.8],"Billings County, North Dakota":[45.2,32.3,22.6],"Bottineau County, North Dakota":[47,17,35.9],"Bowman County, North Dakota":[50.7,2.6,46.7],"Burke County, North Dakota":[46.3,7.3,46.3],"Burleigh County, North Dakota":[50.4,8.7,40.9],"Cass County, North Dakota":[48.8,11.4,39.8],"Cavalier County, North Dakota":[50.9,2.7,46.5],"Dickey County, North Dakota":[55.7,3.2,41.1],"Divide County, North Dakota":[52.5,0,47.5],"Dunn County, North Dakota":[47.1,22.9,29.9],"Eddy County, North Dakota":[50,0,50],"Emmons County, North Dakota":[53.8,1.2,45],"Foster County, North Dakota":[50,8.5,41.5],"Golden Valley County, North Dakota":[43.3,16.4,40.3],"Grand Forks County, North Dakota":[46.8,10.2,42.9],"Grant County, North Dakota":[44,24.2,31.9],"Griggs County, North Dakota":[50.9,0,49.1],"Hettinger County, North Dakota":[51.2,7.5,41.2],"Kidder County, North Dakota":[57.4,0,42.6],"LaMoure County, North Dakota":[58.8,0,41.2],"Logan County, North Dakota":[52.5,1.6,45.9],"McHenry County, North Dakota":[40.3,19.9,39.8],"McIntosh County, North Dakota":[40.5,25.3,34.2],"McKenzie County, North Dakota":[42.2,18.5,39.3],"McLean County, North Dakota":[49.4,9.3,41.3],"Mercer County, North Dakota":[51.5,1.9,46.6],"Morton County, North Dakota":[44.1,16.9,39],"Mountrail County, North Dakota":[56.8,14,29.3],"Nelson County, North Dakota":[52.3,14.2,33.5],"Oliver County, North Dakota":[34.1,56.1,9.8],"Pembina County, North Dakota":[43.4,23,33.6],"Pierce County, North Dakota":[53.3,0,46.7],"Ramsey County, North Dakota":[52.7,4.7,42.6],"Ransom County, North Dakota":[47.8,9.2,43],"Renville County, North Dakota":[42,16.8,41.2],"Richland County, North Dakota":[48.9,7.2,43.8],"Rolette County, North Dakota":[39,28.7,32.3],"Sargent County, North Dakota":[37.6,30.6,31.8],"Sheridan County, North Dakota":[21.3,58.4,20.2],"Sioux County, North Dakota":[41.9,28.1,30],"Slope County, North Dakota":[40.4,19.2,40.4],"Stark County, North Dakota":[46,13.1,41],"Steele County, North Dakota":[63.2,0,36.8],"Stutsman County, North Dakota":[49.2,5.3,45.5],"Towner County, North Dakota":[46.8,18.2,35.1],"Traill County, North Dakota":[48.9,3.8,47.3],"Walsh County, North Dakota":[48.9,9.6,41.5],"Ward County, North Dakota":[47.1,23.6,29.4],"Wells County, North Dakota":[50,0,50],"Williams County, North Dakota":[46.8,13.3,39.9]};
+  const nationalAvg = [6.9,55,38.1];
+  const categories = ["Enrolled in College","Enrolled in Other School","Not Enrolled"];
+  const ctx = document.getElementById("barChart").getContext("2d");
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: categories,
+        datasets: [
+          {
+            label: "County/State",
+            data: values,
+            backgroundColor: ["#66c2a5", "#fc8d62", "#8da0cb"]
+          },
+          {
+            label: null,
+            data: categories.map(c => nationalAvg[c]),
+            type: "line",
+            borderColor: "black",
+            borderWidth: 2,
+            pointRadius: 0,
+            fill: false
+          }
+        ]
+      },
+      options: {
+        indexAxis: "y",
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            ticks: {
+              callback: v => v + "%"
+            }
+          }
+        },
+        plugins: {
+          legend: {
+            labels: {
+              filter: item => item.text !== null
+            }
+          },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.dataset.label ? ctx.dataset.label + ": " + ctx.raw + "%" : null
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById("countySelect").addEventListener("change", function() {
+    renderChart(Object.values(data[this.value]));
+  });
+
+  renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

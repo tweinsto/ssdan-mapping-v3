@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Educational Enrollment – Maine</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Educational Enrollment (Age 18–24) in Maine</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Androscoggin County, Maine">Androscoggin County, Maine</option>
+      <option value="Aroostook County, Maine">Aroostook County, Maine</option>
+      <option value="Cumberland County, Maine">Cumberland County, Maine</option>
+      <option value="Franklin County, Maine">Franklin County, Maine</option>
+      <option value="Hancock County, Maine">Hancock County, Maine</option>
+      <option value="Kennebec County, Maine">Kennebec County, Maine</option>
+      <option value="Knox County, Maine">Knox County, Maine</option>
+      <option value="Lincoln County, Maine">Lincoln County, Maine</option>
+      <option value="Oxford County, Maine">Oxford County, Maine</option>
+      <option value="Penobscot County, Maine">Penobscot County, Maine</option>
+      <option value="Piscataquis County, Maine">Piscataquis County, Maine</option>
+      <option value="Sagadahoc County, Maine">Sagadahoc County, Maine</option>
+      <option value="Somerset County, Maine">Somerset County, Maine</option>
+      <option value="Waldo County, Maine">Waldo County, Maine</option>
+      <option value="Washington County, Maine">Washington County, Maine</option>
+      <option value="York County, Maine">York County, Maine</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>  const data = {"Statewide":[46.8,14.9,38.3],"Androscoggin County, Maine":[47.8,13.7,38.5],"Aroostook County, Maine":[43.6,17.8,38.6],"Cumberland County, Maine":[45.3,14.1,40.6],"Franklin County, Maine":[47.7,14.1,38.2],"Hancock County, Maine":[50.8,11.9,37.3],"Kennebec County, Maine":[49.7,11.9,38.5],"Knox County, Maine":[40.5,23.2,36.4],"Lincoln County, Maine":[42,25.1,32.8],"Oxford County, Maine":[47,15.6,37.4],"Penobscot County, Maine":[47.1,12.6,40.4],"Piscataquis County, Maine":[42.4,25.1,32.5],"Sagadahoc County, Maine":[50.2,13.6,36.3],"Somerset County, Maine":[45.7,17.8,36.4],"Waldo County, Maine":[52.3,8.6,39.1],"Washington County, Maine":[48.5,14.3,37.2],"York County, Maine":[46.7,17.6,35.7]};
+  const nationalAvg = [6.9,55,38.1];
+  const categories = ["Enrolled in College","Enrolled in Other School","Not Enrolled"];
+  const ctx = document.getElementById("barChart").getContext("2d");
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: categories,
+        datasets: [
+          {
+            label: "County/State",
+            data: values,
+            backgroundColor: ["#66c2a5", "#fc8d62", "#8da0cb"]
+          },
+          {
+            label: null,
+            data: categories.map(c => nationalAvg[c]),
+            type: "line",
+            borderColor: "black",
+            borderWidth: 2,
+            pointRadius: 0,
+            fill: false
+          }
+        ]
+      },
+      options: {
+        indexAxis: "y",
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            ticks: {
+              callback: v => v + "%"
+            }
+          }
+        },
+        plugins: {
+          legend: {
+            labels: {
+              filter: item => item.text !== null
+            }
+          },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.dataset.label ? ctx.dataset.label + ": " + ctx.raw + "%" : null
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById("countySelect").addEventListener("change", function() {
+    renderChart(Object.values(data[this.value]));
+  });
+
+  renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

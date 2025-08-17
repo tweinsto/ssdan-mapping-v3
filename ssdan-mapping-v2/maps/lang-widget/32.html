@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Language Spoken at Home – Nevada</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          text-align: center;
+          margin: 2rem;
+        }
+        select {
+          font-size: 1rem;
+          padding: 0.4rem;
+          margin-bottom: 1rem;
+        }
+        canvas {
+          width: 100%;
+          max-width: 700px;
+          height: 800px;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Language Spoken at Home – Nevada</h2>
+    <label>Select County, State:</label>
+    <select id="countySelect"><option value='Statewide'>Statewide</option>
+<option value='Carson City, Nevada'>Carson City, Nevada</option>
+<option value='Churchill County, Nevada'>Churchill County, Nevada</option>
+<option value='Clark County, Nevada'>Clark County, Nevada</option>
+<option value='Douglas County, Nevada'>Douglas County, Nevada</option>
+<option value='Elko County, Nevada'>Elko County, Nevada</option>
+<option value='Esmeralda County, Nevada'>Esmeralda County, Nevada</option>
+<option value='Eureka County, Nevada'>Eureka County, Nevada</option>
+<option value='Humboldt County, Nevada'>Humboldt County, Nevada</option>
+<option value='Lander County, Nevada'>Lander County, Nevada</option>
+<option value='Lincoln County, Nevada'>Lincoln County, Nevada</option>
+<option value='Lyon County, Nevada'>Lyon County, Nevada</option>
+<option value='Mineral County, Nevada'>Mineral County, Nevada</option>
+<option value='Nye County, Nevada'>Nye County, Nevada</option>
+<option value='Pershing County, Nevada'>Pershing County, Nevada</option>
+<option value='Storey County, Nevada'>Storey County, Nevada</option>
+<option value='Washoe County, Nevada'>Washoe County, Nevada</option>
+<option value='White Pine County, Nevada'>White Pine County, Nevada</option></select>
+    <canvas id="barChart" width="700" height="700"></canvas>
+    <script>  const languageData = {"Statewide":{"Arabic":0.2,"Chinese":0.1,"English only":54.7,"French, Haitian, Cajun":0.4,"German or West Germanic":0.1,"Korean":0.4,"Other":12.3,"Other Asian/Pacific":0.1,"Other Indo-European":0.2,"Other/Unspecified":0.2,"Russian, Polish, Slavic":0.2,"Spanish":30.8,"Tagalog":0.3,"Vietnamese":0.1},"Carson City, Nevada":{"Arabic":0.1,"Chinese":0.5,"English only":63.9,"French, Haitian, Cajun":0.4,"German or West Germanic":1,"Korean":0.2,"Other Asian/Pacific":0.7,"Other Indo-European":1,"Other/Unspecified":0.6,"Russian, Polish, Slavic":0.6,"Spanish":28.8,"Tagalog":1.4,"Vietnamese":0.8},"Churchill County, Nevada":{"Arabic":0,"Chinese":0,"English only":79.4,"French, Haitian, Cajun":0.8,"German or West Germanic":0.3,"Korean":0,"Other Asian/Pacific":1.2,"Other Indo-European":0.2,"Other/Unspecified":1.4,"Russian, Polish, Slavic":0.4,"Spanish":12.5,"Tagalog":2.7,"Vietnamese":1},"Clark County, Nevada":{"Arabic":0.6,"Chinese":2.7,"English only":47.8,"French, Haitian, Cajun":0.8,"German or West Germanic":0.8,"Korean":1.1,"Other Asian/Pacific":2.5,"Other Indo-European":2.6,"Other/Unspecified":1.8,"Russian, Polish, Slavic":1.2,"Spanish":31.3,"Tagalog":6.2,"Vietnamese":0.7},"Douglas County, Nevada":{"Arabic":0.1,"Chinese":1,"English only":77.1,"French, Haitian, Cajun":0.4,"German or West Germanic":0.9,"Korean":0,"Other Asian/Pacific":0.1,"Other Indo-European":1.5,"Other/Unspecified":0.8,"Russian, Polish, Slavic":1.6,"Spanish":15.8,"Tagalog":0.7,"Vietnamese":0},"Elko County, Nevada":{"Arabic":0.1,"Chinese":0.8,"English only":64.8,"French, Haitian, Cajun":0.3,"German or West Germanic":0.3,"Korean":0,"Other Asian/Pacific":1.6,"Other Indo-European":0.6,"Other/Unspecified":1.9,"Russian, Polish, Slavic":1.2,"Spanish":28.3,"Tagalog":0.2,"Vietnamese":0},"Esmeralda County, Nevada":{"Arabic":0,"Chinese":0,"English only":75.8,"French, Haitian, Cajun":0,"German or West Germanic":0,"Korean":0,"Other Asian/Pacific":0,"Other Indo-European":0,"Other/Unspecified":0,"Russian, Polish, Slavic":0,"Spanish":19.6,"Tagalog":4.6,"Vietnamese":0},"Eureka County, Nevada":{"Arabic":0,"Chinese":0,"English only":93.6,"French, Haitian, Cajun":0,"German or West Germanic":0,"Korean":0,"Other Asian/Pacific":0,"Other Indo-European":0,"Other/Unspecified":2.1,"Russian, Polish, Slavic":0,"Spanish":3.7,"Tagalog":0,"Vietnamese":0.6},"Humboldt County, Nevada":{"Arabic":0,"Chinese":0,"English only":65.6,"French, Haitian, Cajun":0.2,"German or West Germanic":0,"Korean":0.3,"Other Asian/Pacific":0,"Other Indo-European":0.1,"Other/Unspecified":2.9,"Russian, Polish, Slavic":0,"Spanish":29.9,"Tagalog":1,"Vietnamese":0},"Lander County, Nevada":{"Arabic":0,"Chinese":0,"English only":71.3,"French, Haitian, Cajun":0,"German or West Germanic":1.2,"Korean":0,"Other Asian/Pacific":1,"Other Indo-European":0,"Other/Unspecified":1.3,"Russian, Polish, Slavic":0,"Spanish":25.3,"Tagalog":0,"Vietnamese":0},"Lincoln County, Nevada":{"Arabic":0,"Chinese":0,"English only":91.4,"French, Haitian, Cajun":0,"German or West Germanic":0,"Korean":0,"Other Asian/Pacific":0,"Other Indo-European":0,"Other/Unspecified":2.4,"Russian, Polish, Slavic":0,"Spanish":6.2,"Tagalog":0,"Vietnamese":0},"Lyon County, Nevada":{"Arabic":0.4,"Chinese":0.3,"English only":71.6,"French, Haitian, Cajun":0.9,"German or West Germanic":1.2,"Korean":0.1,"Other Asian/Pacific":0.7,"Other Indo-European":0.9,"Other/Unspecified":0.2,"Russian, Polish, Slavic":0.1,"Spanish":22.2,"Tagalog":1.2,"Vietnamese":0.1},"Mineral County, Nevada":{"Arabic":0,"Chinese":0,"English only":72.7,"French, Haitian, Cajun":0,"German or West Germanic":0.1,"Korean":0,"Other Asian/Pacific":0.2,"Other Indo-European":0,"Other/Unspecified":7.3,"Russian, Polish, Slavic":0,"Spanish":19.7,"Tagalog":0,"Vietnamese":0},"Nye County, Nevada":{"Arabic":0.4,"Chinese":0.6,"English only":75.2,"French, Haitian, Cajun":1.7,"German or West Germanic":1.4,"Korean":0.5,"Other Asian/Pacific":1.1,"Other Indo-European":1.9,"Other/Unspecified":0.2,"Russian, Polish, Slavic":0.6,"Spanish":14.8,"Tagalog":1.6,"Vietnamese":0},"Pershing County, Nevada":{"Arabic":1.2,"Chinese":0.8,"English only":70.2,"French, Haitian, Cajun":0,"German or West Germanic":0,"Korean":0,"Other Asian/Pacific":0,"Other Indo-European":0,"Other/Unspecified":0.2,"Russian, Polish, Slavic":0,"Spanish":27.6,"Tagalog":0,"Vietnamese":0},"Storey County, Nevada":{"Arabic":0,"Chinese":0,"English only":86.5,"French, Haitian, Cajun":2.1,"German or West Germanic":0,"Korean":0,"Other Asian/Pacific":0,"Other Indo-European":1.4,"Other/Unspecified":0,"Russian, Polish, Slavic":0.7,"Spanish":7.3,"Tagalog":2.1,"Vietnamese":0},"Washoe County, Nevada":{"Arabic":0.1,"Chinese":1.2,"English only":62.8,"French, Haitian, Cajun":1,"German or West Germanic":1.1,"Korean":0.4,"Other Asian/Pacific":1.4,"Other Indo-European":2.3,"Other/Unspecified":0.9,"Russian, Polish, Slavic":0.6,"Spanish":24.7,"Tagalog":3.2,"Vietnamese":0.4},"White Pine County, Nevada":{"Arabic":0,"Chinese":0.9,"English only":86.9,"French, Haitian, Cajun":0,"German or West Germanic":1.3,"Korean":0,"Other Asian/Pacific":0,"Other Indo-European":0.4,"Other/Unspecified":1.3,"Russian, Polish, Slavic":0,"Spanish":9.1,"Tagalog":0.2,"Vietnamese":0}};
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: Object.keys(values),
+        datasets: [{
+          label: 'Share (%)',
+          data: Object.values(values),
+          backgroundColor: '#4576a7'
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.parsed.y + '%'
+            }
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 100,
+            title: {
+              display: true,
+              text: 'Population Share (%)'
+            }
+          },
+          x: {
+            title: {
+              display: true,
+              text: 'Language Group'
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(languageData[this.value]);
+  });
+
+  renderChart(languageData['Statewide']);</script>
+  </body>
+</html>
+</html>

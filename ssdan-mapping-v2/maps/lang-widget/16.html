@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Language Spoken at Home – Idaho</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          text-align: center;
+          margin: 2rem;
+        }
+        select {
+          font-size: 1rem;
+          padding: 0.4rem;
+          margin-bottom: 1rem;
+        }
+        canvas {
+          width: 100%;
+          max-width: 700px;
+          height: 800px;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Language Spoken at Home – Idaho</h2>
+    <label>Select County, State:</label>
+    <select id="countySelect"><option value='Statewide'>Statewide</option>
+<option value='Ada County, Idaho'>Ada County, Idaho</option>
+<option value='Adams County, Idaho'>Adams County, Idaho</option>
+<option value='Bannock County, Idaho'>Bannock County, Idaho</option>
+<option value='Bear Lake County, Idaho'>Bear Lake County, Idaho</option>
+<option value='Benewah County, Idaho'>Benewah County, Idaho</option>
+<option value='Bingham County, Idaho'>Bingham County, Idaho</option>
+<option value='Blaine County, Idaho'>Blaine County, Idaho</option>
+<option value='Boise County, Idaho'>Boise County, Idaho</option>
+<option value='Bonner County, Idaho'>Bonner County, Idaho</option>
+<option value='Bonneville County, Idaho'>Bonneville County, Idaho</option>
+<option value='Boundary County, Idaho'>Boundary County, Idaho</option>
+<option value='Butte County, Idaho'>Butte County, Idaho</option>
+<option value='Camas County, Idaho'>Camas County, Idaho</option>
+<option value='Canyon County, Idaho'>Canyon County, Idaho</option>
+<option value='Caribou County, Idaho'>Caribou County, Idaho</option>
+<option value='Cassia County, Idaho'>Cassia County, Idaho</option>
+<option value='Clark County, Idaho'>Clark County, Idaho</option>
+<option value='Clearwater County, Idaho'>Clearwater County, Idaho</option>
+<option value='Custer County, Idaho'>Custer County, Idaho</option>
+<option value='Elmore County, Idaho'>Elmore County, Idaho</option>
+<option value='Franklin County, Idaho'>Franklin County, Idaho</option>
+<option value='Fremont County, Idaho'>Fremont County, Idaho</option>
+<option value='Gem County, Idaho'>Gem County, Idaho</option>
+<option value='Gooding County, Idaho'>Gooding County, Idaho</option>
+<option value='Idaho County, Idaho'>Idaho County, Idaho</option>
+<option value='Jefferson County, Idaho'>Jefferson County, Idaho</option>
+<option value='Jerome County, Idaho'>Jerome County, Idaho</option>
+<option value='Kootenai County, Idaho'>Kootenai County, Idaho</option>
+<option value='Latah County, Idaho'>Latah County, Idaho</option>
+<option value='Lemhi County, Idaho'>Lemhi County, Idaho</option>
+<option value='Lewis County, Idaho'>Lewis County, Idaho</option>
+<option value='Lincoln County, Idaho'>Lincoln County, Idaho</option>
+<option value='Madison County, Idaho'>Madison County, Idaho</option>
+<option value='Minidoka County, Idaho'>Minidoka County, Idaho</option>
+<option value='Nez Perce County, Idaho'>Nez Perce County, Idaho</option>
+<option value='Oneida County, Idaho'>Oneida County, Idaho</option>
+<option value='Owyhee County, Idaho'>Owyhee County, Idaho</option>
+<option value='Payette County, Idaho'>Payette County, Idaho</option>
+<option value='Power County, Idaho'>Power County, Idaho</option>
+<option value='Shoshone County, Idaho'>Shoshone County, Idaho</option>
+<option value='Teton County, Idaho'>Teton County, Idaho</option>
+<option value='Twin Falls County, Idaho'>Twin Falls County, Idaho</option>
+<option value='Valley County, Idaho'>Valley County, Idaho</option>
+<option value='Washington County, Idaho'>Washington County, Idaho</option></select>
+    <canvas id="barChart" width="700" height="700"></canvas>
+    <script>  const languageData = {"Statewide":{"Arabic":0.1,"Chinese":0.1,"English only":80.6,"French, Haitian, Cajun":0.3,"German or West Germanic":0,"Korean":0.5,"Other":3,"Other Asian/Pacific":0,"Other Indo-European":0.2,"Other/Unspecified":0.2,"Russian, Polish, Slavic":0.1,"Spanish":14.4,"Tagalog":0.4,"Vietnamese":0},"Ada County, Idaho":{"Arabic":0.7,"Chinese":0.8,"English only":80.1,"French, Haitian, Cajun":0.8,"German or West Germanic":1.1,"Korean":0.5,"Other Asian/Pacific":1.5,"Other Indo-European":1.5,"Other/Unspecified":1.1,"Russian, Polish, Slavic":1.3,"Spanish":9.9,"Tagalog":0.4,"Vietnamese":0.3},"Adams County, Idaho":{"Arabic":0,"Chinese":0,"English only":95.4,"French, Haitian, Cajun":0,"German or West Germanic":0.6,"Korean":0,"Other Asian/Pacific":0,"Other Indo-European":0,"Other/Unspecified":0.4,"Russian, Polish, Slavic":0,"Spanish":3.6,"Tagalog":0,"Vietnamese":0},"Bannock County, Idaho":{"Arabic":0.1,"Chinese":0.5,"English only":85.4,"French, Haitian, Cajun":0.2,"German or West Germanic":0.7,"Korean":0.3,"Other Asian/Pacific":1.2,"Other Indo-European":1.5,"Other/Unspecified":0.9,"Russian, Polish, Slavic":0.5,"Spanish":8.3,"Tagalog":0.3,"Vietnamese":0.1},"Bear Lake County, Idaho":{"Arabic":0,"Chinese":0,"English only":87,"French, Haitian, Cajun":1.2,"German or West Germanic":0,"Korean":0,"Other Asian/Pacific":0.5,"Other Indo-European":1.5,"Other/Unspecified":1.2,"Russian, Polish, Slavic":0,"Spanish":7.9,"Tagalog":0.7,"Vietnamese":0},"Benewah County, Idaho":{"Arabic":0,"Chinese":0,"English only":90.2,"French, Haitian, Cajun":0,"German or West Germanic":3.4,"Korean":0,"Other Asian/Pacific":0.7,"Other Indo-European":0,"Other/Unspecified":1.8,"Russian, Polish, Slavic":0.1,"Spanish":3.8,"Tagalog":0,"Vietnamese":0},"Bingham County, Idaho":{"Arabic":0,"Chinese":0.1,"English only":71.5,"French, Haitian, Cajun":0.3,"German or West Germanic":1.2,"Korean":0,"Other Asian/Pacific":0.9,"Other Indo-European":0.9,"Other/Unspecified":2.1,"Russian, Polish, Slavic":0.3,"Spanish":22.2,"Tagalog":0.1,"Vietnamese":0.3},"Blaine County, Idaho":{"Arabic":0.1,"Chinese":0,"English only":66.6,"French, Haitian, Cajun":1.8,"German or West Germanic":2.2,"Korean":0,"Other Asian/Pacific":0,"Other Indo-European":1,"Other/Unspecified":0.5,"Russian, Polish, Slavic":1.7,"Spanish":25.9,"Tagalog":0.1,"Vietnamese":0},"Boise County, Idaho":{"Arabic":0,"Chinese":0,"English only":84.2,"French, Haitian, Cajun":0.2,"German or West Germanic":1.4,"Korean":0,"Other Asian/Pacific":0,"Other Indo-European":0.2,"Other/Unspecified":0.2,"Russian, Polish, Slavic":1.1,"Spanish":12,"Tagalog":0.8,"Vietnamese":0},"Bonner County, Idaho":{"Arabic":0,"Chinese":0.6,"English only":89.9,"French, Haitian, Cajun":0.4,"German or West Germanic":2.1,"Korean":0,"Other Asian/Pacific":0.1,"Other Indo-European":1.1,"Other/Unspecified":0.1,"Russian, Polish, Slavic":0.2,"Spanish":5.2,"Tagalog":0.3,"Vietnamese":0},"Bonneville County, Idaho":{"Arabic":0.1,"Chinese":0.5,"English only":76.3,"French, Haitian, Cajun":0.6,"German or West Germanic":0.7,"Korean":0.1,"Other Asian/Pacific":0.3,"Other Indo-European":1,"Other/Unspecified":0.2,"Russian, Polish, Slavic":0.6,"Spanish":19.4,"Tagalog":0.2,"Vietnamese":0},"Boundary County, Idaho":{"Arabic":0,"Chinese":0.5,"English only":81.9,"French, Haitian, Cajun":3.7,"German or West Germanic":4.1,"Korean":0.4,"Other Asian/Pacific":0.8,"Other Indo-European":0.3,"Other/Unspecified":1.8,"Russian, Polish, Slavic":0.1,"Spanish":5.9,"Tagalog":0.4,"Vietnamese":0},"Butte County, Idaho":{"Arabic":0,"Chinese":0,"English only":78.1,"French, Haitian, Cajun":0.2,"German or West Germanic":0.5,"Korean":0,"Other Asian/Pacific":0,"Other Indo-European":1.2,"Other/Unspecified":0,"Russian, Polish, Slavic":0,"Spanish":20,"Tagalog":0,"Vietnamese":0},"Camas County, Idaho":{"Arabic":0,"Chinese":0,"English only":84.7,"French, Haitian, Cajun":0,"German or West Germanic":0,"Korean":0,"Other Asian/Pacific":0,"Other Indo-European":3.8,"Other/Unspecified":0,"Russian, Polish, Slavic":0,"Spanish":11.4,"Tagalog":0,"Vietnamese":0},"Canyon County, Idaho":{"Arabic":0,"Chinese":0.3,"English only":64.9,"French, Haitian, Cajun":0.4,"German or West Germanic":1.7,"Korean":0.2,"Other Asian/Pacific":0.6,"Other Indo-European":0.7,"Other/Unspecified":0.5,"Russian, Polish, Slavic":1.4,"Spanish":29,"Tagalog":0.2,"Vietnamese":0.1},"Caribou County, Idaho":{"Arabic":0,"Chinese":0,"English only":93.2,"French, Haitian, Cajun":0.2,"German or West Germanic":1,"Korean":0,"Other Asian/Pacific":0.2,"Other Indo-European":0,"Other/Unspecified":0,"Russian, Polish, Slavic":0,"Spanish":5.1,"Tagalog":0.2,"Vietnamese":0},"Cassia County, Idaho":{"Arabic":0,"Chinese":0.2,"English only":59.6,"French, Haitian, Cajun":0,"German or West Germanic":0.4,"Korean":0.3,"Other Asian/Pacific":0.1,"Other Indo-European":0.5,"Other/Unspecified":1.3,"Russian, Polish, Slavic":0.3,"Spanish":37,"Tagalog":0.4,"Vietnamese":0},"Clark County, Idaho":{"Arabic":0,"Chinese":0,"English only":45.7,"French, Haitian, Cajun":0,"German or West Germanic":0,"Korean":0,"Other Asian/Pacific":0,"Other Indo-European":0,"Other/Unspecified":0,"Russian, Polish, Slavic":0,"Spanish":54.3,"Tagalog":0,"Vietnamese":0},"Clearwater County, Idaho":{"Arabic":0,"Chinese":0,"English only":91.9,"French, Haitian, Cajun":0,"German or West Germanic":1.1,"Korean":0.2,"Other Asian/Pacific":0,"Other Indo-European":0.9,"Other/Unspecified":0.5,"Russian, Polish, Slavic":0,"Spanish":4.7,"Tagalog":0.7,"Vietnamese":0},"Custer County, Idaho":{"Arabic":0,"Chinese":0,"English only":94,"French, Haitian, Cajun":0,"German or West Germanic":0,"Korean":0,"Other Asian/Pacific":0,"Other Indo-European":0.7,"Other/Unspecified":2,"Russian, Polish, Slavic":0.4,"Spanish":2.9,"Tagalog":0,"Vietnamese":0},"Elmore County, Idaho":{"Arabic":0.2,"Chinese":1.9,"English only":71.9,"French, Haitian, Cajun":0.2,"German or West Germanic":0.9,"Korean":0.4,"Other Asian/Pacific":1.5,"Other Indo-European":0.3,"Other/Unspecified":1,"Russian, Polish, Slavic":1.8,"Spanish":17.6,"Tagalog":2,"Vietnamese":0.1},"Franklin County, Idaho":{"Arabic":0,"Chinese":0,"English only":78.4,"French, Haitian, Cajun":0,"German or West Germanic":0.2,"Korean":0,"Other Asian/Pacific":1.1,"Other Indo-European":5,"Other/Unspecified":0.5,"Russian, Polish, Slavic":0,"Spanish":14.7,"Tagalog":0,"Vietnamese":0},"Fremont County, Idaho":{"Arabic":0,"Chinese":0,"English only":76.3,"French, Haitian, Cajun":0.7,"German or West Germanic":0.2,"Korean":0,"Other Asian/Pacific":0,"Other Indo-European":0.6,"Other/Unspecified":0.1,"Russian, Polish, Slavic":0.9,"Spanish":21.4,"Tagalog":0,"Vietnamese":0},"Gem County, Idaho":{"Arabic":0,"Chinese":0,"English only":79.6,"French, Haitian, Cajun":0,"German or West Germanic":2.3,"Korean":0,"Other Asian/Pacific":1.6,"Other Indo-European":1.2,"Other/Unspecified":0.3,"Russian, Polish, Slavic":0.8,"Spanish":13.7,"Tagalog":0,"Vietnamese":0.5},"Gooding County, Idaho":{"Arabic":0.2,"Chinese":0.4,"English only":66,"French, Haitian, Cajun":0.2,"German or West Germanic":0.5,"Korean":0,"Other Asian/Pacific":0.3,"Other Indo-European":0.1,"Other/Unspecified":0,"Russian, Polish, Slavic":0,"Spanish":32.1,"Tagalog":0.2,"Vietnamese":0},"Idaho County, Idaho":{"Arabic":0,"Chinese":0.5,"English only":87,"French, Haitian, Cajun":0.7,"German or West Germanic":1.4,"Korean":0,"Other Asian/Pacific":0,"Other Indo-European":0.2,"Other/Unspecified":0.9,"Russian, Polish, Slavic":0,"Spanish":8.1,"Tagalog":1.1,"Vietnamese":0},"Jefferson County, Idaho":{"Arabic":0.2,"Chinese":0.2,"English only":70.7,"French, Haitian, Cajun":0.6,"German or West Germanic":1.6,"Korean":0,"Other Asian/Pacific":0,"Other Indo-European":1.3,"Other/Unspecified":0,"Russian, Polish, Slavic":0.3,"Spanish":25.2,"Tagalog":0,"Vietnamese":0},"Jerome County, Idaho":{"Arabic":0,"Chinese":0.2,"English only":51.5,"French, Haitian, Cajun":0,"German or West Germanic":0.8,"Korean":1.4,"Other Asian/Pacific":0,"Other Indo-European":0.6,"Other/Unspecified":0.1,"Russian, Polish, Slavic":0.4,"Spanish":45,"Tagalog":0,"Vietnamese":0},"Kootenai County, Idaho":{"Arabic":0,"Chinese":0.2,"English only":89.7,"French, Haitian, Cajun":0.4,"German or West Germanic":0.9,"Korean":0.1,"Other Asian/Pacific":0.8,"Other Indo-European":0.7,"Other/Unspecified":0.4,"Russian, Polish, Slavic":0.6,"Spanish":5.9,"Tagalog":0.2,"Vietnamese":0.1},"Latah County, Idaho":{"Arabic":0.9,"Chinese":0.4,"English only":84.2,"French, Haitian, Cajun":0.9,"German or West Germanic":0.9,"Korean":1.4,"Other Asian/Pacific":2.3,"Other Indo-European":1.6,"Other/Unspecified":0.8,"Russian, Polish, Slavic":0.1,"Spanish":5.2,"Tagalog":0.4,"Vietnamese":0.9},"Lemhi County, Idaho":{"Arabic":0,"Chinese":0,"English only":93.9,"French, Haitian, Cajun":0,"German or West Germanic":0.5,"Korean":0,"Other Asian/Pacific":0.5,"Other Indo-European":0.8,"Other/Unspecified":1.7,"Russian, Polish, Slavic":0,"Spanish":2.6,"Tagalog":0,"Vietnamese":0},"Lewis County, Idaho":{"Arabic":0,"Chinese":0,"English only":89.3,"French, Haitian, Cajun":0.2,"German or West Germanic":0.6,"Korean":0,"Other Asian/Pacific":0.5,"Other Indo-European":0,"Other/Unspecified":2.7,"Russian, Polish, Slavic":0,"Spanish":6.1,"Tagalog":0,"Vietnamese":0.5},"Lincoln County, Idaho":{"Arabic":0.3,"Chinese":0,"English only":62.7,"French, Haitian, Cajun":0.5,"German or West Germanic":0.3,"Korean":0,"Other Asian/Pacific":0,"Other Indo-European":0,"Other/Unspecified":0.3,"Russian, Polish, Slavic":0,"Spanish":35.9,"Tagalog":0,"Vietnamese":0},"Madison County, Idaho":{"Arabic":0,"Chinese":3.7,"English only":69.7,"French, Haitian, Cajun":1.3,"German or West Germanic":0.3,"Korean":0,"Other Asian/Pacific":0.7,"Other Indo-European":2.2,"Other/Unspecified":0.3,"Russian, Polish, Slavic":0.6,"Spanish":20.2,"Tagalog":0.9,"Vietnamese":0},"Minidoka County, Idaho":{"Arabic":0,"Chinese":0,"English only":59.4,"French, Haitian, Cajun":1.1,"German or West Germanic":0.4,"Korean":0,"Other Asian/Pacific":0.9,"Other Indo-European":0.3,"Other/Unspecified":0.1,"Russian, Polish, Slavic":0,"Spanish":37.8,"Tagalog":0,"Vietnamese":0},"Nez Perce County, Idaho":{"Arabic":0,"Chinese":0.9,"English only":91.5,"French, Haitian, Cajun":0.1,"German or West Germanic":0.9,"Korean":0,"Other Asian/Pacific":0.4,"Other Indo-European":0.8,"Other/Unspecified":1.5,"Russian, Polish, Slavic":0.1,"Spanish":3.3,"Tagalog":0.6,"Vietnamese":0},"Oneida County, Idaho":{"Arabic":0,"Chinese":0.3,"English only":81.1,"French, Haitian, Cajun":0.6,"German or West Germanic":2,"Korean":0,"Other Asian/Pacific":0,"Other Indo-European":2.1,"Other/Unspecified":0,"Russian, Polish, Slavic":0,"Spanish":14.1,"Tagalog":0,"Vietnamese":0},"Owyhee County, Idaho":{"Arabic":0,"Chinese":0,"English only":68.7,"French, Haitian, Cajun":0,"German or West Germanic":1,"Korean":0,"Other Asian/Pacific":0,"Other Indo-European":0,"Other/Unspecified":1.6,"Russian, Polish, Slavic":0,"Spanish":28.7,"Tagalog":0,"Vietnamese":0},"Payette County, Idaho":{"Arabic":0,"Chinese":0.1,"English only":80.4,"French, Haitian, Cajun":0.1,"German or West Germanic":1.4,"Korean":0,"Other Asian/Pacific":0.1,"Other Indo-European":0.1,"Other/Unspecified":1,"Russian, Polish, Slavic":0.2,"Spanish":16.6,"Tagalog":0,"Vietnamese":0},"Power County, Idaho":{"Arabic":0,"Chinese":0,"English only":60.1,"French, Haitian, Cajun":0,"German or West Germanic":0.8,"Korean":0,"Other Asian/Pacific":0,"Other Indo-European":0.1,"Other/Unspecified":1,"Russian, Polish, Slavic":0,"Spanish":38.1,"Tagalog":0,"Vietnamese":0},"Shoshone County, Idaho":{"Arabic":0,"Chinese":0.1,"English only":93.3,"French, Haitian, Cajun":0.1,"German or West Germanic":2,"Korean":0,"Other Asian/Pacific":0.1,"Other Indo-European":0.9,"Other/Unspecified":0.3,"Russian, Polish, Slavic":0.5,"Spanish":2.2,"Tagalog":0.5,"Vietnamese":0},"Teton County, Idaho":{"Arabic":0,"Chinese":0,"English only":76.4,"French, Haitian, Cajun":4,"German or West Germanic":0.1,"Korean":0,"Other Asian/Pacific":0.1,"Other Indo-European":0.5,"Other/Unspecified":0.2,"Russian, Polish, Slavic":0.4,"Spanish":18.2,"Tagalog":0,"Vietnamese":0},"Twin Falls County, Idaho":{"Arabic":0.5,"Chinese":0.6,"English only":72.8,"French, Haitian, Cajun":0.3,"German or West Germanic":1,"Korean":0.2,"Other Asian/Pacific":0.5,"Other Indo-European":2.7,"Other/Unspecified":0.1,"Russian, Polish, Slavic":0.6,"Spanish":20.2,"Tagalog":0.4,"Vietnamese":0.1},"Valley County, Idaho":{"Arabic":0,"Chinese":0,"English only":94,"French, Haitian, Cajun":0.5,"German or West Germanic":1,"Korean":0,"Other Asian/Pacific":0,"Other Indo-European":0.9,"Other/Unspecified":1.5,"Russian, Polish, Slavic":0,"Spanish":1.9,"Tagalog":0.2,"Vietnamese":0},"Washington County, Idaho":{"Arabic":0.2,"Chinese":0,"English only":73.6,"French, Haitian, Cajun":0,"German or West Germanic":0.2,"Korean":0,"Other Asian/Pacific":2.4,"Other Indo-European":2.7,"Other/Unspecified":0,"Russian, Polish, Slavic":0,"Spanish":20.6,"Tagalog":0.2,"Vietnamese":0}};
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: Object.keys(values),
+        datasets: [{
+          label: 'Share (%)',
+          data: Object.values(values),
+          backgroundColor: '#4576a7'
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.parsed.y + '%'
+            }
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 100,
+            title: {
+              display: true,
+              text: 'Population Share (%)'
+            }
+          },
+          x: {
+            title: {
+              display: true,
+              text: 'Language Group'
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(languageData[this.value]);
+  });
+
+  renderChart(languageData['Statewide']);</script>
+  </body>
+</html>
+</html>

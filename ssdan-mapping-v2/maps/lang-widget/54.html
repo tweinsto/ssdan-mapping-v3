@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Language Spoken at Home – West Virginia</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          text-align: center;
+          margin: 2rem;
+        }
+        select {
+          font-size: 1rem;
+          padding: 0.4rem;
+          margin-bottom: 1rem;
+        }
+        canvas {
+          width: 100%;
+          max-width: 700px;
+          height: 800px;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Language Spoken at Home – West Virginia</h2>
+    <label>Select County, State:</label>
+    <select id="countySelect"><option value='Statewide'>Statewide</option>
+<option value='Barbour County, West Virginia'>Barbour County, West Virginia</option>
+<option value='Berkeley County, West Virginia'>Berkeley County, West Virginia</option>
+<option value='Boone County, West Virginia'>Boone County, West Virginia</option>
+<option value='Braxton County, West Virginia'>Braxton County, West Virginia</option>
+<option value='Brooke County, West Virginia'>Brooke County, West Virginia</option>
+<option value='Cabell County, West Virginia'>Cabell County, West Virginia</option>
+<option value='Calhoun County, West Virginia'>Calhoun County, West Virginia</option>
+<option value='Clay County, West Virginia'>Clay County, West Virginia</option>
+<option value='Doddridge County, West Virginia'>Doddridge County, West Virginia</option>
+<option value='Fayette County, West Virginia'>Fayette County, West Virginia</option>
+<option value='Gilmer County, West Virginia'>Gilmer County, West Virginia</option>
+<option value='Grant County, West Virginia'>Grant County, West Virginia</option>
+<option value='Greenbrier County, West Virginia'>Greenbrier County, West Virginia</option>
+<option value='Hampshire County, West Virginia'>Hampshire County, West Virginia</option>
+<option value='Hancock County, West Virginia'>Hancock County, West Virginia</option>
+<option value='Hardy County, West Virginia'>Hardy County, West Virginia</option>
+<option value='Harrison County, West Virginia'>Harrison County, West Virginia</option>
+<option value='Jackson County, West Virginia'>Jackson County, West Virginia</option>
+<option value='Jefferson County, West Virginia'>Jefferson County, West Virginia</option>
+<option value='Kanawha County, West Virginia'>Kanawha County, West Virginia</option>
+<option value='Lewis County, West Virginia'>Lewis County, West Virginia</option>
+<option value='Lincoln County, West Virginia'>Lincoln County, West Virginia</option>
+<option value='Logan County, West Virginia'>Logan County, West Virginia</option>
+<option value='Marion County, West Virginia'>Marion County, West Virginia</option>
+<option value='Marshall County, West Virginia'>Marshall County, West Virginia</option>
+<option value='Mason County, West Virginia'>Mason County, West Virginia</option>
+<option value='McDowell County, West Virginia'>McDowell County, West Virginia</option>
+<option value='Mercer County, West Virginia'>Mercer County, West Virginia</option>
+<option value='Mineral County, West Virginia'>Mineral County, West Virginia</option>
+<option value='Mingo County, West Virginia'>Mingo County, West Virginia</option>
+<option value='Monongalia County, West Virginia'>Monongalia County, West Virginia</option>
+<option value='Monroe County, West Virginia'>Monroe County, West Virginia</option>
+<option value='Morgan County, West Virginia'>Morgan County, West Virginia</option>
+<option value='Nicholas County, West Virginia'>Nicholas County, West Virginia</option>
+<option value='Ohio County, West Virginia'>Ohio County, West Virginia</option>
+<option value='Pendleton County, West Virginia'>Pendleton County, West Virginia</option>
+<option value='Pleasants County, West Virginia'>Pleasants County, West Virginia</option>
+<option value='Pocahontas County, West Virginia'>Pocahontas County, West Virginia</option>
+<option value='Preston County, West Virginia'>Preston County, West Virginia</option>
+<option value='Putnam County, West Virginia'>Putnam County, West Virginia</option>
+<option value='Raleigh County, West Virginia'>Raleigh County, West Virginia</option>
+<option value='Randolph County, West Virginia'>Randolph County, West Virginia</option>
+<option value='Ritchie County, West Virginia'>Ritchie County, West Virginia</option>
+<option value='Roane County, West Virginia'>Roane County, West Virginia</option>
+<option value='Summers County, West Virginia'>Summers County, West Virginia</option>
+<option value='Taylor County, West Virginia'>Taylor County, West Virginia</option>
+<option value='Tucker County, West Virginia'>Tucker County, West Virginia</option>
+<option value='Tyler County, West Virginia'>Tyler County, West Virginia</option>
+<option value='Upshur County, West Virginia'>Upshur County, West Virginia</option>
+<option value='Wayne County, West Virginia'>Wayne County, West Virginia</option>
+<option value='Webster County, West Virginia'>Webster County, West Virginia</option>
+<option value='Wetzel County, West Virginia'>Wetzel County, West Virginia</option>
+<option value='Wirt County, West Virginia'>Wirt County, West Virginia</option>
+<option value='Wood County, West Virginia'>Wood County, West Virginia</option>
+<option value='Wyoming County, West Virginia'>Wyoming County, West Virginia</option></select>
+    <canvas id="barChart" width="700" height="700"></canvas>
+    <script>  const languageData = {"Statewide":{"Arabic":0,"Chinese":0.1,"English only":95.1,"French, Haitian, Cajun":0.2,"German or West Germanic":0,"Korean":0.3,"Other":1.8,"Other Asian/Pacific":0,"Other Indo-European":0.1,"Other/Unspecified":0,"Russian, Polish, Slavic":0.1,"Spanish":2.2,"Tagalog":0.1,"Vietnamese":0},"Barbour County, West Virginia":{"Arabic":0,"Chinese":0,"English only":96.4,"French, Haitian, Cajun":0,"German or West Germanic":0,"Korean":0,"Other Asian/Pacific":1.1,"Other Indo-European":0.6,"Other/Unspecified":0,"Russian, Polish, Slavic":0,"Spanish":1.5,"Tagalog":0.4,"Vietnamese":0},"Berkeley County, West Virginia":{"Arabic":0.2,"Chinese":0.4,"English only":85.7,"French, Haitian, Cajun":0.4,"German or West Germanic":0.7,"Korean":0.2,"Other Asian/Pacific":0.5,"Other Indo-European":1.3,"Other/Unspecified":0.8,"Russian, Polish, Slavic":0.3,"Spanish":8.7,"Tagalog":0.4,"Vietnamese":0.2},"Boone County, West Virginia":{"Arabic":0,"Chinese":0,"English only":97.7,"French, Haitian, Cajun":0,"German or West Germanic":0.3,"Korean":0.1,"Other Asian/Pacific":0,"Other Indo-European":0.1,"Other/Unspecified":0,"Russian, Polish, Slavic":0,"Spanish":1.6,"Tagalog":0,"Vietnamese":0.1},"Braxton County, West Virginia":{"Arabic":0,"Chinese":0.1,"English only":98.3,"French, Haitian, Cajun":0,"German or West Germanic":0,"Korean":0,"Other Asian/Pacific":0,"Other Indo-European":0,"Other/Unspecified":0,"Russian, Polish, Slavic":0,"Spanish":1.1,"Tagalog":0.5,"Vietnamese":0},"Brooke County, West Virginia":{"Arabic":0,"Chinese":0.3,"English only":94.6,"French, Haitian, Cajun":0.7,"German or West Germanic":0.9,"Korean":0,"Other Asian/Pacific":0,"Other Indo-European":1.5,"Other/Unspecified":0,"Russian, Polish, Slavic":0,"Spanish":1.4,"Tagalog":0.4,"Vietnamese":0.1},"Cabell County, West Virginia":{"Arabic":0.3,"Chinese":0.4,"English only":92.3,"French, Haitian, Cajun":0.3,"German or West Germanic":0.6,"Korean":0.1,"Other Asian/Pacific":0.6,"Other Indo-European":0.6,"Other/Unspecified":0.4,"Russian, Polish, Slavic":0.3,"Spanish":3.9,"Tagalog":0.1,"Vietnamese":0.2},"Calhoun County, West Virginia":{"Arabic":0,"Chinese":0.2,"English only":97.6,"French, Haitian, Cajun":0,"German or West Germanic":0,"Korean":0,"Other Asian/Pacific":0,"Other Indo-European":0.4,"Other/Unspecified":1,"Russian, Polish, Slavic":0,"Spanish":0.8,"Tagalog":0,"Vietnamese":0},"Clay County, West Virginia":{"Arabic":0,"Chinese":0,"English only":98.2,"French, Haitian, Cajun":0,"German or West Germanic":0.6,"Korean":0,"Other Asian/Pacific":1.1,"Other Indo-European":0,"Other/Unspecified":0,"Russian, Polish, Slavic":0,"Spanish":0.1,"Tagalog":0,"Vietnamese":0},"Doddridge County, West Virginia":{"Arabic":0,"Chinese":0,"English only":93.5,"French, Haitian, Cajun":0,"German or West Germanic":1.4,"Korean":0,"Other Asian/Pacific":0,"Other Indo-European":0,"Other/Unspecified":0,"Russian, Polish, Slavic":0.8,"Spanish":0,"Tagalog":0,"Vietnamese":4.3},"Fayette County, West Virginia":{"Arabic":0.3,"Chinese":0,"English only":97.8,"French, Haitian, Cajun":0.2,"German or West Germanic":0.3,"Korean":0,"Other Asian/Pacific":0.1,"Other Indo-European":0.4,"Other/Unspecified":0.1,"Russian, Polish, Slavic":0.1,"Spanish":0.7,"Tagalog":0,"Vietnamese":0},"Gilmer County, West Virginia":{"Arabic":0,"Chinese":0,"English only":94.6,"French, Haitian, Cajun":1.2,"German or West Germanic":0,"Korean":0,"Other Asian/Pacific":0.2,"Other Indo-European":0,"Other/Unspecified":0,"Russian, Polish, Slavic":0,"Spanish":4,"Tagalog":0,"Vietnamese":0},"Grant County, West Virginia":{"Arabic":0,"Chinese":0,"English only":96.8,"French, Haitian, Cajun":1.1,"German or West Germanic":0.4,"Korean":0,"Other Asian/Pacific":0.2,"Other Indo-European":0,"Other/Unspecified":1,"Russian, Polish, Slavic":0,"Spanish":0.4,"Tagalog":0,"Vietnamese":0},"Greenbrier County, West Virginia":{"Arabic":0.4,"Chinese":0.7,"English only":91.6,"French, Haitian, Cajun":0.3,"German or West Germanic":1.6,"Korean":0,"Other Asian/Pacific":0.5,"Other Indo-European":0.1,"Other/Unspecified":1.2,"Russian, Polish, Slavic":0.1,"Spanish":3.3,"Tagalog":0.2,"Vietnamese":0},"Hampshire County, West Virginia":{"Arabic":0,"Chinese":0,"English only":98.2,"French, Haitian, Cajun":0.3,"German or West Germanic":0,"Korean":0,"Other Asian/Pacific":0,"Other Indo-European":0,"Other/Unspecified":0,"Russian, Polish, Slavic":0,"Spanish":1.4,"Tagalog":0,"Vietnamese":0},"Hancock County, West Virginia":{"Arabic":0.4,"Chinese":0,"English only":94.5,"French, Haitian, Cajun":0.7,"German or West Germanic":0,"Korean":0.1,"Other Asian/Pacific":0,"Other Indo-European":1.1,"Other/Unspecified":0,"Russian, Polish, Slavic":0.5,"Spanish":1.8,"Tagalog":0.8,"Vietnamese":0},"Hardy County, West Virginia":{"Arabic":0,"Chinese":0,"English only":92.5,"French, Haitian, Cajun":0.4,"German or West Germanic":1.1,"Korean":0,"Other Asian/Pacific":0,"Other Indo-European":0.4,"Other/Unspecified":0.3,"Russian, Polish, Slavic":0.4,"Spanish":5,"Tagalog":0,"Vietnamese":0},"Harrison County, West Virginia":{"Arabic":0,"Chinese":0.6,"English only":94,"French, Haitian, Cajun":0.4,"German or West Germanic":0.6,"Korean":0.2,"Other Asian/Pacific":0.2,"Other Indo-European":1.4,"Other/Unspecified":0.3,"Russian, Polish, Slavic":0.5,"Spanish":1.4,"Tagalog":0.4,"Vietnamese":0.1},"Jackson County, West Virginia":{"Arabic":0,"Chinese":0.1,"English only":93.8,"French, Haitian, Cajun":0.6,"German or West Germanic":1.6,"Korean":0.2,"Other Asian/Pacific":0.2,"Other Indo-European":0.7,"Other/Unspecified":0.2,"Russian, Polish, Slavic":0.4,"Spanish":1,"Tagalog":1.2,"Vietnamese":0},"Jefferson County, West Virginia":{"Arabic":0,"Chinese":0.4,"English only":83.9,"French, Haitian, Cajun":0.7,"German or West Germanic":0.8,"Korean":0.2,"Other Asian/Pacific":1.3,"Other Indo-European":2,"Other/Unspecified":0.6,"Russian, Polish, Slavic":0.4,"Spanish":8.7,"Tagalog":0.7,"Vietnamese":0.2},"Kanawha County, West Virginia":{"Arabic":0.4,"Chinese":0.1,"English only":93.3,"French, Haitian, Cajun":0.4,"German or West Germanic":0.8,"Korean":0.1,"Other Asian/Pacific":1.2,"Other Indo-European":1.1,"Other/Unspecified":0,"Russian, Polish, Slavic":0.1,"Spanish":2.2,"Tagalog":0.3,"Vietnamese":0.1},"Lewis County, West Virginia":{"Arabic":0,"Chinese":0,"English only":97.4,"French, Haitian, Cajun":0,"German or West Germanic":0.2,"Korean":0,"Other Asian/Pacific":0.3,"Other Indo-European":0,"Other/Unspecified":0,"Russian, Polish, Slavic":0,"Spanish":2.1,"Tagalog":0,"Vietnamese":0},"Lincoln County, West Virginia":{"Arabic":0,"Chinese":0,"English only":98.8,"French, Haitian, Cajun":0,"German or West Germanic":0,"Korean":0,"Other Asian/Pacific":0,"Other Indo-European":0,"Other/Unspecified":0,"Russian, Polish, Slavic":0,"Spanish":0.6,"Tagalog":0.5,"Vietnamese":0},"Logan County, West Virginia":{"Arabic":0,"Chinese":0.1,"English only":97.6,"French, Haitian, Cajun":0.1,"German or West Germanic":0.1,"Korean":0,"Other Asian/Pacific":1.6,"Other Indo-European":0,"Other/Unspecified":0,"Russian, Polish, Slavic":0.1,"Spanish":0.2,"Tagalog":0,"Vietnamese":0},"Marion County, West Virginia":{"Arabic":0,"Chinese":0.1,"English only":95.1,"French, Haitian, Cajun":0.3,"German or West Germanic":0.8,"Korean":0,"Other Asian/Pacific":0.5,"Other Indo-European":0.7,"Other/Unspecified":0.6,"Russian, Polish, Slavic":0.3,"Spanish":1.6,"Tagalog":0,"Vietnamese":0},"Marshall County, West Virginia":{"Arabic":0,"Chinese":0,"English only":94.3,"French, Haitian, Cajun":0,"German or West Germanic":1.1,"Korean":0,"Other Asian/Pacific":0.7,"Other Indo-European":0.4,"Other/Unspecified":0.2,"Russian, Polish, Slavic":0.1,"Spanish":2.9,"Tagalog":0.4,"Vietnamese":0},"Mason County, West Virginia":{"Arabic":0,"Chinese":0.2,"English only":97.8,"French, Haitian, Cajun":0.1,"German or West Germanic":0.8,"Korean":0,"Other Asian/Pacific":0,"Other Indo-European":0.6,"Other/Unspecified":0,"Russian, Polish, Slavic":0,"Spanish":0.4,"Tagalog":0.1,"Vietnamese":0.1},"McDowell County, West Virginia":{"Arabic":0.5,"Chinese":0,"English only":97.4,"French, Haitian, Cajun":0.5,"German or West Germanic":0.7,"Korean":0,"Other Asian/Pacific":0.1,"Other Indo-European":0,"Other/Unspecified":0,"Russian, Polish, Slavic":0,"Spanish":0.7,"Tagalog":0.1,"Vietnamese":0},"Mercer County, West Virginia":{"Arabic":0.3,"Chinese":0.1,"English only":94.1,"French, Haitian, Cajun":0.4,"German or West Germanic":0.3,"Korean":0,"Other Asian/Pacific":0.2,"Other Indo-European":0.8,"Other/Unspecified":0.2,"Russian, Polish, Slavic":0.2,"Spanish":3.2,"Tagalog":0,"Vietnamese":0},"Mineral County, West Virginia":{"Arabic":0,"Chinese":0.2,"English only":95.3,"French, Haitian, Cajun":0.3,"German or West Germanic":1.2,"Korean":0,"Other Asian/Pacific":0.1,"Other Indo-European":0,"Other/Unspecified":0.4,"Russian, Polish, Slavic":0,"Spanish":2.4,"Tagalog":0,"Vietnamese":0},"Mingo County, West Virginia":{"Arabic":0,"Chinese":0.8,"English only":98,"French, Haitian, Cajun":0.1,"German or West Germanic":0.8,"Korean":0,"Other Asian/Pacific":0,"Other Indo-European":0,"Other/Unspecified":0,"Russian, Polish, Slavic":0,"Spanish":0.3,"Tagalog":0,"Vietnamese":0},"Monongalia County, West Virginia":{"Arabic":2.5,"Chinese":1.7,"English only":84.1,"French, Haitian, Cajun":0.7,"German or West Germanic":0.8,"Korean":0.3,"Other Asian/Pacific":0.8,"Other Indo-European":2.6,"Other/Unspecified":0.8,"Russian, Polish, Slavic":0.9,"Spanish":4.1,"Tagalog":0.1,"Vietnamese":0.6},"Monroe County, West Virginia":{"Arabic":0,"Chinese":0,"English only":99,"French, Haitian, Cajun":0,"German or West Germanic":0,"Korean":0,"Other Asian/Pacific":0,"Other Indo-European":0,"Other/Unspecified":0,"Russian, Polish, Slavic":0.1,"Spanish":0.9,"Tagalog":0,"Vietnamese":0},"Morgan County, West Virginia":{"Arabic":0,"Chinese":0,"English only":93.4,"French, Haitian, Cajun":1.7,"German or West Germanic":0.6,"Korean":0.4,"Other Asian/Pacific":0,"Other Indo-European":1,"Other/Unspecified":0,"Russian, Polish, Slavic":0.1,"Spanish":2.8,"Tagalog":0,"Vietnamese":0},"Nicholas County, West Virginia":{"Arabic":0,"Chinese":0.6,"English only":95.3,"French, Haitian, Cajun":1.2,"German or West Germanic":0,"Korean":0,"Other Asian/Pacific":0,"Other Indo-European":1,"Other/Unspecified":0.4,"Russian, Polish, Slavic":0.2,"Spanish":0.3,"Tagalog":1,"Vietnamese":0},"Ohio County, West Virginia":{"Arabic":0.6,"Chinese":0,"English only":89,"French, Haitian, Cajun":0.3,"German or West Germanic":1.7,"Korean":0.2,"Other Asian/Pacific":0.3,"Other Indo-European":3,"Other/Unspecified":0.3,"Russian, Polish, Slavic":0.3,"Spanish":3,"Tagalog":1.2,"Vietnamese":0},"Pendleton County, West Virginia":{"Arabic":0.5,"Chinese":0,"English only":94.6,"French, Haitian, Cajun":0.6,"German or West Germanic":3.9,"Korean":0.4,"Other Asian/Pacific":0,"Other Indo-European":0,"Other/Unspecified":0,"Russian, Polish, Slavic":0,"Spanish":0,"Tagalog":0,"Vietnamese":0},"Pleasants County, West Virginia":{"Arabic":0,"Chinese":0,"English only":96.2,"French, Haitian, Cajun":0.6,"German or West Germanic":0.1,"Korean":0,"Other Asian/Pacific":0,"Other Indo-European":1.9,"Other/Unspecified":0,"Russian, Polish, Slavic":0,"Spanish":1.3,"Tagalog":0,"Vietnamese":0},"Pocahontas County, West Virginia":{"Arabic":0,"Chinese":0,"English only":97.6,"French, Haitian, Cajun":0,"German or West Germanic":0.2,"Korean":0,"Other Asian/Pacific":0.5,"Other Indo-European":0,"Other/Unspecified":0.3,"Russian, Polish, Slavic":0,"Spanish":1.4,"Tagalog":0,"Vietnamese":0},"Preston County, West Virginia":{"Arabic":0,"Chinese":0,"English only":98.1,"French, Haitian, Cajun":0,"German or West Germanic":0.2,"Korean":0,"Other Asian/Pacific":0,"Other Indo-European":0.7,"Other/Unspecified":0,"Russian, Polish, Slavic":0,"Spanish":0.8,"Tagalog":0.1,"Vietnamese":0},"Putnam County, West Virginia":{"Arabic":0,"Chinese":0,"English only":96.1,"French, Haitian, Cajun":0.5,"German or West Germanic":0.3,"Korean":0.1,"Other Asian/Pacific":0.7,"Other Indo-European":0.6,"Other/Unspecified":0,"Russian, Polish, Slavic":0.2,"Spanish":1,"Tagalog":0.3,"Vietnamese":0.2},"Raleigh County, West Virginia":{"Arabic":0.2,"Chinese":0.1,"English only":94.1,"French, Haitian, Cajun":0.3,"German or West Germanic":0.1,"Korean":0,"Other Asian/Pacific":0.1,"Other Indo-European":0.8,"Other/Unspecified":0.3,"Russian, Polish, Slavic":0,"Spanish":3.1,"Tagalog":0.7,"Vietnamese":0.2},"Randolph County, West Virginia":{"Arabic":0,"Chinese":0,"English only":95,"French, Haitian, Cajun":0.5,"German or West Germanic":0.5,"Korean":0,"Other Asian/Pacific":0.3,"Other Indo-European":0.2,"Other/Unspecified":0,"Russian, Polish, Slavic":0,"Spanish":3.4,"Tagalog":0,"Vietnamese":0},"Ritchie County, West Virginia":{"Arabic":0,"Chinese":1.3,"English only":92.6,"French, Haitian, Cajun":0,"German or West Germanic":0,"Korean":0,"Other Asian/Pacific":0.2,"Other Indo-European":1.5,"Other/Unspecified":0,"Russian, Polish, Slavic":0,"Spanish":4.4,"Tagalog":0,"Vietnamese":0},"Roane County, West Virginia":{"Arabic":0.2,"Chinese":0,"English only":98,"French, Haitian, Cajun":0,"German or West Germanic":0.4,"Korean":0,"Other Asian/Pacific":0.2,"Other Indo-European":0.1,"Other/Unspecified":0,"Russian, Polish, Slavic":0,"Spanish":0.7,"Tagalog":0.2,"Vietnamese":0},"Summers County, West Virginia":{"Arabic":0,"Chinese":0,"English only":94.2,"French, Haitian, Cajun":0,"German or West Germanic":0.2,"Korean":0.1,"Other Asian/Pacific":0,"Other Indo-European":1.2,"Other/Unspecified":0,"Russian, Polish, Slavic":0,"Spanish":4.3,"Tagalog":0,"Vietnamese":0},"Taylor County, West Virginia":{"Arabic":0,"Chinese":0.5,"English only":97.3,"French, Haitian, Cajun":0.3,"German or West Germanic":0,"Korean":0,"Other Asian/Pacific":0,"Other Indo-European":0,"Other/Unspecified":0.1,"Russian, Polish, Slavic":0,"Spanish":1.8,"Tagalog":0,"Vietnamese":0},"Tucker County, West Virginia":{"Arabic":0,"Chinese":0,"English only":93.2,"French, Haitian, Cajun":1.4,"German or West Germanic":0.9,"Korean":0,"Other Asian/Pacific":0.2,"Other Indo-European":0,"Other/Unspecified":0,"Russian, Polish, Slavic":0,"Spanish":3.9,"Tagalog":0.3,"Vietnamese":0},"Tyler County, West Virginia":{"Arabic":0,"Chinese":0,"English only":96,"French, Haitian, Cajun":0.2,"German or West Germanic":0.6,"Korean":0,"Other Asian/Pacific":0,"Other Indo-European":0,"Other/Unspecified":0,"Russian, Polish, Slavic":1.2,"Spanish":2,"Tagalog":0,"Vietnamese":0},"Upshur County, West Virginia":{"Arabic":0,"Chinese":0,"English only":97.3,"French, Haitian, Cajun":0,"German or West Germanic":0.6,"Korean":0,"Other Asian/Pacific":0.1,"Other Indo-European":0,"Other/Unspecified":0,"Russian, Polish, Slavic":0.3,"Spanish":1.3,"Tagalog":0,"Vietnamese":0.3},"Wayne County, West Virginia":{"Arabic":0.7,"Chinese":0.1,"English only":97,"French, Haitian, Cajun":0.2,"German or West Germanic":0,"Korean":0.3,"Other Asian/Pacific":0.2,"Other Indo-European":0.2,"Other/Unspecified":0,"Russian, Polish, Slavic":0,"Spanish":1.2,"Tagalog":0,"Vietnamese":0},"Webster County, West Virginia":{"Arabic":0,"Chinese":0,"English only":98.6,"French, Haitian, Cajun":0,"German or West Germanic":0.8,"Korean":0.1,"Other Asian/Pacific":0,"Other Indo-European":0,"Other/Unspecified":0,"Russian, Polish, Slavic":0,"Spanish":0.6,"Tagalog":0,"Vietnamese":0},"Wetzel County, West Virginia":{"Arabic":0.2,"Chinese":0,"English only":98.5,"French, Haitian, Cajun":0,"German or West Germanic":0.3,"Korean":0,"Other Asian/Pacific":0,"Other Indo-European":0.2,"Other/Unspecified":0,"Russian, Polish, Slavic":0,"Spanish":0.3,"Tagalog":0.4,"Vietnamese":0},"Wirt County, West Virginia":{"Arabic":0,"Chinese":0,"English only":97,"French, Haitian, Cajun":0,"German or West Germanic":0.5,"Korean":1.5,"Other Asian/Pacific":0,"Other Indo-European":0,"Other/Unspecified":0,"Russian, Polish, Slavic":0,"Spanish":1,"Tagalog":0,"Vietnamese":0},"Wood County, West Virginia":{"Arabic":0.1,"Chinese":0.1,"English only":96,"French, Haitian, Cajun":0.4,"German or West Germanic":0.4,"Korean":0.1,"Other Asian/Pacific":0.5,"Other Indo-European":0.4,"Other/Unspecified":0.2,"Russian, Polish, Slavic":0,"Spanish":1.6,"Tagalog":0.2,"Vietnamese":0.1},"Wyoming County, West Virginia":{"Arabic":0,"Chinese":0,"English only":97.6,"French, Haitian, Cajun":0,"German or West Germanic":1.7,"Korean":0,"Other Asian/Pacific":0,"Other Indo-European":0,"Other/Unspecified":0,"Russian, Polish, Slavic":0,"Spanish":0.7,"Tagalog":0,"Vietnamese":0}};
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: Object.keys(values),
+        datasets: [{
+          label: 'Share (%)',
+          data: Object.values(values),
+          backgroundColor: '#4576a7'
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.parsed.y + '%'
+            }
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 100,
+            title: {
+              display: true,
+              text: 'Population Share (%)'
+            }
+          },
+          x: {
+            title: {
+              display: true,
+              text: 'Language Group'
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(languageData[this.value]);
+  });
+
+  renderChart(languageData['Statewide']);</script>
+  </body>
+</html>
+</html>

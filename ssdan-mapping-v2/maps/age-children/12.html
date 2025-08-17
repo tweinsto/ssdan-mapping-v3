@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Age Distribution Under 18 –  Florida</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          margin: 1rem 2rem;
+          text-align: center;
+        }
+        h2 {
+          margin-bottom: 0.25rem;
+          font-size: 1.6rem;
+        }
+        select {
+          padding: 0.4rem;
+          font-size: 1rem;
+          margin: 1rem 0;
+          border-radius: 5px;
+          border: 1px solid #999;
+        }
+        canvas {
+          width: 100%;
+          max-width: 850px;
+          height: 500px;
+          margin-top: 1rem;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Age Distribution Under 18 in  Florida (2023)</h2>
+    <label>Select County:</label>
+            <select id="countySelect">
+          <option value='Statewide'>Statewide</option>
+<option value='Alachua County, Florida'>Alachua County, Florida</option>
+<option value='Baker County, Florida'>Baker County, Florida</option>
+<option value='Bay County, Florida'>Bay County, Florida</option>
+<option value='Bradford County, Florida'>Bradford County, Florida</option>
+<option value='Brevard County, Florida'>Brevard County, Florida</option>
+<option value='Broward County, Florida'>Broward County, Florida</option>
+<option value='Calhoun County, Florida'>Calhoun County, Florida</option>
+<option value='Charlotte County, Florida'>Charlotte County, Florida</option>
+<option value='Citrus County, Florida'>Citrus County, Florida</option>
+<option value='Clay County, Florida'>Clay County, Florida</option>
+<option value='Collier County, Florida'>Collier County, Florida</option>
+<option value='Columbia County, Florida'>Columbia County, Florida</option>
+<option value='DeSoto County, Florida'>DeSoto County, Florida</option>
+<option value='Dixie County, Florida'>Dixie County, Florida</option>
+<option value='Duval County, Florida'>Duval County, Florida</option>
+<option value='Escambia County, Florida'>Escambia County, Florida</option>
+<option value='Flagler County, Florida'>Flagler County, Florida</option>
+<option value='Franklin County, Florida'>Franklin County, Florida</option>
+<option value='Gadsden County, Florida'>Gadsden County, Florida</option>
+<option value='Gilchrist County, Florida'>Gilchrist County, Florida</option>
+<option value='Glades County, Florida'>Glades County, Florida</option>
+<option value='Gulf County, Florida'>Gulf County, Florida</option>
+<option value='Hamilton County, Florida'>Hamilton County, Florida</option>
+<option value='Hardee County, Florida'>Hardee County, Florida</option>
+<option value='Hendry County, Florida'>Hendry County, Florida</option>
+<option value='Hernando County, Florida'>Hernando County, Florida</option>
+<option value='Highlands County, Florida'>Highlands County, Florida</option>
+<option value='Hillsborough County, Florida'>Hillsborough County, Florida</option>
+<option value='Holmes County, Florida'>Holmes County, Florida</option>
+<option value='Indian River County, Florida'>Indian River County, Florida</option>
+<option value='Jackson County, Florida'>Jackson County, Florida</option>
+<option value='Jefferson County, Florida'>Jefferson County, Florida</option>
+<option value='Lafayette County, Florida'>Lafayette County, Florida</option>
+<option value='Lake County, Florida'>Lake County, Florida</option>
+<option value='Lee County, Florida'>Lee County, Florida</option>
+<option value='Leon County, Florida'>Leon County, Florida</option>
+<option value='Levy County, Florida'>Levy County, Florida</option>
+<option value='Liberty County, Florida'>Liberty County, Florida</option>
+<option value='Madison County, Florida'>Madison County, Florida</option>
+<option value='Manatee County, Florida'>Manatee County, Florida</option>
+<option value='Marion County, Florida'>Marion County, Florida</option>
+<option value='Martin County, Florida'>Martin County, Florida</option>
+<option value='Miami-Dade County, Florida'>Miami-Dade County, Florida</option>
+<option value='Monroe County, Florida'>Monroe County, Florida</option>
+<option value='Nassau County, Florida'>Nassau County, Florida</option>
+<option value='Okaloosa County, Florida'>Okaloosa County, Florida</option>
+<option value='Okeechobee County, Florida'>Okeechobee County, Florida</option>
+<option value='Orange County, Florida'>Orange County, Florida</option>
+<option value='Osceola County, Florida'>Osceola County, Florida</option>
+<option value='Palm Beach County, Florida'>Palm Beach County, Florida</option>
+<option value='Pasco County, Florida'>Pasco County, Florida</option>
+<option value='Pinellas County, Florida'>Pinellas County, Florida</option>
+<option value='Polk County, Florida'>Polk County, Florida</option>
+<option value='Putnam County, Florida'>Putnam County, Florida</option>
+<option value='Santa Rosa County, Florida'>Santa Rosa County, Florida</option>
+<option value='Sarasota County, Florida'>Sarasota County, Florida</option>
+<option value='Seminole County, Florida'>Seminole County, Florida</option>
+<option value='St. Johns County, Florida'>St. Johns County, Florida</option>
+<option value='St. Lucie County, Florida'>St. Lucie County, Florida</option>
+<option value='Sumter County, Florida'>Sumter County, Florida</option>
+<option value='Suwannee County, Florida'>Suwannee County, Florida</option>
+<option value='Taylor County, Florida'>Taylor County, Florida</option>
+<option value='Union County, Florida'>Union County, Florida</option>
+<option value='Volusia County, Florida'>Volusia County, Florida</option>
+<option value='Wakulla County, Florida'>Wakulla County, Florida</option>
+<option value='Walton County, Florida'>Walton County, Florida</option>
+<option value='Washington County, Florida'>Washington County, Florida</option>
+        </select>
+    <canvas id="barChart" width="850" height="500"></canvas>
+    <script>  const ageData = {"Statewide":[-13.2,12.7,-15.1,14.3,-9,8.7,-13.8,13.3],"Alachua County, Florida":[-13.6,13.3,-12.9,14.6,-15.9,13.2,-7.9,8.5],"Baker County, Florida":[-14.8,11.8,-11.7,15.5,-15.7,12.4,-10.4,7.8],"Bay County, Florida":[-13.4,13.1,-12,14.4,-16.8,13.3,-8.6,8.5],"Bradford County, Florida":[-12.3,12.4,-17.5,7,-14.2,20.9,-8.3,7.4],"Brevard County, Florida":[-12.5,11.8,-13.8,12.7,-15.5,15.2,-9.4,9.1],"Broward County, Florida":[-13.3,12.9,-13.3,13.1,-15.4,14.5,-8.8,8.7],"Calhoun County, Florida":[-12.9,10.7,-8,9.3,-23.6,16.8,-10.1,8.6],"Charlotte County, Florida":[-12.2,11.4,-15.7,11.3,-14,16,-10,9.6],"Citrus County, Florida":[-12.4,10.4,-15,11.7,-15.5,16.4,-10,8.5],"Clay County, Florida":[-11.8,11,-13.8,13.7,-16.1,14.4,-9.5,9.7],"Collier County, Florida":[-12.7,12.4,-13.3,13.1,-15.5,14.4,-9.5,9.2],"Columbia County, Florida":[-13.6,11.6,-17.8,13.8,-12.9,13.2,-8.7,8.3],"DeSoto County, Florida":[-6.8,20.7,-10.6,10.2,-15.9,15.2,-11.7,8.9],"Dixie County, Florida":[-12.3,10.9,-16.7,9.9,-13.8,16.4,-10,10],"Duval County, Florida":[-14.6,13.9,-13.7,14,-14.7,13.3,-8.1,7.7],"Escambia County, Florida":[-14,13.6,-15.7,12.6,-12.9,14.6,-8.5,8.1],"Flagler County, Florida":[-11,11,-13.8,13.5,-16.2,14.9,-9.9,9.7],"Franklin County, Florida":[-14.7,9.2,-20.1,15.1,-13.3,11.4,-11.5,4.6],"Gadsden County, Florida":[-13.2,13.1,-15.5,10.9,-12.7,17.3,-8.9,8.4],"Gilchrist County, Florida":[-14.1,11.8,-11.3,13.5,-19.1,11.4,-10,8.8],"Glades County, Florida":[-8.4,13.2,-11.2,15.4,-17.1,13.6,-8.8,12.2],"Gulf County, Florida":[-13,11,-11.3,14,-18.7,13.9,-10.3,7.7],"Hamilton County, Florida":[-16.6,6.9,-17.8,8.7,-13.3,21.5,-2.9,12.3],"Hardee County, Florida":[-13.5,11.7,-13.3,12.2,-17,15.6,-8.3,8.4],"Hendry County, Florida":[-15.9,13.3,-12.5,9.8,-16.5,15.1,-7.8,9],"Hernando County, Florida":[-11.9,11.5,-12.3,13.6,-17.2,14.7,-9.3,9.4],"Highlands County, Florida":[-12.4,12.1,-15.3,11.9,-13.9,16.5,-9.1,8.8],"Hillsborough County, Florida":[-13.5,12.8,-14.1,13.7,-15,13.7,-8.8,8.3],"Holmes County, Florida":[-13.1,11.4,-12.2,10.4,-15.2,18.4,-9.9,9.3],"Indian River County, Florida":[-14,11.2,-14.4,13.3,-14.2,14.3,-9.3,9.3],"Jackson County, Florida":[-14.3,12.5,-16.8,11.8,-12,14.3,-9.1,9.2],"Jefferson County, Florida":[-14.4,9.5,-11.5,11,-17.1,14.7,-11.5,10.2],"Lafayette County, Florida":[-10.9,11.3,-24.1,8.4,-14.2,14.3,-8.4,8.4],"Lake County, Florida":[-12.6,12.1,-15,13.9,-14.5,13.9,-9.3,8.8],"Lee County, Florida":[-13.3,12.7,-12.7,14.4,-16.1,13,-9.3,8.7],"Leon County, Florida":[-13.5,13,-13.7,13.6,-15,13.8,-8.8,8.6],"Levy County, Florida":[-11.3,13.9,-12.8,11.9,-17.8,15.1,-8.4,8.9],"Liberty County, Florida":[-11.6,7.5,-14.7,15.1,-10.6,12.8,-12.3,15.5],"Madison County, Florida":[-14.8,12.1,-9.1,12,-20,15.3,-10.4,6.1],"Manatee County, Florida":[-12.4,12.3,-13.8,13.3,-15,14.9,-9.3,9],"Marion County, Florida":[-13,12.1,-12.8,13.2,-16.7,14.5,-9,8.7],"Martin County, Florida":[-11.7,12.8,-15.3,13.2,-13.3,14.4,-9.8,9.5],"Miami-Dade County, Florida":[-13.9,13.4,-13.6,13,-14.6,14.1,-8.8,8.5],"Monroe County, Florida":[-14.3,13.5,-12.9,12.6,-15.2,15.7,-8.8,7],"Nassau County, Florida":[-12.3,11.9,-16.5,14.3,-13.8,13.7,-9.7,7.8],"Okaloosa County, Florida":[-14.1,13.6,-14.4,14.7,-14.2,13.1,-8,7.9],"Okeechobee County, Florida":[-14.5,12.5,-13.5,11.9,-16.7,12.1,-11,7.8],"Orange County, Florida":[-13.5,12.9,-14.5,12.6,-14.2,14.8,-8.8,8.6],"Osceola County, Florida":[-12.7,12.1,-14.1,13.3,-15.5,14.1,-9.4,8.9],"Palm Beach County, Florida":[-13.3,12.8,-14.3,13,-14.2,14.4,-9.2,8.8],"Pasco County, Florida":[-12.3,11.9,-14.6,12.8,-14.9,15.5,-9.2,8.7],"Pinellas County, Florida":[-13,12.4,-13.7,13.2,-15.1,14.5,-9.3,8.9],"Polk County, Florida":[-13.1,12.4,-13.3,13.4,-15.8,14.3,-9.1,8.6],"Putnam County, Florida":[-13.3,12.6,-14.6,12.9,-14.5,14.7,-8.1,9.3],"St. Johns County, Florida":[-10.9,10.5,-14.6,13.3,-15.6,15.8,-9.5,9.7],"St. Lucie County, Florida":[-12.7,12.4,-13.1,12.9,-15.8,14.9,-9.5,8.7],"Santa Rosa County, Florida":[-12.3,12.1,-14.3,13.1,-15.4,14.8,-9.5,8.6],"Sarasota County, Florida":[-12.2,11.6,-11.8,13.6,-17.6,13.9,-10,9.3],"Seminole County, Florida":[-12.3,11.8,-14,14.6,-15.2,13.5,-9.4,9.2],"Sumter County, Florida":[-12.3,13.6,-14.3,15.7,-12.8,13.7,-10.2,7.3],"Suwannee County, Florida":[-11.7,10.7,-14,10.6,-17.8,15,-11,9.1],"Taylor County, Florida":[-16.6,5.1,-14.2,11.4,-17.3,17.1,-5.4,13.1],"Union County, Florida":[-14.1,11.8,-12.5,14.1,-16.2,13.7,-8.7,8.9],"Volusia County, Florida":[-13,12.6,-14.1,14.3,-14.7,13.5,-9.1,8.6],"Wakulla County, Florida":[-15.1,9.6,-12.5,12,-16.7,16.2,-10.5,7.5],"Walton County, Florida":[-15.3,12.4,-13.6,14.4,-14.5,13.5,-8.5,8],"Washington County, Florida":[-11.9,13.2,-10.6,14.6,-18.5,13.2,-9.7,8.2]};
+  const ageBins = ["0–4","5–9","10–14","15–17"];
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(data) {
+    const maleData = data.filter((_, i) => i % 2 === 0);
+    const femaleData = data.filter((_, i) => i % 2 === 1);
+
+    const maxValue = Math.max(
+      ...maleData.map(Math.abs),
+      ...femaleData.map(Math.abs)
+    );
+    const padding = 1.0;
+    const xMax = +(maxValue + padding).toFixed(1);
+
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ageBins,
+        datasets: [
+          {
+            label: 'Male',
+            data: maleData,
+            backgroundColor: 'dodgerblue'
+          },
+          {
+            label: 'Female',
+            data: femaleData,
+            backgroundColor: 'lightpink'
+          }
+        ]
+      },
+      options: {
+        indexAxis: 'y',
+        responsive: true,
+        scales: {
+          x: {
+            min: -xMax,
+            max: xMax,
+            ticks: {
+              callback: value => Math.abs(value).toFixed(1) + '%'
+            }
+          },
+          y: {
+            stacked: false
+          }
+        },
+        plugins: {
+          legend: {
+            position: 'top',
+            align: 'start',
+            labels: {
+              usePointStyle: true
+            }
+          },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.dataset.label + ': ' + Math.abs(ctx.parsed.x).toFixed(1) + '%'
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(Object.values(ageData[this.value]));
+  });
+
+  renderChart(Object.values(ageData['Statewide']));</script>
+  </body>
+</html>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Age Distribution Under 18 –  New Mexico</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          margin: 1rem 2rem;
+          text-align: center;
+        }
+        h2 {
+          margin-bottom: 0.25rem;
+          font-size: 1.6rem;
+        }
+        select {
+          padding: 0.4rem;
+          font-size: 1rem;
+          margin: 1rem 0;
+          border-radius: 5px;
+          border: 1px solid #999;
+        }
+        canvas {
+          width: 100%;
+          max-width: 850px;
+          height: 500px;
+          margin-top: 1rem;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Age Distribution Under 18 in  New Mexico (2023)</h2>
+    <label>Select County:</label>
+            <select id="countySelect">
+          <option value='Statewide'>Statewide</option>
+<option value='Bernalillo County, New Mexico'>Bernalillo County, New Mexico</option>
+<option value='Catron County, New Mexico'>Catron County, New Mexico</option>
+<option value='Chaves County, New Mexico'>Chaves County, New Mexico</option>
+<option value='Cibola County, New Mexico'>Cibola County, New Mexico</option>
+<option value='Colfax County, New Mexico'>Colfax County, New Mexico</option>
+<option value='Curry County, New Mexico'>Curry County, New Mexico</option>
+<option value='De Baca County, New Mexico'>De Baca County, New Mexico</option>
+<option value='Doña Ana County, New Mexico'>Doña Ana County, New Mexico</option>
+<option value='Eddy County, New Mexico'>Eddy County, New Mexico</option>
+<option value='Grant County, New Mexico'>Grant County, New Mexico</option>
+<option value='Guadalupe County, New Mexico'>Guadalupe County, New Mexico</option>
+<option value='Harding County, New Mexico'>Harding County, New Mexico</option>
+<option value='Hidalgo County, New Mexico'>Hidalgo County, New Mexico</option>
+<option value='Lea County, New Mexico'>Lea County, New Mexico</option>
+<option value='Lincoln County, New Mexico'>Lincoln County, New Mexico</option>
+<option value='Los Alamos County, New Mexico'>Los Alamos County, New Mexico</option>
+<option value='Luna County, New Mexico'>Luna County, New Mexico</option>
+<option value='McKinley County, New Mexico'>McKinley County, New Mexico</option>
+<option value='Mora County, New Mexico'>Mora County, New Mexico</option>
+<option value='Otero County, New Mexico'>Otero County, New Mexico</option>
+<option value='Quay County, New Mexico'>Quay County, New Mexico</option>
+<option value='Rio Arriba County, New Mexico'>Rio Arriba County, New Mexico</option>
+<option value='Roosevelt County, New Mexico'>Roosevelt County, New Mexico</option>
+<option value='San Juan County, New Mexico'>San Juan County, New Mexico</option>
+<option value='San Miguel County, New Mexico'>San Miguel County, New Mexico</option>
+<option value='Sandoval County, New Mexico'>Sandoval County, New Mexico</option>
+<option value='Santa Fe County, New Mexico'>Santa Fe County, New Mexico</option>
+<option value='Sierra County, New Mexico'>Sierra County, New Mexico</option>
+<option value='Socorro County, New Mexico'>Socorro County, New Mexico</option>
+<option value='Taos County, New Mexico'>Taos County, New Mexico</option>
+<option value='Torrance County, New Mexico'>Torrance County, New Mexico</option>
+<option value='Union County, New Mexico'>Union County, New Mexico</option>
+<option value='Valencia County, New Mexico'>Valencia County, New Mexico</option>
+        </select>
+    <canvas id="barChart" width="850" height="500"></canvas>
+    <script>  const ageData = {"Statewide":[-12.4,11.8,-15.1,15.1,-9.2,9.1,-14.1,13.2],"Bernalillo County, New Mexico":[-12.4,11.9,-14.2,12.5,-15.1,15.4,-9.4,9.1],"Catron County, New Mexico":[-3.1,1.7,-3.4,11.6,-46.3,19.6,-1.4,12.8],"Chaves County, New Mexico":[-12,12.2,-13.8,13.9,-15.4,13.5,-10.3,8.9],"Cibola County, New Mexico":[-13,11.7,-15.4,17,-12,13.2,-6.3,11.3],"Colfax County, New Mexico":[-10.4,12.1,-11,12.3,-16.4,16.6,-10.8,10.4],"Curry County, New Mexico":[-14,15.3,-13.5,12.8,-13.7,15.4,-7.8,7.5],"De Baca County, New Mexico":[-30.4,12,-7.3,17.8,-22.3,7.1,-2.1,1],"Doña Ana County, New Mexico":[-12.9,11.9,-12.8,12.3,-16.1,15.9,-9.4,8.7],"Eddy County, New Mexico":[-14.7,12.2,-13.5,13.7,-15.1,14,-8.6,8.2],"Grant County, New Mexico":[-13.8,9.7,-13.2,13.3,-16.4,15.2,-11.8,6.6],"Guadalupe County, New Mexico":[-5.8,10,-21.5,17.9,-13.3,10.3,-14.7,6.4],"Harding County, New Mexico":[-4,7.5,-1.7,21.4,-16.2,16.8,-19.7,12.7],"Hidalgo County, New Mexico":[-10.1,16,-11.7,20.3,-13.6,18.8,-4.7,4.8],"Lea County, New Mexico":[-14.3,12.7,-13.2,15.6,-15.5,11.5,-8.9,8.3],"Lincoln County, New Mexico":[-14.6,9.4,-10.3,13,-18.7,14.9,-8.7,10.3],"Los Alamos County, New Mexico":[-10.1,10.9,-17.6,11.9,-13.4,17.5,-9,9.5],"Luna County, New Mexico":[-15.6,13.6,-14.8,14,-12.3,12.6,-8.5,8.6],"McKinley County, New Mexico":[-10.6,10.8,-15.7,12.8,-14.7,16.9,-9.3,9.1],"Mora County, New Mexico":[-5.2,13.7,-8.5,19.5,-25.2,5,-8.9,13.9],"Otero County, New Mexico":[-14.2,13.3,-16.6,13.6,-12.2,13.3,-7.5,9.4],"Quay County, New Mexico":[-4.7,12.4,-14.3,10.9,-20.3,23.5,-10.2,3.8],"Rio Arriba County, New Mexico":[-12,10.1,-12.8,14.6,-15.6,17.6,-8.8,8.4],"Roosevelt County, New Mexico":[-15.8,8.5,-17.6,13.1,-10.3,18.3,-8.4,8],"Sandoval County, New Mexico":[-11.2,10.8,-13.1,13.7,-17.3,14.6,-10.2,9.1],"San Juan County, New Mexico":[-11.5,11.3,-14.6,12.8,-14.8,16,-9.4,9.5],"San Miguel County, New Mexico":[-12.3,12.7,-13.4,14.2,-13.4,15.7,-9,9.1],"Santa Fe County, New Mexico":[-11.7,11.3,-14.2,12,-14.7,16.2,-10,10],"Sierra County, New Mexico":[-13.1,10.3,-20.9,12.5,-10.3,11.8,-4.1,16.9],"Socorro County, New Mexico":[-11.7,10.7,-16.3,17.2,-12.4,15.2,-7.8,8.7],"Taos County, New Mexico":[-9.3,9.2,-12.8,11.2,-21.6,17,-9.7,9.3],"Torrance County, New Mexico":[-11.3,11.5,-16.1,15.5,-13.2,11.4,-5.3,15.6],"Union County, New Mexico":[-19.6,11.5,-17.9,22.9,-6.4,10.5,-7,4.1],"Valencia County, New Mexico":[-12,12.3,-14.6,15.2,-14.5,12.8,-9.3,9.4]};
+  const ageBins = ["0–4","5–9","10–14","15–17"];
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(data) {
+    const maleData = data.filter((_, i) => i % 2 === 0);
+    const femaleData = data.filter((_, i) => i % 2 === 1);
+
+    const maxValue = Math.max(
+      ...maleData.map(Math.abs),
+      ...femaleData.map(Math.abs)
+    );
+    const padding = 1.0;
+    const xMax = +(maxValue + padding).toFixed(1);
+
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ageBins,
+        datasets: [
+          {
+            label: 'Male',
+            data: maleData,
+            backgroundColor: 'dodgerblue'
+          },
+          {
+            label: 'Female',
+            data: femaleData,
+            backgroundColor: 'lightpink'
+          }
+        ]
+      },
+      options: {
+        indexAxis: 'y',
+        responsive: true,
+        scales: {
+          x: {
+            min: -xMax,
+            max: xMax,
+            ticks: {
+              callback: value => Math.abs(value).toFixed(1) + '%'
+            }
+          },
+          y: {
+            stacked: false
+          }
+        },
+        plugins: {
+          legend: {
+            position: 'top',
+            align: 'start',
+            labels: {
+              usePointStyle: true
+            }
+          },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.dataset.label + ': ' + Math.abs(ctx.parsed.x).toFixed(1) + '%'
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(Object.values(ageData[this.value]));
+  });
+
+  renderChart(Object.values(ageData['Statewide']));</script>
+  </body>
+</html>
+</html>

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Educational Enrollment – North Carolina</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Educational Enrollment (Age 18–24) in North Carolina</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Alamance County, North Carolina">Alamance County, North Carolina</option>
+      <option value="Alexander County, North Carolina">Alexander County, North Carolina</option>
+      <option value="Alleghany County, North Carolina">Alleghany County, North Carolina</option>
+      <option value="Anson County, North Carolina">Anson County, North Carolina</option>
+      <option value="Ashe County, North Carolina">Ashe County, North Carolina</option>
+      <option value="Avery County, North Carolina">Avery County, North Carolina</option>
+      <option value="Beaufort County, North Carolina">Beaufort County, North Carolina</option>
+      <option value="Bertie County, North Carolina">Bertie County, North Carolina</option>
+      <option value="Bladen County, North Carolina">Bladen County, North Carolina</option>
+      <option value="Brunswick County, North Carolina">Brunswick County, North Carolina</option>
+      <option value="Buncombe County, North Carolina">Buncombe County, North Carolina</option>
+      <option value="Burke County, North Carolina">Burke County, North Carolina</option>
+      <option value="Cabarrus County, North Carolina">Cabarrus County, North Carolina</option>
+      <option value="Caldwell County, North Carolina">Caldwell County, North Carolina</option>
+      <option value="Camden County, North Carolina">Camden County, North Carolina</option>
+      <option value="Carteret County, North Carolina">Carteret County, North Carolina</option>
+      <option value="Caswell County, North Carolina">Caswell County, North Carolina</option>
+      <option value="Catawba County, North Carolina">Catawba County, North Carolina</option>
+      <option value="Chatham County, North Carolina">Chatham County, North Carolina</option>
+      <option value="Cherokee County, North Carolina">Cherokee County, North Carolina</option>
+      <option value="Chowan County, North Carolina">Chowan County, North Carolina</option>
+      <option value="Clay County, North Carolina">Clay County, North Carolina</option>
+      <option value="Cleveland County, North Carolina">Cleveland County, North Carolina</option>
+      <option value="Columbus County, North Carolina">Columbus County, North Carolina</option>
+      <option value="Craven County, North Carolina">Craven County, North Carolina</option>
+      <option value="Cumberland County, North Carolina">Cumberland County, North Carolina</option>
+      <option value="Currituck County, North Carolina">Currituck County, North Carolina</option>
+      <option value="Dare County, North Carolina">Dare County, North Carolina</option>
+      <option value="Davidson County, North Carolina">Davidson County, North Carolina</option>
+      <option value="Davie County, North Carolina">Davie County, North Carolina</option>
+      <option value="Duplin County, North Carolina">Duplin County, North Carolina</option>
+      <option value="Durham County, North Carolina">Durham County, North Carolina</option>
+      <option value="Edgecombe County, North Carolina">Edgecombe County, North Carolina</option>
+      <option value="Forsyth County, North Carolina">Forsyth County, North Carolina</option>
+      <option value="Franklin County, North Carolina">Franklin County, North Carolina</option>
+      <option value="Gaston County, North Carolina">Gaston County, North Carolina</option>
+      <option value="Gates County, North Carolina">Gates County, North Carolina</option>
+      <option value="Graham County, North Carolina">Graham County, North Carolina</option>
+      <option value="Granville County, North Carolina">Granville County, North Carolina</option>
+      <option value="Greene County, North Carolina">Greene County, North Carolina</option>
+      <option value="Guilford County, North Carolina">Guilford County, North Carolina</option>
+      <option value="Halifax County, North Carolina">Halifax County, North Carolina</option>
+      <option value="Harnett County, North Carolina">Harnett County, North Carolina</option>
+      <option value="Haywood County, North Carolina">Haywood County, North Carolina</option>
+      <option value="Henderson County, North Carolina">Henderson County, North Carolina</option>
+      <option value="Hertford County, North Carolina">Hertford County, North Carolina</option>
+      <option value="Hoke County, North Carolina">Hoke County, North Carolina</option>
+      <option value="Hyde County, North Carolina">Hyde County, North Carolina</option>
+      <option value="Iredell County, North Carolina">Iredell County, North Carolina</option>
+      <option value="Jackson County, North Carolina">Jackson County, North Carolina</option>
+      <option value="Johnston County, North Carolina">Johnston County, North Carolina</option>
+      <option value="Jones County, North Carolina">Jones County, North Carolina</option>
+      <option value="Lee County, North Carolina">Lee County, North Carolina</option>
+      <option value="Lenoir County, North Carolina">Lenoir County, North Carolina</option>
+      <option value="Lincoln County, North Carolina">Lincoln County, North Carolina</option>
+      <option value="Macon County, North Carolina">Macon County, North Carolina</option>
+      <option value="Madison County, North Carolina">Madison County, North Carolina</option>
+      <option value="Martin County, North Carolina">Martin County, North Carolina</option>
+      <option value="McDowell County, North Carolina">McDowell County, North Carolina</option>
+      <option value="Mecklenburg County, North Carolina">Mecklenburg County, North Carolina</option>
+      <option value="Mitchell County, North Carolina">Mitchell County, North Carolina</option>
+      <option value="Montgomery County, North Carolina">Montgomery County, North Carolina</option>
+      <option value="Moore County, North Carolina">Moore County, North Carolina</option>
+      <option value="Nash County, North Carolina">Nash County, North Carolina</option>
+      <option value="New Hanover County, North Carolina">New Hanover County, North Carolina</option>
+      <option value="Northampton County, North Carolina">Northampton County, North Carolina</option>
+      <option value="Onslow County, North Carolina">Onslow County, North Carolina</option>
+      <option value="Orange County, North Carolina">Orange County, North Carolina</option>
+      <option value="Pamlico County, North Carolina">Pamlico County, North Carolina</option>
+      <option value="Pasquotank County, North Carolina">Pasquotank County, North Carolina</option>
+      <option value="Pender County, North Carolina">Pender County, North Carolina</option>
+      <option value="Perquimans County, North Carolina">Perquimans County, North Carolina</option>
+      <option value="Person County, North Carolina">Person County, North Carolina</option>
+      <option value="Pitt County, North Carolina">Pitt County, North Carolina</option>
+      <option value="Polk County, North Carolina">Polk County, North Carolina</option>
+      <option value="Randolph County, North Carolina">Randolph County, North Carolina</option>
+      <option value="Richmond County, North Carolina">Richmond County, North Carolina</option>
+      <option value="Robeson County, North Carolina">Robeson County, North Carolina</option>
+      <option value="Rockingham County, North Carolina">Rockingham County, North Carolina</option>
+      <option value="Rowan County, North Carolina">Rowan County, North Carolina</option>
+      <option value="Rutherford County, North Carolina">Rutherford County, North Carolina</option>
+      <option value="Sampson County, North Carolina">Sampson County, North Carolina</option>
+      <option value="Scotland County, North Carolina">Scotland County, North Carolina</option>
+      <option value="Stanly County, North Carolina">Stanly County, North Carolina</option>
+      <option value="Stokes County, North Carolina">Stokes County, North Carolina</option>
+      <option value="Surry County, North Carolina">Surry County, North Carolina</option>
+      <option value="Swain County, North Carolina">Swain County, North Carolina</option>
+      <option value="Transylvania County, North Carolina">Transylvania County, North Carolina</option>
+      <option value="Tyrrell County, North Carolina">Tyrrell County, North Carolina</option>
+      <option value="Union County, North Carolina">Union County, North Carolina</option>
+      <option value="Vance County, North Carolina">Vance County, North Carolina</option>
+      <option value="Wake County, North Carolina">Wake County, North Carolina</option>
+      <option value="Warren County, North Carolina">Warren County, North Carolina</option>
+      <option value="Washington County, North Carolina">Washington County, North Carolina</option>
+      <option value="Watauga County, North Carolina">Watauga County, North Carolina</option>
+      <option value="Wayne County, North Carolina">Wayne County, North Carolina</option>
+      <option value="Wilkes County, North Carolina">Wilkes County, North Carolina</option>
+      <option value="Wilson County, North Carolina">Wilson County, North Carolina</option>
+      <option value="Yadkin County, North Carolina">Yadkin County, North Carolina</option>
+      <option value="Yancey County, North Carolina">Yancey County, North Carolina</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>  const data = {"Statewide":[46.4,16.9,36.7],"Alamance County, North Carolina":[47.7,12.6,39.7],"Alexander County, North Carolina":[48.3,13.6,38.2],"Alleghany County, North Carolina":[50.1,13.4,36.5],"Anson County, North Carolina":[44.1,20.6,35.3],"Ashe County, North Carolina":[45,19.2,35.8],"Avery County, North Carolina":[47.5,11.3,41.3],"Beaufort County, North Carolina":[42.5,20.8,36.7],"Bertie County, North Carolina":[47.4,16.5,36.1],"Bladen County, North Carolina":[44.5,30.8,24.8],"Brunswick County, North Carolina":[46.5,20.7,32.8],"Buncombe County, North Carolina":[47.4,14.4,38.2],"Burke County, North Carolina":[39.6,31.5,29],"Cabarrus County, North Carolina":[47.4,15.6,37],"Caldwell County, North Carolina":[46,23.6,30.4],"Camden County, North Carolina":[54.6,5,40.4],"Carteret County, North Carolina":[51,5.1,43.9],"Caswell County, North Carolina":[37.5,31.3,31.2],"Catawba County, North Carolina":[44.2,19.5,36.3],"Chatham County, North Carolina":[44.9,16.4,38.6],"Cherokee County, North Carolina":[48,12.4,39.6],"Chowan County, North Carolina":[46.3,13.3,40.4],"Clay County, North Carolina":[39.4,48,12.6],"Cleveland County, North Carolina":[43.5,22.2,34.3],"Columbus County, North Carolina":[47.9,13.1,38.9],"Craven County, North Carolina":[42.9,29.4,27.7],"Cumberland County, North Carolina":[44.3,26.1,29.7],"Currituck County, North Carolina":[51.2,9.5,39.3],"Dare County, North Carolina":[49.9,12,38.1],"Davidson County, North Carolina":[48.1,13.2,38.7],"Davie County, North Carolina":[48.3,15.1,36.6],"Duplin County, North Carolina":[43.5,22.4,34.1],"Durham County, North Carolina":[47.9,13.7,38.4],"Edgecombe County, North Carolina":[43.6,22.8,33.6],"Forsyth County, North Carolina":[46.7,13.3,40],"Franklin County, North Carolina":[45.8,18.5,35.7],"Gaston County, North Carolina":[46.4,16.2,37.3],"Gates County, North Carolina":[33.4,42.5,24.1],"Graham County, North Carolina":[45.9,21.3,32.8],"Granville County, North Carolina":[47.7,11.6,40.7],"Greene County, North Carolina":[38.2,41.2,20.7],"Guilford County, North Carolina":[47.1,11.9,41],"Halifax County, North Carolina":[46.4,19.9,33.7],"Harnett County, North Carolina":[47.2,15.8,37],"Haywood County, North Carolina":[47.6,21.5,30.8],"Henderson County, North Carolina":[46.6,17.6,35.7],"Hertford County, North Carolina":[50.2,7.6,42.2],"Hoke County, North Carolina":[45.5,19.5,35],"Hyde County, North Carolina":[57.7,20.2,22.1],"Iredell County, North Carolina":[46.4,16.4,37.2],"Jackson County, North Carolina":[49.4,5,45.6],"Johnston County, North Carolina":[45.7,15.5,38.8],"Jones County, North Carolina":[47.3,10.3,42.3],"Lee County, North Carolina":[45.9,22.4,31.7],"Lenoir County, North Carolina":[47.4,14.3,38.2],"Lincoln County, North Carolina":[47,16.5,36.6],"Macon County, North Carolina":[44.1,21.3,34.6],"Madison County, North Carolina":[44.1,24.1,31.9],"Martin County, North Carolina":[47.3,20.2,32.5],"McDowell County, North Carolina":[47.5,16,36.5],"Mecklenburg County, North Carolina":[47.3,14.9,37.8],"Mitchell County, North Carolina":[49.9,9.7,40.3],"Montgomery County, North Carolina":[45.3,18.8,35.9],"Moore County, North Carolina":[46.2,15.1,38.8],"Nash County, North Carolina":[43.7,18.7,37.6],"New Hanover County, North Carolina":[48.5,9.1,42.4],"Northampton County, North Carolina":[40.2,28.7,31.1],"Onslow County, North Carolina":[38.7,49.9,11.3],"Orange County, North Carolina":[49.8,3.3,46.9],"Pamlico County, North Carolina":[35.4,36.5,28.1],"Pasquotank County, North Carolina":[42.7,18.3,38.9],"Pender County, North Carolina":[46.9,16.7,36.5],"Perquimans County, North Carolina":[51,2,47],"Person County, North Carolina":[46.4,11.2,42.5],"Pitt County, North Carolina":[48.9,8.2,42.9],"Polk County, North Carolina":[47.6,9.4,42.9],"Randolph County, North Carolina":[48.7,21.8,29.5],"Richmond County, North Carolina":[39.2,20.5,40.3],"Robeson County, North Carolina":[46.8,17.2,36],"Rockingham County, North Carolina":[48.4,15.8,35.8],"Rowan County, North Carolina":[46.2,18.2,35.6],"Rutherford County, North Carolina":[40.2,29.3,30.5],"Sampson County, North Carolina":[46.9,19.7,33.4],"Scotland County, North Carolina":[42.9,28,29.1],"Stanly County, North Carolina":[48.5,18.7,32.8],"Stokes County, North Carolina":[43.6,18.9,37.5],"Surry County, North Carolina":[47.8,19.5,32.7],"Swain County, North Carolina":[49.5,22.7,27.7],"Transylvania County, North Carolina":[48.6,8.4,43],"Tyrrell County, North Carolina":[0,100,0],"Union County, North Carolina":[47.8,11,41.3],"Vance County, North Carolina":[49.1,19.9,31.1],"Wake County, North Carolina":[47.9,11,41.1],"Warren County, North Carolina":[39.8,28.3,31.8],"Washington County, North Carolina":[43.6,25.7,30.8],"Watauga County, North Carolina":[48.6,5.4,46],"Wayne County, North Carolina":[46.4,18.1,35.5],"Wilkes County, North Carolina":[45.3,21.5,33.2],"Wilson County, North Carolina":[42.6,22.7,34.8],"Yadkin County, North Carolina":[42.8,26.7,30.5],"Yancey County, North Carolina":[36.6,38.9,24.5]};
+  const nationalAvg = [6.9,55,38.1];
+  const categories = ["Enrolled in College","Enrolled in Other School","Not Enrolled"];
+  const ctx = document.getElementById("barChart").getContext("2d");
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: categories,
+        datasets: [
+          {
+            label: "County/State",
+            data: values,
+            backgroundColor: ["#66c2a5", "#fc8d62", "#8da0cb"]
+          },
+          {
+            label: null,
+            data: categories.map(c => nationalAvg[c]),
+            type: "line",
+            borderColor: "black",
+            borderWidth: 2,
+            pointRadius: 0,
+            fill: false
+          }
+        ]
+      },
+      options: {
+        indexAxis: "y",
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            ticks: {
+              callback: v => v + "%"
+            }
+          }
+        },
+        plugins: {
+          legend: {
+            labels: {
+              filter: item => item.text !== null
+            }
+          },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.dataset.label ? ctx.dataset.label + ": " + ctx.raw + "%" : null
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById("countySelect").addEventListener("change", function() {
+    renderChart(Object.values(data[this.value]));
+  });
+
+  renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

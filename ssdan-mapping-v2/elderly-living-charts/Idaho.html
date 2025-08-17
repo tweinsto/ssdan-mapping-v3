@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Living Arrangements – Idaho</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          margin: 1rem 2rem;
+          text-align: center;
+        }
+        h2 {
+          font-size: 1.5rem;
+          margin-bottom: 0.5rem;
+        }
+        select {
+          font-size: 1rem;
+          padding: 0.4rem;
+          margin: 1rem 0;
+          border: 1px solid #999;
+          border-radius: 5px;
+        }
+        canvas {
+          width: 100%;
+          max-width: 850px;
+          height: 600px;
+          margin-top: 1rem;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Living Arrangements of Adults 65+ in Idaho</h2>
+    <label>Select County:</label>
+            <select id="countySelect">
+          <option value='Statewide'>Default</option>
+<option value='Ada County, Idaho'>Ada County, Idaho</option>
+<option value='Adams County, Idaho'>Adams County, Idaho</option>
+<option value='Bannock County, Idaho'>Bannock County, Idaho</option>
+<option value='Bear Lake County, Idaho'>Bear Lake County, Idaho</option>
+<option value='Benewah County, Idaho'>Benewah County, Idaho</option>
+<option value='Bingham County, Idaho'>Bingham County, Idaho</option>
+<option value='Blaine County, Idaho'>Blaine County, Idaho</option>
+<option value='Boise County, Idaho'>Boise County, Idaho</option>
+<option value='Bonner County, Idaho'>Bonner County, Idaho</option>
+<option value='Bonneville County, Idaho'>Bonneville County, Idaho</option>
+<option value='Boundary County, Idaho'>Boundary County, Idaho</option>
+<option value='Butte County, Idaho'>Butte County, Idaho</option>
+<option value='Camas County, Idaho'>Camas County, Idaho</option>
+<option value='Canyon County, Idaho'>Canyon County, Idaho</option>
+<option value='Caribou County, Idaho'>Caribou County, Idaho</option>
+<option value='Cassia County, Idaho'>Cassia County, Idaho</option>
+<option value='Clark County, Idaho'>Clark County, Idaho</option>
+<option value='Clearwater County, Idaho'>Clearwater County, Idaho</option>
+<option value='Custer County, Idaho'>Custer County, Idaho</option>
+<option value='Elmore County, Idaho'>Elmore County, Idaho</option>
+<option value='Franklin County, Idaho'>Franklin County, Idaho</option>
+<option value='Fremont County, Idaho'>Fremont County, Idaho</option>
+<option value='Gem County, Idaho'>Gem County, Idaho</option>
+<option value='Gooding County, Idaho'>Gooding County, Idaho</option>
+<option value='Idaho County, Idaho'>Idaho County, Idaho</option>
+<option value='Jefferson County, Idaho'>Jefferson County, Idaho</option>
+<option value='Jerome County, Idaho'>Jerome County, Idaho</option>
+<option value='Kootenai County, Idaho'>Kootenai County, Idaho</option>
+<option value='Latah County, Idaho'>Latah County, Idaho</option>
+<option value='Lemhi County, Idaho'>Lemhi County, Idaho</option>
+<option value='Lewis County, Idaho'>Lewis County, Idaho</option>
+<option value='Lincoln County, Idaho'>Lincoln County, Idaho</option>
+<option value='Madison County, Idaho'>Madison County, Idaho</option>
+<option value='Minidoka County, Idaho'>Minidoka County, Idaho</option>
+<option value='Nez Perce County, Idaho'>Nez Perce County, Idaho</option>
+<option value='Oneida County, Idaho'>Oneida County, Idaho</option>
+<option value='Owyhee County, Idaho'>Owyhee County, Idaho</option>
+<option value='Payette County, Idaho'>Payette County, Idaho</option>
+<option value='Power County, Idaho'>Power County, Idaho</option>
+<option value='Shoshone County, Idaho'>Shoshone County, Idaho</option>
+<option value='Teton County, Idaho'>Teton County, Idaho</option>
+<option value='Twin Falls County, Idaho'>Twin Falls County, Idaho</option>
+<option value='Valley County, Idaho'>Valley County, Idaho</option>
+<option value='Washington County, Idaho'>Washington County, Idaho</option>
+        </select>
+    <canvas id="barChart"></canvas>
+    <script>  const chartData = {"Statewide":[0,0,0,0,0,0],"Ada County, Idaho":[0,0,0,0,0,0],"Adams County, Idaho":[0,0,0,0,0,0],"Bannock County, Idaho":[0,0,0,0,0,0],"Bear Lake County, Idaho":[0,0,0,0,0,0],"Benewah County, Idaho":[0,0,0,0,0,0],"Bingham County, Idaho":[0,0,0,0,0,0],"Blaine County, Idaho":[0,0,0,0,0,0],"Boise County, Idaho":[0,0,0,0,0,0],"Bonner County, Idaho":[0,0,0,0,0,0],"Bonneville County, Idaho":[0,0,0,0,0,0],"Boundary County, Idaho":[0,0,0,0,0,0],"Butte County, Idaho":[0,0,0,0,0,0],"Camas County, Idaho":[0,0,0,0,0,0],"Canyon County, Idaho":[0,0,0,0,0,0],"Caribou County, Idaho":[0,0,0,0,0,0],"Cassia County, Idaho":[0,0,0,0,0,0],"Clark County, Idaho":[0,0,0,0,0,0],"Clearwater County, Idaho":[0,0,0,0,0,0],"Custer County, Idaho":[0,0,0,0,0,0],"Elmore County, Idaho":[0,0,0,0,0,0],"Franklin County, Idaho":[0,0,0,0,0,0],"Fremont County, Idaho":[0,0,0,0,0,0],"Gem County, Idaho":[0,0,0,0,0,0],"Gooding County, Idaho":[0,0,0,0,0,0],"Idaho County, Idaho":[0,0,0,0,0,0],"Jefferson County, Idaho":[0,0,0,0,0,0],"Jerome County, Idaho":[0,0,0,0,0,0],"Kootenai County, Idaho":[0,0,0,0,0,0],"Latah County, Idaho":[0,0,0,0,0,0],"Lemhi County, Idaho":[0,0,0,0,0,0],"Lewis County, Idaho":[0,0,0,0,0,0],"Lincoln County, Idaho":[0,0,0,0,0,0],"Madison County, Idaho":[0,0,0,0,0,0],"Minidoka County, Idaho":[0,0,0,0,0,0],"Nez Perce County, Idaho":[0,0,0,0,0,0],"Oneida County, Idaho":[0,0,0,0,0,0],"Owyhee County, Idaho":[0,0,0,0,0,0],"Payette County, Idaho":[0,0,0,0,0,0],"Power County, Idaho":[0,0,0,0,0,0],"Shoshone County, Idaho":[0,0,0,0,0,0],"Teton County, Idaho":[0,0,0,0,0,0],"Twin Falls County, Idaho":[0,0,0,0,0,0],"Valley County, Idaho":[0,0,0,0,0,0],"Washington County, Idaho":[0,0,0,0,0,0]};
+  const categories = ["With unmarried partner","With spouse only","With other relatives","With nonrelatives","With child","Lives alone"];
+  const usAverages = [27.3,0.3,2.3,14.5,53.2,2.4];
+
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(data) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: categories,
+        datasets: [
+          {
+            label: 'Percent (County/State)',
+            data: data,
+            backgroundColor: '#4576a7'
+          },
+          {
+            label: 'National Average',
+            data: categories.map(c => usAverages[c] || 0),
+            type: 'line',
+            borderColor: '#000',
+            borderWidth: 1,
+            pointRadius: 0,
+            fill: false
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        indexAxis: 'y',
+        scales: {
+          x: {
+            title: {
+              display: true,
+              text: 'Percent of 65+ Population'
+            },
+            min: 0,
+            max: 100,
+            ticks: {
+              callback: value => value + '%'
+            }
+          }
+        },
+        plugins: {
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.dataset.label + ': ' + ctx.parsed.x + '%'
+            }
+          },
+          legend: {
+            position: 'top',
+            align: 'start'
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(Object.values(chartData[this.value]));
+  });
+
+  renderChart(Object.values(chartData['Statewide']));</script>
+  </body>
+</html>
+</html>

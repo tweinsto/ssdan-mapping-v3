@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Living Arrangements – Washington</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          margin: 1rem 2rem;
+          text-align: center;
+        }
+        h2 {
+          font-size: 1.5rem;
+          margin-bottom: 0.5rem;
+        }
+        select {
+          font-size: 1rem;
+          padding: 0.4rem;
+          margin: 1rem 0;
+          border: 1px solid #999;
+          border-radius: 5px;
+        }
+        canvas {
+          width: 100%;
+          max-width: 850px;
+          height: 600px;
+          margin-top: 1rem;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Living Arrangements of Adults 65+ in Washington</h2>
+    <label>Select County:</label>
+            <select id="countySelect">
+          <option value='Statewide'>Default</option>
+<option value='Adams County, Washington'>Adams County, Washington</option>
+<option value='Asotin County, Washington'>Asotin County, Washington</option>
+<option value='Benton County, Washington'>Benton County, Washington</option>
+<option value='Chelan County, Washington'>Chelan County, Washington</option>
+<option value='Clallam County, Washington'>Clallam County, Washington</option>
+<option value='Clark County, Washington'>Clark County, Washington</option>
+<option value='Columbia County, Washington'>Columbia County, Washington</option>
+<option value='Cowlitz County, Washington'>Cowlitz County, Washington</option>
+<option value='Douglas County, Washington'>Douglas County, Washington</option>
+<option value='Ferry County, Washington'>Ferry County, Washington</option>
+<option value='Franklin County, Washington'>Franklin County, Washington</option>
+<option value='Garfield County, Washington'>Garfield County, Washington</option>
+<option value='Grant County, Washington'>Grant County, Washington</option>
+<option value='Grays Harbor County, Washington'>Grays Harbor County, Washington</option>
+<option value='Island County, Washington'>Island County, Washington</option>
+<option value='Jefferson County, Washington'>Jefferson County, Washington</option>
+<option value='King County, Washington'>King County, Washington</option>
+<option value='Kitsap County, Washington'>Kitsap County, Washington</option>
+<option value='Kittitas County, Washington'>Kittitas County, Washington</option>
+<option value='Klickitat County, Washington'>Klickitat County, Washington</option>
+<option value='Lewis County, Washington'>Lewis County, Washington</option>
+<option value='Lincoln County, Washington'>Lincoln County, Washington</option>
+<option value='Mason County, Washington'>Mason County, Washington</option>
+<option value='Okanogan County, Washington'>Okanogan County, Washington</option>
+<option value='Pacific County, Washington'>Pacific County, Washington</option>
+<option value='Pend Oreille County, Washington'>Pend Oreille County, Washington</option>
+<option value='Pierce County, Washington'>Pierce County, Washington</option>
+<option value='San Juan County, Washington'>San Juan County, Washington</option>
+<option value='Skagit County, Washington'>Skagit County, Washington</option>
+<option value='Skamania County, Washington'>Skamania County, Washington</option>
+<option value='Snohomish County, Washington'>Snohomish County, Washington</option>
+<option value='Spokane County, Washington'>Spokane County, Washington</option>
+<option value='Stevens County, Washington'>Stevens County, Washington</option>
+<option value='Thurston County, Washington'>Thurston County, Washington</option>
+<option value='Wahkiakum County, Washington'>Wahkiakum County, Washington</option>
+<option value='Walla Walla County, Washington'>Walla Walla County, Washington</option>
+<option value='Whatcom County, Washington'>Whatcom County, Washington</option>
+<option value='Whitman County, Washington'>Whitman County, Washington</option>
+<option value='Yakima County, Washington'>Yakima County, Washington</option>
+        </select>
+    <canvas id="barChart"></canvas>
+    <script>  const chartData = {"Statewide":[0,0,0,0,0,0],"Adams County, Washington":[0,0,0,0,0,0],"Asotin County, Washington":[0,0,0,0,0,0],"Benton County, Washington":[0,0,0,0,0,0],"Chelan County, Washington":[0,0,0,0,0,0],"Clallam County, Washington":[0,0,0,0,0,0],"Clark County, Washington":[0,0,0,0,0,0],"Columbia County, Washington":[0,0,0,0,0,0],"Cowlitz County, Washington":[0,0,0,0,0,0],"Douglas County, Washington":[0,0,0,0,0,0],"Ferry County, Washington":[0,0,0,0,0,0],"Franklin County, Washington":[0,0,0,0,0,0],"Garfield County, Washington":[0,0,0,0,0,0],"Grant County, Washington":[0,0,0,0,0,0],"Grays Harbor County, Washington":[0,0,0,0,0,0],"Island County, Washington":[0,0,0,0,0,0],"Jefferson County, Washington":[0,0,0,0,0,0],"King County, Washington":[0,0,0,0,0,0],"Kitsap County, Washington":[0,0,0,0,0,0],"Kittitas County, Washington":[0,0,0,0,0,0],"Klickitat County, Washington":[0,0,0,0,0,0],"Lewis County, Washington":[0,0,0,0,0,0],"Lincoln County, Washington":[0,0,0,0,0,0],"Mason County, Washington":[0,0,0,0,0,0],"Okanogan County, Washington":[0,0,0,0,0,0],"Pacific County, Washington":[0,0,0,0,0,0],"Pend Oreille County, Washington":[0,0,0,0,0,0],"Pierce County, Washington":[0,0,0,0,0,0],"San Juan County, Washington":[0,0,0,0,0,0],"Skagit County, Washington":[0,0,0,0,0,0],"Skamania County, Washington":[0,0,0,0,0,0],"Snohomish County, Washington":[0,0,0,0,0,0],"Spokane County, Washington":[0,0,0,0,0,0],"Stevens County, Washington":[0,0,0,0,0,0],"Thurston County, Washington":[0,0,0,0,0,0],"Wahkiakum County, Washington":[0,0,0,0,0,0],"Walla Walla County, Washington":[0,0,0,0,0,0],"Whatcom County, Washington":[0,0,0,0,0,0],"Whitman County, Washington":[0,0,0,0,0,0],"Yakima County, Washington":[0,0,0,0,0,0]};
+  const categories = ["With unmarried partner","With spouse only","With other relatives","With nonrelatives","With child","Lives alone"];
+  const usAverages = [27.3,0.3,2.3,14.5,53.2,2.4];
+
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(data) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: categories,
+        datasets: [
+          {
+            label: 'Percent (County/State)',
+            data: data,
+            backgroundColor: '#4576a7'
+          },
+          {
+            label: 'National Average',
+            data: categories.map(c => usAverages[c] || 0),
+            type: 'line',
+            borderColor: '#000',
+            borderWidth: 1,
+            pointRadius: 0,
+            fill: false
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        indexAxis: 'y',
+        scales: {
+          x: {
+            title: {
+              display: true,
+              text: 'Percent of 65+ Population'
+            },
+            min: 0,
+            max: 100,
+            ticks: {
+              callback: value => value + '%'
+            }
+          }
+        },
+        plugins: {
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.dataset.label + ': ' + ctx.parsed.x + '%'
+            }
+          },
+          legend: {
+            position: 'top',
+            align: 'start'
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(Object.values(chartData[this.value]));
+  });
+
+  renderChart(Object.values(chartData['Statewide']));</script>
+  </body>
+</html>
+</html>

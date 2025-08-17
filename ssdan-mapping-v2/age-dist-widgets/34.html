@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Age Pyramid –  New Jersey</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+      body {
+        font-family: sans-serif;
+        margin: 1rem 2rem;
+        text-align: center;
+      }
+      h2 {
+        margin-bottom: 0.25rem;
+        font-size: 1.6rem;
+      }
+      select {
+        padding: 0.4rem;
+        font-size: 1rem;
+        margin: 1rem 0;
+        border-radius: 5px;
+        border: 1px solid #999;
+      }
+      canvas {
+        width: 100%;
+        max-width: 850px;
+        height: 500px;
+        margin-top: 1rem;
+      }
+    </style>
+</head>
+<html>
+  <body>
+    <h2>Age Distribution in  New Jersey (2023)</h2>
+    <label>Select County:</label>
+          <select id="countySelect">
+        <option value='Statewide'>Statewide</option>
+<option value='Atlantic County, New Jersey'>Atlantic County, New Jersey</option>
+<option value='Bergen County, New Jersey'>Bergen County, New Jersey</option>
+<option value='Burlington County, New Jersey'>Burlington County, New Jersey</option>
+<option value='Camden County, New Jersey'>Camden County, New Jersey</option>
+<option value='Cape May County, New Jersey'>Cape May County, New Jersey</option>
+<option value='Cumberland County, New Jersey'>Cumberland County, New Jersey</option>
+<option value='Essex County, New Jersey'>Essex County, New Jersey</option>
+<option value='Gloucester County, New Jersey'>Gloucester County, New Jersey</option>
+<option value='Hudson County, New Jersey'>Hudson County, New Jersey</option>
+<option value='Hunterdon County, New Jersey'>Hunterdon County, New Jersey</option>
+<option value='Mercer County, New Jersey'>Mercer County, New Jersey</option>
+<option value='Middlesex County, New Jersey'>Middlesex County, New Jersey</option>
+<option value='Monmouth County, New Jersey'>Monmouth County, New Jersey</option>
+<option value='Morris County, New Jersey'>Morris County, New Jersey</option>
+<option value='Ocean County, New Jersey'>Ocean County, New Jersey</option>
+<option value='Passaic County, New Jersey'>Passaic County, New Jersey</option>
+<option value='Salem County, New Jersey'>Salem County, New Jersey</option>
+<option value='Somerset County, New Jersey'>Somerset County, New Jersey</option>
+<option value='Sussex County, New Jersey'>Sussex County, New Jersey</option>
+<option value='Union County, New Jersey'>Union County, New Jersey</option>
+<option value='Warren County, New Jersey'>Warren County, New Jersey</option>
+      </select>
+    <canvas id="barChart" width="850" height="500"></canvas>
+    <script>  const ageData = {"Statewide":[-6,5.7,-5.2,5,-4.3,4.1,-3.2,3.1,-6.7,6.6,-6.4,6.4,-6.8,7,-5.8,6.4,-3.3,4,-0.8,1.1,-0.7,1.4],"Atlantic County, New Jersey":[-5.5,5.2,-5.2,5,-4.5,4.4,-3.1,3,-5.8,6,-5.5,5.7,-6.6,7.3,-7,7.6,-3.8,4.4,-1,1.4,-0.7,1.2],"Bergen County, New Jersey":[-5.4,5.2,-5.3,5.1,-4,3.9,-2.8,2.8,-6.3,6.3,-6.6,6.9,-7.1,7.4,-6,6.5,-3.5,4.1,-0.9,1.3,-0.9,1.5],"Burlington County, New Jersey":[-5.5,5.2,-5,4.9,-4.1,3.7,-3.2,3,-6.6,6.3,-6.4,6.3,-7.1,7.4,-6.2,6.6,-3.4,4.4,-1,1.2,-0.8,1.4],"Camden County, New Jersey":[-6.4,6,-5.3,5.2,-4.1,3.9,-3.3,3.4,-6.9,7.2,-6.1,6.4,-6.4,6.8,-5.6,6.4,-3.1,4,-0.8,1,-0.6,1.3],"Cape May County, New Jersey":[-4.6,4.7,-4,4,-3.4,3,-2.5,2.5,-5.2,5,-4.7,4.7,-6.3,7,-8.7,9.8,-6.5,7.4,-1.4,1.7,-1,1.7],"Cumberland County, New Jersey":[-6.8,6,-5.6,6,-4.3,3.9,-3.6,3,-8.1,6.4,-6.5,5.5,-6.1,6.1,-5.6,6.5,-2.8,3.2,-0.7,1.2,-0.8,1.1],"Essex County, New Jersey":[-6.6,6.1,-5.5,5.5,-4.5,4.4,-3.2,3.3,-6.9,7.2,-6.7,7.1,-6.5,6.7,-4.8,5.7,-2.5,3.5,-0.6,1,-0.6,1.2],"Gloucester County, New Jersey":[-5.7,5.5,-5.2,4.9,-5,4.8,-3.1,3,-6.1,6.4,-6.2,6.5,-6.9,7.1,-6.1,6.7,-3.3,4,-0.7,1,-0.6,1.2],"Hudson County, New Jersey":[-6.1,5.9,-4.1,4,-3.9,3.6,-4.9,4.8,-10.4,9.6,-7,6.5,-5.8,6,-4.3,4.7,-2.2,3.2,-0.6,0.8,-0.5,1],"Hunterdon County, New Jersey":[-4.8,4.7,-5,4.7,-4.1,3.9,-2.4,2.3,-5.2,5.3,-6,6.3,-8.3,8.3,-7.3,7.8,-4.5,4.7,-0.9,1.1,-0.8,1.6],"Mercer County, New Jersey":[-6,5.5,-5.3,5.1,-5.1,5.2,-3.2,3,-6.4,6,-6.7,6.8,-6.6,6.8,-5.8,6,-2.8,3.7,-0.8,1.2,-0.7,1.3],"Middlesex County, New Jersey":[-5.8,5.5,-5.3,5,-4.8,4.6,-3.1,3.1,-6.7,6.7,-7.1,6.7,-6.8,6.8,-5.6,5.9,-3.1,3.7,-0.8,1,-0.6,1.3],"Monmouth County, New Jersey":[-5.4,5.4,-5.4,5,-4.2,4,-2.8,2.7,-5.7,5.7,-6,6.2,-7.5,7.7,-6.8,7.2,-3.7,4.6,-0.8,1.1,-0.8,1.5],"Morris County, New Jersey":[-5.4,5.1,-5.3,5,-4.2,4,-2.8,2.6,-6.2,6.1,-6.4,6.5,-7.7,7.7,-6.2,6.6,-3.5,4.2,-0.9,1.2,-1,1.5],"Ocean County, New Jersey":[-7.4,6.7,-5.4,5.4,-3.7,3.6,-2.8,2.8,-5.4,5.3,-5,4.9,-5.9,6.2,-6.3,7.3,-4.5,5.4,-1.1,1.7,-1,2],"Passaic County, New Jersey":[-6.6,6.2,-5.6,5.4,-4.6,4.7,-3.3,3.3,-6.4,6.4,-6.3,6.3,-6.5,6.5,-5.3,6.2,-3.2,3.7,-0.8,0.9,-0.6,1.3],"Salem County, New Jersey":[-5.2,6.2,-5.8,4.6,-4.2,4.1,-2.7,2.6,-6,5.8,-6.3,6.3,-6.6,7.1,-6.4,6.9,-4.2,4.4,-0.8,1,-0.8,1.8],"Somerset County, New Jersey":[-5.5,5.3,-5.5,5.1,-4.1,3.9,-2.8,2.8,-6.1,6.2,-6.8,6.8,-7.7,7.7,-6.1,6.6,-3.1,3.6,-0.9,1.2,-0.7,1.5],"Sussex County, New Jersey":[-5.3,4.9,-4.8,4.6,-4,3.7,-3,2.7,-6.2,5.8,-6.1,6.2,-8.3,8.2,-7.2,7.4,-4.1,4.3,-0.7,0.9,-0.7,1.1],"Union County, New Jersey":[-6.4,6.1,-5.6,5.4,-4.2,4,-3,3,-6.9,6.8,-6.8,6.9,-7,7.2,-5.2,5.7,-2.8,3.4,-0.7,1,-0.6,1.3],"Warren County, New Jersey":[-4.9,4.5,-5.1,4.9,-4.1,3.9,-2.8,2.8,-6.1,5.7,-6.1,6.2,-7.6,7.9,-7.3,7.2,-4,4.4,-0.9,1.4,-0.7,1.5]};
+  const ageBins = ["0–9","10–17","18–24","25–29","30–39","40–49","50–59","60–69","70–79","80–84","85+"];
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(data) {
+    const maleData = data.filter((_, i) => i % 2 === 0);
+    const femaleData = data.filter((_, i) => i % 2 === 1);
+
+    const maxValue = Math.max(
+      ...maleData.map(Math.abs),
+      ...femaleData.map(Math.abs)
+    );
+    const padding = 1.0;
+    const xMax = +(maxValue + padding).toFixed(1);
+
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ageBins,
+        datasets: [
+          {
+            label: 'Male',
+            data: maleData,
+            backgroundColor: 'darkslategray'
+          },
+          {
+            label: 'Female',
+            data: femaleData,
+            backgroundColor: 'darkorange'
+          }
+        ]
+      },
+      options: {
+        indexAxis: 'y',
+        responsive: true,
+        scales: {
+          x: {
+            min: -xMax,
+            max: xMax,
+            ticks: {
+              callback: value => Math.abs(value).toFixed(1) + '%'
+            }
+          },
+          y: {
+            stacked: false
+          }
+        },
+        plugins: {
+          legend: {
+            position: 'top',
+            align: 'start',
+            labels: {
+              usePointStyle: true
+            }
+          },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.dataset.label + ': ' + Math.abs(ctx.parsed.x).toFixed(1) + '%'
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(Object.values(ageData[this.value]));
+  });
+
+  renderChart(Object.values(ageData['Statewide']));</script>
+  </body>
+</html>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+
+</head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Median Earnings by Industry – 02</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background: white;
+    }
+    .layout {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1.5rem;
+    }
+    label {
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+    #countySelect {
+      font-size: 1rem;
+      padding: 0.4rem 0.8rem;
+      margin-bottom: 1rem;
+    }
+    canvas {
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <label for="countySelect">Median Earnings by Industry:</label>
+    <select id="countySelect"></select>
+    <canvas id="barChart"></canvas>
+  </div>
+
+  <script>
+    const data = {"Statewide":{"Agriculture, forestry, fishing and hunting, and mining":78282,"Arts, entertainment, and recreation, and accommodation and food services":43224,"Construction":73432,"Educational services, and health care and social assistance":67020,"Finance and insurance, and real estate and rental and leasing":59917,"Information":57964,"Manufacturing":58228,"Other services, except public administration":50766,"Professional, scientific, and management, and administrative and waste management services":64007,"Public administration":72316,"Retail trade":39956,"Transportation and warehousing, and utilities":72088,"Wholesale trade":31899},"Aleutians East Borough":{"Agriculture, forestry, fishing and hunting, and mining":24286,"Arts, entertainment, and recreation, and accommodation and food services":55417,"Construction":91250,"Educational services, and health care and social assistance":80391,"Finance and insurance, and real estate and rental and leasing":46607,"Information":126250,"Manufacturing":57891,"Other services, except public administration":100625,"Professional, scientific, and management, and administrative and waste management services":40750,"Public administration":53750,"Retail trade":77917,"Transportation and warehousing, and utilities":58750,"Wholesale trade":49306},"Aleutians West Census Area":{"Agriculture, forestry, fishing and hunting, and mining":24375,"Arts, entertainment, and recreation, and accommodation and food services":37121,"Construction":121667,"Educational services, and health care and social assistance":98636,"Finance and insurance, and real estate and rental and leasing":49219,"Information":58846,"Manufacturing":48137,"Other services, except public administration":120625,"Professional, scientific, and management, and administrative and waste management services":115500,"Public administration":75579,"Retail trade":25118,"Transportation and warehousing, and utilities":92679,"Wholesale trade":51500},"Anchorage Municipality":{"Agriculture, forestry, fishing and hunting, and mining":149554,"Arts, entertainment, and recreation, and accommodation and food services":40780,"Construction":87700,"Educational services, and health care and social assistance":67040,"Finance and insurance, and real estate and rental and leasing":67291,"Information":80580,"Manufacturing":60599,"Other services, except public administration":67731,"Professional, scientific, and management, and administrative and waste management services":81716,"Public administration":80906,"Retail trade":45230,"Transportation and warehousing, and utilities":72925,"Wholesale trade":68477},"Bethel Census Area":{"Agriculture, forestry, fishing and hunting, and mining":31627,"Arts, entertainment, and recreation, and accommodation and food services":41772,"Construction":86667,"Educational services, and health care and social assistance":77500,"Finance and insurance, and real estate and rental and leasing":60357,"Information":78882,"Manufacturing":31875,"Other services, except public administration":56250,"Professional, scientific, and management, and administrative and waste management services":72708,"Public administration":65094,"Retail trade":37255,"Transportation and warehousing, and utilities":54079,"Wholesale trade":0},"Bristol Bay Borough":{"Agriculture, forestry, fishing and hunting, and mining":0,"Arts, entertainment, and recreation, and accommodation and food services":70000,"Construction":68125,"Educational services, and health care and social assistance":60625,"Finance and insurance, and real estate and rental and leasing":60000,"Information":57083,"Manufacturing":59330,"Other services, except public administration":49375,"Professional, scientific, and management, and administrative and waste management services":0,"Public administration":96250,"Retail trade":34375,"Transportation and warehousing, and utilities":68750,"Wholesale trade":0},"Chugach Census Area":{"Agriculture, forestry, fishing and hunting, and mining":80156,"Arts, entertainment, and recreation, and accommodation and food services":34688,"Construction":57396,"Educational services, and health care and social assistance":67000,"Finance and insurance, and real estate and rental and leasing":39018,"Information":70197,"Manufacturing":70357,"Other services, except public administration":65398,"Professional, scientific, and management, and administrative and waste management services":57821,"Public administration":95189,"Retail trade":32672,"Transportation and warehousing, and utilities":79875,"Wholesale trade":0},"Copper River Census Area":{"Agriculture, forestry, fishing and hunting, and mining":74583,"Arts, entertainment, and recreation, and accommodation and food services":85543,"Construction":72976,"Educational services, and health care and social assistance":55694,"Finance and insurance, and real estate and rental and leasing":93000,"Information":93750,"Manufacturing":138382,"Other services, except public administration":71667,"Professional, scientific, and management, and administrative and waste management services":102045,"Public administration":82708,"Retail trade":35625,"Transportation and warehousing, and utilities":61667,"Wholesale trade":0},"Denali Borough":{"Agriculture, forestry, fishing and hunting, and mining":195600,"Arts, entertainment, and recreation, and accommodation and food services":41532,"Construction":105417,"Educational services, and health care and social assistance":58250,"Finance and insurance, and real estate and rental and leasing":0,"Information":0,"Manufacturing":56091,"Other services, except public administration":0,"Professional, scientific, and management, and administrative and waste management services":0,"Public administration":131023,"Retail trade":16250,"Transportation and warehousing, and utilities":225476,"Wholesale trade":0},"Dillingham Census Area":{"Agriculture, forestry, fishing and hunting, and mining":69625,"Arts, entertainment, and recreation, and accommodation and food services":37625,"Construction":71667,"Educational services, and health care and social assistance":67500,"Finance and insurance, and real estate and rental and leasing":54063,"Information":0,"Manufacturing":33750,"Other services, except public administration":65250,"Professional, scientific, and management, and administrative and waste management services":52250,"Public administration":88889,"Retail trade":38036,"Transportation and warehousing, and utilities":75833,"Wholesale trade":0},"Fairbanks North Star Borough":{"Agriculture, forestry, fishing and hunting, and mining":89844,"Arts, entertainment, and recreation, and accommodation and food services":37215,"Construction":81620,"Educational services, and health care and social assistance":68362,"Finance and insurance, and real estate and rental and leasing":72456,"Information":139271,"Manufacturing":66763,"Other services, except public administration":56920,"Professional, scientific, and management, and administrative and waste management services":71979,"Public administration":84588,"Retail trade":44175,"Transportation and warehousing, and utilities":78675,"Wholesale trade":66406},"Haines Borough":{"Agriculture, forestry, fishing and hunting, and mining":162788,"Arts, entertainment, and recreation, and accommodation and food services":44063,"Construction":39776,"Educational services, and health care and social assistance":71094,"Finance and insurance, and real estate and rental and leasing":0,"Information":0,"Manufacturing":24750,"Other services, except public administration":0,"Professional, scientific, and management, and administrative and waste management services":73906,"Public administration":81250,"Retail trade":67500,"Transportation and warehousing, and utilities":44554,"Wholesale trade":0},"Hoonah-Angoon Census Area":{"Agriculture, forestry, fishing and hunting, and mining":78750,"Arts, entertainment, and recreation, and accommodation and food services":46250,"Construction":53750,"Educational services, and health care and social assistance":53125,"Finance and insurance, and real estate and rental and leasing":0,"Information":0,"Manufacturing":51563,"Other services, except public administration":0,"Professional, scientific, and management, and administrative and waste management services":57083,"Public administration":42143,"Retail trade":35469,"Transportation and warehousing, and utilities":46250,"Wholesale trade":0},"Juneau City and Borough":{"Agriculture, forestry, fishing and hunting, and mining":101538,"Arts, entertainment, and recreation, and accommodation and food services":33750,"Construction":88839,"Educational services, and health care and social assistance":69497,"Finance and insurance, and real estate and rental and leasing":50217,"Information":60833,"Manufacturing":56442,"Other services, except public administration":65129,"Professional, scientific, and management, and administrative and waste management services":76088,"Public administration":69727,"Retail trade":36818,"Transportation and warehousing, and utilities":62774,"Wholesale trade":66173},"Kenai Peninsula Borough":{"Agriculture, forestry, fishing and hunting, and mining":108365,"Arts, entertainment, and recreation, and accommodation and food services":40021,"Construction":78025,"Educational services, and health care and social assistance":60422,"Finance and insurance, and real estate and rental and leasing":59834,"Information":80536,"Manufacturing":77554,"Other services, except public administration":54485,"Professional, scientific, and management, and administrative and waste management services":64403,"Public administration":72806,"Retail trade":41298,"Transportation and warehousing, and utilities":84445,"Wholesale trade":79934},"Ketchikan Gateway Borough":{"Agriculture, forestry, fishing and hunting, and mining":91442,"Arts, entertainment, and recreation, and accommodation and food services":42386,"Construction":65172,"Educational services, and health care and social assistance":66326,"Finance and insurance, and real estate and rental and leasing":61875,"Information":60417,"Manufacturing":61477,"Other services, except public administration":47614,"Professional, scientific, and management, and administrative and waste management services":63611,"Public administration":72287,"Retail trade":44083,"Transportation and warehousing, and utilities":73750,"Wholesale trade":69167},"Kodiak Island Borough":{"Agriculture, forestry, fishing and hunting, and mining":65250,"Arts, entertainment, and recreation, and accommodation and food services":33884,"Construction":79208,"Educational services, and health care and social assistance":49228,"Finance and insurance, and real estate and rental and leasing":70882,"Information":0,"Manufacturing":36006,"Other services, except public administration":45511,"Professional, scientific, and management, and administrative and waste management services":61617,"Public administration":79703,"Retail trade":33221,"Transportation and warehousing, and utilities":41719,"Wholesale trade":32012},"Kusilvak Census Area":{"Agriculture, forestry, fishing and hunting, and mining":48996,"Arts, entertainment, and recreation, and accommodation and food services":58250,"Construction":69167,"Educational services, and health care and social assistance":48269,"Finance and insurance, and real estate and rental and leasing":0,"Information":0,"Manufacturing":0,"Other services, except public administration":50000,"Professional, scientific, and management, and administrative and waste management services":60909,"Public administration":44118,"Retail trade":40000,"Transportation and warehousing, and utilities":61250,"Wholesale trade":31250},"Lake and Peninsula Borough":{"Agriculture, forestry, fishing and hunting, and mining":68750,"Arts, entertainment, and recreation, and accommodation and food services":0,"Construction":186222,"Educational services, and health care and social assistance":70625,"Finance and insurance, and real estate and rental and leasing":0,"Information":0,"Manufacturing":0,"Other services, except public administration":0,"Professional, scientific, and management, and administrative and waste management services":0,"Public administration":60500,"Retail trade":33333,"Transportation and warehousing, and utilities":68333,"Wholesale trade":0},"Matanuska-Susitna Borough":{"Agriculture, forestry, fishing and hunting, and mining":101029,"Arts, entertainment, and recreation, and accommodation and food services":36875,"Construction":75198,"Educational services, and health care and social assistance":63922,"Finance and insurance, and real estate and rental and leasing":70972,"Information":66841,"Manufacturing":69318,"Other services, except public administration":51531,"Professional, scientific, and management, and administrative and waste management services":84643,"Public administration":81602,"Retail trade":42704,"Transportation and warehousing, and utilities":79178,"Wholesale trade":64444},"Nome Census Area":{"Agriculture, forestry, fishing and hunting, and mining":95750,"Arts, entertainment, and recreation, and accommodation and food services":58333,"Construction":79583,"Educational services, and health care and social assistance":76603,"Finance and insurance, and real estate and rental and leasing":79545,"Information":70938,"Manufacturing":83542,"Other services, except public administration":78750,"Professional, scientific, and management, and administrative and waste management services":62750,"Public administration":72446,"Retail trade":44167,"Transportation and warehousing, and utilities":92344,"Wholesale trade":58750},"North Slope Borough":{"Agriculture, forestry, fishing and hunting, and mining":107108,"Arts, entertainment, and recreation, and accommodation and food services":48500,"Construction":75417,"Educational services, and health care and social assistance":70388,"Finance and insurance, and real estate and rental and leasing":76012,"Information":53750,"Manufacturing":87724,"Other services, except public administration":26250,"Professional, scientific, and management, and administrative and waste management services":91500,"Public administration":64213,"Retail trade":45536,"Transportation and warehousing, and utilities":130417,"Wholesale trade":67500},"Northwest Arctic Borough":{"Agriculture, forestry, fishing and hunting, and mining":27378,"Arts, entertainment, and recreation, and accommodation and food services":47857,"Construction":73889,"Educational services, and health care and social assistance":85139,"Finance and insurance, and real estate and rental and leasing":68750,"Information":121250,"Manufacturing":42727,"Other services, except public administration":68333,"Professional, scientific, and management, and administrative and waste management services":42250,"Public administration":71696,"Retail trade":40313,"Transportation and warehousing, and utilities":62639,"Wholesale trade":0},"Petersburg Borough":{"Agriculture, forestry, fishing and hunting, and mining":91827,"Arts, entertainment, and recreation, and accommodation and food services":35096,"Construction":71250,"Educational services, and health care and social assistance":63556,"Finance and insurance, and real estate and rental and leasing":82083,"Information":84167,"Manufacturing":65357,"Other services, except public administration":41167,"Professional, scientific, and management, and administrative and waste management services":88750,"Public administration":67159,"Retail trade":29430,"Transportation and warehousing, and utilities":71250,"Wholesale trade":31786},"Prince of Wales-Hyder Census Area":{"Agriculture, forestry, fishing and hunting, and mining":77813,"Arts, entertainment, and recreation, and accommodation and food services":26923,"Construction":51000,"Educational services, and health care and social assistance":48571,"Finance and insurance, and real estate and rental and leasing":62708,"Information":59167,"Manufacturing":63750,"Other services, except public administration":46250,"Professional, scientific, and management, and administrative and waste management services":142750,"Public administration":56250,"Retail trade":50769,"Transportation and warehousing, and utilities":70833,"Wholesale trade":35833},"Sitka City and Borough":{"Agriculture, forestry, fishing and hunting, and mining":49583,"Arts, entertainment, and recreation, and accommodation and food services":45000,"Construction":47024,"Educational services, and health care and social assistance":70536,"Finance and insurance, and real estate and rental and leasing":97685,"Information":47083,"Manufacturing":34800,"Other services, except public administration":48125,"Professional, scientific, and management, and administrative and waste management services":54635,"Public administration":83472,"Retail trade":39911,"Transportation and warehousing, and utilities":78476,"Wholesale trade":57656},"Skagway Municipality":{"Agriculture, forestry, fishing and hunting, and mining":0,"Arts, entertainment, and recreation, and accommodation and food services":51750,"Construction":108333,"Educational services, and health care and social assistance":90938,"Finance and insurance, and real estate and rental and leasing":0,"Information":0,"Manufacturing":41250,"Other services, except public administration":133750,"Professional, scientific, and management, and administrative and waste management services":96875,"Public administration":65288,"Retail trade":47500,"Transportation and warehousing, and utilities":82000,"Wholesale trade":0},"Southeast Fairbanks Census Area":{"Agriculture, forestry, fishing and hunting, and mining":94338,"Arts, entertainment, and recreation, and accommodation and food services":56458,"Construction":71406,"Educational services, and health care and social assistance":77171,"Finance and insurance, and real estate and rental and leasing":73693,"Information":0,"Manufacturing":61125,"Other services, except public administration":45938,"Professional, scientific, and management, and administrative and waste management services":95227,"Public administration":72344,"Retail trade":34243,"Transportation and warehousing, and utilities":64444,"Wholesale trade":0},"Wrangell City and Borough":{"Agriculture, forestry, fishing and hunting, and mining":75625,"Arts, entertainment, and recreation, and accommodation and food services":66875,"Construction":67188,"Educational services, and health care and social assistance":55500,"Finance and insurance, and real estate and rental and leasing":58333,"Information":45000,"Manufacturing":65536,"Other services, except public administration":47083,"Professional, scientific, and management, and administrative and waste management services":117596,"Public administration":59176,"Retail trade":42083,"Transportation and warehousing, and utilities":82708,"Wholesale trade":0},"Yakutat City and Borough":{"Agriculture, forestry, fishing and hunting, and mining":93646,"Arts, entertainment, and recreation, and accommodation and food services":45833,"Construction":71250,"Educational services, and health care and social assistance":46875,"Finance and insurance, and real estate and rental and leasing":0,"Information":0,"Manufacturing":0,"Other services, except public administration":0,"Professional, scientific, and management, and administrative and waste management services":0,"Public administration":69167,"Retail trade":42500,"Transportation and warehousing, and utilities":106458,"Wholesale trade":57500},"Yukon-Koyukuk Census Area":{"Agriculture, forestry, fishing and hunting, and mining":43885,"Arts, entertainment, and recreation, and accommodation and food services":107917,"Construction":72596,"Educational services, and health care and social assistance":60313,"Finance and insurance, and real estate and rental and leasing":36250,"Information":0,"Manufacturing":58565,"Other services, except public administration":97813,"Professional, scientific, and management, and administrative and waste management services":46250,"Public administration":63068,"Retail trade":35556,"Transportation and warehousing, and utilities":54276,"Wholesale trade":49205}};
+    const colors = {
+  'Agriculture, forestry, fishing and hunting, and mining': '#FFFF33',
+  'Arts, entertainment, and recreation, and accommodation and food services': '#D95F02',
+  'Construction': '#7570B3',
+  'Educational services, and health care and social assistance': '#66A61E',
+  'Finance and insurance, and real estate and rental and leasing': '#E6AB02',
+  'Information': '#A6761D',
+  'Manufacturing': '#E41A1C',
+  'Other services, except public administration': '#377EB8',
+  'Professional, scientific, and management, and administrative and waste management services': '#4DAF4A',
+  'Public administration': '#984EA3',
+  'Retail trade': '#FF7F00',
+  'Transportation and warehousing, and utilities': '#1B9E77',
+  'Wholesale trade': '#A65628'
+};
+
+    const ctx = document.getElementById("barChart").getContext("2d");
+    let chart;
+
+    function renderChart(county) {
+      const values = data[county];
+      const labels = Object.keys(values);
+      const earnings = Object.values(values);
+
+      if (chart) chart.destroy();
+
+      chart = new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels: labels,
+          datasets: [{
+            label: "Median Earnings ($)",
+            data: earnings,
+            backgroundColor: labels.map(label => colors[label] || "#ccc")
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: true,
+  aspectRatio: 1.5, 
+          indexAxis: "x",
+          scales: {
+            y: {
+              beginAtZero: true,
+              title: {
+                display: true,
+                text: "Median Earnings ($)"
+              },
+              ticks: {
+                callback: function(value) {
+                  return "$" + value.toLocaleString();
+                }
+              }
+            },
+            x: {
+              ticks: {
+                maxRotation: 45,
+                minRotation: 20,
+                autoSkip: false,
+                callback: function(value, index, ticks) {
+                  let label = this.getLabelForValue(value);
+                  return label.length > 25 ? label.slice(0, 25) + "…" : label;
+                }
+              }
+            }
+          },
+          plugins: {
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  return "$" + context.parsed.y.toLocaleString();
+                }
+              }
+            },
+            legend: {
+              display: false
+            }
+          }
+        }
+      });
+    }
+
+    const select = document.getElementById("countySelect");
+    Object.keys(data).forEach(county => {
+      const option = document.createElement("option");
+      option.value = county;
+      option.text = county;
+      select.appendChild(option);
+    });
+    select.value = "Statewide";
+    select.addEventListener("change", () => renderChart(select.value));
+    renderChart("Statewide");
+  </script>
+</body>
+</html>
+</html>

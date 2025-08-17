@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Educational Enrollment – Colorado</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Educational Enrollment (Age 18–24) in Colorado</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Adams County, Colorado">Adams County, Colorado</option>
+      <option value="Alamosa County, Colorado">Alamosa County, Colorado</option>
+      <option value="Arapahoe County, Colorado">Arapahoe County, Colorado</option>
+      <option value="Archuleta County, Colorado">Archuleta County, Colorado</option>
+      <option value="Baca County, Colorado">Baca County, Colorado</option>
+      <option value="Bent County, Colorado">Bent County, Colorado</option>
+      <option value="Boulder County, Colorado">Boulder County, Colorado</option>
+      <option value="Broomfield County, Colorado">Broomfield County, Colorado</option>
+      <option value="Chaffee County, Colorado">Chaffee County, Colorado</option>
+      <option value="Cheyenne County, Colorado">Cheyenne County, Colorado</option>
+      <option value="Clear Creek County, Colorado">Clear Creek County, Colorado</option>
+      <option value="Conejos County, Colorado">Conejos County, Colorado</option>
+      <option value="Costilla County, Colorado">Costilla County, Colorado</option>
+      <option value="Crowley County, Colorado">Crowley County, Colorado</option>
+      <option value="Custer County, Colorado">Custer County, Colorado</option>
+      <option value="Delta County, Colorado">Delta County, Colorado</option>
+      <option value="Denver County, Colorado">Denver County, Colorado</option>
+      <option value="Dolores County, Colorado">Dolores County, Colorado</option>
+      <option value="Douglas County, Colorado">Douglas County, Colorado</option>
+      <option value="Eagle County, Colorado">Eagle County, Colorado</option>
+      <option value="El Paso County, Colorado">El Paso County, Colorado</option>
+      <option value="Elbert County, Colorado">Elbert County, Colorado</option>
+      <option value="Fremont County, Colorado">Fremont County, Colorado</option>
+      <option value="Garfield County, Colorado">Garfield County, Colorado</option>
+      <option value="Gilpin County, Colorado">Gilpin County, Colorado</option>
+      <option value="Grand County, Colorado">Grand County, Colorado</option>
+      <option value="Gunnison County, Colorado">Gunnison County, Colorado</option>
+      <option value="Hinsdale County, Colorado">Hinsdale County, Colorado</option>
+      <option value="Huerfano County, Colorado">Huerfano County, Colorado</option>
+      <option value="Jackson County, Colorado">Jackson County, Colorado</option>
+      <option value="Jefferson County, Colorado">Jefferson County, Colorado</option>
+      <option value="Kiowa County, Colorado">Kiowa County, Colorado</option>
+      <option value="Kit Carson County, Colorado">Kit Carson County, Colorado</option>
+      <option value="La Plata County, Colorado">La Plata County, Colorado</option>
+      <option value="Lake County, Colorado">Lake County, Colorado</option>
+      <option value="Larimer County, Colorado">Larimer County, Colorado</option>
+      <option value="Las Animas County, Colorado">Las Animas County, Colorado</option>
+      <option value="Lincoln County, Colorado">Lincoln County, Colorado</option>
+      <option value="Logan County, Colorado">Logan County, Colorado</option>
+      <option value="Mesa County, Colorado">Mesa County, Colorado</option>
+      <option value="Mineral County, Colorado">Mineral County, Colorado</option>
+      <option value="Moffat County, Colorado">Moffat County, Colorado</option>
+      <option value="Montezuma County, Colorado">Montezuma County, Colorado</option>
+      <option value="Montrose County, Colorado">Montrose County, Colorado</option>
+      <option value="Morgan County, Colorado">Morgan County, Colorado</option>
+      <option value="Otero County, Colorado">Otero County, Colorado</option>
+      <option value="Ouray County, Colorado">Ouray County, Colorado</option>
+      <option value="Park County, Colorado">Park County, Colorado</option>
+      <option value="Phillips County, Colorado">Phillips County, Colorado</option>
+      <option value="Pitkin County, Colorado">Pitkin County, Colorado</option>
+      <option value="Prowers County, Colorado">Prowers County, Colorado</option>
+      <option value="Pueblo County, Colorado">Pueblo County, Colorado</option>
+      <option value="Rio Blanco County, Colorado">Rio Blanco County, Colorado</option>
+      <option value="Rio Grande County, Colorado">Rio Grande County, Colorado</option>
+      <option value="Routt County, Colorado">Routt County, Colorado</option>
+      <option value="Saguache County, Colorado">Saguache County, Colorado</option>
+      <option value="San Juan County, Colorado">San Juan County, Colorado</option>
+      <option value="San Miguel County, Colorado">San Miguel County, Colorado</option>
+      <option value="Sedgwick County, Colorado">Sedgwick County, Colorado</option>
+      <option value="Summit County, Colorado">Summit County, Colorado</option>
+      <option value="Teller County, Colorado">Teller County, Colorado</option>
+      <option value="Washington County, Colorado">Washington County, Colorado</option>
+      <option value="Weld County, Colorado">Weld County, Colorado</option>
+      <option value="Yuma County, Colorado">Yuma County, Colorado</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>  const data = {"Statewide":[46.9,16.1,37],"Adams County, Colorado":[45.7,22.2,32.1],"Alamosa County, Colorado":[46.4,18.9,34.7],"Arapahoe County, Colorado":[46.8,17.3,35.9],"Archuleta County, Colorado":[50.2,34.1,15.8],"Baca County, Colorado":[46.7,6.5,46.7],"Bent County, Colorado":[38.6,37.8,23.6],"Boulder County, Colorado":[48.1,11.1,40.9],"Broomfield County, Colorado":[44.8,18.4,36.8],"Chaffee County, Colorado":[55.8,9.2,35],"Cheyenne County, Colorado":[58,9.9,32.1],"Clear Creek County, Colorado":[44,21.9,34.2],"Conejos County, Colorado":[49.7,12.4,37.8],"Costilla County, Colorado":[50.3,0,49.7],"Crowley County, Colorado":[27.2,43.2,29.6],"Custer County, Colorado":[27.7,44.6,27.7],"Delta County, Colorado":[40.8,26.9,32.3],"Denver County, Colorado":[46.7,16.5,36.8],"Dolores County, Colorado":[57.6,0,42.4],"Douglas County, Colorado":[48.9,9,42],"Eagle County, Colorado":[45.2,25.6,29.3],"El Paso County, Colorado":[46.4,18.7,34.9],"Elbert County, Colorado":[47.9,16.6,35.5],"Fremont County, Colorado":[49,9.7,41.3],"Garfield County, Colorado":[44.5,20.6,34.9],"Gilpin County, Colorado":[57.4,0,42.6],"Grand County, Colorado":[46.1,17.4,36.4],"Gunnison County, Colorado":[46.8,10.1,43],"Hinsdale County, Colorado":[50,0,50],"Huerfano County, Colorado":[57.6,0,42.4],"Jackson County, Colorado":[50,0,50],"Jefferson County, Colorado":[48,16.2,35.9],"Kiowa County, Colorado":[54.5,0,45.5],"Kit Carson County, Colorado":[47.1,6.2,46.7],"La Plata County, Colorado":[47.6,13.1,39.3],"Lake County, Colorado":[37.4,50.3,12.2],"Larimer County, Colorado":[48.7,11.1,40.1],"Las Animas County, Colorado":[49.1,17.8,33],"Lincoln County, Colorado":[49,6.8,44.2],"Logan County, Colorado":[39.5,20.3,40.1],"Mesa County, Colorado":[48.1,14.2,37.6],"Mineral County, Colorado":[8.8,64.7,26.5],"Moffat County, Colorado":[37.3,34.3,28.4],"Montezuma County, Colorado":[44.5,20.5,35],"Montrose County, Colorado":[42.6,22.4,35],"Morgan County, Colorado":[43,27.6,29.4],"Otero County, Colorado":[44.9,12,43.1],"Ouray County, Colorado":[47,12,41],"Park County, Colorado":[51.1,9.2,39.7],"Phillips County, Colorado":[54.2,0,45.8],"Pitkin County, Colorado":[49.8,0.4,49.8],"Prowers County, Colorado":[45.4,25.6,29],"Pueblo County, Colorado":[44.9,18.9,36.2],"Rio Blanco County, Colorado":[61.4,0,38.6],"Rio Grande County, Colorado":[48.8,8.6,42.6],"Routt County, Colorado":[44.4,15.1,40.5],"Saguache County, Colorado":[43.7,22,34.3],"San Juan County, Colorado":["NaN","NaN","NaN"],"San Miguel County, Colorado":[54,6.1,39.9],"Sedgwick County, Colorado":[47.1,11.5,41.3],"Summit County, Colorado":[52.4,0,47.6],"Teller County, Colorado":[48.7,8.6,42.7],"Washington County, Colorado":[40.6,24.8,34.6],"Weld County, Colorado":[46.6,13.8,39.7],"Yuma County, Colorado":[53.2,1,45.9]};
+  const nationalAvg = [6.9,55,38.1];
+  const categories = ["Enrolled in College","Enrolled in Other School","Not Enrolled"];
+  const ctx = document.getElementById("barChart").getContext("2d");
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: categories,
+        datasets: [
+          {
+            label: "County/State",
+            data: values,
+            backgroundColor: ["#66c2a5", "#fc8d62", "#8da0cb"]
+          },
+          {
+            label: null,
+            data: categories.map(c => nationalAvg[c]),
+            type: "line",
+            borderColor: "black",
+            borderWidth: 2,
+            pointRadius: 0,
+            fill: false
+          }
+        ]
+      },
+      options: {
+        indexAxis: "y",
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            ticks: {
+              callback: v => v + "%"
+            }
+          }
+        },
+        plugins: {
+          legend: {
+            labels: {
+              filter: item => item.text !== null
+            }
+          },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.dataset.label ? ctx.dataset.label + ": " + ctx.raw + "%" : null
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById("countySelect").addEventListener("change", function() {
+    renderChart(Object.values(data[this.value]));
+  });
+
+  renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

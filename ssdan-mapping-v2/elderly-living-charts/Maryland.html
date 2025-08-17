@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Living Arrangements – Maryland</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          margin: 1rem 2rem;
+          text-align: center;
+        }
+        h2 {
+          font-size: 1.5rem;
+          margin-bottom: 0.5rem;
+        }
+        select {
+          font-size: 1rem;
+          padding: 0.4rem;
+          margin: 1rem 0;
+          border: 1px solid #999;
+          border-radius: 5px;
+        }
+        canvas {
+          width: 100%;
+          max-width: 850px;
+          height: 600px;
+          margin-top: 1rem;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Living Arrangements of Adults 65+ in Maryland</h2>
+    <label>Select County:</label>
+            <select id="countySelect">
+          <option value='Statewide'>Default</option>
+<option value='Allegany County, Maryland'>Allegany County, Maryland</option>
+<option value='Anne Arundel County, Maryland'>Anne Arundel County, Maryland</option>
+<option value='Baltimore city, Maryland'>Baltimore city, Maryland</option>
+<option value='Baltimore County, Maryland'>Baltimore County, Maryland</option>
+<option value='Calvert County, Maryland'>Calvert County, Maryland</option>
+<option value='Caroline County, Maryland'>Caroline County, Maryland</option>
+<option value='Carroll County, Maryland'>Carroll County, Maryland</option>
+<option value='Cecil County, Maryland'>Cecil County, Maryland</option>
+<option value='Charles County, Maryland'>Charles County, Maryland</option>
+<option value='Dorchester County, Maryland'>Dorchester County, Maryland</option>
+<option value='Frederick County, Maryland'>Frederick County, Maryland</option>
+<option value='Garrett County, Maryland'>Garrett County, Maryland</option>
+<option value='Harford County, Maryland'>Harford County, Maryland</option>
+<option value='Howard County, Maryland'>Howard County, Maryland</option>
+<option value='Kent County, Maryland'>Kent County, Maryland</option>
+<option value='Montgomery County, Maryland'>Montgomery County, Maryland</option>
+<option value='Prince George's County, Maryland'>Prince George's County, Maryland</option>
+<option value='Queen Anne's County, Maryland'>Queen Anne's County, Maryland</option>
+<option value='Somerset County, Maryland'>Somerset County, Maryland</option>
+<option value='St. Mary's County, Maryland'>St. Mary's County, Maryland</option>
+<option value='Talbot County, Maryland'>Talbot County, Maryland</option>
+<option value='Washington County, Maryland'>Washington County, Maryland</option>
+<option value='Wicomico County, Maryland'>Wicomico County, Maryland</option>
+<option value='Worcester County, Maryland'>Worcester County, Maryland</option>
+        </select>
+    <canvas id="barChart"></canvas>
+    <script>  const chartData = {"Statewide":[0,0,0,0,0,0],"Allegany County, Maryland":[0,0,0,0,0,0],"Anne Arundel County, Maryland":[0,0,0,0,0,0],"Baltimore County, Maryland":[0,0,0,0,0,0],"Baltimore city, Maryland":[0,0,0,0,0,0],"Calvert County, Maryland":[0,0,0,0,0,0],"Caroline County, Maryland":[0,0,0,0,0,0],"Carroll County, Maryland":[0,0,0,0,0,0],"Cecil County, Maryland":[0,0,0,0,0,0],"Charles County, Maryland":[0,0,0,0,0,0],"Dorchester County, Maryland":[0,0,0,0,0,0],"Frederick County, Maryland":[0,0,0,0,0,0],"Garrett County, Maryland":[0,0,0,0,0,0],"Harford County, Maryland":[0,0,0,0,0,0],"Howard County, Maryland":[0,0,0,0,0,0],"Kent County, Maryland":[0,0,0,0,0,0],"Montgomery County, Maryland":[0,0,0,0,0,0],"Prince George's County, Maryland":[0,0,0,0,0,0],"Queen Anne's County, Maryland":[0,0,0,0,0,0],"Somerset County, Maryland":[0,0,0,0,0,0],"St. Mary's County, Maryland":[0,0,0,0,0,0],"Talbot County, Maryland":[0,0,0,0,0,0],"Washington County, Maryland":[0,0,0,0,0,0],"Wicomico County, Maryland":[0,0,0,0,0,0],"Worcester County, Maryland":[0,0,0,0,0,0]};
+  const categories = ["With unmarried partner","With spouse only","With other relatives","With nonrelatives","With child","Lives alone"];
+  const usAverages = [27.3,0.3,2.3,14.5,53.2,2.4];
+
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(data) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: categories,
+        datasets: [
+          {
+            label: 'Percent (County/State)',
+            data: data,
+            backgroundColor: '#4576a7'
+          },
+          {
+            label: 'National Average',
+            data: categories.map(c => usAverages[c] || 0),
+            type: 'line',
+            borderColor: '#000',
+            borderWidth: 1,
+            pointRadius: 0,
+            fill: false
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        indexAxis: 'y',
+        scales: {
+          x: {
+            title: {
+              display: true,
+              text: 'Percent of 65+ Population'
+            },
+            min: 0,
+            max: 100,
+            ticks: {
+              callback: value => value + '%'
+            }
+          }
+        },
+        plugins: {
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.dataset.label + ': ' + ctx.parsed.x + '%'
+            }
+          },
+          legend: {
+            position: 'top',
+            align: 'start'
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(Object.values(chartData[this.value]));
+  });
+
+  renderChart(Object.values(chartData['Statewide']));</script>
+  </body>
+</html>
+</html>

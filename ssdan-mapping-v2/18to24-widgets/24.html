@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Educational Enrollment – Maryland</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Educational Enrollment (Age 18–24) in Maryland</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Allegany County, Maryland">Allegany County, Maryland</option>
+      <option value="Anne Arundel County, Maryland">Anne Arundel County, Maryland</option>
+      <option value="Baltimore city, Maryland">Baltimore city, Maryland</option>
+      <option value="Baltimore County, Maryland">Baltimore County, Maryland</option>
+      <option value="Calvert County, Maryland">Calvert County, Maryland</option>
+      <option value="Caroline County, Maryland">Caroline County, Maryland</option>
+      <option value="Carroll County, Maryland">Carroll County, Maryland</option>
+      <option value="Cecil County, Maryland">Cecil County, Maryland</option>
+      <option value="Charles County, Maryland">Charles County, Maryland</option>
+      <option value="Dorchester County, Maryland">Dorchester County, Maryland</option>
+      <option value="Frederick County, Maryland">Frederick County, Maryland</option>
+      <option value="Garrett County, Maryland">Garrett County, Maryland</option>
+      <option value="Harford County, Maryland">Harford County, Maryland</option>
+      <option value="Howard County, Maryland">Howard County, Maryland</option>
+      <option value="Kent County, Maryland">Kent County, Maryland</option>
+      <option value="Montgomery County, Maryland">Montgomery County, Maryland</option>
+      <option value="Prince George&#39;s County, Maryland">Prince George's County, Maryland</option>
+      <option value="Queen Anne&#39;s County, Maryland">Queen Anne's County, Maryland</option>
+      <option value="Somerset County, Maryland">Somerset County, Maryland</option>
+      <option value="St. Mary&#39;s County, Maryland">St. Mary's County, Maryland</option>
+      <option value="Talbot County, Maryland">Talbot County, Maryland</option>
+      <option value="Washington County, Maryland">Washington County, Maryland</option>
+      <option value="Wicomico County, Maryland">Wicomico County, Maryland</option>
+      <option value="Worcester County, Maryland">Worcester County, Maryland</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>  const data = {"Statewide":[47.3,12.6,40.1],"Allegany County, Maryland":[47.3,12.8,39.9],"Anne Arundel County, Maryland":[47.9,13.5,38.6],"Baltimore County, Maryland":[47.5,12.7,39.8],"Baltimore city, Maryland":[45.8,13.8,40.4],"Calvert County, Maryland":[46.9,14.6,38.4],"Caroline County, Maryland":[49,9.4,41.6],"Carroll County, Maryland":[48.7,9.4,41.9],"Cecil County, Maryland":[43.8,21.1,35.1],"Charles County, Maryland":[46.3,14.7,39],"Dorchester County, Maryland":[44.2,22,33.8],"Frederick County, Maryland":[47.2,11.3,41.5],"Garrett County, Maryland":[46.5,11.7,41.8],"Harford County, Maryland":[47.1,13.6,39.3],"Howard County, Maryland":[47.4,10.9,41.7],"Kent County, Maryland":[47.4,9.2,43.4],"Montgomery County, Maryland":[48.8,7.9,43.3],"Prince George's County, Maryland":[46.5,13.8,39.7],"Queen Anne's County, Maryland":[46.4,14.9,38.8],"Somerset County, Maryland":[50.8,7,42.2],"St. Mary's County, Maryland":[45.2,22.2,32.6],"Talbot County, Maryland":[46.8,16.5,36.7],"Washington County, Maryland":[48.2,15,36.8],"Wicomico County, Maryland":[47.6,11.6,40.8],"Worcester County, Maryland":[48,18.6,33.4]};
+  const nationalAvg = [6.9,55,38.1];
+  const categories = ["Enrolled in College","Enrolled in Other School","Not Enrolled"];
+  const ctx = document.getElementById("barChart").getContext("2d");
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: categories,
+        datasets: [
+          {
+            label: "County/State",
+            data: values,
+            backgroundColor: ["#66c2a5", "#fc8d62", "#8da0cb"]
+          },
+          {
+            label: null,
+            data: categories.map(c => nationalAvg[c]),
+            type: "line",
+            borderColor: "black",
+            borderWidth: 2,
+            pointRadius: 0,
+            fill: false
+          }
+        ]
+      },
+      options: {
+        indexAxis: "y",
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            ticks: {
+              callback: v => v + "%"
+            }
+          }
+        },
+        plugins: {
+          legend: {
+            labels: {
+              filter: item => item.text !== null
+            }
+          },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.dataset.label ? ctx.dataset.label + ": " + ctx.raw + "%" : null
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById("countySelect").addEventListener("change", function() {
+    renderChart(Object.values(data[this.value]));
+  });
+
+  renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

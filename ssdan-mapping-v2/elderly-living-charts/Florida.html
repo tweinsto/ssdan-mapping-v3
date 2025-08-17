@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Living Arrangements – Florida</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          margin: 1rem 2rem;
+          text-align: center;
+        }
+        h2 {
+          font-size: 1.5rem;
+          margin-bottom: 0.5rem;
+        }
+        select {
+          font-size: 1rem;
+          padding: 0.4rem;
+          margin: 1rem 0;
+          border: 1px solid #999;
+          border-radius: 5px;
+        }
+        canvas {
+          width: 100%;
+          max-width: 850px;
+          height: 600px;
+          margin-top: 1rem;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Living Arrangements of Adults 65+ in Florida</h2>
+    <label>Select County:</label>
+            <select id="countySelect">
+          <option value='Statewide'>Default</option>
+<option value='Alachua County, Florida'>Alachua County, Florida</option>
+<option value='Baker County, Florida'>Baker County, Florida</option>
+<option value='Bay County, Florida'>Bay County, Florida</option>
+<option value='Bradford County, Florida'>Bradford County, Florida</option>
+<option value='Brevard County, Florida'>Brevard County, Florida</option>
+<option value='Broward County, Florida'>Broward County, Florida</option>
+<option value='Calhoun County, Florida'>Calhoun County, Florida</option>
+<option value='Charlotte County, Florida'>Charlotte County, Florida</option>
+<option value='Citrus County, Florida'>Citrus County, Florida</option>
+<option value='Clay County, Florida'>Clay County, Florida</option>
+<option value='Collier County, Florida'>Collier County, Florida</option>
+<option value='Columbia County, Florida'>Columbia County, Florida</option>
+<option value='DeSoto County, Florida'>DeSoto County, Florida</option>
+<option value='Dixie County, Florida'>Dixie County, Florida</option>
+<option value='Duval County, Florida'>Duval County, Florida</option>
+<option value='Escambia County, Florida'>Escambia County, Florida</option>
+<option value='Flagler County, Florida'>Flagler County, Florida</option>
+<option value='Franklin County, Florida'>Franklin County, Florida</option>
+<option value='Gadsden County, Florida'>Gadsden County, Florida</option>
+<option value='Gilchrist County, Florida'>Gilchrist County, Florida</option>
+<option value='Glades County, Florida'>Glades County, Florida</option>
+<option value='Gulf County, Florida'>Gulf County, Florida</option>
+<option value='Hamilton County, Florida'>Hamilton County, Florida</option>
+<option value='Hardee County, Florida'>Hardee County, Florida</option>
+<option value='Hendry County, Florida'>Hendry County, Florida</option>
+<option value='Hernando County, Florida'>Hernando County, Florida</option>
+<option value='Highlands County, Florida'>Highlands County, Florida</option>
+<option value='Hillsborough County, Florida'>Hillsborough County, Florida</option>
+<option value='Holmes County, Florida'>Holmes County, Florida</option>
+<option value='Indian River County, Florida'>Indian River County, Florida</option>
+<option value='Jackson County, Florida'>Jackson County, Florida</option>
+<option value='Jefferson County, Florida'>Jefferson County, Florida</option>
+<option value='Lafayette County, Florida'>Lafayette County, Florida</option>
+<option value='Lake County, Florida'>Lake County, Florida</option>
+<option value='Lee County, Florida'>Lee County, Florida</option>
+<option value='Leon County, Florida'>Leon County, Florida</option>
+<option value='Levy County, Florida'>Levy County, Florida</option>
+<option value='Liberty County, Florida'>Liberty County, Florida</option>
+<option value='Madison County, Florida'>Madison County, Florida</option>
+<option value='Manatee County, Florida'>Manatee County, Florida</option>
+<option value='Marion County, Florida'>Marion County, Florida</option>
+<option value='Martin County, Florida'>Martin County, Florida</option>
+<option value='Miami-Dade County, Florida'>Miami-Dade County, Florida</option>
+<option value='Monroe County, Florida'>Monroe County, Florida</option>
+<option value='Nassau County, Florida'>Nassau County, Florida</option>
+<option value='Okaloosa County, Florida'>Okaloosa County, Florida</option>
+<option value='Okeechobee County, Florida'>Okeechobee County, Florida</option>
+<option value='Orange County, Florida'>Orange County, Florida</option>
+<option value='Osceola County, Florida'>Osceola County, Florida</option>
+<option value='Palm Beach County, Florida'>Palm Beach County, Florida</option>
+<option value='Pasco County, Florida'>Pasco County, Florida</option>
+<option value='Pinellas County, Florida'>Pinellas County, Florida</option>
+<option value='Polk County, Florida'>Polk County, Florida</option>
+<option value='Putnam County, Florida'>Putnam County, Florida</option>
+<option value='Santa Rosa County, Florida'>Santa Rosa County, Florida</option>
+<option value='Sarasota County, Florida'>Sarasota County, Florida</option>
+<option value='Seminole County, Florida'>Seminole County, Florida</option>
+<option value='St. Johns County, Florida'>St. Johns County, Florida</option>
+<option value='St. Lucie County, Florida'>St. Lucie County, Florida</option>
+<option value='Sumter County, Florida'>Sumter County, Florida</option>
+<option value='Suwannee County, Florida'>Suwannee County, Florida</option>
+<option value='Taylor County, Florida'>Taylor County, Florida</option>
+<option value='Union County, Florida'>Union County, Florida</option>
+<option value='Volusia County, Florida'>Volusia County, Florida</option>
+<option value='Wakulla County, Florida'>Wakulla County, Florida</option>
+<option value='Walton County, Florida'>Walton County, Florida</option>
+<option value='Washington County, Florida'>Washington County, Florida</option>
+        </select>
+    <canvas id="barChart"></canvas>
+    <script>  const chartData = {"Statewide":[0,0,0,0,0,0],"Alachua County, Florida":[0,0,0,0,0,0],"Baker County, Florida":[0,0,0,0,0,0],"Bay County, Florida":[0,0,0,0,0,0],"Bradford County, Florida":[0,0,0,0,0,0],"Brevard County, Florida":[0,0,0,0,0,0],"Broward County, Florida":[0,0,0,0,0,0],"Calhoun County, Florida":[0,0,0,0,0,0],"Charlotte County, Florida":[0,0,0,0,0,0],"Citrus County, Florida":[0,0,0,0,0,0],"Clay County, Florida":[0,0,0,0,0,0],"Collier County, Florida":[0,0,0,0,0,0],"Columbia County, Florida":[0,0,0,0,0,0],"DeSoto County, Florida":[0,0,0,0,0,0],"Dixie County, Florida":[0,0,0,0,0,0],"Duval County, Florida":[0,0,0,0,0,0],"Escambia County, Florida":[0,0,0,0,0,0],"Flagler County, Florida":[0,0,0,0,0,0],"Franklin County, Florida":[0,0,0,0,0,0],"Gadsden County, Florida":[0,0,0,0,0,0],"Gilchrist County, Florida":[0,0,0,0,0,0],"Glades County, Florida":[0,0,0,0,0,0],"Gulf County, Florida":[0,0,0,0,0,0],"Hamilton County, Florida":[0,0,0,0,0,0],"Hardee County, Florida":[0,0,0,0,0,0],"Hendry County, Florida":[0,0,0,0,0,0],"Hernando County, Florida":[0,0,0,0,0,0],"Highlands County, Florida":[0,0,0,0,0,0],"Hillsborough County, Florida":[0,0,0,0,0,0],"Holmes County, Florida":[0,0,0,0,0,0],"Indian River County, Florida":[0,0,0,0,0,0],"Jackson County, Florida":[0,0,0,0,0,0],"Jefferson County, Florida":[0,0,0,0,0,0],"Lafayette County, Florida":[0,0,0,0,0,0],"Lake County, Florida":[0,0,0,0,0,0],"Lee County, Florida":[0,0,0,0,0,0],"Leon County, Florida":[0,0,0,0,0,0],"Levy County, Florida":[0,0,0,0,0,0],"Liberty County, Florida":[0,0,0,0,0,0],"Madison County, Florida":[0,0,0,0,0,0],"Manatee County, Florida":[0,0,0,0,0,0],"Marion County, Florida":[0,0,0,0,0,0],"Martin County, Florida":[0,0,0,0,0,0],"Miami-Dade County, Florida":[0,0,0,0,0,0],"Monroe County, Florida":[0,0,0,0,0,0],"Nassau County, Florida":[0,0,0,0,0,0],"Okaloosa County, Florida":[0,0,0,0,0,0],"Okeechobee County, Florida":[0,0,0,0,0,0],"Orange County, Florida":[0,0,0,0,0,0],"Osceola County, Florida":[0,0,0,0,0,0],"Palm Beach County, Florida":[0,0,0,0,0,0],"Pasco County, Florida":[0,0,0,0,0,0],"Pinellas County, Florida":[0,0,0,0,0,0],"Polk County, Florida":[0,0,0,0,0,0],"Putnam County, Florida":[0,0,0,0,0,0],"Santa Rosa County, Florida":[0,0,0,0,0,0],"Sarasota County, Florida":[0,0,0,0,0,0],"Seminole County, Florida":[0,0,0,0,0,0],"St. Johns County, Florida":[0,0,0,0,0,0],"St. Lucie County, Florida":[0,0,0,0,0,0],"Sumter County, Florida":[0,0,0,0,0,0],"Suwannee County, Florida":[0,0,0,0,0,0],"Taylor County, Florida":[0,0,0,0,0,0],"Union County, Florida":[0,0,0,0,0,0],"Volusia County, Florida":[0,0,0,0,0,0],"Wakulla County, Florida":[0,0,0,0,0,0],"Walton County, Florida":[0,0,0,0,0,0],"Washington County, Florida":[0,0,0,0,0,0]};
+  const categories = ["With unmarried partner","With spouse only","With other relatives","With nonrelatives","With child","Lives alone"];
+  const usAverages = [27.3,0.3,2.3,14.5,53.2,2.4];
+
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(data) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: categories,
+        datasets: [
+          {
+            label: 'Percent (County/State)',
+            data: data,
+            backgroundColor: '#4576a7'
+          },
+          {
+            label: 'National Average',
+            data: categories.map(c => usAverages[c] || 0),
+            type: 'line',
+            borderColor: '#000',
+            borderWidth: 1,
+            pointRadius: 0,
+            fill: false
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        indexAxis: 'y',
+        scales: {
+          x: {
+            title: {
+              display: true,
+              text: 'Percent of 65+ Population'
+            },
+            min: 0,
+            max: 100,
+            ticks: {
+              callback: value => value + '%'
+            }
+          }
+        },
+        plugins: {
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.dataset.label + ': ' + ctx.parsed.x + '%'
+            }
+          },
+          legend: {
+            position: 'top',
+            align: 'start'
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(Object.values(chartData[this.value]));
+  });
+
+  renderChart(Object.values(chartData['Statewide']));</script>
+  </body>
+</html>
+</html>

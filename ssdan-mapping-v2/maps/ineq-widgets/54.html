@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Income Distribution – West Virginia</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          text-align: center;
+          margin: 2rem;
+        }
+        select {
+          font-size: 1rem;
+          padding: 0.4rem;
+          margin-bottom: 1rem;
+        }
+        canvas {
+          width: 100%;
+          max-width: 700px;
+          height: 400px;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Income Share by Quintile – West Virginia</h2>
+    <label>Select County, State:</label>
+    <select id="countySelect"><option value='Statewide'>Statewide</option>
+<option value='Barbour, West Virginia'>Barbour, West Virginia</option>
+<option value='Berkeley, West Virginia'>Berkeley, West Virginia</option>
+<option value='Boone, West Virginia'>Boone, West Virginia</option>
+<option value='Braxton, West Virginia'>Braxton, West Virginia</option>
+<option value='Brooke, West Virginia'>Brooke, West Virginia</option>
+<option value='Cabell, West Virginia'>Cabell, West Virginia</option>
+<option value='Calhoun, West Virginia'>Calhoun, West Virginia</option>
+<option value='Clay, West Virginia'>Clay, West Virginia</option>
+<option value='Doddridge, West Virginia'>Doddridge, West Virginia</option>
+<option value='Fayette, West Virginia'>Fayette, West Virginia</option>
+<option value='Gilmer, West Virginia'>Gilmer, West Virginia</option>
+<option value='Grant, West Virginia'>Grant, West Virginia</option>
+<option value='Greenbrier, West Virginia'>Greenbrier, West Virginia</option>
+<option value='Hampshire, West Virginia'>Hampshire, West Virginia</option>
+<option value='Hancock, West Virginia'>Hancock, West Virginia</option>
+<option value='Hardy, West Virginia'>Hardy, West Virginia</option>
+<option value='Harrison, West Virginia'>Harrison, West Virginia</option>
+<option value='Jackson, West Virginia'>Jackson, West Virginia</option>
+<option value='Jefferson, West Virginia'>Jefferson, West Virginia</option>
+<option value='Kanawha, West Virginia'>Kanawha, West Virginia</option>
+<option value='Lewis, West Virginia'>Lewis, West Virginia</option>
+<option value='Lincoln, West Virginia'>Lincoln, West Virginia</option>
+<option value='Logan, West Virginia'>Logan, West Virginia</option>
+<option value='Marion, West Virginia'>Marion, West Virginia</option>
+<option value='Marshall, West Virginia'>Marshall, West Virginia</option>
+<option value='Mason, West Virginia'>Mason, West Virginia</option>
+<option value='McDowell, West Virginia'>McDowell, West Virginia</option>
+<option value='Mercer, West Virginia'>Mercer, West Virginia</option>
+<option value='Mineral, West Virginia'>Mineral, West Virginia</option>
+<option value='Mingo, West Virginia'>Mingo, West Virginia</option>
+<option value='Monongalia, West Virginia'>Monongalia, West Virginia</option>
+<option value='Monroe, West Virginia'>Monroe, West Virginia</option>
+<option value='Morgan, West Virginia'>Morgan, West Virginia</option>
+<option value='Nicholas, West Virginia'>Nicholas, West Virginia</option>
+<option value='Ohio, West Virginia'>Ohio, West Virginia</option>
+<option value='Pendleton, West Virginia'>Pendleton, West Virginia</option>
+<option value='Pleasants, West Virginia'>Pleasants, West Virginia</option>
+<option value='Pocahontas, West Virginia'>Pocahontas, West Virginia</option>
+<option value='Preston, West Virginia'>Preston, West Virginia</option>
+<option value='Putnam, West Virginia'>Putnam, West Virginia</option>
+<option value='Raleigh, West Virginia'>Raleigh, West Virginia</option>
+<option value='Randolph, West Virginia'>Randolph, West Virginia</option>
+<option value='Ritchie, West Virginia'>Ritchie, West Virginia</option>
+<option value='Roane, West Virginia'>Roane, West Virginia</option>
+<option value='Summers, West Virginia'>Summers, West Virginia</option>
+<option value='Taylor, West Virginia'>Taylor, West Virginia</option>
+<option value='Tucker, West Virginia'>Tucker, West Virginia</option>
+<option value='Tyler, West Virginia'>Tyler, West Virginia</option>
+<option value='Upshur, West Virginia'>Upshur, West Virginia</option>
+<option value='Wayne, West Virginia'>Wayne, West Virginia</option>
+<option value='Webster, West Virginia'>Webster, West Virginia</option>
+<option value='Wetzel, West Virginia'>Wetzel, West Virginia</option>
+<option value='Wirt, West Virginia'>Wirt, West Virginia</option>
+<option value='Wood, West Virginia'>Wood, West Virginia</option>
+<option value='Wyoming, West Virginia'>Wyoming, West Virginia</option></select>
+    <canvas id="barChart" width="700" height="400"></canvas>
+    <script>  const incomeData = {"Statewide":[5,8.5,13.3,27.4,45.8],"Barbour, West Virginia":[6.1,9.6,14.4,28.1,41.8],"Berkeley, West Virginia":[6.3,9.8,14,26.7,43.1],"Boone, West Virginia":[6,10.7,17,28.2,38.1],"Braxton, West Virginia":[6,9.2,13.8,27.2,43.9],"Brooke, West Virginia":[5.7,9,14.4,27.7,43.3],"Cabell, West Virginia":[4,7.3,12,27.3,49.3],"Calhoun, West Virginia":[4.1,7.5,10.2,27.3,51],"Clay, West Virginia":[4.9,8.7,14,27.8,44.6],"Doddridge, West Virginia":[4.1,6.9,12.4,27.5,49],"Fayette, West Virginia":[5.5,9.5,14.5,27.1,43.5],"Gilmer, West Virginia":[5.8,9.8,14.1,27,43.4],"Grant, West Virginia":[5.7,9.8,14.1,26.8,43.6],"Greenbrier, West Virginia":[4.2,6.9,11,26.1,51.8],"Hampshire, West Virginia":[5.2,9.6,15.2,27.1,42.9],"Hancock, West Virginia":[5,8.5,13.1,26.3,47.1],"Hardy, West Virginia":[5.9,8.9,13.8,27.5,43.8],"Harrison, West Virginia":[5.1,8.3,13.4,27.8,45.4],"Jackson, West Virginia":[4.2,6.8,11.1,26.7,51.1],"Jefferson, West Virginia":[5.8,9.8,14.5,27.4,42.5],"Kanawha, West Virginia":[4.5,7.6,11.9,27,49],"Lewis, West Virginia":[4.3,7.8,13.1,28.3,46.5],"Lincoln, West Virginia":[4.5,8.5,13.2,27.8,46],"Logan, West Virginia":[3.8,6.7,11,27.4,51.1],"Marion, West Virginia":[6.2,10.1,15.1,27.2,41.4],"Marshall, West Virginia":[4.5,8.1,12.7,26.7,48.1],"Mason, West Virginia":[4.5,7.3,11.1,26.7,50.4],"McDowell, West Virginia":[5,8.6,14.3,29.4,42.8],"Mercer, West Virginia":[4.8,8,12.9,27.6,46.7],"Mineral, West Virginia":[4.6,8,11.5,25.5,50.4],"Mingo, West Virginia":[3.8,7.8,13.3,28.8,46.3],"Monongalia, West Virginia":[3.8,7,12.5,28,48.6],"Monroe, West Virginia":[6,9.7,14.3,27.7,42.3],"Morgan, West Virginia":[7.1,10.7,15.4,27.1,39.7],"Nicholas, West Virginia":[4.5,7.7,12.3,26.9,48.6],"Ohio, West Virginia":[3.8,6.9,11.5,27.1,50.7],"Pendleton, West Virginia":[6.6,11.1,16.3,27.5,38.5],"Pleasants, West Virginia":[2.9,4.9,8,24.6,59.6],"Pocahontas, West Virginia":[5.5,8.6,14,27.8,44.2],"Preston, West Virginia":[6.3,10.3,16,28.1,39.4],"Putnam, West Virginia":[5.8,9.5,14.3,27.3,43.1],"Raleigh, West Virginia":[4.3,7.8,13.2,27.5,47.3],"Randolph, West Virginia":[5.2,9.1,14.4,27.3,44.1],"Ritchie, West Virginia":[5.5,9,13.6,28,43.8],"Roane, West Virginia":[4.6,7.3,11.5,27.1,49.5],"Summers, West Virginia":[5.4,8.6,14.4,28.1,43.6],"Taylor, West Virginia":[5.6,9.2,14.7,29.3,41.2],"Tucker, West Virginia":[4.9,7.9,12.7,27,47.5],"Tyler, West Virginia":[5.1,8.5,13.5,27.2,45.7],"Upshur, West Virginia":[4.4,7.7,12.5,27.4,48],"Wayne, West Virginia":[4.2,7.5,11.8,26.4,50.1],"Webster, West Virginia":[4.6,8,12.4,28,47],"Wetzel, West Virginia":[5.5,9.1,14,27.4,44.1],"Wirt, West Virginia":[6.1,9.8,14.7,27.8,41.6],"Wood, West Virginia":[4.9,8.3,13,27.5,46.3],"Wyoming, West Virginia":[5.1,8.3,12.8,26.4,47.4]};
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Bottom 20%', 'Second 20%', 'Middle 20%', 'Fourth 20%', 'Top 20%'],
+        datasets: [{
+          label: 'Share (%)',
+          data: values,
+          backgroundColor: '#4576a7'
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.parsed.y + '%'
+            }
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 100,
+            title: {
+              display: true,
+              text: 'Income Share (%)'
+            }
+          },
+          x: {
+            title: {
+              display: true,
+              text: 'Quintile'
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(Object.values(incomeData[this.value]));
+  });
+
+  renderChart(Object.values(incomeData['Statewide']));</script>
+  </body>
+</html>
+</html>

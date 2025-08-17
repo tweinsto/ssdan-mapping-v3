@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+
+</head>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Industry Composition – 34</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #fff;
+    }
+    .container {
+      width: 95%;
+      max-width: 1200px;
+      margin: auto;
+      text-align: center;
+    }
+    canvas {
+  max-width: 100%;
+}
+    #countySelect {
+      font-size: 1rem;
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Industry Composition (Percent) – 34</h2>
+    <select id="countySelect"></select>
+    <canvas id="pieChart"></canvas>
+  </div>
+
+  <script>
+    const data = {"Statewide":{"Agriculture, forestry, fishing and hunting, and mining":0.3,"Arts, entertainment, and recreation, and accommodation and food services":7.2,"Construction":6.1,"Educational services, and health care and social assistance":24.2,"Finance and insurance, and real estate and rental and leasing":8.6,"Information":2.6,"Manufacturing":8.2,"Other services, except public administration":4.2,"Professional, scientific, and management, and administrative and waste management services":14.3,"Public administration":4.4,"Retail trade":10.5,"Transportation and warehousing, and utilities":6.6,"Wholesale trade":2.9},"Atlantic County":{"Agriculture, forestry, fishing and hunting, and mining":0.4,"Arts, entertainment, and recreation, and accommodation and food services":19.9,"Construction":6.2,"Educational services, and health care and social assistance":25,"Finance and insurance, and real estate and rental and leasing":5.1,"Information":1.3,"Manufacturing":4.5,"Other services, except public administration":4.1,"Professional, scientific, and management, and administrative and waste management services":10,"Public administration":5.4,"Retail trade":11.7,"Transportation and warehousing, and utilities":5,"Wholesale trade":1.5},"Bergen County":{"Agriculture, forestry, fishing and hunting, and mining":0.1,"Arts, entertainment, and recreation, and accommodation and food services":6.8,"Construction":5.2,"Educational services, and health care and social assistance":25.1,"Finance and insurance, and real estate and rental and leasing":10.2,"Information":2.9,"Manufacturing":7.7,"Other services, except public administration":4.5,"Professional, scientific, and management, and administrative and waste management services":15.2,"Public administration":3.2,"Retail trade":10.2,"Transportation and warehousing, and utilities":5.2,"Wholesale trade":3.7},"Burlington County":{"Agriculture, forestry, fishing and hunting, and mining":0.4,"Arts, entertainment, and recreation, and accommodation and food services":6.8,"Construction":5.8,"Educational services, and health care and social assistance":26.4,"Finance and insurance, and real estate and rental and leasing":8.1,"Information":2.3,"Manufacturing":7.4,"Other services, except public administration":3.4,"Professional, scientific, and management, and administrative and waste management services":12.2,"Public administration":7.1,"Retail trade":11,"Transportation and warehousing, and utilities":6.3,"Wholesale trade":3},"Camden County":{"Agriculture, forestry, fishing and hunting, and mining":0.3,"Arts, entertainment, and recreation, and accommodation and food services":7.6,"Construction":6,"Educational services, and health care and social assistance":26,"Finance and insurance, and real estate and rental and leasing":7,"Information":1.8,"Manufacturing":7.4,"Other services, except public administration":4.4,"Professional, scientific, and management, and administrative and waste management services":12.7,"Public administration":4.9,"Retail trade":12.7,"Transportation and warehousing, and utilities":6.9,"Wholesale trade":2.4},"Cape May County":{"Agriculture, forestry, fishing and hunting, and mining":1.3,"Arts, entertainment, and recreation, and accommodation and food services":14.3,"Construction":8.8,"Educational services, and health care and social assistance":25.2,"Finance and insurance, and real estate and rental and leasing":7,"Information":1.5,"Manufacturing":4.4,"Other services, except public administration":4.2,"Professional, scientific, and management, and administrative and waste management services":9.6,"Public administration":7.4,"Retail trade":10.4,"Transportation and warehousing, and utilities":3.5,"Wholesale trade":2.2},"Cumberland County":{"Agriculture, forestry, fishing and hunting, and mining":2.4,"Arts, entertainment, and recreation, and accommodation and food services":5.8,"Construction":7.3,"Educational services, and health care and social assistance":26.6,"Finance and insurance, and real estate and rental and leasing":3.7,"Information":0.7,"Manufacturing":12,"Other services, except public administration":3.5,"Professional, scientific, and management, and administrative and waste management services":9,"Public administration":6.5,"Retail trade":11.7,"Transportation and warehousing, and utilities":6.9,"Wholesale trade":3.8},"Essex County":{"Agriculture, forestry, fishing and hunting, and mining":0.1,"Arts, entertainment, and recreation, and accommodation and food services":6.6,"Construction":7.1,"Educational services, and health care and social assistance":24.6,"Finance and insurance, and real estate and rental and leasing":7.9,"Information":2.9,"Manufacturing":6.7,"Other services, except public administration":4.8,"Professional, scientific, and management, and administrative and waste management services":14.4,"Public administration":4.5,"Retail trade":9.3,"Transportation and warehousing, and utilities":8.6,"Wholesale trade":2.3},"Gloucester County":{"Agriculture, forestry, fishing and hunting, and mining":0.3,"Arts, entertainment, and recreation, and accommodation and food services":6.6,"Construction":6.9,"Educational services, and health care and social assistance":27.6,"Finance and insurance, and real estate and rental and leasing":7.1,"Information":1.9,"Manufacturing":7.5,"Other services, except public administration":3.8,"Professional, scientific, and management, and administrative and waste management services":10.6,"Public administration":4.8,"Retail trade":11.8,"Transportation and warehousing, and utilities":7.4,"Wholesale trade":3.5},"Hudson County":{"Agriculture, forestry, fishing and hunting, and mining":0.1,"Arts, entertainment, and recreation, and accommodation and food services":7.4,"Construction":5.4,"Educational services, and health care and social assistance":19.2,"Finance and insurance, and real estate and rental and leasing":12.7,"Information":3.9,"Manufacturing":6.6,"Other services, except public administration":4.1,"Professional, scientific, and management, and administrative and waste management services":17.9,"Public administration":3.2,"Retail trade":8.8,"Transportation and warehousing, and utilities":7.7,"Wholesale trade":2.9},"Hunterdon County":{"Agriculture, forestry, fishing and hunting, and mining":1.3,"Arts, entertainment, and recreation, and accommodation and food services":5.1,"Construction":6.6,"Educational services, and health care and social assistance":22.7,"Finance and insurance, and real estate and rental and leasing":8.8,"Information":3,"Manufacturing":12.6,"Other services, except public administration":3.9,"Professional, scientific, and management, and administrative and waste management services":15.9,"Public administration":4.1,"Retail trade":10.3,"Transportation and warehousing, and utilities":3.2,"Wholesale trade":2.6},"Mercer County":{"Agriculture, forestry, fishing and hunting, and mining":0.3,"Arts, entertainment, and recreation, and accommodation and food services":6.8,"Construction":5.2,"Educational services, and health care and social assistance":26.7,"Finance and insurance, and real estate and rental and leasing":8,"Information":2.2,"Manufacturing":7.6,"Other services, except public administration":4.1,"Professional, scientific, and management, and administrative and waste management services":14.9,"Public administration":6.2,"Retail trade":8.9,"Transportation and warehousing, and utilities":5.9,"Wholesale trade":3.2},"Middlesex County":{"Agriculture, forestry, fishing and hunting, and mining":0.2,"Arts, entertainment, and recreation, and accommodation and food services":5.3,"Construction":4.9,"Educational services, and health care and social assistance":23.2,"Finance and insurance, and real estate and rental and leasing":9.3,"Information":2.5,"Manufacturing":9,"Other services, except public administration":3.7,"Professional, scientific, and management, and administrative and waste management services":16,"Public administration":4,"Retail trade":10.3,"Transportation and warehousing, and utilities":8.2,"Wholesale trade":3.3},"Monmouth County":{"Agriculture, forestry, fishing and hunting, and mining":0.4,"Arts, entertainment, and recreation, and accommodation and food services":7.7,"Construction":7,"Educational services, and health care and social assistance":24.4,"Finance and insurance, and real estate and rental and leasing":10.3,"Information":3.2,"Manufacturing":6.2,"Other services, except public administration":3.7,"Professional, scientific, and management, and administrative and waste management services":15.5,"Public administration":4.3,"Retail trade":10.5,"Transportation and warehousing, and utilities":4.4,"Wholesale trade":2.5},"Morris County":{"Agriculture, forestry, fishing and hunting, and mining":0.2,"Arts, entertainment, and recreation, and accommodation and food services":6.5,"Construction":5.3,"Educational services, and health care and social assistance":22.7,"Finance and insurance, and real estate and rental and leasing":10.1,"Information":2.9,"Manufacturing":11.5,"Other services, except public administration":3.8,"Professional, scientific, and management, and administrative and waste management services":17.2,"Public administration":3.4,"Retail trade":9.6,"Transportation and warehousing, and utilities":4.2,"Wholesale trade":2.7},"Ocean County":{"Agriculture, forestry, fishing and hunting, and mining":0.2,"Arts, entertainment, and recreation, and accommodation and food services":7.9,"Construction":7.9,"Educational services, and health care and social assistance":28.5,"Finance and insurance, and real estate and rental and leasing":6.4,"Information":1.8,"Manufacturing":5,"Other services, except public administration":4.4,"Professional, scientific, and management, and administrative and waste management services":11.1,"Public administration":5.7,"Retail trade":12.9,"Transportation and warehousing, and utilities":5.8,"Wholesale trade":2.5},"Passaic County":{"Agriculture, forestry, fishing and hunting, and mining":0.2,"Arts, entertainment, and recreation, and accommodation and food services":7.7,"Construction":6.8,"Educational services, and health care and social assistance":22.8,"Finance and insurance, and real estate and rental and leasing":6,"Information":1.9,"Manufacturing":11.6,"Other services, except public administration":4.7,"Professional, scientific, and management, and administrative and waste management services":12,"Public administration":3.4,"Retail trade":12.1,"Transportation and warehousing, and utilities":7.4,"Wholesale trade":3.3},"Salem County":{"Agriculture, forestry, fishing and hunting, and mining":1.8,"Arts, entertainment, and recreation, and accommodation and food services":6.1,"Construction":7.6,"Educational services, and health care and social assistance":25.7,"Finance and insurance, and real estate and rental and leasing":5.3,"Information":1,"Manufacturing":10,"Other services, except public administration":3.2,"Professional, scientific, and management, and administrative and waste management services":9,"Public administration":5.8,"Retail trade":10.5,"Transportation and warehousing, and utilities":10.3,"Wholesale trade":3.7},"Somerset County":{"Agriculture, forestry, fishing and hunting, and mining":0.3,"Arts, entertainment, and recreation, and accommodation and food services":5.7,"Construction":4.3,"Educational services, and health care and social assistance":21.7,"Finance and insurance, and real estate and rental and leasing":9.6,"Information":3.7,"Manufacturing":13.4,"Other services, except public administration":3.8,"Professional, scientific, and management, and administrative and waste management services":17.5,"Public administration":3.1,"Retail trade":9.3,"Transportation and warehousing, and utilities":4.6,"Wholesale trade":3},"Sussex County":{"Agriculture, forestry, fishing and hunting, and mining":1.2,"Arts, entertainment, and recreation, and accommodation and food services":6.6,"Construction":8.1,"Educational services, and health care and social assistance":24.2,"Finance and insurance, and real estate and rental and leasing":6.2,"Information":2.4,"Manufacturing":9.9,"Other services, except public administration":4.5,"Professional, scientific, and management, and administrative and waste management services":13.3,"Public administration":4.7,"Retail trade":11.7,"Transportation and warehousing, and utilities":4.7,"Wholesale trade":2.5},"Union County":{"Agriculture, forestry, fishing and hunting, and mining":0.2,"Arts, entertainment, and recreation, and accommodation and food services":6.5,"Construction":6.9,"Educational services, and health care and social assistance":22,"Finance and insurance, and real estate and rental and leasing":8.6,"Information":2.2,"Manufacturing":8.6,"Other services, except public administration":4.7,"Professional, scientific, and management, and administrative and waste management services":12.9,"Public administration":4.2,"Retail trade":9.5,"Transportation and warehousing, and utilities":10.4,"Wholesale trade":3.2},"Warren County":{"Agriculture, forestry, fishing and hunting, and mining":1.1,"Arts, entertainment, and recreation, and accommodation and food services":6.5,"Construction":7.2,"Educational services, and health care and social assistance":24.4,"Finance and insurance, and real estate and rental and leasing":6.1,"Information":2.1,"Manufacturing":11,"Other services, except public administration":5.4,"Professional, scientific, and management, and administrative and waste management services":12.5,"Public administration":5,"Retail trade":9.9,"Transportation and warehousing, and utilities":5.9,"Wholesale trade":3}};
+    const colors = {
+  'Agriculture, forestry, fishing and hunting, and mining': '#FFFF33',
+  'Arts, entertainment, and recreation, and accommodation and food services': '#D95F02',
+  'Construction': '#7570B3',
+  'Educational services, and health care and social assistance': '#66A61E',
+  'Finance and insurance, and real estate and rental and leasing': '#E6AB02',
+  'Information': '#A6761D',
+  'Manufacturing': '#E41A1C',
+  'Other services, except public administration': '#377EB8',
+  'Professional, scientific, and management, and administrative and waste management services': '#4DAF4A',
+  'Public administration': '#984EA3',
+  'Retail trade': '#FF7F00',
+  'Transportation and warehousing, and utilities': '#1B9E77',
+  'Wholesale trade': '#A65628'
+};
+
+    const ctx = document.getElementById("pieChart").getContext("2d");
+    let chart;
+
+    function renderChart(county) {
+      const values = data[county];
+      const labels = Object.keys(values);
+      const percentages = Object.values(values);
+
+      if (chart) chart.destroy();
+
+      chart = new Chart(ctx, {
+        type: "pie",
+        data: {
+          labels: labels,
+          datasets: [{
+            data: percentages,
+            backgroundColor: labels.map(label => colors[label] || "#cccccc")
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: true,
+  aspectRatio: 1.5, 
+          plugins: {
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  return context.label + ": " + context.formattedValue + "%";
+                }
+              }
+            },
+            legend: {
+              position: "right",
+              labels: {
+                usePointStyle: true,
+                pointStyle: "rect"
+              }
+            }
+          }
+        }
+      });
+    }
+
+    const select = document.getElementById("countySelect");
+    Object.keys(data).forEach(county => {
+      const opt = document.createElement("option");
+      opt.value = county;
+      opt.text = county;
+      select.appendChild(opt);
+    });
+    select.value = "Statewide";
+    select.addEventListener("change", () => renderChart(select.value));
+    renderChart("Statewide");
+  </script>
+</body>
+</html>
+</html>

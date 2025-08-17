@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Income Distribution – Mississippi</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          text-align: center;
+          margin: 2rem;
+        }
+        select {
+          font-size: 1rem;
+          padding: 0.4rem;
+          margin-bottom: 1rem;
+        }
+        canvas {
+          width: 100%;
+          max-width: 700px;
+          height: 400px;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Income Share by Quintile – Mississippi</h2>
+    <label>Select County, State:</label>
+    <select id="countySelect"><option value='Statewide'>Statewide</option>
+<option value='Adams, Mississippi'>Adams, Mississippi</option>
+<option value='Alcorn, Mississippi'>Alcorn, Mississippi</option>
+<option value='Amite, Mississippi'>Amite, Mississippi</option>
+<option value='Attala, Mississippi'>Attala, Mississippi</option>
+<option value='Benton, Mississippi'>Benton, Mississippi</option>
+<option value='Bolivar, Mississippi'>Bolivar, Mississippi</option>
+<option value='Calhoun, Mississippi'>Calhoun, Mississippi</option>
+<option value='Carroll, Mississippi'>Carroll, Mississippi</option>
+<option value='Chickasaw, Mississippi'>Chickasaw, Mississippi</option>
+<option value='Choctaw, Mississippi'>Choctaw, Mississippi</option>
+<option value='Claiborne, Mississippi'>Claiborne, Mississippi</option>
+<option value='Clarke, Mississippi'>Clarke, Mississippi</option>
+<option value='Clay, Mississippi'>Clay, Mississippi</option>
+<option value='Coahoma, Mississippi'>Coahoma, Mississippi</option>
+<option value='Copiah, Mississippi'>Copiah, Mississippi</option>
+<option value='Covington, Mississippi'>Covington, Mississippi</option>
+<option value='DeSoto, Mississippi'>DeSoto, Mississippi</option>
+<option value='Forrest, Mississippi'>Forrest, Mississippi</option>
+<option value='Franklin, Mississippi'>Franklin, Mississippi</option>
+<option value='George, Mississippi'>George, Mississippi</option>
+<option value='Greene, Mississippi'>Greene, Mississippi</option>
+<option value='Grenada, Mississippi'>Grenada, Mississippi</option>
+<option value='Hancock, Mississippi'>Hancock, Mississippi</option>
+<option value='Harrison, Mississippi'>Harrison, Mississippi</option>
+<option value='Hinds, Mississippi'>Hinds, Mississippi</option>
+<option value='Holmes, Mississippi'>Holmes, Mississippi</option>
+<option value='Humphreys, Mississippi'>Humphreys, Mississippi</option>
+<option value='Issaquena, Mississippi'>Issaquena, Mississippi</option>
+<option value='Itawamba, Mississippi'>Itawamba, Mississippi</option>
+<option value='Jackson, Mississippi'>Jackson, Mississippi</option>
+<option value='Jasper, Mississippi'>Jasper, Mississippi</option>
+<option value='Jefferson, Mississippi'>Jefferson, Mississippi</option>
+<option value='Jefferson Davis, Mississippi'>Jefferson Davis, Mississippi</option>
+<option value='Jones, Mississippi'>Jones, Mississippi</option>
+<option value='Kemper, Mississippi'>Kemper, Mississippi</option>
+<option value='Lafayette, Mississippi'>Lafayette, Mississippi</option>
+<option value='Lamar, Mississippi'>Lamar, Mississippi</option>
+<option value='Lauderdale, Mississippi'>Lauderdale, Mississippi</option>
+<option value='Lawrence, Mississippi'>Lawrence, Mississippi</option>
+<option value='Leake, Mississippi'>Leake, Mississippi</option>
+<option value='Lee, Mississippi'>Lee, Mississippi</option>
+<option value='Leflore, Mississippi'>Leflore, Mississippi</option>
+<option value='Lincoln, Mississippi'>Lincoln, Mississippi</option>
+<option value='Lowndes, Mississippi'>Lowndes, Mississippi</option>
+<option value='Madison, Mississippi'>Madison, Mississippi</option>
+<option value='Marion, Mississippi'>Marion, Mississippi</option>
+<option value='Marshall, Mississippi'>Marshall, Mississippi</option>
+<option value='Monroe, Mississippi'>Monroe, Mississippi</option>
+<option value='Montgomery, Mississippi'>Montgomery, Mississippi</option>
+<option value='Neshoba, Mississippi'>Neshoba, Mississippi</option>
+<option value='Newton, Mississippi'>Newton, Mississippi</option>
+<option value='Noxubee, Mississippi'>Noxubee, Mississippi</option>
+<option value='Oktibbeha, Mississippi'>Oktibbeha, Mississippi</option>
+<option value='Panola, Mississippi'>Panola, Mississippi</option>
+<option value='Pearl River, Mississippi'>Pearl River, Mississippi</option>
+<option value='Perry, Mississippi'>Perry, Mississippi</option>
+<option value='Pike, Mississippi'>Pike, Mississippi</option>
+<option value='Pontotoc, Mississippi'>Pontotoc, Mississippi</option>
+<option value='Prentiss, Mississippi'>Prentiss, Mississippi</option>
+<option value='Quitman, Mississippi'>Quitman, Mississippi</option>
+<option value='Rankin, Mississippi'>Rankin, Mississippi</option>
+<option value='Scott, Mississippi'>Scott, Mississippi</option>
+<option value='Sharkey, Mississippi'>Sharkey, Mississippi</option>
+<option value='Simpson, Mississippi'>Simpson, Mississippi</option>
+<option value='Smith, Mississippi'>Smith, Mississippi</option>
+<option value='Stone, Mississippi'>Stone, Mississippi</option>
+<option value='Sunflower, Mississippi'>Sunflower, Mississippi</option>
+<option value='Tallahatchie, Mississippi'>Tallahatchie, Mississippi</option>
+<option value='Tate, Mississippi'>Tate, Mississippi</option>
+<option value='Tippah, Mississippi'>Tippah, Mississippi</option>
+<option value='Tishomingo, Mississippi'>Tishomingo, Mississippi</option>
+<option value='Tunica, Mississippi'>Tunica, Mississippi</option>
+<option value='Union, Mississippi'>Union, Mississippi</option>
+<option value='Walthall, Mississippi'>Walthall, Mississippi</option>
+<option value='Warren, Mississippi'>Warren, Mississippi</option>
+<option value='Washington, Mississippi'>Washington, Mississippi</option>
+<option value='Wayne, Mississippi'>Wayne, Mississippi</option>
+<option value='Webster, Mississippi'>Webster, Mississippi</option>
+<option value='Wilkinson, Mississippi'>Wilkinson, Mississippi</option>
+<option value='Winston, Mississippi'>Winston, Mississippi</option>
+<option value='Yalobusha, Mississippi'>Yalobusha, Mississippi</option>
+<option value='Yazoo, Mississippi'>Yazoo, Mississippi</option></select>
+    <canvas id="barChart" width="700" height="400"></canvas>
+    <script>  const incomeData = {"Statewide":[4.5,7.8,12.7,27.6,47.5],"Adams, Mississippi":[3.8,7.1,12.2,27.9,49],"Alcorn, Mississippi":[4.1,7.3,11.7,27.4,49.5],"Amite, Mississippi":[3.9,7.4,12.3,28.3,48],"Attala, Mississippi":[3.8,6.8,11.6,27.1,50.6],"Benton, Mississippi":[6,9,13.3,28.2,43.6],"Bolivar, Mississippi":[3,5.7,10,27.1,54.2],"Calhoun, Mississippi":[5.2,8.7,14.2,27.3,44.6],"Carroll, Mississippi":[4.6,9.7,15.3,28.7,41.7],"Chickasaw, Mississippi":[5.2,9.2,14.7,27.7,43.1],"Choctaw, Mississippi":[4.5,7.1,11.5,26.3,50.6],"Claiborne, Mississippi":[3.7,5.7,9.4,25.2,56],"Clarke, Mississippi":[4.4,7.8,11.9,27.6,48.3],"Clay, Mississippi":[4.5,7.7,13.2,26.9,47.7],"Coahoma, Mississippi":[3.7,6.3,10.7,26.7,52.6],"Copiah, Mississippi":[3.4,5.9,10.1,26.6,53.9],"Covington, Mississippi":[4.7,8.7,15.5,29,41.9],"DeSoto, Mississippi":[6.5,10.4,15.3,27.1,40.7],"Forrest, Mississippi":[4.1,7.4,11.6,27.1,49.8],"Franklin, Mississippi":[3.8,7,11.2,28,50],"George, Mississippi":[5,8.5,13.5,27.5,45.5],"Greene, Mississippi":[4.7,9.1,15.3,28.5,42.4],"Grenada, Mississippi":[4.4,7.1,11.2,27.7,49.7],"Hancock, Mississippi":[4.7,7.9,12.4,26,49],"Harrison, Mississippi":[5,8.3,13.2,27.6,45.8],"Hinds, Mississippi":[4.4,7.5,11.7,27.2,49.2],"Holmes, Mississippi":[2.2,4.6,8.1,26.7,58.4],"Humphreys, Mississippi":[3,4.9,8.4,26.4,57.3],"Issaquena, Mississippi":[4.8,9.9,17.6,28.9,38.8],"Itawamba, Mississippi":[3.4,5.6,8.7,23.9,58.4],"Jackson, Mississippi":[4.9,8.3,12.9,27,46.9],"Jasper, Mississippi":[5.2,9.5,15.1,27.8,42.3],"Jefferson, Mississippi":[4.6,7.2,11.4,28.6,48.3],"Jefferson Davis, Mississippi":[4.9,7.9,14,29.1,44.2],"Jones, Mississippi":[4.2,7.4,12.3,27,49.2],"Kemper, Mississippi":[4.4,8.3,12.9,28.1,46.4],"Lafayette, Mississippi":[3.4,6.1,9.9,26.5,54],"Lamar, Mississippi":[4.8,7.6,12.3,27.1,48.2],"Lauderdale, Mississippi":[3.9,7.5,12.7,27.7,48.2],"Lawrence, Mississippi":[3.9,6.6,10.3,27.4,51.8],"Leake, Mississippi":[4.3,7.1,10.9,26.1,51.6],"Lee, Mississippi":[4.9,8.7,13.3,27,46.1],"Leflore, Mississippi":[3.4,6,11.5,28.4,50.7],"Lincoln, Mississippi":[4.5,8.2,14.1,28,45.2],"Lowndes, Mississippi":[4.1,7.9,12.8,27.7,47.5],"Madison, Mississippi":[3.9,6.6,10.9,27.4,51.1],"Marion, Mississippi":[4.2,6.6,10.7,27.3,51.2],"Marshall, Mississippi":[4.7,7.8,12.6,27.8,47.1],"Monroe, Mississippi":[4.9,8.7,14.2,28.1,43.9],"Montgomery, Mississippi":[4,7.5,12.5,29.2,46.8],"Neshoba, Mississippi":[4.7,8.7,14,27.3,45.3],"Newton, Mississippi":[4.3,6.7,10.3,26.4,52.2],"Noxubee, Mississippi":[4.4,8.9,13.6,28.6,44.5],"Oktibbeha, Mississippi":[3.1,6.4,11.9,28.9,49.8],"Panola, Mississippi":[4.7,8.5,14.6,28.3,44],"Pearl River, Mississippi":[5.4,9.4,14.6,28.3,42.3],"Perry, Mississippi":[6.8,10.2,15.3,27.6,40.2],"Pike, Mississippi":[3.7,7.2,10.9,27,51.3],"Pontotoc, Mississippi":[6,9.3,15.1,27.9,41.6],"Prentiss, Mississippi":[4.4,7.4,11.9,26.4,49.9],"Quitman, Mississippi":[4.1,7.8,13.5,28.6,46],"Rankin, Mississippi":[5.9,9.4,14,26.7,44],"Scott, Mississippi":[4.6,8.2,12.9,27.4,46.9],"Sharkey, Mississippi":[4.2,7.7,13.8,28.6,45.8],"Simpson, Mississippi":[4.9,7.4,11.5,27.1,49],"Smith, Mississippi":[4.7,9.7,16,28.5,41.1],"Stone, Mississippi":[5.3,9.7,14.9,26.9,43.2],"Sunflower, Mississippi":[4.2,8.3,13.7,28,45.8],"Tallahatchie, Mississippi":[4.8,7.7,12.2,28.2,47],"Tate, Mississippi":[5.7,9.7,14.5,26.7,43.4],"Tippah, Mississippi":[4.7,7.7,12.1,26.4,49.1],"Tishomingo, Mississippi":[4.3,8.5,14.5,29.1,43.6],"Tunica, Mississippi":[4,7.1,11.7,28.3,48.9],"Union, Mississippi":[5.4,8.4,12.7,26.9,46.6],"Walthall, Mississippi":[3.8,7.2,13,29,47.1],"Warren, Mississippi":[4.6,8,13.2,28.3,46],"Washington, Mississippi":[4,7,11.5,28.1,49.3],"Wayne, Mississippi":[3.6,6,11.8,28.7,49.9],"Webster, Mississippi":[6.4,10.9,16,27.4,39.3],"Wilkinson, Mississippi":[4.1,6.8,10.9,25.8,52.4],"Winston, Mississippi":[3.9,7.2,11.4,26.3,51.1],"Yalobusha, Mississippi":[5.3,10.3,15.4,28.5,40.5],"Yazoo, Mississippi":[4.8,8.6,14.2,29.4,43]};
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Bottom 20%', 'Second 20%', 'Middle 20%', 'Fourth 20%', 'Top 20%'],
+        datasets: [{
+          label: 'Share (%)',
+          data: values,
+          backgroundColor: '#4576a7'
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.parsed.y + '%'
+            }
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 100,
+            title: {
+              display: true,
+              text: 'Income Share (%)'
+            }
+          },
+          x: {
+            title: {
+              display: true,
+              text: 'Quintile'
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(Object.values(incomeData[this.value]));
+  });
+
+  renderChart(Object.values(incomeData['Statewide']));</script>
+  </body>
+</html>
+</html>

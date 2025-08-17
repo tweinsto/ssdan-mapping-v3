@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Educational Enrollment – Minnesota</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Educational Enrollment (Age 18–24) in Minnesota</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Aitkin County, Minnesota">Aitkin County, Minnesota</option>
+      <option value="Anoka County, Minnesota">Anoka County, Minnesota</option>
+      <option value="Becker County, Minnesota">Becker County, Minnesota</option>
+      <option value="Beltrami County, Minnesota">Beltrami County, Minnesota</option>
+      <option value="Benton County, Minnesota">Benton County, Minnesota</option>
+      <option value="Big Stone County, Minnesota">Big Stone County, Minnesota</option>
+      <option value="Blue Earth County, Minnesota">Blue Earth County, Minnesota</option>
+      <option value="Brown County, Minnesota">Brown County, Minnesota</option>
+      <option value="Carlton County, Minnesota">Carlton County, Minnesota</option>
+      <option value="Carver County, Minnesota">Carver County, Minnesota</option>
+      <option value="Cass County, Minnesota">Cass County, Minnesota</option>
+      <option value="Chippewa County, Minnesota">Chippewa County, Minnesota</option>
+      <option value="Chisago County, Minnesota">Chisago County, Minnesota</option>
+      <option value="Clay County, Minnesota">Clay County, Minnesota</option>
+      <option value="Clearwater County, Minnesota">Clearwater County, Minnesota</option>
+      <option value="Cook County, Minnesota">Cook County, Minnesota</option>
+      <option value="Cottonwood County, Minnesota">Cottonwood County, Minnesota</option>
+      <option value="Crow Wing County, Minnesota">Crow Wing County, Minnesota</option>
+      <option value="Dakota County, Minnesota">Dakota County, Minnesota</option>
+      <option value="Dodge County, Minnesota">Dodge County, Minnesota</option>
+      <option value="Douglas County, Minnesota">Douglas County, Minnesota</option>
+      <option value="Faribault County, Minnesota">Faribault County, Minnesota</option>
+      <option value="Fillmore County, Minnesota">Fillmore County, Minnesota</option>
+      <option value="Freeborn County, Minnesota">Freeborn County, Minnesota</option>
+      <option value="Goodhue County, Minnesota">Goodhue County, Minnesota</option>
+      <option value="Grant County, Minnesota">Grant County, Minnesota</option>
+      <option value="Hennepin County, Minnesota">Hennepin County, Minnesota</option>
+      <option value="Houston County, Minnesota">Houston County, Minnesota</option>
+      <option value="Hubbard County, Minnesota">Hubbard County, Minnesota</option>
+      <option value="Isanti County, Minnesota">Isanti County, Minnesota</option>
+      <option value="Itasca County, Minnesota">Itasca County, Minnesota</option>
+      <option value="Jackson County, Minnesota">Jackson County, Minnesota</option>
+      <option value="Kanabec County, Minnesota">Kanabec County, Minnesota</option>
+      <option value="Kandiyohi County, Minnesota">Kandiyohi County, Minnesota</option>
+      <option value="Kittson County, Minnesota">Kittson County, Minnesota</option>
+      <option value="Koochiching County, Minnesota">Koochiching County, Minnesota</option>
+      <option value="Lac qui Parle County, Minnesota">Lac qui Parle County, Minnesota</option>
+      <option value="Lake County, Minnesota">Lake County, Minnesota</option>
+      <option value="Lake of the Woods County, Minnesota">Lake of the Woods County, Minnesota</option>
+      <option value="Le Sueur County, Minnesota">Le Sueur County, Minnesota</option>
+      <option value="Lincoln County, Minnesota">Lincoln County, Minnesota</option>
+      <option value="Lyon County, Minnesota">Lyon County, Minnesota</option>
+      <option value="Mahnomen County, Minnesota">Mahnomen County, Minnesota</option>
+      <option value="Marshall County, Minnesota">Marshall County, Minnesota</option>
+      <option value="Martin County, Minnesota">Martin County, Minnesota</option>
+      <option value="McLeod County, Minnesota">McLeod County, Minnesota</option>
+      <option value="Meeker County, Minnesota">Meeker County, Minnesota</option>
+      <option value="Mille Lacs County, Minnesota">Mille Lacs County, Minnesota</option>
+      <option value="Morrison County, Minnesota">Morrison County, Minnesota</option>
+      <option value="Mower County, Minnesota">Mower County, Minnesota</option>
+      <option value="Murray County, Minnesota">Murray County, Minnesota</option>
+      <option value="Nicollet County, Minnesota">Nicollet County, Minnesota</option>
+      <option value="Nobles County, Minnesota">Nobles County, Minnesota</option>
+      <option value="Norman County, Minnesota">Norman County, Minnesota</option>
+      <option value="Olmsted County, Minnesota">Olmsted County, Minnesota</option>
+      <option value="Otter Tail County, Minnesota">Otter Tail County, Minnesota</option>
+      <option value="Pennington County, Minnesota">Pennington County, Minnesota</option>
+      <option value="Pine County, Minnesota">Pine County, Minnesota</option>
+      <option value="Pipestone County, Minnesota">Pipestone County, Minnesota</option>
+      <option value="Polk County, Minnesota">Polk County, Minnesota</option>
+      <option value="Pope County, Minnesota">Pope County, Minnesota</option>
+      <option value="Ramsey County, Minnesota">Ramsey County, Minnesota</option>
+      <option value="Red Lake County, Minnesota">Red Lake County, Minnesota</option>
+      <option value="Redwood County, Minnesota">Redwood County, Minnesota</option>
+      <option value="Renville County, Minnesota">Renville County, Minnesota</option>
+      <option value="Rice County, Minnesota">Rice County, Minnesota</option>
+      <option value="Rock County, Minnesota">Rock County, Minnesota</option>
+      <option value="Roseau County, Minnesota">Roseau County, Minnesota</option>
+      <option value="Scott County, Minnesota">Scott County, Minnesota</option>
+      <option value="Sherburne County, Minnesota">Sherburne County, Minnesota</option>
+      <option value="Sibley County, Minnesota">Sibley County, Minnesota</option>
+      <option value="St. Louis County, Minnesota">St. Louis County, Minnesota</option>
+      <option value="Stearns County, Minnesota">Stearns County, Minnesota</option>
+      <option value="Steele County, Minnesota">Steele County, Minnesota</option>
+      <option value="Stevens County, Minnesota">Stevens County, Minnesota</option>
+      <option value="Swift County, Minnesota">Swift County, Minnesota</option>
+      <option value="Todd County, Minnesota">Todd County, Minnesota</option>
+      <option value="Traverse County, Minnesota">Traverse County, Minnesota</option>
+      <option value="Wabasha County, Minnesota">Wabasha County, Minnesota</option>
+      <option value="Wadena County, Minnesota">Wadena County, Minnesota</option>
+      <option value="Waseca County, Minnesota">Waseca County, Minnesota</option>
+      <option value="Washington County, Minnesota">Washington County, Minnesota</option>
+      <option value="Watonwan County, Minnesota">Watonwan County, Minnesota</option>
+      <option value="Wilkin County, Minnesota">Wilkin County, Minnesota</option>
+      <option value="Winona County, Minnesota">Winona County, Minnesota</option>
+      <option value="Wright County, Minnesota">Wright County, Minnesota</option>
+      <option value="Yellow Medicine County, Minnesota">Yellow Medicine County, Minnesota</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>  const data = {"Statewide":[47.4,12.9,39.7],"Aitkin County, Minnesota":[46.1,11.2,42.7],"Anoka County, Minnesota":[47.4,13.6,39],"Becker County, Minnesota":[46.1,18.1,35.8],"Beltrami County, Minnesota":[48.7,15.1,36.2],"Benton County, Minnesota":[47.5,17.5,35],"Big Stone County, Minnesota":[52.7,1.1,46.2],"Blue Earth County, Minnesota":[48.4,9.3,42.3],"Brown County, Minnesota":[46.6,13.6,39.7],"Carlton County, Minnesota":[45.2,19.4,35.4],"Carver County, Minnesota":[47.4,12.3,40.3],"Cass County, Minnesota":[47.2,14.7,38.1],"Chippewa County, Minnesota":[51.3,1.6,47.1],"Chisago County, Minnesota":[47.6,12.2,40.2],"Clay County, Minnesota":[49.8,6.8,43.4],"Clearwater County, Minnesota":[45.3,20.3,34.3],"Cook County, Minnesota":[38.8,24.4,36.8],"Cottonwood County, Minnesota":[47.8,16.2,36],"Crow Wing County, Minnesota":[49.2,14.8,36],"Dakota County, Minnesota":[48.6,10.1,41.3],"Dodge County, Minnesota":[48.8,9.3,41.8],"Douglas County, Minnesota":[48.4,10.9,40.8],"Faribault County, Minnesota":[46.8,16,37.2],"Fillmore County, Minnesota":[49.3,15.2,35.5],"Freeborn County, Minnesota":[45.7,18.3,36.1],"Goodhue County, Minnesota":[45.3,14.6,40.1],"Grant County, Minnesota":[49.2,10,40.8],"Hennepin County, Minnesota":[47.4,11,41.6],"Houston County, Minnesota":[47.8,15.2,37],"Hubbard County, Minnesota":[48.2,15.7,36],"Isanti County, Minnesota":[44.9,17.3,37.8],"Itasca County, Minnesota":[44.7,19.2,36.2],"Jackson County, Minnesota":[44.9,18.2,36.9],"Kanabec County, Minnesota":[45.8,15.4,38.7],"Kandiyohi County, Minnesota":[48.3,14.5,37.2],"Kittson County, Minnesota":[52.7,9.2,38.1],"Koochiching County, Minnesota":[48.7,5.6,45.7],"Lac qui Parle County, Minnesota":[40,22.5,37.5],"Lake County, Minnesota":[46.5,18.6,34.9],"Lake of the Woods County, Minnesota":[52.7,0,47.3],"Le Sueur County, Minnesota":[44.2,16.5,39.3],"Lincoln County, Minnesota":[49.1,7,43.9],"Lyon County, Minnesota":[45.1,12.6,42.3],"Mahnomen County, Minnesota":[45.5,24.1,30.4],"Marshall County, Minnesota":[46.2,16.7,37.1],"Martin County, Minnesota":[51,12.3,36.7],"McLeod County, Minnesota":[47.6,16.1,36.3],"Meeker County, Minnesota":[46.1,18.2,35.7],"Mille Lacs County, Minnesota":[47.2,20.5,32.3],"Morrison County, Minnesota":[48.4,19.9,31.7],"Mower County, Minnesota":[47.4,13.3,39.3],"Murray County, Minnesota":[47.3,11,41.7],"Nicollet County, Minnesota":[49.7,10.7,39.7],"Nobles County, Minnesota":[46.8,18.3,35],"Norman County, Minnesota":[48.5,12.6,38.9],"Olmsted County, Minnesota":[47.4,16.6,36.1],"Otter Tail County, Minnesota":[48.6,16.4,35],"Pennington County, Minnesota":[46.7,17.9,35.4],"Pine County, Minnesota":[46.8,14.9,38.3],"Pipestone County, Minnesota":[48,17.5,34.6],"Polk County, Minnesota":[48.3,17,34.7],"Pope County, Minnesota":[46.6,22.5,30.9],"Ramsey County, Minnesota":[47.5,11.5,41],"Red Lake County, Minnesota":[44.5,21.9,33.6],"Redwood County, Minnesota":[46.8,20.7,32.5],"Renville County, Minnesota":[46.7,15.7,37.6],"Rice County, Minnesota":[49.5,4.6,46],"Rock County, Minnesota":[40.1,25,34.9],"Roseau County, Minnesota":[44.4,16.3,39.3],"Scott County, Minnesota":[48.1,10.8,41.1],"Sherburne County, Minnesota":[46.6,16.5,36.8],"Sibley County, Minnesota":[46.6,13.1,40.2],"St. Louis County, Minnesota":[47.9,12.4,39.7],"Stearns County, Minnesota":[47.9,12.3,39.8],"Steele County, Minnesota":[47.4,15.3,37.3],"Stevens County, Minnesota":[46,16.9,37.1],"Swift County, Minnesota":[47.9,12.6,39.5],"Todd County, Minnesota":[44.3,24.4,31.3],"Traverse County, Minnesota":[45.7,10.9,43.4],"Wabasha County, Minnesota":[47.9,13.1,39],"Wadena County, Minnesota":[53.5,18.3,28.2],"Waseca County, Minnesota":[42.8,27.3,29.9],"Washington County, Minnesota":[46.6,11.8,41.6],"Watonwan County, Minnesota":[37.2,32.9,29.9],"Wilkin County, Minnesota":[42.6,24.3,33.1],"Winona County, Minnesota":[42.2,15.9,41.9],"Wright County, Minnesota":[48.5,15.4,36.1],"Yellow Medicine County, Minnesota":[44.6,24.6,30.8]};
+  const nationalAvg = [6.9,55,38.1];
+  const categories = ["Enrolled in College","Enrolled in Other School","Not Enrolled"];
+  const ctx = document.getElementById("barChart").getContext("2d");
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: categories,
+        datasets: [
+          {
+            label: "County/State",
+            data: values,
+            backgroundColor: ["#66c2a5", "#fc8d62", "#8da0cb"]
+          },
+          {
+            label: null,
+            data: categories.map(c => nationalAvg[c]),
+            type: "line",
+            borderColor: "black",
+            borderWidth: 2,
+            pointRadius: 0,
+            fill: false
+          }
+        ]
+      },
+      options: {
+        indexAxis: "y",
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            ticks: {
+              callback: v => v + "%"
+            }
+          }
+        },
+        plugins: {
+          legend: {
+            labels: {
+              filter: item => item.text !== null
+            }
+          },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.dataset.label ? ctx.dataset.label + ": " + ctx.raw + "%" : null
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById("countySelect").addEventListener("change", function() {
+    renderChart(Object.values(data[this.value]));
+  });
+
+  renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

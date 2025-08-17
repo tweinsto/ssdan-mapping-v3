@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Educational Enrollment – Massachusetts</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body { font-family: sans-serif; margin: 1rem 2rem; text-align: center; }
+        h2 { margin-bottom: 0.25rem; font-size: 1.6rem; }
+        select { padding: 0.4rem; font-size: 1rem; margin: 1rem 0; }
+        canvas { width: 100%; max-width: 850px; height: 500px; }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Educational Enrollment (Age 18–24) in Massachusetts</h2>
+    <label>Select County:</label>
+    <select id="countySelect">
+      <option value="Statewide">Statewide</option>
+      <option value="Barnstable County, Massachusetts">Barnstable County, Massachusetts</option>
+      <option value="Berkshire County, Massachusetts">Berkshire County, Massachusetts</option>
+      <option value="Bristol County, Massachusetts">Bristol County, Massachusetts</option>
+      <option value="Dukes County, Massachusetts">Dukes County, Massachusetts</option>
+      <option value="Essex County, Massachusetts">Essex County, Massachusetts</option>
+      <option value="Franklin County, Massachusetts">Franklin County, Massachusetts</option>
+      <option value="Hampden County, Massachusetts">Hampden County, Massachusetts</option>
+      <option value="Hampshire County, Massachusetts">Hampshire County, Massachusetts</option>
+      <option value="Middlesex County, Massachusetts">Middlesex County, Massachusetts</option>
+      <option value="Nantucket County, Massachusetts">Nantucket County, Massachusetts</option>
+      <option value="Norfolk County, Massachusetts">Norfolk County, Massachusetts</option>
+      <option value="Plymouth County, Massachusetts">Plymouth County, Massachusetts</option>
+      <option value="Suffolk County, Massachusetts">Suffolk County, Massachusetts</option>
+      <option value="Worcester County, Massachusetts">Worcester County, Massachusetts</option>
+    </select>
+    <canvas id="barChart"></canvas>
+    <script>  const data = {"Statewide":[47.5,10.9,41.6],"Barnstable County, Massachusetts":[47.9,15.3,36.8],"Berkshire County, Massachusetts":[47.1,11.7,41.2],"Bristol County, Massachusetts":[46.3,15.4,38.3],"Dukes County, Massachusetts":[47.9,3.8,48.3],"Essex County, Massachusetts":[47.3,13.3,39.3],"Franklin County, Massachusetts":[45.6,20.3,34.1],"Hampden County, Massachusetts":[45.2,16.8,38],"Hampshire County, Massachusetts":[49.5,3.1,47.4],"Middlesex County, Massachusetts":[48.4,8.8,42.8],"Nantucket County, Massachusetts":[48.3,3.5,48.3],"Norfolk County, Massachusetts":[46.7,10.4,42.9],"Plymouth County, Massachusetts":[46.2,13.6,40.2],"Suffolk County, Massachusetts":[48.9,5.9,45.2],"Worcester County, Massachusetts":[47.2,11.6,41.2]};
+  const nationalAvg = [6.9,55,38.1];
+  const categories = ["Enrolled in College","Enrolled in Other School","Not Enrolled"];
+  const ctx = document.getElementById("barChart").getContext("2d");
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+    chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: categories,
+        datasets: [
+          {
+            label: "County/State",
+            data: values,
+            backgroundColor: ["#66c2a5", "#fc8d62", "#8da0cb"]
+          },
+          {
+            label: null,
+            data: categories.map(c => nationalAvg[c]),
+            type: "line",
+            borderColor: "black",
+            borderWidth: 2,
+            pointRadius: 0,
+            fill: false
+          }
+        ]
+      },
+      options: {
+        indexAxis: "y",
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            ticks: {
+              callback: v => v + "%"
+            }
+          }
+        },
+        plugins: {
+          legend: {
+            labels: {
+              filter: item => item.text !== null
+            }
+          },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.dataset.label ? ctx.dataset.label + ": " + ctx.raw + "%" : null
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById("countySelect").addEventListener("change", function() {
+    renderChart(Object.values(data[this.value]));
+  });
+
+  renderChart(Object.values(data["Statewide"]));</script>
+  </body>
+</html>
+</html>

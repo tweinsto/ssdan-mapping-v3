@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <meta charset="UTF-8"/>
+  <title>Income Distribution – Minnesota</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+        body {
+          font-family: sans-serif;
+          text-align: center;
+          margin: 2rem;
+        }
+        select {
+          font-size: 1rem;
+          padding: 0.4rem;
+          margin-bottom: 1rem;
+        }
+        canvas {
+          width: 100%;
+          max-width: 700px;
+          height: 400px;
+        }
+      </style>
+</head>
+<html>
+  <body>
+    <h2>Income Share by Quintile – Minnesota</h2>
+    <label>Select County, State:</label>
+    <select id="countySelect"><option value='Statewide'>Statewide</option>
+<option value='Aitkin, Minnesota'>Aitkin, Minnesota</option>
+<option value='Anoka, Minnesota'>Anoka, Minnesota</option>
+<option value='Becker, Minnesota'>Becker, Minnesota</option>
+<option value='Beltrami, Minnesota'>Beltrami, Minnesota</option>
+<option value='Benton, Minnesota'>Benton, Minnesota</option>
+<option value='Big Stone, Minnesota'>Big Stone, Minnesota</option>
+<option value='Blue Earth, Minnesota'>Blue Earth, Minnesota</option>
+<option value='Brown, Minnesota'>Brown, Minnesota</option>
+<option value='Carlton, Minnesota'>Carlton, Minnesota</option>
+<option value='Carver, Minnesota'>Carver, Minnesota</option>
+<option value='Cass, Minnesota'>Cass, Minnesota</option>
+<option value='Chippewa, Minnesota'>Chippewa, Minnesota</option>
+<option value='Chisago, Minnesota'>Chisago, Minnesota</option>
+<option value='Clay, Minnesota'>Clay, Minnesota</option>
+<option value='Clearwater, Minnesota'>Clearwater, Minnesota</option>
+<option value='Cook, Minnesota'>Cook, Minnesota</option>
+<option value='Cottonwood, Minnesota'>Cottonwood, Minnesota</option>
+<option value='Crow Wing, Minnesota'>Crow Wing, Minnesota</option>
+<option value='Dakota, Minnesota'>Dakota, Minnesota</option>
+<option value='Dodge, Minnesota'>Dodge, Minnesota</option>
+<option value='Douglas, Minnesota'>Douglas, Minnesota</option>
+<option value='Faribault, Minnesota'>Faribault, Minnesota</option>
+<option value='Fillmore, Minnesota'>Fillmore, Minnesota</option>
+<option value='Freeborn, Minnesota'>Freeborn, Minnesota</option>
+<option value='Goodhue, Minnesota'>Goodhue, Minnesota</option>
+<option value='Grant, Minnesota'>Grant, Minnesota</option>
+<option value='Hennepin, Minnesota'>Hennepin, Minnesota</option>
+<option value='Houston, Minnesota'>Houston, Minnesota</option>
+<option value='Hubbard, Minnesota'>Hubbard, Minnesota</option>
+<option value='Isanti, Minnesota'>Isanti, Minnesota</option>
+<option value='Itasca, Minnesota'>Itasca, Minnesota</option>
+<option value='Jackson, Minnesota'>Jackson, Minnesota</option>
+<option value='Kanabec, Minnesota'>Kanabec, Minnesota</option>
+<option value='Kandiyohi, Minnesota'>Kandiyohi, Minnesota</option>
+<option value='Kittson, Minnesota'>Kittson, Minnesota</option>
+<option value='Koochiching, Minnesota'>Koochiching, Minnesota</option>
+<option value='Lac qui Parle, Minnesota'>Lac qui Parle, Minnesota</option>
+<option value='Lake, Minnesota'>Lake, Minnesota</option>
+<option value='Lake of the Woods, Minnesota'>Lake of the Woods, Minnesota</option>
+<option value='Le Sueur, Minnesota'>Le Sueur, Minnesota</option>
+<option value='Lincoln, Minnesota'>Lincoln, Minnesota</option>
+<option value='Lyon, Minnesota'>Lyon, Minnesota</option>
+<option value='Mahnomen, Minnesota'>Mahnomen, Minnesota</option>
+<option value='Marshall, Minnesota'>Marshall, Minnesota</option>
+<option value='Martin, Minnesota'>Martin, Minnesota</option>
+<option value='McLeod, Minnesota'>McLeod, Minnesota</option>
+<option value='Meeker, Minnesota'>Meeker, Minnesota</option>
+<option value='Mille Lacs, Minnesota'>Mille Lacs, Minnesota</option>
+<option value='Morrison, Minnesota'>Morrison, Minnesota</option>
+<option value='Mower, Minnesota'>Mower, Minnesota</option>
+<option value='Murray, Minnesota'>Murray, Minnesota</option>
+<option value='Nicollet, Minnesota'>Nicollet, Minnesota</option>
+<option value='Nobles, Minnesota'>Nobles, Minnesota</option>
+<option value='Norman, Minnesota'>Norman, Minnesota</option>
+<option value='Olmsted, Minnesota'>Olmsted, Minnesota</option>
+<option value='Otter Tail, Minnesota'>Otter Tail, Minnesota</option>
+<option value='Pennington, Minnesota'>Pennington, Minnesota</option>
+<option value='Pine, Minnesota'>Pine, Minnesota</option>
+<option value='Pipestone, Minnesota'>Pipestone, Minnesota</option>
+<option value='Polk, Minnesota'>Polk, Minnesota</option>
+<option value='Pope, Minnesota'>Pope, Minnesota</option>
+<option value='Ramsey, Minnesota'>Ramsey, Minnesota</option>
+<option value='Red Lake, Minnesota'>Red Lake, Minnesota</option>
+<option value='Redwood, Minnesota'>Redwood, Minnesota</option>
+<option value='Renville, Minnesota'>Renville, Minnesota</option>
+<option value='Rice, Minnesota'>Rice, Minnesota</option>
+<option value='Rock, Minnesota'>Rock, Minnesota</option>
+<option value='Roseau, Minnesota'>Roseau, Minnesota</option>
+<option value='Scott, Minnesota'>Scott, Minnesota</option>
+<option value='Sherburne, Minnesota'>Sherburne, Minnesota</option>
+<option value='Sibley, Minnesota'>Sibley, Minnesota</option>
+<option value='St. Louis, Minnesota'>St. Louis, Minnesota</option>
+<option value='Stearns, Minnesota'>Stearns, Minnesota</option>
+<option value='Steele, Minnesota'>Steele, Minnesota</option>
+<option value='Stevens, Minnesota'>Stevens, Minnesota</option>
+<option value='Swift, Minnesota'>Swift, Minnesota</option>
+<option value='Todd, Minnesota'>Todd, Minnesota</option>
+<option value='Traverse, Minnesota'>Traverse, Minnesota</option>
+<option value='Wabasha, Minnesota'>Wabasha, Minnesota</option>
+<option value='Wadena, Minnesota'>Wadena, Minnesota</option>
+<option value='Waseca, Minnesota'>Waseca, Minnesota</option>
+<option value='Washington, Minnesota'>Washington, Minnesota</option>
+<option value='Watonwan, Minnesota'>Watonwan, Minnesota</option>
+<option value='Wilkin, Minnesota'>Wilkin, Minnesota</option>
+<option value='Winona, Minnesota'>Winona, Minnesota</option>
+<option value='Wright, Minnesota'>Wright, Minnesota</option>
+<option value='Yellow Medicine, Minnesota'>Yellow Medicine, Minnesota</option></select>
+    <canvas id="barChart" width="700" height="400"></canvas>
+    <script>  const incomeData = {"Statewide":[5.8,9.2,13.7,26.7,44.6],"Aitkin, Minnesota":[5.4,9,13.4,26.9,45.2],"Anoka, Minnesota":[6.7,10.3,14.7,26.7,41.6],"Becker, Minnesota":[4.6,7.4,10.9,25.9,51.3],"Beltrami, Minnesota":[5.5,8.6,13,26.8,46.1],"Benton, Minnesota":[6.2,9.6,14.8,26.9,42.5],"Big Stone, Minnesota":[5.1,8.4,13.3,26.8,46.4],"Blue Earth, Minnesota":[5.6,9.1,13.5,26.8,45],"Brown, Minnesota":[6.4,9.7,14.2,26.3,43.4],"Carlton, Minnesota":[6.4,9.8,14.1,26.3,43.3],"Carver, Minnesota":[6,9.5,14,26.8,43.7],"Cass, Minnesota":[5.6,8.8,13.6,27.2,44.8],"Chippewa, Minnesota":[5.3,9.4,13.8,26.8,44.8],"Chisago, Minnesota":[6.8,10.7,15,26.3,41.2],"Clay, Minnesota":[5.3,8.9,13.5,26.6,45.6],"Clearwater, Minnesota":[5.7,9.5,14.7,27.6,42.5],"Cook, Minnesota":[6.5,9,12.7,27.1,44.7],"Cottonwood, Minnesota":[5.9,9.6,14,26.9,43.6],"Crow Wing, Minnesota":[5.6,8.9,13.4,26.7,45.4],"Dakota, Minnesota":[6.1,9.5,13.9,26.7,43.7],"Dodge, Minnesota":[6.5,9.6,13.7,26.1,44.1],"Douglas, Minnesota":[5.5,8.6,12.7,26.4,46.9],"Faribault, Minnesota":[5.5,8.8,13.2,26.8,45.7],"Fillmore, Minnesota":[6.2,9.8,14.3,26.4,43.3],"Freeborn, Minnesota":[4.9,8.1,12.2,26,48.8],"Goodhue, Minnesota":[5.7,9.4,13.6,26.6,44.7],"Grant, Minnesota":[4.8,8.3,11.8,25.8,49.4],"Hennepin, Minnesota":[4.6,7.5,11.8,27.1,49],"Houston, Minnesota":[6,9.3,13.4,26.3,45],"Hubbard, Minnesota":[5,8.2,12.2,25.8,48.8],"Isanti, Minnesota":[6.5,10.4,14.5,26.4,42.2],"Itasca, Minnesota":[5.5,8.9,13.6,27,45],"Jackson, Minnesota":[5.5,8.8,12.7,26.2,46.8],"Kanabec, Minnesota":[6.4,10,14.7,27,41.9],"Kandiyohi, Minnesota":[6,9.5,13.6,26.5,44.4],"Kittson, Minnesota":[6.1,9.6,14.4,27.1,42.8],"Koochiching, Minnesota":[6.3,9.7,14.5,27.2,42.4],"Lac qui Parle, Minnesota":[5.5,8.8,12.9,26.8,46],"Lake, Minnesota":[6.7,10.7,15.5,26.4,40.7],"Lake of the Woods, Minnesota":[5.7,10.3,15.1,28.3,40.6],"Le Sueur, Minnesota":[6.2,9.9,14.2,26.5,43.1],"Lincoln, Minnesota":[5.2,8.3,13.2,27.3,46.1],"Lyon, Minnesota":[5,8.6,12.9,26.8,46.7],"Mahnomen, Minnesota":[5.5,9.3,15,28.9,41.3],"Marshall, Minnesota":[7.3,10.9,16.1,27,38.6],"Martin, Minnesota":[5.4,8.7,13.4,26.9,45.6],"McLeod, Minnesota":[6,9.2,13.4,26.5,45],"Meeker, Minnesota":[6.1,9.8,14.5,26.5,43.1],"Mille Lacs, Minnesota":[6,9.9,15,27,42.1],"Morrison, Minnesota":[5.5,9,13.9,27.1,44.6],"Mower, Minnesota":[5.7,8.8,12.9,26.2,46.3],"Murray, Minnesota":[6,9.7,14.1,26.9,43.3],"Nicollet, Minnesota":[4.7,7.6,11.4,26.1,50.2],"Nobles, Minnesota":[6.3,9.4,14,27.1,43.2],"Norman, Minnesota":[5.8,9.1,13.6,26.1,45.4],"Olmsted, Minnesota":[4.9,7.8,11.9,26.6,48.8],"Otter Tail, Minnesota":[5.4,9,13.5,26.9,45.3],"Pennington, Minnesota":[5.9,9.4,13.9,26,44.8],"Pine, Minnesota":[6.3,10.4,15.2,27.3,40.8],"Pipestone, Minnesota":[5.4,8.6,13,26.8,46.2],"Polk, Minnesota":[5.7,9.6,15.3,27.6,41.8],"Pope, Minnesota":[5.7,9.3,14.3,27.2,43.5],"Ramsey, Minnesota":[4.9,7.9,12.3,26.9,48],"Red Lake, Minnesota":[6.8,11,16,26.5,39.7],"Redwood, Minnesota":[5.6,9.3,13.7,26.6,44.7],"Renville, Minnesota":[6,9.4,14.1,26.7,43.7],"Rice, Minnesota":[5.6,9.1,13.7,26.5,45.1],"Rock, Minnesota":[5.9,9.6,14.5,27.4,42.5],"Roseau, Minnesota":[6,9.7,14.2,26.4,43.7],"Scott, Minnesota":[6.2,9.4,13.7,26.7,43.9],"Sherburne, Minnesota":[6.4,10.1,14.3,25.7,43.5],"Sibley, Minnesota":[6.1,9.3,13.9,26.5,44.2],"St. Louis, Minnesota":[5,8.4,13,26.8,46.8],"Stearns, Minnesota":[5.5,8.8,13,26.7,46.1],"Steele, Minnesota":[5.8,9.5,13.9,26.4,44.4],"Stevens, Minnesota":[4.2,7,10.3,25.9,52.5],"Swift, Minnesota":[5.3,8.5,13.7,27.3,45.3],"Todd, Minnesota":[6,9.4,13.5,26.4,44.8],"Traverse, Minnesota":[5.5,9.2,14.5,28.2,42.6],"Wabasha, Minnesota":[5.9,9.4,14.1,26.9,43.6],"Wadena, Minnesota":[6,9.8,15.2,27.2,41.9],"Waseca, Minnesota":[5.4,9,13.5,26.7,45.4],"Washington, Minnesota":[5.7,8.7,12.6,26.4,46.6],"Watonwan, Minnesota":[5.4,8.9,13.3,26.3,46.1],"Wilkin, Minnesota":[6.6,10.4,15.4,27.1,40.5],"Winona, Minnesota":[5.4,8.8,13.4,26.8,45.6],"Wright, Minnesota":[6.9,10.6,14.8,26,41.7],"Yellow Medicine, Minnesota":[5.8,8.9,13.1,26.5,45.7]};
+  const ctx = document.getElementById('barChart').getContext('2d');
+  let chart;
+
+  function renderChart(values) {
+    if (chart) chart.destroy();
+
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Bottom 20%', 'Second 20%', 'Middle 20%', 'Fourth 20%', 'Top 20%'],
+        datasets: [{
+          label: 'Share (%)',
+          data: values,
+          backgroundColor: '#4576a7'
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.parsed.y + '%'
+            }
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 100,
+            title: {
+              display: true,
+              text: 'Income Share (%)'
+            }
+          },
+          x: {
+            title: {
+              display: true,
+              text: 'Quintile'
+            }
+          }
+        }
+      }
+    });
+  }
+
+  document.getElementById('countySelect').addEventListener('change', function() {
+    renderChart(Object.values(incomeData[this.value]));
+  });
+
+  renderChart(Object.values(incomeData['Statewide']));</script>
+  </body>
+</html>
+</html>
