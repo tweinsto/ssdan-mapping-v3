@@ -59,8 +59,11 @@
     .map-frame {
       width: 100%;
       height: 100%;
-      border: none;
+      border: 2px solid #262e8c;
       border-radius: 8px;
+      box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+      display: block;
+      
     }
 
     .view-toggle {
@@ -209,43 +212,54 @@
     <a href="https://www.census.gov/programs-surveys/acs" target="_blank" style="color:#003366;text-decoration:underline;">ACS 2023</a>
   </div>
 
-  <script>
-    // Toggle: swap iframe src and highlight active view.
-    (function () {
-      const stateBtn = document.getElementById('view-state');
-      const countyBtn = document.getElementById('view-county');
-      const frame    = document.querySelector('.map-frame');
+ <script>
+  (function () {
+    const stateBtn = document.getElementById('view-state');
+    const countyBtn = document.getElementById('view-county');
+    const frame = document.querySelector('.map-frame');
 
-      function setActive(btn) {
-        stateBtn.classList.remove('active');
-        countyBtn.classList.remove('active');
-        btn.classList.add('active');
+    function activate(btn, src) {
+      // Clear old state
+      stateBtn.classList.remove('active');
+      countyBtn.classList.remove('active');
+
+      // Set new
+      btn.classList.add('active');
+      frame.src = src;
+
+      // Save choice
+      sessionStorage.setItem('earningsView', btn.id);
+    }
+
+    // Restore choice on load/back
+    function restore() {
+      const saved = sessionStorage.getItem('earningsView');
+      if (saved === 'view-state') {
+        activate(stateBtn, 'maps/earnings-state.html');
+      } else {
+        // default and also for saved === 'view-county'
+        activate(countyBtn, 'maps/income.html');
       }
+    }
 
-      // Initialize highlight based on current src
-      function initActive() {
-        const src = frame.getAttribute('src') || '';
-        if (src.indexOf('earnings-state.html') !== -1 || src.indexOf('-state.html') !== -1) {
-          setActive(stateBtn);
-        } else {
-          setActive(countyBtn);
-        }
-      }
+    // Bind clicks
+    stateBtn.addEventListener('click', e => {
+      e.preventDefault();
+      activate(stateBtn, 'maps/earnings-state.html');
+    });
 
-      stateBtn.addEventListener('click', function (e) {
-        e.preventDefault();
-        frame.src = 'maps/earnings-state.html';
-        setActive(stateBtn);
-      });
+    countyBtn.addEventListener('click', e => {
+      e.preventDefault();
+      activate(countyBtn, 'maps/income.html');
+    });
 
-      countyBtn.addEventListener('click', function (e) {
-        e.preventDefault();
-        frame.src = 'maps/income.html';
-        setActive(countyBtn);
-      });
+    // Fire restore right away
+    restore();
 
-      initActive();
-    })();
-  </script>
+    // Handle browser back/forward
+    window.addEventListener('pageshow', restore);
+  })();
+</script>
+
 </body>
 </html>

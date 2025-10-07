@@ -46,9 +46,9 @@
     .map-frame {
       width: 65%;
       height: 550px;
-      border: 2px solid #ccc;
-      border-radius: 8px;
-      box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+  border: 2px solid #262e8c;
+  border-radius: 8px;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
       margin-right: 1rem;
       max-width: 800px;
     }
@@ -209,7 +209,7 @@
           </div>
         </div>
   
-<h3> Other </h3>
+<h3> Exlusively Home Owners </h3>
     <a href="tenure.html" style="
   display: inline-block;
   margin-top: 0rem;
@@ -225,7 +225,7 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   transition: all 0.25s ease-in-out;
 ">
-Housing Tenure (Exlusively Home Owners)    ➡
+Housing Tenure ➡
 </a>
 
 <style>
@@ -251,21 +251,58 @@ Housing Tenure (Exlusively Home Owners)    ➡
   </div>
 
   <script>
-    const btnUnder65 = document.getElementById('btn-under65');
-    const btnOver65 = document.getElementById('btn-over65');
-    const mapFrame = document.getElementById('loneliness-map');
+  (function () {
+    const KEY       = 'miscLonelyView';
+    const underBtn  = document.getElementById('btn-under65');
+    const overBtn   = document.getElementById('btn-over65');
+    const frame     = document.getElementById('loneliness-map');
+    const SRC_UNDER = 'misc/lonely-under65.html';
+    const SRC_OVER  = 'misc/lonely-65plus.html';
 
-    btnUnder65.addEventListener('click', () => {
-      mapFrame.src = 'misc/lonely-under65.html';
-      btnUnder65.classList.add('active');
-      btnOver65.classList.remove('active');
+    function setActive(btn, src) {
+      // update buttons
+      underBtn.classList.remove('active');
+      overBtn.classList.remove('active');
+      btn.classList.add('active');
+
+      // update iframe only if needed
+      if (!frame.src.endsWith(src)) frame.src = src;
+
+      // persist
+      sessionStorage.setItem(KEY, btn.id);
+    }
+
+    function restore() {
+      const saved = sessionStorage.getItem(KEY);
+      if (saved === 'btn-over65') {
+        setActive(overBtn, SRC_OVER);
+      } else {
+        // default + saved 'btn-under65'
+        setActive(underBtn, SRC_UNDER);
+      }
+    }
+
+    // click bindings
+    underBtn.addEventListener('click', e => {
+      e.preventDefault();
+      setActive(underBtn, SRC_UNDER);
+    });
+    overBtn.addEventListener('click', e => {
+      e.preventDefault();
+      setActive(overBtn, SRC_OVER);
     });
 
-    btnOver65.addEventListener('click', () => {
-      mapFrame.src = 'misc/lonely-65plus.html';
-      btnOver65.classList.add('active');
-      btnUnder65.classList.remove('active');
-    });
-  </script>
+    // IMPORTANT: run now (injected content doesn't get DOMContentLoaded)
+    restore();
+
+    // Expose a hook so index.html can re-trigger after injection if needed
+    window.restoreMiscLonelyView = restore;
+
+    // Also handle browser back/forward cache restore
+    window.addEventListener('pageshow', restore);
+  })();
+</script>
+
+
 </body>
 </html>
