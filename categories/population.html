@@ -22,6 +22,14 @@
       background-color: #f2f2f2;
     }
 
+    .sr-only {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
     /* --- TOP BAR --- */
     .top-controls{
       display:flex;
@@ -212,46 +220,105 @@
       <div class="site-desc">
         <p>This site makes U.S. demographic and economic trends easy to explore through interactive maps that move from national patterns down to state and county detail. Clicking on a state reveals related charts and tables that connect local statistics to broader trends. Brought to you by the Social Science Data Analysis Network (SSDAN) at the University of Michigan, it is designed to make Census data clear and useful for both professionals and general audiences.</p>
       </div>
-      <div class="ranking-toggle">
-        <button id="btnGrowth2000" class="active">Growth 2000–2023</button>
-        <button id="btnGrowth2018">Growth 2018–2023</button>
-        <button id="btnPop">Population 2023</button>
-        <button id="btnDensity">Pop Density</button>
-      </div>
+      <div class="ranking-toggle" role="navigation" aria-label="Menu">
+  <span class="sr-only">
+    Menu. Use these menu options to change the map and rankings.
+  </span>
+
+  <button id="btnGrowth2000" class="active"
+    aria-label="Menu option Growth 2000 to 2023">
+    Growth 2000–2023
+  </button>
+
+  <button id="btnGrowth2018"
+    aria-label="Menu option Growth 2018 to 2023">
+    Growth 2018–2023
+  </button>
+
+  <button id="btnPop"
+    aria-label="Menu option Population 2023">
+    Population 2023
+  </button>
+
+  <button id="btnDensity"
+    aria-label="Menu option Population density">
+    Pop Density
+  </button>
+</div>
     </div>
 
     <!-- RIGHT: Age-based menu -->
-    <div class="link-list">
-      <h4><strong>Explore Age-Based Population Data (2023)</strong></h4>
+    <div class="link-list"
+     role="region"
+     aria-labelledby="age-data-title">
+
+      <h4 id="age-data-title">
+  <strong>Explore Age-Based Population Data (2023)</strong>
+</h4>
+      <p class="sr-only">
+  Explore age-based population data. These options allow viewing population age characteristics at the state or county level.
+</p>
       <div class="link-columns">
         <div class="link-col">
-          <div class="link-box">
-            <div class="link-title">Median Age</div>
-            <div class="link-sub">
-              <span style="text-decoration: underline;">View:</span>
-              <a href="../maps/median-age-countyview.html">County</a> |
-              <a href="median-age.html">State</a>
-            </div>
+          <div class="link-box"
+     role="group"
+     aria-labelledby="median-age-title">
+            <div class="link-title" id="median-age-title">
+  Median Age
+</div>
+            <div class="link-sub"
+     role="navigation"
+     aria-label="Median Age view options">
+  <span aria-hidden="true" style="text-decoration: underline;">View:</span>
+  <span class="sr-only">View options:</span>
+  <a href="../maps/median-age-countyview.html">County</a> |
+  <a href="median-age.html">State</a>
+</div>
+            <p class="sr-only">
+  Median age
+</p>
           </div>
         </div>
         <div class="link-col">
-          <div class="link-box">
-            <div class="link-title">Age 18–24</div>
-            <div class="link-sub">
-              <span style="text-decoration: underline;">View:</span>
-              <a href="../maps/18-24-countyview.html">County</a> |
-              <a href="male+female-18-24.html">State</a>
-            </div>
+          <div class="link-box"
+     role="group"
+     aria-labelledby="age-18-24-title">
+
+            <div class="link-title" id="median-age-title">
+ Age 18-24
+</div>
+            <div class="link-sub"
+     role="navigation"
+     aria-label="Age 18 to 24 view options">
+  <span aria-hidden="true" style="text-decoration: underline;">View:</span>
+  <span class="sr-only">View options:</span>
+  <a href="../maps/18-24-countyview.html">County</a> |
+  <a href="male+female-18-24.html">State</a>
+</div>
+            <p class="sr-only">
+  Age 18 to 24
+</p>
           </div>
         </div>
         <div class="link-col">
-          <div class="link-box">
-            <div class="link-title">Age 65+</div>
-            <div class="link-sub">
-              <span style="text-decoration: underline;">View:</span>
-              <a href="seventy-plus-county.html">County</a> |
-              <a href="seventy-plus.html">State</a>
-            </div>
+          <div class="link-box"
+     role="group"
+     aria-labelledby="Age-65-plus-title">
+            <div class="link-title" id="median-age-title">
+  Age 65+
+</div>
+
+            <div class="link-sub"
+     role="navigation"
+     aria-label="Age 65 and over view options">
+  <span aria-hidden="true" style="text-decoration: underline;">View:</span>
+  <span class="sr-only">View options:</span>
+  <a href="seventy-plus-county.html">County</a> |
+  <a href="seventy-plus.html">State</a>
+</div>
+            <p class="sr-only">
+  Age 65 and over
+</p>
           </div>
         </div>
       </div>
@@ -268,11 +335,25 @@
     <div class="main-wrapper">
       <!-- LEFT: Map -->
       <div class="map-wrap">
-        <iframe id="mapFrame" class="map-frame" src="population_map.html" title="Population Map"></iframe>
+        <iframe
+  id="mapFrame"
+  class="map-frame"
+  src="population_map.html"
+  title="Interactive population map"
+  aria-label="Interactive map showing population change across U.S. states and counties">
+</iframe>
+
       </div>
       <!-- RIGHT: Rankings -->
       <div class="rankings-section">
-        <iframe id="rankingFrame" src="growth-rates.html" title="Population Rankings" width="100%" height="400"></iframe>
+        <iframe
+  id="rankingFrame"
+  src="growth-rates.html"
+  title="Population rankings table"
+  aria-label="Rankings table ordering states by population growth or population level"
+  width="100%"
+  height="400">
+</iframe>
       </div>
     </div>
   </div>
